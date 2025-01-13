@@ -3,6 +3,7 @@
 
 int main(){
     std::cout << "======================" << std::endl;
+    std::cout << "POLYNOMIAL DEGREE: " << N << std::endl;
     std::cout << "RAM BANK NUM: " << BANKNum << std::endl;
     std::cout << "RAM DEPTH: " << RAMDepth << std::endl;
     std::cout << "======================" << std::endl;

@@ -1,0 +1,234 @@
+{
+  "0": {
+    "basicblocks": 90,
+    "calls": "14 9 12 3 3 9 9 1 14 9 9 1 14 9 9 1 14 9 10 5 13 15 14 9 10 5 13 15 5 14",
+    "file": "Crypto.cpp",
+    "fileloc": 11,
+    "instructions": 402,
+    "loads": {
+      "G": 3,
+      "L": 10
+    },
+    "name": "Crypto",
+    "stores": {
+      "L": 17
+    },
+    "total_instructions": 3819
+  },
+  "1": {
+    "basicblocks": 22,
+    "calls": "13 15 5 11 7",
+    "file": "PE_ARRAY.cpp",
+    "fileloc": 7,
+    "instructions": 47,
+    "name": "PE_ARRAY",
+    "total_instructions": 775
+  },
+  "10": {
+    "basicblocks": 9,
+    "calls": "6",
+    "file": "Utils.cpp",
+    "fileloc": 18,
+    "instructions": 24,
+    "loads": {
+      "L": 1
+    },
+    "name": "apply_bit_reverse",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 45
+  },
+  "11": {
+    "basicblocks": 1,
+    "calls": "8 13 4",
+    "file": "Arithmetic.cpp",
+    "fileloc": 106,
+    "instructions": 5,
+    "name": "NTT_PE",
+    "total_instructions": 225
+  },
+  "12": {
+    "basicblocks": 9,
+    "calls": "",
+    "file": "TwiddleMemory.cpp",
+    "fileloc": 6,
+    "instructions": 37,
+    "loads": {
+      "L": 4
+    },
+    "name": "write_twiddle_factor",
+    "stores": {
+      "G": 2
+    },
+    "total_instructions": 37
+  },
+  "13": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 38,
+    "instructions": 24,
+    "loads": {
+      "G": 2,
+      "L": 4
+    },
+    "name": "ADD_MOD",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 24
+  },
+  "14": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "DATAMemory.cpp",
+    "fileloc": 6,
+    "instructions": 19,
+    "loads": {
+      "L": 2
+    },
+    "name": "write_data",
+    "stores": {
+      "G": 1
+    },
+    "total_instructions": 19
+  },
+  "15": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 51,
+    "instructions": 21,
+    "loads": {
+      "G": 1,
+      "L": 4
+    },
+    "name": "SUB_MOD",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 21
+  },
+  "2": {
+    "basicblocks": 9,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 61,
+    "instructions": 172,
+    "loads": {
+      "G": 4,
+      "L": 7
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 172
+  },
+  "3": {
+    "basicblocks": 13,
+    "calls": "",
+    "file": "TwiddleMemory.cpp",
+    "fileloc": 17,
+    "instructions": 40,
+    "loads": {
+      "G": 2,
+      "L": 2
+    },
+    "name": "read_twiddle_factor",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 40
+  },
+  "4": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 51,
+    "instructions": 25,
+    "loads": {
+      "G": 1,
+      "L": 4
+    },
+    "name": "SUB_MOD",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 25
+  },
+  "5": {
+    "basicblocks": 9,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 61,
+    "instructions": 170,
+    "loads": {
+      "G": 4,
+      "L": 7
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 170
+  },
+  "6": {
+    "basicblocks": 7,
+    "calls": "",
+    "file": "Utils.cpp",
+    "fileloc": 9,
+    "instructions": 21,
+    "name": "bit_reverse",
+    "total_instructions": 21
+  },
+  "7": {
+    "basicblocks": 19,
+    "calls": "13 4 2",
+    "file": "Arithmetic.cpp",
+    "fileloc": 117,
+    "instructions": 67,
+    "loads": {
+      "G": 2,
+      "L": 4
+    },
+    "name": "INTT_PE",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 288
+  },
+  "8": {
+    "basicblocks": 9,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 61,
+    "instructions": 171,
+    "loads": {
+      "G": 4,
+      "L": 7
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 171
+  },
+  "9": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "DATAMemory.cpp",
+    "fileloc": 12,
+    "instructions": 19,
+    "loads": {
+      "G": 1,
+      "L": 1
+    },
+    "name": "read_data",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 19
+  }
+}

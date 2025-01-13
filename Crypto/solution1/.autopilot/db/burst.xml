@@ -1,0 +1,5 @@
+<VitisHLS:BurstInfo>
+    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="Crypto.cpp:108:17" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="Crypto.cpp:108:17" LoopName="NTT_GROUP_LOOP" ParentFunc="Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)"/>
+    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="Crypto.cpp:158:17" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="Crypto.cpp:158:17" LoopName="INTT_GROUP_LOOP" ParentFunc="Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)"/>
+</VitisHLS:BurstInfo>
+

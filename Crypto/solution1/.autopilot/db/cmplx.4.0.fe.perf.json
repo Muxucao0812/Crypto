@@ -1,0 +1,51 @@
+{
+  "0": {
+    "basicblocks": 75,
+    "calls": "1 2",
+    "file": "Crypto.cpp",
+    "fileloc": 11,
+    "instructions": 626,
+    "loads": {
+      "G": 22,
+      "L": 12,
+      "T": 11
+    },
+    "name": "Crypto",
+    "stores": {
+      "G": 8,
+      "L": 18,
+      "T": 3
+    },
+    "total_instructions": 858
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 61,
+    "instructions": 116,
+    "loads": {
+      "G": 2
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 116
+  },
+  "2": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 61,
+    "instructions": 116,
+    "loads": {
+      "G": 2
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 116
+  }
+}

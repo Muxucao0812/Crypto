@@ -6,6 +6,7 @@
 
 // res = input1 * input2
 void STEPMUL(long_int *input1, long_int *input2, long_long_int *res){
+    #pragma HLS inline
     long_uint input1_u = static_cast<long_uint>(*input1);
     long_uint input2_u = static_cast<long_uint>(*input2);
     
@@ -35,8 +36,9 @@ void STEPMUL(long_int *input1, long_int *input2, long_long_int *res){
 
 // res = (input1 + input2) % Mod
 void ADD_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
-
+  
     *res = *input1 + *input2;
+
 
     if (*res >= MOD[MOD_INDEX]) {
         *res = *res - MOD[MOD_INDEX];
@@ -47,7 +49,9 @@ void ADD_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
 
 // res = (input1 - input2) % Mod
 void SUB_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
+
     *res = *input1 - *input2;
+
     if (*res < 0) {
         *res = *res + MOD[MOD_INDEX];
     }

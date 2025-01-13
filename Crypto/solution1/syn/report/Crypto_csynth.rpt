@@ -1,0 +1,300 @@
+
+
+================================================================
+== Vitis HLS Report for 'Crypto'
+================================================================
+* Date:           Mon Jan 13 00:09:24 2025
+
+* Version:        2023.1 (Build 3854077 on May  4 2023)
+* Project:        Crypto
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+-----------+------------+
+    |  Clock |  Target | Estimated | Uncertainty|
+    +--------+---------+-----------+------------+
+    |ap_clk  |  8.00 ns|  54.207 ns|     2.16 ns|
+    +--------+---------+-----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------------------------+-----------------------------------+---------+------------+-----------+-------------+------+------------+---------+
+        |                                              |                                   |   Latency (cycles)   |    Latency (absolute)   |      Interval     | Pipeline|
+        |                   Instance                   |               Module              |   min   |     max    |    min    |     max     |  min |     max    |   Type  |
+        +----------------------------------------------+-----------------------------------+---------+------------+-----------+-------------+------+------------+---------+
+        |grp_Crypto_Pipeline_VITIS_LOOP_138_7_fu_407   |Crypto_Pipeline_VITIS_LOOP_138_7   |     4099|        4099|  32.792 us|    32.792 us|  4099|        4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_89_1_fu_415    |Crypto_Pipeline_VITIS_LOOP_89_1    |     4099|        4099|  32.792 us|    32.792 us|  4099|        4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_22_21_fu_423   |Crypto_Pipeline_VITIS_LOOP_22_21   |     4099|        4099|  32.792 us|    32.792 us|  4099|        4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_22_2_fu_429    |Crypto_Pipeline_VITIS_LOOP_22_2    |     4099|        4099|  32.792 us|    32.792 us|  4099|        4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_149_10_fu_435  |Crypto_Pipeline_VITIS_LOOP_149_10  |     4099|        4099|  32.792 us|    32.792 us|  4099|        4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_99_4_fu_441    |Crypto_Pipeline_VITIS_LOOP_99_4    |     4099|        4099|  32.792 us|    32.792 us|  4099|        4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_176_11_fu_447  |Crypto_Pipeline_VITIS_LOOP_176_11  |     4113|        4113|  32.904 us|    32.904 us|  4113|        4113|       no|
+        |grp_Crypto_Pipeline_INTT_PE_LOOP_fu_454       |Crypto_Pipeline_INTT_PE_LOOP       |        2|  3221225471|   0.108 us|  174.613 sec|     2|  3221225471|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_180_12_fu_471  |Crypto_Pipeline_VITIS_LOOP_180_12  |     4099|        4099|  32.792 us|    32.792 us|  4099|        4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_126_5_fu_479   |Crypto_Pipeline_VITIS_LOOP_126_5   |     4099|        4099|  32.792 us|    32.792 us|  4099|        4099|       no|
+        |grp_Crypto_Pipeline_NTT_PE_LOOP_fu_487        |Crypto_Pipeline_NTT_PE_LOOP        |        2|  3221225471|   0.108 us|  174.613 sec|     2|  3221225471|       no|
+        |grp_MUL_MOD_fu_504                            |MUL_MOD                            |       12|          12|  96.000 ns|    96.000 ns|     1|           1|      yes|
+        +----------------------------------------------+-----------------------------------+---------+------------+-----------+-------------+------+------------+---------+
+
+        * Loop: 
+        +--------------------+---------+---------+----------------+-----------+-----------+------+----------+
+        |                    |  Latency (cycles) |    Iteration   |  Initiation Interval  | Trip |          |
+        |      Loop Name     |   min   |   max   |     Latency    |  achieved |   target  | Count| Pipelined|
+        +--------------------+---------+---------+----------------+-----------+-----------+------+----------+
+        |- NTT_STAGE_LOOP    |        ?|        ?|               ?|          -|          -|    12|        no|
+        | + NTT_GROUP_LOOP   |        ?|        ?|  4 ~ 3221225473|          -|          -|     ?|        no|
+        |- INTT_STAGE_LOOP   |        ?|        ?|               ?|          -|          -|    12|        no|
+        | + INTT_GROUP_LOOP  |        ?|        ?|  4 ~ 3221225473|          -|          -|     ?|        no|
+        +--------------------+---------+---------+----------------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|    921|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        0|   48|    5163|   5921|    -|
+|Memory           |       48|    -|       0|      0|    0|
+|Multiplexer      |        -|    -|       -|   1024|    -|
+|Register         |        -|    -|    1079|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |       48|   48|    6242|   7866|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |       17|   21|       5|     14|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------------------------------------------+-----------------------------------+---------+----+------+------+-----+
+    |                   Instance                   |               Module              | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +----------------------------------------------+-----------------------------------+---------+----+------+------+-----+
+    |grp_Crypto_Pipeline_INTT_PE_LOOP_fu_454       |Crypto_Pipeline_INTT_PE_LOOP       |        0|  12|   236|  1162|    0|
+    |grp_Crypto_Pipeline_NTT_PE_LOOP_fu_487        |Crypto_Pipeline_NTT_PE_LOOP        |        0|  12|   236|  1148|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_126_5_fu_479   |Crypto_Pipeline_VITIS_LOOP_126_5   |        0|   0|    76|    83|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_138_7_fu_407   |Crypto_Pipeline_VITIS_LOOP_138_7   |        0|   0|    76|    83|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_149_10_fu_435  |Crypto_Pipeline_VITIS_LOOP_149_10  |        0|   0|    76|    69|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_176_11_fu_447  |Crypto_Pipeline_VITIS_LOOP_176_11  |        0|  12|  1587|  1054|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_180_12_fu_471  |Crypto_Pipeline_VITIS_LOOP_180_12  |        0|   0|    76|    83|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_22_2_fu_429    |Crypto_Pipeline_VITIS_LOOP_22_2    |        0|   0|    74|    69|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_22_21_fu_423   |Crypto_Pipeline_VITIS_LOOP_22_21   |        0|   0|    74|    69|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_89_1_fu_415    |Crypto_Pipeline_VITIS_LOOP_89_1    |        0|   0|    76|    83|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_99_4_fu_441    |Crypto_Pipeline_VITIS_LOOP_99_4    |        0|   0|    76|    69|    0|
+    |grp_MUL_MOD_fu_504                            |MUL_MOD                            |        0|  12|  1368|   922|    0|
+    |control_s_axi_U                               |control_s_axi                      |        0|   0|   344|   495|    0|
+    |mux_3_2_19_1_1_U119                           |mux_3_2_19_1_1                     |        0|   0|     0|    14|    0|
+    |mux_3_2_20_1_1_U117                           |mux_3_2_20_1_1                     |        0|   0|     0|    14|    0|
+    |mux_3_2_31_1_1_U116                           |mux_3_2_31_1_1                     |        0|   0|     0|    14|    0|
+    |mux_3_2_31_1_1_U121                           |mux_3_2_31_1_1                     |        0|   0|     0|    14|    0|
+    |sdiv_15ns_32s_13_19_seq_1_U118                |sdiv_15ns_32s_13_19_seq_1          |        0|   0|   394|   238|    0|
+    |sdiv_15ns_32s_13_19_seq_1_U120                |sdiv_15ns_32s_13_19_seq_1          |        0|   0|   394|   238|    0|
+    +----------------------------------------------+-----------------------------------+---------+----+------+------+-----+
+    |Total                                         |                                   |        0|  48|  5163|  5921|    0|
+    +----------------------------------------------+-----------------------------------+---------+----+------+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +----------------------+----------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |        Memory        |              Module              | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +----------------------+----------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |DataTemp_U            |DataTemp_RAM_AUTO_1R1W            |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |bit_reversed_input_U  |bit_reversed_input_RAM_AUTO_1R1W  |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |data_ram_0_U          |data_ram_0_RAM_AUTO_1R1W          |       16|  0|   0|    0|  8192|   32|     1|       262144|
+    |twiddle_ram_U         |twiddle_ram_RAM_AUTO_1R1W         |       16|  0|   0|    0|  8192|   32|     1|       262144|
+    +----------------------+----------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total                 |                                  |       48|  0|   0|    0| 24576|  128|     4|       786432|
+    +----------------------+----------------------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |          Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |add_ln108_fu_916_p2              |         +|   0|  0|  71|          64|          64|
+    |add_ln14_fu_1012_p2              |         +|   0|  0|  14|          13|          13|
+    |add_ln158_fu_801_p2              |         +|   0|  0|  71|          64|          64|
+    |add_ln8_fu_1039_p2               |         +|   0|  0|  14|          13|          13|
+    |temp3_0_5_fu_966_p2              |         +|   0|  0|  39|          32|          32|
+    |temp3_0_fu_945_p2                |         +|   0|  0|  39|          32|          32|
+    |sub_ln105_1_fu_857_p2            |         -|   0|  0|  39|           1|          32|
+    |sub_ln105_fu_838_p2              |         -|   0|  0|  39|           1|          32|
+    |sub_ln155_1_fu_742_p2            |         -|   0|  0|  39|           1|          32|
+    |sub_ln155_fu_723_p2              |         -|   0|  0|  39|           1|          32|
+    |temp3_0_1_fu_986_p2              |         -|   0|  0|  39|          32|          32|
+    |temp3_0_3_fu_931_p2              |         -|   0|  0|  39|          32|          32|
+    |icmp_ln104_fu_819_p2             |      icmp|   0|  0|  39|          32|          13|
+    |icmp_ln108_fu_905_p2             |      icmp|   0|  0|  59|          52|           1|
+    |icmp_ln154_fu_692_p2             |      icmp|   0|  0|  39|          32|          13|
+    |icmp_ln158_fu_790_p2             |      icmp|   0|  0|  59|          52|           1|
+    |icmp_ln43_fu_981_p2              |      icmp|   0|  0|  39|          32|          32|
+    |ap_block_state3_on_subcall_done  |        or|   0|  0|   2|           1|           1|
+    |ap_block_state5_on_subcall_done  |        or|   0|  0|   2|           1|           1|
+    |ap_block_state7_on_subcall_done  |        or|   0|  0|   2|           1|           1|
+    |hf_1_fu_761_p3                   |    select|   0|  0|  32|           1|          32|
+    |hf_fu_876_p3                     |    select|   0|  0|  32|           1|          32|
+    |temp3_0_2_fu_991_p3              |    select|   0|  0|  32|           1|          32|
+    |temp3_0_6_fu_971_p3              |    select|   0|  0|  32|           1|          32|
+    |xor_ln12_fu_1022_p2              |       xor|   0|  0|  14|          13|          14|
+    |xor_ln14_1_fu_588_p2             |       xor|   0|  0|  14|          13|          14|
+    |xor_ln14_2_fu_568_p2             |       xor|   0|  0|  14|          13|          14|
+    |xor_ln14_fu_608_p2               |       xor|   0|  0|  14|          13|          14|
+    |xor_ln28_fu_623_p2               |       xor|   0|  0|  14|          13|          14|
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |Total                            |          |   0|  0| 921|         558|         671|
+    +---------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-----------------------------+-----+-----------+-----+-----------+
+    |             Name            | LUT | Input Size| Bits| Total Bits|
+    +-----------------------------+-----+-----------+-----+-----------+
+    |DataTemp_address0            |   65|         12|   12|        144|
+    |DataTemp_address1            |   20|          4|   12|         48|
+    |DataTemp_ce0                 |   65|         12|    1|         12|
+    |DataTemp_ce1                 |   20|          4|    1|          4|
+    |DataTemp_d0                  |   42|          8|   32|        256|
+    |DataTemp_d1                  |   14|          3|   32|         96|
+    |DataTemp_we0                 |   42|          8|    1|          8|
+    |DataTemp_we1                 |   14|          3|    1|          3|
+    |TwiddleIn_address0           |   14|          3|    1|          3|
+    |ap_NS_fsm                    |  377|         77|    1|         77|
+    |bit_reversed_input_address0  |   25|          5|   12|         60|
+    |bit_reversed_input_ce0       |   25|          5|    1|          5|
+    |bit_reversed_input_d0        |   14|          3|   32|         96|
+    |bit_reversed_input_we0       |   14|          3|    1|          3|
+    |data_ram_0_address0          |   59|         11|   13|        143|
+    |data_ram_0_address1          |   31|          6|   13|         78|
+    |data_ram_0_ce0               |   31|          6|    1|          6|
+    |data_ram_0_d0                |   25|          5|   32|        160|
+    |data_ram_0_d1                |   14|          3|   32|         96|
+    |data_ram_0_we0               |   20|          4|    1|          4|
+    |h_1_fu_190                   |    9|          2|   31|         62|
+    |h_fu_194                     |    9|          2|   31|         62|
+    |i_6_reg_396                  |    9|          2|   64|        128|
+    |i_reg_385                    |    9|          2|   64|        128|
+    |twiddle_ram_address0         |   37|          7|   13|         91|
+    |twiddle_ram_ce0              |   20|          4|    1|          4|
+    +-----------------------------+-----+-----------+-----+-----------+
+    |Total                        | 1024|        204|  436|       1777|
+    +-----------------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------------------------------+----+----+-----+-----------+
+    |                            Name                           | FF | LUT| Bits| Const Bits|
+    +-----------------------------------------------------------+----+----+-----+-----------+
+    |OP_read_reg_1049                                           |  32|   0|   32|          0|
+    |add_ln108_reg_1257                                         |  64|   0|   64|          0|
+    |add_ln158_reg_1218                                         |  64|   0|   64|          0|
+    |ap_CS_fsm                                                  |  76|   0|   76|          0|
+    |data_ram_0_addr_2_reg_1098                                 |  13|   0|   13|          0|
+    |data_ram_0_addr_4_reg_1088                                 |  13|   0|   13|          0|
+    |data_ram_0_addr_6_reg_1077                                 |  13|   0|   13|          0|
+    |grp_Crypto_Pipeline_INTT_PE_LOOP_fu_454_ap_start_reg       |   1|   0|    1|          0|
+    |grp_Crypto_Pipeline_NTT_PE_LOOP_fu_487_ap_start_reg        |   1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_126_5_fu_479_ap_start_reg   |   1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_138_7_fu_407_ap_start_reg   |   1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_149_10_fu_435_ap_start_reg  |   1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_176_11_fu_447_ap_start_reg  |   1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_180_12_fu_471_ap_start_reg  |   1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_22_21_fu_423_ap_start_reg   |   1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_22_2_fu_429_ap_start_reg    |   1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_89_1_fu_415_ap_start_reg    |   1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_99_4_fu_441_ap_start_reg    |   1|   0|    1|          0|
+    |h_1_fu_190                                                 |  31|   0|   32|          1|
+    |h_fu_194                                                   |  31|   0|   32|          1|
+    |hf_1_reg_1190                                              |  32|   0|   32|          0|
+    |hf_reg_1229                                                |  32|   0|   32|          0|
+    |i_6_reg_396                                                |  64|   0|   64|          0|
+    |i_reg_385                                                  |  64|   0|   64|          0|
+    |n_inv_reg_1185                                             |  19|   0|   19|          0|
+    |reg_535                                                    |  31|   0|   31|          0|
+    |reg_545                                                    |  20|   0|   20|          0|
+    |sext_ln108_reg_1244                                        |  63|   0|   64|          1|
+    |sext_ln158_reg_1205                                        |  63|   0|   64|          1|
+    |temp3_0_2_reg_1300                                         |  32|   0|   32|          0|
+    |temp3_0_3_reg_1277                                         |  32|   0|   32|          0|
+    |temp3_0_4_reg_1272                                         |  32|   0|   32|          0|
+    |temp3_0_6_reg_1295                                         |  32|   0|   32|          0|
+    |temp3_0_reg_1288                                           |  32|   0|   32|          0|
+    |tmp_9_reg_1153                                             |   1|   0|   13|         12|
+    |tmp_reg_1283                                               |   1|   0|    1|          0|
+    |tmp_s_reg_1140                                             |   1|   0|   13|         12|
+    |trunc_ln108_1_reg_1239                                     |  12|   0|   12|          0|
+    |trunc_ln108_2_reg_1252                                     |  12|   0|   12|          0|
+    |trunc_ln108_reg_1234                                       |  13|   0|   13|          0|
+    |trunc_ln11_1_reg_1061                                      |   2|   0|    2|          0|
+    |trunc_ln11_reg_1053                                        |   1|   0|    1|          0|
+    |trunc_ln14_reg_1123                                        |  13|   0|   13|          0|
+    |trunc_ln158_1_reg_1200                                     |  12|   0|   12|          0|
+    |trunc_ln158_2_reg_1213                                     |  12|   0|   12|          0|
+    |trunc_ln158_reg_1195                                       |  13|   0|   13|          0|
+    |trunc_ln64_1_reg_1159                                      |  16|   0|   16|          0|
+    |trunc_ln64_reg_1169                                        |  16|   0|   16|          0|
+    |trunc_ln89_1_reg_1164                                      |  16|   0|   16|          0|
+    |trunc_ln89_reg_1174                                        |  16|   0|   16|          0|
+    |trunc_ln8_1_reg_1305                                       |  13|   0|   13|          0|
+    |trunc_ln8_reg_1128                                         |  13|   0|   13|          0|
+    +-----------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                      |1079|   0| 1107|         28|
+    +-----------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+----------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  |  Source Object |    C Type    |
++-----------------------+-----+-----+------------+----------------+--------------+
+|s_axi_control_AWVALID  |   in|    1|       s_axi|         control|        scalar|
+|s_axi_control_AWREADY  |  out|    1|       s_axi|         control|        scalar|
+|s_axi_control_AWADDR   |   in|    7|       s_axi|         control|        scalar|
+|s_axi_control_WVALID   |   in|    1|       s_axi|         control|        scalar|
+|s_axi_control_WREADY   |  out|    1|       s_axi|         control|        scalar|
+|s_axi_control_WDATA    |   in|   32|       s_axi|         control|        scalar|
+|s_axi_control_WSTRB    |   in|    4|       s_axi|         control|        scalar|
+|s_axi_control_ARVALID  |   in|    1|       s_axi|         control|        scalar|
+|s_axi_control_ARREADY  |  out|    1|       s_axi|         control|        scalar|
+|s_axi_control_ARADDR   |   in|    7|       s_axi|         control|        scalar|
+|s_axi_control_RVALID   |  out|    1|       s_axi|         control|        scalar|
+|s_axi_control_RREADY   |   in|    1|       s_axi|         control|        scalar|
+|s_axi_control_RDATA    |  out|   32|       s_axi|         control|        scalar|
+|s_axi_control_RRESP    |  out|    2|       s_axi|         control|        scalar|
+|s_axi_control_BVALID   |  out|    1|       s_axi|         control|        scalar|
+|s_axi_control_BREADY   |   in|    1|       s_axi|         control|        scalar|
+|s_axi_control_BRESP    |  out|    2|       s_axi|         control|        scalar|
+|ap_clk                 |   in|    1|  ap_ctrl_hs|          Crypto|  return value|
+|ap_rst_n               |   in|    1|  ap_ctrl_hs|          Crypto|  return value|
+|interrupt              |  out|    1|  ap_ctrl_hs|          Crypto|  return value|
+|TwiddleAddress         |   in|   32|     ap_none|  TwiddleAddress|       pointer|
+|TwiddleOutput          |  out|   32|      ap_vld|   TwiddleOutput|       pointer|
+|TwiddleOutput_ap_vld   |  out|    1|      ap_vld|   TwiddleOutput|       pointer|
++-----------------------+-----+-----+------------+----------------+--------------+
+

@@ -5,7 +5,6 @@ open_project -reset Crypto
 
 # Define lists of source and header files
 set source_files {
-
     TwiddleMemory.cpp
     Crypto.cpp
     DATAMemory.cpp
@@ -20,6 +19,7 @@ set source_files {
     poly.txt
     basis.txt
     ret.txt
+
     # Add all necessary source files
 }
 
@@ -60,13 +60,13 @@ open_solution "solution1" -reset
 
 # Set the target part and create a clock
 set_part {xc7z020clg400-1} 
-create_clock -period 10
+create_clock -period 8
 
 # Run C simulation
-csim_design
+# csim_design
 
 # Optionally, run synthesis and co-simulation
-# csynth_design
+csynth_design
 # cosim_design
 
 # Close the project

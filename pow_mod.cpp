@@ -4,9 +4,10 @@
 #include"Arithmetic.hpp"
 
 long_int mod65537(long_long_int a) {
+    #pragma HLS inline
     long_int result = 0;
-    #pragma HLS pipeline
     for (int i = 0; i < 4; i++) {
+        #pragma HLS UNROLL
         long_int chunk = a(i * 16 + 15, i * 16);
         if ((i & 1) == 0) {
             result += chunk;
@@ -36,8 +37,9 @@ long_int modExp(long_int base, long_int exp, long_int m) {
     long_int curPow = base % m;
     long_int e = exp;
     long_long_int temp;
-
+    
     while (e > 0) {
+        #pragma HLS loop_tripcount min=0 max=16
         if ((e & 1) == 1) {
             STEPMUL(&result, &curPow, &temp);
             result =  mod65537(temp);
@@ -68,10 +70,14 @@ void encode(
     long_int basis[N],
     long_int ret[N] )
 {
-#pragma HLS INTERFACE mode=bram port=poly 
-#pragma HLS INTERFACE mode=bram port=basis 
-#pragma HLS INTERFACE mode=bram port=ret 
+#pragma HLS INTERFACE mode=s_axilite port=poly 
+#pragma HLS INTERFACE mode=s_axilite port=basis 
+#pragma HLS INTERFACE mode=s_axilite port=ret 
 #pragma HLS INTERFACE mode=s_axilite port=return
+
+#pragma HLS ARRAY_PARTITION variable=poly factor=2
+#pragma HLS ARRAY_PARTITION variable=basis factor=2
+#pragma HLS ARRAY_PARTITION variable=ret factor=2
 
 
     // First loop:  ret[i] = sum_{j=0..n-1} [ poly[j] * (root ^ (-i * basis[j])) mod t ] mod t
@@ -80,32 +86,31 @@ void encode(
     // or equivalently root^{-k} = (root^{T-1})^k when T is prime.
     
     long_int invN = 65521;
-
-
+    long_int s[2];
+    long_int term, exponent, temp_sum, product;
+    long_long_int temp;
+    long_int s_index[2];
     // First loop: ret[i] = sum_{j=0..n-1} [ poly[j] * (ROOT ^ (i * basis[j])) ] % T
     LOOP_i: 
     for (int i = 0; i < N; i++) {
-
-        long_int s = 0;
+        #pragma HLS unroll factor=2
+        s_index[i] = i & 1;
+        s[s_index[i]] = 0;
         LOOP_j:
         for (int j = 0; j < N; j++) {
-            #pragma HLS pipeline II=1
-            long_int term;
-            long_int exponent = (i * basis[j])  & 0xFFFF; // 取最低 8 位
+            GET_EXP:
+            exponent = (i * basis[j])  & 0xFFFF; // mod 65535
             term = modExp(ROOT, exponent, T);
-            
-            long_long_int temp;
-            long_int temp_sum = poly[j] + T;  // Ensure that temp_sum is of type long_int
+            SUM:
+            temp_sum = poly[j] + T;  // Ensure that temp_sum is of type long_int
             STEPMUL(&temp_sum, &term, &temp);
-
-            
-            long_int product = mod65537(temp);
-            s = mod65537(s + product+T);
-        }        
-
-        ret[i] =  mod65537(s * invN);
+            PRODUCT:
+            product = mod65537(temp);
+            s[s_index[i]] = mod65537(s[s_index[i]] + product + T);
+        }
+        ret[i] =  mod65537(s[s_index[i]] * invN);
  
-        std::cout << "ret[" << i << "] = " << ret[i] << std::endl;
+        // std::cout << "ret[" << i << "] = " << ret[i] << std::endl;
     }
 
 }

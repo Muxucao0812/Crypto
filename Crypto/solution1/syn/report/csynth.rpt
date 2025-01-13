@@ -1,0 +1,349 @@
+
+
+================================================================
+== Synthesis Summary Report of 'Crypto'
+================================================================
++ General Information: 
+    * Date:           Mon Jan 13 00:09:25 2025
+    * Version:        2023.1 (Build 3854077 on May  4 2023)
+    * Project:        Crypto
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +--------------------------------------+--------+--------+------------+-----------+------------+------------+------------+----------+----------+----------+-----------+------------+-----+
+    |                Modules               |  Issue |        |  Latency   |  Latency  |  Iteration |            |    Trip    |          |          |          |           |            |     |
+    |                & Loops               |  Type  |  Slack |  (cycles)  |    (ns)   |   Latency  |  Interval  |    Count   | Pipelined|   BRAM   |    DSP   |     FF    |     LUT    | URAM|
+    +--------------------------------------+--------+--------+------------+-----------+------------+------------+------------+----------+----------+----------+-----------+------------+-----+
+    |+ Crypto                              |  Timing|  -48.37|           -|          -|           -|           -|           -|        no|  48 (17%)|  48 (21%)|  6242 (5%)|  7866 (14%)|    -|
+    | + Crypto_Pipeline_VITIS_LOOP_138_7   |       -|    0.91|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   76 (~0%)|    83 (~0%)|    -|
+    |  o VITIS_LOOP_138_7                  |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
+    | + Crypto_Pipeline_VITIS_LOOP_89_1    |       -|    0.91|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   76 (~0%)|    83 (~0%)|    -|
+    |  o VITIS_LOOP_89_1                   |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
+    | + Crypto_Pipeline_VITIS_LOOP_22_21   |       -|    2.57|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   74 (~0%)|    69 (~0%)|    -|
+    |  o VITIS_LOOP_22_2                   |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
+    | + Crypto_Pipeline_VITIS_LOOP_22_2    |       -|    2.57|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   74 (~0%)|    69 (~0%)|    -|
+    |  o VITIS_LOOP_22_2                   |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
+    | + Crypto_Pipeline_VITIS_LOOP_149_10  |       -|    2.57|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   76 (~0%)|    69 (~0%)|    -|
+    |  o VITIS_LOOP_149_10                 |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
+    | + Crypto_Pipeline_VITIS_LOOP_99_4    |       -|    2.57|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   76 (~0%)|    69 (~0%)|    -|
+    |  o VITIS_LOOP_99_4                   |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
+    | + Crypto_Pipeline_VITIS_LOOP_176_11  |       -|    0.18|        4113|  3.290e+04|           -|        4113|           -|        no|         -|   12 (5%)|  1587 (1%)|   1054 (1%)|    -|
+    |  o VITIS_LOOP_176_11                 |       -|    5.84|        4111|  3.289e+04|          17|           1|        4096|       yes|         -|         -|          -|           -|    -|
+    |   + MUL_MOD_1                        |      II|    0.18|          12|     96.000|           -|           1|           -|       yes|         -|   12 (5%)|  1336 (1%)|    921 (1%)|    -|
+    | + Crypto_Pipeline_VITIS_LOOP_180_12  |       -|    2.57|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   76 (~0%)|    83 (~0%)|    -|
+    |  o VITIS_LOOP_180_12                 |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
+    | + Crypto_Pipeline_VITIS_LOOP_126_5   |       -|    2.57|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   76 (~0%)|    83 (~0%)|    -|
+    |  o VITIS_LOOP_126_5                  |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
+    | + MUL_MOD                            |      II|    0.18|          12|     96.000|           -|           1|           -|       yes|         -|   12 (5%)|  1368 (1%)|    922 (1%)|    -|
+    | o NTT_STAGE_LOOP                     |       -|    5.84|           -|          -|           -|           -|           -|        no|         -|         -|          -|           -|    -|
+    |  o NTT_GROUP_LOOP                    |       -|    5.84|           -|          -|  3221225473|           -|           -|        no|         -|         -|          -|           -|    -|
+    |   + Crypto_Pipeline_NTT_PE_LOOP      |  Timing|  -48.37|  3221225471|  1.746e+11|           -|  3221225471|           -|        no|         -|   12 (5%)|  236 (~0%)|   1148 (2%)|    -|
+    |    o NTT_PE_LOOP                     |      II|    5.84|  3221225469|  1.746e+11|           3|           3|  1073741823|       yes|         -|         -|          -|           -|    -|
+    | o INTT_STAGE_LOOP                    |       -|    5.84|           -|          -|           -|           -|           -|        no|         -|         -|          -|           -|    -|
+    |  o INTT_GROUP_LOOP                   |       -|    5.84|           -|          -|  3221225473|           -|           -|        no|         -|         -|          -|           -|    -|
+    |   + Crypto_Pipeline_INTT_PE_LOOP     |  Timing|  -48.37|  3221225471|  1.746e+11|           -|  3221225471|           -|        no|         -|   12 (5%)|  236 (~0%)|   1162 (2%)|    -|
+    |    o INTT_PE_LOOP                    |      II|    5.84|  3221225469|  1.746e+11|           3|           3|  1073741823|       yes|         -|         -|          -|           -|    -|
+    +--------------------------------------+--------+--------+------------+-----------+------------+------------+------------+----------+----------+----------+-----------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 7             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+-----------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register        | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+-----------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL            | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER            | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER          | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR          | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | DataIn          | 0x10   | 32    | W      | Data signal of DataIn            |                                                                      |
+| s_axi_control | Address         | 0x18   | 32    | W      | Data signal of Address           |                                                                      |
+| s_axi_control | DataOutput      | 0x20   | 32    | R      | Data signal of DataOutput        |                                                                      |
+| s_axi_control | DataOutput_ctrl | 0x24   | 32    | R      | Control signal of DataOutput     | 0=DataOutput_ap_vld                                                  |
+| s_axi_control | RAMSel          | 0x28   | 32    | W      | Data signal of RAMSel            |                                                                      |
+| s_axi_control | OP              | 0x38   | 32    | W      | Data signal of OP                |                                                                      |
+| s_axi_control | ModIndex        | 0x40   | 32    | W      | Data signal of ModIndex          |                                                                      |
++---------------+-----------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* AP_MEMORY
++---------------+-----------+----------+
+| Port          | Direction | Bitwidth |
++---------------+-----------+----------+
+| TwiddleOutput | out       | 32       |
++---------------+-----------+----------+
+
+* Other Ports
++----------------+---------+-----------+----------+
+| Port           | Mode    | Direction | Bitwidth |
++----------------+---------+-----------+----------+
+| TwiddleAddress | ap_none | in        | 32       |
++----------------+---------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------------+-----------+-----------------+
+| Argument       | Direction | Datatype        |
++----------------+-----------+-----------------+
+| DataIn         | in        | ap_int<32>*     |
+| Address        | in        | int*            |
+| DataOutput     | out       | ap_int<32>*     |
+| RAMSel         | in        | int             |
+| TwiddleIn      | in        | ap_int<32>*     |
+| TwiddleAddress | in        | int*            |
+| TwiddleOutput  | out       | ap_int<32>*     |
+| OP             | in        | CryptoOperation |
+| ModIndex       | in        | int             |
++----------------+-----------+-----------------+
+
+* SW-to-HW Mapping
++----------------+----------------------+----------+-------------------------------------------+
+| Argument       | HW Interface         | HW Type  | HW Info                                   |
++----------------+----------------------+----------+-------------------------------------------+
+| DataIn         | s_axi_control        | register | name=DataIn offset=0x10 range=32          |
+| Address        | s_axi_control        | register | name=Address offset=0x18 range=32         |
+| DataOutput     | s_axi_control        | register | name=DataOutput offset=0x20 range=32      |
+| DataOutput     | s_axi_control        | register | name=DataOutput_ctrl offset=0x24 range=32 |
+| RAMSel         | s_axi_control        | register | name=RAMSel offset=0x28 range=32          |
+| TwiddleIn      | s_axi_control        | memory   | name=TwiddleIn offset=48 range=8          |
+| TwiddleAddress | TwiddleAddress       | port     |                                           |
+| TwiddleOutput  | TwiddleOutput        | port     |                                           |
+| TwiddleOutput  | TwiddleOutput_ap_vld | port     |                                           |
+| OP             | s_axi_control        | register | name=OP offset=0x38 range=32              |
+| ModIndex       | s_axi_control        | register | name=ModIndex offset=0x40 range=32        |
++----------------+----------------------+----------+-------------------------------------------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+
+================================================================
+== Bind Op Report
+================================================================
++------------------------------------------+-----+--------+----------------+-----+--------+---------+
+| Name                                     | DSP | Pragma | Variable       | Op  | Impl   | Latency |
++------------------------------------------+-----+--------+----------------+-----+--------+---------+
+| + Crypto                                 | 48  |        |                |     |        |         |
+|   sub_ln155_fu_723_p2                    | -   |        | sub_ln155      | sub | fabric | 0       |
+|   sub_ln155_1_fu_742_p2                  | -   |        | sub_ln155_1    | sub | fabric | 0       |
+|   add_ln158_fu_801_p2                    | -   |        | add_ln158      | add | fabric | 0       |
+|   sub_ln105_fu_838_p2                    | -   |        | sub_ln105      | sub | fabric | 0       |
+|   sub_ln105_1_fu_857_p2                  | -   |        | sub_ln105_1    | sub | fabric | 0       |
+|   add_ln108_fu_916_p2                    | -   |        | add_ln108      | add | fabric | 0       |
+|   temp3_0_3_fu_931_p2                    | -   |        | temp3_0_3      | sub | fabric | 0       |
+|   temp3_0_5_fu_966_p2                    | -   |        | temp3_0_5      | add | fabric | 0       |
+|   temp3_0_fu_945_p2                      | -   |        | temp3_0        | add | fabric | 0       |
+|   temp3_0_1_fu_986_p2                    | -   |        | temp3_0_1      | sub | fabric | 0       |
+|   add_ln14_fu_1012_p2                    | -   |        | add_ln14       | add | fabric | 0       |
+|   add_ln8_fu_1039_p2                     | -   |        | add_ln8        | add | fabric | 0       |
+|  + Crypto_Pipeline_VITIS_LOOP_138_7      | 0   |        |                |     |        |         |
+|    add_ln138_fu_84_p2                    | -   |        | add_ln138      | add | fabric | 0       |
+|    add_ln14_fu_90_p2                     | -   |        | add_ln14       | add | fabric | 0       |
+|  + Crypto_Pipeline_VITIS_LOOP_89_1       | 0   |        |                |     |        |         |
+|    add_ln89_fu_84_p2                     | -   |        | add_ln89       | add | fabric | 0       |
+|    add_ln14_fu_90_p2                     | -   |        | add_ln14       | add | fabric | 0       |
+|  + Crypto_Pipeline_VITIS_LOOP_22_21      | 0   |        |                |     |        |         |
+|    add_ln22_fu_78_p2                     | -   |        | add_ln22       | add | fabric | 0       |
+|  + Crypto_Pipeline_VITIS_LOOP_22_2       | 0   |        |                |     |        |         |
+|    add_ln22_fu_78_p2                     | -   |        | add_ln22       | add | fabric | 0       |
+|  + Crypto_Pipeline_VITIS_LOOP_149_10     | 0   |        |                |     |        |         |
+|    add_ln149_fu_74_p2                    | -   |        | add_ln149      | add | fabric | 0       |
+|  + Crypto_Pipeline_VITIS_LOOP_99_4       | 0   |        |                |     |        |         |
+|    add_ln99_fu_74_p2                     | -   |        | add_ln99       | add | fabric | 0       |
+|  + Crypto_Pipeline_VITIS_LOOP_176_11     | 12  |        |                |     |        |         |
+|    add_ln176_fu_92_p2                    | -   |        | add_ln176      | add | fabric | 0       |
+|   + MUL_MOD_1                            | 12  |        |                |     |        |         |
+|     mul_16ns_16ns_32_1_1_U37             | 1   |        | temp1          | mul | auto   | 0       |
+|     mac_muladd_14ns_16ns_32ns_33_4_1_U48 | 1   |        | temp2          | mul | dsp48  | 3       |
+|     mul_16ns_16ns_32_1_1_U38             | 1   |        | temp3          | mul | auto   | 0       |
+|     mul_14ns_16ns_30_1_1_U36             | 1   |        | temp4          | mul | auto   | 0       |
+|     mac_muladd_14ns_16ns_32ns_33_4_1_U48 | 1   |        | add_ln30       | add | dsp48  | 3       |
+|     res_mult_fu_222_p2                   | -   |        | res_mult       | add | fabric | 0       |
+|     mul_16ns_16ns_32_1_1_U40             | 1   |        | temp1_1        | mul | auto   | 0       |
+|     mul_16ns_16ns_32_1_1_U41             | 1   |        | temp2_1        | mul | auto   | 0       |
+|     mul_16ns_16ns_32_1_1_U42             | 1   |        | temp3_1        | mul | auto   | 0       |
+|     mul_16ns_16ns_32_1_1_U43             | 1   |        | temp4_1        | mul | auto   | 0       |
+|     add_ln30_3_fu_308_p2                 | -   |        | add_ln30_3     | add | fabric | 0       |
+|     add_ln30_1_fu_312_p2                 | -   |        | add_ln30_1     | add | fabric | 0       |
+|     res_mult_shift_fu_380_p2             | -   |        | res_mult_shift | add | fabric | 0       |
+|     add_ln74_fu_332_p2                   | -   |        | add_ln74       | add | fabric | 0       |
+|     mul_16ns_16ns_32_1_1_U45             | 1   |        | temp1_2        | mul | auto   | 0       |
+|     mac_muladd_16ns_15ns_32ns_33_4_1_U49 | 1   |        | temp2_2        | mul | dsp48  | 3       |
+|     mul_16ns_16ns_32_1_1_U46             | 1   |        | temp3_2        | mul | auto   | 0       |
+|     mul_15ns_16ns_31_1_1_U47             | 1   |        | temp4_2        | mul | auto   | 0       |
+|     mac_muladd_16ns_15ns_32ns_33_4_1_U49 | 1   |        | add_ln30_2     | add | dsp48  | 3       |
+|     sub_ln89_fu_484_p2                   | -   |        | sub_ln89       | sub | fabric | 0       |
+|     sub_ln90_fu_500_p2                   | -   |        | sub_ln90       | sub | fabric | 0       |
+|  + Crypto_Pipeline_INTT_PE_LOOP          | 12  |        |                |     |        |         |
+|    add_ln160_fu_260_p2                   | -   |        | add_ln160      | add | fabric | 0       |
+|    add_ln162_fu_273_p2                   | -   |        | add_ln162      | add | fabric | 0       |
+|    add_ln163_fu_283_p2                   | -   |        | add_ln163      | add | fabric | 0       |
+|    add_ln164_1_fu_293_p2                 | -   |        | add_ln164_1    | add | fabric | 0       |
+|    mul_16ns_16ns_32_1_1_U8               | 1   |        | temp1          | mul | auto   | 0       |
+|    mul_16ns_16ns_32_1_1_U9               | 1   |        | temp2          | mul | auto   | 0       |
+|    mac_muladd_16ns_16ns_32ns_33_1_1_U18  | 1   |        | temp3          | mul | dsp48  | 0       |
+|    mul_16ns_16ns_32_1_1_U10              | 1   |        | temp4          | mul | auto   | 0       |
+|    mac_muladd_16ns_16ns_32ns_33_1_1_U18  | 1   |        | add_ln30_7     | add | dsp48  | 0       |
+|    res_mult_fu_413_p2                    | -   |        | res_mult       | add | fabric | 0       |
+|    mul_16ns_16ns_32_1_1_U11              | 1   |        | temp1_7        | mul | auto   | 0       |
+|    mul_16ns_16ns_32_1_1_U12              | 1   |        | temp2_7        | mul | auto   | 0       |
+|    mul_16ns_16ns_32_1_1_U13              | 1   |        | temp3_7        | mul | auto   | 0       |
+|    mul_16ns_16ns_32_1_1_U14              | 1   |        | temp4_7        | mul | auto   | 0       |
+|    add_ln30_fu_496_p2                    | -   |        | add_ln30       | add | fabric | 0       |
+|    add_ln30_8_fu_502_p2                  | -   |        | add_ln30_8     | add | fabric | 0       |
+|    res_mult_shift_fu_536_p2              | -   |        | res_mult_shift | add | fabric | 0       |
+|    add_ln74_fu_542_p2                    | -   |        | add_ln74       | add | fabric | 0       |
+|    mul_16ns_16ns_32_1_1_U15              | 1   |        | temp1_8        | mul | auto   | 0       |
+|    mac_muladd_16ns_15ns_32ns_33_1_1_U19  | 1   |        | temp2_8        | mul | dsp48  | 0       |
+|    mul_16ns_16ns_32_1_1_U16              | 1   |        | temp3_8        | mul | auto   | 0       |
+|    mul_15ns_16ns_31_1_1_U17              | 1   |        | temp4_8        | mul | auto   | 0       |
+|    mac_muladd_16ns_15ns_32ns_33_1_1_U19  | 1   |        | add_ln30_9     | add | dsp48  | 0       |
+|    sub_ln89_fu_652_p2                    | -   |        | sub_ln89       | sub | fabric | 0       |
+|    sub_ln90_fu_668_p2                    | -   |        | sub_ln90       | sub | fabric | 0       |
+|    add_ln40_fu_718_p2                    | -   |        | add_ln40       | add | fabric | 0       |
+|    sub_ln44_fu_729_p2                    | -   |        | sub_ln44       | sub | fabric | 0       |
+|    sub_ln53_fu_743_p2                    | -   |        | sub_ln53       | sub | fabric | 0       |
+|    add_ln56_fu_755_p2                    | -   |        | add_ln56       | add | fabric | 0       |
+|  + Crypto_Pipeline_VITIS_LOOP_180_12     | 0   |        |                |     |        |         |
+|    add_ln180_fu_84_p2                    | -   |        | add_ln180      | add | fabric | 0       |
+|    add_ln8_fu_95_p2                      | -   |        | add_ln8        | add | fabric | 0       |
+|  + Crypto_Pipeline_VITIS_LOOP_126_5      | 0   |        |                |     |        |         |
+|    add_ln126_fu_84_p2                    | -   |        | add_ln126      | add | fabric | 0       |
+|    add_ln8_fu_95_p2                      | -   |        | add_ln8        | add | fabric | 0       |
+|  + Crypto_Pipeline_NTT_PE_LOOP           | 12  |        |                |     |        |         |
+|    add_ln110_fu_258_p2                   | -   |        | add_ln110      | add | fabric | 0       |
+|    add_ln112_fu_271_p2                   | -   |        | add_ln112      | add | fabric | 0       |
+|    add_ln113_fu_281_p2                   | -   |        | add_ln113      | add | fabric | 0       |
+|    add_ln114_fu_291_p2                   | -   |        | add_ln114      | add | fabric | 0       |
+|    mul_16ns_16ns_32_1_1_U71              | 1   |        | temp1          | mul | auto   | 0       |
+|    mul_16ns_16ns_32_1_1_U72              | 1   |        | temp2          | mul | auto   | 0       |
+|    mac_muladd_16ns_16ns_32ns_33_1_1_U81  | 1   |        | temp3          | mul | dsp48  | 0       |
+|    mul_16ns_16ns_32_1_1_U73              | 1   |        | temp4          | mul | auto   | 0       |
+|    mac_muladd_16ns_16ns_32ns_33_1_1_U81  | 1   |        | add_ln30       | add | dsp48  | 0       |
+|    res_mult_fu_405_p2                    | -   |        | res_mult       | add | fabric | 0       |
+|    mul_16ns_16ns_32_1_1_U74              | 1   |        | temp1_5        | mul | auto   | 0       |
+|    mul_16ns_16ns_32_1_1_U75              | 1   |        | temp2_5        | mul | auto   | 0       |
+|    mul_16ns_16ns_32_1_1_U76              | 1   |        | temp3_5        | mul | auto   | 0       |
+|    mul_16ns_16ns_32_1_1_U77              | 1   |        | temp4_5        | mul | auto   | 0       |
+|    add_ln30_7_fu_488_p2                  | -   |        | add_ln30_7     | add | fabric | 0       |
+|    add_ln30_5_fu_494_p2                  | -   |        | add_ln30_5     | add | fabric | 0       |
+|    res_mult_shift_fu_528_p2              | -   |        | res_mult_shift | add | fabric | 0       |
+|    add_ln74_fu_534_p2                    | -   |        | add_ln74       | add | fabric | 0       |
+|    mul_16ns_16ns_32_1_1_U78              | 1   |        | temp1_6        | mul | auto   | 0       |
+|    mac_muladd_16ns_15ns_32ns_33_1_1_U82  | 1   |        | temp2_6        | mul | dsp48  | 0       |
+|    mul_16ns_16ns_32_1_1_U79              | 1   |        | temp3_6        | mul | auto   | 0       |
+|    mul_15ns_16ns_31_1_1_U80              | 1   |        | temp4_6        | mul | auto   | 0       |
+|    mac_muladd_16ns_15ns_32ns_33_1_1_U82  | 1   |        | add_ln30_6     | add | dsp48  | 0       |
+|    sub_ln89_fu_644_p2                    | -   |        | sub_ln89       | sub | fabric | 0       |
+|    sub_ln90_fu_660_p2                    | -   |        | sub_ln90       | sub | fabric | 0       |
+|    add_ln40_fu_710_p2                    | -   |        | add_ln40       | add | fabric | 0       |
+|    sub_ln44_fu_721_p2                    | -   |        | sub_ln44       | sub | fabric | 0       |
+|    sub_ln53_fu_735_p2                    | -   |        | sub_ln53       | sub | fabric | 0       |
+|    add_ln56_fu_747_p2                    | -   |        | add_ln56       | add | fabric | 0       |
+|  + MUL_MOD                               | 12  |        |                |     |        |         |
+|    mul_16ns_16ns_32_1_1_U98              | 1   |        | temp1          | mul | auto   | 0       |
+|    mul_16ns_16ns_32_1_1_U99              | 1   |        | temp2          | mul | auto   | 0       |
+|    mac_muladd_16ns_16ns_32ns_33_4_1_U110 | 1   |        | temp3          | mul | dsp48  | 3       |
+|    mul_16ns_16ns_32_1_1_U100             | 1   |        | temp4          | mul | auto   | 0       |
+|    mac_muladd_16ns_16ns_32ns_33_4_1_U110 | 1   |        | add_ln30       | add | dsp48  | 3       |
+|    res_mult_fu_195_p2                    | -   |        | res_mult       | add | fabric | 0       |
+|    mul_16ns_16ns_32_1_1_U102             | 1   |        | temp1_3        | mul | auto   | 0       |
+|    mul_16ns_16ns_32_1_1_U103             | 1   |        | temp2_3        | mul | auto   | 0       |
+|    mul_16ns_16ns_32_1_1_U104             | 1   |        | temp3_3        | mul | auto   | 0       |
+|    mul_16ns_16ns_32_1_1_U105             | 1   |        | temp4_3        | mul | auto   | 0       |
+|    add_ln30_5_fu_281_p2                  | -   |        | add_ln30_5     | add | fabric | 0       |
+|    add_ln30_3_fu_285_p2                  | -   |        | add_ln30_3     | add | fabric | 0       |
+|    res_mult_shift_fu_353_p2              | -   |        | res_mult_shift | add | fabric | 0       |
+|    add_ln74_fu_305_p2                    | -   |        | add_ln74       | add | fabric | 0       |
+|    mul_16ns_16ns_32_1_1_U107             | 1   |        | temp1_4        | mul | auto   | 0       |
+|    mac_muladd_16ns_15ns_32ns_33_4_1_U111 | 1   |        | temp2_4        | mul | dsp48  | 3       |
+|    mul_16ns_16ns_32_1_1_U108             | 1   |        | temp3_4        | mul | auto   | 0       |
+|    mul_15ns_16ns_31_1_1_U109             | 1   |        | temp4_4        | mul | auto   | 0       |
+|    mac_muladd_16ns_15ns_32ns_33_4_1_U111 | 1   |        | add_ln30_4     | add | dsp48  | 3       |
+|    sub_ln89_fu_453_p2                    | -   |        | sub_ln89       | sub | fabric | 0       |
+|    sub_ln90_fu_469_p2                    | -   |        | sub_ln90       | sub | fabric | 0       |
++------------------------------------------+-----+--------+----------------+-----+--------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++------------------------+------+------+--------+--------------------+---------+------+---------+
+| Name                   | BRAM | URAM | Pragma | Variable           | Storage | Impl | Latency |
++------------------------+------+------+--------+--------------------+---------+------+---------+
+| + Crypto               | 48   | 0    |        |                    |         |      |         |
+|   DataTemp_U           | 8    | -    |        | DataTemp           | ram_t2p | auto | 1       |
+|   bit_reversed_input_U | 8    | -    |        | bit_reversed_input | ram_1p  | auto | 1       |
+|   data_ram_0_U         | 16   | -    |        | data_ram_0         | ram_t2p | auto | 1       |
+|   twiddle_ram_U        | 16   | -    |        | twiddle_ram        | ram_1p  | auto | 1       |
++------------------------+------+------+--------+--------------------+---------+------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Pragmas with Warnings
++-----------------+-------------------------+---------------------------------+------------------------------------------------------+
+| Type            | Options                 | Location                        | Messages                                             |
++-----------------+-------------------------+---------------------------------+------------------------------------------------------+
+| array_partition | variable=poly factor=2  | pow_mod.cpp:78 in encode, poly  | 'factor' in '#pragma HLS array_partition' is ignored |
+| array_partition | variable=basis factor=2 | pow_mod.cpp:79 in encode, basis | 'factor' in '#pragma HLS array_partition' is ignored |
+| array_partition | variable=ret factor=2   | pow_mod.cpp:80 in encode, ret   | 'factor' in '#pragma HLS array_partition' is ignored |
++-----------------+-------------------------+---------------------------------+------------------------------------------------------+
+
+* Valid Pragma Syntax
++----------------+----------------------------+-------------------------------------+
+| Type           | Options                    | Location                            |
++----------------+----------------------------+-------------------------------------+
+| inline         |                            | Arithmetic.cpp:9 in stepmul         |
+| pipeline       |                            | Arithmetic.cpp:66 in mul_mod        |
+| interface      | s_axilite port=return      | Crypto.cpp:25 in crypto, return     |
+| interface      | s_axilite port=DataIn      | Crypto.cpp:26 in crypto, DataIn     |
+| interface      | s_axilite port=TwiddleIn   | Crypto.cpp:27 in crypto, TwiddleIn  |
+| interface      | s_axilite port=Address     | Crypto.cpp:28 in crypto, Address    |
+| interface      | s_axilite port=RAMSel      | Crypto.cpp:29 in crypto, RAMSel     |
+| interface      | s_axilite port=DataOutput  | Crypto.cpp:30 in crypto, DataOutput |
+| interface      | s_axilite port=OP          | Crypto.cpp:31 in crypto, OP         |
+| interface      | s_axilite port=ModIndex    | Crypto.cpp:32 in crypto, ModIndex   |
+| pipeline       | II=1                       | Crypto.cpp:111 in crypto            |
+| pipeline       | II=1                       | Crypto.cpp:161 in crypto            |
+| inline         |                            | PE_UNIT.cpp:13 in pe_unit           |
+| inline         |                            | pow_mod.cpp:7 in mod65537           |
+| unroll         |                            | pow_mod.cpp:10 in mod65537          |
+| loop_tripcount | min=0 max=16               | pow_mod.cpp:42 in modexp            |
+| interface      | mode=s_axilite port=poly   | pow_mod.cpp:73 in encode, poly      |
+| interface      | mode=s_axilite port=basis  | pow_mod.cpp:74 in encode, basis     |
+| interface      | mode=s_axilite port=ret    | pow_mod.cpp:75 in encode, ret       |
+| interface      | mode=s_axilite port=return | pow_mod.cpp:76 in encode, return    |
+| unroll         | factor=2                   | pow_mod.cpp:96 in encode            |
++----------------+----------------------------+-------------------------------------+
+
+

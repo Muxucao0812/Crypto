@@ -1,0 +1,186 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="" msg_id="207-5533" msg_severity="WARNING" msg_loc="pow_mod.cpp:78:50" msg_body="'factor' in '#pragma HLS array_partition' is ignored">
+        <args ClangWarningOption="extra-tokens"/>
+    </msg>
+    <msg msg_groups="" msg_id="207-5533" msg_severity="WARNING" msg_loc="pow_mod.cpp:79:51" msg_body="'factor' in '#pragma HLS array_partition' is ignored">
+        <args ClangWarningOption="extra-tokens"/>
+    </msg>
+    <msg msg_groups="" msg_id="207-5533" msg_severity="WARNING" msg_loc="pow_mod.cpp:80:49" msg_body="'factor' in '#pragma HLS array_partition' is ignored">
+        <args ClangWarningOption="extra-tokens"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="pow_mod.cpp:7:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="mod65537" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="pow_mod.cpp:10:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="mod65537" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="pow_mod.cpp:42:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="modExp" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=0 max=16" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="pow_mod.cpp:73:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="encode" ARG_PragmaIsValid="1" ARG_PragmaOptions="mode=s_axilite port=poly" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="pow_mod.cpp:74:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="encode" ARG_PragmaIsValid="1" ARG_PragmaOptions="mode=s_axilite port=basis" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="pow_mod.cpp:75:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="encode" ARG_PragmaIsValid="1" ARG_PragmaOptions="mode=s_axilite port=ret" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="pow_mod.cpp:76:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="encode" ARG_PragmaIsValid="1" ARG_PragmaOptions="mode=s_axilite port=return" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="pow_mod.cpp:78:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="encode" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=poly factor=2" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="pow_mod.cpp:79:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="encode" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=basis factor=2" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="pow_mod.cpp:80:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="encode" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=ret factor=2" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="pow_mod.cpp:96:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="encode" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=2" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="" msg_id="207-5168" msg_severity="WARNING" msg_loc="AddressGen.cpp:72:21" msg_body="shifting a negative signed value is undefined">
+        <args ClangWarningOption="shift-negative-value"/>
+    </msg>
+    <msg msg_groups="" msg_id="207-4591" msg_severity="WARNING" msg_loc="AddressGen.cpp:87:88" msg_body="operator '&gt;&gt;' has lower precedence than '-'; '-' will be evaluated first">
+        <args ClangWarningOption="shift-op-parentheses"/>
+    </msg>
+    <msg msg_groups="" msg_id="207-4428" msg_severity="INFO" msg_loc="AddressGen.cpp:87:88" msg_body="place parentheses around the '-' expression to silence this warning">
+        <args/>
+    </msg>
+    <msg msg_groups="" msg_id="207-4591" msg_severity="WARNING" msg_loc="AddressGen.cpp:91:88" msg_body="operator '&gt;&gt;' has lower precedence than '-'; '-' will be evaluated first">
+        <args ClangWarningOption="shift-op-parentheses"/>
+    </msg>
+    <msg msg_groups="" msg_id="207-4428" msg_severity="INFO" msg_loc="AddressGen.cpp:91:88" msg_body="place parentheses around the '-' expression to silence this warning">
+        <args/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Arithmetic.cpp:9:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="STEPMUL" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Arithmetic.cpp:66:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="MUL_MOD" ARG_PragmaIsValid="1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="PE_UNIT.cpp:13:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="PE_UNIT" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/meng/HLS/Crypto/script.tcl:69:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=Crypto" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:25:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=return" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:26:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=DataIn" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:27:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=TwiddleIn" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:28:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=Address" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:29:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=RAMSel" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:30:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=DataOutput" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:31:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=OP" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:32:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=ModIndex" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:111:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:161:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="Arithmetic.cpp:81:5" msg_body="Inlining function 'STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)' into 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)'">
+        <args Callee="STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)" Callee-DebugLoc="File Arithmetic.cpp Line 8 Column 0" Caller="MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)" Caller-DebugLoc="File Arithmetic.cpp Line 61 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="Arithmetic.cpp:75:5" msg_body="Inlining function 'STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)' into 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)'">
+        <args Callee="STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)" Callee-DebugLoc="File Arithmetic.cpp Line 8 Column 0" Caller="MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)" Caller-DebugLoc="File Arithmetic.cpp Line 61 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="Arithmetic.cpp:69:5" msg_body="Inlining function 'STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)' into 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)'">
+        <args Callee="STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)" Callee-DebugLoc="File Arithmetic.cpp Line 8 Column 0" Caller="MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)" Caller-DebugLoc="File Arithmetic.cpp Line 61 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="PE_ARRAY.cpp:24:29" msg_body="Inlining function 'PE_UNIT(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, Operation, int)' into 'PE_ARRAY(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, Operation, int)'">
+        <args Callee="PE_UNIT(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, Operation, int)" Callee-DebugLoc="File PE_UNIT.cpp Line 12 Column 0" Caller="PE_ARRAY(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, Operation, int)" Caller-DebugLoc="File PE_ARRAY.cpp Line 14 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="PE_ARRAY.cpp:35:29" msg_body="Inlining function 'PE_UNIT(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, Operation, int)' into 'PE_ARRAY(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, Operation, int)'">
+        <args Callee="PE_UNIT(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, Operation, int)" Callee-DebugLoc="File PE_UNIT.cpp Line 12 Column 0" Caller="PE_ARRAY(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, Operation, int)" Caller-DebugLoc="File PE_ARRAY.cpp Line 14 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Arithmetic.cpp:121:5" msg_body="Duplicating function 'SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.3.21.44)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.3.21.44)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Crypto.cpp:177:17" msg_body="Duplicating function 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.15)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.15)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Crypto.cpp:117:25" msg_body="Duplicating function 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.15)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.15)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Crypto.cpp:167:25" msg_body="Duplicating function 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.15)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.15)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Crypto.cpp:119:25" msg_body="Duplicating function 'SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.3.21)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.3.21)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Crypto.cpp:169:25" msg_body="Duplicating function 'SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.3.21)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.3.21)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Arithmetic.cpp:109:5" msg_body="Duplicating function 'ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.6.18)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.6.18)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Arithmetic.cpp:120:5" msg_body="Duplicating function 'ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.6.18)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.6.18)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Crypto.cpp:118:25" msg_body="Duplicating function 'ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.6.18)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.6.18)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Crypto.cpp:168:25" msg_body="Duplicating function 'ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.6.18)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.6.18)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="PE_ARRAY.cpp:14:0" msg_body="Inlining function 'ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.6.18)' into 'PE_ARRAY(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, Operation, int)'">
+        <args Callee="ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.6.18)" Callee-DebugLoc="File Arithmetic.cpp Line 38 Column 0" Caller="PE_ARRAY(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, Operation, int)" Caller-DebugLoc="File PE_ARRAY.cpp Line 14 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="PE_ARRAY.cpp:14:0" msg_body="Inlining function 'SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.3.21)' into 'PE_ARRAY(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, Operation, int)'">
+        <args Callee="SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.3.21)" Callee-DebugLoc="File Arithmetic.cpp Line 51 Column 0" Caller="PE_ARRAY(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, Operation, int)" Caller-DebugLoc="File PE_ARRAY.cpp Line 14 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="Utils.cpp:18:0" msg_body="Inlining function 'bit_reverse(int, int)' into 'apply_bit_reverse(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*)'">
+        <args Callee="bit_reverse(int, int)" Callee-DebugLoc="File Utils.cpp Line 9 Column 0" Caller="apply_bit_reverse(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*)" Caller-DebugLoc="File Utils.cpp Line 18 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Inlining function 'write_data(int*, ap_int&lt;32&gt;*, int)' into 'Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)'">
+        <args Callee="write_data(int*, ap_int&lt;32&gt;*, int)" Callee-DebugLoc="File DATAMemory.cpp Line 6 Column 0" Caller="Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)" Caller-DebugLoc="File Crypto.cpp Line 24 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Inlining function 'read_data(int*, ap_int&lt;32&gt;*, int)' into 'Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)'">
+        <args Callee="read_data(int*, ap_int&lt;32&gt;*, int)" Callee-DebugLoc="File DATAMemory.cpp Line 12 Column 0" Caller="Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)" Caller-DebugLoc="File Crypto.cpp Line 24 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Inlining function 'write_twiddle_factor(int*, ap_int&lt;32&gt;*)' into 'Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)'">
+        <args Callee="write_twiddle_factor(int*, ap_int&lt;32&gt;*)" Callee-DebugLoc="File TwiddleMemory.cpp Line 6 Column 0" Caller="Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)" Caller-DebugLoc="File Crypto.cpp Line 24 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Inlining function 'read_twiddle_factor(int*, ap_int&lt;32&gt;*, Operation)' into 'Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)'">
+        <args Callee="read_twiddle_factor(int*, ap_int&lt;32&gt;*, Operation)" Callee-DebugLoc="File TwiddleMemory.cpp Line 17 Column 0" Caller="Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)" Caller-DebugLoc="File Crypto.cpp Line 24 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Inlining function 'PE_ARRAY(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, Operation, int)' into 'Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)'">
+        <args Callee="PE_ARRAY(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, Operation, int)" Callee-DebugLoc="File PE_ARRAY.cpp Line 14 Column 0" Caller="Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)" Caller-DebugLoc="File Crypto.cpp Line 24 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Inlining function 'apply_bit_reverse(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*)' into 'Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)'">
+        <args Callee="apply_bit_reverse(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*)" Callee-DebugLoc="File Utils.cpp Line 18 Column 0" Caller="Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)" Caller-DebugLoc="File Crypto.cpp Line 24 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Inlining function 'ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.6.18.146)' into 'Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)'">
+        <args Callee="ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.6.18.146)" Callee-DebugLoc="File Arithmetic.cpp Line 38 Column 0" Caller="Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)" Caller-DebugLoc="File Crypto.cpp Line 24 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Inlining function 'SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.3.21.143)' into 'Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)'">
+        <args Callee="SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.3.21.143)" Callee-DebugLoc="File Arithmetic.cpp Line 51 Column 0" Caller="Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)" Caller-DebugLoc="File Crypto.cpp Line 24 Column 0"/>
+    </msg>
+    <msg msg_groups="AUTOMATION" msg_id="214-364" msg_severity="INFO" msg_loc="Crypto.cpp:167:25" msg_body="Automatically inlining function 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.15.142)' to improve effectiveness of pipeline pragma in function 'Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)'">
+        <args Callee="MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.15.142)" Callee-DebugLoc="File Arithmetic.cpp Line 61 Column 0" Caller="Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)" Caller-DebugLoc="File Crypto.cpp Line 24 Column 0"/>
+    </msg>
+    <msg msg_groups="AUTOMATION" msg_id="214-364" msg_severity="INFO" msg_loc="Crypto.cpp:117:25" msg_body="Automatically inlining function 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.15.142)' to improve effectiveness of pipeline pragma in function 'Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)'">
+        <args Callee="MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.15.142)" Callee-DebugLoc="File Arithmetic.cpp Line 61 Column 0" Caller="Crypto(ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, int, ap_int&lt;32&gt;*, int*, ap_int&lt;32&gt;*, CryptoOperation, int)" Caller-DebugLoc="File Crypto.cpp Line 24 Column 0"/>
+    </msg>
+</xilinx:hls_fe_msgs>
+

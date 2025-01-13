@@ -1,0 +1,23 @@
+[
+  {
+    "functionLabel": "",
+    "functionName": "Crypto",
+    "id": 0,
+    "ifcond": "",
+    "insert_position": "",
+    "label": "",
+    "pragma": {
+      "name": "TOP",
+      "option": [
+        {
+          "name": "name",
+          "value": "Crypto"
+        }
+      ]
+    },
+    "slx": false,
+    "sourceFile": "/home/meng/HLS/Crypto/script.tcl",
+    "sourceLine": 69,
+    "success": true
+  }
+]
