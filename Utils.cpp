@@ -8,6 +8,7 @@
 
 int bit_reverse(int index, int n) {
     int reversed = 0;
+    BIT_REVERSE_LOOP:
     for (int i = 0; i < n; i++) {
         reversed = (reversed << 1) | (index & 1);
         index >>= 1;
@@ -19,6 +20,7 @@ void apply_bit_reverse(long_int x[N], long_int result[N]) {
     int n = 0;
     while ((1 << n) < N) n++; // Calculate the number of bits needed to represent N
 
+    PERMUTE_LOOP:
     for (int i = 0; i < N; i++) {
         int reversed_index = bit_reverse(i, n);
         result[reversed_index] = x[i];

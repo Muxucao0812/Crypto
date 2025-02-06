@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'MUL_MOD'
 ================================================================
-* Date:           Mon Jan 13 00:09:23 2025
+* Date:           Wed Feb  5 12:49:44 2025
 
 * Version:        2023.1 (Build 3854077 on May  4 2023)
 * Project:        Crypto
@@ -20,7 +20,7 @@
     +--------+---------+----------+------------+
     |  Clock |  Target | Estimated| Uncertainty|
     +--------+---------+----------+------------+
-    |ap_clk  |  8.00 ns|  5.655 ns|     2.16 ns|
+    |ap_clk  |  7.00 ns|  5.056 ns|     1.89 ns|
     +--------+---------+----------+------------+
 
 + Latency: 
@@ -29,7 +29,7 @@
     |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
     |   min   |   max   |    min    |    max    | min | max |   Type  |
     +---------+---------+-----------+-----------+-----+-----+---------+
-    |       12|       12|  96.000 ns|  96.000 ns|    1|    1|      yes|
+    |       14|       14|  98.000 ns|  98.000 ns|    1|    1|      yes|
     +---------+---------+-----------+-----------+-----+-----+---------+
 
     + Detail: 
@@ -62,15 +62,15 @@ HasImplIP: 0
 IsGatedGlobalClock: 0
 
 + Individual pipeline summary: 
-  * Pipeline-0: initiation interval (II) = 1, depth = 13
+  * Pipeline-0: initiation interval (II) = 1, depth = 15
 
 
 ============================================================
 + Verbose Summary: Schedule
 ============================================================
-* Number of FSM states : 13
+* Number of FSM states : 15
 * Pipeline : 1
-  Pipeline-0 : II = 1, D = 13, States = { 1 2 3 4 5 6 7 8 9 10 11 12 13 }
+  Pipeline-0 : II = 1, D = 15, States = { 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 }
 * Dataflow Pipeline: 0
 
 * FSM state transitions: 
@@ -86,191 +86,219 @@ IsGatedGlobalClock: 0
 10 --> 11 
 11 --> 12 
 12 --> 13 
-13 --> 
+13 --> 14 
+14 --> 15 
+15 --> 
 
 * FSM state operations: 
 
-State 1 <SV = 0> <Delay = 1.05>
-ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%MOD_INDEX_read = read i2 @_ssdm_op_Read.ap_auto.i2, i2 %MOD_INDEX" [Arithmetic.cpp:62]   --->   Operation 14 'read' 'MOD_INDEX_read' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%input2_val_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %input2_val" [Arithmetic.cpp:62]   --->   Operation 15 'read' 'input2_val_read' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%input1_val_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %input1_val" [Arithmetic.cpp:62]   --->   Operation 16 'read' 'input1_val_read' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%input2_low = trunc i32 %input2_val_read" [Arithmetic.cpp:62]   --->   Operation 17 'trunc' 'input2_low' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%input1_low = trunc i32 %input1_val_read" [Arithmetic.cpp:62]   --->   Operation 18 'trunc' 'input1_low' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%input1_high = partselect i16 @_ssdm_op_PartSelect.i16.i32.i32.i32, i32 %input1_val_read, i32 16, i32 31" [Arithmetic.cpp:18->Arithmetic.cpp:69]   --->   Operation 19 'partselect' 'input1_high' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%zext_ln18 = zext i16 %input1_high" [Arithmetic.cpp:18->Arithmetic.cpp:69]   --->   Operation 20 'zext' 'zext_ln18' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%zext_ln19 = zext i16 %input2_low" [Arithmetic.cpp:19->Arithmetic.cpp:69]   --->   Operation 21 'zext' 'zext_ln19' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%input2_high = partselect i16 @_ssdm_op_PartSelect.i16.i32.i32.i32, i32 %input2_val_read, i32 16, i32 31" [Arithmetic.cpp:20->Arithmetic.cpp:69]   --->   Operation 22 'partselect' 'input2_high' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 23 [3/3] (1.05ns) (grouped into DSP with root node add_ln30)   --->   "%temp3 = mul i32 %zext_ln19, i32 %zext_ln18" [Arithmetic.cpp:24->Arithmetic.cpp:69]   --->   Operation 23 'mul' 'temp3' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+State 1 <SV = 0> <Delay = 3.34>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%MOD_INDEX_read = read i2 @_ssdm_op_Read.ap_auto.i2, i2 %MOD_INDEX" [Arithmetic.cpp:62]   --->   Operation 16 'read' 'MOD_INDEX_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%input2_val_read = read i19 @_ssdm_op_Read.ap_auto.i19, i19 %input2_val" [Arithmetic.cpp:62]   --->   Operation 17 'read' 'input2_val_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%input1_val_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %input1_val" [Arithmetic.cpp:62]   --->   Operation 18 'read' 'input1_val_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%input2_low = trunc i19 %input2_val_read" [Arithmetic.cpp:62]   --->   Operation 19 'trunc' 'input2_low' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%input1_low = trunc i32 %input1_val_read" [Arithmetic.cpp:62]   --->   Operation 20 'trunc' 'input1_low' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%zext_ln17 = zext i16 %input1_low" [Arithmetic.cpp:17->Arithmetic.cpp:69]   --->   Operation 21 'zext' 'zext_ln17' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%zext_ln17_7 = zext i16 %input1_low" [Arithmetic.cpp:17->Arithmetic.cpp:69]   --->   Operation 22 'zext' 'zext_ln17_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%input1_high = partselect i16 @_ssdm_op_PartSelect.i16.i32.i32.i32, i32 %input1_val_read, i32 16, i32 31" [Arithmetic.cpp:18->Arithmetic.cpp:69]   --->   Operation 23 'partselect' 'input1_high' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%zext_ln18_3 = zext i16 %input1_high" [Arithmetic.cpp:18->Arithmetic.cpp:69]   --->   Operation 24 'zext' 'zext_ln18_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%zext_ln18 = zext i16 %input1_high" [Arithmetic.cpp:18->Arithmetic.cpp:69]   --->   Operation 25 'zext' 'zext_ln18' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%zext_ln19 = zext i16 %input2_low" [Arithmetic.cpp:19->Arithmetic.cpp:69]   --->   Operation 26 'zext' 'zext_ln19' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%input2_high = partselect i3 @_ssdm_op_PartSelect.i3.i19.i32.i32, i19 %input2_val_read, i32 16, i32 18" [Arithmetic.cpp:20->Arithmetic.cpp:69]   --->   Operation 27 'partselect' 'input2_high' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%sext_ln20 = sext i3 %input2_high" [Arithmetic.cpp:20->Arithmetic.cpp:69]   --->   Operation 28 'sext' 'sext_ln20' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%zext_ln20 = zext i14 %sext_ln20" [Arithmetic.cpp:20->Arithmetic.cpp:69]   --->   Operation 29 'zext' 'zext_ln20' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 30 [2/2] (3.34ns)   --->   "%temp1 = mul i32 %zext_ln19, i32 %zext_ln17" [Arithmetic.cpp:22->Arithmetic.cpp:69]   --->   Operation 30 'mul' 'temp1' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 31 [3/3] (1.05ns) (grouped into DSP with root node add_ln30)   --->   "%temp2 = mul i30 %zext_ln20, i30 %zext_ln17_7" [Arithmetic.cpp:23->Arithmetic.cpp:69]   --->   Operation 31 'mul' 'temp2' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 32 [2/2] (3.34ns)   --->   "%temp3 = mul i32 %zext_ln19, i32 %zext_ln18_3" [Arithmetic.cpp:24->Arithmetic.cpp:69]   --->   Operation 32 'mul' 'temp3' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 33 [2/2] (3.34ns)   --->   "%temp4 = mul i30 %zext_ln20, i30 %zext_ln18" [Arithmetic.cpp:25->Arithmetic.cpp:69]   --->   Operation 33 'mul' 'temp4' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
 
-State 2 <SV = 1> <Delay = 5.58>
-ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%zext_ln17 = zext i16 %input1_low" [Arithmetic.cpp:17->Arithmetic.cpp:69]   --->   Operation 24 'zext' 'zext_ln17' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%zext_ln20 = zext i16 %input2_high" [Arithmetic.cpp:20->Arithmetic.cpp:69]   --->   Operation 25 'zext' 'zext_ln20' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 26 [1/1] (5.58ns)   --->   "%temp1 = mul i32 %zext_ln19, i32 %zext_ln17" [Arithmetic.cpp:22->Arithmetic.cpp:69]   --->   Operation 26 'mul' 'temp1' <Predicate = true> <Delay = 5.58> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 5.58> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 27 [1/1] (5.58ns)   --->   "%temp2 = mul i32 %zext_ln20, i32 %zext_ln17" [Arithmetic.cpp:23->Arithmetic.cpp:69]   --->   Operation 27 'mul' 'temp2' <Predicate = true> <Delay = 5.58> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 5.58> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 28 [2/3] (1.05ns) (grouped into DSP with root node add_ln30)   --->   "%temp3 = mul i32 %zext_ln19, i32 %zext_ln18" [Arithmetic.cpp:24->Arithmetic.cpp:69]   --->   Operation 28 'mul' 'temp3' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
-ST_2 : Operation 29 [1/1] (5.58ns)   --->   "%temp4 = mul i32 %zext_ln20, i32 %zext_ln18" [Arithmetic.cpp:25->Arithmetic.cpp:69]   --->   Operation 29 'mul' 'temp4' <Predicate = true> <Delay = 5.58> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 5.58> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+State 2 <SV = 1> <Delay = 3.34>
+ST_2 : Operation 34 [1/2] (3.34ns)   --->   "%temp1 = mul i32 %zext_ln19, i32 %zext_ln17" [Arithmetic.cpp:22->Arithmetic.cpp:69]   --->   Operation 34 'mul' 'temp1' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 35 [2/3] (1.05ns) (grouped into DSP with root node add_ln30)   --->   "%temp2 = mul i30 %zext_ln20, i30 %zext_ln17_7" [Arithmetic.cpp:23->Arithmetic.cpp:69]   --->   Operation 35 'mul' 'temp2' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 36 [1/2] (3.34ns)   --->   "%temp3 = mul i32 %zext_ln19, i32 %zext_ln18_3" [Arithmetic.cpp:24->Arithmetic.cpp:69]   --->   Operation 36 'mul' 'temp3' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 37 [1/2] (3.34ns)   --->   "%temp4 = mul i30 %zext_ln20, i30 %zext_ln18" [Arithmetic.cpp:25->Arithmetic.cpp:69]   --->   Operation 37 'mul' 'temp4' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
 
 State 3 <SV = 2> <Delay = 2.10>
-ST_3 : Operation 30 [1/3] (0.00ns) (grouped into DSP with root node add_ln30)   --->   "%temp3 = mul i32 %zext_ln19, i32 %zext_ln18" [Arithmetic.cpp:24->Arithmetic.cpp:69]   --->   Operation 30 'mul' 'temp3' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
-ST_3 : Operation 31 [1/1] (0.00ns)   --->   "%zext_ln30 = zext i32 %temp2" [Arithmetic.cpp:30->Arithmetic.cpp:69]   --->   Operation 31 'zext' 'zext_ln30' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 32 [1/1] (0.00ns) (grouped into DSP with root node add_ln30)   --->   "%zext_ln30_6 = zext i32 %temp3" [Arithmetic.cpp:30->Arithmetic.cpp:69]   --->   Operation 32 'zext' 'zext_ln30_6' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 33 [2/2] (2.10ns) (root node of the DSP)   --->   "%add_ln30 = add i33 %zext_ln30, i33 %zext_ln30_6" [Arithmetic.cpp:30->Arithmetic.cpp:69]   --->   Operation 33 'add' 'add_ln30' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 38 [1/3] (0.00ns) (grouped into DSP with root node add_ln30)   --->   "%temp2 = mul i30 %zext_ln20, i30 %zext_ln17_7" [Arithmetic.cpp:23->Arithmetic.cpp:69]   --->   Operation 38 'mul' 'temp2' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 39 [1/1] (0.00ns) (grouped into DSP with root node add_ln30)   --->   "%zext_ln30 = zext i30 %temp2" [Arithmetic.cpp:30->Arithmetic.cpp:69]   --->   Operation 39 'zext' 'zext_ln30' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 40 [1/1] (0.00ns)   --->   "%zext_ln30_11 = zext i32 %temp3" [Arithmetic.cpp:30->Arithmetic.cpp:69]   --->   Operation 40 'zext' 'zext_ln30_11' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 41 [2/2] (2.10ns) (root node of the DSP)   --->   "%add_ln30 = add i33 %zext_ln30, i33 %zext_ln30_11" [Arithmetic.cpp:30->Arithmetic.cpp:69]   --->   Operation 41 'add' 'add_ln30' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
 
 State 4 <SV = 3> <Delay = 2.10>
-ST_4 : Operation 34 [1/2] (2.10ns) (root node of the DSP)   --->   "%add_ln30 = add i33 %zext_ln30, i33 %zext_ln30_6" [Arithmetic.cpp:30->Arithmetic.cpp:69]   --->   Operation 34 'add' 'add_ln30' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 42 [1/2] (2.10ns) (root node of the DSP)   --->   "%add_ln30 = add i33 %zext_ln30, i33 %zext_ln30_11" [Arithmetic.cpp:30->Arithmetic.cpp:69]   --->   Operation 42 'add' 'add_ln30' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
 
-State 5 <SV = 4> <Delay = 3.52>
-ST_5 : Operation 35 [1/1] (1.70ns)   --->   "%m = mux i20 @_ssdm_op_Mux.ap_auto.3i20.i2, i20 1015804, i20 753680, i20 524347, i2 %MOD_INDEX_read" [Arithmetic.cpp:64]   --->   Operation 35 'mux' 'm' <Predicate = true> <Delay = 1.70> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 1.70> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
-ST_5 : Operation 36 [1/1] (0.00ns)   --->   "%input2_low_3 = trunc i20 %m" [Arithmetic.cpp:64]   --->   Operation 36 'trunc' 'input2_low_3' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 37 [1/1] (0.00ns)   --->   "%sum1 = bitconcatenate i64 @_ssdm_op_BitConcatenate.i64.i32.i32, i32 %temp4, i32 %temp1" [Arithmetic.cpp:29->Arithmetic.cpp:69]   --->   Operation 37 'bitconcatenate' 'sum1' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 38 [1/1] (0.00ns)   --->   "%sum2 = bitconcatenate i49 @_ssdm_op_BitConcatenate.i49.i33.i16, i33 %add_ln30, i16 0" [Arithmetic.cpp:30->Arithmetic.cpp:69]   --->   Operation 38 'bitconcatenate' 'sum2' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 39 [1/1] (0.00ns)   --->   "%zext_ln28 = zext i49 %sum2" [Arithmetic.cpp:28->Arithmetic.cpp:69]   --->   Operation 39 'zext' 'zext_ln28' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 40 [1/1] (3.52ns)   --->   "%res_mult = add i64 %sum1, i64 %zext_ln28" [Arithmetic.cpp:32->Arithmetic.cpp:69]   --->   Operation 40 'add' 'res_mult' <Predicate = true> <Delay = 3.52> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.52> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_5 : Operation 41 [1/1] (0.00ns)   --->   "%input1_low_3 = partselect i16 @_ssdm_op_PartSelect.i16.i64.i32.i32, i64 %res_mult, i32 30, i32 45" [Arithmetic.cpp:73]   --->   Operation 41 'partselect' 'input1_low_3' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 42 [1/1] (0.00ns)   --->   "%input1_high_2 = partselect i16 @_ssdm_op_PartSelect.i16.i64.i32.i32, i64 %res_mult, i32 46, i32 61" [Arithmetic.cpp:18->Arithmetic.cpp:75]   --->   Operation 42 'partselect' 'input1_high_2' <Predicate = true> <Delay = 0.00>
-ST_5 : Operation 43 [1/1] (0.00ns)   --->   "%input2_high_3 = partselect i4 @_ssdm_op_PartSelect.i4.i20.i32.i32, i20 %m, i32 16, i32 19" [Arithmetic.cpp:20->Arithmetic.cpp:75]   --->   Operation 43 'partselect' 'input2_high_3' <Predicate = true> <Delay = 0.00>
+State 5 <SV = 4> <Delay = 3.46>
+ST_5 : Operation 43 [1/1] (0.00ns)   --->   "%sum1 = bitconcatenate i62 @_ssdm_op_BitConcatenate.i62.i30.i32, i30 %temp4, i32 %temp1" [Arithmetic.cpp:29->Arithmetic.cpp:69]   --->   Operation 43 'bitconcatenate' 'sum1' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 44 [1/1] (0.00ns)   --->   "%zext_ln28 = zext i62 %sum1" [Arithmetic.cpp:28->Arithmetic.cpp:69]   --->   Operation 44 'zext' 'zext_ln28' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 45 [1/1] (0.00ns)   --->   "%sum2 = bitconcatenate i49 @_ssdm_op_BitConcatenate.i49.i33.i16, i33 %add_ln30, i16 0" [Arithmetic.cpp:30->Arithmetic.cpp:69]   --->   Operation 45 'bitconcatenate' 'sum2' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 46 [1/1] (0.00ns)   --->   "%zext_ln28_7 = zext i49 %sum2" [Arithmetic.cpp:28->Arithmetic.cpp:69]   --->   Operation 46 'zext' 'zext_ln28_7' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 47 [1/1] (3.46ns)   --->   "%res_mult = add i63 %zext_ln28, i63 %zext_ln28_7" [Arithmetic.cpp:32->Arithmetic.cpp:69]   --->   Operation 47 'add' 'res_mult' <Predicate = true> <Delay = 3.46> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.46> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 48 [1/1] (0.00ns)   --->   "%input1_low_5 = partselect i16 @_ssdm_op_PartSelect.i16.i63.i32.i32, i63 %res_mult, i32 30, i32 45" [Arithmetic.cpp:73]   --->   Operation 48 'partselect' 'input1_low_5' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 49 [1/1] (0.00ns)   --->   "%input1_high_3 = partselect i16 @_ssdm_op_PartSelect.i16.i63.i32.i32, i63 %res_mult, i32 46, i32 61" [Arithmetic.cpp:18->Arithmetic.cpp:75]   --->   Operation 49 'partselect' 'input1_high_3' <Predicate = true> <Delay = 0.00>
 
-State 6 <SV = 5> <Delay = 5.58>
-ST_6 : Operation 44 [1/1] (0.00ns)   --->   "%zext_ln17_5 = zext i16 %input1_low_3" [Arithmetic.cpp:17->Arithmetic.cpp:75]   --->   Operation 44 'zext' 'zext_ln17_5' <Predicate = true> <Delay = 0.00>
-ST_6 : Operation 45 [1/1] (0.00ns)   --->   "%zext_ln18_3 = zext i16 %input1_high_2" [Arithmetic.cpp:18->Arithmetic.cpp:75]   --->   Operation 45 'zext' 'zext_ln18_3' <Predicate = true> <Delay = 0.00>
-ST_6 : Operation 46 [1/1] (0.00ns)   --->   "%zext_ln19_3 = zext i16 %input2_low_3" [Arithmetic.cpp:19->Arithmetic.cpp:75]   --->   Operation 46 'zext' 'zext_ln19_3' <Predicate = true> <Delay = 0.00>
-ST_6 : Operation 47 [1/1] (0.00ns)   --->   "%sext_ln20 = sext i4 %input2_high_3" [Arithmetic.cpp:20->Arithmetic.cpp:75]   --->   Operation 47 'sext' 'sext_ln20' <Predicate = true> <Delay = 0.00>
-ST_6 : Operation 48 [1/1] (0.00ns)   --->   "%zext_ln20_3 = zext i16 %sext_ln20" [Arithmetic.cpp:20->Arithmetic.cpp:75]   --->   Operation 48 'zext' 'zext_ln20_3' <Predicate = true> <Delay = 0.00>
-ST_6 : Operation 49 [1/1] (5.58ns)   --->   "%temp1_3 = mul i32 %zext_ln17_5, i32 %zext_ln19_3" [Arithmetic.cpp:22->Arithmetic.cpp:75]   --->   Operation 49 'mul' 'temp1_3' <Predicate = true> <Delay = 5.58> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 5.58> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
-ST_6 : Operation 50 [1/1] (5.58ns)   --->   "%temp2_3 = mul i32 %zext_ln17_5, i32 %zext_ln20_3" [Arithmetic.cpp:23->Arithmetic.cpp:75]   --->   Operation 50 'mul' 'temp2_3' <Predicate = true> <Delay = 5.58> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 5.58> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
-ST_6 : Operation 51 [1/1] (5.58ns)   --->   "%temp3_3 = mul i32 %zext_ln18_3, i32 %zext_ln19_3" [Arithmetic.cpp:24->Arithmetic.cpp:75]   --->   Operation 51 'mul' 'temp3_3' <Predicate = true> <Delay = 5.58> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 5.58> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
-ST_6 : Operation 52 [1/1] (5.58ns)   --->   "%temp4_3 = mul i32 %zext_ln18_3, i32 %zext_ln20_3" [Arithmetic.cpp:25->Arithmetic.cpp:75]   --->   Operation 52 'mul' 'temp4_3' <Predicate = true> <Delay = 5.58> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 5.58> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
-ST_6 : Operation 53 [1/1] (0.00ns)   --->   "%trunc_ln29 = trunc i32 %temp4_3" [Arithmetic.cpp:29->Arithmetic.cpp:75]   --->   Operation 53 'trunc' 'trunc_ln29' <Predicate = true> <Delay = 0.00>
+State 6 <SV = 5> <Delay = 5.05>
+ST_6 : Operation 50 [1/1] (1.70ns)   --->   "%m = mux i20 @_ssdm_op_Mux.ap_auto.3i20.i2, i20 1015804, i20 753680, i20 524347, i2 %MOD_INDEX_read" [Arithmetic.cpp:64]   --->   Operation 50 'mux' 'm' <Predicate = true> <Delay = 1.70> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 1.70> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 51 [1/1] (0.00ns)   --->   "%input2_low_5 = trunc i20 %m" [Arithmetic.cpp:64]   --->   Operation 51 'trunc' 'input2_low_5' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 52 [1/1] (0.00ns)   --->   "%zext_ln17_8 = zext i16 %input1_low_5" [Arithmetic.cpp:17->Arithmetic.cpp:75]   --->   Operation 52 'zext' 'zext_ln17_8' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 53 [1/1] (0.00ns)   --->   "%zext_ln18_4 = zext i16 %input1_high_3" [Arithmetic.cpp:18->Arithmetic.cpp:75]   --->   Operation 53 'zext' 'zext_ln18_4' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 54 [1/1] (0.00ns)   --->   "%zext_ln19_5 = zext i16 %input2_low_5" [Arithmetic.cpp:19->Arithmetic.cpp:75]   --->   Operation 54 'zext' 'zext_ln19_5' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 55 [1/1] (0.00ns)   --->   "%input2_high_5 = partselect i4 @_ssdm_op_PartSelect.i4.i20.i32.i32, i20 %m, i32 16, i32 19" [Arithmetic.cpp:20->Arithmetic.cpp:75]   --->   Operation 55 'partselect' 'input2_high_5' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 56 [1/1] (0.00ns)   --->   "%sext_ln20_1 = sext i4 %input2_high_5" [Arithmetic.cpp:20->Arithmetic.cpp:75]   --->   Operation 56 'sext' 'sext_ln20_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 57 [1/1] (0.00ns)   --->   "%zext_ln20_5 = zext i16 %sext_ln20_1" [Arithmetic.cpp:20->Arithmetic.cpp:75]   --->   Operation 57 'zext' 'zext_ln20_5' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 58 [2/2] (3.34ns)   --->   "%temp1_5 = mul i32 %zext_ln17_8, i32 %zext_ln19_5" [Arithmetic.cpp:22->Arithmetic.cpp:75]   --->   Operation 58 'mul' 'temp1_5' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 59 [2/2] (3.34ns)   --->   "%temp2_5 = mul i32 %zext_ln17_8, i32 %zext_ln20_5" [Arithmetic.cpp:23->Arithmetic.cpp:75]   --->   Operation 59 'mul' 'temp2_5' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 60 [2/2] (3.34ns)   --->   "%temp3_5 = mul i32 %zext_ln18_4, i32 %zext_ln19_5" [Arithmetic.cpp:24->Arithmetic.cpp:75]   --->   Operation 60 'mul' 'temp3_5' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 61 [2/2] (3.34ns)   --->   "%temp4_5 = mul i32 %zext_ln18_4, i32 %zext_ln20_5" [Arithmetic.cpp:25->Arithmetic.cpp:75]   --->   Operation 61 'mul' 'temp4_5' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
 
-State 7 <SV = 6> <Delay = 5.65>
-ST_7 : Operation 54 [1/1] (0.00ns)   --->   "%zext_ln30_7 = zext i32 %temp2_3" [Arithmetic.cpp:30->Arithmetic.cpp:75]   --->   Operation 54 'zext' 'zext_ln30_7' <Predicate = true> <Delay = 0.00>
-ST_7 : Operation 55 [1/1] (0.00ns)   --->   "%zext_ln30_8 = zext i32 %temp3_3" [Arithmetic.cpp:30->Arithmetic.cpp:75]   --->   Operation 55 'zext' 'zext_ln30_8' <Predicate = true> <Delay = 0.00>
-ST_7 : Operation 56 [1/1] (2.55ns)   --->   "%add_ln30_5 = add i32 %temp2_3, i32 %temp3_3" [Arithmetic.cpp:30->Arithmetic.cpp:75]   --->   Operation 56 'add' 'add_ln30_5' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_7 : Operation 57 [1/1] (2.55ns)   --->   "%add_ln30_3 = add i33 %zext_ln30_7, i33 %zext_ln30_8" [Arithmetic.cpp:30->Arithmetic.cpp:75]   --->   Operation 57 'add' 'add_ln30_3' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_7 : Operation 58 [1/1] (0.00ns)   --->   "%tmp = bitconcatenate i48 @_ssdm_op_BitConcatenate.i48.i16.i32, i16 %trunc_ln29, i32 %temp1_3" [Arithmetic.cpp:32->Arithmetic.cpp:75]   --->   Operation 58 'bitconcatenate' 'tmp' <Predicate = true> <Delay = 0.00>
-ST_7 : Operation 59 [1/1] (0.00ns)   --->   "%trunc_ln6 = bitconcatenate i48 @_ssdm_op_BitConcatenate.i48.i32.i16, i32 %add_ln30_5, i16 0" [Arithmetic.cpp:32->Arithmetic.cpp:75]   --->   Operation 59 'bitconcatenate' 'trunc_ln6' <Predicate = true> <Delay = 0.00>
-ST_7 : Operation 60 [1/1] (3.10ns)   --->   "%add_ln74 = add i48 %trunc_ln6, i48 %tmp" [Arithmetic.cpp:74]   --->   Operation 60 'add' 'add_ln74' <Predicate = true> <Delay = 3.10> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.10> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_7 : Operation 61 [1/1] (0.00ns)   --->   "%res_mult_shift_part = partselect i16 @_ssdm_op_PartSelect.i16.i48.i32.i32, i48 %add_ln74, i32 32, i32 47" [Arithmetic.cpp:80]   --->   Operation 61 'partselect' 'res_mult_shift_part' <Predicate = true> <Delay = 0.00>
+State 7 <SV = 6> <Delay = 3.34>
+ST_7 : Operation 62 [1/2] (3.34ns)   --->   "%temp1_5 = mul i32 %zext_ln17_8, i32 %zext_ln19_5" [Arithmetic.cpp:22->Arithmetic.cpp:75]   --->   Operation 62 'mul' 'temp1_5' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 63 [1/2] (3.34ns)   --->   "%temp2_5 = mul i32 %zext_ln17_8, i32 %zext_ln20_5" [Arithmetic.cpp:23->Arithmetic.cpp:75]   --->   Operation 63 'mul' 'temp2_5' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 64 [1/2] (3.34ns)   --->   "%temp3_5 = mul i32 %zext_ln18_4, i32 %zext_ln19_5" [Arithmetic.cpp:24->Arithmetic.cpp:75]   --->   Operation 64 'mul' 'temp3_5' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 65 [1/2] (3.34ns)   --->   "%temp4_5 = mul i32 %zext_ln18_4, i32 %zext_ln20_5" [Arithmetic.cpp:25->Arithmetic.cpp:75]   --->   Operation 65 'mul' 'temp4_5' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 66 [1/1] (0.00ns)   --->   "%trunc_ln29 = trunc i32 %temp4_5" [Arithmetic.cpp:29->Arithmetic.cpp:75]   --->   Operation 66 'trunc' 'trunc_ln29' <Predicate = true> <Delay = 0.00>
 
-State 8 <SV = 7> <Delay = 3.52>
-ST_8 : Operation 62 [1/1] (1.70ns)   --->   "%mod = mux i31 @_ssdm_op_Mux.ap_auto.3i31.i2, i31 1073750017, i31 1073815553, i31 1073872897, i2 %MOD_INDEX_read" [Arithmetic.cpp:89]   --->   Operation 62 'mux' 'mod' <Predicate = true> <Delay = 1.70> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 1.70> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
-ST_8 : Operation 63 [1/1] (0.00ns)   --->   "%input2_low_4 = trunc i31 %mod" [Arithmetic.cpp:62]   --->   Operation 63 'trunc' 'input2_low_4' <Predicate = true> <Delay = 0.00>
-ST_8 : Operation 64 [1/1] (0.00ns)   --->   "%sum1_3 = bitconcatenate i64 @_ssdm_op_BitConcatenate.i64.i32.i32, i32 %temp4_3, i32 %temp1_3" [Arithmetic.cpp:29->Arithmetic.cpp:75]   --->   Operation 64 'bitconcatenate' 'sum1_3' <Predicate = true> <Delay = 0.00>
-ST_8 : Operation 65 [1/1] (0.00ns)   --->   "%sum2_3 = bitconcatenate i49 @_ssdm_op_BitConcatenate.i49.i33.i16, i33 %add_ln30_3, i16 0" [Arithmetic.cpp:30->Arithmetic.cpp:75]   --->   Operation 65 'bitconcatenate' 'sum2_3' <Predicate = true> <Delay = 0.00>
-ST_8 : Operation 66 [1/1] (0.00ns)   --->   "%zext_ln28_5 = zext i49 %sum2_3" [Arithmetic.cpp:28->Arithmetic.cpp:75]   --->   Operation 66 'zext' 'zext_ln28_5' <Predicate = true> <Delay = 0.00>
-ST_8 : Operation 67 [1/1] (3.52ns)   --->   "%res_mult_shift = add i64 %zext_ln28_5, i64 %sum1_3" [Arithmetic.cpp:32->Arithmetic.cpp:75]   --->   Operation 67 'add' 'res_mult_shift' <Predicate = true> <Delay = 3.52> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.52> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_8 : Operation 68 [1/1] (0.00ns)   --->   "%zext_ln17_7 = zext i16 %res_mult_shift_part" [Arithmetic.cpp:17->Arithmetic.cpp:81]   --->   Operation 68 'zext' 'zext_ln17_7' <Predicate = true> <Delay = 0.00>
-ST_8 : Operation 69 [1/1] (0.00ns)   --->   "%input2_high_4 = partselect i15 @_ssdm_op_PartSelect.i15.i31.i32.i32, i31 %mod, i32 16, i32 30" [Arithmetic.cpp:20->Arithmetic.cpp:81]   --->   Operation 69 'partselect' 'input2_high_4' <Predicate = true> <Delay = 0.00>
-ST_8 : Operation 70 [1/1] (0.00ns)   --->   "%zext_ln20_4 = zext i15 %input2_high_4" [Arithmetic.cpp:20->Arithmetic.cpp:81]   --->   Operation 70 'zext' 'zext_ln20_4' <Predicate = true> <Delay = 0.00>
-ST_8 : Operation 71 [3/3] (1.05ns) (grouped into DSP with root node add_ln30_4)   --->   "%temp2_4 = mul i31 %zext_ln17_7, i31 %zext_ln20_4" [Arithmetic.cpp:23->Arithmetic.cpp:81]   --->   Operation 71 'mul' 'temp2_4' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
-ST_8 : Operation 72 [1/1] (0.00ns)   --->   "%trunc_ln7 = partselect i16 @_ssdm_op_PartSelect.i16.i64.i32.i32, i64 %res_mult_shift, i32 48, i32 63" [Arithmetic.cpp:24->Arithmetic.cpp:81]   --->   Operation 72 'partselect' 'trunc_ln7' <Predicate = true> <Delay = 0.00>
+State 8 <SV = 7> <Delay = 2.55>
+ST_8 : Operation 67 [1/1] (0.00ns)   --->   "%zext_ln30_12 = zext i32 %temp2_5" [Arithmetic.cpp:30->Arithmetic.cpp:75]   --->   Operation 67 'zext' 'zext_ln30_12' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 68 [1/1] (0.00ns)   --->   "%zext_ln30_13 = zext i32 %temp3_5" [Arithmetic.cpp:30->Arithmetic.cpp:75]   --->   Operation 68 'zext' 'zext_ln30_13' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 69 [1/1] (2.55ns)   --->   "%add_ln30_7 = add i32 %temp2_5, i32 %temp3_5" [Arithmetic.cpp:30->Arithmetic.cpp:75]   --->   Operation 69 'add' 'add_ln30_7' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 70 [1/1] (2.55ns)   --->   "%add_ln30_5 = add i33 %zext_ln30_12, i33 %zext_ln30_13" [Arithmetic.cpp:30->Arithmetic.cpp:75]   --->   Operation 70 'add' 'add_ln30_5' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 
-State 9 <SV = 8> <Delay = 5.58>
-ST_9 : Operation 73 [1/1] (0.00ns)   --->   "%zext_ln17_6 = zext i16 %res_mult_shift_part" [Arithmetic.cpp:17->Arithmetic.cpp:81]   --->   Operation 73 'zext' 'zext_ln17_6' <Predicate = true> <Delay = 0.00>
-ST_9 : Operation 74 [1/1] (0.00ns)   --->   "%zext_ln19_4 = zext i16 %input2_low_4" [Arithmetic.cpp:19->Arithmetic.cpp:81]   --->   Operation 74 'zext' 'zext_ln19_4' <Predicate = true> <Delay = 0.00>
-ST_9 : Operation 75 [1/1] (5.58ns)   --->   "%temp1_4 = mul i32 %zext_ln17_6, i32 %zext_ln19_4" [Arithmetic.cpp:22->Arithmetic.cpp:81]   --->   Operation 75 'mul' 'temp1_4' <Predicate = true> <Delay = 5.58> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 5.58> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
-ST_9 : Operation 76 [2/3] (1.05ns) (grouped into DSP with root node add_ln30_4)   --->   "%temp2_4 = mul i31 %zext_ln17_7, i31 %zext_ln20_4" [Arithmetic.cpp:23->Arithmetic.cpp:81]   --->   Operation 76 'mul' 'temp2_4' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
-ST_9 : Operation 77 [1/1] (0.00ns)   --->   "%zext_ln24 = zext i16 %trunc_ln7" [Arithmetic.cpp:24->Arithmetic.cpp:81]   --->   Operation 77 'zext' 'zext_ln24' <Predicate = true> <Delay = 0.00>
-ST_9 : Operation 78 [1/1] (0.00ns)   --->   "%zext_ln24_2 = zext i16 %trunc_ln7" [Arithmetic.cpp:24->Arithmetic.cpp:81]   --->   Operation 78 'zext' 'zext_ln24_2' <Predicate = true> <Delay = 0.00>
-ST_9 : Operation 79 [1/1] (5.58ns)   --->   "%temp3_4 = mul i32 %zext_ln19_4, i32 %zext_ln24" [Arithmetic.cpp:24->Arithmetic.cpp:81]   --->   Operation 79 'mul' 'temp3_4' <Predicate = true> <Delay = 5.58> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 5.58> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
-ST_9 : Operation 80 [1/1] (5.58ns)   --->   "%temp4_4 = mul i31 %zext_ln20_4, i31 %zext_ln24_2" [Arithmetic.cpp:25->Arithmetic.cpp:81]   --->   Operation 80 'mul' 'temp4_4' <Predicate = true> <Delay = 5.58> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 5.58> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+State 9 <SV = 8> <Delay = 3.52>
+ST_9 : Operation 71 [1/1] (0.00ns)   --->   "%sum1_5 = bitconcatenate i64 @_ssdm_op_BitConcatenate.i64.i32.i32, i32 %temp4_5, i32 %temp1_5" [Arithmetic.cpp:29->Arithmetic.cpp:75]   --->   Operation 71 'bitconcatenate' 'sum1_5' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 72 [1/1] (0.00ns)   --->   "%sum2_5 = bitconcatenate i49 @_ssdm_op_BitConcatenate.i49.i33.i16, i33 %add_ln30_5, i16 0" [Arithmetic.cpp:30->Arithmetic.cpp:75]   --->   Operation 72 'bitconcatenate' 'sum2_5' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 73 [1/1] (0.00ns)   --->   "%zext_ln28_8 = zext i49 %sum2_5" [Arithmetic.cpp:28->Arithmetic.cpp:75]   --->   Operation 73 'zext' 'zext_ln28_8' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 74 [1/1] (0.00ns)   --->   "%tmp = bitconcatenate i48 @_ssdm_op_BitConcatenate.i48.i16.i32, i16 %trunc_ln29, i32 %temp1_5" [Arithmetic.cpp:32->Arithmetic.cpp:75]   --->   Operation 74 'bitconcatenate' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 75 [1/1] (0.00ns)   --->   "%trunc_ln9 = bitconcatenate i48 @_ssdm_op_BitConcatenate.i48.i32.i16, i32 %add_ln30_7, i16 0" [Arithmetic.cpp:32->Arithmetic.cpp:75]   --->   Operation 75 'bitconcatenate' 'trunc_ln9' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 76 [1/1] (3.52ns)   --->   "%res_mult_shift = add i64 %zext_ln28_8, i64 %sum1_5" [Arithmetic.cpp:32->Arithmetic.cpp:75]   --->   Operation 76 'add' 'res_mult_shift' <Predicate = true> <Delay = 3.52> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.52> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 77 [1/1] (3.10ns)   --->   "%add_ln74 = add i48 %trunc_ln9, i48 %tmp" [Arithmetic.cpp:74]   --->   Operation 77 'add' 'add_ln74' <Predicate = true> <Delay = 3.10> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.10> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 78 [1/1] (0.00ns)   --->   "%res_mult_shift_part = partselect i16 @_ssdm_op_PartSelect.i16.i48.i32.i32, i48 %add_ln74, i32 32, i32 47" [Arithmetic.cpp:80]   --->   Operation 78 'partselect' 'res_mult_shift_part' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 79 [1/1] (0.00ns)   --->   "%trunc_ln = partselect i16 @_ssdm_op_PartSelect.i16.i64.i32.i32, i64 %res_mult_shift, i32 48, i32 63" [Arithmetic.cpp:24->Arithmetic.cpp:81]   --->   Operation 79 'partselect' 'trunc_ln' <Predicate = true> <Delay = 0.00>
 
-State 10 <SV = 9> <Delay = 2.10>
-ST_10 : Operation 81 [1/3] (0.00ns) (grouped into DSP with root node add_ln30_4)   --->   "%temp2_4 = mul i31 %zext_ln17_7, i31 %zext_ln20_4" [Arithmetic.cpp:23->Arithmetic.cpp:81]   --->   Operation 81 'mul' 'temp2_4' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
-ST_10 : Operation 82 [1/1] (0.00ns) (grouped into DSP with root node add_ln30_4)   --->   "%zext_ln30_9 = zext i31 %temp2_4" [Arithmetic.cpp:30->Arithmetic.cpp:81]   --->   Operation 82 'zext' 'zext_ln30_9' <Predicate = true> <Delay = 0.00>
-ST_10 : Operation 83 [1/1] (0.00ns)   --->   "%zext_ln30_10 = zext i32 %temp3_4" [Arithmetic.cpp:30->Arithmetic.cpp:81]   --->   Operation 83 'zext' 'zext_ln30_10' <Predicate = true> <Delay = 0.00>
-ST_10 : Operation 84 [2/2] (2.10ns) (root node of the DSP)   --->   "%add_ln30_4 = add i33 %zext_ln30_9, i33 %zext_ln30_10" [Arithmetic.cpp:30->Arithmetic.cpp:81]   --->   Operation 84 'add' 'add_ln30_4' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+State 10 <SV = 9> <Delay = 5.05>
+ST_10 : Operation 80 [1/1] (1.70ns)   --->   "%mod = mux i31 @_ssdm_op_Mux.ap_auto.3i31.i2, i31 1073750017, i31 1073815553, i31 1073872897, i2 %MOD_INDEX_read" [Arithmetic.cpp:89]   --->   Operation 80 'mux' 'mod' <Predicate = true> <Delay = 1.70> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 1.70> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 81 [1/1] (0.00ns)   --->   "%input2_low_6 = trunc i31 %mod" [Arithmetic.cpp:62]   --->   Operation 81 'trunc' 'input2_low_6' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 82 [1/1] (0.00ns)   --->   "%zext_ln17_9 = zext i16 %res_mult_shift_part" [Arithmetic.cpp:17->Arithmetic.cpp:81]   --->   Operation 82 'zext' 'zext_ln17_9' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 83 [1/1] (0.00ns)   --->   "%zext_ln17_10 = zext i16 %res_mult_shift_part" [Arithmetic.cpp:17->Arithmetic.cpp:81]   --->   Operation 83 'zext' 'zext_ln17_10' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 84 [1/1] (0.00ns)   --->   "%zext_ln19_6 = zext i16 %input2_low_6" [Arithmetic.cpp:19->Arithmetic.cpp:81]   --->   Operation 84 'zext' 'zext_ln19_6' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 85 [1/1] (0.00ns)   --->   "%input2_high_6 = partselect i15 @_ssdm_op_PartSelect.i15.i31.i32.i32, i31 %mod, i32 16, i32 30" [Arithmetic.cpp:20->Arithmetic.cpp:81]   --->   Operation 85 'partselect' 'input2_high_6' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 86 [1/1] (0.00ns)   --->   "%zext_ln20_6 = zext i15 %input2_high_6" [Arithmetic.cpp:20->Arithmetic.cpp:81]   --->   Operation 86 'zext' 'zext_ln20_6' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 87 [2/2] (3.34ns)   --->   "%temp1_6 = mul i32 %zext_ln17_9, i32 %zext_ln19_6" [Arithmetic.cpp:22->Arithmetic.cpp:81]   --->   Operation 87 'mul' 'temp1_6' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 88 [3/3] (1.05ns) (grouped into DSP with root node add_ln30_6)   --->   "%temp2_6 = mul i31 %zext_ln17_10, i31 %zext_ln20_6" [Arithmetic.cpp:23->Arithmetic.cpp:81]   --->   Operation 88 'mul' 'temp2_6' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_10 : Operation 89 [1/1] (0.00ns)   --->   "%zext_ln24 = zext i16 %trunc_ln" [Arithmetic.cpp:24->Arithmetic.cpp:81]   --->   Operation 89 'zext' 'zext_ln24' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 90 [1/1] (0.00ns)   --->   "%zext_ln24_3 = zext i16 %trunc_ln" [Arithmetic.cpp:24->Arithmetic.cpp:81]   --->   Operation 90 'zext' 'zext_ln24_3' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 91 [2/2] (3.34ns)   --->   "%temp3_6 = mul i32 %zext_ln19_6, i32 %zext_ln24" [Arithmetic.cpp:24->Arithmetic.cpp:81]   --->   Operation 91 'mul' 'temp3_6' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 92 [2/2] (3.34ns)   --->   "%temp4_6 = mul i31 %zext_ln20_6, i31 %zext_ln24_3" [Arithmetic.cpp:25->Arithmetic.cpp:81]   --->   Operation 92 'mul' 'temp4_6' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
 
-State 11 <SV = 10> <Delay = 2.10>
-ST_11 : Operation 85 [1/2] (2.10ns) (root node of the DSP)   --->   "%add_ln30_4 = add i33 %zext_ln30_9, i33 %zext_ln30_10" [Arithmetic.cpp:30->Arithmetic.cpp:81]   --->   Operation 85 'add' 'add_ln30_4' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+State 11 <SV = 10> <Delay = 3.34>
+ST_11 : Operation 93 [1/2] (3.34ns)   --->   "%temp1_6 = mul i32 %zext_ln17_9, i32 %zext_ln19_6" [Arithmetic.cpp:22->Arithmetic.cpp:81]   --->   Operation 93 'mul' 'temp1_6' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 94 [2/3] (1.05ns) (grouped into DSP with root node add_ln30_6)   --->   "%temp2_6 = mul i31 %zext_ln17_10, i31 %zext_ln20_6" [Arithmetic.cpp:23->Arithmetic.cpp:81]   --->   Operation 94 'mul' 'temp2_6' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 95 [1/2] (3.34ns)   --->   "%temp3_6 = mul i32 %zext_ln19_6, i32 %zext_ln24" [Arithmetic.cpp:24->Arithmetic.cpp:81]   --->   Operation 95 'mul' 'temp3_6' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 96 [1/2] (3.34ns)   --->   "%temp4_6 = mul i31 %zext_ln20_6, i31 %zext_ln24_3" [Arithmetic.cpp:25->Arithmetic.cpp:81]   --->   Operation 96 'mul' 'temp4_6' <Predicate = true> <Delay = 3.34> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 1> <II = 1> <Delay = 3.34> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
 
-State 12 <SV = 11> <Delay = 5.30>
-ST_12 : Operation 86 [1/1] (0.00ns)   --->   "%sum1_4 = bitconcatenate i63 @_ssdm_op_BitConcatenate.i63.i31.i32, i31 %temp4_4, i32 %temp1_4" [Arithmetic.cpp:29->Arithmetic.cpp:81]   --->   Operation 86 'bitconcatenate' 'sum1_4' <Predicate = true> <Delay = 0.00>
-ST_12 : Operation 87 [1/1] (0.00ns)   --->   "%zext_ln28_6 = zext i63 %sum1_4" [Arithmetic.cpp:28->Arithmetic.cpp:81]   --->   Operation 87 'zext' 'zext_ln28_6' <Predicate = true> <Delay = 0.00>
-ST_12 : Operation 88 [1/1] (0.00ns)   --->   "%sum2_4 = bitconcatenate i49 @_ssdm_op_BitConcatenate.i49.i33.i16, i33 %add_ln30_4, i16 0" [Arithmetic.cpp:30->Arithmetic.cpp:81]   --->   Operation 88 'bitconcatenate' 'sum2_4' <Predicate = true> <Delay = 0.00>
-ST_12 : Operation 89 [1/1] (0.00ns)   --->   "%zext_ln28_7 = zext i49 %sum2_4" [Arithmetic.cpp:28->Arithmetic.cpp:81]   --->   Operation 89 'zext' 'zext_ln28_7' <Predicate = true> <Delay = 0.00>
-ST_12 : Operation 90 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%res_shift = sub i64 %res_mult, i64 %zext_ln28_6" [Arithmetic.cpp:32->Arithmetic.cpp:81]   --->   Operation 90 'sub' 'res_shift' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.65> <IPBlock> <Opcode : '<invalid operator> ' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
-ST_12 : Operation 91 [1/1] (5.30ns) (root node of TernaryAdder)   --->   "%sub_ln85 = sub i64 %res_shift, i64 %zext_ln28_7" [Arithmetic.cpp:85]   --->   Operation 91 'sub' 'sub_ln85' <Predicate = true> <Delay = 5.30> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.65> <IPBlock> <Opcode : '<invalid operator> ' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+State 12 <SV = 11> <Delay = 3.49>
+ST_12 : Operation 97 [1/1] (0.00ns)   --->   "%zext_ln68 = zext i63 %res_mult" [Arithmetic.cpp:68]   --->   Operation 97 'zext' 'zext_ln68' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 98 [1/3] (0.00ns) (grouped into DSP with root node add_ln30_6)   --->   "%temp2_6 = mul i31 %zext_ln17_10, i31 %zext_ln20_6" [Arithmetic.cpp:23->Arithmetic.cpp:81]   --->   Operation 98 'mul' 'temp2_6' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 99 [1/1] (0.00ns)   --->   "%sum1_6 = bitconcatenate i63 @_ssdm_op_BitConcatenate.i63.i31.i32, i31 %temp4_6, i32 %temp1_6" [Arithmetic.cpp:29->Arithmetic.cpp:81]   --->   Operation 99 'bitconcatenate' 'sum1_6' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 100 [1/1] (0.00ns)   --->   "%zext_ln28_9 = zext i63 %sum1_6" [Arithmetic.cpp:28->Arithmetic.cpp:81]   --->   Operation 100 'zext' 'zext_ln28_9' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 101 [1/1] (0.00ns) (grouped into DSP with root node add_ln30_6)   --->   "%zext_ln30_14 = zext i31 %temp2_6" [Arithmetic.cpp:30->Arithmetic.cpp:81]   --->   Operation 101 'zext' 'zext_ln30_14' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 102 [1/1] (0.00ns)   --->   "%zext_ln30_15 = zext i32 %temp3_6" [Arithmetic.cpp:30->Arithmetic.cpp:81]   --->   Operation 102 'zext' 'zext_ln30_15' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 103 [2/2] (2.10ns) (root node of the DSP)   --->   "%add_ln30_6 = add i33 %zext_ln30_14, i33 %zext_ln30_15" [Arithmetic.cpp:30->Arithmetic.cpp:81]   --->   Operation 103 'add' 'add_ln30_6' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_12 : Operation 104 [1/1] (3.49ns)   --->   "%res_shift = sub i64 %zext_ln68, i64 %zext_ln28_9" [Arithmetic.cpp:32->Arithmetic.cpp:81]   --->   Operation 104 'sub' 'res_shift' <Predicate = true> <Delay = 3.49> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.49> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 
-State 13 <SV = 12> <Delay = 4.21>
-ST_13 : Operation 92 [1/1] (0.00ns)   --->   "%specpipeline_ln62 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty" [Arithmetic.cpp:62]   --->   Operation 92 'specpipeline' 'specpipeline_ln62' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 93 [1/1] (0.00ns)   --->   "%zext_ln89 = zext i31 %mod" [Arithmetic.cpp:89]   --->   Operation 93 'zext' 'zext_ln89' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 94 [1/1] (3.52ns)   --->   "%sub_ln89 = sub i64 %sub_ln85, i64 %zext_ln89" [Arithmetic.cpp:89]   --->   Operation 94 'sub' 'sub_ln89' <Predicate = true> <Delay = 3.52> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.52> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_13 : Operation 95 [1/1] (0.00ns)   --->   "%zext_ln90_cast = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i31.i1, i31 %mod, i1 0" [Arithmetic.cpp:90]   --->   Operation 95 'bitconcatenate' 'zext_ln90_cast' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 96 [1/1] (0.00ns)   --->   "%zext_ln90 = zext i32 %zext_ln90_cast" [Arithmetic.cpp:90]   --->   Operation 96 'zext' 'zext_ln90' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 97 [1/1] (3.52ns)   --->   "%sub_ln90 = sub i64 %sub_ln85, i64 %zext_ln90" [Arithmetic.cpp:90]   --->   Operation 97 'sub' 'sub_ln90' <Predicate = true> <Delay = 3.52> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.52> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_13 : Operation 98 [1/1] (0.00ns) (grouped into LUT with out node select_ln92_2)   --->   "%tmp_3 = bitselect i1 @_ssdm_op_BitSelect.i1.i64.i32, i64 %sub_ln89, i32 63" [Arithmetic.cpp:92]   --->   Operation 98 'bitselect' 'tmp_3' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 99 [1/1] (0.00ns) (grouped into LUT with out node select_ln92_2)   --->   "%tmp_4 = bitselect i1 @_ssdm_op_BitSelect.i1.i64.i32, i64 %sub_ln90, i32 63" [Arithmetic.cpp:92]   --->   Operation 99 'bitselect' 'tmp_4' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 100 [1/1] (0.00ns) (grouped into LUT with out node select_ln92_2)   --->   "%trunc_ln92 = trunc i64 %sub_ln85" [Arithmetic.cpp:92]   --->   Operation 100 'trunc' 'trunc_ln92' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 101 [1/1] (0.00ns) (grouped into LUT with out node select_ln92_2)   --->   "%trunc_ln92_3 = trunc i64 %sub_ln89" [Arithmetic.cpp:92]   --->   Operation 101 'trunc' 'trunc_ln92_3' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 102 [1/1] (0.00ns) (grouped into LUT with out node select_ln92_2)   --->   "%trunc_ln92_4 = trunc i64 %sub_ln90" [Arithmetic.cpp:92]   --->   Operation 102 'trunc' 'trunc_ln92_4' <Predicate = true> <Delay = 0.00>
-ST_13 : Operation 103 [1/1] (0.00ns) (grouped into LUT with out node select_ln92_2)   --->   "%select_ln92 = select i1 %tmp_4, i32 %trunc_ln92_3, i32 %trunc_ln92_4" [Arithmetic.cpp:92]   --->   Operation 103 'select' 'select_ln92' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
-ST_13 : Operation 104 [1/1] (0.69ns) (out node of the LUT)   --->   "%select_ln92_2 = select i1 %tmp_3, i32 %trunc_ln92, i32 %select_ln92" [Arithmetic.cpp:92]   --->   Operation 104 'select' 'select_ln92_2' <Predicate = true> <Delay = 0.69> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
-ST_13 : Operation 105 [1/1] (0.00ns)   --->   "%ret_ln94 = ret i32 %select_ln92_2" [Arithmetic.cpp:94]   --->   Operation 105 'ret' 'ret_ln94' <Predicate = true> <Delay = 0.00>
+State 13 <SV = 12> <Delay = 2.10>
+ST_13 : Operation 105 [1/2] (2.10ns) (root node of the DSP)   --->   "%add_ln30_6 = add i33 %zext_ln30_14, i33 %zext_ln30_15" [Arithmetic.cpp:30->Arithmetic.cpp:81]   --->   Operation 105 'add' 'add_ln30_6' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : '<invalid operator> ' 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 14 <SV = 13> <Delay = 3.52>
+ST_14 : Operation 106 [1/1] (0.00ns)   --->   "%sum2_6 = bitconcatenate i49 @_ssdm_op_BitConcatenate.i49.i33.i16, i33 %add_ln30_6, i16 0" [Arithmetic.cpp:30->Arithmetic.cpp:81]   --->   Operation 106 'bitconcatenate' 'sum2_6' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 107 [1/1] (0.00ns)   --->   "%zext_ln28_10 = zext i49 %sum2_6" [Arithmetic.cpp:28->Arithmetic.cpp:81]   --->   Operation 107 'zext' 'zext_ln28_10' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 108 [1/1] (3.52ns)   --->   "%sub_ln85 = sub i64 %res_shift, i64 %zext_ln28_10" [Arithmetic.cpp:85]   --->   Operation 108 'sub' 'sub_ln85' <Predicate = true> <Delay = 3.52> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.52> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 15 <SV = 14> <Delay = 4.21>
+ST_15 : Operation 109 [1/1] (0.00ns)   --->   "%specpipeline_ln62 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_26" [Arithmetic.cpp:62]   --->   Operation 109 'specpipeline' 'specpipeline_ln62' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 110 [1/1] (0.00ns)   --->   "%zext_ln89 = zext i31 %mod" [Arithmetic.cpp:89]   --->   Operation 110 'zext' 'zext_ln89' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 111 [1/1] (3.52ns)   --->   "%sub_ln89 = sub i64 %sub_ln85, i64 %zext_ln89" [Arithmetic.cpp:89]   --->   Operation 111 'sub' 'sub_ln89' <Predicate = true> <Delay = 3.52> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.52> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 112 [1/1] (0.00ns)   --->   "%zext_ln90_cast = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i31.i1, i31 %mod, i1 0" [Arithmetic.cpp:90]   --->   Operation 112 'bitconcatenate' 'zext_ln90_cast' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 113 [1/1] (0.00ns)   --->   "%zext_ln90 = zext i32 %zext_ln90_cast" [Arithmetic.cpp:90]   --->   Operation 113 'zext' 'zext_ln90' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 114 [1/1] (3.52ns)   --->   "%sub_ln90 = sub i64 %sub_ln85, i64 %zext_ln90" [Arithmetic.cpp:90]   --->   Operation 114 'sub' 'sub_ln90' <Predicate = true> <Delay = 3.52> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.52> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 115 [1/1] (0.00ns) (grouped into LUT with out node select_ln92_3)   --->   "%tmp_5 = bitselect i1 @_ssdm_op_BitSelect.i1.i64.i32, i64 %sub_ln89, i32 63" [Arithmetic.cpp:92]   --->   Operation 115 'bitselect' 'tmp_5' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 116 [1/1] (0.00ns) (grouped into LUT with out node select_ln92_3)   --->   "%tmp_6 = bitselect i1 @_ssdm_op_BitSelect.i1.i64.i32, i64 %sub_ln90, i32 63" [Arithmetic.cpp:92]   --->   Operation 116 'bitselect' 'tmp_6' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 117 [1/1] (0.00ns) (grouped into LUT with out node select_ln92_3)   --->   "%trunc_ln92 = trunc i64 %sub_ln85" [Arithmetic.cpp:92]   --->   Operation 117 'trunc' 'trunc_ln92' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 118 [1/1] (0.00ns) (grouped into LUT with out node select_ln92_3)   --->   "%trunc_ln92_5 = trunc i64 %sub_ln89" [Arithmetic.cpp:92]   --->   Operation 118 'trunc' 'trunc_ln92_5' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 119 [1/1] (0.00ns) (grouped into LUT with out node select_ln92_3)   --->   "%trunc_ln92_6 = trunc i64 %sub_ln90" [Arithmetic.cpp:92]   --->   Operation 119 'trunc' 'trunc_ln92_6' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 120 [1/1] (0.00ns) (grouped into LUT with out node select_ln92_3)   --->   "%select_ln92 = select i1 %tmp_6, i32 %trunc_ln92_5, i32 %trunc_ln92_6" [Arithmetic.cpp:92]   --->   Operation 120 'select' 'select_ln92' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_15 : Operation 121 [1/1] (0.69ns) (out node of the LUT)   --->   "%select_ln92_3 = select i1 %tmp_5, i32 %trunc_ln92, i32 %select_ln92" [Arithmetic.cpp:92]   --->   Operation 121 'select' 'select_ln92_3' <Predicate = true> <Delay = 0.69> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_15 : Operation 122 [1/1] (0.00ns)   --->   "%ret_ln94 = ret i32 %select_ln92_3" [Arithmetic.cpp:94]   --->   Operation 122 'ret' 'ret_ln94' <Predicate = true> <Delay = 0.00>
 
 
 ============================================================
 + Verbose Summary: Timing violations
 ============================================================
-Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+Target clock period: 7.000ns, clock uncertainty: 1.890ns.
 
- <State 1>: 1.050ns
+ <State 1>: 3.349ns
 The critical path consists of the following:
 	wire read operation ('input2_val_read', Arithmetic.cpp:62) on port 'input2_val' (Arithmetic.cpp:62) [5]  (0.000 ns)
-	'mul' operation of DSP[27] ('temp3', Arithmetic.cpp:24->Arithmetic.cpp:69) [22]  (1.050 ns)
+	'mul' operation ('temp1', Arithmetic.cpp:22->Arithmetic.cpp:69) [23]  (3.349 ns)
 
- <State 2>: 5.580ns
+ <State 2>: 3.349ns
 The critical path consists of the following:
-	'mul' operation ('temp1', Arithmetic.cpp:22->Arithmetic.cpp:69) [20]  (5.580 ns)
+	'mul' operation ('temp1', Arithmetic.cpp:22->Arithmetic.cpp:69) [23]  (3.349 ns)
 
  <State 3>: 2.100ns
 The critical path consists of the following:
-	'mul' operation of DSP[27] ('temp3', Arithmetic.cpp:24->Arithmetic.cpp:69) [22]  (0.000 ns)
-	'add' operation of DSP[27] ('add_ln30', Arithmetic.cpp:30->Arithmetic.cpp:69) [27]  (2.100 ns)
+	'mul' operation of DSP[31] ('temp2', Arithmetic.cpp:23->Arithmetic.cpp:69) [24]  (0.000 ns)
+	'add' operation of DSP[31] ('add_ln30', Arithmetic.cpp:30->Arithmetic.cpp:69) [31]  (2.100 ns)
 
  <State 4>: 2.100ns
 The critical path consists of the following:
-	'add' operation of DSP[27] ('add_ln30', Arithmetic.cpp:30->Arithmetic.cpp:69) [27]  (2.100 ns)
+	'add' operation of DSP[31] ('add_ln30', Arithmetic.cpp:30->Arithmetic.cpp:69) [31]  (2.100 ns)
 
- <State 5>: 3.520ns
+ <State 5>: 3.469ns
 The critical path consists of the following:
-	'add' operation ('res_mult', Arithmetic.cpp:32->Arithmetic.cpp:69) [30]  (3.520 ns)
+	'add' operation ('res_mult', Arithmetic.cpp:32->Arithmetic.cpp:69) [34]  (3.469 ns)
 
- <State 6>: 5.580ns
+ <State 6>: 5.056ns
 The critical path consists of the following:
-	'mul' operation ('temp1', Arithmetic.cpp:22->Arithmetic.cpp:75) [39]  (5.580 ns)
+	'mux' operation ('m', Arithmetic.cpp:64) [12]  (1.707 ns)
+	'mul' operation ('temp1', Arithmetic.cpp:22->Arithmetic.cpp:75) [44]  (3.349 ns)
 
- <State 7>: 5.655ns
+ <State 7>: 3.349ns
 The critical path consists of the following:
-	'add' operation ('add_ln30_5', Arithmetic.cpp:30->Arithmetic.cpp:75) [47]  (2.552 ns)
-	'add' operation ('add_ln74', Arithmetic.cpp:74) [54]  (3.103 ns)
+	'mul' operation ('temp1', Arithmetic.cpp:22->Arithmetic.cpp:75) [44]  (3.349 ns)
 
- <State 8>: 3.520ns
+ <State 8>: 2.552ns
 The critical path consists of the following:
-	'add' operation ('res_mult_shift', Arithmetic.cpp:32->Arithmetic.cpp:75) [53]  (3.520 ns)
+	'add' operation ('add_ln30_7', Arithmetic.cpp:30->Arithmetic.cpp:75) [52]  (2.552 ns)
 
- <State 9>: 5.580ns
+ <State 9>: 3.520ns
 The critical path consists of the following:
-	'mul' operation ('temp1', Arithmetic.cpp:22->Arithmetic.cpp:81) [61]  (5.580 ns)
+	'add' operation ('res_mult_shift', Arithmetic.cpp:32->Arithmetic.cpp:75) [58]  (3.520 ns)
 
- <State 10>: 2.100ns
+ <State 10>: 5.056ns
 The critical path consists of the following:
-	'mul' operation of DSP[72] ('temp2', Arithmetic.cpp:23->Arithmetic.cpp:81) [62]  (0.000 ns)
-	'add' operation of DSP[72] ('add_ln30_4', Arithmetic.cpp:30->Arithmetic.cpp:81) [72]  (2.100 ns)
+	'mux' operation ('mod', Arithmetic.cpp:89) [10]  (1.707 ns)
+	'mul' operation ('temp1', Arithmetic.cpp:22->Arithmetic.cpp:81) [66]  (3.349 ns)
 
- <State 11>: 2.100ns
+ <State 11>: 3.349ns
 The critical path consists of the following:
-	'add' operation of DSP[72] ('add_ln30_4', Arithmetic.cpp:30->Arithmetic.cpp:81) [72]  (2.100 ns)
+	'mul' operation ('temp1', Arithmetic.cpp:22->Arithmetic.cpp:81) [66]  (3.349 ns)
 
- <State 12>: 5.307ns
+ <State 12>: 3.494ns
 The critical path consists of the following:
-	'sub' operation ('res_shift', Arithmetic.cpp:32->Arithmetic.cpp:81) [75]  (0.000 ns)
-	'sub' operation ('sub_ln85', Arithmetic.cpp:85) [76]  (5.307 ns)
+	'sub' operation ('res_shift', Arithmetic.cpp:32->Arithmetic.cpp:81) [80]  (3.494 ns)
 
- <State 13>: 4.218ns
+ <State 13>: 2.100ns
 The critical path consists of the following:
-	'sub' operation ('sub_ln89', Arithmetic.cpp:89) [78]  (3.520 ns)
-	'select' operation ('select_ln92_2', Arithmetic.cpp:92) [88]  (0.698 ns)
+	'add' operation of DSP[77] ('add_ln30_6', Arithmetic.cpp:30->Arithmetic.cpp:81) [77]  (2.100 ns)
+
+ <State 14>: 3.520ns
+The critical path consists of the following:
+	'sub' operation ('sub_ln85', Arithmetic.cpp:85) [81]  (3.520 ns)
+
+ <State 15>: 4.218ns
+The critical path consists of the following:
+	'sub' operation ('sub_ln89', Arithmetic.cpp:89) [83]  (3.520 ns)
+	'select' operation ('select_ln92_3', Arithmetic.cpp:92) [93]  (0.698 ns)
 
 
 ============================================================
@@ -294,6 +322,8 @@ N/A
 	State 11
 	State 12
 	State 13
+	State 14
+	State 15
 
 
 ============================================================

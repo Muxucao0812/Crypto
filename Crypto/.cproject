@@ -187,7 +187,7 @@
                                 							
                             </option>
                             							
-                            <option id="gnu.cpp.compiler.option.other.other.1952573253" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-Wno-unknown-pragmas -c -fmessage-length=0" valueType="string"/>
+                            <option id="gnu.cpp.compiler.option.other.other.1952573253" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0" valueType="string"/>
                             							
                             <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.2083517564" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
                             						
@@ -217,7 +217,7 @@
                                 							
                             </option>
                             							
-                            <option id="gnu.cpp.compiler.option.other.other.1796874179" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-Wno-unknown-pragmas -c -fmessage-length=0" valueType="string"/>
+                            <option id="gnu.cpp.compiler.option.other.other.1796874179" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0" valueType="string"/>
                             							
                             <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1495948658" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
                             						
@@ -247,7 +247,7 @@
                                 							
                             </option>
                             							
-                            <option id="gnu.cpp.compiler.option.other.other.1804694047" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-Wno-unknown-pragmas -c -fmessage-length=0" valueType="string"/>
+                            <option id="gnu.cpp.compiler.option.other.other.1804694047" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0" valueType="string"/>
                             							
                             <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1017061473" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
                             						
@@ -279,7 +279,7 @@
                                 							
                             </option>
                             							
-                            <option id="gnu.cpp.compiler.option.other.other.202455940" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-Wno-unknown-pragmas -c -fmessage-length=0" valueType="string"/>
+                            <option id="gnu.cpp.compiler.option.other.other.202455940" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0" valueType="string"/>
                             							
                             <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.730407805" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
                             						
@@ -323,6 +323,8 @@
                     					
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.885319539.796821148" name="PE_UNIT.hpp" rcbsApplicability="disable" resourcePath="source/PE_UNIT.hpp" toolsToInvoke=""/>
                     					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.885319539.1803526509" name="Crypto_TB.hpp" rcbsApplicability="disable" resourcePath="source/Crypto_TB.hpp" toolsToInvoke=""/>
+                    					
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.885319539.2107312065" name="TwiddleMemory.hpp" rcbsApplicability="disable" resourcePath="source/TwiddleMemory.hpp" toolsToInvoke=""/>
                     					
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.885319539.1951239682" name="Crypto.hpp" rcbsApplicability="disable" resourcePath="source/Crypto.hpp" toolsToInvoke=""/>
@@ -330,6 +332,8 @@
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.885319539.160283325" name="AddressGen.hpp" rcbsApplicability="disable" resourcePath="source/AddressGen.hpp" toolsToInvoke=""/>
                     					
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.885319539.2138407349" name="Arithmetic.hpp" rcbsApplicability="disable" resourcePath="source/Arithmetic.hpp" toolsToInvoke=""/>
+                    					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.885319539.416940999" name="AddressGen_TB.hpp" rcbsApplicability="disable" resourcePath="source/AddressGen_TB.hpp" toolsToInvoke=""/>
                     					
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.885319539.1666282809" name="PE_ARRAY.hpp" rcbsApplicability="disable" resourcePath="source/PE_ARRAY.hpp" toolsToInvoke=""/>
                     					
@@ -339,7 +343,7 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding=".apc|solution1|*.c*|*.C*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding=".apc|.settings|solution1|*.c*|*.C*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
                         					
                     </sourceEntries>
                     				
@@ -515,7 +519,7 @@
                                 							
                             </option>
                             							
-                            <option id="gnu.cpp.compiler.option.other.other.75229235" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-Wno-unknown-pragmas -c -fmessage-length=0" valueType="string"/>
+                            <option id="gnu.cpp.compiler.option.other.other.75229235" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0" valueType="string"/>
                             							
                             <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1663204064" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
                             						
@@ -545,7 +549,7 @@
                                 							
                             </option>
                             							
-                            <option id="gnu.cpp.compiler.option.other.other.1309673472" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-Wno-unknown-pragmas -c -fmessage-length=0" valueType="string"/>
+                            <option id="gnu.cpp.compiler.option.other.other.1309673472" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0" valueType="string"/>
                             							
                             <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.442573722" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
                             						
@@ -575,7 +579,7 @@
                                 							
                             </option>
                             							
-                            <option id="gnu.cpp.compiler.option.other.other.1802520359" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-Wno-unknown-pragmas -c -fmessage-length=0" valueType="string"/>
+                            <option id="gnu.cpp.compiler.option.other.other.1802520359" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0" valueType="string"/>
                             							
                             <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1724982970" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
                             						
@@ -607,7 +611,7 @@
                                 							
                             </option>
                             							
-                            <option id="gnu.cpp.compiler.option.other.other.1886712308" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-Wno-unknown-pragmas -c -fmessage-length=0" valueType="string"/>
+                            <option id="gnu.cpp.compiler.option.other.other.1886712308" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0" valueType="string"/>
                             							
                             <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.2084874495" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
                             						
@@ -651,6 +655,8 @@
                     					
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.release.1989847829.386734577" name="PE_UNIT.hpp" rcbsApplicability="disable" resourcePath="source/PE_UNIT.hpp" toolsToInvoke=""/>
                     					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.release.1989847829.1354874930" name="Crypto_TB.hpp" rcbsApplicability="disable" resourcePath="source/Crypto_TB.hpp" toolsToInvoke=""/>
+                    					
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.release.1989847829.2132439189" name="TwiddleMemory.hpp" rcbsApplicability="disable" resourcePath="source/TwiddleMemory.hpp" toolsToInvoke=""/>
                     					
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.release.1989847829.604493447" name="Crypto.hpp" rcbsApplicability="disable" resourcePath="source/Crypto.hpp" toolsToInvoke=""/>
@@ -658,6 +664,8 @@
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.release.1989847829.1756693613" name="AddressGen.hpp" rcbsApplicability="disable" resourcePath="source/AddressGen.hpp" toolsToInvoke=""/>
                     					
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.release.1989847829.794814272" name="Arithmetic.hpp" rcbsApplicability="disable" resourcePath="source/Arithmetic.hpp" toolsToInvoke=""/>
+                    					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.release.1989847829.384080881" name="AddressGen_TB.hpp" rcbsApplicability="disable" resourcePath="source/AddressGen_TB.hpp" toolsToInvoke=""/>
                     					
                     <fileInfo id="cdt.managedbuild.config.gnu.exe.release.1989847829.150517526" name="PE_ARRAY.hpp" rcbsApplicability="disable" resourcePath="source/PE_ARRAY.hpp" toolsToInvoke=""/>
                     					
@@ -667,7 +675,7 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding=".apc|solution1|*.c*|*.C*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding=".apc|.settings|solution1|*.c*|*.C*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
                         					
                     </sourceEntries>
                     				

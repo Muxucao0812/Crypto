@@ -1,598 +1,108 @@
+INFO: [HLS 200-10] Running '/home/meng/Software/VIvado/Vitis_HLS/2023.1/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'meng' on host 'meng-OptiPlex-5000' (Linux_x86_64 version 6.8.0-52-generic) on Wed Feb 05 12:50:52 HKT 2025
+INFO: [HLS 200-10] On os Ubuntu 22.04.4 LTS
+INFO: [HLS 200-10] In directory '/home/meng/HLS/Crypto'
+Sourcing Tcl script '/home/meng/HLS/Crypto/Crypto/solution1/export.tcl'
+INFO: [HLS 200-1510] Running: source /home/meng/HLS/Crypto/Crypto/solution1/export.tcl
+INFO: [HLS 200-1510] Running: open_project Crypto 
+INFO: [HLS 200-10] Opening project '/home/meng/HLS/Crypto/Crypto'.
+INFO: [HLS 200-1510] Running: set_top Crypto 
+INFO: [HLS 200-1510] Running: add_files header -cflags -I. 
+WARNING: [HLS 200-40] Cannot find design file 'header'
+INFO: [HLS 200-1510] Running: add_files pow_mod.h -cflags -I. 
+WARNING: [HLS 200-40] Cannot find design file 'pow_mod.h'
+INFO: [HLS 200-1510] Running: add_files Utils.hpp -cflags -I. 
+INFO: [HLS 200-10] Adding design file 'Utils.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files AddressGen_TB.hpp -cflags -I. 
+INFO: [HLS 200-10] Adding design file 'AddressGen_TB.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files AddressGen.hpp -cflags -I. 
+INFO: [HLS 200-10] Adding design file 'AddressGen.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files Crypto_TB.hpp -cflags -I. 
+INFO: [HLS 200-10] Adding design file 'Crypto_TB.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files Arithmetic.hpp -cflags -I. 
+INFO: [HLS 200-10] Adding design file 'Arithmetic.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files PE_UNIT.hpp -cflags -I. 
+INFO: [HLS 200-10] Adding design file 'PE_UNIT.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files PE_ARRAY.hpp -cflags -I. 
+INFO: [HLS 200-10] Adding design file 'PE_ARRAY.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files DATAMemory.hpp -cflags -I. 
+INFO: [HLS 200-10] Adding design file 'DATAMemory.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files Crypto.hpp -cflags -I. 
+INFO: [HLS 200-10] Adding design file 'Crypto.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files define.h -cflags -I. 
+INFO: [HLS 200-10] Adding design file 'define.h' to the project
+INFO: [HLS 200-1510] Running: add_files TwiddleMemory.hpp -cflags -I. 
+INFO: [HLS 200-10] Adding design file 'TwiddleMemory.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files files -cflags -I. 
+WARNING: [HLS 200-40] Cannot find design file 'files'
+INFO: [HLS 200-1510] Running: add_files source 
+WARNING: [HLS 200-40] Cannot find design file 'source'
+INFO: [HLS 200-1510] Running: add_files necessary -cflags -I. 
+WARNING: [HLS 200-40] Cannot find design file 'necessary'
+INFO: [HLS 200-1510] Running: add_files all -cflags -I. 
+WARNING: [HLS 200-40] Cannot find design file 'all'
+INFO: [HLS 200-1510] Running: add_files Add -cflags -I. 
+WARNING: [HLS 200-40] Cannot find design file 'Add'
+INFO: [HLS 200-1510] Running: add_files # -cflags -I. 
+WARNING: [HLS 200-40] Cannot find design file '#'
+INFO: [HLS 200-1510] Running: add_files ret.txt 
+INFO: [HLS 200-10] Adding design file 'ret.txt' to the project
+INFO: [HLS 200-1510] Running: add_files basis.txt 
+INFO: [HLS 200-10] Adding design file 'basis.txt' to the project
+INFO: [HLS 200-1510] Running: add_files poly.txt 
+INFO: [HLS 200-10] Adding design file 'poly.txt' to the project
+INFO: [HLS 200-1510] Running: add_files pow_mod.cpp 
+INFO: [HLS 200-10] Adding design file 'pow_mod.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files Utils.cpp 
+INFO: [HLS 200-10] Adding design file 'Utils.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files AddressGen_TB.cpp 
+INFO: [HLS 200-10] Adding design file 'AddressGen_TB.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files AddressGen.cpp 
+INFO: [HLS 200-10] Adding design file 'AddressGen.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files Crypto_TB.cpp 
+INFO: [HLS 200-10] Adding design file 'Crypto_TB.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files Arithmetic.cpp 
+INFO: [HLS 200-10] Adding design file 'Arithmetic.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files PE_UNIT.cpp 
+INFO: [HLS 200-10] Adding design file 'PE_UNIT.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files PE_ARRAY.cpp 
+INFO: [HLS 200-10] Adding design file 'PE_ARRAY.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files DATAMemory.cpp 
+INFO: [HLS 200-10] Adding design file 'DATAMemory.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files Crypto.cpp 
+INFO: [HLS 200-10] Adding design file 'Crypto.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files TwiddleMemory.cpp 
+INFO: [HLS 200-10] Adding design file 'TwiddleMemory.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb main_TB.cpp -cflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file 'main_TB.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vivado 
+INFO: [HLS 200-10] Opening solution '/home/meng/HLS/Crypto/Crypto/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-1464] Running solution command: config_export -format=ip_catalog
+INFO: [HLS 200-1464] Running solution command: config_export -rtl=verilog
+INFO: [HLS 200-1510] Running: set_part xc7z020-clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 7 -name default 
+INFO: [HLS 200-1510] Running: config_export -format ip_catalog -rtl verilog 
+INFO: [HLS 200-1510] Running: source ./Crypto/solution1/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name Crypto Crypto 
+INFO: [HLS 200-1510] Running: export_design -rtl verilog -format ip_catalog 
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
 
-****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
-  **** SW Build 3854077 on May  4 2023
+****** Vivado v2023.1 (64-bit)
+  **** SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
   **** IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
   **** SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
-source /home/meng/Software/VIvado/Vitis_HLS/2023.1/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running '/home/meng/Software/VIvado/Vitis_HLS/2023.1/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'meng' on host 'meng-OptiPlex-5000' (Linux_x86_64 version 6.8.0-51-generic) on Mon Jan 13 00:08:50 HKT 2025
-INFO: [HLS 200-10] On os Ubuntu 22.04.4 LTS
-INFO: [HLS 200-10] In directory '/home/meng/HLS/Crypto'
-Sourcing Tcl script 'script.tcl'
-INFO: [HLS 200-1510] Running: open_project -reset Crypto 
-INFO: [HLS 200-10] Opening and resetting project '/home/meng/HLS/Crypto/Crypto'.
-INFO: [HLS 200-1510] Running: add_files TwiddleMemory.cpp 
-INFO: [HLS 200-10] Adding design file 'TwiddleMemory.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files Crypto.cpp 
-INFO: [HLS 200-10] Adding design file 'Crypto.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files DATAMemory.cpp 
-INFO: [HLS 200-10] Adding design file 'DATAMemory.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files PE_ARRAY.cpp 
-INFO: [HLS 200-10] Adding design file 'PE_ARRAY.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files PE_UNIT.cpp 
-INFO: [HLS 200-10] Adding design file 'PE_UNIT.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files Arithmetic.cpp 
-INFO: [HLS 200-10] Adding design file 'Arithmetic.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files Crypto_TB.cpp 
-INFO: [HLS 200-10] Adding design file 'Crypto_TB.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files AddressGen.cpp 
-INFO: [HLS 200-10] Adding design file 'AddressGen.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files AddressGen_TB.cpp 
-INFO: [HLS 200-10] Adding design file 'AddressGen_TB.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files Utils.cpp 
-INFO: [HLS 200-10] Adding design file 'Utils.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files pow_mod.cpp 
-INFO: [HLS 200-10] Adding design file 'pow_mod.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files poly.txt 
-INFO: [HLS 200-10] Adding design file 'poly.txt' to the project
-INFO: [HLS 200-1510] Running: add_files basis.txt 
-INFO: [HLS 200-10] Adding design file 'basis.txt' to the project
-INFO: [HLS 200-1510] Running: add_files ret.txt 
-INFO: [HLS 200-10] Adding design file 'ret.txt' to the project
-INFO: [HLS 200-1510] Running: add_files # 
-WARNING: [HLS 200-40] Cannot find design file '#'
-INFO: [HLS 200-1510] Running: add_files Add 
-WARNING: [HLS 200-40] Cannot find design file 'Add'
-INFO: [HLS 200-1510] Running: add_files all 
-WARNING: [HLS 200-40] Cannot find design file 'all'
-INFO: [HLS 200-1510] Running: add_files necessary 
-WARNING: [HLS 200-40] Cannot find design file 'necessary'
-INFO: [HLS 200-1510] Running: add_files source 
-WARNING: [HLS 200-40] Cannot find design file 'source'
-INFO: [HLS 200-1510] Running: add_files files 
-WARNING: [HLS 200-40] Cannot find design file 'files'
-INFO: [HLS 200-1510] Running: add_files -cflags -I. TwiddleMemory.hpp 
-INFO: [HLS 200-10] Adding design file 'TwiddleMemory.hpp' to the project
-INFO: [HLS 200-1510] Running: add_files -cflags -I. define.h 
-INFO: [HLS 200-10] Adding design file 'define.h' to the project
-INFO: [HLS 200-1510] Running: add_files -cflags -I. Crypto.hpp 
-INFO: [HLS 200-10] Adding design file 'Crypto.hpp' to the project
-INFO: [HLS 200-1510] Running: add_files -cflags -I. DATAMemory.hpp 
-INFO: [HLS 200-10] Adding design file 'DATAMemory.hpp' to the project
-INFO: [HLS 200-1510] Running: add_files -cflags -I. PE_ARRAY.hpp 
-INFO: [HLS 200-10] Adding design file 'PE_ARRAY.hpp' to the project
-INFO: [HLS 200-1510] Running: add_files -cflags -I. PE_UNIT.hpp 
-INFO: [HLS 200-10] Adding design file 'PE_UNIT.hpp' to the project
-INFO: [HLS 200-1510] Running: add_files -cflags -I. Arithmetic.hpp 
-INFO: [HLS 200-10] Adding design file 'Arithmetic.hpp' to the project
-INFO: [HLS 200-1510] Running: add_files -cflags -I. Crypto_TB.hpp 
-INFO: [HLS 200-10] Adding design file 'Crypto_TB.hpp' to the project
-INFO: [HLS 200-1510] Running: add_files -cflags -I. AddressGen.hpp 
-INFO: [HLS 200-10] Adding design file 'AddressGen.hpp' to the project
-INFO: [HLS 200-1510] Running: add_files -cflags -I. AddressGen_TB.hpp 
-INFO: [HLS 200-10] Adding design file 'AddressGen_TB.hpp' to the project
-INFO: [HLS 200-1510] Running: add_files -cflags -I. Utils.hpp 
-INFO: [HLS 200-10] Adding design file 'Utils.hpp' to the project
-INFO: [HLS 200-1510] Running: add_files -cflags -I. pow_mod.h 
-WARNING: [HLS 200-40] Cannot find design file 'pow_mod.h'
-INFO: [HLS 200-1510] Running: add_files -cflags -I. # 
-WARNING: [HLS 200-40] Cannot find design file '#'
-INFO: [HLS 200-1510] Running: add_files -cflags -I. Add 
-WARNING: [HLS 200-40] Cannot find design file 'Add'
-INFO: [HLS 200-1510] Running: add_files -cflags -I. all 
-WARNING: [HLS 200-40] Cannot find design file 'all'
-INFO: [HLS 200-1510] Running: add_files -cflags -I. necessary 
-WARNING: [HLS 200-40] Cannot find design file 'necessary'
-INFO: [HLS 200-1510] Running: add_files -cflags -I. header 
-WARNING: [HLS 200-40] Cannot find design file 'header'
-INFO: [HLS 200-1510] Running: add_files -cflags -I. files 
-WARNING: [HLS 200-40] Cannot find design file 'files'
-INFO: [HLS 200-1510] Running: add_files -tb main_TB.cpp 
-INFO: [HLS 200-10] Adding test bench file 'main_TB.cpp' to the project
-INFO: [HLS 200-1510] Running: set_top Crypto 
-INFO: [HLS 200-1510] Running: open_solution solution1 -reset 
-INFO: [HLS 200-10] Creating and opening solution '/home/meng/HLS/Crypto/Crypto/solution1'.
-INFO: [HLS 200-10] Cleaning up the solution database.
-INFO: [HLS 200-1505] Using default flow_target 'vivado'
-Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-1505.html
-INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
-INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
-INFO: [HLS 200-1510] Running: create_clock -period 8 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 8ns.
-INFO: [HLS 200-1510] Running: csynth_design 
-WARNING: [HLS 200-40] Cannot find source file header; skipping it.
-WARNING: [HLS 200-40] Cannot find source file pow_mod.h; skipping it.
-WARNING: [HLS 200-40] Cannot find source file files; skipping it.
-WARNING: [HLS 200-40] Cannot find source file source; skipping it.
-WARNING: [HLS 200-40] Cannot find source file necessary; skipping it.
-WARNING: [HLS 200-40] Cannot find source file all; skipping it.
-WARNING: [HLS 200-40] Cannot find source file Add; skipping it.
-WARNING: [HLS 200-40] Cannot find source file #; skipping it.
-WARNING: [HLS 200-40] Skipped source file 'ret.txt'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
-WARNING: [HLS 200-40] Skipped source file 'basis.txt'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
-WARNING: [HLS 200-40] Skipped source file 'poly.txt'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.451 GB.
-INFO: [HLS 200-10] Analyzing design file 'pow_mod.cpp' ... 
-WARNING: [HLS 207-5533] 'factor' in '#pragma HLS array_partition' is ignored (pow_mod.cpp:78:50)
-WARNING: [HLS 207-5533] 'factor' in '#pragma HLS array_partition' is ignored (pow_mod.cpp:79:51)
-WARNING: [HLS 207-5533] 'factor' in '#pragma HLS array_partition' is ignored (pow_mod.cpp:80:49)
-INFO: [HLS 200-10] Analyzing design file 'Utils.cpp' ... 
-INFO: [HLS 200-10] Analyzing design file 'AddressGen_TB.cpp' ... 
-INFO: [HLS 200-10] Analyzing design file 'AddressGen.cpp' ... 
-WARNING: [HLS 207-5168] shifting a negative signed value is undefined (AddressGen.cpp:72:21)
-WARNING: [HLS 207-4591] operator '>>' has lower precedence than '-'; '-' will be evaluated first (AddressGen.cpp:87:88)
-INFO: [HLS 207-4428] place parentheses around the '-' expression to silence this warning (AddressGen.cpp:87:88)
-WARNING: [HLS 207-4591] operator '>>' has lower precedence than '-'; '-' will be evaluated first (AddressGen.cpp:91:88)
-INFO: [HLS 207-4428] place parentheses around the '-' expression to silence this warning (AddressGen.cpp:91:88)
-INFO: [HLS 200-10] Analyzing design file 'Crypto_TB.cpp' ... 
-INFO: [HLS 200-10] Analyzing design file 'Arithmetic.cpp' ... 
-INFO: [HLS 200-10] Analyzing design file 'PE_UNIT.cpp' ... 
-INFO: [HLS 200-10] Analyzing design file 'PE_ARRAY.cpp' ... 
-INFO: [HLS 200-10] Analyzing design file 'DATAMemory.cpp' ... 
-INFO: [HLS 200-10] Analyzing design file 'Crypto.cpp' ... 
-INFO: [HLS 200-10] Analyzing design file 'TwiddleMemory.cpp' ... 
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 17.99 seconds. CPU system time: 4.09 seconds. Elapsed time: 22.09 seconds; current allocated memory: 1.455 GB.
-INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-WARNING: [HLS 200-1995] There were 128,777 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /home/meng/HLS/Crypto/Crypto/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 3,819 instructions in the design after the 'Unroll/Inline' phase of compilation. See the Design Size Report for more details: /home/meng/HLS/Crypto/Crypto/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 809 instructions in the design after the 'Performance/Pipeline' phase of compilation. See the Design Size Report for more details: /home/meng/HLS/Crypto/Crypto/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 858 instructions in the design after the 'Optimizations' phase of compilation. See the Design Size Report for more details: /home/meng/HLS/Crypto/Crypto/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 214-131] Inlining function 'STEPMUL(ap_int<32>*, ap_int<32>*, ap_int<64>*)' into 'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)' (Arithmetic.cpp:81:5)
-INFO: [HLS 214-131] Inlining function 'STEPMUL(ap_int<32>*, ap_int<32>*, ap_int<64>*)' into 'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)' (Arithmetic.cpp:75:5)
-INFO: [HLS 214-131] Inlining function 'STEPMUL(ap_int<32>*, ap_int<32>*, ap_int<64>*)' into 'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)' (Arithmetic.cpp:69:5)
-INFO: [HLS 214-131] Inlining function 'PE_UNIT(ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, Operation, int)' into 'PE_ARRAY(ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, Operation, int)' (PE_ARRAY.cpp:24:29)
-INFO: [HLS 214-131] Inlining function 'PE_UNIT(ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, Operation, int)' into 'PE_ARRAY(ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, Operation, int)' (PE_ARRAY.cpp:35:29)
-WARNING: [HLS 214-366] Duplicating function 'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.3.21.44)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design. (Arithmetic.cpp:121:5)
-WARNING: [HLS 214-366] Duplicating function 'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design. (Crypto.cpp:177:17)
-WARNING: [HLS 214-366] Duplicating function 'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design. (Crypto.cpp:117:25)
-WARNING: [HLS 214-366] Duplicating function 'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design. (Crypto.cpp:167:25)
-WARNING: [HLS 214-366] Duplicating function 'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.3.21)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design. (Crypto.cpp:119:25)
-WARNING: [HLS 214-366] Duplicating function 'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.3.21)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design. (Crypto.cpp:169:25)
-WARNING: [HLS 214-366] Duplicating function 'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.6.18)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design. (Arithmetic.cpp:109:5)
-WARNING: [HLS 214-366] Duplicating function 'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.6.18)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design. (Arithmetic.cpp:120:5)
-WARNING: [HLS 214-366] Duplicating function 'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.6.18)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design. (Crypto.cpp:118:25)
-WARNING: [HLS 214-366] Duplicating function 'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.6.18)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design. (Crypto.cpp:168:25)
-INFO: [HLS 214-178] Inlining function 'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.6.18)' into 'PE_ARRAY(ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, Operation, int)' (PE_ARRAY.cpp:14:0)
-INFO: [HLS 214-178] Inlining function 'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.3.21)' into 'PE_ARRAY(ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, Operation, int)' (PE_ARRAY.cpp:14:0)
-INFO: [HLS 214-178] Inlining function 'bit_reverse(int, int)' into 'apply_bit_reverse(ap_int<32>*, ap_int<32>*)' (Utils.cpp:18:0)
-INFO: [HLS 214-178] Inlining function 'write_data(int*, ap_int<32>*, int)' into 'Crypto(ap_int<32>*, int*, ap_int<32>*, int, ap_int<32>*, int*, ap_int<32>*, CryptoOperation, int)' (Crypto.cpp:24:0)
-INFO: [HLS 214-178] Inlining function 'read_data(int*, ap_int<32>*, int)' into 'Crypto(ap_int<32>*, int*, ap_int<32>*, int, ap_int<32>*, int*, ap_int<32>*, CryptoOperation, int)' (Crypto.cpp:24:0)
-INFO: [HLS 214-178] Inlining function 'write_twiddle_factor(int*, ap_int<32>*)' into 'Crypto(ap_int<32>*, int*, ap_int<32>*, int, ap_int<32>*, int*, ap_int<32>*, CryptoOperation, int)' (Crypto.cpp:24:0)
-INFO: [HLS 214-178] Inlining function 'read_twiddle_factor(int*, ap_int<32>*, Operation)' into 'Crypto(ap_int<32>*, int*, ap_int<32>*, int, ap_int<32>*, int*, ap_int<32>*, CryptoOperation, int)' (Crypto.cpp:24:0)
-INFO: [HLS 214-178] Inlining function 'PE_ARRAY(ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, Operation, int)' into 'Crypto(ap_int<32>*, int*, ap_int<32>*, int, ap_int<32>*, int*, ap_int<32>*, CryptoOperation, int)' (Crypto.cpp:24:0)
-INFO: [HLS 214-178] Inlining function 'apply_bit_reverse(ap_int<32>*, ap_int<32>*)' into 'Crypto(ap_int<32>*, int*, ap_int<32>*, int, ap_int<32>*, int*, ap_int<32>*, CryptoOperation, int)' (Crypto.cpp:24:0)
-INFO: [HLS 214-178] Inlining function 'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.6.18.146)' into 'Crypto(ap_int<32>*, int*, ap_int<32>*, int, ap_int<32>*, int*, ap_int<32>*, CryptoOperation, int)' (Crypto.cpp:24:0)
-INFO: [HLS 214-178] Inlining function 'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.3.21.143)' into 'Crypto(ap_int<32>*, int*, ap_int<32>*, int, ap_int<32>*, int*, ap_int<32>*, CryptoOperation, int)' (Crypto.cpp:24:0)
-INFO: [HLS 214-364] Automatically inlining function 'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.142)' to improve effectiveness of pipeline pragma in function 'Crypto(ap_int<32>*, int*, ap_int<32>*, int, ap_int<32>*, int*, ap_int<32>*, CryptoOperation, int)' (Crypto.cpp:167:25)
-INFO: [HLS 214-364] Automatically inlining function 'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.142)' to improve effectiveness of pipeline pragma in function 'Crypto(ap_int<32>*, int*, ap_int<32>*, int, ap_int<32>*, int*, ap_int<32>*, CryptoOperation, int)' (Crypto.cpp:117:25)
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.67 seconds. CPU system time: 0.38 seconds. Elapsed time: 6.62 seconds; current allocated memory: 1.456 GB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 1.456 GB.
-INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.02 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.459 GB.
-INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.460 GB.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_89_1' (Crypto.cpp:89) in function 'Crypto' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_22_2' (Utils.cpp:22) in function 'Crypto' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_99_4' (Crypto.cpp:99) in function 'Crypto' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_126_5' (Crypto.cpp:126) in function 'Crypto' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_138_7' (Crypto.cpp:138) in function 'Crypto' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_22_2' (Utils.cpp:22) in function 'Crypto' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_149_10' (Crypto.cpp:149) in function 'Crypto' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_176_11' (Crypto.cpp:176) in function 'Crypto' automatically.
-INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_180_12' (Crypto.cpp:180) in function 'Crypto' automatically.
-INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'VITIS_LOOP_22_2' (Utils.cpp:22) in function 'Crypto' for pipelining.
-INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'VITIS_LOOP_22_2' (Utils.cpp:22) in function 'Crypto' for pipelining.
-INFO: [HLS 200-489] Unrolling loop 'VITIS_LOOP_11_1' (Utils.cpp:11) in function 'Crypto' completely with a factor of 12.
-INFO: [XFORM 203-102] Partitioning array 'temp3' (Crypto.cpp:36) automatically.
-INFO: [XFORM 203-102] Partitioning array 'data_ram' in dimension 2 automatically.
-INFO: [XFORM 203-102] Automatically partitioning small array 'N_INV' completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'MOD' completely based on array size.
-INFO: [XFORM 203-102] Automatically partitioning small array 'M' completely based on array size.
-INFO: [XFORM 203-101] Partitioning array 'N_INV' in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'MOD' in dimension 1 completely.
-INFO: [XFORM 203-101] Partitioning array 'M' in dimension 1 completely.
-INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (DATAMemory.cpp:12:20) to (Crypto.cpp:77:13) in function 'Crypto'... converting 3 basic blocks.
-INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.13 seconds. CPU system time: 0 seconds. Elapsed time: 0.14 seconds; current allocated memory: 1.486 GB.
-WARNING: [HLS 200-960] Cannot flatten loop 'NTT_GROUP_LOOP' (Crypto.cpp:108:17) in function 'Crypto' the outer loop is not a perfect loop because either the parent loop or the sub loop has no computeable trip count.
-Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-960.html
-WARNING: [HLS 200-960] Cannot flatten loop 'NTT_STAGE_LOOP' (Crypto.cpp:104:13) in function 'Crypto' the outer loop is not a perfect loop because either the parent loop or the sub loop has no computeable trip count.
-Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-960.html
-WARNING: [HLS 200-960] Cannot flatten loop 'INTT_GROUP_LOOP' (Crypto.cpp:158:17) in function 'Crypto' the outer loop is not a perfect loop because either the parent loop or the sub loop has no computeable trip count.
-Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-960.html
-WARNING: [HLS 200-960] Cannot flatten loop 'INTT_STAGE_LOOP' (Crypto.cpp:154:13) in function 'Crypto' the outer loop is not a perfect loop because either the parent loop or the sub loop has no computeable trip count.
-Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-960.html
-INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.09 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.11 seconds; current allocated memory: 1.602 GB.
-INFO: [HLS 200-10] Starting hardware synthesis ...
-INFO: [HLS 200-10] Synthesizing 'Crypto' ...
-WARNING: [SYN 201-103] Legalizing function name 'MUL_MOD.1' to 'MUL_MOD_1'.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'Crypto_Pipeline_VITIS_LOOP_138_7' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_138_7'.
-INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'VITIS_LOOP_138_7'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.07 seconds; current allocated memory: 1.604 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.604 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'Crypto_Pipeline_VITIS_LOOP_22_21' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_22_2'.
-INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'VITIS_LOOP_22_2'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.604 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.604 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'Crypto_Pipeline_VITIS_LOOP_149_10' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_149_10'.
-INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'VITIS_LOOP_149_10'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.604 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.604 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'Crypto_Pipeline_INTT_PE_LOOP' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [HLS 200-486] Changing DSP latency (root=temp2_8) to 3 in order to utilize available DSP registers.
-INFO: [HLS 200-486] Changing DSP latency (root=temp3) to 3 in order to utilize available DSP registers.
-INFO: [SCHED 204-61] Pipelining loop 'INTT_PE_LOOP'.
-WARNING: [HLS 200-880] The II Violation in module 'Crypto_Pipeline_INTT_PE_LOOP' (loop 'INTT_PE_LOOP'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation ('res_write_ln40', Arithmetic.cpp:40->Crypto.cpp:168) of variable 'select_ln43', Arithmetic.cpp:43->Crypto.cpp:168 on array 'DataTemp' and 'load' operation ('u', Crypto.cpp:165) on array 'DataTemp'.
-Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-880.html
-WARNING: [HLS 200-880] The II Violation in module 'Crypto_Pipeline_INTT_PE_LOOP' (loop 'INTT_PE_LOOP'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between 'store' operation ('res_2_write_ln53', Arithmetic.cpp:53->Crypto.cpp:169) of variable 'select_ln55', Arithmetic.cpp:55->Crypto.cpp:169 on array 'DataTemp' and 'load' operation ('a2', Crypto.cpp:163) on array 'DataTemp'.
-Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-880.html
-INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 3, Depth = 4, loop 'INTT_PE_LOOP'
-WARNING: [HLS 200-871] Estimated clock period (54.207 ns) exceeds the target (target clock period: 8.000 ns, clock uncertainty: 2.160 ns, effective delay budget: 5.840 ns).
-Resolution: For help on HLS 200-871 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-871.html
-WARNING: [HLS 200-1016] The critical path in module 'Crypto_Pipeline_INTT_PE_LOOP' consists of the following:
-	'load' operation ('a2', Crypto.cpp:163) on array 'DataTemp' [51]  (3.254 ns)
-	'mul' operation ('temp2', Arithmetic.cpp:23->Arithmetic.cpp:69->Crypto.cpp:167) [66]  (5.580 ns)
-	'add' operation of DSP[72] ('add_ln30_7', Arithmetic.cpp:30->Arithmetic.cpp:69->Crypto.cpp:167) [72]  (3.020 ns)
-	'add' operation ('res_mult', Arithmetic.cpp:32->Arithmetic.cpp:69->Crypto.cpp:167) [75]  (3.520 ns)
-	'mul' operation ('temp2', Arithmetic.cpp:23->Arithmetic.cpp:75->Crypto.cpp:167) [84]  (5.580 ns)
-	'add' operation ('add_ln30_8', Arithmetic.cpp:30->Arithmetic.cpp:75->Crypto.cpp:167) [92]  (2.552 ns)
-	'add' operation ('res_mult_shift', Arithmetic.cpp:32->Arithmetic.cpp:75->Crypto.cpp:167) [97]  (3.520 ns)
-	'mul' operation ('temp3', Arithmetic.cpp:24->Arithmetic.cpp:81->Crypto.cpp:167) [109]  (5.580 ns)
-	'add' operation of DSP[115] ('add_ln30_9', Arithmetic.cpp:30->Arithmetic.cpp:81->Crypto.cpp:167) [115]  (3.020 ns)
-	'sub' operation ('sub_ln85', Arithmetic.cpp:85->Crypto.cpp:167) [119]  (5.307 ns)
-	'sub' operation ('sub_ln89', Arithmetic.cpp:89->Crypto.cpp:167) [120]  (3.520 ns)
-	'select' operation ('v', Arithmetic.cpp:92->Crypto.cpp:167) [130]  (0.698 ns)
-	'add' operation ('add_ln40', Arithmetic.cpp:40->Crypto.cpp:168) [131]  (2.552 ns)
-	'icmp' operation ('icmp_ln43', Arithmetic.cpp:43->Crypto.cpp:168) [132]  (2.552 ns)
-	'select' operation ('select_ln43', Arithmetic.cpp:43->Crypto.cpp:168) [134]  (0.698 ns)
-	'store' operation ('res_write_ln40', Arithmetic.cpp:40->Crypto.cpp:168) of variable 'select_ln43', Arithmetic.cpp:43->Crypto.cpp:168 on array 'DataTemp' [135]  (3.254 ns)
-
-Resolution: For help on HLS 200-1016 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-1016.html
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.15 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.14 seconds; current allocated memory: 1.605 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.605 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'MUL_MOD_1' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [HLS 200-486] Changing DSP latency (root=temp2_2) to 3 in order to utilize available DSP registers.
-INFO: [HLS 200-486] Changing DSP latency (root=temp2) to 3 in order to utilize available DSP registers.
-INFO: [SCHED 204-61] Pipelining function 'MUL_MOD.1'.
-INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 13, function 'MUL_MOD.1'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.12 seconds. CPU system time: 0 seconds. Elapsed time: 0.12 seconds; current allocated memory: 1.606 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.08 seconds. CPU system time: 0 seconds. Elapsed time: 0.08 seconds; current allocated memory: 1.606 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'Crypto_Pipeline_VITIS_LOOP_176_11' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_176_11'.
-INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 17, loop 'VITIS_LOOP_176_11'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 1.606 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.09 seconds. CPU system time: 0 seconds. Elapsed time: 0.1 seconds; current allocated memory: 1.606 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'Crypto_Pipeline_VITIS_LOOP_180_12' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_180_12'.
-INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'VITIS_LOOP_180_12'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.607 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.607 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'Crypto_Pipeline_VITIS_LOOP_89_1' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_89_1'.
-INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'VITIS_LOOP_89_1'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.607 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.607 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'Crypto_Pipeline_VITIS_LOOP_22_2' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_22_2'.
-INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'VITIS_LOOP_22_2'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.607 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.607 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'Crypto_Pipeline_VITIS_LOOP_99_4' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_99_4'.
-INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'VITIS_LOOP_99_4'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.608 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.608 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'Crypto_Pipeline_NTT_PE_LOOP' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [HLS 200-486] Changing DSP latency (root=temp2_6) to 3 in order to utilize available DSP registers.
-INFO: [HLS 200-486] Changing DSP latency (root=temp3) to 3 in order to utilize available DSP registers.
-INFO: [SCHED 204-61] Pipelining loop 'NTT_PE_LOOP'.
-WARNING: [HLS 200-880] The II Violation in module 'Crypto_Pipeline_NTT_PE_LOOP' (loop 'NTT_PE_LOOP'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation ('res_write_ln40', Arithmetic.cpp:40->Crypto.cpp:118) of variable 'select_ln43', Arithmetic.cpp:43->Crypto.cpp:118 on array 'DataTemp' and 'load' operation ('u', Crypto.cpp:115) on array 'DataTemp'.
-Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-880.html
-WARNING: [HLS 200-880] The II Violation in module 'Crypto_Pipeline_NTT_PE_LOOP' (loop 'NTT_PE_LOOP'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between 'store' operation ('res_1_write_ln53', Arithmetic.cpp:53->Crypto.cpp:119) of variable 'select_ln55', Arithmetic.cpp:55->Crypto.cpp:119 on array 'DataTemp' and 'load' operation ('a2', Crypto.cpp:113) on array 'DataTemp'.
-Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-880.html
-INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 3, Depth = 4, loop 'NTT_PE_LOOP'
-WARNING: [HLS 200-871] Estimated clock period (54.207 ns) exceeds the target (target clock period: 8.000 ns, clock uncertainty: 2.160 ns, effective delay budget: 5.840 ns).
-Resolution: For help on HLS 200-871 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-871.html
-WARNING: [HLS 200-1016] The critical path in module 'Crypto_Pipeline_NTT_PE_LOOP' consists of the following:
-	'load' operation ('a2', Crypto.cpp:113) on array 'DataTemp' [51]  (3.254 ns)
-	'mul' operation ('temp2', Arithmetic.cpp:23->Arithmetic.cpp:69->Crypto.cpp:117) [65]  (5.580 ns)
-	'add' operation of DSP[71] ('add_ln30', Arithmetic.cpp:30->Arithmetic.cpp:69->Crypto.cpp:117) [71]  (3.020 ns)
-	'add' operation ('res_mult', Arithmetic.cpp:32->Arithmetic.cpp:69->Crypto.cpp:117) [74]  (3.520 ns)
-	'mul' operation ('temp2', Arithmetic.cpp:23->Arithmetic.cpp:75->Crypto.cpp:117) [83]  (5.580 ns)
-	'add' operation ('add_ln30_5', Arithmetic.cpp:30->Arithmetic.cpp:75->Crypto.cpp:117) [91]  (2.552 ns)
-	'add' operation ('res_mult_shift', Arithmetic.cpp:32->Arithmetic.cpp:75->Crypto.cpp:117) [96]  (3.520 ns)
-	'mul' operation ('temp3', Arithmetic.cpp:24->Arithmetic.cpp:81->Crypto.cpp:117) [108]  (5.580 ns)
-	'add' operation of DSP[114] ('add_ln30_6', Arithmetic.cpp:30->Arithmetic.cpp:81->Crypto.cpp:117) [114]  (3.020 ns)
-	'sub' operation ('sub_ln85', Arithmetic.cpp:85->Crypto.cpp:117) [118]  (5.307 ns)
-	'sub' operation ('sub_ln90', Arithmetic.cpp:90->Crypto.cpp:117) [122]  (3.520 ns)
-	'select' operation ('select_ln92', Arithmetic.cpp:92->Crypto.cpp:117) [128]  (0.000 ns)
-	'select' operation ('v', Arithmetic.cpp:92->Crypto.cpp:117) [129]  (0.698 ns)
-	'add' operation ('add_ln40', Arithmetic.cpp:40->Crypto.cpp:118) [130]  (2.552 ns)
-	'icmp' operation ('icmp_ln43', Arithmetic.cpp:43->Crypto.cpp:118) [131]  (2.552 ns)
-	'select' operation ('select_ln43', Arithmetic.cpp:43->Crypto.cpp:118) [133]  (0.698 ns)
-	'store' operation ('res_write_ln40', Arithmetic.cpp:40->Crypto.cpp:118) of variable 'select_ln43', Arithmetic.cpp:43->Crypto.cpp:118 on array 'DataTemp' [134]  (3.254 ns)
-
-Resolution: For help on HLS 200-1016 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-1016.html
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.15 seconds. CPU system time: 0 seconds. Elapsed time: 0.15 seconds; current allocated memory: 1.608 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.608 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'Crypto_Pipeline_VITIS_LOOP_126_5' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_126_5'.
-INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'VITIS_LOOP_126_5'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 1.609 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.609 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'MUL_MOD' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [HLS 200-486] Changing DSP latency (root=temp2_4) to 3 in order to utilize available DSP registers.
-INFO: [HLS 200-486] Changing DSP latency (root=temp3) to 3 in order to utilize available DSP registers.
-INFO: [SCHED 204-61] Pipelining function 'MUL_MOD'.
-INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 13, function 'MUL_MOD'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.12 seconds. CPU system time: 0 seconds. Elapsed time: 0.11 seconds; current allocated memory: 1.609 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.08 seconds. CPU system time: 0 seconds. Elapsed time: 0.08 seconds; current allocated memory: 1.609 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'Crypto' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.24 seconds. CPU system time: 0 seconds. Elapsed time: 0.25 seconds; current allocated memory: 1.611 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.4 seconds. CPU system time: 0 seconds. Elapsed time: 0.4 seconds; current allocated memory: 1.611 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'Crypto_Pipeline_VITIS_LOOP_138_7' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'Crypto_Pipeline_VITIS_LOOP_138_7' pipeline 'VITIS_LOOP_138_7' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-100] Finished creating RTL model for 'Crypto_Pipeline_VITIS_LOOP_138_7'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.09 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.09 seconds; current allocated memory: 1.611 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'Crypto_Pipeline_VITIS_LOOP_22_21' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'Crypto_Pipeline_VITIS_LOOP_22_21' pipeline 'VITIS_LOOP_22_2' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-100] Finished creating RTL model for 'Crypto_Pipeline_VITIS_LOOP_22_21'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.612 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'Crypto_Pipeline_VITIS_LOOP_149_10' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'Crypto_Pipeline_VITIS_LOOP_149_10' pipeline 'VITIS_LOOP_149_10' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-100] Finished creating RTL model for 'Crypto_Pipeline_VITIS_LOOP_149_10'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.612 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'Crypto_Pipeline_INTT_PE_LOOP' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-WARNING: [HLS 200-2049] Adding the rewind optimization to the pipelined process 'INTT_PE_LOOP' with inout ports inside a dataflow region can result in the creation of loop-carried dependencies and errors. Use caution when adding the rewind optimization to such loops.
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'Crypto_Pipeline_INTT_PE_LOOP' pipeline 'INTT_PE_LOOP' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-100] Generating core module 'mac_muladd_16ns_15ns_32ns_33_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mac_muladd_16ns_16ns_32ns_33_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_15ns_16ns_31_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16ns_16ns_32_1_1': 9 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'Crypto_Pipeline_INTT_PE_LOOP'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 1.614 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'MUL_MOD_1' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-100] Generating core module 'mac_muladd_14ns_16ns_32ns_33_4_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mac_muladd_16ns_15ns_32ns_33_4_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_14ns_16ns_30_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_15ns_16ns_31_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16ns_16ns_32_1_1': 8 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mux_3_2_20_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mux_3_2_31_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'MUL_MOD_1'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.08 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.09 seconds; current allocated memory: 1.617 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'Crypto_Pipeline_VITIS_LOOP_176_11' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-WARNING: [HLS 200-2049] Adding the rewind optimization to the pipelined process 'VITIS_LOOP_176_11' with inout ports inside a dataflow region can result in the creation of loop-carried dependencies and errors. Use caution when adding the rewind optimization to such loops.
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'Crypto_Pipeline_VITIS_LOOP_176_11' pipeline 'VITIS_LOOP_176_11' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-100] Finished creating RTL model for 'Crypto_Pipeline_VITIS_LOOP_176_11'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.11 seconds. CPU system time: 0 seconds. Elapsed time: 0.11 seconds; current allocated memory: 1.619 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'Crypto_Pipeline_VITIS_LOOP_180_12' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'Crypto_Pipeline_VITIS_LOOP_180_12' pipeline 'VITIS_LOOP_180_12' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-100] Finished creating RTL model for 'Crypto_Pipeline_VITIS_LOOP_180_12'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 1.620 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'Crypto_Pipeline_VITIS_LOOP_89_1' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'Crypto_Pipeline_VITIS_LOOP_89_1' pipeline 'VITIS_LOOP_89_1' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-100] Finished creating RTL model for 'Crypto_Pipeline_VITIS_LOOP_89_1'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.620 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'Crypto_Pipeline_VITIS_LOOP_22_2' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'Crypto_Pipeline_VITIS_LOOP_22_2' pipeline 'VITIS_LOOP_22_2' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-100] Finished creating RTL model for 'Crypto_Pipeline_VITIS_LOOP_22_2'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.621 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'Crypto_Pipeline_VITIS_LOOP_99_4' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'Crypto_Pipeline_VITIS_LOOP_99_4' pipeline 'VITIS_LOOP_99_4' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-100] Finished creating RTL model for 'Crypto_Pipeline_VITIS_LOOP_99_4'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.622 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'Crypto_Pipeline_NTT_PE_LOOP' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-WARNING: [HLS 200-2049] Adding the rewind optimization to the pipelined process 'NTT_PE_LOOP' with inout ports inside a dataflow region can result in the creation of loop-carried dependencies and errors. Use caution when adding the rewind optimization to such loops.
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'Crypto_Pipeline_NTT_PE_LOOP' pipeline 'NTT_PE_LOOP' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-100] Generating core module 'mac_muladd_16ns_15ns_32ns_33_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mac_muladd_16ns_16ns_32ns_33_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_15ns_16ns_31_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16ns_16ns_32_1_1': 9 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'Crypto_Pipeline_NTT_PE_LOOP'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.05 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.05 seconds; current allocated memory: 1.623 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'Crypto_Pipeline_VITIS_LOOP_126_5' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'Crypto_Pipeline_VITIS_LOOP_126_5' pipeline 'VITIS_LOOP_126_5' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-100] Finished creating RTL model for 'Crypto_Pipeline_VITIS_LOOP_126_5'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.08 seconds; current allocated memory: 1.625 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'MUL_MOD' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-100] Generating core module 'mac_muladd_16ns_15ns_32ns_33_4_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mac_muladd_16ns_16ns_32ns_33_4_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_15ns_16ns_31_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16ns_16ns_32_1_1': 9 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mux_3_2_20_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mux_3_2_31_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'MUL_MOD'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 1.627 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'Crypto' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
-INFO: [RTGEN 206-500] Setting interface mode on port 'Crypto/DataIn' to 's_axilite & ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'Crypto/Address' to 's_axilite & ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'Crypto/DataOutput' to 's_axilite & ap_vld'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'Crypto/RAMSel' to 's_axilite & ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'Crypto/TwiddleIn' to 's_axilite & ap_memory'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'Crypto/TwiddleAddress' to 'ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'Crypto/TwiddleOutput' to 'ap_vld'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'Crypto/OP' to 's_axilite & ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'Crypto/ModIndex' to 's_axilite & ap_none'.
-INFO: [RTGEN 206-500] Setting interface mode on function 'Crypto' to 's_axilite & ap_ctrl_hs'.
-INFO: [RTGEN 206-100] Bundling port 'DataIn', 'Address', 'DataOutput', 'RAMSel', 'TwiddleIn', 'OP', 'ModIndex' and 'return' to AXI-Lite port control.
-INFO: [RTGEN 206-100] Generating core module 'mux_3_2_19_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mux_3_2_20_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mux_3_2_31_1_1': 2 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'sdiv_15ns_32s_13_19_seq_1': 2 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'Crypto'.
-INFO: [RTMG 210-278] Implementing memory 'Crypto_data_ram_0_RAM_AUTO_1R1W' using auto RAMs.
-INFO: [RTMG 210-278] Implementing memory 'Crypto_twiddle_ram_RAM_AUTO_1R1W' using auto RAMs.
-INFO: [RTMG 210-278] Implementing memory 'Crypto_DataTemp_RAM_AUTO_1R1W' using auto RAMs.
-INFO: [RTMG 210-278] Implementing memory 'Crypto_bit_reversed_input_RAM_AUTO_1R1W' using auto RAMs.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.14 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.15 seconds; current allocated memory: 1.631 GB.
-INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.6 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.61 seconds; current allocated memory: 1.637 GB.
-INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.31 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.32 seconds; current allocated memory: 1.644 GB.
-INFO: [VHDL 208-304] Generating VHDL RTL for Crypto.
-INFO: [VLOG 209-307] Generating Verilog RTL for Crypto.
-INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
-INFO: [HLS 200-789] **** Estimated Fmax: 18.45 MHz
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 23.83 seconds. CPU system time: 4.64 seconds. Elapsed time: 33.04 seconds; current allocated memory: 198.977 MB.
-INFO: [HLS 200-1510] Running: close_project 
-INFO: [HLS 200-112] Total CPU user time: 25.75 seconds. Total CPU system time: 5.14 seconds. Total elapsed time: 35.36 seconds; peak allocated memory: 1.646 GB.
-INFO: [Common 17-206] Exiting vitis_hls at Mon Jan 13 00:09:25 2025...
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/meng/Software/VIvado/Vivado/2023.1/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Wed Feb  5 12:51:02 2025...
+INFO: [HLS 200-802] Generated output file Crypto/solution1/impl/export.zip
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 8.68 seconds. CPU system time: 0.57 seconds. Elapsed time: 11.65 seconds; current allocated memory: 9.547 MB.
+INFO: [HLS 200-112] Total CPU user time: 10.73 seconds. Total CPU system time: 1.1 seconds. Total elapsed time: 14.14 seconds; peak allocated memory: 1.464 GB.

@@ -98,13 +98,13 @@ void encode(
         s[s_index[i]] = 0;
         LOOP_j:
         for (int j = 0; j < N; j++) {
-            GET_EXP:
+           
             exponent = (i * basis[j])  & 0xFFFF; // mod 65535
             term = modExp(ROOT, exponent, T);
-            SUM:
+      
             temp_sum = poly[j] + T;  // Ensure that temp_sum is of type long_int
             STEPMUL(&temp_sum, &term, &temp);
-            PRODUCT:
+         
             product = mod65537(temp);
             s[s_index[i]] = mod65537(s[s_index[i]] + product + T);
         }

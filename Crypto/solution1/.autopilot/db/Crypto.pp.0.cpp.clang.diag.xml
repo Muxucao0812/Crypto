@@ -7,9 +7,25 @@
       <key>level</key>
       <string>warning</string>
       <key>filename</key>
-      <string>/home/meng/HLS/Crypto/script.tcl</string>
+      <string>/home/meng/HLS/Crypto/Crypto/solution1/csynth.tcl</string>
       <key>line</key>
-      <integer>69</integer>
+      <integer>48</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=top_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=name=Crypto_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>/home/meng/HLS/Crypto/Crypto/solution1/directives.tcl</string>
+      <key>line</key>
+      <integer>7</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -25,11 +41,11 @@
       <key>filename</key>
       <string>Crypto.cpp</string>
       <key>line</key>
-      <integer>25</integer>
+      <integer>23</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=return_XLX_SEP_</string>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=variable=DataRAM complete dim=1_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -41,43 +57,11 @@
       <key>filename</key>
       <string>Crypto.cpp</string>
       <key>line</key>
-      <integer>26</integer>
+      <integer>24</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=DataIn_XLX_SEP_</string>
-      <key>ID</key>
-      <integer>5471</integer>
-      <key>WarningOption</key>
-      <string>dump-hls-pragmas</string>
-    </dict>
-    <dict>
-      <key>level</key>
-      <string>warning</string>
-      <key>filename</key>
-      <string>Crypto.cpp</string>
-      <key>line</key>
-      <integer>27</integer>
-      <key>column</key>
-      <integer>9</integer>
-      <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=TwiddleIn_XLX_SEP_</string>
-      <key>ID</key>
-      <integer>5471</integer>
-      <key>WarningOption</key>
-      <string>dump-hls-pragmas</string>
-    </dict>
-    <dict>
-      <key>level</key>
-      <string>warning</string>
-      <key>filename</key>
-      <string>Crypto.cpp</string>
-      <key>line</key>
-      <integer>28</integer>
-      <key>column</key>
-      <integer>9</integer>
-      <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=Address_XLX_SEP_</string>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=variable=DataRAM cyclic factor=16 dim=2_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -93,39 +77,7 @@
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=RAMSel_XLX_SEP_</string>
-      <key>ID</key>
-      <integer>5471</integer>
-      <key>WarningOption</key>
-      <string>dump-hls-pragmas</string>
-    </dict>
-    <dict>
-      <key>level</key>
-      <string>warning</string>
-      <key>filename</key>
-      <string>Crypto.cpp</string>
-      <key>line</key>
-      <integer>30</integer>
-      <key>column</key>
-      <integer>9</integer>
-      <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=DataOutput_XLX_SEP_</string>
-      <key>ID</key>
-      <integer>5471</integer>
-      <key>WarningOption</key>
-      <string>dump-hls-pragmas</string>
-    </dict>
-    <dict>
-      <key>level</key>
-      <string>warning</string>
-      <key>filename</key>
-      <string>Crypto.cpp</string>
-      <key>line</key>
-      <integer>31</integer>
-      <key>column</key>
-      <integer>9</integer>
-      <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=OP_XLX_SEP_</string>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=variable=BitReverseData cyclic factor=16_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -141,6 +93,134 @@
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=variable=NTTTWiddleRAM cyclic factor=16_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>Crypto.cpp</string>
+      <key>line</key>
+      <integer>34</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=variable=INTTTWiddleRAM cyclic factor=16_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>Crypto.cpp</string>
+      <key>line</key>
+      <integer>37</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=return_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>Crypto.cpp</string>
+      <key>line</key>
+      <integer>38</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=DataIn_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>Crypto.cpp</string>
+      <key>line</key>
+      <integer>39</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=NTTTwiddleIn_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>Crypto.cpp</string>
+      <key>line</key>
+      <integer>40</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=INTTTwiddleIn_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>Crypto.cpp</string>
+      <key>line</key>
+      <integer>41</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=RAMSel_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>Crypto.cpp</string>
+      <key>line</key>
+      <integer>42</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=OP_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>Crypto.cpp</string>
+      <key>line</key>
+      <integer>43</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=ModIndex_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
@@ -153,7 +233,7 @@
       <key>filename</key>
       <string>Crypto.cpp</string>
       <key>line</key>
-      <integer>111</integer>
+      <integer>77</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -169,7 +249,23 @@
       <key>filename</key>
       <string>Crypto.cpp</string>
       <key>line</key>
-      <integer>161</integer>
+      <integer>78</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=16_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>Crypto.cpp</string>
+      <key>line</key>
+      <integer>89</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -178,6 +274,54 @@
       <integer>5471</integer>
       <key>WarningOption</key>
       <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>Crypto.cpp</string>
+      <key>line</key>
+      <integer>45</integer>
+      <key>column</key>
+      <integer>10</integer>
+      <key>message</key>
+      <string>enumeration values &apos;NTT_TWIDDLE_READ&apos; and &apos;INTT_TWIDDLE_READ&apos; not handled in switch</string>
+      <key>ID</key>
+      <integer>4973</integer>
+      <key>WarningOption</key>
+      <string>switch</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>Crypto.cpp</string>
+      <key>line</key>
+      <integer>77</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>Only for/while/do loop or function body support the pipeline pragma</string>
+      <key>ID</key>
+      <integer>5564</integer>
+      <key>WarningOption</key>
+      <string>ignored-hls-attributes</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>Crypto.cpp</string>
+      <key>line</key>
+      <integer>78</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>&apos;#pragma HLS unroll&apos; can only be applied inside loop body</string>
+      <key>ID</key>
+      <integer>5575</integer>
+      <key>WarningOption</key>
+      <string>invalid-hls-pragmas</string>
     </dict>
   </array>
 </dict>

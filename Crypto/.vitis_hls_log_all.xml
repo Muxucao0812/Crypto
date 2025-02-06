@@ -2,57 +2,19 @@
 <vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
   <errorLogs>
     <logs>
-      <synLog/>
-      <csimLog>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Crypto" solutionName="solution1" date="2025-01-11T20:21:43.980+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Crypto" solutionName="solution1" date="2025-01-11T20:18:02.398+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Crypto" solutionName="solution1" date="2025-01-11T20:17:29.222+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Crypto" solutionName="solution1" date="2025-01-11T20:15:23.142+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Crypto" solutionName="solution1" date="2025-01-11T20:13:47.905+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Crypto" solutionName="solution1" date="2025-01-11T20:12:12.645+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Crypto" solutionName="solution1" date="2025-01-11T20:06:09.664+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Crypto" solutionName="solution1" date="2025-01-11T20:02:43.756+0800"/>
-        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="Crypto" solutionName="solution1" date="2025-01-11T20:01:04.996+0800"/>
-        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:57:03.733+0800"/>
-      </csimLog>
+      <packageLog/>
     </logs>
   </errorLogs>
   <warningLogs>
     <logs>
-      <synLog>
-        <logs message="WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:41.482+0800" type="Warning"/>
-        <logs message="WARNING: [SYN 201-103] Legalizing function name 'read_twiddle_factor.1' to 'read_twiddle_factor_1'." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.880+0800" type="Warning"/>
-        <logs message="WARNING: [SYN 201-103] Legalizing function name 'read_twiddle_factor.1_Pipeline_VITIS_LOOP_22_2' to 'read_twiddle_factor_1_Pipeline_VITIS_LOOP_22_2'." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.872+0800" type="Warning"/>
-        <logs message="WARNING: [SYN 201-103] Legalizing function name 'read_twiddle_factor.1_Pipeline_VITIS_LOOP_16_1' to 'read_twiddle_factor_1_Pipeline_VITIS_LOOP_16_1'." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.871+0800" type="Warning"/>
-        <logs message="WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'TwiddleIn' in function 'Crypto' (TwiddleMemory.cpp:8:36)." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.747+0800" type="Warning"/>
-        <logs message="WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'Address' in function 'Crypto' (TwiddleMemory.cpp:8:24)." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.704+0800" type="Warning"/>
-        <logs message="WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'Address' in function 'read_twiddle_factor' (TwiddleMemory.cpp:23:45)." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.703+0800" type="Warning"/>
-        <logs message="WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'Address' in function 'read_twiddle_factor' (TwiddleMemory.cpp:17:38)." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.702+0800" type="Warning"/>
-        <logs message="WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'Address' in function 'read_twiddle_factor.1' (TwiddleMemory.cpp:23:45)." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.701+0800" type="Warning"/>
-        <logs message="WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'Address' in function 'read_twiddle_factor.1' (TwiddleMemory.cpp:17:38)." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.699+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 214-167] The program may have out of bound array access (TwiddleMemory.cpp:23:45)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.632+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 214-167] The program may have out of bound array access (TwiddleMemory.cpp:17:38)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.631+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 214-253] Ignored unsupported array_partition pragma on variable '&lt;internal>'. This can happen when applying a pragma on a function argument with mismatched array size w.r.t. its call site, or when providing a dim too deep on an array of insufficient dimension. (Crypto.cpp:58:13)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.630+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 214-253] Ignored unsupported array_partition pragma on variable '&lt;internal>'. This can happen when applying a pragma on a function argument with mismatched array size w.r.t. its call site, or when providing a dim too deep on an array of insufficient dimension. (Crypto.cpp:65:13)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.628+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 214-253] Ignored unsupported array_partition pragma on variable '&lt;internal>'. This can happen when applying a pragma on a function argument with mismatched array size w.r.t. its call site, or when providing a dim too deep on an array of insufficient dimension. (Crypto.cpp:72:13)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.627+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 214-253] Ignored unsupported array_partition pragma on variable 'twiddletemp'. This can happen when applying a pragma on a function argument with mismatched array size w.r.t. its call site, or when providing a dim too deep on an array of insufficient dimension. (Crypto.cpp:79:13)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.626+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 214-253] Ignored unsupported array_partition pragma on variable '&lt;internal>'. This can happen when applying a pragma on a function argument with mismatched array size w.r.t. its call site, or when providing a dim too deep on an array of insufficient dimension. (Crypto.cpp:79:13)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.625+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 214-253] Ignored unsupported array_partition pragma on variable 'twiddletemp'. This can happen when applying a pragma on a function argument with mismatched array size w.r.t. its call site, or when providing a dim too deep on an array of insufficient dimension. (Crypto.cpp:86:13)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.624+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 214-253] Ignored unsupported array_partition pragma on variable '&lt;internal>'. This can happen when applying a pragma on a function argument with mismatched array size w.r.t. its call site, or when providing a dim too deep on an array of insufficient dimension. (Crypto.cpp:86:13)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.623+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 214-167] The program may have out of bound array access (TwiddleMemory.cpp:8:36)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.622+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 214-167] The program may have out of bound array access (TwiddleMemory.cpp:8:24)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:39.621+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 207-5168] shifting a negative signed value is undefined (AddressGen.cpp:22:21)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:17.306+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 207-5533] 'factor' in '#pragma HLS array_partition' is ignored (pow_mod.cpp:80:49)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:12.371+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 207-5533] 'factor' in '#pragma HLS array_partition' is ignored (pow_mod.cpp:79:51)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:10.561+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 207-5533] 'factor' in '#pragma HLS array_partition' is ignored (pow_mod.cpp:78:50)" projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:10.559+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Skipped source file 'poly.txt'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:10.089+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Skipped source file 'basis.txt'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:10.088+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Skipped source file 'ret.txt'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:10.087+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find source file #; skipping it." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:10.086+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find source file Add; skipping it." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:10.085+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find source file all; skipping it." projectName="Crypto" solutionName="solution1" date="2025-01-11T19:56:10.084+0800" type="Warning"/>
-      </synLog>
-      <csimLog/>
+      <packageLog>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file '#'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.170+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'Add'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.169+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'all'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.168+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'necessary'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.166+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'source'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.165+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'files'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.164+0800" type="Warning"/>
+      </packageLog>
     </logs>
   </warningLogs>
 </vivadoHLSLog:LogRoot>

@@ -76,60 +76,6 @@ void XCrypto_DisableAutoRestart(XCrypto *InstancePtr) {
     XCrypto_WriteReg(InstancePtr->Control_BaseAddress, XCRYPTO_CONTROL_ADDR_AP_CTRL, 0);
 }
 
-void XCrypto_Set_DataIn(XCrypto *InstancePtr, u32 Data) {
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    XCrypto_WriteReg(InstancePtr->Control_BaseAddress, XCRYPTO_CONTROL_ADDR_DATAIN_DATA, Data);
-}
-
-u32 XCrypto_Get_DataIn(XCrypto *InstancePtr) {
-    u32 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XCrypto_ReadReg(InstancePtr->Control_BaseAddress, XCRYPTO_CONTROL_ADDR_DATAIN_DATA);
-    return Data;
-}
-
-void XCrypto_Set_Address(XCrypto *InstancePtr, u32 Data) {
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    XCrypto_WriteReg(InstancePtr->Control_BaseAddress, XCRYPTO_CONTROL_ADDR_ADDRESS_DATA, Data);
-}
-
-u32 XCrypto_Get_Address(XCrypto *InstancePtr) {
-    u32 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XCrypto_ReadReg(InstancePtr->Control_BaseAddress, XCRYPTO_CONTROL_ADDR_ADDRESS_DATA);
-    return Data;
-}
-
-u32 XCrypto_Get_DataOutput(XCrypto *InstancePtr) {
-    u32 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XCrypto_ReadReg(InstancePtr->Control_BaseAddress, XCRYPTO_CONTROL_ADDR_DATAOUTPUT_DATA);
-    return Data;
-}
-
-u32 XCrypto_Get_DataOutput_vld(XCrypto *InstancePtr) {
-    u32 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XCrypto_ReadReg(InstancePtr->Control_BaseAddress, XCRYPTO_CONTROL_ADDR_DATAOUTPUT_CTRL);
-    return Data & 0x1;
-}
-
 void XCrypto_Set_RAMSel(XCrypto *InstancePtr, u32 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
@@ -181,97 +127,287 @@ u32 XCrypto_Get_ModIndex(XCrypto *InstancePtr) {
     return Data;
 }
 
-u32 XCrypto_Get_TwiddleIn_BaseAddress(XCrypto *InstancePtr) {
+u32 XCrypto_Get_NTTTwiddleIn_BaseAddress(XCrypto *InstancePtr) {
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    return (InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_TWIDDLEIN_BASE);
+    return (InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_BASE);
 }
 
-u32 XCrypto_Get_TwiddleIn_HighAddress(XCrypto *InstancePtr) {
+u32 XCrypto_Get_NTTTwiddleIn_HighAddress(XCrypto *InstancePtr) {
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    return (InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_TWIDDLEIN_HIGH);
+    return (InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_HIGH);
 }
 
-u32 XCrypto_Get_TwiddleIn_TotalBytes(XCrypto *InstancePtr) {
+u32 XCrypto_Get_NTTTwiddleIn_TotalBytes(XCrypto *InstancePtr) {
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    return (XCRYPTO_CONTROL_ADDR_TWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_TWIDDLEIN_BASE + 1);
+    return (XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_BASE + 1);
 }
 
-u32 XCrypto_Get_TwiddleIn_BitWidth(XCrypto *InstancePtr) {
+u32 XCrypto_Get_NTTTwiddleIn_BitWidth(XCrypto *InstancePtr) {
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    return XCRYPTO_CONTROL_WIDTH_TWIDDLEIN;
+    return XCRYPTO_CONTROL_WIDTH_NTTTWIDDLEIN;
 }
 
-u32 XCrypto_Get_TwiddleIn_Depth(XCrypto *InstancePtr) {
+u32 XCrypto_Get_NTTTwiddleIn_Depth(XCrypto *InstancePtr) {
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    return XCRYPTO_CONTROL_DEPTH_TWIDDLEIN;
+    return XCRYPTO_CONTROL_DEPTH_NTTTWIDDLEIN;
 }
 
-u32 XCrypto_Write_TwiddleIn_Words(XCrypto *InstancePtr, int offset, word_type *data, int length) {
+u32 XCrypto_Write_NTTTwiddleIn_Words(XCrypto *InstancePtr, int offset, word_type *data, int length) {
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr -> IsReady == XIL_COMPONENT_IS_READY);
 
     int i;
 
-    if ((offset + length)*4 > (XCRYPTO_CONTROL_ADDR_TWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_TWIDDLEIN_BASE + 1))
+    if ((offset + length)*4 > (XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_BASE + 1))
         return 0;
 
     for (i = 0; i < length; i++) {
-        *(int *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_TWIDDLEIN_BASE + (offset + i)*4) = *(data + i);
+        *(int *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_BASE + (offset + i)*4) = *(data + i);
     }
     return length;
 }
 
-u32 XCrypto_Read_TwiddleIn_Words(XCrypto *InstancePtr, int offset, word_type *data, int length) {
+u32 XCrypto_Read_NTTTwiddleIn_Words(XCrypto *InstancePtr, int offset, word_type *data, int length) {
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr -> IsReady == XIL_COMPONENT_IS_READY);
 
     int i;
 
-    if ((offset + length)*4 > (XCRYPTO_CONTROL_ADDR_TWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_TWIDDLEIN_BASE + 1))
+    if ((offset + length)*4 > (XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_BASE + 1))
         return 0;
 
     for (i = 0; i < length; i++) {
-        *(data + i) = *(int *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_TWIDDLEIN_BASE + (offset + i)*4);
+        *(data + i) = *(int *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_BASE + (offset + i)*4);
     }
     return length;
 }
 
-u32 XCrypto_Write_TwiddleIn_Bytes(XCrypto *InstancePtr, int offset, char *data, int length) {
+u32 XCrypto_Write_NTTTwiddleIn_Bytes(XCrypto *InstancePtr, int offset, char *data, int length) {
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr -> IsReady == XIL_COMPONENT_IS_READY);
 
     int i;
 
-    if ((offset + length) > (XCRYPTO_CONTROL_ADDR_TWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_TWIDDLEIN_BASE + 1))
+    if ((offset + length) > (XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_BASE + 1))
         return 0;
 
     for (i = 0; i < length; i++) {
-        *(char *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_TWIDDLEIN_BASE + offset + i) = *(data + i);
+        *(char *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_BASE + offset + i) = *(data + i);
     }
     return length;
 }
 
-u32 XCrypto_Read_TwiddleIn_Bytes(XCrypto *InstancePtr, int offset, char *data, int length) {
+u32 XCrypto_Read_NTTTwiddleIn_Bytes(XCrypto *InstancePtr, int offset, char *data, int length) {
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr -> IsReady == XIL_COMPONENT_IS_READY);
 
     int i;
 
-    if ((offset + length) > (XCRYPTO_CONTROL_ADDR_TWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_TWIDDLEIN_BASE + 1))
+    if ((offset + length) > (XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_BASE + 1))
         return 0;
 
     for (i = 0; i < length; i++) {
-        *(data + i) = *(char *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_TWIDDLEIN_BASE + offset + i);
+        *(data + i) = *(char *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_BASE + offset + i);
+    }
+    return length;
+}
+
+u32 XCrypto_Get_DataIn_BaseAddress(XCrypto *InstancePtr) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    return (InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_DATAIN_BASE);
+}
+
+u32 XCrypto_Get_DataIn_HighAddress(XCrypto *InstancePtr) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    return (InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_DATAIN_HIGH);
+}
+
+u32 XCrypto_Get_DataIn_TotalBytes(XCrypto *InstancePtr) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    return (XCRYPTO_CONTROL_ADDR_DATAIN_HIGH - XCRYPTO_CONTROL_ADDR_DATAIN_BASE + 1);
+}
+
+u32 XCrypto_Get_DataIn_BitWidth(XCrypto *InstancePtr) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    return XCRYPTO_CONTROL_WIDTH_DATAIN;
+}
+
+u32 XCrypto_Get_DataIn_Depth(XCrypto *InstancePtr) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    return XCRYPTO_CONTROL_DEPTH_DATAIN;
+}
+
+u32 XCrypto_Write_DataIn_Words(XCrypto *InstancePtr, int offset, word_type *data, int length) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr -> IsReady == XIL_COMPONENT_IS_READY);
+
+    int i;
+
+    if ((offset + length)*4 > (XCRYPTO_CONTROL_ADDR_DATAIN_HIGH - XCRYPTO_CONTROL_ADDR_DATAIN_BASE + 1))
+        return 0;
+
+    for (i = 0; i < length; i++) {
+        *(int *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_DATAIN_BASE + (offset + i)*4) = *(data + i);
+    }
+    return length;
+}
+
+u32 XCrypto_Read_DataIn_Words(XCrypto *InstancePtr, int offset, word_type *data, int length) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr -> IsReady == XIL_COMPONENT_IS_READY);
+
+    int i;
+
+    if ((offset + length)*4 > (XCRYPTO_CONTROL_ADDR_DATAIN_HIGH - XCRYPTO_CONTROL_ADDR_DATAIN_BASE + 1))
+        return 0;
+
+    for (i = 0; i < length; i++) {
+        *(data + i) = *(int *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_DATAIN_BASE + (offset + i)*4);
+    }
+    return length;
+}
+
+u32 XCrypto_Write_DataIn_Bytes(XCrypto *InstancePtr, int offset, char *data, int length) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr -> IsReady == XIL_COMPONENT_IS_READY);
+
+    int i;
+
+    if ((offset + length) > (XCRYPTO_CONTROL_ADDR_DATAIN_HIGH - XCRYPTO_CONTROL_ADDR_DATAIN_BASE + 1))
+        return 0;
+
+    for (i = 0; i < length; i++) {
+        *(char *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_DATAIN_BASE + offset + i) = *(data + i);
+    }
+    return length;
+}
+
+u32 XCrypto_Read_DataIn_Bytes(XCrypto *InstancePtr, int offset, char *data, int length) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr -> IsReady == XIL_COMPONENT_IS_READY);
+
+    int i;
+
+    if ((offset + length) > (XCRYPTO_CONTROL_ADDR_DATAIN_HIGH - XCRYPTO_CONTROL_ADDR_DATAIN_BASE + 1))
+        return 0;
+
+    for (i = 0; i < length; i++) {
+        *(data + i) = *(char *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_DATAIN_BASE + offset + i);
+    }
+    return length;
+}
+
+u32 XCrypto_Get_INTTTwiddleIn_BaseAddress(XCrypto *InstancePtr) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    return (InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_BASE);
+}
+
+u32 XCrypto_Get_INTTTwiddleIn_HighAddress(XCrypto *InstancePtr) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    return (InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_HIGH);
+}
+
+u32 XCrypto_Get_INTTTwiddleIn_TotalBytes(XCrypto *InstancePtr) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    return (XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_BASE + 1);
+}
+
+u32 XCrypto_Get_INTTTwiddleIn_BitWidth(XCrypto *InstancePtr) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    return XCRYPTO_CONTROL_WIDTH_INTTTWIDDLEIN;
+}
+
+u32 XCrypto_Get_INTTTwiddleIn_Depth(XCrypto *InstancePtr) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    return XCRYPTO_CONTROL_DEPTH_INTTTWIDDLEIN;
+}
+
+u32 XCrypto_Write_INTTTwiddleIn_Words(XCrypto *InstancePtr, int offset, word_type *data, int length) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr -> IsReady == XIL_COMPONENT_IS_READY);
+
+    int i;
+
+    if ((offset + length)*4 > (XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_BASE + 1))
+        return 0;
+
+    for (i = 0; i < length; i++) {
+        *(int *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_BASE + (offset + i)*4) = *(data + i);
+    }
+    return length;
+}
+
+u32 XCrypto_Read_INTTTwiddleIn_Words(XCrypto *InstancePtr, int offset, word_type *data, int length) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr -> IsReady == XIL_COMPONENT_IS_READY);
+
+    int i;
+
+    if ((offset + length)*4 > (XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_BASE + 1))
+        return 0;
+
+    for (i = 0; i < length; i++) {
+        *(data + i) = *(int *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_BASE + (offset + i)*4);
+    }
+    return length;
+}
+
+u32 XCrypto_Write_INTTTwiddleIn_Bytes(XCrypto *InstancePtr, int offset, char *data, int length) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr -> IsReady == XIL_COMPONENT_IS_READY);
+
+    int i;
+
+    if ((offset + length) > (XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_BASE + 1))
+        return 0;
+
+    for (i = 0; i < length; i++) {
+        *(char *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_BASE + offset + i) = *(data + i);
+    }
+    return length;
+}
+
+u32 XCrypto_Read_INTTTwiddleIn_Bytes(XCrypto *InstancePtr, int offset, char *data, int length) {
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr -> IsReady == XIL_COMPONENT_IS_READY);
+
+    int i;
+
+    if ((offset + length) > (XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_HIGH - XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_BASE + 1))
+        return 0;
+
+    for (i = 0; i < length; i++) {
+        *(data + i) = *(char *)(InstancePtr->Control_BaseAddress + XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_BASE + offset + i);
     }
     return length;
 }

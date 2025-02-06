@@ -1,0 +1,1163 @@
+# This script segment is generated automatically by AutoPilot
+
+set id 1
+set name Crypto_mux_16_4_32_1_1
+set corename simcore_mux
+set op mux
+set stage_num 1
+set din0_width 32
+set din0_signed 0
+set din1_width 32
+set din1_signed 0
+set din2_width 32
+set din2_signed 0
+set din3_width 32
+set din3_signed 0
+set din4_width 32
+set din4_signed 0
+set din5_width 32
+set din5_signed 0
+set din6_width 32
+set din6_signed 0
+set din7_width 32
+set din7_signed 0
+set din8_width 32
+set din8_signed 0
+set din9_width 32
+set din9_signed 0
+set din10_width 32
+set din10_signed 0
+set din11_width 32
+set din11_signed 0
+set din12_width 32
+set din12_signed 0
+set din13_width 32
+set din13_signed 0
+set din14_width 32
+set din14_signed 0
+set din15_width 32
+set din15_signed 0
+set din16_width 4
+set din16_signed 0
+set dout_width 32
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {mux} IMPL {auto} LATENCY 0 ALLOW_PRAGMA 1
+}
+
+
+set op mux
+set corename Multiplexer
+if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
+if {[info proc ::AESL_LIB_VIRTEX::xil_gen_pipemux] == "::AESL_LIB_VIRTEX::xil_gen_pipemux"} {
+eval "::AESL_LIB_VIRTEX::xil_gen_pipemux { \
+    id ${id} \
+    name ${name} \
+    corename ${corename} \
+    op ${op} \
+    reset_level 1 \
+    sync_rst true \
+    stage_num ${stage_num} \
+    din0_width ${din0_width} \
+    din0_signed ${din0_signed} \
+    din1_width ${din1_width} \
+    din1_signed ${din1_signed} \
+    din2_width ${din2_width} \
+    din2_signed ${din2_signed} \
+    din3_width ${din3_width} \
+    din3_signed ${din3_signed} \
+    din4_width ${din4_width} \
+    din4_signed ${din4_signed} \
+    din5_width ${din5_width} \
+    din5_signed ${din5_signed} \
+    din6_width ${din6_width} \
+    din6_signed ${din6_signed} \
+    din7_width ${din7_width} \
+    din7_signed ${din7_signed} \
+    din8_width ${din8_width} \
+    din8_signed ${din8_signed} \
+    din9_width ${din9_width} \
+    din9_signed ${din9_signed} \
+    din10_width ${din10_width} \
+    din10_signed ${din10_signed} \
+    din11_width ${din11_width} \
+    din11_signed ${din11_signed} \
+    din12_width ${din12_width} \
+    din12_signed ${din12_signed} \
+    din13_width ${din13_width} \
+    din13_signed ${din13_signed} \
+    din14_width ${din14_width} \
+    din14_signed ${din14_signed} \
+    din15_width ${din15_width} \
+    din15_signed ${din15_signed} \
+    din16_width ${din16_width} \
+    din16_signed ${din16_signed} \
+    dout_width ${dout_width} \
+}"
+} else {
+puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_pipemux, check your platform lib"
+}
+}
+
+
+set id 3
+set name Crypto_mux_2_1_32_1_1
+set corename simcore_mux
+set op mux
+set stage_num 1
+set din0_width 32
+set din0_signed 0
+set din1_width 32
+set din1_signed 0
+set din2_width 1
+set din2_signed 0
+set dout_width 32
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {mux} IMPL {auto} LATENCY 0 ALLOW_PRAGMA 1
+}
+
+
+set op mux
+set corename Multiplexer
+if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
+if {[info proc ::AESL_LIB_VIRTEX::xil_gen_pipemux] == "::AESL_LIB_VIRTEX::xil_gen_pipemux"} {
+eval "::AESL_LIB_VIRTEX::xil_gen_pipemux { \
+    id ${id} \
+    name ${name} \
+    corename ${corename} \
+    op ${op} \
+    reset_level 1 \
+    sync_rst true \
+    stage_num ${stage_num} \
+    din0_width ${din0_width} \
+    din0_signed ${din0_signed} \
+    din1_width ${din1_width} \
+    din1_signed ${din1_signed} \
+    din2_width ${din2_width} \
+    din2_signed ${din2_signed} \
+    dout_width ${dout_width} \
+}"
+} else {
+puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_pipemux, check your platform lib"
+}
+}
+
+
+# clear list
+if {${::AESL::PGuard_autoexp_gen}} {
+    cg_default_interface_gen_dc_begin
+    cg_default_interface_gen_bundle_begin
+    AESL_LIB_XILADAPTER::native_axis_begin
+}
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 6 \
+    name DataRAM \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM \
+    op interface \
+    ports { DataRAM_address0 { O 8 vector } DataRAM_ce0 { O 1 bit } DataRAM_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 7 \
+    name DataRAM_1 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_1 \
+    op interface \
+    ports { DataRAM_1_address0 { O 8 vector } DataRAM_1_ce0 { O 1 bit } DataRAM_1_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_1'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 8 \
+    name DataRAM_2 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_2 \
+    op interface \
+    ports { DataRAM_2_address0 { O 8 vector } DataRAM_2_ce0 { O 1 bit } DataRAM_2_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_2'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 9 \
+    name DataRAM_3 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_3 \
+    op interface \
+    ports { DataRAM_3_address0 { O 8 vector } DataRAM_3_ce0 { O 1 bit } DataRAM_3_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_3'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 10 \
+    name DataRAM_4 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_4 \
+    op interface \
+    ports { DataRAM_4_address0 { O 8 vector } DataRAM_4_ce0 { O 1 bit } DataRAM_4_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_4'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 11 \
+    name DataRAM_5 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_5 \
+    op interface \
+    ports { DataRAM_5_address0 { O 8 vector } DataRAM_5_ce0 { O 1 bit } DataRAM_5_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_5'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 12 \
+    name DataRAM_6 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_6 \
+    op interface \
+    ports { DataRAM_6_address0 { O 8 vector } DataRAM_6_ce0 { O 1 bit } DataRAM_6_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_6'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 13 \
+    name DataRAM_7 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_7 \
+    op interface \
+    ports { DataRAM_7_address0 { O 8 vector } DataRAM_7_ce0 { O 1 bit } DataRAM_7_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_7'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 14 \
+    name DataRAM_8 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_8 \
+    op interface \
+    ports { DataRAM_8_address0 { O 8 vector } DataRAM_8_ce0 { O 1 bit } DataRAM_8_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_8'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 15 \
+    name DataRAM_9 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_9 \
+    op interface \
+    ports { DataRAM_9_address0 { O 8 vector } DataRAM_9_ce0 { O 1 bit } DataRAM_9_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_9'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 16 \
+    name DataRAM_10 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_10 \
+    op interface \
+    ports { DataRAM_10_address0 { O 8 vector } DataRAM_10_ce0 { O 1 bit } DataRAM_10_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_10'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 17 \
+    name DataRAM_11 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_11 \
+    op interface \
+    ports { DataRAM_11_address0 { O 8 vector } DataRAM_11_ce0 { O 1 bit } DataRAM_11_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_11'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 18 \
+    name DataRAM_12 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_12 \
+    op interface \
+    ports { DataRAM_12_address0 { O 8 vector } DataRAM_12_ce0 { O 1 bit } DataRAM_12_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_12'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 19 \
+    name DataRAM_13 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_13 \
+    op interface \
+    ports { DataRAM_13_address0 { O 8 vector } DataRAM_13_ce0 { O 1 bit } DataRAM_13_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_13'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 20 \
+    name DataRAM_14 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_14 \
+    op interface \
+    ports { DataRAM_14_address0 { O 8 vector } DataRAM_14_ce0 { O 1 bit } DataRAM_14_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_14'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 21 \
+    name DataRAM_15 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_15 \
+    op interface \
+    ports { DataRAM_15_address0 { O 8 vector } DataRAM_15_ce0 { O 1 bit } DataRAM_15_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_15'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 22 \
+    name DataRAM_16 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_16 \
+    op interface \
+    ports { DataRAM_16_address0 { O 8 vector } DataRAM_16_ce0 { O 1 bit } DataRAM_16_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_16'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 23 \
+    name DataRAM_17 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_17 \
+    op interface \
+    ports { DataRAM_17_address0 { O 8 vector } DataRAM_17_ce0 { O 1 bit } DataRAM_17_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_17'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 24 \
+    name DataRAM_18 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_18 \
+    op interface \
+    ports { DataRAM_18_address0 { O 8 vector } DataRAM_18_ce0 { O 1 bit } DataRAM_18_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_18'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 25 \
+    name DataRAM_19 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_19 \
+    op interface \
+    ports { DataRAM_19_address0 { O 8 vector } DataRAM_19_ce0 { O 1 bit } DataRAM_19_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_19'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 26 \
+    name DataRAM_20 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_20 \
+    op interface \
+    ports { DataRAM_20_address0 { O 8 vector } DataRAM_20_ce0 { O 1 bit } DataRAM_20_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_20'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 27 \
+    name DataRAM_21 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_21 \
+    op interface \
+    ports { DataRAM_21_address0 { O 8 vector } DataRAM_21_ce0 { O 1 bit } DataRAM_21_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_21'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 28 \
+    name DataRAM_22 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_22 \
+    op interface \
+    ports { DataRAM_22_address0 { O 8 vector } DataRAM_22_ce0 { O 1 bit } DataRAM_22_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_22'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 29 \
+    name DataRAM_23 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_23 \
+    op interface \
+    ports { DataRAM_23_address0 { O 8 vector } DataRAM_23_ce0 { O 1 bit } DataRAM_23_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_23'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 30 \
+    name DataRAM_24 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_24 \
+    op interface \
+    ports { DataRAM_24_address0 { O 8 vector } DataRAM_24_ce0 { O 1 bit } DataRAM_24_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_24'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 31 \
+    name DataRAM_25 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_25 \
+    op interface \
+    ports { DataRAM_25_address0 { O 8 vector } DataRAM_25_ce0 { O 1 bit } DataRAM_25_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_25'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 32 \
+    name DataRAM_26 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_26 \
+    op interface \
+    ports { DataRAM_26_address0 { O 8 vector } DataRAM_26_ce0 { O 1 bit } DataRAM_26_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_26'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 33 \
+    name DataRAM_27 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_27 \
+    op interface \
+    ports { DataRAM_27_address0 { O 8 vector } DataRAM_27_ce0 { O 1 bit } DataRAM_27_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_27'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 34 \
+    name DataRAM_28 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_28 \
+    op interface \
+    ports { DataRAM_28_address0 { O 8 vector } DataRAM_28_ce0 { O 1 bit } DataRAM_28_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_28'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 35 \
+    name DataRAM_29 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_29 \
+    op interface \
+    ports { DataRAM_29_address0 { O 8 vector } DataRAM_29_ce0 { O 1 bit } DataRAM_29_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_29'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 36 \
+    name DataRAM_30 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_30 \
+    op interface \
+    ports { DataRAM_30_address0 { O 8 vector } DataRAM_30_ce0 { O 1 bit } DataRAM_30_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_30'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 37 \
+    name DataRAM_31 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename DataRAM_31 \
+    op interface \
+    ports { DataRAM_31_address0 { O 8 vector } DataRAM_31_ce0 { O 1 bit } DataRAM_31_q0 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataRAM_31'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 38 \
+    name BitReverseData \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData \
+    op interface \
+    ports { BitReverseData_address0 { O 8 vector } BitReverseData_ce0 { O 1 bit } BitReverseData_we0 { O 1 bit } BitReverseData_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 39 \
+    name BitReverseData_1 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_1 \
+    op interface \
+    ports { BitReverseData_1_address0 { O 8 vector } BitReverseData_1_ce0 { O 1 bit } BitReverseData_1_we0 { O 1 bit } BitReverseData_1_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_1'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 40 \
+    name BitReverseData_2 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_2 \
+    op interface \
+    ports { BitReverseData_2_address0 { O 8 vector } BitReverseData_2_ce0 { O 1 bit } BitReverseData_2_we0 { O 1 bit } BitReverseData_2_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_2'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 41 \
+    name BitReverseData_3 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_3 \
+    op interface \
+    ports { BitReverseData_3_address0 { O 8 vector } BitReverseData_3_ce0 { O 1 bit } BitReverseData_3_we0 { O 1 bit } BitReverseData_3_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_3'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 42 \
+    name BitReverseData_4 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_4 \
+    op interface \
+    ports { BitReverseData_4_address0 { O 8 vector } BitReverseData_4_ce0 { O 1 bit } BitReverseData_4_we0 { O 1 bit } BitReverseData_4_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_4'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 43 \
+    name BitReverseData_5 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_5 \
+    op interface \
+    ports { BitReverseData_5_address0 { O 8 vector } BitReverseData_5_ce0 { O 1 bit } BitReverseData_5_we0 { O 1 bit } BitReverseData_5_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_5'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 44 \
+    name BitReverseData_6 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_6 \
+    op interface \
+    ports { BitReverseData_6_address0 { O 8 vector } BitReverseData_6_ce0 { O 1 bit } BitReverseData_6_we0 { O 1 bit } BitReverseData_6_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_6'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 45 \
+    name BitReverseData_7 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_7 \
+    op interface \
+    ports { BitReverseData_7_address0 { O 8 vector } BitReverseData_7_ce0 { O 1 bit } BitReverseData_7_we0 { O 1 bit } BitReverseData_7_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_7'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 46 \
+    name BitReverseData_8 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_8 \
+    op interface \
+    ports { BitReverseData_8_address0 { O 8 vector } BitReverseData_8_ce0 { O 1 bit } BitReverseData_8_we0 { O 1 bit } BitReverseData_8_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_8'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 47 \
+    name BitReverseData_9 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_9 \
+    op interface \
+    ports { BitReverseData_9_address0 { O 8 vector } BitReverseData_9_ce0 { O 1 bit } BitReverseData_9_we0 { O 1 bit } BitReverseData_9_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_9'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 48 \
+    name BitReverseData_10 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_10 \
+    op interface \
+    ports { BitReverseData_10_address0 { O 8 vector } BitReverseData_10_ce0 { O 1 bit } BitReverseData_10_we0 { O 1 bit } BitReverseData_10_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_10'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 49 \
+    name BitReverseData_11 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_11 \
+    op interface \
+    ports { BitReverseData_11_address0 { O 8 vector } BitReverseData_11_ce0 { O 1 bit } BitReverseData_11_we0 { O 1 bit } BitReverseData_11_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_11'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 50 \
+    name BitReverseData_12 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_12 \
+    op interface \
+    ports { BitReverseData_12_address0 { O 8 vector } BitReverseData_12_ce0 { O 1 bit } BitReverseData_12_we0 { O 1 bit } BitReverseData_12_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_12'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 51 \
+    name BitReverseData_13 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_13 \
+    op interface \
+    ports { BitReverseData_13_address0 { O 8 vector } BitReverseData_13_ce0 { O 1 bit } BitReverseData_13_we0 { O 1 bit } BitReverseData_13_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_13'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 52 \
+    name BitReverseData_14 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_14 \
+    op interface \
+    ports { BitReverseData_14_address0 { O 8 vector } BitReverseData_14_ce0 { O 1 bit } BitReverseData_14_we0 { O 1 bit } BitReverseData_14_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_14'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 53 \
+    name BitReverseData_15 \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename BitReverseData_15 \
+    op interface \
+    ports { BitReverseData_15_address0 { O 8 vector } BitReverseData_15_ce0 { O 1 bit } BitReverseData_15_we0 { O 1 bit } BitReverseData_15_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'BitReverseData_15'"
+}
+}
+
+
+# Direct connection:
+if {${::AESL::PGuard_autoexp_gen}} {
+eval "cg_default_interface_gen_dc { \
+    id 54 \
+    name RAMSel_cast \
+    type other \
+    dir I \
+    reset_level 1 \
+    sync_rst true \
+    corename dc_RAMSel_cast \
+    op interface \
+    ports { RAMSel_cast { I 1 vector } } \
+} "
+}
+
+# Direct connection:
+if {${::AESL::PGuard_autoexp_gen}} {
+eval "cg_default_interface_gen_dc { \
+    id -1 \
+    name ap_ctrl \
+    type ap_ctrl \
+    reset_level 1 \
+    sync_rst true \
+    corename ap_ctrl \
+    op interface \
+    ports { ap_start { I 1 bit } ap_ready { O 1 bit } ap_done { O 1 bit } ap_idle { O 1 bit } } \
+} "
+}
+
+
+# Adapter definition:
+set PortName ap_clk
+set DataWd 1 
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc cg_default_interface_gen_clock] == "cg_default_interface_gen_clock"} {
+eval "cg_default_interface_gen_clock { \
+    id -2 \
+    name ${PortName} \
+    reset_level 1 \
+    sync_rst true \
+    corename apif_ap_clk \
+    data_wd ${DataWd} \
+    op interface \
+}"
+} else {
+puts "@W \[IMPL-113\] Cannot find bus interface model in the library. Ignored generation of bus interface for '${PortName}'"
+}
+}
+
+
+# Adapter definition:
+set PortName ap_rst
+set DataWd 1 
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc cg_default_interface_gen_reset] == "cg_default_interface_gen_reset"} {
+eval "cg_default_interface_gen_reset { \
+    id -3 \
+    name ${PortName} \
+    reset_level 1 \
+    sync_rst true \
+    corename apif_ap_rst \
+    data_wd ${DataWd} \
+    op interface \
+}"
+} else {
+puts "@W \[IMPL-114\] Cannot find bus interface model in the library. Ignored generation of bus interface for '${PortName}'"
+}
+}
+
+
+
+# merge
+if {${::AESL::PGuard_autoexp_gen}} {
+    cg_default_interface_gen_dc_end
+    cg_default_interface_gen_bundle_end
+    AESL_LIB_XILADAPTER::native_axis_end
+}
+
+
+# flow_control definition:
+set InstName Crypto_flow_control_loop_pipe_sequential_init_U
+set CompName Crypto_flow_control_loop_pipe_sequential_init
+set name flow_control_loop_pipe_sequential_init
+if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
+if {[info proc ::AESL_LIB_VIRTEX::xil_gen_UPC_flow_control] == "::AESL_LIB_VIRTEX::xil_gen_UPC_flow_control"} {
+eval "::AESL_LIB_VIRTEX::xil_gen_UPC_flow_control { \
+    name ${name} \
+    prefix Crypto_ \
+}"
+} else {
+puts "@W \[IMPL-107\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_UPC_flow_control, check your platform lib"
+}
+}
+
+
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler $CompName BINDTYPE interface TYPE internal_upc_flow_control INSTNAME $InstName
+}
+
+

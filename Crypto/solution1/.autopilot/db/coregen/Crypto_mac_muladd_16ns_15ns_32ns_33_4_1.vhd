@@ -9,7 +9,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3 is
+entity Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1 is
 port (
     clk: in  std_logic;
     rst: in  std_logic;
@@ -21,7 +21,7 @@ port (
 
 end entity;
 
-architecture behav of Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3 is
+architecture behav of Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1 is
     signal a       : signed(25-1 downto 0);
     signal b       : signed(18-1 downto 0);
     signal c       : signed(48-1 downto 0);
@@ -75,7 +75,7 @@ entity Crypto_mac_muladd_16ns_15ns_32ns_33_4_1 is
 end entity;
 
 architecture arch of Crypto_mac_muladd_16ns_15ns_32ns_33_4_1 is
-    component Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3 is
+    component Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1 is
         port (
             clk : IN STD_LOGIC;
             rst : IN STD_LOGIC;
@@ -89,7 +89,7 @@ architecture arch of Crypto_mac_muladd_16ns_15ns_32ns_33_4_1 is
 
 
 begin
-    Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3_U :  component Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3
+    Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1_U :  component Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1
     port map (
         clk => clk,
         rst => reset,

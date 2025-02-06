@@ -7,7 +7,7 @@
 // ==============================================================
 `timescale 1 ns / 1 ps
 
-module Crypto_mac_muladd_16ns_16ns_32ns_33_4_1_DSP48_4(
+module Crypto_mac_muladd_16ns_16ns_32ns_33_4_1_DSP48_0(
     input clk,
     input rst,
     input ce,
@@ -71,7 +71,7 @@ output[dout_WIDTH - 1:0] dout;
 
 
 
-Crypto_mac_muladd_16ns_16ns_32ns_33_4_1_DSP48_4 Crypto_mac_muladd_16ns_16ns_32ns_33_4_1_DSP48_4_U(
+Crypto_mac_muladd_16ns_16ns_32ns_33_4_1_DSP48_0 Crypto_mac_muladd_16ns_16ns_32ns_33_4_1_DSP48_0_U(
     .clk( clk ),
     .rst( reset ),
     .ce( ce ),

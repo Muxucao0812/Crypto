@@ -350,45 +350,45 @@ class AESL_RUNTIME_BC {
     string mName;
 };
 using hls::sim::Byte;
-extern "C" void Crypto(volatile void *, volatile void *, Byte<4>*, int, Byte<4>*, volatile void *, Byte<4>*, int, int);
-extern "C" void apatb_Crypto_hw(volatile void * __xlx_apatb_param_DataIn, volatile void * __xlx_apatb_param_Address, volatile void * __xlx_apatb_param_DataOutput, int __xlx_apatb_param_RAMSel, volatile void * __xlx_apatb_param_TwiddleIn, volatile void * __xlx_apatb_param_TwiddleAddress, volatile void * __xlx_apatb_param_TwiddleOutput, int __xlx_apatb_param_OP, int __xlx_apatb_param_ModIndex) {
+extern "C" void Crypto(Byte<4>*, int, Byte<4>*, Byte<4>*, int, int);
+extern "C" void apatb_Crypto_hw(volatile void * __xlx_apatb_param_DataIn, int __xlx_apatb_param_RAMSel, volatile void * __xlx_apatb_param_NTTTwiddleIn, volatile void * __xlx_apatb_param_INTTTwiddleIn, int __xlx_apatb_param_OP, int __xlx_apatb_param_ModIndex) {
 using hls::sim::createStream;
-  // Collect __xlx_DataOutput__tmp_vec
-std::vector<Byte<4>> __xlx_DataOutput__tmp_vec;
-for (size_t i = 0; i < 1; ++i){
-__xlx_DataOutput__tmp_vec.push_back(((Byte<4>*)__xlx_apatb_param_DataOutput)[i]);
+  // Collect __xlx_DataIn__tmp_vec
+std::vector<Byte<4>> __xlx_DataIn__tmp_vec;
+for (size_t i = 0; i < 4096; ++i){
+__xlx_DataIn__tmp_vec.push_back(((Byte<4>*)__xlx_apatb_param_DataIn)[i]);
 }
-  int __xlx_size_param_DataOutput = 1;
-  int __xlx_offset_param_DataOutput = 0;
-  int __xlx_offset_byte_param_DataOutput = 0*4;
-  // Collect __xlx_TwiddleIn__tmp_vec
-std::vector<Byte<4>> __xlx_TwiddleIn__tmp_vec;
-for (size_t i = 0; i < 2; ++i){
-__xlx_TwiddleIn__tmp_vec.push_back(((Byte<4>*)__xlx_apatb_param_TwiddleIn)[i]);
+  int __xlx_size_param_DataIn = 4096;
+  int __xlx_offset_param_DataIn = 0;
+  int __xlx_offset_byte_param_DataIn = 0*4;
+  // Collect __xlx_NTTTwiddleIn__tmp_vec
+std::vector<Byte<4>> __xlx_NTTTwiddleIn__tmp_vec;
+for (size_t i = 0; i < 2048; ++i){
+__xlx_NTTTwiddleIn__tmp_vec.push_back(((Byte<4>*)__xlx_apatb_param_NTTTwiddleIn)[i]);
 }
-  int __xlx_size_param_TwiddleIn = 2;
-  int __xlx_offset_param_TwiddleIn = 0;
-  int __xlx_offset_byte_param_TwiddleIn = 0*4;
-  // Collect __xlx_TwiddleOutput__tmp_vec
-std::vector<Byte<4>> __xlx_TwiddleOutput__tmp_vec;
-for (size_t i = 0; i < 1; ++i){
-__xlx_TwiddleOutput__tmp_vec.push_back(((Byte<4>*)__xlx_apatb_param_TwiddleOutput)[i]);
+  int __xlx_size_param_NTTTwiddleIn = 2048;
+  int __xlx_offset_param_NTTTwiddleIn = 0;
+  int __xlx_offset_byte_param_NTTTwiddleIn = 0*4;
+  // Collect __xlx_INTTTwiddleIn__tmp_vec
+std::vector<Byte<4>> __xlx_INTTTwiddleIn__tmp_vec;
+for (size_t i = 0; i < 2048; ++i){
+__xlx_INTTTwiddleIn__tmp_vec.push_back(((Byte<4>*)__xlx_apatb_param_INTTTwiddleIn)[i]);
 }
-  int __xlx_size_param_TwiddleOutput = 1;
-  int __xlx_offset_param_TwiddleOutput = 0;
-  int __xlx_offset_byte_param_TwiddleOutput = 0*4;
+  int __xlx_size_param_INTTTwiddleIn = 2048;
+  int __xlx_offset_param_INTTTwiddleIn = 0;
+  int __xlx_offset_byte_param_INTTTwiddleIn = 0*4;
   // DUT call
-  Crypto(__xlx_apatb_param_DataIn, __xlx_apatb_param_Address, __xlx_DataOutput__tmp_vec.data(), __xlx_apatb_param_RAMSel, __xlx_TwiddleIn__tmp_vec.data(), __xlx_apatb_param_TwiddleAddress, __xlx_TwiddleOutput__tmp_vec.data(), __xlx_apatb_param_OP, __xlx_apatb_param_ModIndex);
-// print __xlx_apatb_param_DataOutput
-for (size_t i = 0; i < __xlx_size_param_DataOutput; ++i) {
-((Byte<4>*)__xlx_apatb_param_DataOutput)[i] = __xlx_DataOutput__tmp_vec[__xlx_offset_param_DataOutput+i];
+  Crypto(__xlx_DataIn__tmp_vec.data(), __xlx_apatb_param_RAMSel, __xlx_NTTTwiddleIn__tmp_vec.data(), __xlx_INTTTwiddleIn__tmp_vec.data(), __xlx_apatb_param_OP, __xlx_apatb_param_ModIndex);
+// print __xlx_apatb_param_DataIn
+for (size_t i = 0; i < __xlx_size_param_DataIn; ++i) {
+((Byte<4>*)__xlx_apatb_param_DataIn)[i] = __xlx_DataIn__tmp_vec[__xlx_offset_param_DataIn+i];
 }
-// print __xlx_apatb_param_TwiddleIn
-for (size_t i = 0; i < __xlx_size_param_TwiddleIn; ++i) {
-((Byte<4>*)__xlx_apatb_param_TwiddleIn)[i] = __xlx_TwiddleIn__tmp_vec[__xlx_offset_param_TwiddleIn+i];
+// print __xlx_apatb_param_NTTTwiddleIn
+for (size_t i = 0; i < __xlx_size_param_NTTTwiddleIn; ++i) {
+((Byte<4>*)__xlx_apatb_param_NTTTwiddleIn)[i] = __xlx_NTTTwiddleIn__tmp_vec[__xlx_offset_param_NTTTwiddleIn+i];
 }
-// print __xlx_apatb_param_TwiddleOutput
-for (size_t i = 0; i < __xlx_size_param_TwiddleOutput; ++i) {
-((Byte<4>*)__xlx_apatb_param_TwiddleOutput)[i] = __xlx_TwiddleOutput__tmp_vec[__xlx_offset_param_TwiddleOutput+i];
+// print __xlx_apatb_param_INTTTwiddleIn
+for (size_t i = 0; i < __xlx_size_param_INTTTwiddleIn; ++i) {
+((Byte<4>*)__xlx_apatb_param_INTTTwiddleIn)[i] = __xlx_INTTTwiddleIn__tmp_vec[__xlx_offset_param_INTTTwiddleIn+i];
 }
 }

@@ -1,47 +1,24 @@
 {
-    "0": {
-        "name": "Crypto",
-        "file": "Crypto.cpp",
-        "fileloc": "11",
-        "instructions": "211",
-        "total_instructions": "827",
-        "calls": "2 13 6 7 12 11 4 5 8 10 9 1",
-        "basicblocks": "24",
-        "loads": {
-            "G": "9",
-            "L": "2",
-            "T": "2"
-        },
-        "stores": {
-            "G": "6",
-            "L": "4"
-        },
-        "loops": {
-            "L": "2",
-            "N": "2"
-        }
-    },
     "1": {
-        "name": "Crypto_Pipeline_VITIS_LOOP_180_12",
+        "name": "Crypto_Pipeline_WRITE_TWIDDLE_LOOP",
         "file": "Crypto.cpp",
         "fileloc": "0",
-        "instructions": "21",
-        "total_instructions": "21",
+        "instructions": "106",
+        "total_instructions": "106",
         "calls": "",
-        "basicblocks": "4",
+        "basicblocks": "21",
         "loads": {
-            "L": "2"
+            "L": "3"
         },
         "stores": {
-            "G": "1",
-            "L": "2"
+            "L": "34"
         },
         "loops": {
             "L": "1"
         }
     },
     "2": {
-        "name": "MUL_MOD",
+        "name": "MUL_MOD.2",
         "file": "Crypto.cpp",
         "fileloc": "0",
         "instructions": "86",
@@ -50,115 +27,142 @@
         "basicblocks": "1"
     },
     "3": {
-        "name": "MUL_MOD.1",
+        "name": "Crypto_Pipeline_NTT_PE_LOOP",
         "file": "Crypto.cpp",
         "fileloc": "0",
-        "instructions": "91",
-        "total_instructions": "91",
-        "calls": "",
-        "basicblocks": "1"
-    },
-    "4": {
-        "name": "Crypto_Pipeline_VITIS_LOOP_138_7",
-        "file": "Crypto.cpp",
-        "fileloc": "0",
-        "instructions": "21",
-        "total_instructions": "21",
-        "calls": "",
-        "basicblocks": "4",
+        "instructions": "496",
+        "total_instructions": "582",
+        "calls": "2",
+        "basicblocks": "156",
         "loads": {
-            "G": "1",
-            "L": "1"
+            "L": "82"
         },
         "stores": {
-            "L": "3"
+            "L": "132"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "4": {
+        "name": "Crypto_Pipeline_NTT_PERMUTE_LOOP",
+        "file": "Crypto.cpp",
+        "fileloc": "0",
+        "instructions": "151",
+        "total_instructions": "151",
+        "calls": "",
+        "basicblocks": "41",
+        "loads": {
+            "L": "17"
+        },
+        "stores": {
+            "L": "34"
         },
         "loops": {
             "L": "1"
         }
     },
     "5": {
-        "name": "Crypto_Pipeline_VITIS_LOOP_22_21",
+        "name": "Crypto_Pipeline_POLY_MUL_LOOP",
         "file": "Crypto.cpp",
         "fileloc": "0",
-        "instructions": "20",
-        "total_instructions": "20",
-        "calls": "",
-        "basicblocks": "4",
+        "instructions": "130",
+        "total_instructions": "1506",
+        "calls": "13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13",
+        "basicblocks": "21",
         "loads": {
-            "L": "2"
+            "L": "33"
         },
         "stores": {
-            "L": "3"
+            "L": "18"
         },
         "loops": {
             "L": "1"
         }
     },
-    "6": {
-        "name": "Crypto_Pipeline_VITIS_LOOP_22_2",
+    "0": {
+        "name": "Crypto",
         "file": "Crypto.cpp",
-        "fileloc": "0",
-        "instructions": "20",
-        "total_instructions": "20",
-        "calls": "",
-        "basicblocks": "4",
+        "fileloc": "11",
+        "instructions": "204",
+        "total_instructions": "7172",
+        "calls": "6 9 1 5 12 4 10 7 14 11 3 15 8",
+        "basicblocks": "22",
         "loads": {
             "L": "2"
         },
         "stores": {
-            "L": "3"
+            "L": "4"
+        },
+        "loops": {
+            "L": "2",
+            "N": "2"
+        }
+    },
+    "6": {
+        "name": "Crypto_Pipeline_WRITE_DATA_LOOP",
+        "file": "Crypto.cpp",
+        "fileloc": "0",
+        "instructions": "123",
+        "total_instructions": "123",
+        "calls": "",
+        "basicblocks": "41",
+        "loads": {
+            "L": "2"
+        },
+        "stores": {
+            "L": "34"
         },
         "loops": {
             "L": "1"
         }
     },
     "7": {
-        "name": "Crypto_Pipeline_VITIS_LOOP_99_4",
+        "name": "Crypto_Pipeline_INTT_PERMUTE_LOOP",
         "file": "Crypto.cpp",
         "fileloc": "0",
-        "instructions": "18",
-        "total_instructions": "18",
+        "instructions": "151",
+        "total_instructions": "151",
         "calls": "",
-        "basicblocks": "4",
+        "basicblocks": "41",
         "loads": {
-            "L": "2"
+            "L": "17"
         },
         "stores": {
-            "L": "3"
+            "L": "34"
         },
         "loops": {
             "L": "1"
         }
     },
     "8": {
-        "name": "Crypto_Pipeline_VITIS_LOOP_149_10",
+        "name": "Crypto_Pipeline_MUL_INV_LOOP",
         "file": "Crypto.cpp",
         "fileloc": "0",
-        "instructions": "18",
-        "total_instructions": "18",
-        "calls": "",
-        "basicblocks": "4",
+        "instructions": "184",
+        "total_instructions": "3096",
+        "calls": "16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16",
+        "basicblocks": "41",
         "loads": {
-            "L": "2"
+            "L": "33"
         },
         "stores": {
-            "L": "3"
+            "L": "34"
         },
         "loops": {
             "L": "1"
         }
     },
     "9": {
-        "name": "Crypto_Pipeline_VITIS_LOOP_176_11",
+        "name": "Crypto_Pipeline_READ_DATA_LOOP",
         "file": "Crypto.cpp",
         "fileloc": "0",
-        "instructions": "20",
-        "total_instructions": "111",
-        "calls": "3",
+        "instructions": "89",
+        "total_instructions": "89",
+        "calls": "",
         "basicblocks": "4",
         "loads": {
-            "L": "2"
+            "L": "33"
         },
         "stores": {
             "L": "3"
@@ -168,79 +172,111 @@
         }
     },
     "10": {
-        "name": "Crypto_Pipeline_INTT_PE_LOOP",
+        "name": "Crypto_Pipeline_PERMUTE_LOOP1",
         "file": "Crypto.cpp",
         "fileloc": "0",
-        "instructions": "130",
-        "total_instructions": "130",
+        "instructions": "136",
+        "total_instructions": "136",
         "calls": "",
-        "basicblocks": "4",
+        "basicblocks": "21",
         "loads": {
-            "G": "1",
-            "L": "4"
+            "L": "33"
         },
         "stores": {
-            "L": "6"
+            "L": "18"
         },
         "loops": {
             "L": "1"
         }
     },
     "11": {
-        "name": "Crypto_Pipeline_NTT_PE_LOOP",
+        "name": "Crypto_Pipeline_POLY_SUB_LOOP",
         "file": "Crypto.cpp",
         "fileloc": "0",
-        "instructions": "129",
-        "total_instructions": "129",
+        "instructions": "155",
+        "total_instructions": "155",
         "calls": "",
-        "basicblocks": "4",
+        "basicblocks": "40",
         "loads": {
-            "G": "1",
-            "L": "4"
+            "L": "33"
         },
         "stores": {
-            "L": "6"
+            "L": "34"
         },
         "loops": {
             "L": "1"
         }
     },
     "12": {
-        "name": "Crypto_Pipeline_VITIS_LOOP_126_5",
+        "name": "Crypto_Pipeline_PERMUTE_LOOP",
         "file": "Crypto.cpp",
         "fileloc": "0",
-        "instructions": "21",
-        "total_instructions": "21",
+        "instructions": "136",
+        "total_instructions": "136",
         "calls": "",
-        "basicblocks": "4",
+        "basicblocks": "21",
         "loads": {
-            "L": "2"
+            "L": "33"
         },
         "stores": {
-            "G": "1",
-            "L": "2"
+            "L": "18"
         },
         "loops": {
             "L": "1"
         }
     },
     "13": {
-        "name": "Crypto_Pipeline_VITIS_LOOP_89_1",
+        "name": "MUL_MOD.1",
         "file": "Crypto.cpp",
         "fileloc": "0",
-        "instructions": "21",
-        "total_instructions": "21",
+        "instructions": "86",
+        "total_instructions": "86",
         "calls": "",
-        "basicblocks": "4",
+        "basicblocks": "1"
+    },
+    "14": {
+        "name": "Crypto_Pipeline_VITIS_LOOP_79_1",
+        "file": "Crypto.cpp",
+        "fileloc": "0",
+        "instructions": "155",
+        "total_instructions": "155",
+        "calls": "",
+        "basicblocks": "40",
         "loads": {
-            "G": "1",
-            "L": "1"
+            "L": "33"
         },
         "stores": {
-            "L": "3"
+            "L": "34"
         },
         "loops": {
             "L": "1"
         }
+    },
+    "15": {
+        "name": "Crypto_Pipeline_INTT_PE_LOOP",
+        "file": "Crypto.cpp",
+        "fileloc": "0",
+        "instructions": "496",
+        "total_instructions": "582",
+        "calls": "2",
+        "basicblocks": "156",
+        "loads": {
+            "L": "82"
+        },
+        "stores": {
+            "L": "132"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "16": {
+        "name": "MUL_MOD",
+        "file": "Crypto.cpp",
+        "fileloc": "0",
+        "instructions": "91",
+        "total_instructions": "91",
+        "calls": "",
+        "basicblocks": "1"
     }
 }

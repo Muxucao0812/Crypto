@@ -11,7 +11,7 @@ use IEEE.NUMERIC_STD.all;
 
 entity Crypto_control_s_axi is
 generic (
-    C_S_AXI_ADDR_WIDTH    : INTEGER := 7;
+    C_S_AXI_ADDR_WIDTH    : INTEGER := 16;
     C_S_AXI_DATA_WIDTH    : INTEGER := 32);
 port (
     ACLK                  :in   STD_LOGIC;
@@ -35,16 +35,20 @@ port (
     RVALID                :out  STD_LOGIC;
     RREADY                :in   STD_LOGIC;
     interrupt             :out  STD_LOGIC;
-    DataIn                :out  STD_LOGIC_VECTOR(31 downto 0);
-    Address               :out  STD_LOGIC_VECTOR(31 downto 0);
-    DataOutput            :in   STD_LOGIC_VECTOR(31 downto 0);
-    DataOutput_ap_vld     :in   STD_LOGIC;
     RAMSel                :out  STD_LOGIC_VECTOR(31 downto 0);
-    TwiddleIn_address0    :in   STD_LOGIC_VECTOR(0 downto 0);
-    TwiddleIn_ce0         :in   STD_LOGIC;
-    TwiddleIn_q0          :out  STD_LOGIC_VECTOR(31 downto 0);
     OP                    :out  STD_LOGIC_VECTOR(31 downto 0);
     ModIndex              :out  STD_LOGIC_VECTOR(31 downto 0);
+    NTTTwiddleIn_address0 :in   STD_LOGIC_VECTOR(10 downto 0);
+    NTTTwiddleIn_ce0      :in   STD_LOGIC;
+    NTTTwiddleIn_q0       :out  STD_LOGIC_VECTOR(31 downto 0);
+    DataIn_address0       :in   STD_LOGIC_VECTOR(11 downto 0);
+    DataIn_ce0            :in   STD_LOGIC;
+    DataIn_we0            :in   STD_LOGIC;
+    DataIn_d0             :in   STD_LOGIC_VECTOR(31 downto 0);
+    DataIn_q0             :out  STD_LOGIC_VECTOR(31 downto 0);
+    INTTTwiddleIn_address0 :in   STD_LOGIC_VECTOR(10 downto 0);
+    INTTTwiddleIn_ce0     :in   STD_LOGIC;
+    INTTTwiddleIn_q0      :out  STD_LOGIC_VECTOR(31 downto 0);
     ap_start              :out  STD_LOGIC;
     ap_done               :in   STD_LOGIC;
     ap_ready              :in   STD_LOGIC;
@@ -53,48 +57,43 @@ port (
 end entity Crypto_control_s_axi;
 
 -- ------------------------Address Info-------------------
--- 0x00 : Control signals
---        bit 0  - ap_start (Read/Write/COH)
---        bit 1  - ap_done (Read/COR)
---        bit 2  - ap_idle (Read)
---        bit 3  - ap_ready (Read/COR)
---        bit 7  - auto_restart (Read/Write)
---        bit 9  - interrupt (Read)
---        others - reserved
--- 0x04 : Global Interrupt Enable Register
---        bit 0  - Global Interrupt Enable (Read/Write)
---        others - reserved
--- 0x08 : IP Interrupt Enable Register (Read/Write)
---        bit 0 - enable ap_done interrupt (Read/Write)
---        bit 1 - enable ap_ready interrupt (Read/Write)
---        others - reserved
--- 0x0c : IP Interrupt Status Register (Read/TOW)
---        bit 0 - ap_done (Read/TOW)
---        bit 1 - ap_ready (Read/TOW)
---        others - reserved
--- 0x10 : Data signal of DataIn
---        bit 31~0 - DataIn[31:0] (Read/Write)
--- 0x14 : reserved
--- 0x18 : Data signal of Address
---        bit 31~0 - Address[31:0] (Read/Write)
--- 0x1c : reserved
--- 0x20 : Data signal of DataOutput
---        bit 31~0 - DataOutput[31:0] (Read)
--- 0x24 : Control signal of DataOutput
---        bit 0  - DataOutput_ap_vld (Read/COR)
---        others - reserved
--- 0x28 : Data signal of RAMSel
---        bit 31~0 - RAMSel[31:0] (Read/Write)
--- 0x2c : reserved
--- 0x38 : Data signal of OP
---        bit 31~0 - OP[31:0] (Read/Write)
--- 0x3c : reserved
--- 0x40 : Data signal of ModIndex
---        bit 31~0 - ModIndex[31:0] (Read/Write)
--- 0x44 : reserved
--- 0x30 ~
--- 0x37 : Memory 'TwiddleIn' (2 * 32b)
---        Word n : bit [31:0] - TwiddleIn[n]
+-- 0x0000 : Control signals
+--          bit 0  - ap_start (Read/Write/COH)
+--          bit 1  - ap_done (Read/COR)
+--          bit 2  - ap_idle (Read)
+--          bit 3  - ap_ready (Read/COR)
+--          bit 7  - auto_restart (Read/Write)
+--          bit 9  - interrupt (Read)
+--          others - reserved
+-- 0x0004 : Global Interrupt Enable Register
+--          bit 0  - Global Interrupt Enable (Read/Write)
+--          others - reserved
+-- 0x0008 : IP Interrupt Enable Register (Read/Write)
+--          bit 0 - enable ap_done interrupt (Read/Write)
+--          bit 1 - enable ap_ready interrupt (Read/Write)
+--          others - reserved
+-- 0x000c : IP Interrupt Status Register (Read/TOW)
+--          bit 0 - ap_done (Read/TOW)
+--          bit 1 - ap_ready (Read/TOW)
+--          others - reserved
+-- 0x0010 : Data signal of RAMSel
+--          bit 31~0 - RAMSel[31:0] (Read/Write)
+-- 0x0014 : reserved
+-- 0x0018 : Data signal of OP
+--          bit 31~0 - OP[31:0] (Read/Write)
+-- 0x001c : reserved
+-- 0x0020 : Data signal of ModIndex
+--          bit 31~0 - ModIndex[31:0] (Read/Write)
+-- 0x0024 : reserved
+-- 0x2000 ~
+-- 0x3fff : Memory 'NTTTwiddleIn' (2048 * 32b)
+--          Word n : bit [31:0] - NTTTwiddleIn[n]
+-- 0x4000 ~
+-- 0x7fff : Memory 'DataIn' (4096 * 32b)
+--          Word n : bit [31:0] - DataIn[n]
+-- 0x8000 ~
+-- 0x9fff : Memory 'INTTTwiddleIn' (2048 * 32b)
+--          Word n : bit [31:0] - INTTTwiddleIn[n]
 -- (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 architecture behave of Crypto_control_s_axi is
@@ -102,25 +101,23 @@ architecture behave of Crypto_control_s_axi is
     signal wstate  : states := wrreset;
     signal rstate  : states := rdreset;
     signal wnext, rnext: states;
-    constant ADDR_AP_CTRL           : INTEGER := 16#00#;
-    constant ADDR_GIE               : INTEGER := 16#04#;
-    constant ADDR_IER               : INTEGER := 16#08#;
-    constant ADDR_ISR               : INTEGER := 16#0c#;
-    constant ADDR_DATAIN_DATA_0     : INTEGER := 16#10#;
-    constant ADDR_DATAIN_CTRL       : INTEGER := 16#14#;
-    constant ADDR_ADDRESS_DATA_0    : INTEGER := 16#18#;
-    constant ADDR_ADDRESS_CTRL      : INTEGER := 16#1c#;
-    constant ADDR_DATAOUTPUT_DATA_0 : INTEGER := 16#20#;
-    constant ADDR_DATAOUTPUT_CTRL   : INTEGER := 16#24#;
-    constant ADDR_RAMSEL_DATA_0     : INTEGER := 16#28#;
-    constant ADDR_RAMSEL_CTRL       : INTEGER := 16#2c#;
-    constant ADDR_OP_DATA_0         : INTEGER := 16#38#;
-    constant ADDR_OP_CTRL           : INTEGER := 16#3c#;
-    constant ADDR_MODINDEX_DATA_0   : INTEGER := 16#40#;
-    constant ADDR_MODINDEX_CTRL     : INTEGER := 16#44#;
-    constant ADDR_TWIDDLEIN_BASE    : INTEGER := 16#30#;
-    constant ADDR_TWIDDLEIN_HIGH    : INTEGER := 16#37#;
-    constant ADDR_BITS         : INTEGER := 7;
+    constant ADDR_AP_CTRL            : INTEGER := 16#0000#;
+    constant ADDR_GIE                : INTEGER := 16#0004#;
+    constant ADDR_IER                : INTEGER := 16#0008#;
+    constant ADDR_ISR                : INTEGER := 16#000c#;
+    constant ADDR_RAMSEL_DATA_0      : INTEGER := 16#0010#;
+    constant ADDR_RAMSEL_CTRL        : INTEGER := 16#0014#;
+    constant ADDR_OP_DATA_0          : INTEGER := 16#0018#;
+    constant ADDR_OP_CTRL            : INTEGER := 16#001c#;
+    constant ADDR_MODINDEX_DATA_0    : INTEGER := 16#0020#;
+    constant ADDR_MODINDEX_CTRL      : INTEGER := 16#0024#;
+    constant ADDR_NTTTWIDDLEIN_BASE  : INTEGER := 16#2000#;
+    constant ADDR_NTTTWIDDLEIN_HIGH  : INTEGER := 16#3fff#;
+    constant ADDR_DATAIN_BASE        : INTEGER := 16#4000#;
+    constant ADDR_DATAIN_HIGH        : INTEGER := 16#7fff#;
+    constant ADDR_INTTTWIDDLEIN_BASE : INTEGER := 16#8000#;
+    constant ADDR_INTTTWIDDLEIN_HIGH : INTEGER := 16#9fff#;
+    constant ADDR_BITS         : INTEGER := 16;
 
     signal waddr               : UNSIGNED(ADDR_BITS-1 downto 0);
     signal wmask               : UNSIGNED(C_S_AXI_DATA_WIDTH-1 downto 0);
@@ -148,25 +145,45 @@ architecture behave of Crypto_control_s_axi is
     signal int_gie             : STD_LOGIC := '0';
     signal int_ier             : UNSIGNED(1 downto 0) := (others => '0');
     signal int_isr             : UNSIGNED(1 downto 0) := (others => '0');
-    signal int_DataIn          : UNSIGNED(31 downto 0) := (others => '0');
-    signal int_Address         : UNSIGNED(31 downto 0) := (others => '0');
-    signal int_DataOutput_ap_vld : STD_LOGIC;
-    signal int_DataOutput      : UNSIGNED(31 downto 0) := (others => '0');
     signal int_RAMSel          : UNSIGNED(31 downto 0) := (others => '0');
     signal int_OP              : UNSIGNED(31 downto 0) := (others => '0');
     signal int_ModIndex        : UNSIGNED(31 downto 0) := (others => '0');
     -- memory signals
-    signal int_TwiddleIn_address0 : UNSIGNED(0 downto 0);
-    signal int_TwiddleIn_ce0   : STD_LOGIC;
-    signal int_TwiddleIn_q0    : UNSIGNED(31 downto 0);
-    signal int_TwiddleIn_address1 : UNSIGNED(0 downto 0);
-    signal int_TwiddleIn_ce1   : STD_LOGIC;
-    signal int_TwiddleIn_we1   : STD_LOGIC;
-    signal int_TwiddleIn_be1   : UNSIGNED(3 downto 0);
-    signal int_TwiddleIn_d1    : UNSIGNED(31 downto 0);
-    signal int_TwiddleIn_q1    : UNSIGNED(31 downto 0);
-    signal int_TwiddleIn_read  : STD_LOGIC;
-    signal int_TwiddleIn_write : STD_LOGIC;
+    signal int_NTTTwiddleIn_address0 : UNSIGNED(10 downto 0);
+    signal int_NTTTwiddleIn_ce0 : STD_LOGIC;
+    signal int_NTTTwiddleIn_q0 : UNSIGNED(31 downto 0);
+    signal int_NTTTwiddleIn_address1 : UNSIGNED(10 downto 0);
+    signal int_NTTTwiddleIn_ce1 : STD_LOGIC;
+    signal int_NTTTwiddleIn_we1 : STD_LOGIC;
+    signal int_NTTTwiddleIn_be1 : UNSIGNED(3 downto 0);
+    signal int_NTTTwiddleIn_d1 : UNSIGNED(31 downto 0);
+    signal int_NTTTwiddleIn_q1 : UNSIGNED(31 downto 0);
+    signal int_NTTTwiddleIn_read : STD_LOGIC;
+    signal int_NTTTwiddleIn_write : STD_LOGIC;
+    signal int_DataIn_address0 : UNSIGNED(11 downto 0);
+    signal int_DataIn_ce0      : STD_LOGIC;
+    signal int_DataIn_be0      : UNSIGNED(3 downto 0);
+    signal int_DataIn_d0       : UNSIGNED(31 downto 0);
+    signal int_DataIn_q0       : UNSIGNED(31 downto 0);
+    signal int_DataIn_address1 : UNSIGNED(11 downto 0);
+    signal int_DataIn_ce1      : STD_LOGIC;
+    signal int_DataIn_we1      : STD_LOGIC;
+    signal int_DataIn_be1      : UNSIGNED(3 downto 0);
+    signal int_DataIn_d1       : UNSIGNED(31 downto 0);
+    signal int_DataIn_q1       : UNSIGNED(31 downto 0);
+    signal int_DataIn_read     : STD_LOGIC;
+    signal int_DataIn_write    : STD_LOGIC;
+    signal int_INTTTwiddleIn_address0 : UNSIGNED(10 downto 0);
+    signal int_INTTTwiddleIn_ce0 : STD_LOGIC;
+    signal int_INTTTwiddleIn_q0 : UNSIGNED(31 downto 0);
+    signal int_INTTTwiddleIn_address1 : UNSIGNED(10 downto 0);
+    signal int_INTTTwiddleIn_ce1 : STD_LOGIC;
+    signal int_INTTTwiddleIn_we1 : STD_LOGIC;
+    signal int_INTTTwiddleIn_be1 : UNSIGNED(3 downto 0);
+    signal int_INTTTwiddleIn_d1 : UNSIGNED(31 downto 0);
+    signal int_INTTTwiddleIn_q1 : UNSIGNED(31 downto 0);
+    signal int_INTTTwiddleIn_read : STD_LOGIC;
+    signal int_INTTTwiddleIn_write : STD_LOGIC;
 
     component Crypto_control_s_axi_ram is
         generic (
@@ -204,27 +221,69 @@ architecture behave of Crypto_control_s_axi is
 
 begin
 -- ----------------------- Instantiation------------------
--- int_TwiddleIn
-int_TwiddleIn : Crypto_control_s_axi_ram
+-- int_NTTTwiddleIn
+int_NTTTwiddleIn : Crypto_control_s_axi_ram
 generic map (
      MEM_STYLE => "auto",
      MEM_TYPE  => "2P",
      BYTES     => 4,
-     DEPTH     => 2,
-     AWIDTH    => log2(2))
+     DEPTH     => 2048,
+     AWIDTH    => log2(2048))
 port map (
      clk0      => ACLK,
-     address0  => int_TwiddleIn_address0,
-     ce0       => int_TwiddleIn_ce0,
+     address0  => int_NTTTwiddleIn_address0,
+     ce0       => int_NTTTwiddleIn_ce0,
      we0       => (others=>'0'),
      d0        => (others=>'0'),
-     q0        => int_TwiddleIn_q0,
+     q0        => int_NTTTwiddleIn_q0,
      clk1      => ACLK,
-     address1  => int_TwiddleIn_address1,
-     ce1       => int_TwiddleIn_ce1,
-     we1       => int_TwiddleIn_be1,
-     d1        => int_TwiddleIn_d1,
-     q1        => int_TwiddleIn_q1);
+     address1  => int_NTTTwiddleIn_address1,
+     ce1       => int_NTTTwiddleIn_ce1,
+     we1       => int_NTTTwiddleIn_be1,
+     d1        => int_NTTTwiddleIn_d1,
+     q1        => int_NTTTwiddleIn_q1);
+-- int_DataIn
+int_DataIn : Crypto_control_s_axi_ram
+generic map (
+     MEM_STYLE => "auto",
+     MEM_TYPE  => "T2P",
+     BYTES     => 4,
+     DEPTH     => 4096,
+     AWIDTH    => log2(4096))
+port map (
+     clk0      => ACLK,
+     address0  => int_DataIn_address0,
+     ce0       => int_DataIn_ce0,
+     we0       => int_DataIn_be0,
+     d0        => int_DataIn_d0,
+     q0        => int_DataIn_q0,
+     clk1      => ACLK,
+     address1  => int_DataIn_address1,
+     ce1       => int_DataIn_ce1,
+     we1       => int_DataIn_be1,
+     d1        => int_DataIn_d1,
+     q1        => int_DataIn_q1);
+-- int_INTTTwiddleIn
+int_INTTTwiddleIn : Crypto_control_s_axi_ram
+generic map (
+     MEM_STYLE => "auto",
+     MEM_TYPE  => "2P",
+     BYTES     => 4,
+     DEPTH     => 2048,
+     AWIDTH    => log2(2048))
+port map (
+     clk0      => ACLK,
+     address0  => int_INTTTwiddleIn_address0,
+     ce0       => int_INTTTwiddleIn_ce0,
+     we0       => (others=>'0'),
+     d0        => (others=>'0'),
+     q0        => int_INTTTwiddleIn_q0,
+     clk1      => ACLK,
+     address1  => int_INTTTwiddleIn_address1,
+     ce1       => int_INTTTwiddleIn_ce1,
+     we1       => int_INTTTwiddleIn_be1,
+     d1        => int_INTTTwiddleIn_d1,
+     q1        => int_INTTTwiddleIn_q1);
 
 
 -- ----------------------- AXI WRITE ---------------------
@@ -292,7 +351,7 @@ port map (
     ARREADY <= ARREADY_t;
     RDATA   <= STD_LOGIC_VECTOR(rdata_data);
     RRESP   <= "00";  -- OKAY
-    RVALID_t  <= '1' when (rstate = rddata) and (int_TwiddleIn_read = '0') else '0';
+    RVALID_t  <= '1' when (rstate = rddata) and (int_NTTTwiddleIn_read = '0') and (int_DataIn_read = '0') and (int_INTTTwiddleIn_read = '0') else '0';
     RVALID    <= RVALID_t;
     ar_hs   <= ARVALID and ARREADY_t;
     raddr   <= UNSIGNED(ARADDR(ADDR_BITS-1 downto 0));
@@ -349,14 +408,6 @@ port map (
                         rdata_data(1 downto 0) <= int_ier;
                     when ADDR_ISR =>
                         rdata_data(1 downto 0) <= int_isr;
-                    when ADDR_DATAIN_DATA_0 =>
-                        rdata_data <= RESIZE(int_DataIn(31 downto 0), 32);
-                    when ADDR_ADDRESS_DATA_0 =>
-                        rdata_data <= RESIZE(int_Address(31 downto 0), 32);
-                    when ADDR_DATAOUTPUT_DATA_0 =>
-                        rdata_data <= RESIZE(int_DataOutput(31 downto 0), 32);
-                    when ADDR_DATAOUTPUT_CTRL =>
-                        rdata_data(0) <= int_DataOutput_ap_vld;
                     when ADDR_RAMSEL_DATA_0 =>
                         rdata_data <= RESIZE(int_RAMSel(31 downto 0), 32);
                     when ADDR_OP_DATA_0 =>
@@ -366,8 +417,12 @@ port map (
                     when others =>
                         NULL;
                     end case;
-                elsif (int_TwiddleIn_read = '1') then
-                    rdata_data <= int_TwiddleIn_q1;
+                elsif (int_NTTTwiddleIn_read = '1') then
+                    rdata_data <= int_NTTTwiddleIn_q1;
+                elsif (int_DataIn_read = '1') then
+                    rdata_data <= int_DataIn_q1;
+                elsif (int_INTTTwiddleIn_read = '1') then
+                    rdata_data <= int_INTTTwiddleIn_q1;
                 end if;
             end if;
         end if;
@@ -379,8 +434,6 @@ port map (
     task_ap_done         <= (ap_done and not auto_restart_status) or auto_restart_done;
     task_ap_ready        <= ap_ready and not int_auto_restart;
     auto_restart_done    <= auto_restart_status and (ap_idle and not int_ap_idle);
-    DataIn               <= STD_LOGIC_VECTOR(int_DataIn);
-    Address              <= STD_LOGIC_VECTOR(int_Address);
     RAMSel               <= STD_LOGIC_VECTOR(int_RAMSel);
     OP                   <= STD_LOGIC_VECTOR(int_OP);
     ModIndex             <= STD_LOGIC_VECTOR(int_ModIndex);
@@ -559,56 +612,6 @@ port map (
     begin
         if (ACLK'event and ACLK = '1') then
             if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_DATAIN_DATA_0) then
-                    int_DataIn(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_DataIn(31 downto 0));
-                end if;
-            end if;
-        end if;
-    end process;
-
-    process (ACLK)
-    begin
-        if (ACLK'event and ACLK = '1') then
-            if (ACLK_EN = '1') then
-                if (w_hs = '1' and waddr = ADDR_ADDRESS_DATA_0) then
-                    int_Address(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_Address(31 downto 0));
-                end if;
-            end if;
-        end if;
-    end process;
-
-    process (ACLK)
-    begin
-        if (ACLK'event and ACLK = '1') then
-            if (ARESET = '1') then
-                int_DataOutput <= (others => '0');
-            elsif (ACLK_EN = '1') then
-                if (DataOutput_ap_vld = '1') then
-                    int_DataOutput <= UNSIGNED(DataOutput);
-                end if;
-            end if;
-        end if;
-    end process;
-
-    process (ACLK)
-    begin
-        if (ACLK'event and ACLK = '1') then
-            if (ARESET = '1') then
-                int_DataOutput_ap_vld <= '0';
-            elsif (ACLK_EN = '1') then
-                if (DataOutput_ap_vld = '1') then
-                    int_DataOutput_ap_vld <= '1';
-                elsif (ar_hs = '1' and raddr = ADDR_DATAOUTPUT_CTRL) then
-                    int_DataOutput_ap_vld <= '0'; -- clear on read
-                end if;
-            end if;
-        end if;
-    end process;
-
-    process (ACLK)
-    begin
-        if (ACLK'event and ACLK = '1') then
-            if (ACLK_EN = '1') then
                 if (w_hs = '1' and waddr = ADDR_RAMSEL_DATA_0) then
                     int_RAMSel(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_RAMSel(31 downto 0));
                 end if;
@@ -640,26 +643,46 @@ port map (
 
 
 -- ----------------------- Memory logic ------------------
-    -- TwiddleIn
-    int_TwiddleIn_address0 <= UNSIGNED(TwiddleIn_address0);
-    int_TwiddleIn_ce0    <= TwiddleIn_ce0;
-    TwiddleIn_q0         <= STD_LOGIC_VECTOR(RESIZE(int_TwiddleIn_q0, 32));
-    int_TwiddleIn_address1 <= raddr(2 downto 2) when ar_hs = '1' else waddr(2 downto 2);
-    int_TwiddleIn_ce1    <= '1' when ar_hs = '1' or (int_TwiddleIn_write = '1' and WVALID  = '1') else '0';
-    int_TwiddleIn_we1    <= '1' when int_TwiddleIn_write = '1' and w_hs = '1' else '0';
-    int_TwiddleIn_be1    <= UNSIGNED(WSTRB) when int_TwiddleIn_we1 = '1' else (others=>'0');
-    int_TwiddleIn_d1     <= UNSIGNED(WDATA);
+    -- NTTTwiddleIn
+    int_NTTTwiddleIn_address0 <= UNSIGNED(NTTTwiddleIn_address0);
+    int_NTTTwiddleIn_ce0 <= NTTTwiddleIn_ce0;
+    NTTTwiddleIn_q0      <= STD_LOGIC_VECTOR(RESIZE(int_NTTTwiddleIn_q0, 32));
+    int_NTTTwiddleIn_address1 <= raddr(12 downto 2) when ar_hs = '1' else waddr(12 downto 2);
+    int_NTTTwiddleIn_ce1 <= '1' when ar_hs = '1' or (int_NTTTwiddleIn_write = '1' and WVALID  = '1') else '0';
+    int_NTTTwiddleIn_we1 <= '1' when int_NTTTwiddleIn_write = '1' and w_hs = '1' else '0';
+    int_NTTTwiddleIn_be1 <= UNSIGNED(WSTRB) when int_NTTTwiddleIn_we1 = '1' else (others=>'0');
+    int_NTTTwiddleIn_d1  <= UNSIGNED(WDATA);
+    -- DataIn
+    int_DataIn_address0  <= UNSIGNED(DataIn_address0);
+    int_DataIn_ce0       <= DataIn_ce0;
+    int_DataIn_be0       <= (others => DataIn_we0);
+    int_DataIn_d0        <= RESIZE(UNSIGNED(DataIn_d0), 32);
+    DataIn_q0            <= STD_LOGIC_VECTOR(RESIZE(int_DataIn_q0, 32));
+    int_DataIn_address1  <= raddr(13 downto 2) when ar_hs = '1' else waddr(13 downto 2);
+    int_DataIn_ce1       <= '1' when ar_hs = '1' or (int_DataIn_write = '1' and WVALID  = '1') else '0';
+    int_DataIn_we1       <= '1' when int_DataIn_write = '1' and w_hs = '1' else '0';
+    int_DataIn_be1       <= UNSIGNED(WSTRB) when int_DataIn_we1 = '1' else (others=>'0');
+    int_DataIn_d1        <= UNSIGNED(WDATA);
+    -- INTTTwiddleIn
+    int_INTTTwiddleIn_address0 <= UNSIGNED(INTTTwiddleIn_address0);
+    int_INTTTwiddleIn_ce0 <= INTTTwiddleIn_ce0;
+    INTTTwiddleIn_q0     <= STD_LOGIC_VECTOR(RESIZE(int_INTTTwiddleIn_q0, 32));
+    int_INTTTwiddleIn_address1 <= raddr(12 downto 2) when ar_hs = '1' else waddr(12 downto 2);
+    int_INTTTwiddleIn_ce1 <= '1' when ar_hs = '1' or (int_INTTTwiddleIn_write = '1' and WVALID  = '1') else '0';
+    int_INTTTwiddleIn_we1 <= '1' when int_INTTTwiddleIn_write = '1' and w_hs = '1' else '0';
+    int_INTTTwiddleIn_be1 <= UNSIGNED(WSTRB) when int_INTTTwiddleIn_we1 = '1' else (others=>'0');
+    int_INTTTwiddleIn_d1 <= UNSIGNED(WDATA);
 
     process (ACLK)
     begin
         if (ACLK'event and ACLK = '1') then
             if (ARESET = '1') then
-                int_TwiddleIn_read <= '0';
+                int_NTTTwiddleIn_read <= '0';
             elsif (ACLK_EN = '1') then
-                if (ar_hs = '1' and raddr >= ADDR_TWIDDLEIN_BASE and raddr <= ADDR_TWIDDLEIN_HIGH) then
-                    int_TwiddleIn_read <= '1';
+                if (ar_hs = '1' and raddr >= ADDR_NTTTWIDDLEIN_BASE and raddr <= ADDR_NTTTWIDDLEIN_HIGH) then
+                    int_NTTTwiddleIn_read <= '1';
                 else
-                    int_TwiddleIn_read <= '0';
+                    int_NTTTwiddleIn_read <= '0';
                 end if;
             end if;
         end if;
@@ -669,12 +692,72 @@ port map (
     begin
         if (ACLK'event and ACLK = '1') then
             if (ARESET = '1') then
-                int_TwiddleIn_write <= '0';
+                int_NTTTwiddleIn_write <= '0';
             elsif (ACLK_EN = '1') then
-                if (aw_hs = '1' and UNSIGNED(AWADDR(ADDR_BITS-1 downto 0)) >= ADDR_TWIDDLEIN_BASE and UNSIGNED(AWADDR(ADDR_BITS-1 downto 0)) <= ADDR_TWIDDLEIN_HIGH) then
-                    int_TwiddleIn_write <= '1';
+                if (aw_hs = '1' and UNSIGNED(AWADDR(ADDR_BITS-1 downto 0)) >= ADDR_NTTTWIDDLEIN_BASE and UNSIGNED(AWADDR(ADDR_BITS-1 downto 0)) <= ADDR_NTTTWIDDLEIN_HIGH) then
+                    int_NTTTwiddleIn_write <= '1';
                 elsif (w_hs = '1') then
-                    int_TwiddleIn_write <= '0';
+                    int_NTTTwiddleIn_write <= '0';
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ARESET = '1') then
+                int_DataIn_read <= '0';
+            elsif (ACLK_EN = '1') then
+                if (ar_hs = '1' and raddr >= ADDR_DATAIN_BASE and raddr <= ADDR_DATAIN_HIGH) then
+                    int_DataIn_read <= '1';
+                else
+                    int_DataIn_read <= '0';
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ARESET = '1') then
+                int_DataIn_write <= '0';
+            elsif (ACLK_EN = '1') then
+                if (aw_hs = '1' and UNSIGNED(AWADDR(ADDR_BITS-1 downto 0)) >= ADDR_DATAIN_BASE and UNSIGNED(AWADDR(ADDR_BITS-1 downto 0)) <= ADDR_DATAIN_HIGH) then
+                    int_DataIn_write <= '1';
+                elsif (w_hs = '1') then
+                    int_DataIn_write <= '0';
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ARESET = '1') then
+                int_INTTTwiddleIn_read <= '0';
+            elsif (ACLK_EN = '1') then
+                if (ar_hs = '1' and raddr >= ADDR_INTTTWIDDLEIN_BASE and raddr <= ADDR_INTTTWIDDLEIN_HIGH) then
+                    int_INTTTwiddleIn_read <= '1';
+                else
+                    int_INTTTwiddleIn_read <= '0';
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ARESET = '1') then
+                int_INTTTwiddleIn_write <= '0';
+            elsif (ACLK_EN = '1') then
+                if (aw_hs = '1' and UNSIGNED(AWADDR(ADDR_BITS-1 downto 0)) >= ADDR_INTTTWIDDLEIN_BASE and UNSIGNED(AWADDR(ADDR_BITS-1 downto 0)) <= ADDR_INTTTWIDDLEIN_HIGH) then
+                    int_INTTTwiddleIn_write <= '1';
+                elsif (w_hs = '1') then
+                    int_INTTTwiddleIn_write <= '0';
                 end if;
             end if;
         end if;

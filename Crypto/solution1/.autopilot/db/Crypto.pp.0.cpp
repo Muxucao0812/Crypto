@@ -38364,17 +38364,11 @@ void GenerateTFAddress(int *address, int stage, int Address[PE_NUM]);
 
 
 
-extern long_int data_ram[RAMNum][BANKNum][RAMDepth];
 __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
-    long_int DataIn[BANKNum],
-    int Address[BANKNum],
-    long_int DataOutput[BANKNum],
-
+    long_int DataIn[N],
     int RAMSel,
-
-    long_int TwiddleIn[PE_NUM],
-    int TwiddleAddress[PE_NUM],
-    long_int TwiddleOutput[PE_NUM],
+    long_int NTTTwiddleIn[N/2],
+    long_int INTTTwiddleIn[N/2],
 
     CryptoOperation OP,
     int ModIndex
@@ -42456,99 +42450,113 @@ void read_twiddle_factor(int address[PE_NUM], long_int data[PE_NUM], Operation o
 # 10 "Crypto.cpp" 2
 
 __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
-    long_int DataIn[BANKNum],
-    int Address[BANKNum],
-    long_int DataOutput[BANKNum],
-
+    long_int DataIn[N],
     int RAMSel,
-
-    long_int TwiddleIn[2*PE_NUM],
-    int TwiddleAddress[PE_NUM],
-    long_int TwiddleOutput[PE_NUM],
+    long_int NTTTwiddleIn[N/2],
+    long_int INTTTwiddleIn[N/2],
 
     CryptoOperation OP,
     int ModIndex
 ){
-#line 69 "/home/meng/HLS/Crypto/script.tcl"
+#line 48 "/home/meng/HLS/Crypto/Crypto/solution1/csynth.tcl"
 #pragma HLSDIRECTIVE TOP name=Crypto
-# 24 "Crypto.cpp"
+# 19 "Crypto.cpp"
+
+#line 7 "/home/meng/HLS/Crypto/Crypto/solution1/directives.tcl"
+#pragma HLSDIRECTIVE TOP name=Crypto
+# 19 "Crypto.cpp"
+
+
+
+    long_int DataRAM[RAMNum][N];
+#pragma HLS ARRAY_PARTITION variable=DataRAM complete dim=1
+#pragma HLS ARRAY_PARTITION variable=DataRAM cyclic factor=16 dim=2
+
+
+
+ long_int BitReverseData[N];
+#pragma HLS ARRAY_PARTITION variable=BitReverseData cyclic factor=16
+
+ long_int NTTTWiddleRAM[N/2];
+#pragma HLS ARRAY_PARTITION variable=NTTTWiddleRAM cyclic factor=16
+ long_int INTTTWiddleRAM[N/2];
+#pragma HLS ARRAY_PARTITION variable=INTTTWiddleRAM cyclic factor=16
+
 
 #pragma HLS INTERFACE s_axilite port=return
 #pragma HLS INTERFACE s_axilite port=DataIn
-#pragma HLS INTERFACE s_axilite port=TwiddleIn
-#pragma HLS INTERFACE s_axilite port=Address
+#pragma HLS INTERFACE s_axilite port=NTTTwiddleIn
+#pragma HLS INTERFACE s_axilite port=INTTTwiddleIn
 #pragma HLS INTERFACE s_axilite port=RAMSel
-#pragma HLS INTERFACE s_axilite port=DataOutput
 #pragma HLS INTERFACE s_axilite port=OP
 #pragma HLS INTERFACE s_axilite port=ModIndex
 
- long_int temp1[BANKNum];
-    long_int temp2[BANKNum];
-    long_int temp3[BANKNum];
-    long_int temp4[BANKNum];
-    long_int twiddletemp[PE_NUM];
-    long_int DataTemp[N];
-    long_int bit_reversed_input[N];
-    int AddressTemp[BANKNum];
-
-    switch (OP)
+ switch (OP)
     {
         case POLY_WRITE:
-            write_data(Address, DataIn, RAMSel);
+            WRITE_DATA_LOOP:
+
+            for (int i = 0; i < N; i++){
+                DataRAM[RAMSel][i] = DataIn[i];
+            }
             break;
 
         case POLY_READ:
-            read_data(Address, DataOutput, RAMSel);
+            READ_DATA_LOOP:
+
+            for (int i = 0; i < N; i++){
+
+
+                DataIn[i] = DataRAM[RAMSel][i];
+            }
             break;
 
         case TWIDDLE_WRITE:
-            write_twiddle_factor(TwiddleAddress, TwiddleIn);
+            WRITE_TWIDDLE_LOOP:
+
+            for (int i = 0; i < N/2; i++){
+                NTTTWiddleRAM[i] = NTTTwiddleIn[i];
+                INTTTWiddleRAM[i] = INTTTwiddleIn[i];
+            }
             break;
 
-        case NTT_TWIDDLE_READ:
-            read_twiddle_factor(TwiddleAddress, TwiddleOutput, NTT_OP);
-            break;
-
-        case INTT_TWIDDLE_READ:
-            read_twiddle_factor(TwiddleAddress, TwiddleOutput, INTT_OP);
-            break;
 
         case POLY_ADD:
-            read_data(Address, temp1, 0);
-            read_data(Address, temp2, 1);
-            PE_ARRAY(temp1, temp2, nullptr, temp3, nullptr, ADD, ModIndex);
-            write_data(Address, temp3, 0);
+            POLY_ADD_LOOP:
+#pragma HLS PIPELINE II=1
+#pragma HLS UNROLL factor=16
+ VITIS_LOOP_79_1: for (int i = 0; i < N; i++){
+                ADD_MOD(&DataRAM[0][i], &DataRAM[1][i], &DataRAM[0][i], ModIndex);
+            }
             break;
 
         case POLY_SUB:
-            read_data(Address, temp1, 0);
-            read_data(Address, temp2, 1);
-            PE_ARRAY(temp1, temp2, nullptr, temp3, nullptr, SUB, ModIndex);
-            write_data(Address, temp3, 0);
+            POLY_SUB_LOOP:
+
+
+            for (int i = 0; i < N; i++){
+#pragma HLS PIPELINE II=1
+ SUB_MOD(&DataRAM[0][i], &DataRAM[1][i], &DataRAM[0][i], ModIndex);
+            }
             break;
 
         case POLY_MUL:
-            read_data(Address, temp1, 0);
-            read_data(Address, temp2, 1);
-            PE_ARRAY(temp1, temp2, nullptr, temp3, nullptr, MUL, ModIndex);
-            write_data(Address, temp3, 0);
+            POLY_MUL_LOOP:
+
+
+            for (int i = 0; i < N; i++){
+
+                MUL_MOD(&DataRAM[0][i], &DataRAM[1][i], &DataRAM[0][i], ModIndex);
+            }
             break;
 
         case POLY_NTT:
+            apply_bit_reverse(DataRAM[RAMSel], BitReverseData);
 
+            NTT_PERMUTE_LOOP:
 
-            VITIS_LOOP_89_1: for (int i = 0; i < RAMDepth; i++){
-                VITIS_LOOP_90_2: for (int j = 0; j < BANKNum; j++){
-                    AddressTemp[j] = i;
-                }
-                read_data(AddressTemp, temp1, RAMSel);
-                VITIS_LOOP_94_3: for (int j = 0; j < BANKNum; j++){
-                    DataTemp[i * BANKNum + j] = temp1[j];
-                }
-            }
-            apply_bit_reverse(DataTemp, bit_reversed_input);
-            VITIS_LOOP_99_4: for (int i = 0; i < N; i++){
-                DataTemp[i] = bit_reversed_input[i];
+            for (int i = 0; i < N; i++){
+                DataRAM[RAMSel][i] = BitReverseData[i];
             }
 
             NTT_STAGE_LOOP:
@@ -42556,49 +42564,33 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
                 int hf = h / 2;
                 int ut = N / h;
                 NTT_GROUP_LOOP:
+
                 for (int i = 0; i < N; i += h){
                     NTT_PE_LOOP:
+
                     for (int j = 0; j < hf; j++){
-#pragma HLS PIPELINE II=1
- long_int a1 = DataTemp[i + j];
-                        long_int a2 = DataTemp[i + j + hf];
-                        long_int tf = twiddle_ram[0][ut * j];
+
+                        long_int a1 = DataRAM[RAMSel][i + j];
+                        long_int a2 = DataRAM[RAMSel][i + j + hf];
+                        long_int tf = NTTTWiddleRAM[ut * j];
                         long_int u = a1;
                         long_int v;
                         MUL_MOD(&a2, &tf, &v, ModIndex);
-                        ADD_MOD(&u, &v, &DataTemp[i + j], ModIndex);
-                        SUB_MOD(&u, &v, &DataTemp[i + j + hf], ModIndex);
+                        ADD_MOD(&u, &v, &DataRAM[RAMSel][i + j], ModIndex);
+                        SUB_MOD(&u, &v, &DataRAM[RAMSel][i + j + hf], ModIndex);
 
                     }
                 }
             }
-
-
-            VITIS_LOOP_126_5: for (int i = 0; i < RAMDepth; i++){
-                VITIS_LOOP_127_6: for (int j = 0; j < BANKNum; j++){
-                    temp1[j] = DataTemp[i * BANKNum + j];
-                    AddressTemp[j] = i;
-                }
-                write_data(AddressTemp, temp1, RAMSel);
-            }
-
-
             break;
 
         case POLY_INTT:
-            VITIS_LOOP_138_7: for (int i = 0; i < RAMDepth; i++){
-                VITIS_LOOP_139_8: for (int j = 0; j < BANKNum; j++){
-                    AddressTemp[j] = i;
-                }
-                read_data(AddressTemp, temp1, RAMSel);
-                VITIS_LOOP_143_9: for (int j = 0; j < BANKNum; j++){
-                    DataTemp[i * BANKNum + j] = temp1[j];
-                }
-            }
+            apply_bit_reverse(DataRAM[RAMSel], BitReverseData);
 
-            apply_bit_reverse(DataTemp, bit_reversed_input);
-            VITIS_LOOP_149_10: for (int i = 0; i < N; i++){
-                DataTemp[i] = bit_reversed_input[i];
+            INTT_PERMUTE_LOOP:
+
+            for (int i = 0; i < N; i++){
+                DataRAM[RAMSel][i] = BitReverseData[i];
             }
 
             INTT_STAGE_LOOP:
@@ -42606,38 +42598,33 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
                 int hf = h / 2;
                 int ut = N / h;
                 INTT_GROUP_LOOP:
+
                 for (int i = 0; i < N; i += h){
                     INTT_PE_LOOP:
+
                     for (int j = 0; j < hf; j++){
-#pragma HLS PIPELINE II=1
- long_int a1 = DataTemp[i + j];
-                        long_int a2 = DataTemp[i + j + hf];
-                        long_int tf = twiddle_ram[1][ut * j];
+
+                        long_int a1 = DataRAM[RAMSel][i + j];
+                        long_int a2 = DataRAM[RAMSel][i + j + hf];
+                        long_int tf = INTTTWiddleRAM[ut * j];
                         long_int u = a1;
                         long_int v;
                         MUL_MOD(&a2, &tf, &v, ModIndex);
-                        ADD_MOD(&u, &v, &DataTemp[i + j], ModIndex);
-                        SUB_MOD(&u, &v, &DataTemp[i + j + hf], ModIndex);
+                        ADD_MOD(&u, &v, &DataRAM[RAMSel][i + j], ModIndex);
+                        SUB_MOD(&u, &v, &DataRAM[RAMSel][i + j + hf], ModIndex);
 
                     }
                 }
             }
 
             long_int n_inv = static_cast<long_int>(N_INV[ModIndex]);
-            VITIS_LOOP_176_11: for (int i = 0; i < N; i++){
-                MUL_MOD(&DataTemp[i], &n_inv, &DataTemp[i], ModIndex);
+            MUL_INV_LOOP:
+
+
+            for (int i = 0; i < N; i++){
+                MUL_MOD(&DataRAM[RAMSel][i], &n_inv, &DataRAM[RAMSel][i], ModIndex);
             }
-
-            VITIS_LOOP_180_12: for (int i = 0; i < RAMDepth; i++){
-                VITIS_LOOP_181_13: for (int j = 0; j < BANKNum; j++){
-                    temp1[j] = DataTemp[i * BANKNum + j];
-                    AddressTemp[j] = i;
-                }
-                write_data(AddressTemp, temp1, RAMSel);
-            }
-
-
             break;
-
     }
-};
+    return;
+}

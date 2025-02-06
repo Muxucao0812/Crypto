@@ -6,69 +6,65 @@
 // 
 // ==============================================================
 // control
-// 0x00 : Control signals
-//        bit 0  - ap_start (Read/Write/COH)
-//        bit 1  - ap_done (Read/COR)
-//        bit 2  - ap_idle (Read)
-//        bit 3  - ap_ready (Read/COR)
-//        bit 7  - auto_restart (Read/Write)
-//        bit 9  - interrupt (Read)
-//        others - reserved
-// 0x04 : Global Interrupt Enable Register
-//        bit 0  - Global Interrupt Enable (Read/Write)
-//        others - reserved
-// 0x08 : IP Interrupt Enable Register (Read/Write)
-//        bit 0 - enable ap_done interrupt (Read/Write)
-//        bit 1 - enable ap_ready interrupt (Read/Write)
-//        others - reserved
-// 0x0c : IP Interrupt Status Register (Read/TOW)
-//        bit 0 - ap_done (Read/TOW)
-//        bit 1 - ap_ready (Read/TOW)
-//        others - reserved
-// 0x10 : Data signal of DataIn
-//        bit 31~0 - DataIn[31:0] (Read/Write)
-// 0x14 : reserved
-// 0x18 : Data signal of Address
-//        bit 31~0 - Address[31:0] (Read/Write)
-// 0x1c : reserved
-// 0x20 : Data signal of DataOutput
-//        bit 31~0 - DataOutput[31:0] (Read)
-// 0x24 : Control signal of DataOutput
-//        bit 0  - DataOutput_ap_vld (Read/COR)
-//        others - reserved
-// 0x28 : Data signal of RAMSel
-//        bit 31~0 - RAMSel[31:0] (Read/Write)
-// 0x2c : reserved
-// 0x38 : Data signal of OP
-//        bit 31~0 - OP[31:0] (Read/Write)
-// 0x3c : reserved
-// 0x40 : Data signal of ModIndex
-//        bit 31~0 - ModIndex[31:0] (Read/Write)
-// 0x44 : reserved
-// 0x30 ~
-// 0x37 : Memory 'TwiddleIn' (2 * 32b)
-//        Word n : bit [31:0] - TwiddleIn[n]
+// 0x0000 : Control signals
+//          bit 0  - ap_start (Read/Write/COH)
+//          bit 1  - ap_done (Read/COR)
+//          bit 2  - ap_idle (Read)
+//          bit 3  - ap_ready (Read/COR)
+//          bit 7  - auto_restart (Read/Write)
+//          bit 9  - interrupt (Read)
+//          others - reserved
+// 0x0004 : Global Interrupt Enable Register
+//          bit 0  - Global Interrupt Enable (Read/Write)
+//          others - reserved
+// 0x0008 : IP Interrupt Enable Register (Read/Write)
+//          bit 0 - enable ap_done interrupt (Read/Write)
+//          bit 1 - enable ap_ready interrupt (Read/Write)
+//          others - reserved
+// 0x000c : IP Interrupt Status Register (Read/TOW)
+//          bit 0 - ap_done (Read/TOW)
+//          bit 1 - ap_ready (Read/TOW)
+//          others - reserved
+// 0x0010 : Data signal of RAMSel
+//          bit 31~0 - RAMSel[31:0] (Read/Write)
+// 0x0014 : reserved
+// 0x0018 : Data signal of OP
+//          bit 31~0 - OP[31:0] (Read/Write)
+// 0x001c : reserved
+// 0x0020 : Data signal of ModIndex
+//          bit 31~0 - ModIndex[31:0] (Read/Write)
+// 0x0024 : reserved
+// 0x2000 ~
+// 0x3fff : Memory 'NTTTwiddleIn' (2048 * 32b)
+//          Word n : bit [31:0] - NTTTwiddleIn[n]
+// 0x4000 ~
+// 0x7fff : Memory 'DataIn' (4096 * 32b)
+//          Word n : bit [31:0] - DataIn[n]
+// 0x8000 ~
+// 0x9fff : Memory 'INTTTwiddleIn' (2048 * 32b)
+//          Word n : bit [31:0] - INTTTwiddleIn[n]
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
-#define XCRYPTO_CONTROL_ADDR_AP_CTRL         0x00
-#define XCRYPTO_CONTROL_ADDR_GIE             0x04
-#define XCRYPTO_CONTROL_ADDR_IER             0x08
-#define XCRYPTO_CONTROL_ADDR_ISR             0x0c
-#define XCRYPTO_CONTROL_ADDR_DATAIN_DATA     0x10
-#define XCRYPTO_CONTROL_BITS_DATAIN_DATA     32
-#define XCRYPTO_CONTROL_ADDR_ADDRESS_DATA    0x18
-#define XCRYPTO_CONTROL_BITS_ADDRESS_DATA    32
-#define XCRYPTO_CONTROL_ADDR_DATAOUTPUT_DATA 0x20
-#define XCRYPTO_CONTROL_BITS_DATAOUTPUT_DATA 32
-#define XCRYPTO_CONTROL_ADDR_DATAOUTPUT_CTRL 0x24
-#define XCRYPTO_CONTROL_ADDR_RAMSEL_DATA     0x28
-#define XCRYPTO_CONTROL_BITS_RAMSEL_DATA     32
-#define XCRYPTO_CONTROL_ADDR_OP_DATA         0x38
-#define XCRYPTO_CONTROL_BITS_OP_DATA         32
-#define XCRYPTO_CONTROL_ADDR_MODINDEX_DATA   0x40
-#define XCRYPTO_CONTROL_BITS_MODINDEX_DATA   32
-#define XCRYPTO_CONTROL_ADDR_TWIDDLEIN_BASE  0x30
-#define XCRYPTO_CONTROL_ADDR_TWIDDLEIN_HIGH  0x37
-#define XCRYPTO_CONTROL_WIDTH_TWIDDLEIN      32
-#define XCRYPTO_CONTROL_DEPTH_TWIDDLEIN      2
+#define XCRYPTO_CONTROL_ADDR_AP_CTRL            0x0000
+#define XCRYPTO_CONTROL_ADDR_GIE                0x0004
+#define XCRYPTO_CONTROL_ADDR_IER                0x0008
+#define XCRYPTO_CONTROL_ADDR_ISR                0x000c
+#define XCRYPTO_CONTROL_ADDR_RAMSEL_DATA        0x0010
+#define XCRYPTO_CONTROL_BITS_RAMSEL_DATA        32
+#define XCRYPTO_CONTROL_ADDR_OP_DATA            0x0018
+#define XCRYPTO_CONTROL_BITS_OP_DATA            32
+#define XCRYPTO_CONTROL_ADDR_MODINDEX_DATA      0x0020
+#define XCRYPTO_CONTROL_BITS_MODINDEX_DATA      32
+#define XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_BASE  0x2000
+#define XCRYPTO_CONTROL_ADDR_NTTTWIDDLEIN_HIGH  0x3fff
+#define XCRYPTO_CONTROL_WIDTH_NTTTWIDDLEIN      32
+#define XCRYPTO_CONTROL_DEPTH_NTTTWIDDLEIN      2048
+#define XCRYPTO_CONTROL_ADDR_DATAIN_BASE        0x4000
+#define XCRYPTO_CONTROL_ADDR_DATAIN_HIGH        0x7fff
+#define XCRYPTO_CONTROL_WIDTH_DATAIN            32
+#define XCRYPTO_CONTROL_DEPTH_DATAIN            4096
+#define XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_BASE 0x8000
+#define XCRYPTO_CONTROL_ADDR_INTTTWIDDLEIN_HIGH 0x9fff
+#define XCRYPTO_CONTROL_WIDTH_INTTTWIDDLEIN     32
+#define XCRYPTO_CONTROL_DEPTH_INTTTWIDDLEIN     2048
 

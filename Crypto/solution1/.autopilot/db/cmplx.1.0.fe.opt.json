@@ -1,149 +1,23 @@
 {
   "0": {
-    "basicblocks": 147,
-    "calls": "13 15 16 21 21 15 15 24 13 15 15 24 13 15 15 24 13 15 11 1 4 3 13 15 11 1 4 3 1 13",
+    "basicblocks": 116,
+    "calls": "6 5 10 2 10 6 5 2 10 6 5 10",
     "file": "Crypto.cpp",
     "fileloc": 11,
-    "instructions": 515,
+    "instructions": 437,
     "loads": {
-      "G": 3,
-      "L": 10
+      "G": 1,
+      "L": 9,
+      "T": 3
     },
     "name": "Crypto",
     "stores": {
-      "L": 17
+      "L": 12,
+      "T": 1
     },
-    "total_instructions": 128777
+    "total_instructions": 23271
   },
   "1": {
-    "basicblocks": 7,
-    "calls": "19 19 19",
-    "file": "Arithmetic.cpp",
-    "fileloc": 61,
-    "instructions": 153,
-    "loads": {
-      "G": 2,
-      "L": 2
-    },
-    "name": "MUL_MOD",
-    "stores": {
-      "L": 4
-    },
-    "total_instructions": 5238
-  },
-  "10": {
-    "basicblocks": 10,
-    "calls": "",
-    "file": "DATAMemory.cpp",
-    "fileloc": 4,
-    "instructions": 23,
-    "name": "__cxx_global_var_init.7",
-    "total_instructions": 30
-  },
-  "11": {
-    "basicblocks": 11,
-    "calls": "12",
-    "file": "Utils.cpp",
-    "fileloc": 18,
-    "instructions": 25,
-    "loads": {
-      "L": 1
-    },
-    "name": "apply_bit_reverse",
-    "stores": {
-      "L": 1
-    },
-    "total_instructions": 41
-  },
-  "12": {
-    "basicblocks": 7,
-    "calls": "",
-    "file": "Utils.cpp",
-    "fileloc": 9,
-    "instructions": 16,
-    "name": "bit_reverse",
-    "total_instructions": 16
-  },
-  "13": {
-    "basicblocks": 7,
-    "calls": "",
-    "file": "DATAMemory.cpp",
-    "fileloc": 6,
-    "instructions": 23,
-    "loads": {
-      "L": 2
-    },
-    "name": "write_data",
-    "stores": {
-      "G": 1
-    },
-    "total_instructions": 23
-  },
-  "14": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "define.h",
-    "fileloc": 38,
-    "instructions": 4,
-    "name": "__cxx_global_var_init.6",
-    "total_instructions": 49
-  },
-  "15": {
-    "basicblocks": 7,
-    "calls": "",
-    "file": "DATAMemory.cpp",
-    "fileloc": 12,
-    "instructions": 23,
-    "loads": {
-      "G": 1,
-      "L": 1
-    },
-    "name": "read_data",
-    "stores": {
-      "L": 1
-    },
-    "total_instructions": 23
-  },
-  "16": {
-    "basicblocks": 13,
-    "calls": "",
-    "file": "TwiddleMemory.cpp",
-    "fileloc": 6,
-    "instructions": 43,
-    "loads": {
-      "L": 4
-    },
-    "name": "write_twiddle_factor",
-    "stores": {
-      "G": 2
-    },
-    "total_instructions": 43
-  },
-  "17": {
-    "basicblocks": 1,
-    "calls": "6",
-    "file": "TwiddleMemory.pp.0.cpp",
-    "fileloc": 0,
-    "instructions": 2,
-    "name": "",
-    "total_instructions": 25
-  },
-  "18": {
-    "basicblocks": 19,
-    "calls": "4 3 1",
-    "file": "Arithmetic.cpp",
-    "fileloc": 117,
-    "instructions": 162,
-    "loads": {
-      "L": 2
-    },
-    "name": "INTT_PE",
-    "stores": {
-      "L": 2
-    },
-    "total_instructions": 6736
-  },
-  "19": {
     "basicblocks": 1,
     "calls": "",
     "file": "Arithmetic.cpp",
@@ -158,68 +32,74 @@
     },
     "total_instructions": 1460
   },
-  "2": {
+  "10": {
+    "basicblocks": 7,
+    "calls": "1 1 1",
+    "file": "Arithmetic.cpp",
+    "fileloc": 61,
+    "instructions": 153,
+    "loads": {
+      "G": 2,
+      "L": 2
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 5238
+  },
+  "11": {
     "basicblocks": 1,
-    "calls": "8 7 14",
+    "calls": "",
+    "file": "define.h",
+    "fileloc": 33,
+    "instructions": 4,
+    "name": "__cxx_global_var_init.1",
+    "total_instructions": 49
+  },
+  "12": {
+    "basicblocks": 1,
+    "calls": "11 4 8",
     "file": "Arithmetic.pp.0.cpp",
     "fileloc": 0,
     "instructions": 4,
     "name": "",
     "total_instructions": 119
   },
-  "20": {
-    "basicblocks": 8,
-    "calls": "4 3 1 22 18",
-    "file": "PE_UNIT.cpp",
-    "fileloc": 5,
-    "instructions": 13,
-    "name": "PE_UNIT",
-    "total_instructions": 18414
-  },
-  "21": {
-    "basicblocks": 17,
-    "calls": "",
-    "file": "TwiddleMemory.cpp",
-    "fileloc": 17,
-    "instructions": 46,
+  "2": {
+    "basicblocks": 11,
+    "calls": "3",
+    "file": "Utils.cpp",
+    "fileloc": 19,
+    "instructions": 25,
     "loads": {
-      "G": 2,
-      "L": 2
+      "L": 1
     },
-    "name": "read_twiddle_factor",
+    "name": "apply_bit_reverse",
     "stores": {
-      "L": 2
+      "L": 1
     },
-    "total_instructions": 46
+    "total_instructions": 41
   },
-  "22": {
-    "basicblocks": 1,
-    "calls": "1 4 3",
-    "file": "Arithmetic.cpp",
-    "fileloc": 106,
-    "instructions": 10,
-    "name": "NTT_PE",
-    "total_instructions": 5841
+  "3": {
+    "basicblocks": 7,
+    "calls": "",
+    "file": "Utils.cpp",
+    "fileloc": 9,
+    "instructions": 16,
+    "name": "bit_reverse",
+    "total_instructions": 16
   },
-  "23": {
+  "4": {
     "basicblocks": 1,
     "calls": "",
     "file": "define.h",
-    "fileloc": 36,
-    "instructions": 4,
-    "name": "__cxx_global_var_init.4",
-    "total_instructions": 49
+    "fileloc": 37,
+    "instructions": 2,
+    "name": "__cxx_global_var_init.5",
+    "total_instructions": 17
   },
-  "24": {
-    "basicblocks": 29,
-    "calls": "20 20",
-    "file": "PE_ARRAY.cpp",
-    "fileloc": 7,
-    "instructions": 89,
-    "name": "PE_ARRAY",
-    "total_instructions": 36917
-  },
-  "3": {
+  "5": {
     "basicblocks": 3,
     "calls": "",
     "file": "Arithmetic.cpp",
@@ -234,7 +114,7 @@
     },
     "total_instructions": 300
   },
-  "4": {
+  "6": {
     "basicblocks": 3,
     "calls": "",
     "file": "Arithmetic.cpp",
@@ -249,49 +129,31 @@
     },
     "total_instructions": 286
   },
-  "5": {
+  "7": {
     "basicblocks": 1,
-    "calls": "23",
+    "calls": "9",
     "file": "Crypto.pp.0.cpp",
     "fileloc": 0,
     "instructions": 2,
     "name": "",
     "total_instructions": 51
   },
-  "6": {
-    "basicblocks": 7,
-    "calls": "",
-    "file": "TwiddleMemory.cpp",
-    "fileloc": 4,
-    "instructions": 16,
-    "name": "__cxx_global_var_init.7",
-    "total_instructions": 23
-  },
-  "7": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "define.h",
-    "fileloc": 37,
-    "instructions": 2,
-    "name": "__cxx_global_var_init.5",
-    "total_instructions": 17
-  },
   "8": {
     "basicblocks": 1,
     "calls": "",
     "file": "define.h",
-    "fileloc": 33,
+    "fileloc": 38,
     "instructions": 4,
-    "name": "__cxx_global_var_init.1",
+    "name": "__cxx_global_var_init.6",
     "total_instructions": 49
   },
   "9": {
     "basicblocks": 1,
-    "calls": "10",
-    "file": "DATAMemory.pp.0.cpp",
-    "fileloc": 0,
-    "instructions": 2,
-    "name": "",
-    "total_instructions": 32
+    "calls": "",
+    "file": "define.h",
+    "fileloc": 36,
+    "instructions": 4,
+    "name": "__cxx_global_var_init.4",
+    "total_instructions": 49
   }
 }

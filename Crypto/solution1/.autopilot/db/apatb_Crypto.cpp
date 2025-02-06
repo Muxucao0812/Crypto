@@ -20,18 +20,12 @@ using namespace std;
 // wrapc file define:
 #define AUTOTB_TVIN_DataIn "../tv/cdatafile/c.Crypto.autotvin_DataIn.dat"
 #define AUTOTB_TVOUT_DataIn "../tv/cdatafile/c.Crypto.autotvout_DataIn.dat"
-#define AUTOTB_TVIN_Address "../tv/cdatafile/c.Crypto.autotvin_Address.dat"
-#define AUTOTB_TVOUT_Address "../tv/cdatafile/c.Crypto.autotvout_Address.dat"
-#define AUTOTB_TVIN_DataOutput "../tv/cdatafile/c.Crypto.autotvin_DataOutput.dat"
-#define AUTOTB_TVOUT_DataOutput "../tv/cdatafile/c.Crypto.autotvout_DataOutput.dat"
 #define AUTOTB_TVIN_RAMSel "../tv/cdatafile/c.Crypto.autotvin_RAMSel.dat"
 #define AUTOTB_TVOUT_RAMSel "../tv/cdatafile/c.Crypto.autotvout_RAMSel.dat"
-#define AUTOTB_TVIN_TwiddleIn "../tv/cdatafile/c.Crypto.autotvin_TwiddleIn.dat"
-#define AUTOTB_TVOUT_TwiddleIn "../tv/cdatafile/c.Crypto.autotvout_TwiddleIn.dat"
-#define AUTOTB_TVIN_TwiddleAddress "../tv/cdatafile/c.Crypto.autotvin_TwiddleAddress.dat"
-#define AUTOTB_TVOUT_TwiddleAddress "../tv/cdatafile/c.Crypto.autotvout_TwiddleAddress.dat"
-#define AUTOTB_TVIN_TwiddleOutput "../tv/cdatafile/c.Crypto.autotvin_TwiddleOutput.dat"
-#define AUTOTB_TVOUT_TwiddleOutput "../tv/cdatafile/c.Crypto.autotvout_TwiddleOutput.dat"
+#define AUTOTB_TVIN_NTTTwiddleIn "../tv/cdatafile/c.Crypto.autotvin_NTTTwiddleIn.dat"
+#define AUTOTB_TVOUT_NTTTwiddleIn "../tv/cdatafile/c.Crypto.autotvout_NTTTwiddleIn.dat"
+#define AUTOTB_TVIN_INTTTwiddleIn "../tv/cdatafile/c.Crypto.autotvin_INTTTwiddleIn.dat"
+#define AUTOTB_TVOUT_INTTTwiddleIn "../tv/cdatafile/c.Crypto.autotvout_INTTTwiddleIn.dat"
 #define AUTOTB_TVIN_OP "../tv/cdatafile/c.Crypto.autotvin_OP.dat"
 #define AUTOTB_TVOUT_OP "../tv/cdatafile/c.Crypto.autotvout_OP.dat"
 #define AUTOTB_TVIN_ModIndex "../tv/cdatafile/c.Crypto.autotvin_ModIndex.dat"
@@ -39,8 +33,7 @@ using namespace std;
 
 
 // tvout file define:
-#define AUTOTB_TVOUT_PC_DataOutput "../tv/rtldatafile/rtl.Crypto.autotvout_DataOutput.dat"
-#define AUTOTB_TVOUT_PC_TwiddleOutput "../tv/rtldatafile/rtl.Crypto.autotvout_TwiddleOutput.dat"
+#define AUTOTB_TVOUT_PC_DataIn "../tv/rtldatafile/rtl.Crypto.autotvout_DataIn.dat"
 
 
 namespace hls::sim
@@ -1149,34 +1142,12 @@ namespace hls::sim
 
 
 extern "C"
-void Crypto_hw_stub_wrapper(void*, void*, void*, hls::sim::Byte<4>, void*, void*, void*, hls::sim::Byte<4>, hls::sim::Byte<4>);
+void Crypto_hw_stub_wrapper(void*, hls::sim::Byte<4>, void*, void*, hls::sim::Byte<4>, hls::sim::Byte<4>);
 
 extern "C"
-void apatb_Crypto_hw(void* __xlx_apatb_param_DataIn, void* __xlx_apatb_param_Address, void* __xlx_apatb_param_DataOutput, hls::sim::Byte<4> __xlx_apatb_param_RAMSel, void* __xlx_apatb_param_TwiddleIn, void* __xlx_apatb_param_TwiddleAddress, void* __xlx_apatb_param_TwiddleOutput, hls::sim::Byte<4> __xlx_apatb_param_OP, hls::sim::Byte<4> __xlx_apatb_param_ModIndex)
+void apatb_Crypto_hw(void* __xlx_apatb_param_DataIn, hls::sim::Byte<4> __xlx_apatb_param_RAMSel, void* __xlx_apatb_param_NTTTwiddleIn, void* __xlx_apatb_param_INTTTwiddleIn, hls::sim::Byte<4> __xlx_apatb_param_OP, hls::sim::Byte<4> __xlx_apatb_param_ModIndex)
 {
   static hls::sim::Register port0 {
-    .name = "DataIn",
-    .width = 32,
-#ifdef POST_CHECK
-#else
-    .owriter = nullptr,
-    .iwriter = new hls::sim::Writer(AUTOTB_TVIN_DataIn),
-#endif
-  };
-  port0.param = __xlx_apatb_param_DataIn;
-
-  static hls::sim::Register port1 {
-    .name = "Address",
-    .width = 32,
-#ifdef POST_CHECK
-#else
-    .owriter = nullptr,
-    .iwriter = new hls::sim::Writer(AUTOTB_TVIN_Address),
-#endif
-  };
-  port1.param = __xlx_apatb_param_Address;
-
-  static hls::sim::Register port2 {
     .name = "RAMSel",
     .width = 32,
 #ifdef POST_CHECK
@@ -1185,20 +1156,9 @@ void apatb_Crypto_hw(void* __xlx_apatb_param_DataIn, void* __xlx_apatb_param_Add
     .iwriter = new hls::sim::Writer(AUTOTB_TVIN_RAMSel),
 #endif
   };
-  port2.param = &__xlx_apatb_param_RAMSel;
+  port0.param = &__xlx_apatb_param_RAMSel;
 
-  static hls::sim::Register port3 {
-    .name = "TwiddleAddress",
-    .width = 32,
-#ifdef POST_CHECK
-#else
-    .owriter = nullptr,
-    .iwriter = new hls::sim::Writer(AUTOTB_TVIN_TwiddleAddress),
-#endif
-  };
-  port3.param = __xlx_apatb_param_TwiddleAddress;
-
-  static hls::sim::Register port4 {
+  static hls::sim::Register port1 {
     .name = "OP",
     .width = 32,
 #ifdef POST_CHECK
@@ -1207,9 +1167,9 @@ void apatb_Crypto_hw(void* __xlx_apatb_param_DataIn, void* __xlx_apatb_param_Add
     .iwriter = new hls::sim::Writer(AUTOTB_TVIN_OP),
 #endif
   };
-  port4.param = &__xlx_apatb_param_OP;
+  port1.param = &__xlx_apatb_param_OP;
 
-  static hls::sim::Register port5 {
+  static hls::sim::Register port2 {
     .name = "ModIndex",
     .width = 32,
 #ifdef POST_CHECK
@@ -1218,71 +1178,93 @@ void apatb_Crypto_hw(void* __xlx_apatb_param_DataIn, void* __xlx_apatb_param_Add
     .iwriter = new hls::sim::Writer(AUTOTB_TVIN_ModIndex),
 #endif
   };
-  port5.param = &__xlx_apatb_param_ModIndex;
-
-  static hls::sim::Memory<hls::sim::Reader, hls::sim::Writer> port6 {
-    .width = 32,
-    .asize = 4,
-    .hbm = false,
-    .name = { "DataOutput" },
-#ifdef POST_CHECK
-    .reader = new hls::sim::Reader(AUTOTB_TVOUT_PC_DataOutput),
-#else
-    .owriter = new hls::sim::Writer(AUTOTB_TVOUT_DataOutput),
-    .iwriter = new hls::sim::Writer(AUTOTB_TVIN_DataOutput),
-#endif
-  };
-  port6.param = { __xlx_apatb_param_DataOutput };
-  port6.nbytes = { 4 };
-  port6.offset = {  };
-  port6.hasWrite = { true };
+  port2.param = &__xlx_apatb_param_ModIndex;
 
 #ifdef USE_BINARY_TV_FILE
-  static hls::sim::Memory<hls::sim::Input, hls::sim::Output> port7 {
+  static hls::sim::Memory<hls::sim::Input, hls::sim::Output> port3 {
 #else
-  static hls::sim::Memory<hls::sim::Reader, hls::sim::Writer> port7 {
+  static hls::sim::Memory<hls::sim::Reader, hls::sim::Writer> port3 {
 #endif
     .width = 32,
     .asize = 4,
     .hbm = false,
-    .name = { "TwiddleIn" },
+    .name = { "DataIn" },
+#ifdef POST_CHECK
+#ifdef USE_BINARY_TV_FILE
+    .reader = new hls::sim::Input(AUTOTB_TVOUT_PC_DataIn),
+#else
+    .reader = new hls::sim::Reader(AUTOTB_TVOUT_PC_DataIn),
+#endif
+#else
+#ifdef USE_BINARY_TV_FILE
+    .owriter = new hls::sim::Output(AUTOTB_TVOUT_DataIn),
+#else
+    .owriter = new hls::sim::Writer(AUTOTB_TVOUT_DataIn),
+#endif
+#ifdef USE_BINARY_TV_FILE
+    .iwriter = new hls::sim::Output(AUTOTB_TVIN_DataIn),
+#else
+    .iwriter = new hls::sim::Writer(AUTOTB_TVIN_DataIn),
+#endif
+#endif
+  };
+  port3.param = { __xlx_apatb_param_DataIn };
+  port3.nbytes = { 16384 };
+  port3.offset = {  };
+  port3.hasWrite = { true };
+
+#ifdef USE_BINARY_TV_FILE
+  static hls::sim::Memory<hls::sim::Input, hls::sim::Output> port4 {
+#else
+  static hls::sim::Memory<hls::sim::Reader, hls::sim::Writer> port4 {
+#endif
+    .width = 32,
+    .asize = 4,
+    .hbm = false,
+    .name = { "NTTTwiddleIn" },
 #ifdef POST_CHECK
 #else
     .owriter = nullptr,
 #ifdef USE_BINARY_TV_FILE
-    .iwriter = new hls::sim::Output(AUTOTB_TVIN_TwiddleIn),
+    .iwriter = new hls::sim::Output(AUTOTB_TVIN_NTTTwiddleIn),
 #else
-    .iwriter = new hls::sim::Writer(AUTOTB_TVIN_TwiddleIn),
+    .iwriter = new hls::sim::Writer(AUTOTB_TVIN_NTTTwiddleIn),
 #endif
 #endif
   };
-  port7.param = { __xlx_apatb_param_TwiddleIn };
-  port7.nbytes = { 8 };
-  port7.offset = {  };
-  port7.hasWrite = { false };
+  port4.param = { __xlx_apatb_param_NTTTwiddleIn };
+  port4.nbytes = { 8192 };
+  port4.offset = {  };
+  port4.hasWrite = { false };
 
-  static hls::sim::Memory<hls::sim::Reader, hls::sim::Writer> port8 {
+#ifdef USE_BINARY_TV_FILE
+  static hls::sim::Memory<hls::sim::Input, hls::sim::Output> port5 {
+#else
+  static hls::sim::Memory<hls::sim::Reader, hls::sim::Writer> port5 {
+#endif
     .width = 32,
     .asize = 4,
     .hbm = false,
-    .name = { "TwiddleOutput" },
+    .name = { "INTTTwiddleIn" },
 #ifdef POST_CHECK
-    .reader = new hls::sim::Reader(AUTOTB_TVOUT_PC_TwiddleOutput),
 #else
-    .owriter = new hls::sim::Writer(AUTOTB_TVOUT_TwiddleOutput),
-    .iwriter = new hls::sim::Writer(AUTOTB_TVIN_TwiddleOutput),
+    .owriter = nullptr,
+#ifdef USE_BINARY_TV_FILE
+    .iwriter = new hls::sim::Output(AUTOTB_TVIN_INTTTwiddleIn),
+#else
+    .iwriter = new hls::sim::Writer(AUTOTB_TVIN_INTTTwiddleIn),
+#endif
 #endif
   };
-  port8.param = { __xlx_apatb_param_TwiddleOutput };
-  port8.nbytes = { 4 };
-  port8.offset = {  };
-  port8.hasWrite = { true };
+  port5.param = { __xlx_apatb_param_INTTTwiddleIn };
+  port5.nbytes = { 8192 };
+  port5.offset = {  };
+  port5.hasWrite = { false };
 
   try {
 #ifdef POST_CHECK
     CodeState = ENTER_WRAPC_PC;
-    check(port6);
-    check(port8);
+    check(port3);
 #else
     static hls::sim::RefTCL tcl("../tv/cdatafile/ref.tcl");
     CodeState = DUMP_INPUTS;
@@ -1292,23 +1274,16 @@ void apatb_Crypto_hw(void* __xlx_apatb_param_DataIn, void* __xlx_apatb_param_Add
     dump(port3, port3.iwriter, tcl.AESL_transaction);
     dump(port4, port4.iwriter, tcl.AESL_transaction);
     dump(port5, port5.iwriter, tcl.AESL_transaction);
-    dump(port6, port6.iwriter, tcl.AESL_transaction);
-    dump(port7, port7.iwriter, tcl.AESL_transaction);
-    dump(port8, port8.iwriter, tcl.AESL_transaction);
     port0.doTCL(tcl);
     port1.doTCL(tcl);
     port2.doTCL(tcl);
     port3.doTCL(tcl);
     port4.doTCL(tcl);
     port5.doTCL(tcl);
-    port6.doTCL(tcl);
-    port7.doTCL(tcl);
-    port8.doTCL(tcl);
     CodeState = CALL_C_DUT;
-    Crypto_hw_stub_wrapper(__xlx_apatb_param_DataIn, __xlx_apatb_param_Address, __xlx_apatb_param_DataOutput, __xlx_apatb_param_RAMSel, __xlx_apatb_param_TwiddleIn, __xlx_apatb_param_TwiddleAddress, __xlx_apatb_param_TwiddleOutput, __xlx_apatb_param_OP, __xlx_apatb_param_ModIndex);
+    Crypto_hw_stub_wrapper(__xlx_apatb_param_DataIn, __xlx_apatb_param_RAMSel, __xlx_apatb_param_NTTTwiddleIn, __xlx_apatb_param_INTTTwiddleIn, __xlx_apatb_param_OP, __xlx_apatb_param_ModIndex);
     CodeState = DUMP_OUTPUTS;
-    dump(port6, port6.owriter, tcl.AESL_transaction);
-    dump(port8, port8.owriter, tcl.AESL_transaction);
+    dump(port3, port3.owriter, tcl.AESL_transaction);
     tcl.AESL_transaction++;
 #endif
   } catch (const hls::sim::SimException &e) {

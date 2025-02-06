@@ -3,49 +3,17 @@
 ================================================================
 
 * Instructions per Function for each Compilation Phase
-+-------------------------+----------------------+--------------------+-----------------+----------------------+---------------+
-| Function                | Location             | Compile/Link       | Unroll/Inline   | Performance/Pipeline | Optimizations |
-+-------------------------+----------------------+--------------------+-----------------+----------------------+---------------+
-| + Crypto                | Crypto.cpp:11        | 128,777 *          | 3,819           | 809                  | 858           |
-|    write_data           | DATAMemory.cpp:6     |     138 (6 calls)  |   114 (6 calls) |                      |               |
-|    read_data            | DATAMemory.cpp:12    |     207 (9 calls)  |   171 (9 calls) |                      |               |
-|    write_twiddle_factor | TwiddleMemory.cpp:6  |      43            |    37           |                      |               |
-|    read_twiddle_factor  | TwiddleMemory.cpp:17 |      92 (2 calls)  |    80 (2 calls) |                      |               |
-|  + PE_ARRAY             | PE_ARRAY.cpp:7       | 110,751 (3 calls)  | 2,325 (3 calls) |                      |               |
-|   + PE_UNIT             | PE_UNIT.cpp:5        | 110,484 (6 calls)  |                 |                      |               |
-|      ADD_MOD            | Arithmetic.cpp:38    |   1,716 (6 calls)  |                 |                      |               |
-|      SUB_MOD            | Arithmetic.cpp:51    |   1,800 (6 calls)  |                 |                      |               |
-|    + MUL_MOD            | Arithmetic.cpp:61    |  31,428 (6 calls)  |                 |                      |               |
-|       STEPMUL           | Arithmetic.cpp:8     |  26,280 (18 calls) |                 |                      |               |
-|    + NTT_PE             | Arithmetic.cpp:106   |  35,046 (6 calls)  |                 |                      |               |
-|     + MUL_MOD           | Arithmetic.cpp:61    |  31,428 (6 calls)  |                 |                      |               |
-|        STEPMUL          | Arithmetic.cpp:8     |  26,280 (18 calls) |                 |                      |               |
-|       ADD_MOD           | Arithmetic.cpp:38    |   1,716 (6 calls)  |                 |                      |               |
-|       SUB_MOD           | Arithmetic.cpp:51    |   1,800 (6 calls)  |                 |                      |               |
-|    + INTT_PE            | Arithmetic.cpp:117   |  40,416 (6 calls)  |                 |                      |               |
-|       ADD_MOD           | Arithmetic.cpp:38    |   1,716 (6 calls)  |                 |                      |               |
-|       SUB_MOD           | Arithmetic.cpp:51    |   1,800 (6 calls)  |                 |                      |               |
-|     + MUL_MOD           | Arithmetic.cpp:61    |  31,428 (6 calls)  |                 |                      |               |
-|        STEPMUL          | Arithmetic.cpp:8     |  26,280 (18 calls) |                 |                      |               |
-|     ADD_MOD             | Arithmetic.cpp:38    |                    |    72 (3 calls) |                      |               |
-|     SUB_MOD             | Arithmetic.cpp:51    |                    |    63 (3 calls) |                      |               |
-|     MUL_MOD             | Arithmetic.cpp:61    |                    |   510 (3 calls) |                      |               |
-|   + NTT_PE              | Arithmetic.cpp:106   |                    |   675 (3 calls) |                      |               |
-|      MUL_MOD            | Arithmetic.cpp:61    |                    |   513 (3 calls) |                      |               |
-|      ADD_MOD            | Arithmetic.cpp:38    |                    |    72 (3 calls) |                      |               |
-|      SUB_MOD            | Arithmetic.cpp:51    |                    |    75 (3 calls) |                      |               |
-|   + INTT_PE             | Arithmetic.cpp:117   |                    |   864 (3 calls) |                      |               |
-|      ADD_MOD            | Arithmetic.cpp:38    |                    |    72 (3 calls) |                      |               |
-|      SUB_MOD            | Arithmetic.cpp:51    |                    |    75 (3 calls) |                      |               |
-|      MUL_MOD            | Arithmetic.cpp:61    |                    |   516 (3 calls) |                      |               |
-|  + apply_bit_reverse    | Utils.cpp:18         |      82 (2 calls)  |    90 (2 calls) |                      |               |
-|     bit_reverse         | Utils.cpp:9          |      32 (2 calls)  |    42 (2 calls) |                      |               |
-|  + MUL_MOD              | Arithmetic.cpp:61    |  15,714 (3 calls)  |   510 (3 calls) | 230 (2 calls)        | 232 (2 calls) |
-|     STEPMUL             | Arithmetic.cpp:8     |  13,140 (9 calls)  |                 |                      |               |
-|    ADD_MOD              | Arithmetic.cpp:38    |     572 (2 calls)  |    48 (2 calls) |                      |               |
-|    SUB_MOD              | Arithmetic.cpp:51    |     600 (2 calls)  |    42 (2 calls) |                      |               |
-+-------------------------+----------------------+--------------------+-----------------+----------------------+---------------+
-    * - Exceeded design size warning message threshold
++----------------------+-------------------+-------------------+-----------------+----------------------+------------------+
+| Function             | Location          | Compile/Link      | Unroll/Inline   | Performance/Pipeline | Optimizations    |
++----------------------+-------------------+-------------------+-----------------+----------------------+------------------+
+| + Crypto             | Crypto.cpp:11     | 23,271            | 1,252           | 8,636                | 8,675            |
+|    ADD_MOD           | Arithmetic.cpp:38 |    858 (3 calls)  |    72 (3 calls) |                      |                  |
+|    SUB_MOD           | Arithmetic.cpp:51 |    900 (3 calls)  |    63 (3 calls) |                      |                  |
+|  + MUL_MOD           | Arithmetic.cpp:61 | 20,952 (4 calls)  |   680 (4 calls) | 5,750 (50 calls)     | 5,800 (50 calls) |
+|     STEPMUL          | Arithmetic.cpp:8  | 17,520 (12 calls) |                 |                      |                  |
+|  + apply_bit_reverse | Utils.cpp:19      |     82 (2 calls)  |    90 (2 calls) |                      |                  |
+|     bit_reverse      | Utils.cpp:9       |     32 (2 calls)  |    42 (2 calls) |                      |                  |
++----------------------+-------------------+-------------------+-----------------+----------------------+------------------+
 
 * Description of Compilation Phases
 +----------------------+------------------------------------------------------------+

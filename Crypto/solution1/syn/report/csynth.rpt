@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'Crypto'
 ================================================================
 + General Information: 
-    * Date:           Mon Jan 13 00:09:25 2025
+    * Date:           Wed Feb  5 12:49:50 2025
     * Version:        2023.1 (Build 3854077 on May  4 2023)
     * Project:        Crypto
     * Solution:       solution1 (Vivado IP Flow Target)
@@ -15,82 +15,70 @@
 + Performance & Resource Estimates: 
     
     PS: '+' for module; 'o' for loop; '*' for dataflow
-    +--------------------------------------+--------+--------+------------+-----------+------------+------------+------------+----------+----------+----------+-----------+------------+-----+
-    |                Modules               |  Issue |        |  Latency   |  Latency  |  Iteration |            |    Trip    |          |          |          |           |            |     |
-    |                & Loops               |  Type  |  Slack |  (cycles)  |    (ns)   |   Latency  |  Interval  |    Count   | Pipelined|   BRAM   |    DSP   |     FF    |     LUT    | URAM|
-    +--------------------------------------+--------+--------+------------+-----------+------------+------------+------------+----------+----------+----------+-----------+------------+-----+
-    |+ Crypto                              |  Timing|  -48.37|           -|          -|           -|           -|           -|        no|  48 (17%)|  48 (21%)|  6242 (5%)|  7866 (14%)|    -|
-    | + Crypto_Pipeline_VITIS_LOOP_138_7   |       -|    0.91|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   76 (~0%)|    83 (~0%)|    -|
-    |  o VITIS_LOOP_138_7                  |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
-    | + Crypto_Pipeline_VITIS_LOOP_89_1    |       -|    0.91|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   76 (~0%)|    83 (~0%)|    -|
-    |  o VITIS_LOOP_89_1                   |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
-    | + Crypto_Pipeline_VITIS_LOOP_22_21   |       -|    2.57|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   74 (~0%)|    69 (~0%)|    -|
-    |  o VITIS_LOOP_22_2                   |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
-    | + Crypto_Pipeline_VITIS_LOOP_22_2    |       -|    2.57|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   74 (~0%)|    69 (~0%)|    -|
-    |  o VITIS_LOOP_22_2                   |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
-    | + Crypto_Pipeline_VITIS_LOOP_149_10  |       -|    2.57|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   76 (~0%)|    69 (~0%)|    -|
-    |  o VITIS_LOOP_149_10                 |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
-    | + Crypto_Pipeline_VITIS_LOOP_99_4    |       -|    2.57|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   76 (~0%)|    69 (~0%)|    -|
-    |  o VITIS_LOOP_99_4                   |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
-    | + Crypto_Pipeline_VITIS_LOOP_176_11  |       -|    0.18|        4113|  3.290e+04|           -|        4113|           -|        no|         -|   12 (5%)|  1587 (1%)|   1054 (1%)|    -|
-    |  o VITIS_LOOP_176_11                 |       -|    5.84|        4111|  3.289e+04|          17|           1|        4096|       yes|         -|         -|          -|           -|    -|
-    |   + MUL_MOD_1                        |      II|    0.18|          12|     96.000|           -|           1|           -|       yes|         -|   12 (5%)|  1336 (1%)|    921 (1%)|    -|
-    | + Crypto_Pipeline_VITIS_LOOP_180_12  |       -|    2.57|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   76 (~0%)|    83 (~0%)|    -|
-    |  o VITIS_LOOP_180_12                 |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
-    | + Crypto_Pipeline_VITIS_LOOP_126_5   |       -|    2.57|        4099|  3.279e+04|           -|        4099|           -|        no|         -|         -|   76 (~0%)|    83 (~0%)|    -|
-    |  o VITIS_LOOP_126_5                  |       -|    5.84|        4097|  3.278e+04|           3|           1|        4096|       yes|         -|         -|          -|           -|    -|
-    | + MUL_MOD                            |      II|    0.18|          12|     96.000|           -|           1|           -|       yes|         -|   12 (5%)|  1368 (1%)|    922 (1%)|    -|
-    | o NTT_STAGE_LOOP                     |       -|    5.84|           -|          -|           -|           -|           -|        no|         -|         -|          -|           -|    -|
-    |  o NTT_GROUP_LOOP                    |       -|    5.84|           -|          -|  3221225473|           -|           -|        no|         -|         -|          -|           -|    -|
-    |   + Crypto_Pipeline_NTT_PE_LOOP      |  Timing|  -48.37|  3221225471|  1.746e+11|           -|  3221225471|           -|        no|         -|   12 (5%)|  236 (~0%)|   1148 (2%)|    -|
-    |    o NTT_PE_LOOP                     |      II|    5.84|  3221225469|  1.746e+11|           3|           3|  1073741823|       yes|         -|         -|          -|           -|    -|
-    | o INTT_STAGE_LOOP                    |       -|    5.84|           -|          -|           -|           -|           -|        no|         -|         -|          -|           -|    -|
-    |  o INTT_GROUP_LOOP                   |       -|    5.84|           -|          -|  3221225473|           -|           -|        no|         -|         -|          -|           -|    -|
-    |   + Crypto_Pipeline_INTT_PE_LOOP     |  Timing|  -48.37|  3221225471|  1.746e+11|           -|  3221225471|           -|        no|         -|   12 (5%)|  236 (~0%)|   1162 (2%)|    -|
-    |    o INTT_PE_LOOP                    |      II|    5.84|  3221225469|  1.746e+11|           3|           3|  1073741823|       yes|         -|         -|          -|           -|    -|
-    +--------------------------------------+--------+--------+------------+-----------+------------+------------+------------+----------+----------+----------+-----------+------------+-----+
+    +---------------------------------------+------+------+-------------+-----------+-------------+-------------+------------+----------+-----------+----------+-------------+-------------+-----+
+    |                Modules                | Issue|      |   Latency   |  Latency  |  Iteration  |             |    Trip    |          |           |          |             |             |     |
+    |                & Loops                | Type | Slack|   (cycles)  |    (ns)   |   Latency   |   Interval  |    Count   | Pipelined|   BRAM    |    DSP   |      FF     |     LUT     | URAM|
+    +---------------------------------------+------+------+-------------+-----------+-------------+-------------+------------+----------+-----------+----------+-------------+-------------+-----+
+    |+ Crypto                               |     -|  0.01|            -|          -|            -|            -|           -|        no|  128 (45%)|  36 (16%)|  25372 (23%)|  25143 (47%)|    -|
+    | + Crypto_Pipeline_PERMUTE_LOOP1       |     -|  1.46|         4100|  2.870e+04|            -|         4100|           -|        no|          -|         -|    1224 (1%)|    272 (~0%)|    -|
+    |  o PERMUTE_LOOP                       |     -|  5.11|         4098|  2.869e+04|            4|            1|        4096|       yes|          -|         -|            -|            -|    -|
+    | + Crypto_Pipeline_PERMUTE_LOOP        |     -|  1.46|         4100|  2.870e+04|            -|         4100|           -|        no|          -|         -|    1224 (1%)|    272 (~0%)|    -|
+    |  o PERMUTE_LOOP                       |     -|  5.11|         4098|  2.869e+04|            4|            1|        4096|       yes|          -|         -|            -|            -|    -|
+    | + Crypto_Pipeline_POLY_MUL_LOOP       |     -|  0.05|        77826|  5.448e+05|            -|        77826|           -|        no|          -|   12 (5%)|    3223 (3%)|    1422 (2%)|    -|
+    |  o POLY_MUL_LOOP                      |    II|  5.11|        77824|  5.448e+05|           19|           19|        4096|       yes|          -|         -|            -|            -|    -|
+    |   + MUL_MOD_1                         |    II|  0.05|           14|     98.000|            -|            1|           -|       yes|          -|   12 (5%)|    1988 (1%)|     846 (1%)|    -|
+    | + Crypto_Pipeline_POLY_SUB_LOOP       |     -|  0.49|         8196|  5.737e+04|            -|         8196|           -|        no|          -|         -|    1405 (1%)|     542 (1%)|    -|
+    |  o POLY_SUB_LOOP                      |    II|  5.11|         8194|  5.736e+04|            5|            2|        4096|       yes|          -|         -|            -|            -|    -|
+    | + Crypto_Pipeline_VITIS_LOOP_79_1     |     -|  0.49|        20482|  1.434e+05|            -|        20482|           -|        no|          -|         -|    1285 (1%)|     784 (1%)|    -|
+    |  o VITIS_LOOP_79_1                    |    II|  5.11|        20480|  1.434e+05|            5|            5|        4096|       yes|          -|         -|            -|            -|    -|
+    | + Crypto_Pipeline_WRITE_TWIDDLE_LOOP  |     -|  1.86|         2051|  1.436e+04|            -|         2051|           -|        no|          -|         -|    103 (~0%)|     64 (~0%)|    -|
+    |  o WRITE_TWIDDLE_LOOP                 |     -|  5.11|         2049|  1.434e+04|            3|            1|        2048|       yes|          -|         -|            -|            -|    -|
+    | + Crypto_Pipeline_READ_DATA_LOOP      |     -|  1.46|         4100|  2.870e+04|            -|         4100|           -|        no|          -|         -|    1153 (1%)|    240 (~0%)|    -|
+    |  o READ_DATA_LOOP                     |     -|  5.11|         4098|  2.869e+04|            4|            1|        4096|       yes|          -|         -|            -|            -|    -|
+    | + Crypto_Pipeline_WRITE_DATA_LOOP     |     -|  1.84|         4099|  2.869e+04|            -|         4099|           -|        no|          -|         -|     74 (~0%)|     69 (~0%)|    -|
+    |  o WRITE_DATA_LOOP                    |     -|  5.11|         4097|  2.868e+04|            3|            1|        4096|       yes|          -|         -|            -|            -|    -|
+    | + Crypto_Pipeline_INTT_PERMUTE_LOOP   |     -|  1.84|         4100|  2.870e+04|            -|         4100|           -|        no|          -|         -|    704 (~0%)|    198 (~0%)|    -|
+    |  o INTT_PERMUTE_LOOP                  |     -|  5.11|         4098|  2.869e+04|            4|            1|        4096|       yes|          -|         -|            -|            -|    -|
+    | + Crypto_Pipeline_NTT_PERMUTE_LOOP    |     -|  1.84|         4100|  2.870e+04|            -|         4100|           -|        no|          -|         -|    704 (~0%)|    198 (~0%)|    -|
+    |  o NTT_PERMUTE_LOOP                   |     -|  5.11|         4098|  2.869e+04|            4|            1|        4096|       yes|          -|         -|            -|            -|    -|
+    | + Crypto_Pipeline_MUL_INV_LOOP        |     -|  0.05|        77826|  5.448e+05|            -|        77826|           -|        no|          -|   12 (5%)|    3335 (3%)|    1662 (3%)|    -|
+    |  o MUL_INV_LOOP                       |    II|  5.11|        77824|  5.448e+05|           19|           19|        4096|       yes|          -|         -|            -|            -|    -|
+    |   + MUL_MOD                           |    II|  0.05|           14|     98.000|            -|            1|           -|       yes|          -|   12 (5%)|    1972 (1%)|     845 (1%)|    -|
+    | o NTT_STAGE_LOOP                      |     -|  5.11|            -|          -|            -|            -|           -|        no|          -|         -|            -|            -|    -|
+    |  o NTT_GROUP_LOOP                     |     -|  5.11|            -|          -|  25769803758|            -|           -|        no|          -|         -|            -|            -|    -|
+    |   + Crypto_Pipeline_NTT_PE_LOOP       |     -|  0.01|  25769803756|  1.804e+11|            -|  25769803756|           -|        no|          -|         -|    3501 (3%)|    2638 (4%)|    -|
+    |    o NTT_PE_LOOP                      |    II|  5.11|  25769803754|  1.804e+11|           25|           24|  1073741823|       yes|          -|         -|            -|            -|    -|
+    |     + MUL_MOD_2                       |    II|  0.05|           14|     98.000|            -|            1|           -|       yes|          -|   12 (5%)|    1955 (1%)|     832 (1%)|    -|
+    | o INTT_STAGE_LOOP                     |     -|  5.11|            -|          -|            -|            -|           -|        no|          -|         -|            -|            -|    -|
+    |  o INTT_GROUP_LOOP                    |     -|  5.11|            -|          -|  25769803758|            -|           -|        no|          -|         -|            -|            -|    -|
+    |   + Crypto_Pipeline_INTT_PE_LOOP      |     -|  0.01|  25769803756|  1.804e+11|            -|  25769803756|           -|        no|          -|         -|    3501 (3%)|    2638 (4%)|    -|
+    |    o INTT_PE_LOOP                     |    II|  5.11|  25769803754|  1.804e+11|           25|           24|  1073741823|       yes|          -|         -|            -|            -|    -|
+    |     + MUL_MOD_2                       |    II|  0.05|           14|     98.000|            -|            1|           -|       yes|          -|   12 (5%)|    1955 (1%)|     832 (1%)|    -|
+    +---------------------------------------+------+------+-------------+-----------+-------------+-------------+------------+----------+-----------+----------+-------------+-------------+-----+
 
 
 ================================================================
 == HW Interfaces
 ================================================================
 * S_AXILITE Interfaces
-+---------------+------------+---------------+--------+----------+
-| Interface     | Data Width | Address Width | Offset | Register |
-+---------------+------------+---------------+--------+----------+
-| s_axi_control | 32         | 7             | 16     | 0        |
-+---------------+------------+---------------+--------+----------+
++---------------+------------+---------------+--------+----------+-------------------+
+| Interface     | Data Width | Address Width | Offset | Register | Resource Estimate |
++---------------+------------+---------------+--------+----------+-------------------+
+| s_axi_control | 32         | 16            | 16384  | 0        | BRAM=16           |
++---------------+------------+---------------+--------+----------+-------------------+
 
 * S_AXILITE Registers
-+---------------+-----------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
-| Interface     | Register        | Offset | Width | Access | Description                      | Bit Fields                                                           |
-+---------------+-----------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
-| s_axi_control | CTRL            | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
-| s_axi_control | GIER            | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
-| s_axi_control | IP_IER          | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
-| s_axi_control | IP_ISR          | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
-| s_axi_control | DataIn          | 0x10   | 32    | W      | Data signal of DataIn            |                                                                      |
-| s_axi_control | Address         | 0x18   | 32    | W      | Data signal of Address           |                                                                      |
-| s_axi_control | DataOutput      | 0x20   | 32    | R      | Data signal of DataOutput        |                                                                      |
-| s_axi_control | DataOutput_ctrl | 0x24   | 32    | R      | Control signal of DataOutput     | 0=DataOutput_ap_vld                                                  |
-| s_axi_control | RAMSel          | 0x28   | 32    | W      | Data signal of RAMSel            |                                                                      |
-| s_axi_control | OP              | 0x38   | 32    | W      | Data signal of OP                |                                                                      |
-| s_axi_control | ModIndex        | 0x40   | 32    | W      | Data signal of ModIndex          |                                                                      |
-+---------------+-----------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
-
-* AP_MEMORY
-+---------------+-----------+----------+
-| Port          | Direction | Bitwidth |
-+---------------+-----------+----------+
-| TwiddleOutput | out       | 32       |
-+---------------+-----------+----------+
-
-* Other Ports
-+----------------+---------+-----------+----------+
-| Port           | Mode    | Direction | Bitwidth |
-+----------------+---------+-----------+----------+
-| TwiddleAddress | ap_none | in        | 32       |
-+----------------+---------+-----------+----------+
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | RAMSel   | 0x10   | 32    | W      | Data signal of RAMSel            |                                                                      |
+| s_axi_control | OP       | 0x18   | 32    | W      | Data signal of OP                |                                                                      |
+| s_axi_control | ModIndex | 0x20   | 32    | W      | Data signal of ModIndex          |                                                                      |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
 
 * TOP LEVEL CONTROL
 +-----------+------------+-----------+
@@ -107,36 +95,28 @@
 == SW I/O Information
 ================================================================
 * Top Function Arguments
-+----------------+-----------+-----------------+
-| Argument       | Direction | Datatype        |
-+----------------+-----------+-----------------+
-| DataIn         | in        | ap_int<32>*     |
-| Address        | in        | int*            |
-| DataOutput     | out       | ap_int<32>*     |
-| RAMSel         | in        | int             |
-| TwiddleIn      | in        | ap_int<32>*     |
-| TwiddleAddress | in        | int*            |
-| TwiddleOutput  | out       | ap_int<32>*     |
-| OP             | in        | CryptoOperation |
-| ModIndex       | in        | int             |
-+----------------+-----------+-----------------+
++---------------+-----------+-----------------+
+| Argument      | Direction | Datatype        |
++---------------+-----------+-----------------+
+| DataIn        | inout     | ap_int<32>*     |
+| RAMSel        | in        | int             |
+| NTTTwiddleIn  | in        | ap_int<32>*     |
+| INTTTwiddleIn | in        | ap_int<32>*     |
+| OP            | in        | CryptoOperation |
+| ModIndex      | in        | int             |
++---------------+-----------+-----------------+
 
 * SW-to-HW Mapping
-+----------------+----------------------+----------+-------------------------------------------+
-| Argument       | HW Interface         | HW Type  | HW Info                                   |
-+----------------+----------------------+----------+-------------------------------------------+
-| DataIn         | s_axi_control        | register | name=DataIn offset=0x10 range=32          |
-| Address        | s_axi_control        | register | name=Address offset=0x18 range=32         |
-| DataOutput     | s_axi_control        | register | name=DataOutput offset=0x20 range=32      |
-| DataOutput     | s_axi_control        | register | name=DataOutput_ctrl offset=0x24 range=32 |
-| RAMSel         | s_axi_control        | register | name=RAMSel offset=0x28 range=32          |
-| TwiddleIn      | s_axi_control        | memory   | name=TwiddleIn offset=48 range=8          |
-| TwiddleAddress | TwiddleAddress       | port     |                                           |
-| TwiddleOutput  | TwiddleOutput        | port     |                                           |
-| TwiddleOutput  | TwiddleOutput_ap_vld | port     |                                           |
-| OP             | s_axi_control        | register | name=OP offset=0x38 range=32              |
-| ModIndex       | s_axi_control        | register | name=ModIndex offset=0x40 range=32        |
-+----------------+----------------------+----------+-------------------------------------------+
++---------------+---------------+----------+--------------------------------------------+
+| Argument      | HW Interface  | HW Type  | HW Info                                    |
++---------------+---------------+----------+--------------------------------------------+
+| DataIn        | s_axi_control | memory   | name=DataIn offset=16384 range=16384       |
+| RAMSel        | s_axi_control | register | name=RAMSel offset=0x10 range=32           |
+| NTTTwiddleIn  | s_axi_control | memory   | name=NTTTwiddleIn offset=8192 range=8192   |
+| INTTTwiddleIn | s_axi_control | memory   | name=INTTTwiddleIn offset=32768 range=8192 |
+| OP            | s_axi_control | register | name=OP offset=0x18 range=32               |
+| ModIndex      | s_axi_control | register | name=ModIndex offset=0x20 range=32         |
++---------------+---------------+----------+--------------------------------------------+
 
 
 ================================================================
@@ -148,202 +128,295 @@
 ================================================================
 == Bind Op Report
 ================================================================
-+------------------------------------------+-----+--------+----------------+-----+--------+---------+
-| Name                                     | DSP | Pragma | Variable       | Op  | Impl   | Latency |
-+------------------------------------------+-----+--------+----------------+-----+--------+---------+
-| + Crypto                                 | 48  |        |                |     |        |         |
-|   sub_ln155_fu_723_p2                    | -   |        | sub_ln155      | sub | fabric | 0       |
-|   sub_ln155_1_fu_742_p2                  | -   |        | sub_ln155_1    | sub | fabric | 0       |
-|   add_ln158_fu_801_p2                    | -   |        | add_ln158      | add | fabric | 0       |
-|   sub_ln105_fu_838_p2                    | -   |        | sub_ln105      | sub | fabric | 0       |
-|   sub_ln105_1_fu_857_p2                  | -   |        | sub_ln105_1    | sub | fabric | 0       |
-|   add_ln108_fu_916_p2                    | -   |        | add_ln108      | add | fabric | 0       |
-|   temp3_0_3_fu_931_p2                    | -   |        | temp3_0_3      | sub | fabric | 0       |
-|   temp3_0_5_fu_966_p2                    | -   |        | temp3_0_5      | add | fabric | 0       |
-|   temp3_0_fu_945_p2                      | -   |        | temp3_0        | add | fabric | 0       |
-|   temp3_0_1_fu_986_p2                    | -   |        | temp3_0_1      | sub | fabric | 0       |
-|   add_ln14_fu_1012_p2                    | -   |        | add_ln14       | add | fabric | 0       |
-|   add_ln8_fu_1039_p2                     | -   |        | add_ln8        | add | fabric | 0       |
-|  + Crypto_Pipeline_VITIS_LOOP_138_7      | 0   |        |                |     |        |         |
-|    add_ln138_fu_84_p2                    | -   |        | add_ln138      | add | fabric | 0       |
-|    add_ln14_fu_90_p2                     | -   |        | add_ln14       | add | fabric | 0       |
-|  + Crypto_Pipeline_VITIS_LOOP_89_1       | 0   |        |                |     |        |         |
-|    add_ln89_fu_84_p2                     | -   |        | add_ln89       | add | fabric | 0       |
-|    add_ln14_fu_90_p2                     | -   |        | add_ln14       | add | fabric | 0       |
-|  + Crypto_Pipeline_VITIS_LOOP_22_21      | 0   |        |                |     |        |         |
-|    add_ln22_fu_78_p2                     | -   |        | add_ln22       | add | fabric | 0       |
-|  + Crypto_Pipeline_VITIS_LOOP_22_2       | 0   |        |                |     |        |         |
-|    add_ln22_fu_78_p2                     | -   |        | add_ln22       | add | fabric | 0       |
-|  + Crypto_Pipeline_VITIS_LOOP_149_10     | 0   |        |                |     |        |         |
-|    add_ln149_fu_74_p2                    | -   |        | add_ln149      | add | fabric | 0       |
-|  + Crypto_Pipeline_VITIS_LOOP_99_4       | 0   |        |                |     |        |         |
-|    add_ln99_fu_74_p2                     | -   |        | add_ln99       | add | fabric | 0       |
-|  + Crypto_Pipeline_VITIS_LOOP_176_11     | 12  |        |                |     |        |         |
-|    add_ln176_fu_92_p2                    | -   |        | add_ln176      | add | fabric | 0       |
-|   + MUL_MOD_1                            | 12  |        |                |     |        |         |
-|     mul_16ns_16ns_32_1_1_U37             | 1   |        | temp1          | mul | auto   | 0       |
-|     mac_muladd_14ns_16ns_32ns_33_4_1_U48 | 1   |        | temp2          | mul | dsp48  | 3       |
-|     mul_16ns_16ns_32_1_1_U38             | 1   |        | temp3          | mul | auto   | 0       |
-|     mul_14ns_16ns_30_1_1_U36             | 1   |        | temp4          | mul | auto   | 0       |
-|     mac_muladd_14ns_16ns_32ns_33_4_1_U48 | 1   |        | add_ln30       | add | dsp48  | 3       |
-|     res_mult_fu_222_p2                   | -   |        | res_mult       | add | fabric | 0       |
-|     mul_16ns_16ns_32_1_1_U40             | 1   |        | temp1_1        | mul | auto   | 0       |
-|     mul_16ns_16ns_32_1_1_U41             | 1   |        | temp2_1        | mul | auto   | 0       |
-|     mul_16ns_16ns_32_1_1_U42             | 1   |        | temp3_1        | mul | auto   | 0       |
-|     mul_16ns_16ns_32_1_1_U43             | 1   |        | temp4_1        | mul | auto   | 0       |
-|     add_ln30_3_fu_308_p2                 | -   |        | add_ln30_3     | add | fabric | 0       |
-|     add_ln30_1_fu_312_p2                 | -   |        | add_ln30_1     | add | fabric | 0       |
-|     res_mult_shift_fu_380_p2             | -   |        | res_mult_shift | add | fabric | 0       |
-|     add_ln74_fu_332_p2                   | -   |        | add_ln74       | add | fabric | 0       |
-|     mul_16ns_16ns_32_1_1_U45             | 1   |        | temp1_2        | mul | auto   | 0       |
-|     mac_muladd_16ns_15ns_32ns_33_4_1_U49 | 1   |        | temp2_2        | mul | dsp48  | 3       |
-|     mul_16ns_16ns_32_1_1_U46             | 1   |        | temp3_2        | mul | auto   | 0       |
-|     mul_15ns_16ns_31_1_1_U47             | 1   |        | temp4_2        | mul | auto   | 0       |
-|     mac_muladd_16ns_15ns_32ns_33_4_1_U49 | 1   |        | add_ln30_2     | add | dsp48  | 3       |
-|     sub_ln89_fu_484_p2                   | -   |        | sub_ln89       | sub | fabric | 0       |
-|     sub_ln90_fu_500_p2                   | -   |        | sub_ln90       | sub | fabric | 0       |
-|  + Crypto_Pipeline_INTT_PE_LOOP          | 12  |        |                |     |        |         |
-|    add_ln160_fu_260_p2                   | -   |        | add_ln160      | add | fabric | 0       |
-|    add_ln162_fu_273_p2                   | -   |        | add_ln162      | add | fabric | 0       |
-|    add_ln163_fu_283_p2                   | -   |        | add_ln163      | add | fabric | 0       |
-|    add_ln164_1_fu_293_p2                 | -   |        | add_ln164_1    | add | fabric | 0       |
-|    mul_16ns_16ns_32_1_1_U8               | 1   |        | temp1          | mul | auto   | 0       |
-|    mul_16ns_16ns_32_1_1_U9               | 1   |        | temp2          | mul | auto   | 0       |
-|    mac_muladd_16ns_16ns_32ns_33_1_1_U18  | 1   |        | temp3          | mul | dsp48  | 0       |
-|    mul_16ns_16ns_32_1_1_U10              | 1   |        | temp4          | mul | auto   | 0       |
-|    mac_muladd_16ns_16ns_32ns_33_1_1_U18  | 1   |        | add_ln30_7     | add | dsp48  | 0       |
-|    res_mult_fu_413_p2                    | -   |        | res_mult       | add | fabric | 0       |
-|    mul_16ns_16ns_32_1_1_U11              | 1   |        | temp1_7        | mul | auto   | 0       |
-|    mul_16ns_16ns_32_1_1_U12              | 1   |        | temp2_7        | mul | auto   | 0       |
-|    mul_16ns_16ns_32_1_1_U13              | 1   |        | temp3_7        | mul | auto   | 0       |
-|    mul_16ns_16ns_32_1_1_U14              | 1   |        | temp4_7        | mul | auto   | 0       |
-|    add_ln30_fu_496_p2                    | -   |        | add_ln30       | add | fabric | 0       |
-|    add_ln30_8_fu_502_p2                  | -   |        | add_ln30_8     | add | fabric | 0       |
-|    res_mult_shift_fu_536_p2              | -   |        | res_mult_shift | add | fabric | 0       |
-|    add_ln74_fu_542_p2                    | -   |        | add_ln74       | add | fabric | 0       |
-|    mul_16ns_16ns_32_1_1_U15              | 1   |        | temp1_8        | mul | auto   | 0       |
-|    mac_muladd_16ns_15ns_32ns_33_1_1_U19  | 1   |        | temp2_8        | mul | dsp48  | 0       |
-|    mul_16ns_16ns_32_1_1_U16              | 1   |        | temp3_8        | mul | auto   | 0       |
-|    mul_15ns_16ns_31_1_1_U17              | 1   |        | temp4_8        | mul | auto   | 0       |
-|    mac_muladd_16ns_15ns_32ns_33_1_1_U19  | 1   |        | add_ln30_9     | add | dsp48  | 0       |
-|    sub_ln89_fu_652_p2                    | -   |        | sub_ln89       | sub | fabric | 0       |
-|    sub_ln90_fu_668_p2                    | -   |        | sub_ln90       | sub | fabric | 0       |
-|    add_ln40_fu_718_p2                    | -   |        | add_ln40       | add | fabric | 0       |
-|    sub_ln44_fu_729_p2                    | -   |        | sub_ln44       | sub | fabric | 0       |
-|    sub_ln53_fu_743_p2                    | -   |        | sub_ln53       | sub | fabric | 0       |
-|    add_ln56_fu_755_p2                    | -   |        | add_ln56       | add | fabric | 0       |
-|  + Crypto_Pipeline_VITIS_LOOP_180_12     | 0   |        |                |     |        |         |
-|    add_ln180_fu_84_p2                    | -   |        | add_ln180      | add | fabric | 0       |
-|    add_ln8_fu_95_p2                      | -   |        | add_ln8        | add | fabric | 0       |
-|  + Crypto_Pipeline_VITIS_LOOP_126_5      | 0   |        |                |     |        |         |
-|    add_ln126_fu_84_p2                    | -   |        | add_ln126      | add | fabric | 0       |
-|    add_ln8_fu_95_p2                      | -   |        | add_ln8        | add | fabric | 0       |
-|  + Crypto_Pipeline_NTT_PE_LOOP           | 12  |        |                |     |        |         |
-|    add_ln110_fu_258_p2                   | -   |        | add_ln110      | add | fabric | 0       |
-|    add_ln112_fu_271_p2                   | -   |        | add_ln112      | add | fabric | 0       |
-|    add_ln113_fu_281_p2                   | -   |        | add_ln113      | add | fabric | 0       |
-|    add_ln114_fu_291_p2                   | -   |        | add_ln114      | add | fabric | 0       |
-|    mul_16ns_16ns_32_1_1_U71              | 1   |        | temp1          | mul | auto   | 0       |
-|    mul_16ns_16ns_32_1_1_U72              | 1   |        | temp2          | mul | auto   | 0       |
-|    mac_muladd_16ns_16ns_32ns_33_1_1_U81  | 1   |        | temp3          | mul | dsp48  | 0       |
-|    mul_16ns_16ns_32_1_1_U73              | 1   |        | temp4          | mul | auto   | 0       |
-|    mac_muladd_16ns_16ns_32ns_33_1_1_U81  | 1   |        | add_ln30       | add | dsp48  | 0       |
-|    res_mult_fu_405_p2                    | -   |        | res_mult       | add | fabric | 0       |
-|    mul_16ns_16ns_32_1_1_U74              | 1   |        | temp1_5        | mul | auto   | 0       |
-|    mul_16ns_16ns_32_1_1_U75              | 1   |        | temp2_5        | mul | auto   | 0       |
-|    mul_16ns_16ns_32_1_1_U76              | 1   |        | temp3_5        | mul | auto   | 0       |
-|    mul_16ns_16ns_32_1_1_U77              | 1   |        | temp4_5        | mul | auto   | 0       |
-|    add_ln30_7_fu_488_p2                  | -   |        | add_ln30_7     | add | fabric | 0       |
-|    add_ln30_5_fu_494_p2                  | -   |        | add_ln30_5     | add | fabric | 0       |
-|    res_mult_shift_fu_528_p2              | -   |        | res_mult_shift | add | fabric | 0       |
-|    add_ln74_fu_534_p2                    | -   |        | add_ln74       | add | fabric | 0       |
-|    mul_16ns_16ns_32_1_1_U78              | 1   |        | temp1_6        | mul | auto   | 0       |
-|    mac_muladd_16ns_15ns_32ns_33_1_1_U82  | 1   |        | temp2_6        | mul | dsp48  | 0       |
-|    mul_16ns_16ns_32_1_1_U79              | 1   |        | temp3_6        | mul | auto   | 0       |
-|    mul_15ns_16ns_31_1_1_U80              | 1   |        | temp4_6        | mul | auto   | 0       |
-|    mac_muladd_16ns_15ns_32ns_33_1_1_U82  | 1   |        | add_ln30_6     | add | dsp48  | 0       |
-|    sub_ln89_fu_644_p2                    | -   |        | sub_ln89       | sub | fabric | 0       |
-|    sub_ln90_fu_660_p2                    | -   |        | sub_ln90       | sub | fabric | 0       |
-|    add_ln40_fu_710_p2                    | -   |        | add_ln40       | add | fabric | 0       |
-|    sub_ln44_fu_721_p2                    | -   |        | sub_ln44       | sub | fabric | 0       |
-|    sub_ln53_fu_735_p2                    | -   |        | sub_ln53       | sub | fabric | 0       |
-|    add_ln56_fu_747_p2                    | -   |        | add_ln56       | add | fabric | 0       |
-|  + MUL_MOD                               | 12  |        |                |     |        |         |
-|    mul_16ns_16ns_32_1_1_U98              | 1   |        | temp1          | mul | auto   | 0       |
-|    mul_16ns_16ns_32_1_1_U99              | 1   |        | temp2          | mul | auto   | 0       |
-|    mac_muladd_16ns_16ns_32ns_33_4_1_U110 | 1   |        | temp3          | mul | dsp48  | 3       |
-|    mul_16ns_16ns_32_1_1_U100             | 1   |        | temp4          | mul | auto   | 0       |
-|    mac_muladd_16ns_16ns_32ns_33_4_1_U110 | 1   |        | add_ln30       | add | dsp48  | 3       |
-|    res_mult_fu_195_p2                    | -   |        | res_mult       | add | fabric | 0       |
-|    mul_16ns_16ns_32_1_1_U102             | 1   |        | temp1_3        | mul | auto   | 0       |
-|    mul_16ns_16ns_32_1_1_U103             | 1   |        | temp2_3        | mul | auto   | 0       |
-|    mul_16ns_16ns_32_1_1_U104             | 1   |        | temp3_3        | mul | auto   | 0       |
-|    mul_16ns_16ns_32_1_1_U105             | 1   |        | temp4_3        | mul | auto   | 0       |
-|    add_ln30_5_fu_281_p2                  | -   |        | add_ln30_5     | add | fabric | 0       |
-|    add_ln30_3_fu_285_p2                  | -   |        | add_ln30_3     | add | fabric | 0       |
-|    res_mult_shift_fu_353_p2              | -   |        | res_mult_shift | add | fabric | 0       |
-|    add_ln74_fu_305_p2                    | -   |        | add_ln74       | add | fabric | 0       |
-|    mul_16ns_16ns_32_1_1_U107             | 1   |        | temp1_4        | mul | auto   | 0       |
-|    mac_muladd_16ns_15ns_32ns_33_4_1_U111 | 1   |        | temp2_4        | mul | dsp48  | 3       |
-|    mul_16ns_16ns_32_1_1_U108             | 1   |        | temp3_4        | mul | auto   | 0       |
-|    mul_15ns_16ns_31_1_1_U109             | 1   |        | temp4_4        | mul | auto   | 0       |
-|    mac_muladd_16ns_15ns_32ns_33_4_1_U111 | 1   |        | add_ln30_4     | add | dsp48  | 3       |
-|    sub_ln89_fu_453_p2                    | -   |        | sub_ln89       | sub | fabric | 0       |
-|    sub_ln90_fu_469_p2                    | -   |        | sub_ln90       | sub | fabric | 0       |
-+------------------------------------------+-----+--------+----------------+-----+--------+---------+
++-------------------------------------------+-----+--------+----------------+-----+--------+---------+
+| Name                                      | DSP | Pragma | Variable       | Op  | Impl   | Latency |
++-------------------------------------------+-----+--------+----------------+-----+--------+---------+
+| + Crypto                                  | 36  |        |                |     |        |         |
+|   sub_ln149_fu_1476_p2                    | -   |        | sub_ln149      | sub | fabric | 0       |
+|   sub_ln149_1_fu_1501_p2                  | -   |        | sub_ln149_1    | sub | fabric | 0       |
+|   add_ln153_fu_1569_p2                    | -   |        | add_ln153      | add | fabric | 0       |
+|   sub_ln115_fu_1599_p2                    | -   |        | sub_ln115      | sub | fabric | 0       |
+|   sub_ln115_1_fu_1624_p2                  | -   |        | sub_ln115_1    | sub | fabric | 0       |
+|   add_ln119_fu_1692_p2                    | -   |        | add_ln119      | add | fabric | 0       |
+|  + Crypto_Pipeline_PERMUTE_LOOP1          | 0   |        |                |     |        |         |
+|    add_ln24_fu_820_p2                     | -   |        | add_ln24       | add | fabric | 0       |
+|  + Crypto_Pipeline_PERMUTE_LOOP           | 0   |        |                |     |        |         |
+|    add_ln24_fu_820_p2                     | -   |        | add_ln24       | add | fabric | 0       |
+|  + Crypto_Pipeline_POLY_MUL_LOOP          | 12  |        |                |     |        |         |
+|    add_ln98_fu_599_p2                     | -   |        | add_ln98       | add | fabric | 0       |
+|   + MUL_MOD_1                             | 12  |        |                |     |        |         |
+|     mul_16ns_16ns_32_2_1_U412             | 1   |        | temp1          | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U413             | 1   |        | temp2          | mul | auto   | 1       |
+|     mac_muladd_16ns_16ns_32ns_33_4_1_U424 | 1   |        | temp3          | mul | dsp48  | 3       |
+|     mul_16ns_16ns_32_2_1_U414             | 1   |        | temp4          | mul | auto   | 1       |
+|     mac_muladd_16ns_16ns_32ns_33_4_1_U424 | 1   |        | add_ln30       | add | dsp48  | 3       |
+|     res_mult_fu_184_p2                    | -   |        | res_mult       | add | fabric | 0       |
+|     mul_16ns_16ns_32_2_1_U416             | 1   |        | temp1_3        | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U417             | 1   |        | temp2_3        | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U418             | 1   |        | temp3_3        | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U419             | 1   |        | temp4_3        | mul | auto   | 1       |
+|     add_ln30_5_fu_287_p2                  | -   |        | add_ln30_5     | add | fabric | 0       |
+|     add_ln30_3_fu_291_p2                  | -   |        | add_ln30_3     | add | fabric | 0       |
+|     res_mult_shift_fu_327_p2              | -   |        | res_mult_shift | add | fabric | 0       |
+|     add_ln74_fu_333_p2                    | -   |        | add_ln74       | add | fabric | 0       |
+|     mul_16ns_16ns_32_2_1_U421             | 1   |        | temp1_4        | mul | auto   | 1       |
+|     mac_muladd_16ns_15ns_32ns_33_4_1_U425 | 1   |        | temp2_4        | mul | dsp48  | 3       |
+|     mul_16ns_16ns_32_2_1_U422             | 1   |        | temp3_4        | mul | auto   | 1       |
+|     mul_15ns_16ns_31_2_1_U423             | 1   |        | temp4_4        | mul | auto   | 1       |
+|     mac_muladd_16ns_15ns_32ns_33_4_1_U425 | 1   |        | add_ln30_4     | add | dsp48  | 3       |
+|     res_shift_fu_435_p2                   | -   |        | res_shift      | sub | fabric | 0       |
+|     sub_ln85_fu_451_p2                    | -   |        | sub_ln85       | sub | fabric | 0       |
+|     sub_ln89_fu_459_p2                    | -   |        | sub_ln89       | sub | fabric | 0       |
+|     sub_ln90_fu_475_p2                    | -   |        | sub_ln90       | sub | fabric | 0       |
+|  + Crypto_Pipeline_POLY_SUB_LOOP          | 0   |        |                |     |        |         |
+|    add_ln88_fu_642_p2                     | -   |        | add_ln88       | add | fabric | 0       |
+|    sub_ln53_fu_745_p2                     | -   |        | sub_ln53       | sub | fabric | 0       |
+|    add_ln56_fu_759_p2                     | -   |        | add_ln56       | add | fabric | 0       |
+|  + Crypto_Pipeline_VITIS_LOOP_79_1        | 0   |        |                |     |        |         |
+|    add_ln79_fu_576_p2                     | -   |        | add_ln79       | add | fabric | 0       |
+|    add_ln40_fu_674_p2                     | -   |        | add_ln40       | add | fabric | 0       |
+|    sub_ln44_fu_684_p2                     | -   |        | sub_ln44       | sub | fabric | 0       |
+|  + Crypto_Pipeline_WRITE_TWIDDLE_LOOP     | 0   |        |                |     |        |         |
+|    add_ln68_fu_604_p2                     | -   |        | add_ln68       | add | fabric | 0       |
+|  + Crypto_Pipeline_READ_DATA_LOOP         | 0   |        |                |     |        |         |
+|    add_ln58_fu_573_p2                     | -   |        | add_ln58       | add | fabric | 0       |
+|  + Crypto_Pipeline_WRITE_DATA_LOOP        | 0   |        |                |     |        |         |
+|    add_ln50_fu_599_p2                     | -   |        | add_ln50       | add | fabric | 0       |
+|  + Crypto_Pipeline_INTT_PERMUTE_LOOP      | 0   |        |                |     |        |         |
+|    add_ln143_fu_812_p2                    | -   |        | add_ln143      | add | fabric | 0       |
+|  + Crypto_Pipeline_NTT_PERMUTE_LOOP       | 0   |        |                |     |        |         |
+|    add_ln109_fu_812_p2                    | -   |        | add_ln109      | add | fabric | 0       |
+|  + Crypto_Pipeline_MUL_INV_LOOP           | 12  |        |                |     |        |         |
+|    add_ln175_fu_635_p2                    | -   |        | add_ln175      | add | fabric | 0       |
+|   + MUL_MOD                               | 12  |        |                |     |        |         |
+|     mul_16ns_16ns_32_2_1_U192             | 1   |        | temp1          | mul | auto   | 1       |
+|     mac_muladd_14ns_16ns_32ns_33_4_0_U204 | 1   |        | temp2          | mul | dsp48  | 3       |
+|     mul_16ns_16ns_32_2_1_U193             | 1   |        | temp3          | mul | auto   | 1       |
+|     mul_14ns_16ns_30_2_0_U194             | 1   |        | temp4          | mul | auto   | 1       |
+|     mac_muladd_14ns_16ns_32ns_33_4_0_U204 | 1   |        | add_ln30       | add | dsp48  | 3       |
+|     res_mult_fu_210_p2                    | -   |        | res_mult       | add | fabric | 0       |
+|     mul_16ns_16ns_32_2_1_U196             | 1   |        | temp1_5        | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U197             | 1   |        | temp2_5        | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U198             | 1   |        | temp3_5        | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U199             | 1   |        | temp4_5        | mul | auto   | 1       |
+|     add_ln30_7_fu_313_p2                  | -   |        | add_ln30_7     | add | fabric | 0       |
+|     add_ln30_5_fu_317_p2                  | -   |        | add_ln30_5     | add | fabric | 0       |
+|     res_mult_shift_fu_353_p2              | -   |        | res_mult_shift | add | fabric | 0       |
+|     add_ln74_fu_359_p2                    | -   |        | add_ln74       | add | fabric | 0       |
+|     mul_16ns_16ns_32_2_1_U201             | 1   |        | temp1_6        | mul | auto   | 1       |
+|     mac_muladd_16ns_15ns_32ns_33_4_1_U205 | 1   |        | temp2_6        | mul | dsp48  | 3       |
+|     mul_16ns_16ns_32_2_1_U202             | 1   |        | temp3_6        | mul | auto   | 1       |
+|     mul_15ns_16ns_31_2_1_U203             | 1   |        | temp4_6        | mul | auto   | 1       |
+|     mac_muladd_16ns_15ns_32ns_33_4_1_U205 | 1   |        | add_ln30_6     | add | dsp48  | 3       |
+|     res_shift_fu_464_p2                   | -   |        | res_shift      | sub | fabric | 0       |
+|     sub_ln85_fu_481_p2                    | -   |        | sub_ln85       | sub | fabric | 0       |
+|     sub_ln89_fu_489_p2                    | -   |        | sub_ln89       | sub | fabric | 0       |
+|     sub_ln90_fu_505_p2                    | -   |        | sub_ln90       | sub | fabric | 0       |
+|  + Crypto_Pipeline_INTT_PE_LOOP           | 0   |        |                |     |        |         |
+|    add_ln156_fu_1455_p2                   | -   |        | add_ln156      | add | fabric | 0       |
+|    add_ln158_fu_1316_p2                   | -   |        | add_ln158      | add | fabric | 0       |
+|    add_ln158_1_fu_1463_p2                 | -   |        | add_ln158_1    | add | fabric | 0       |
+|    add_ln159_fu_1331_p2                   | -   |        | add_ln159      | add | fabric | 0       |
+|    add_ln159_1_fu_1468_p2                 | -   |        | add_ln159_1    | add | fabric | 0       |
+|    add_ln160_fu_1346_p2                   | -   |        | add_ln160      | add | fabric | 0       |
+|    add_ln40_fu_1605_p2                    | -   |        | add_ln40       | add | fabric | 0       |
+|    sub_ln44_fu_1626_p2                    | -   |        | sub_ln44       | sub | fabric | 0       |
+|    sub_ln53_fu_1614_p2                    | -   |        | sub_ln53       | sub | fabric | 0       |
+|    add_ln56_fu_1630_p2                    | -   |        | add_ln56       | add | fabric | 0       |
+|   + MUL_MOD_2 (grp_MUL_MOD_2_fu_1276)     | 12  |        |                |     |        |         |
+|     mul_16ns_16ns_32_2_1_U105             | 1   |        | temp1          | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U106             | 1   |        | temp2          | mul | auto   | 1       |
+|     mac_muladd_16ns_16ns_32ns_33_4_1_U117 | 1   |        | temp3          | mul | dsp48  | 3       |
+|     mul_16ns_16ns_32_2_1_U107             | 1   |        | temp4          | mul | auto   | 1       |
+|     mac_muladd_16ns_16ns_32ns_33_4_1_U117 | 1   |        | add_ln30       | add | dsp48  | 3       |
+|     res_mult_fu_184_p2                    | -   |        | res_mult       | add | fabric | 0       |
+|     mul_16ns_16ns_32_2_1_U109             | 1   |        | temp1_1        | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U110             | 1   |        | temp2_1        | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U111             | 1   |        | temp3_1        | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U112             | 1   |        | temp4_1        | mul | auto   | 1       |
+|     add_ln30_3_fu_287_p2                  | -   |        | add_ln30_3     | add | fabric | 0       |
+|     add_ln30_1_fu_291_p2                  | -   |        | add_ln30_1     | add | fabric | 0       |
+|     res_mult_shift_fu_327_p2              | -   |        | res_mult_shift | add | fabric | 0       |
+|     add_ln74_fu_333_p2                    | -   |        | add_ln74       | add | fabric | 0       |
+|     mul_16ns_16ns_32_2_1_U114             | 1   |        | temp1_2        | mul | auto   | 1       |
+|     mac_muladd_16ns_15ns_32ns_33_4_1_U118 | 1   |        | temp2_2        | mul | dsp48  | 3       |
+|     mul_16ns_16ns_32_2_1_U115             | 1   |        | temp3_2        | mul | auto   | 1       |
+|     mul_15ns_16ns_31_2_1_U116             | 1   |        | temp4_2        | mul | auto   | 1       |
+|     mac_muladd_16ns_15ns_32ns_33_4_1_U118 | 1   |        | add_ln30_2     | add | dsp48  | 3       |
+|     res_shift_fu_435_p2                   | -   |        | res_shift      | sub | fabric | 0       |
+|     sub_ln85_fu_451_p2                    | -   |        | sub_ln85       | sub | fabric | 0       |
+|     sub_ln89_fu_459_p2                    | -   |        | sub_ln89       | sub | fabric | 0       |
+|     sub_ln90_fu_475_p2                    | -   |        | sub_ln90       | sub | fabric | 0       |
+|  + Crypto_Pipeline_NTT_PE_LOOP            | 0   |        |                |     |        |         |
+|    add_ln122_fu_1455_p2                   | -   |        | add_ln122      | add | fabric | 0       |
+|    add_ln124_fu_1316_p2                   | -   |        | add_ln124      | add | fabric | 0       |
+|    add_ln124_1_fu_1463_p2                 | -   |        | add_ln124_1    | add | fabric | 0       |
+|    add_ln125_fu_1331_p2                   | -   |        | add_ln125      | add | fabric | 0       |
+|    add_ln125_1_fu_1468_p2                 | -   |        | add_ln125_1    | add | fabric | 0       |
+|    add_ln126_fu_1346_p2                   | -   |        | add_ln126      | add | fabric | 0       |
+|    add_ln40_fu_1605_p2                    | -   |        | add_ln40       | add | fabric | 0       |
+|    sub_ln44_fu_1626_p2                    | -   |        | sub_ln44       | sub | fabric | 0       |
+|    sub_ln53_fu_1614_p2                    | -   |        | sub_ln53       | sub | fabric | 0       |
+|    add_ln56_fu_1630_p2                    | -   |        | add_ln56       | add | fabric | 0       |
+|   + MUL_MOD_2 (grp_MUL_MOD_2_fu_1276)     | 12  |        |                |     |        |         |
+|     mul_16ns_16ns_32_2_1_U105             | 1   |        | temp1          | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U106             | 1   |        | temp2          | mul | auto   | 1       |
+|     mac_muladd_16ns_16ns_32ns_33_4_1_U117 | 1   |        | temp3          | mul | dsp48  | 3       |
+|     mul_16ns_16ns_32_2_1_U107             | 1   |        | temp4          | mul | auto   | 1       |
+|     mac_muladd_16ns_16ns_32ns_33_4_1_U117 | 1   |        | add_ln30       | add | dsp48  | 3       |
+|     res_mult_fu_184_p2                    | -   |        | res_mult       | add | fabric | 0       |
+|     mul_16ns_16ns_32_2_1_U109             | 1   |        | temp1_1        | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U110             | 1   |        | temp2_1        | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U111             | 1   |        | temp3_1        | mul | auto   | 1       |
+|     mul_16ns_16ns_32_2_1_U112             | 1   |        | temp4_1        | mul | auto   | 1       |
+|     add_ln30_3_fu_287_p2                  | -   |        | add_ln30_3     | add | fabric | 0       |
+|     add_ln30_1_fu_291_p2                  | -   |        | add_ln30_1     | add | fabric | 0       |
+|     res_mult_shift_fu_327_p2              | -   |        | res_mult_shift | add | fabric | 0       |
+|     add_ln74_fu_333_p2                    | -   |        | add_ln74       | add | fabric | 0       |
+|     mul_16ns_16ns_32_2_1_U114             | 1   |        | temp1_2        | mul | auto   | 1       |
+|     mac_muladd_16ns_15ns_32ns_33_4_1_U118 | 1   |        | temp2_2        | mul | dsp48  | 3       |
+|     mul_16ns_16ns_32_2_1_U115             | 1   |        | temp3_2        | mul | auto   | 1       |
+|     mul_15ns_16ns_31_2_1_U116             | 1   |        | temp4_2        | mul | auto   | 1       |
+|     mac_muladd_16ns_15ns_32ns_33_4_1_U118 | 1   |        | add_ln30_2     | add | dsp48  | 3       |
+|     res_shift_fu_435_p2                   | -   |        | res_shift      | sub | fabric | 0       |
+|     sub_ln85_fu_451_p2                    | -   |        | sub_ln85       | sub | fabric | 0       |
+|     sub_ln89_fu_459_p2                    | -   |        | sub_ln89       | sub | fabric | 0       |
+|     sub_ln90_fu_475_p2                    | -   |        | sub_ln90       | sub | fabric | 0       |
++-------------------------------------------+-----+--------+----------------+-----+--------+---------+
 
 
 ================================================================
 == Bind Storage Report
 ================================================================
-+------------------------+------+------+--------+--------------------+---------+------+---------+
-| Name                   | BRAM | URAM | Pragma | Variable           | Storage | Impl | Latency |
-+------------------------+------+------+--------+--------------------+---------+------+---------+
-| + Crypto               | 48   | 0    |        |                    |         |      |         |
-|   DataTemp_U           | 8    | -    |        | DataTemp           | ram_t2p | auto | 1       |
-|   bit_reversed_input_U | 8    | -    |        | bit_reversed_input | ram_1p  | auto | 1       |
-|   data_ram_0_U         | 16   | -    |        | data_ram_0         | ram_t2p | auto | 1       |
-|   twiddle_ram_U        | 16   | -    |        | twiddle_ram        | ram_1p  | auto | 1       |
-+------------------------+------+------+--------+--------------------+---------+------+---------+
++-----------------------+------+------+--------+-------------------+---------+------+---------+
+| Name                  | BRAM | URAM | Pragma | Variable          | Storage | Impl | Latency |
++-----------------------+------+------+--------+-------------------+---------+------+---------+
+| + Crypto              | 128  | 0    |        |                   |         |      |         |
+|   DataRAM_U           | 2    | -    |        | DataRAM           | ram_t2p | auto | 1       |
+|   DataRAM_1_U         | 2    | -    |        | DataRAM_1         | ram_t2p | auto | 1       |
+|   DataRAM_2_U         | 2    | -    |        | DataRAM_2         | ram_t2p | auto | 1       |
+|   DataRAM_3_U         | 2    | -    |        | DataRAM_3         | ram_t2p | auto | 1       |
+|   DataRAM_4_U         | 2    | -    |        | DataRAM_4         | ram_t2p | auto | 1       |
+|   DataRAM_5_U         | 2    | -    |        | DataRAM_5         | ram_t2p | auto | 1       |
+|   DataRAM_6_U         | 2    | -    |        | DataRAM_6         | ram_t2p | auto | 1       |
+|   DataRAM_7_U         | 2    | -    |        | DataRAM_7         | ram_t2p | auto | 1       |
+|   DataRAM_8_U         | 2    | -    |        | DataRAM_8         | ram_t2p | auto | 1       |
+|   DataRAM_9_U         | 2    | -    |        | DataRAM_9         | ram_t2p | auto | 1       |
+|   DataRAM_10_U        | 2    | -    |        | DataRAM_10        | ram_t2p | auto | 1       |
+|   DataRAM_11_U        | 2    | -    |        | DataRAM_11        | ram_t2p | auto | 1       |
+|   DataRAM_12_U        | 2    | -    |        | DataRAM_12        | ram_t2p | auto | 1       |
+|   DataRAM_13_U        | 2    | -    |        | DataRAM_13        | ram_t2p | auto | 1       |
+|   DataRAM_14_U        | 2    | -    |        | DataRAM_14        | ram_t2p | auto | 1       |
+|   DataRAM_15_U        | 2    | -    |        | DataRAM_15        | ram_t2p | auto | 1       |
+|   DataRAM_16_U        | 2    | -    |        | DataRAM_16        | ram_t2p | auto | 1       |
+|   DataRAM_17_U        | 2    | -    |        | DataRAM_17        | ram_t2p | auto | 1       |
+|   DataRAM_18_U        | 2    | -    |        | DataRAM_18        | ram_t2p | auto | 1       |
+|   DataRAM_19_U        | 2    | -    |        | DataRAM_19        | ram_t2p | auto | 1       |
+|   DataRAM_20_U        | 2    | -    |        | DataRAM_20        | ram_t2p | auto | 1       |
+|   DataRAM_21_U        | 2    | -    |        | DataRAM_21        | ram_t2p | auto | 1       |
+|   DataRAM_22_U        | 2    | -    |        | DataRAM_22        | ram_t2p | auto | 1       |
+|   DataRAM_23_U        | 2    | -    |        | DataRAM_23        | ram_t2p | auto | 1       |
+|   DataRAM_24_U        | 2    | -    |        | DataRAM_24        | ram_t2p | auto | 1       |
+|   DataRAM_25_U        | 2    | -    |        | DataRAM_25        | ram_t2p | auto | 1       |
+|   DataRAM_26_U        | 2    | -    |        | DataRAM_26        | ram_t2p | auto | 1       |
+|   DataRAM_27_U        | 2    | -    |        | DataRAM_27        | ram_t2p | auto | 1       |
+|   DataRAM_28_U        | 2    | -    |        | DataRAM_28        | ram_t2p | auto | 1       |
+|   DataRAM_29_U        | 2    | -    |        | DataRAM_29        | ram_t2p | auto | 1       |
+|   DataRAM_30_U        | 2    | -    |        | DataRAM_30        | ram_t2p | auto | 1       |
+|   DataRAM_31_U        | 2    | -    |        | DataRAM_31        | ram_t2p | auto | 1       |
+|   BitReverseData_U    | 2    | -    |        | BitReverseData    | ram_1p  | auto | 1       |
+|   BitReverseData_1_U  | 2    | -    |        | BitReverseData_1  | ram_1p  | auto | 1       |
+|   BitReverseData_2_U  | 2    | -    |        | BitReverseData_2  | ram_1p  | auto | 1       |
+|   BitReverseData_3_U  | 2    | -    |        | BitReverseData_3  | ram_1p  | auto | 1       |
+|   BitReverseData_4_U  | 2    | -    |        | BitReverseData_4  | ram_1p  | auto | 1       |
+|   BitReverseData_5_U  | 2    | -    |        | BitReverseData_5  | ram_1p  | auto | 1       |
+|   BitReverseData_6_U  | 2    | -    |        | BitReverseData_6  | ram_1p  | auto | 1       |
+|   BitReverseData_7_U  | 2    | -    |        | BitReverseData_7  | ram_1p  | auto | 1       |
+|   BitReverseData_8_U  | 2    | -    |        | BitReverseData_8  | ram_1p  | auto | 1       |
+|   BitReverseData_9_U  | 2    | -    |        | BitReverseData_9  | ram_1p  | auto | 1       |
+|   BitReverseData_10_U | 2    | -    |        | BitReverseData_10 | ram_1p  | auto | 1       |
+|   BitReverseData_11_U | 2    | -    |        | BitReverseData_11 | ram_1p  | auto | 1       |
+|   BitReverseData_12_U | 2    | -    |        | BitReverseData_12 | ram_1p  | auto | 1       |
+|   BitReverseData_13_U | 2    | -    |        | BitReverseData_13 | ram_1p  | auto | 1       |
+|   BitReverseData_14_U | 2    | -    |        | BitReverseData_14 | ram_1p  | auto | 1       |
+|   BitReverseData_15_U | 2    | -    |        | BitReverseData_15 | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_U     | 1    | -    |        | NTTTWiddleRAM     | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_1_U   | 1    | -    |        | NTTTWiddleRAM_1   | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_2_U   | 1    | -    |        | NTTTWiddleRAM_2   | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_3_U   | 1    | -    |        | NTTTWiddleRAM_3   | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_4_U   | 1    | -    |        | NTTTWiddleRAM_4   | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_5_U   | 1    | -    |        | NTTTWiddleRAM_5   | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_6_U   | 1    | -    |        | NTTTWiddleRAM_6   | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_7_U   | 1    | -    |        | NTTTWiddleRAM_7   | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_8_U   | 1    | -    |        | NTTTWiddleRAM_8   | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_9_U   | 1    | -    |        | NTTTWiddleRAM_9   | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_10_U  | 1    | -    |        | NTTTWiddleRAM_10  | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_11_U  | 1    | -    |        | NTTTWiddleRAM_11  | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_12_U  | 1    | -    |        | NTTTWiddleRAM_12  | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_13_U  | 1    | -    |        | NTTTWiddleRAM_13  | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_14_U  | 1    | -    |        | NTTTWiddleRAM_14  | ram_1p  | auto | 1       |
+|   NTTTWiddleRAM_15_U  | 1    | -    |        | NTTTWiddleRAM_15  | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_U    | 1    | -    |        | INTTTWiddleRAM    | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_1_U  | 1    | -    |        | INTTTWiddleRAM_1  | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_2_U  | 1    | -    |        | INTTTWiddleRAM_2  | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_3_U  | 1    | -    |        | INTTTWiddleRAM_3  | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_4_U  | 1    | -    |        | INTTTWiddleRAM_4  | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_5_U  | 1    | -    |        | INTTTWiddleRAM_5  | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_6_U  | 1    | -    |        | INTTTWiddleRAM_6  | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_7_U  | 1    | -    |        | INTTTWiddleRAM_7  | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_8_U  | 1    | -    |        | INTTTWiddleRAM_8  | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_9_U  | 1    | -    |        | INTTTWiddleRAM_9  | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_10_U | 1    | -    |        | INTTTWiddleRAM_10 | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_11_U | 1    | -    |        | INTTTWiddleRAM_11 | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_12_U | 1    | -    |        | INTTTWiddleRAM_12 | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_13_U | 1    | -    |        | INTTTWiddleRAM_13 | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_14_U | 1    | -    |        | INTTTWiddleRAM_14 | ram_1p  | auto | 1       |
+|   INTTTWiddleRAM_15_U | 1    | -    |        | INTTTWiddleRAM_15 | ram_1p  | auto | 1       |
++-----------------------+------+------+--------+-------------------+---------+------+---------+
 
 
 ================================================================
 == Pragma Report
 ================================================================
 * Pragmas with Warnings
-+-----------------+-------------------------+---------------------------------+------------------------------------------------------+
-| Type            | Options                 | Location                        | Messages                                             |
-+-----------------+-------------------------+---------------------------------+------------------------------------------------------+
-| array_partition | variable=poly factor=2  | pow_mod.cpp:78 in encode, poly  | 'factor' in '#pragma HLS array_partition' is ignored |
-| array_partition | variable=basis factor=2 | pow_mod.cpp:79 in encode, basis | 'factor' in '#pragma HLS array_partition' is ignored |
-| array_partition | variable=ret factor=2   | pow_mod.cpp:80 in encode, ret   | 'factor' in '#pragma HLS array_partition' is ignored |
-+-----------------+-------------------------+---------------------------------+------------------------------------------------------+
++-----------------+-------------------------+---------------------------------+---------------------------------------------------------------------+
+| Type            | Options                 | Location                        | Messages                                                            |
++-----------------+-------------------------+---------------------------------+---------------------------------------------------------------------+
+| pipeline        | II=1                    | Crypto.cpp:77 in crypto         | Only for/while/do loop or function body support the pipeline pragma |
+| unroll          | factor=16               | Crypto.cpp:78 in crypto         | '#pragma HLS unroll' can only be applied inside loop body           |
+| array_partition | variable=poly factor=2  | pow_mod.cpp:78 in encode, poly  | 'factor' in '#pragma HLS array_partition' is ignored                |
+| array_partition | variable=basis factor=2 | pow_mod.cpp:79 in encode, basis | 'factor' in '#pragma HLS array_partition' is ignored                |
+| array_partition | variable=ret factor=2   | pow_mod.cpp:80 in encode, ret   | 'factor' in '#pragma HLS array_partition' is ignored                |
++-----------------+-------------------------+---------------------------------+---------------------------------------------------------------------+
 
 * Valid Pragma Syntax
-+----------------+----------------------------+-------------------------------------+
-| Type           | Options                    | Location                            |
-+----------------+----------------------------+-------------------------------------+
-| inline         |                            | Arithmetic.cpp:9 in stepmul         |
-| pipeline       |                            | Arithmetic.cpp:66 in mul_mod        |
-| interface      | s_axilite port=return      | Crypto.cpp:25 in crypto, return     |
-| interface      | s_axilite port=DataIn      | Crypto.cpp:26 in crypto, DataIn     |
-| interface      | s_axilite port=TwiddleIn   | Crypto.cpp:27 in crypto, TwiddleIn  |
-| interface      | s_axilite port=Address     | Crypto.cpp:28 in crypto, Address    |
-| interface      | s_axilite port=RAMSel      | Crypto.cpp:29 in crypto, RAMSel     |
-| interface      | s_axilite port=DataOutput  | Crypto.cpp:30 in crypto, DataOutput |
-| interface      | s_axilite port=OP          | Crypto.cpp:31 in crypto, OP         |
-| interface      | s_axilite port=ModIndex    | Crypto.cpp:32 in crypto, ModIndex   |
-| pipeline       | II=1                       | Crypto.cpp:111 in crypto            |
-| pipeline       | II=1                       | Crypto.cpp:161 in crypto            |
-| inline         |                            | PE_UNIT.cpp:13 in pe_unit           |
-| inline         |                            | pow_mod.cpp:7 in mod65537           |
-| unroll         |                            | pow_mod.cpp:10 in mod65537          |
-| loop_tripcount | min=0 max=16               | pow_mod.cpp:42 in modexp            |
-| interface      | mode=s_axilite port=poly   | pow_mod.cpp:73 in encode, poly      |
-| interface      | mode=s_axilite port=basis  | pow_mod.cpp:74 in encode, basis     |
-| interface      | mode=s_axilite port=ret    | pow_mod.cpp:75 in encode, ret       |
-| interface      | mode=s_axilite port=return | pow_mod.cpp:76 in encode, return    |
-| unroll         | factor=2                   | pow_mod.cpp:96 in encode            |
-+----------------+----------------------------+-------------------------------------+
++-----------------+------------------------------------------+-----------------------------------------+
+| Type            | Options                                  | Location                                |
++-----------------+------------------------------------------+-----------------------------------------+
+| inline          |                                          | Arithmetic.cpp:9 in stepmul             |
+| pipeline        |                                          | Arithmetic.cpp:66 in mul_mod            |
+| array_partition | variable=DataRAM complete dim=1          | Crypto.cpp:23 in crypto, DataRAM        |
+| array_partition | variable=DataRAM cyclic factor=16 dim=2  | Crypto.cpp:24 in crypto, DataRAM        |
+| array_partition | variable=BitReverseData cyclic factor=16 | Crypto.cpp:29 in crypto, BitReverseData |
+| array_partition | variable=NTTTWiddleRAM cyclic factor=16  | Crypto.cpp:32 in crypto, NTTTWiddleRAM  |
+| array_partition | variable=INTTTWiddleRAM cyclic factor=16 | Crypto.cpp:34 in crypto, INTTTWiddleRAM |
+| interface       | s_axilite port=return                    | Crypto.cpp:37 in crypto, return         |
+| interface       | s_axilite port=DataIn                    | Crypto.cpp:38 in crypto, DataIn         |
+| interface       | s_axilite port=NTTTwiddleIn              | Crypto.cpp:39 in crypto, NTTTwiddleIn   |
+| interface       | s_axilite port=INTTTwiddleIn             | Crypto.cpp:40 in crypto, INTTTwiddleIn  |
+| interface       | s_axilite port=RAMSel                    | Crypto.cpp:41 in crypto, RAMSel         |
+| interface       | s_axilite port=OP                        | Crypto.cpp:42 in crypto, OP             |
+| interface       | s_axilite port=ModIndex                  | Crypto.cpp:43 in crypto, ModIndex       |
+| pipeline        | II=1                                     | Crypto.cpp:89 in crypto                 |
+| inline          |                                          | PE_UNIT.cpp:13 in pe_unit               |
+| inline          |                                          | pow_mod.cpp:7 in mod65537               |
+| unroll          |                                          | pow_mod.cpp:10 in mod65537              |
+| loop_tripcount  | min=0 max=16                             | pow_mod.cpp:42 in modexp                |
+| interface       | mode=s_axilite port=poly                 | pow_mod.cpp:73 in encode, poly          |
+| interface       | mode=s_axilite port=basis                | pow_mod.cpp:74 in encode, basis         |
+| interface       | mode=s_axilite port=ret                  | pow_mod.cpp:75 in encode, ret           |
+| interface       | mode=s_axilite port=return               | pow_mod.cpp:76 in encode, return        |
+| unroll          | factor=2                                 | pow_mod.cpp:96 in encode                |
++-----------------+------------------------------------------+-----------------------------------------+
 
 

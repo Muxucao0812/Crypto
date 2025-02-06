@@ -2,8 +2,8 @@ set clock_constraint { \
     name clk \
     module Crypto \
     port ap_clk \
-    period 8 \
-    uncertainty 2.16 \
+    period 7 \
+    uncertainty 1.89 \
 }
 
 set all_path {}

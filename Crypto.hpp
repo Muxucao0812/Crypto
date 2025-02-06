@@ -4,20 +4,13 @@
 #include "define.h"
 
 
-extern long_int data_ram[RAMNum][BANKNum][RAMDepth];
 void Crypto(
-    long_int        DataIn[BANKNum],
-    int             Address[BANKNum],
-    long_int        DataOutput[BANKNum],
-    
+    long_int        DataIn[N],
     int             RAMSel,
-
-    long_int        TwiddleIn[PE_NUM],
-    int             TwiddleAddress[PE_NUM],
-    long_int        TwiddleOutput[PE_NUM],
-
+    long_int        NTTTwiddleIn[N/2],
+    long_int        INTTTwiddleIn[N/2],
+    
     CryptoOperation OP,
     int             ModIndex
 );
-
 #endif

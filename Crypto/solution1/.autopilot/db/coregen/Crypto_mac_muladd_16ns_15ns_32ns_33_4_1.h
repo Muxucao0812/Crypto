@@ -7,7 +7,7 @@
 // ==============================================================
 #ifndef __Crypto_mac_muladd_16ns_15ns_32ns_33_4_1__HH__
 #define __Crypto_mac_muladd_16ns_15ns_32ns_33_4_1__HH__
-#include "Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3.h"
+#include "Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1.h"
 
 template<
     int ID,
@@ -27,16 +27,16 @@ SC_MODULE(Crypto_mac_muladd_16ns_15ns_32ns_33_4_1) {
 
 
 
-    Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3 Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3_U;
+    Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1 Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1_U;
 
-    SC_CTOR(Crypto_mac_muladd_16ns_15ns_32ns_33_4_1):  Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3_U ("Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3_U") {
-        Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3_U.clk(clk);
-        Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3_U.rst(reset);
-        Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3_U.ce(ce);
-        Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3_U.in0(din0);
-        Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3_U.in1(din1);
-        Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3_U.in2(din2);
-        Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_3_U.dout(dout);
+    SC_CTOR(Crypto_mac_muladd_16ns_15ns_32ns_33_4_1):  Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1_U ("Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1_U") {
+        Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1_U.clk(clk);
+        Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1_U.rst(reset);
+        Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1_U.ce(ce);
+        Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1_U.in0(din0);
+        Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1_U.in1(din1);
+        Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1_U.in2(din2);
+        Crypto_mac_muladd_16ns_15ns_32ns_33_4_1_DSP48_1_U.dout(dout);
 
     }
 

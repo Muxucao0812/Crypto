@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Crypto'" level="0">
-<item name = "Date">Mon Jan 13 00:09:23 2025
+<item name = "Date">Wed Feb  5 12:49:46 2025
 </item>
 <item name = "Version">2023.1 (Build 3854077 on May  4 2023)</item>
 <item name = "Project">Crypto</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 54.207 ns, 2.16 ns</column>
+<column name="ap_clk">7.00 ns, 5.104 ns, 1.89 ns</column>
 </table>
 </item>
 </section>
@@ -36,9 +36,9 @@
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
 <column name="- NTT_STAGE_LOOP">?, ?, ?, -, -, 12, no</column>
-<column name=" + NTT_GROUP_LOOP">?, ?, 4 ~ 3221225473, -, -, ?, no</column>
+<column name=" + NTT_GROUP_LOOP">?, ?, 6 ~ 25769803758, -, -, ?, no</column>
 <column name="- INTT_STAGE_LOOP">?, ?, ?, -, -, 12, no</column>
-<column name=" + INTT_GROUP_LOOP">?, ?, 4 ~ 3221225473, -, -, ?, no</column>
+<column name=" + INTT_GROUP_LOOP">?, ?, 6 ~ 25769803758, -, -, ?, no</column>
 </table>
 </item>
 </section>
