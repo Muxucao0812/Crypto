@@ -2351,3 +2351,256 @@ Command   export_design done; 11.65 sec.
 INFO: [HLS 200-111] Finished Command export_design CPU user time: 8.68 seconds. CPU system time: 0.57 seconds. Elapsed time: 11.65 seconds; current allocated memory: 9.547 MB.
 Command ap_source done; 13.81 sec.
 Execute cleanup_all 
+INFO-FLOW: Workspace /home/meng/HLS/Crypto/Crypto/solution1 opened at Sun Feb 09 19:27:24 HKT 2025
+Execute     ap_set_clock -name default -period 7 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
+Execute     set_part xc7z020-clg400-1 
+Execute       create_platform xc7z020-clg400-1 -board  
+DBG:HLSDevice: Trying to load device library: /home/meng/Software/VIvado/Vitis_HLS/2023.1/lib/lnx64.o/libxv_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /home/meng/Software/VIvado/Vivado/2023.1/data/parts/arch.xml
+DBG:HLSDevice: init success
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+Command       create_platform done; 1.91 sec.
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/common/xilinx.gen 
+Execute         source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/plb46.gen 
+Execute         source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/axi4.gen 
+Execute         source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/xfft.gen 
+Execute         source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/util.gen 
+Execute         source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/xfir.gen 
+Execute         source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/DSP48/dsp48.gen 
+Execute       ap_part_info -name xc7z020-clg400-1 -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 1.98 sec.
+Execute     send_msg_by_id INFO @200-1505@%s%s  vivado 
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Execute     send_msg_by_id INFO @200-1464@%s config_export -format=ip_catalog 
+INFO: [HLS 200-1464] Running solution command: config_export -format=ip_catalog
+Execute     config_export -format=ip_catalog 
+Execute     send_msg_by_id INFO @200-1464@%s config_export -rtl=verilog 
+INFO: [HLS 200-1464] Running solution command: config_export -rtl=verilog
+Execute     config_export -rtl=verilog 
+Command   open_solution done; 2.03 sec.
+Execute   set_part xc7z020-clg400-1 
+INFO: [HLS 200-1510] Running: set_part xc7z020-clg400-1 
+Execute     create_platform xc7z020-clg400-1 -board  
+Execute     source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/common/xilinx.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/plb46.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/axi4.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/saxilite.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/xfft.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/util.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/xfir.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/DSP48/dsp48.gen 
+Execute     ap_part_info -name xc7z020-clg400-1 -data info 
+Execute     config_compile -quiet -complex-mul-dsp=0 
+Execute   create_clock -period 7 -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 7 -name default 
+Execute   config_export -format ip_catalog -rtl verilog 
+INFO: [HLS 200-1510] Running: config_export -format ip_catalog -rtl verilog 
+Execute   source ./Crypto/solution1/directives.tcl 
+INFO: [HLS 200-1510] Running: source ./Crypto/solution1/directives.tcl
+Execute     set_directive_top -name Crypto Crypto 
+INFO: [HLS 200-1510] Running: set_directive_top -name Crypto Crypto 
+Execute   export_design -rtl verilog -format ip_catalog 
+INFO: [HLS 200-1510] Running: export_design -rtl verilog -format ip_catalog 
+Execute     config_export -format=ip_catalog -rtl=verilog 
+INFO-FLOW: DBG:PUTS: export_design_wrap: -format ip_catalog -rtl verilog
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS:   auto_impl: pack: -export -rtl verilog
+INFO-FLOW: DBG:PROC: ::AESL_AUTOIMPL::auto_impl args='-export -rtl verilog'
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+INFO-FLOW: DBG:PUTS: automg_wrap -export -pcore_version 1.00.a -rtl vlog -tool Vivado -impltomg_flag
+INFO-FLOW: DBG:PROC: ::AESL_AUTOMG::auto_generate args='-export -pcore_version 1.00.a -rtl vlog -tool Vivado -impltomg_flag'
+INFO-FLOW: DBG:PUTS:     auto_generate -export -pcore_version 1.00.a -rtl vlog -tool Vivado -impltomg_flag
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS: read_platform_lib /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl
+Execute     source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/generic/autopilot/common.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/generic/autopilot/APCoreGen.gen 
+Execute     source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/generic/autopilot/op.gen 
+Execute     source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/generic/autopilot/op_simcore.gen 
+Execute     source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/generic/autopilot/interface.gen 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+Execute     source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/common/xilinx.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/plb46.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/axi4.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/saxilite.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/xfft.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/util.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/xfir.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/DSP48/dsp48.gen 
+INFO-FLOW: DBG:PUTS:   using AESL_AUTOCG::g_clock_period=7.000 (was NA)
+INFO-FLOW: DBG:PUTS:       initCTypeInfo top_module=Crypto xml_exists=1
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.rtl_wrap.cfg.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.rtl_wrap.cfg.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.rtl_wrap.cfg.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.tbgen.tcl 
+INFO-FLOW: DBG:PUTS:       cosim_export_main adding deadlock detection to Crypto
+INFO-FLOW: DBG:PUTS: Skipping loadAnalyze_DB, #g_database=6
+INFO-FLOW: DBG:PUTS:       generate_json generate_bd_files=0 generate_xo_files=false #modelList=46 #gSsdmPorts=0
+INFO-FLOW: DBG:PROC: ::AP::DESIGN_DATA::generate_json generate_bd_files='0' generate_xo_files='false' modelList='Crypto_mux_16_4_32_1_1
+Crypto_mux_2_1_32_1_1
+Crypto_flow_control_loop_pipe_sequential_init
+Crypto_flow_control_loop_pipe_sequential_init
+Crypto_mul_16ns_16ns_32_2_1
+Crypto_mux_3_2_20_1_1
+Crypto_mux_3_2_31_1_1
+Crypto_mul_15ns_16ns_31_2_1
+Crypto_mac_muladd_16ns_16ns_32ns_33_4_1
+Crypto_mac_muladd_16ns_15ns_32ns_33_4_1
+Crypto_flow_control_loop_pipe_sequential_init
+Crypto_mul_14ns_16ns_30_2_0
+Crypto_mac_muladd_14ns_16ns_32ns_33_4_0
+Crypto_flow_control_loop_pipe_sequential_init
+Crypto_flow_control_loop_pipe_sequential_init
+Crypto_flow_control_loop_pipe_sequential_init
+Crypto_flow_control_loop_pipe_sequential_init
+Crypto_flow_control_loop_pipe_sequential_init
+Crypto_flow_control_loop_pipe_sequential_init
+Crypto_flow_control_loop_pipe_sequential_init
+Crypto_flow_control_loop_pipe_sequential_init
+Crypto_flow_control_loop_pipe_sequential_init
+Crypto_flow_control_loop_pipe_sequential_init
+Crypto_sdiv_15ns_32s_11_19_seq_1
+Crypto_mux_3_2_19_1_1
+Crypto_DataRAM_RAM_AUTO_1R1W
+Crypto_BitReverseData_RAM_AUTO_1R1W
+Crypto_NTTTWiddleRAM_RAM_AUTO_1R1W
+Crypto_control_s_axi
+Crypto_Pipeline_PERMUTE_LOOP1
+Crypto_Pipeline_INTT_PERMUTE_LOOP
+MUL_MOD_2
+Crypto_Pipeline_INTT_PE_LOOP
+MUL_MOD
+Crypto_Pipeline_MUL_INV_LOOP
+Crypto_Pipeline_PERMUTE_LOOP
+Crypto_Pipeline_NTT_PERMUTE_LOOP
+Crypto_Pipeline_NTT_PE_LOOP
+MUL_MOD_1
+Crypto_Pipeline_POLY_MUL_LOOP
+Crypto_Pipeline_POLY_SUB_LOOP
+Crypto_Pipeline_VITIS_LOOP_79_1
+Crypto_Pipeline_WRITE_TWIDDLE_LOOP
+Crypto_Pipeline_READ_DATA_LOOP
+Crypto_Pipeline_WRITE_DATA_LOOP
+Crypto
+' rtl_lang='vlog' bootstrap_tcl='false' outdir='' outfilename=''
+Execute     source /home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/tcl/tcllib1.11.1/yaml/huddle.tcl 
+Execute     source /home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/tcl/tcllib1.11.1/yaml/json2huddle.tcl 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/tcl/tcllib1.11.1/try/try.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/top-io-be.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.compgen.dataonly.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.compgen.dataonly.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.rtl_wrap.cfg.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.compgen.dataonly.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto_Pipeline_PERMUTE_LOOP1.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto_Pipeline_INTT_PERMUTE_LOOP.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/MUL_MOD_2.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto_Pipeline_INTT_PE_LOOP.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/MUL_MOD.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto_Pipeline_MUL_INV_LOOP.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto_Pipeline_PERMUTE_LOOP.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto_Pipeline_NTT_PERMUTE_LOOP.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto_Pipeline_NTT_PE_LOOP.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/MUL_MOD_1.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto_Pipeline_POLY_MUL_LOOP.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto_Pipeline_POLY_SUB_LOOP.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto_Pipeline_VITIS_LOOP_79_1.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto_Pipeline_WRITE_TWIDDLE_LOOP.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto_Pipeline_READ_DATA_LOOP.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto_Pipeline_WRITE_DATA_LOOP.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+Execute     ap_part_info -name xc7z020-clg400-1 -data names -quiet 
+Execute     ap_part_info -name xc7z020-clg400-1 -data info -quiet 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.constraint.tcl 
+Execute     sc_get_clocks Crypto 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.tbgen.tcl 
+INFO-FLOW: DBG:PUTS:       cosim_export_main adding deadlock detection to Crypto
+INFO-FLOW: DBG:PUTS:       copy ip_driver_dir 1_0 /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/driver
+INFO-FLOW: DBG:PUTS:       generate_ip_script #gSsdmPorts=0 g_lang=vlog is_sdaccel=false is_sdsoc=true xo_file=
+Execute     ap_part_info -name xc7z020-clg400-1 -data names -quiet 
+Execute     ap_part_info -name xc7z020-clg400-1 -data info -quiet 
+Execute     ap_part_info -name xc7z020-clg400-1 -data names -quiet 
+Execute     ap_part_info -name xc7z020-clg400-1 -data info -quiet 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.compgen.dataonly.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.compgen.dataonly.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS:       generate_top_info
+INFO-FLOW: DBG:PUTS:       prepArgInfo -> loadAnalyze_DB top_module=Crypto
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.rtl_wrap.cfg.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.rtl_wrap.cfg.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.rtl_wrap.cfg.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.tbgen.tcl 
+Execute     ap_part_info -name xc7z020-clg400-1 -data names -quiet 
+Execute     ap_part_info -name xc7z020-clg400-1 -data info -quiet 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+Execute     ap_part_info -name xc7z020-clg400-1 -data names -quiet 
+Execute     ap_part_info -name xc7z020-clg400-1 -data info -quiet 
+Execute     ap_part_info -name xc7z020-clg400-1 -data names -quiet 
+Execute     ap_part_info -name xc7z020-clg400-1 -data info -quiet 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.tbgen.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.constraint.tcl 
+INFO-FLOW: DBG:PUTS:       generate_syn_sh
+Execute     ap_part_info -name xc7z020-clg400-1 -data names -quiet 
+Execute     ap_part_info -name xc7z020-clg400-1 -data info -quiet 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS:       generate_imp_constraints
+Execute     ap_part_info -name xc7z020-clg400-1 -data names -quiet 
+Execute     ap_part_info -name xc7z020-clg400-1 -data info -quiet 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.constraint.tcl 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.tbgen.tcl 
+INFO-FLOW: DBG:PUTS:       delete-temp-dirs (skipped for debug)
+Execute     ap_part_info -name xc7z020-clg400-1 -data names -quiet 
+Execute     ap_part_info -name xc7z020-clg400-1 -data info -quiet 
+INFO-FLOW: DBG:PUTS: read_platform_lib /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl
+Execute     source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/generic/autopilot/common.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/generic/autopilot/APCoreGen.gen 
+Execute     source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/generic/autopilot/op.gen 
+Execute     source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/generic/autopilot/op_simcore.gen 
+Execute     source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/generic/autopilot/interface.gen 
+Execute     source /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/global.setting.tcl 
+Execute     source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/common/xilinx.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/plb46.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/axi4.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/saxilite.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/xfft.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/util.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/ip/xfir.gen 
+Execute       source /home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/xilinx/DSP48/dsp48.gen 
+INFO-FLOW: DBG:PUTS:     IP package: exec /home/meng/HLS/Crypto/Crypto/solution1/impl/ip/pack.sh
+INFO-FLOW: DBG:PUTS:     IP package: success /home/meng/HLS/Crypto/Crypto/solution1/impl/ip/pack.sh
+Execute     send_msg_by_id INFO @200-802@%s Crypto/solution1/impl/export.zip 
+INFO: [HLS 200-802] Generated output file Crypto/solution1/impl/export.zip
+Command   export_design done; 11.66 sec.
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 8.59 seconds. CPU system time: 0.57 seconds. Elapsed time: 11.66 seconds; current allocated memory: 9.188 MB.
+Command ap_source done; 13.81 sec.
+Execute cleanup_all 

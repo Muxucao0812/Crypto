@@ -8,6 +8,14 @@
   <warningLogs>
     <logs>
       <packageLog>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file '#'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.080+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'Add'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.078+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'all'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.075+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'necessary'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.071+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'source'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.069+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'files'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.066+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'pow_mod.h'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.054+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'header'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.051+0800" type="Warning"/>
         <logs message="WARNING: [HLS 200-40] Cannot find design file '#'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.170+0800" type="Warning"/>
         <logs message="WARNING: [HLS 200-40] Cannot find design file 'Add'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.169+0800" type="Warning"/>
         <logs message="WARNING: [HLS 200-40] Cannot find design file 'all'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.168+0800" type="Warning"/>

@@ -4733,3 +4733,24 @@ INFO: [HLS 200-1510] Running: export_design -rtl verilog -format ip_catalog
 INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
 INFO: [HLS 200-802] Generated output file Crypto/solution1/impl/export.zip
 INFO: [HLS 200-111] Finished Command export_design CPU user time: 8.68 seconds. CPU system time: 0.57 seconds. Elapsed time: 11.65 seconds; current allocated memory: 9.547 MB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+Tool Version Limit: 2023.05
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_export -format=ip_catalog
+INFO: [HLS 200-1464] Running solution command: config_export -rtl=verilog
+INFO: [HLS 200-1510] Running: set_part xc7z020-clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 7 -name default 
+INFO: [HLS 200-1510] Running: config_export -format ip_catalog -rtl verilog 
+INFO: [HLS 200-1510] Running: source ./Crypto/solution1/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name Crypto Crypto 
+INFO: [HLS 200-1510] Running: export_design -rtl verilog -format ip_catalog 
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+INFO: [HLS 200-802] Generated output file Crypto/solution1/impl/export.zip
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 8.59 seconds. CPU system time: 0.57 seconds. Elapsed time: 11.66 seconds; current allocated memory: 9.188 MB.

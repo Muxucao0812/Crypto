@@ -1,5 +1,5 @@
 INFO: [HLS 200-10] Running '/home/meng/Software/VIvado/Vitis_HLS/2023.1/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'meng' on host 'meng-OptiPlex-5000' (Linux_x86_64 version 6.8.0-52-generic) on Wed Feb 05 12:50:52 HKT 2025
+INFO: [HLS 200-10] For user 'meng' on host 'meng-OptiPlex-5000' (Linux_x86_64 version 6.8.0-52-generic) on Sun Feb 09 19:27:24 HKT 2025
 INFO: [HLS 200-10] On os Ubuntu 22.04.4 LTS
 INFO: [HLS 200-10] In directory '/home/meng/HLS/Crypto'
 Sourcing Tcl script '/home/meng/HLS/Crypto/Crypto/solution1/export.tcl'
@@ -102,7 +102,7 @@ source run_ippack.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/meng/Software/VIvado/Vivado/2023.1/data/ip'.
-INFO: [Common 17-206] Exiting Vivado at Wed Feb  5 12:51:02 2025...
+INFO: [Common 17-206] Exiting Vivado at Sun Feb  9 19:27:34 2025...
 INFO: [HLS 200-802] Generated output file Crypto/solution1/impl/export.zip
-INFO: [HLS 200-111] Finished Command export_design CPU user time: 8.68 seconds. CPU system time: 0.57 seconds. Elapsed time: 11.65 seconds; current allocated memory: 9.547 MB.
-INFO: [HLS 200-112] Total CPU user time: 10.73 seconds. Total CPU system time: 1.1 seconds. Total elapsed time: 14.14 seconds; peak allocated memory: 1.464 GB.
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 8.59 seconds. CPU system time: 0.57 seconds. Elapsed time: 11.66 seconds; current allocated memory: 9.188 MB.
+INFO: [HLS 200-112] Total CPU user time: 10.67 seconds. Total CPU system time: 1.05 seconds. Total elapsed time: 14.13 seconds; peak allocated memory: 1.463 GB.
