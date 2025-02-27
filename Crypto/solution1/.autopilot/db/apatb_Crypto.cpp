@@ -22,14 +22,14 @@ using namespace std;
 #define AUTOTB_TVOUT_DataIn "../tv/cdatafile/c.Crypto.autotvout_DataIn.dat"
 #define AUTOTB_TVIN_RAMSel "../tv/cdatafile/c.Crypto.autotvin_RAMSel.dat"
 #define AUTOTB_TVOUT_RAMSel "../tv/cdatafile/c.Crypto.autotvout_RAMSel.dat"
+#define AUTOTB_TVIN_RAMSel1 "../tv/cdatafile/c.Crypto.autotvin_RAMSel1.dat"
+#define AUTOTB_TVOUT_RAMSel1 "../tv/cdatafile/c.Crypto.autotvout_RAMSel1.dat"
 #define AUTOTB_TVIN_NTTTwiddleIn "../tv/cdatafile/c.Crypto.autotvin_NTTTwiddleIn.dat"
 #define AUTOTB_TVOUT_NTTTwiddleIn "../tv/cdatafile/c.Crypto.autotvout_NTTTwiddleIn.dat"
 #define AUTOTB_TVIN_INTTTwiddleIn "../tv/cdatafile/c.Crypto.autotvin_INTTTwiddleIn.dat"
 #define AUTOTB_TVOUT_INTTTwiddleIn "../tv/cdatafile/c.Crypto.autotvout_INTTTwiddleIn.dat"
 #define AUTOTB_TVIN_OP "../tv/cdatafile/c.Crypto.autotvin_OP.dat"
 #define AUTOTB_TVOUT_OP "../tv/cdatafile/c.Crypto.autotvout_OP.dat"
-#define AUTOTB_TVIN_ModIndex "../tv/cdatafile/c.Crypto.autotvin_ModIndex.dat"
-#define AUTOTB_TVOUT_ModIndex "../tv/cdatafile/c.Crypto.autotvout_ModIndex.dat"
 
 
 // tvout file define:
@@ -1142,10 +1142,10 @@ namespace hls::sim
 
 
 extern "C"
-void Crypto_hw_stub_wrapper(void*, hls::sim::Byte<4>, void*, void*, hls::sim::Byte<4>, hls::sim::Byte<4>);
+void Crypto_hw_stub_wrapper(void*, hls::sim::Byte<4>, hls::sim::Byte<4>, void*, void*, hls::sim::Byte<4>);
 
 extern "C"
-void apatb_Crypto_hw(void* __xlx_apatb_param_DataIn, hls::sim::Byte<4> __xlx_apatb_param_RAMSel, void* __xlx_apatb_param_NTTTwiddleIn, void* __xlx_apatb_param_INTTTwiddleIn, hls::sim::Byte<4> __xlx_apatb_param_OP, hls::sim::Byte<4> __xlx_apatb_param_ModIndex)
+void apatb_Crypto_hw(void* __xlx_apatb_param_DataIn, hls::sim::Byte<4> __xlx_apatb_param_RAMSel, hls::sim::Byte<4> __xlx_apatb_param_RAMSel1, void* __xlx_apatb_param_NTTTwiddleIn, void* __xlx_apatb_param_INTTTwiddleIn, hls::sim::Byte<4> __xlx_apatb_param_OP)
 {
   static hls::sim::Register port0 {
     .name = "RAMSel",
@@ -1159,6 +1159,17 @@ void apatb_Crypto_hw(void* __xlx_apatb_param_DataIn, hls::sim::Byte<4> __xlx_apa
   port0.param = &__xlx_apatb_param_RAMSel;
 
   static hls::sim::Register port1 {
+    .name = "RAMSel1",
+    .width = 32,
+#ifdef POST_CHECK
+#else
+    .owriter = nullptr,
+    .iwriter = new hls::sim::Writer(AUTOTB_TVIN_RAMSel1),
+#endif
+  };
+  port1.param = &__xlx_apatb_param_RAMSel1;
+
+  static hls::sim::Register port2 {
     .name = "OP",
     .width = 32,
 #ifdef POST_CHECK
@@ -1167,18 +1178,7 @@ void apatb_Crypto_hw(void* __xlx_apatb_param_DataIn, hls::sim::Byte<4> __xlx_apa
     .iwriter = new hls::sim::Writer(AUTOTB_TVIN_OP),
 #endif
   };
-  port1.param = &__xlx_apatb_param_OP;
-
-  static hls::sim::Register port2 {
-    .name = "ModIndex",
-    .width = 32,
-#ifdef POST_CHECK
-#else
-    .owriter = nullptr,
-    .iwriter = new hls::sim::Writer(AUTOTB_TVIN_ModIndex),
-#endif
-  };
-  port2.param = &__xlx_apatb_param_ModIndex;
+  port2.param = &__xlx_apatb_param_OP;
 
 #ifdef USE_BINARY_TV_FILE
   static hls::sim::Memory<hls::sim::Input, hls::sim::Output> port3 {
@@ -1209,7 +1209,7 @@ void apatb_Crypto_hw(void* __xlx_apatb_param_DataIn, hls::sim::Byte<4> __xlx_apa
 #endif
   };
   port3.param = { __xlx_apatb_param_DataIn };
-  port3.nbytes = { 16384 };
+  port3.nbytes = { 49152 };
   port3.offset = {  };
   port3.hasWrite = { true };
 
@@ -1233,7 +1233,7 @@ void apatb_Crypto_hw(void* __xlx_apatb_param_DataIn, hls::sim::Byte<4> __xlx_apa
 #endif
   };
   port4.param = { __xlx_apatb_param_NTTTwiddleIn };
-  port4.nbytes = { 8192 };
+  port4.nbytes = { 24576 };
   port4.offset = {  };
   port4.hasWrite = { false };
 
@@ -1257,7 +1257,7 @@ void apatb_Crypto_hw(void* __xlx_apatb_param_DataIn, hls::sim::Byte<4> __xlx_apa
 #endif
   };
   port5.param = { __xlx_apatb_param_INTTTwiddleIn };
-  port5.nbytes = { 8192 };
+  port5.nbytes = { 24576 };
   port5.offset = {  };
   port5.hasWrite = { false };
 
@@ -1281,7 +1281,7 @@ void apatb_Crypto_hw(void* __xlx_apatb_param_DataIn, hls::sim::Byte<4> __xlx_apa
     port4.doTCL(tcl);
     port5.doTCL(tcl);
     CodeState = CALL_C_DUT;
-    Crypto_hw_stub_wrapper(__xlx_apatb_param_DataIn, __xlx_apatb_param_RAMSel, __xlx_apatb_param_NTTTwiddleIn, __xlx_apatb_param_INTTTwiddleIn, __xlx_apatb_param_OP, __xlx_apatb_param_ModIndex);
+    Crypto_hw_stub_wrapper(__xlx_apatb_param_DataIn, __xlx_apatb_param_RAMSel, __xlx_apatb_param_RAMSel1, __xlx_apatb_param_NTTTwiddleIn, __xlx_apatb_param_INTTTwiddleIn, __xlx_apatb_param_OP);
     CodeState = DUMP_OUTPUTS;
     dump(port3, port3.owriter, tcl.AESL_transaction);
     tcl.AESL_transaction++;

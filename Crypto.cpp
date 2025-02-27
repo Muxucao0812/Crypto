@@ -8,173 +8,251 @@
 #include "Utils.hpp"
 #include "TwiddleMemory.hpp"
 
+
+#define UNROLL_FACTOR BANKNum
+
+
 void Crypto(
-    long_int        DataIn[N],
+    long_int        DataIn[MOD_NUM][N],
     int             RAMSel,
-    long_int        NTTTwiddleIn[N/2],
-    long_int        INTTTwiddleIn[N/2],
-    
-    CryptoOperation OP,
-    int             ModIndex
+    int             RAMSel1,
+    long_int        NTTTwiddleIn[MOD_NUM][N/2],
+    long_int        INTTTwiddleIn[MOD_NUM][N/2],
+    CryptoOperation OP
 ){  
 
-    // 存储定义增加分区优化
-    long_int DataRAM[RAMNum][N];
-    #pragma HLS ARRAY_PARTITION variable=DataRAM complete dim=1  // 完全分区RAM维度
-    #pragma HLS ARRAY_PARTITION variable=DataRAM cyclic factor=16 dim=2  // 每个RAM块划分为16个bank
+    // ------------------------------------------------------------------
+    //  Memory 
+    // ------------------------------------------------------------------
 
+    long_int DataRAM[RAMNum][MOD_NUM][N];
+    #pragma HLS ARRAY_PARTITION variable=DataRAM complete dim=1
+    #pragma HLS ARRAY_PARTITION variable=DataRAM cyclic factor=BANKNum dim=2
 
-        
-    long_int BitReverseData[N];
-    #pragma HLS ARRAY_PARTITION variable=BitReverseData cyclic factor=16
+    long_int BitReverseData[MOD_NUM][N];
+    #pragma HLS ARRAY_PARTITION variable=BitReverseData cyclic factor=BANKNum
     
-    long_int NTTTWiddleRAM[N/2];
-    #pragma HLS ARRAY_PARTITION variable=NTTTWiddleRAM cyclic factor=16  // 旋转因子分区
-    long_int INTTTWiddleRAM[N/2];
-    #pragma HLS ARRAY_PARTITION variable=INTTTWiddleRAM cyclic factor=16
+    long_int NTTTWiddleRAM[MOD_NUM][N/2];
+    long_int INTTTWiddleRAM[MOD_NUM][N/2];
+    #pragma HLS ARRAY_PARTITION variable=NTTTWiddleRAM cyclic factor=BANKNum    
+    #pragma HLS ARRAY_PARTITION variable=INTTTWiddleRAM cyclic factor=BANKNum
 
 
-    #pragma HLS INTERFACE s_axilite port=return
+    // ------------------------------------------------------------------
+    // Port
+    // ------------------------------------------------------------------
+
     #pragma HLS INTERFACE s_axilite port=DataIn
     #pragma HLS INTERFACE s_axilite port=NTTTwiddleIn
     #pragma HLS INTERFACE s_axilite port=INTTTwiddleIn
+
+    #pragma HLS INTERFACE s_axilite port=return
     #pragma HLS INTERFACE s_axilite port=RAMSel
+	#pragma HLS INTERFACE s_axilite port=RAMSel1
     #pragma HLS INTERFACE s_axilite port=OP
-    #pragma HLS INTERFACE s_axilite port=ModIndex
+
 
     switch (OP)
     {
         case POLY_WRITE:
             WRITE_DATA_LOOP:
-            // #pragma HLS PIPELINE II=1
-            for (int i = 0; i < N; i++){                
-                DataRAM[RAMSel][i] = DataIn[i];
+            for(int i = 0; i < MOD_NUM; i++){
+                #pragma HLS UNROLL factor=MOD_NUM
+                for (int j = 0; j < N; j++){
+                    #pragma HLS PIPELINE
+                    DataRAM[RAMSel][i][j] = DataIn[i][j];
+                }
             }
             break;
 
         case POLY_READ:
             READ_DATA_LOOP:
-            // #pragma HLS UNROLL 
-            for (int i = 0; i < N; i++){
-                // #pragma HLS PIPELINE II=1
-                // #pragma HLS UNROLL factor=16
-                DataIn[i] = DataRAM[RAMSel][i];
+            for(int i = 0; i < MOD_NUM; i++){
+                #pragma HLS UNROLL factor=MOD_NUM
+                for (int j = 0; j < N; j++){
+                    #pragma HLS PIPELINE
+                    DataIn[i][j] = DataRAM[RAMSel][i][j];
+                }
             }
             break;
 
         case TWIDDLE_WRITE:
             WRITE_TWIDDLE_LOOP:
-            // #pragma HLS PIPELINE II=1
-            for (int i = 0; i < N/2; i++){
-                NTTTWiddleRAM[i] = NTTTwiddleIn[i];
-                INTTTWiddleRAM[i] = INTTTwiddleIn[i];  
+            for (int i = 0; i < MOD_NUM; i++){
+                #pragma HLS UNROLL factor=MOD_NUM
+                for (int j = 0; j < N/2; j++){
+                    #pragma HLS PIPELINE
+                    NTTTWiddleRAM[i][j] = NTTTwiddleIn[i][j];
+                    INTTTWiddleRAM[i][j] = INTTTwiddleIn[i][j];
+                }
             }
             break;
 
+        case POLY_MOD_MODULUS:
+            POLY_MOD_MODULUS_LOOP:
+            for (int i = 0; i < MOD_NUM; i++){
+                #pragma HLS UNROLL factor=MOD_NUM
+                POLY_MOD_MODULUS_LOOP1:
+                for (int j = 0; j < N; j++){
+                    #pragma HLS UNROLL factor=PE_NUM
+                    long_int ModInput,    ModRes;
+                    ModInput = DataRAM[RAMSel][i][j];
+                    MOD_PLAINTEXTMODULUS(&ModInput, &ModRes);
+                    DataRAM[RAMSel][i][j] = ModRes;
+                }
+            }
+            break;
 
         case POLY_ADD:      
-            POLY_ADD_LOOP:
-            #pragma HLS PIPELINE II=1
-            #pragma HLS UNROLL factor=16
-            for (int i = 0; i < N; i++){              
-                ADD_MOD(&DataRAM[0][i], &DataRAM[1][i], &DataRAM[0][i], ModIndex);
+            POLY_ADD_MOD_LOOP:
+            for (int i = 0; i < MOD_NUM; i++){
+                #pragma HLS UNROLL factor=MOD_NUM
+                POLY_ADD_LOOP:
+                for (int j = 0; j < N; j++){
+                    #pragma HLS UNROLL factor=PE_NUM
+                    long_int AddInput1,    AddInput2,     AddRes;
+                    AddInput1 = DataRAM[RAMSel][i][j];
+                    AddInput2 = DataRAM[RAMSel1][i][j];
+                    ADD_MOD(&AddInput1, &AddInput2, &AddRes, i);
+                    DataRAM[RAMSel][i][j] = AddRes;
+                }
             }
             break;
 
         case POLY_SUB:  
-            POLY_SUB_LOOP:
-            // #pragma HLS PIPELINE II=1
-            // #pragma HLS UNROLL factor=16
-            for (int i = 0; i < N; i++){
-                #pragma HLS PIPELINE II=1
-                SUB_MOD(&DataRAM[0][i], &DataRAM[1][i], &DataRAM[0][i], ModIndex);
+            POLY_SUB_MOD_LOOP:
+            for (int i = 0; i < MOD_NUM; i++){
+                #pragma HLS UNROLL factor=MOD_NUM
+            	POLY_SUB_LOOP:
+                for (int j = 0; j < N; j++){
+                    #pragma HLS UNROLL factor=PE_NUM
+                    long_int SubInput1,    SubInput2,     SubRes;
+                    SubInput1 = DataRAM[RAMSel][i][j];
+                    SubInput2 = DataRAM[RAMSel1][i][j];
+                    SUB_MOD(&SubInput1, &SubInput2, &SubRes, i);
+                    DataRAM[RAMSel][i][j] = SubRes;
+                }
             }
             break;
 
+    
         case POLY_MUL:   
-            POLY_MUL_LOOP:
-            // #pragma HLS PIPELINE II=1
-            // #pragma HLS UNROLL factor=16
-            for (int i = 0; i < N; i++){
-                // #pragma HLS PIPELINE II=1
-                MUL_MOD(&DataRAM[0][i], &DataRAM[1][i], &DataRAM[0][i], ModIndex);
+            POLY_MUL_MOD_LOOP:
+            for (int i = 0; i < MOD_NUM; i++){
+                #pragma HLS UNROLL factor=MOD_NUM
+            	long_int MulInput1[MOD_NUM], MulInput2[MOD_NUM], MulRes[MOD_NUM];
+                POLY_MUL_LOOP:
+                for (int j = 0; j < N; j++){
+                    #pragma HLS UNROLL factor=PE_NUM
+
+                    MulInput1[i] = DataRAM[RAMSel][i][j];
+                    MulInput2[i] = DataRAM[RAMSel1][i][j];
+                    MUL_MOD(&MulInput1[i], &MulInput2[i], &MulRes[i], i);
+                    DataRAM[RAMSel][i][j] = MulRes[i];
+                }
             }
             break;
 
         case POLY_NTT: 
-            apply_bit_reverse(DataRAM[RAMSel], BitReverseData);
+            for(int i = 0; i < MOD_NUM; i++){    
+                #pragma HLS UNROLL factor=MOD_NUM            
+                apply_bit_reverse(DataRAM[RAMSel][i], BitReverseData[i]);
+            }
 
-            NTT_PERMUTE_LOOP:
-            // #pragma HLS PIPELINE II=1
-            for (int i = 0; i < N; i++){
-                DataRAM[RAMSel][i] = BitReverseData[i];
+            NTT_PERMUTE_LOOP:  
+            for(int i = 0; i < MOD_NUM; i++){
+                #pragma HLS UNROLL factor=MOD_NUM
+                for (int j = 0; j < N; j++){
+                    #pragma HLS PIPELINE
+                    DataRAM[RAMSel][i][j] = BitReverseData[i][j];
+                }
             }
 
             NTT_STAGE_LOOP:
-            for(int h = 2; h <= N; h *= 2){
-                int hf = h / 2;
-                int ut = N / h;
-                NTT_GROUP_LOOP:
-                // #pragma HLS PIPELINE II=1
-                for (int i = 0; i < N; i += h){
-                    NTT_PE_LOOP:    
-                    // #pragma HLS UNROLL 
-                    for (int j = 0; j < hf; j++){
-                        // #pragma HLS DEPENDENCE variable=DataRAM inter WAR false
-                        long_int a1 = DataRAM[RAMSel][i + j];
-                        long_int a2 = DataRAM[RAMSel][i + j + hf];
-                        long_int tf = NTTTWiddleRAM[ut * j];
-                        long_int u = a1;
-                        long_int v;
-                        MUL_MOD(&a2, &tf, &v, ModIndex);
-                        ADD_MOD(&u, &v, &DataRAM[RAMSel][i + j], ModIndex);
-                        SUB_MOD(&u, &v, &DataRAM[RAMSel][i + j + hf], ModIndex);
-                        // std::cout << "a1: " << a1 << " a2: " << a2 << " tf: " << tf << " u: " << u << " v: " << v << " DataRAM[RAMSel][i + j]: " << DataRAM[RAMSel][i + j] << " DataRAM[RAMSel][i + j + hf]: " << DataRAM[RAMSel][i + j + hf] << std::endl;
+            for (int i = 0 ; i < MOD_NUM; i++){
+                #pragma HLS UNROLL factor=MOD_NUM
+                for(int h = 2; h <= N; h *= 2){
+                    int hf = h >> 1;
+                    int ut = N / h;
+                    NTT_GROUP_LOOP:                
+                    for (int j = 0; j < N; j += h){
+                   
+                        #pragma HLS LOOP_TRIPCOUNT min=10 max=20
+                        NTT_PE_LOOP:    
+                        for (int k = 0; k < hf; k++){
+                            #pragma HLS UNROLL factor=PE_NUM
+
+                            long_int a1 = DataRAM[RAMSel][i][j + k];
+                            long_int a2 = DataRAM[RAMSel][i][j + k + hf];
+                            long_int tf = NTTTWiddleRAM[i][ut * k];
+                            long_int u = a1;
+                            long_int v;
+                   
+                            MUL_MOD(&a2, &tf, &v, i);
+                            ADD_MOD(&u, &v, &DataRAM[RAMSel][i][j + k], i);
+                            SUB_MOD(&u, &v, &DataRAM[RAMSel][i][j + k + hf], i);                    
+                        }
                     }
                 }
             }
             break;
 
-        case POLY_INTT:
-            apply_bit_reverse(DataRAM[RAMSel], BitReverseData);
 
-            INTT_PERMUTE_LOOP:
-            // #pragma HLS PIPELINE II=1
-            for (int i = 0; i < N; i++){
-                DataRAM[RAMSel][i] = BitReverseData[i];
+        case POLY_INTT:
+            for(int i = 0; i < MOD_NUM; i++){   
+                #pragma HLS UNROLL factor=MOD_NUM             
+                apply_bit_reverse(DataRAM[RAMSel][i], BitReverseData[i]);
             }
 
+            INTT_PERMUTE_LOOP:  
+            for(int i = 0; i < MOD_NUM; i++){
+                #pragma HLS UNROLL factor=MOD_NUM
+                for (int j = 0; j < N; j++){
+                    #pragma HLS PIPELINE
+                    DataRAM[RAMSel][i][j] = BitReverseData[i][j];
+                }
+            }          
+         
             INTT_STAGE_LOOP:
-            for(int h = 2; h <= N; h *= 2){
-                int hf = h / 2;
-                int ut = N / h;
-                INTT_GROUP_LOOP:
-                // #pragma HLS PIPELINE II=1
-                for (int i = 0; i < N; i += h){
-                    INTT_PE_LOOP:    
-                    // #pragma HLS UNROLL 
-                    for (int j = 0; j < hf; j++){
-                        // #pragma HLS DEPENDENCE variable=DataRAM inter WAR false
-                        long_int a1 = DataRAM[RAMSel][i + j];
-                        long_int a2 = DataRAM[RAMSel][i + j + hf];
-                        long_int tf = INTTTWiddleRAM[ut * j];
-                        long_int u = a1;
-                        long_int v;
-                        MUL_MOD(&a2, &tf, &v, ModIndex);
-                        ADD_MOD(&u, &v, &DataRAM[RAMSel][i + j], ModIndex);
-                        SUB_MOD(&u, &v, &DataRAM[RAMSel][i + j + hf], ModIndex);
-                        // std::cout << "a1: " << a1 << " a2: " << a2 << " tf: " << tf << " u: " << u << " v: " << v << " DataRAM[RAMSel][i + j]: " << DataRAM[RAMSel][i + j] << " DataRAM[RAMSel][i + j + hf]: " << DataRAM[RAMSel][i + j + hf] << std::endl;
+            for (int i = 0; i < MOD_NUM; i++){
+                #pragma HLS UNROLL factor=MOD_NUM
+                for(int h = 2; h <= N; h *= 2){
+                    int hf = h >> 1;
+                    int ut = N / h;
+                    INTT_GROUP_LOOP:
+                    for (int j = 0; j < N; j += h){
+                        #pragma HLS LOOP_TRIPCOUNT min=10 max=20
+
+                        INTT_PE_LOOP:    
+                        for (int k = 0; k < hf; k++){
+                            #pragma HLS UNROLL factor=PE_NUM
+
+                            long_int a1 = DataRAM[RAMSel][i][j + k];
+                            long_int a2 = DataRAM[RAMSel][i][j + k + hf];
+                            long_int tf = INTTTWiddleRAM[i][ut * k];
+                            long_int u = a1;
+                            long_int v;
+
+                            MUL_MOD(&a2, &tf, &v, i);
+                            ADD_MOD(&u, &v, &DataRAM[RAMSel][i][j + k], i);
+                            SUB_MOD(&u, &v, &DataRAM[RAMSel][i][j + k + hf], i);
+                        }
                     }
                 }
             }
-
-            long_int n_inv = static_cast<long_int>(N_INV[ModIndex]);
-            MUL_INV_LOOP:
-            // #pragma HLS PIPELINE II=1
-            // #pragma HLS UNROLL factor=16
-            for (int i = 0; i < N; i++){
-                MUL_MOD(&DataRAM[RAMSel][i], &n_inv, &DataRAM[RAMSel][i], ModIndex);
-            }            
+            
+            for (int i = 0; i < MOD_NUM; i++){
+                #pragma HLS UNROLL factor=MOD_NUM
+                long_int n_inv = static_cast<long_int>(N_INV[i]);
+                MUL_INV_LOOP:
+                for (int j = 0; j < N; j++){
+                    #pragma HLS PIPELINE
+                    long_int MulInvInput,  MulInvRes;
+                    MulInvInput = DataRAM[RAMSel][i][j];
+                    MUL_MOD(&MulInvInput, &n_inv, &MulInvRes, i);
+                    DataRAM[RAMSel][i][j] = MulInvRes;
+                }
+            }          
             break;
     }
     return;

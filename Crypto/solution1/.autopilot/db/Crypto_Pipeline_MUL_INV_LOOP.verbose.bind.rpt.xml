@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Crypto_Pipeline_MUL_INV_LOOP'" level="0">
-<item name = "Date">Wed Feb  5 12:49:44 2025
+<item name = "Date">Thu Feb 27 10:54:15 2025
 </item>
 <item name = "Version">2023.1 (Build 3854077 on May  4 2023)</item>
 <item name = "Project">Crypto</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">7.00 ns, 5.056 ns, 1.89 ns</column>
+<column name="ap_clk">8.00 ns, 5.655 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -24,19 +24,19 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">77826, 77826, 0.545 ms, 0.545 ms, 77826, 77826, no</column>
+<column name="">4113, 4113, 32.904 us, 32.904 us, 4113, 4113, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_MUL_MOD_fu_578">MUL_MOD, 14, 14, 98.000 ns, 98.000 ns, 1, 1, yes</column>
+<column name="grp_MUL_MOD_fu_128">MUL_MOD, 12, 12, 96.000 ns, 96.000 ns, 1, 1, yes</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- MUL_INV_LOOP">77824, 77824, 19, 19, 1, 4096, yes</column>
+<column name="- MUL_INV_LOOP">4111, 4111, 17, 1, 1, 4096, yes</column>
 </table>
 </item>
 </section>

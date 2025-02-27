@@ -23,13 +23,13 @@
       ^~~
       VITIS_LOOP_1247_1: 
 /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/DATAMemory.pp.0.cpp:3939:7: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/DATAMemory.pp.0.cpp:38354:5: warning: Added loop label VITIS_LOOP_7_1:   [xilinx-label-all-loops]
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/DATAMemory.pp.0.cpp:38353:5: warning: Added loop label VITIS_LOOP_7_1:   [xilinx-label-all-loops]
     for(int i = 0; i < BANKNum; i++){
     ^~~
     VITIS_LOOP_7_1: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/DATAMemory.pp.0.cpp:38354:5: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/DATAMemory.pp.0.cpp:38360:5: warning: Added loop label VITIS_LOOP_13_1:   [xilinx-label-all-loops]
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/DATAMemory.pp.0.cpp:38353:5: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/DATAMemory.pp.0.cpp:38359:5: warning: Added loop label VITIS_LOOP_13_1:   [xilinx-label-all-loops]
     for(int i = 0; i < BANKNum; i++){
     ^~~
     VITIS_LOOP_13_1: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/DATAMemory.pp.0.cpp:38360:5: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/DATAMemory.pp.0.cpp:38359:5: note: FIX-IT applied suggested code changes

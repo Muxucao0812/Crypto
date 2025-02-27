@@ -1,0 +1,230 @@
+set moduleName Crypto_Pipeline_POLY_MUL_LOOP23
+set isTopModule 0
+set isCombinational 0
+set isDatapathOnly 0
+set isPipelined 1
+set pipeline_type none
+set FunctionProtocol ap_ctrl_hs
+set isOneStateSeq 0
+set ProfileFlag 0
+set StallSigGenFlag 0
+set isEnableWaveformDebug 1
+set hasInterrupt 0
+set DLRegFirstOffset 0
+set DLRegItemOffset 0
+set C_modelName {Crypto_Pipeline_POLY_MUL_LOOP23}
+set C_modelType { void 0 }
+set C_modelArgList {
+	{ DataRAM_1 int 32 regular {array 4096 { 2 2 } 1 1 }  }
+	{ DataRAM_4 int 32 regular {array 4096 { 2 2 } 1 1 }  }
+	{ DataRAM_7 int 32 regular {array 4096 { 2 2 } 1 1 }  }
+	{ DataRAM_10 int 32 regular {array 4096 { 2 2 } 1 1 }  }
+	{ RAMSel_cast int 2 regular  }
+	{ RAMSel1_cast int 2 regular  }
+}
+set hasAXIMCache 0
+set C_modelArgMapList {[ 
+	{ "Name" : "DataRAM_1", "interface" : "memory", "bitwidth" : 32, "direction" : "READWRITE"} , 
+ 	{ "Name" : "DataRAM_4", "interface" : "memory", "bitwidth" : 32, "direction" : "READWRITE"} , 
+ 	{ "Name" : "DataRAM_7", "interface" : "memory", "bitwidth" : 32, "direction" : "READWRITE"} , 
+ 	{ "Name" : "DataRAM_10", "interface" : "memory", "bitwidth" : 32, "direction" : "READWRITE"} , 
+ 	{ "Name" : "RAMSel_cast", "interface" : "wire", "bitwidth" : 2, "direction" : "READONLY"} , 
+ 	{ "Name" : "RAMSel1_cast", "interface" : "wire", "bitwidth" : 2, "direction" : "READONLY"} ]}
+# RTL Port declarations: 
+set portNum 48
+set portList { 
+	{ ap_clk sc_in sc_logic 1 clock -1 } 
+	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
+	{ ap_start sc_in sc_logic 1 start -1 } 
+	{ ap_done sc_out sc_logic 1 predone -1 } 
+	{ ap_idle sc_out sc_logic 1 done -1 } 
+	{ ap_ready sc_out sc_logic 1 ready -1 } 
+	{ DataRAM_1_address0 sc_out sc_lv 12 signal 0 } 
+	{ DataRAM_1_ce0 sc_out sc_logic 1 signal 0 } 
+	{ DataRAM_1_we0 sc_out sc_logic 1 signal 0 } 
+	{ DataRAM_1_d0 sc_out sc_lv 32 signal 0 } 
+	{ DataRAM_1_q0 sc_in sc_lv 32 signal 0 } 
+	{ DataRAM_1_address1 sc_out sc_lv 12 signal 0 } 
+	{ DataRAM_1_ce1 sc_out sc_logic 1 signal 0 } 
+	{ DataRAM_1_we1 sc_out sc_logic 1 signal 0 } 
+	{ DataRAM_1_d1 sc_out sc_lv 32 signal 0 } 
+	{ DataRAM_1_q1 sc_in sc_lv 32 signal 0 } 
+	{ DataRAM_4_address0 sc_out sc_lv 12 signal 1 } 
+	{ DataRAM_4_ce0 sc_out sc_logic 1 signal 1 } 
+	{ DataRAM_4_we0 sc_out sc_logic 1 signal 1 } 
+	{ DataRAM_4_d0 sc_out sc_lv 32 signal 1 } 
+	{ DataRAM_4_q0 sc_in sc_lv 32 signal 1 } 
+	{ DataRAM_4_address1 sc_out sc_lv 12 signal 1 } 
+	{ DataRAM_4_ce1 sc_out sc_logic 1 signal 1 } 
+	{ DataRAM_4_we1 sc_out sc_logic 1 signal 1 } 
+	{ DataRAM_4_d1 sc_out sc_lv 32 signal 1 } 
+	{ DataRAM_4_q1 sc_in sc_lv 32 signal 1 } 
+	{ DataRAM_7_address0 sc_out sc_lv 12 signal 2 } 
+	{ DataRAM_7_ce0 sc_out sc_logic 1 signal 2 } 
+	{ DataRAM_7_we0 sc_out sc_logic 1 signal 2 } 
+	{ DataRAM_7_d0 sc_out sc_lv 32 signal 2 } 
+	{ DataRAM_7_q0 sc_in sc_lv 32 signal 2 } 
+	{ DataRAM_7_address1 sc_out sc_lv 12 signal 2 } 
+	{ DataRAM_7_ce1 sc_out sc_logic 1 signal 2 } 
+	{ DataRAM_7_we1 sc_out sc_logic 1 signal 2 } 
+	{ DataRAM_7_d1 sc_out sc_lv 32 signal 2 } 
+	{ DataRAM_7_q1 sc_in sc_lv 32 signal 2 } 
+	{ DataRAM_10_address0 sc_out sc_lv 12 signal 3 } 
+	{ DataRAM_10_ce0 sc_out sc_logic 1 signal 3 } 
+	{ DataRAM_10_we0 sc_out sc_logic 1 signal 3 } 
+	{ DataRAM_10_d0 sc_out sc_lv 32 signal 3 } 
+	{ DataRAM_10_q0 sc_in sc_lv 32 signal 3 } 
+	{ DataRAM_10_address1 sc_out sc_lv 12 signal 3 } 
+	{ DataRAM_10_ce1 sc_out sc_logic 1 signal 3 } 
+	{ DataRAM_10_we1 sc_out sc_logic 1 signal 3 } 
+	{ DataRAM_10_d1 sc_out sc_lv 32 signal 3 } 
+	{ DataRAM_10_q1 sc_in sc_lv 32 signal 3 } 
+	{ RAMSel_cast sc_in sc_lv 2 signal 4 } 
+	{ RAMSel1_cast sc_in sc_lv 2 signal 5 } 
+}
+set NewPortList {[ 
+	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
+ 	{ "name": "ap_rst", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "reset", "bundle":{"name": "ap_rst", "role": "default" }} , 
+ 	{ "name": "ap_start", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "start", "bundle":{"name": "ap_start", "role": "default" }} , 
+ 	{ "name": "ap_done", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "predone", "bundle":{"name": "ap_done", "role": "default" }} , 
+ 	{ "name": "ap_idle", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "done", "bundle":{"name": "ap_idle", "role": "default" }} , 
+ 	{ "name": "ap_ready", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "ready", "bundle":{"name": "ap_ready", "role": "default" }} , 
+ 	{ "name": "DataRAM_1_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":12, "type": "signal", "bundle":{"name": "DataRAM_1", "role": "address0" }} , 
+ 	{ "name": "DataRAM_1_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_1", "role": "ce0" }} , 
+ 	{ "name": "DataRAM_1_we0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_1", "role": "we0" }} , 
+ 	{ "name": "DataRAM_1_d0", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_1", "role": "d0" }} , 
+ 	{ "name": "DataRAM_1_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_1", "role": "q0" }} , 
+ 	{ "name": "DataRAM_1_address1", "direction": "out", "datatype": "sc_lv", "bitwidth":12, "type": "signal", "bundle":{"name": "DataRAM_1", "role": "address1" }} , 
+ 	{ "name": "DataRAM_1_ce1", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_1", "role": "ce1" }} , 
+ 	{ "name": "DataRAM_1_we1", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_1", "role": "we1" }} , 
+ 	{ "name": "DataRAM_1_d1", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_1", "role": "d1" }} , 
+ 	{ "name": "DataRAM_1_q1", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_1", "role": "q1" }} , 
+ 	{ "name": "DataRAM_4_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":12, "type": "signal", "bundle":{"name": "DataRAM_4", "role": "address0" }} , 
+ 	{ "name": "DataRAM_4_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_4", "role": "ce0" }} , 
+ 	{ "name": "DataRAM_4_we0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_4", "role": "we0" }} , 
+ 	{ "name": "DataRAM_4_d0", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_4", "role": "d0" }} , 
+ 	{ "name": "DataRAM_4_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_4", "role": "q0" }} , 
+ 	{ "name": "DataRAM_4_address1", "direction": "out", "datatype": "sc_lv", "bitwidth":12, "type": "signal", "bundle":{"name": "DataRAM_4", "role": "address1" }} , 
+ 	{ "name": "DataRAM_4_ce1", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_4", "role": "ce1" }} , 
+ 	{ "name": "DataRAM_4_we1", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_4", "role": "we1" }} , 
+ 	{ "name": "DataRAM_4_d1", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_4", "role": "d1" }} , 
+ 	{ "name": "DataRAM_4_q1", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_4", "role": "q1" }} , 
+ 	{ "name": "DataRAM_7_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":12, "type": "signal", "bundle":{"name": "DataRAM_7", "role": "address0" }} , 
+ 	{ "name": "DataRAM_7_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_7", "role": "ce0" }} , 
+ 	{ "name": "DataRAM_7_we0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_7", "role": "we0" }} , 
+ 	{ "name": "DataRAM_7_d0", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_7", "role": "d0" }} , 
+ 	{ "name": "DataRAM_7_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_7", "role": "q0" }} , 
+ 	{ "name": "DataRAM_7_address1", "direction": "out", "datatype": "sc_lv", "bitwidth":12, "type": "signal", "bundle":{"name": "DataRAM_7", "role": "address1" }} , 
+ 	{ "name": "DataRAM_7_ce1", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_7", "role": "ce1" }} , 
+ 	{ "name": "DataRAM_7_we1", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_7", "role": "we1" }} , 
+ 	{ "name": "DataRAM_7_d1", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_7", "role": "d1" }} , 
+ 	{ "name": "DataRAM_7_q1", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_7", "role": "q1" }} , 
+ 	{ "name": "DataRAM_10_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":12, "type": "signal", "bundle":{"name": "DataRAM_10", "role": "address0" }} , 
+ 	{ "name": "DataRAM_10_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_10", "role": "ce0" }} , 
+ 	{ "name": "DataRAM_10_we0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_10", "role": "we0" }} , 
+ 	{ "name": "DataRAM_10_d0", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_10", "role": "d0" }} , 
+ 	{ "name": "DataRAM_10_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_10", "role": "q0" }} , 
+ 	{ "name": "DataRAM_10_address1", "direction": "out", "datatype": "sc_lv", "bitwidth":12, "type": "signal", "bundle":{"name": "DataRAM_10", "role": "address1" }} , 
+ 	{ "name": "DataRAM_10_ce1", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_10", "role": "ce1" }} , 
+ 	{ "name": "DataRAM_10_we1", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_10", "role": "we1" }} , 
+ 	{ "name": "DataRAM_10_d1", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_10", "role": "d1" }} , 
+ 	{ "name": "DataRAM_10_q1", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_10", "role": "q1" }} , 
+ 	{ "name": "RAMSel_cast", "direction": "in", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "RAMSel_cast", "role": "default" }} , 
+ 	{ "name": "RAMSel1_cast", "direction": "in", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "RAMSel1_cast", "role": "default" }}  ]}
+
+set RtlHierarchyInfo {[
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "16", "17", "18", "19", "20"],
+		"CDFG" : "Crypto_Pipeline_POLY_MUL_LOOP23",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "4113", "EstimateLatencyMax" : "4113",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "DataRAM_1", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "DataRAM_4", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "DataRAM_7", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "DataRAM_10", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "RAMSel_cast", "Type" : "None", "Direction" : "I"},
+			{"Name" : "RAMSel1_cast", "Type" : "None", "Direction" : "I"}],
+		"Loop" : [
+			{"Name" : "POLY_MUL_LOOP", "PipelineType" : "UPC",
+				"LoopDec" : {"FSMBitwidth" : "4", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage3", "LastStateIter" : "ap_enable_reg_pp0_iter4", "LastStateBlock" : "ap_block_pp0_stage3_subdone", "QuitState" : "ap_ST_fsm_pp0_stage3", "QuitStateIter" : "ap_enable_reg_pp0_iter4", "QuitStateBlock" : "ap_block_pp0_stage3_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238", "Parent" : "0", "Child" : ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"],
+		"CDFG" : "MUL_MOD_1",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "0", "ap_start" : "0", "ap_ready" : "0", "ap_done" : "0", "ap_continue" : "0", "ap_idle" : "0", "real_start" : "0",
+		"Pipeline" : "Aligned", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "1",
+		"VariableLatency" : "0", "ExactLatency" : "12", "EstimateLatencyMin" : "12", "EstimateLatencyMax" : "12",
+		"Combinational" : "0",
+		"Datapath" : "1",
+		"ClockEnable" : "1",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "input1_val", "Type" : "None", "Direction" : "I"},
+			{"Name" : "input2_val", "Type" : "None", "Direction" : "I"},
+			{"Name" : "MOD_INDEX", "Type" : "None", "Direction" : "I"}]},
+	{"ID" : "2", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238.mul_16ns_16ns_32_1_0_U168", "Parent" : "1"},
+	{"ID" : "3", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238.mul_16ns_16ns_32_1_0_U169", "Parent" : "1"},
+	{"ID" : "4", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238.mul_16ns_16ns_32_1_0_U170", "Parent" : "1"},
+	{"ID" : "5", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238.mux_3_2_20_1_0_U171", "Parent" : "1"},
+	{"ID" : "6", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238.mul_16ns_16ns_32_1_0_U172", "Parent" : "1"},
+	{"ID" : "7", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238.mul_16ns_16ns_32_1_0_U173", "Parent" : "1"},
+	{"ID" : "8", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238.mul_16ns_16ns_32_1_0_U174", "Parent" : "1"},
+	{"ID" : "9", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238.mul_16ns_16ns_32_1_0_U175", "Parent" : "1"},
+	{"ID" : "10", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238.mux_3_2_31_1_0_U176", "Parent" : "1"},
+	{"ID" : "11", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238.mul_16ns_16ns_32_1_0_U177", "Parent" : "1"},
+	{"ID" : "12", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238.mul_16ns_16ns_32_1_0_U178", "Parent" : "1"},
+	{"ID" : "13", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238.mul_15ns_16ns_31_1_0_U179", "Parent" : "1"},
+	{"ID" : "14", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238.mac_muladd_16ns_16ns_32ns_33_4_0_U180", "Parent" : "1"},
+	{"ID" : "15", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_1_fu_238.mac_muladd_16ns_15ns_32ns_33_4_0_U181", "Parent" : "1"},
+	{"ID" : "16", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mux_4_2_32_1_1_U195", "Parent" : "0"},
+	{"ID" : "17", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mux_4_2_32_1_1_U196", "Parent" : "0"},
+	{"ID" : "18", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mux_4_2_32_1_1_U197", "Parent" : "0"},
+	{"ID" : "19", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mux_4_2_32_1_1_U198", "Parent" : "0"},
+	{"ID" : "20", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.flow_control_loop_pipe_sequential_init_U", "Parent" : "0"}]}
+
+
+set ArgLastReadFirstWriteLatency {
+	Crypto_Pipeline_POLY_MUL_LOOP23 {
+		DataRAM_1 {Type IO LastRead 2 FirstWrite 18}
+		DataRAM_4 {Type IO LastRead 2 FirstWrite 18}
+		DataRAM_7 {Type IO LastRead 2 FirstWrite 18}
+		DataRAM_10 {Type IO LastRead 2 FirstWrite 18}
+		RAMSel_cast {Type I LastRead 0 FirstWrite -1}
+		RAMSel1_cast {Type I LastRead 0 FirstWrite -1}}
+	MUL_MOD_1 {
+		input1_val {Type I LastRead 0 FirstWrite -1}
+		input2_val {Type I LastRead 0 FirstWrite -1}
+		MOD_INDEX {Type I LastRead 0 FirstWrite -1}}}
+
+set hasDtUnsupportedChannel 0
+
+set PerformanceInfo {[
+	{"Name" : "Latency", "Min" : "4113", "Max" : "4113"}
+	, {"Name" : "Interval", "Min" : "4113", "Max" : "4113"}
+]}
+
+set PipelineEnableSignalInfo {[
+	{"Pipeline" : "0", "EnableSignal" : "ap_enable_pp0"}
+]}
+
+set Spec2ImplPortList { 
+	DataRAM_1 { ap_memory {  { DataRAM_1_address0 mem_address 1 12 }  { DataRAM_1_ce0 mem_ce 1 1 }  { DataRAM_1_we0 mem_we 1 1 }  { DataRAM_1_d0 mem_din 1 32 }  { DataRAM_1_q0 in_data 0 32 }  { DataRAM_1_address1 MemPortADDR2 1 12 }  { DataRAM_1_ce1 MemPortCE2 1 1 }  { DataRAM_1_we1 MemPortWE2 1 1 }  { DataRAM_1_d1 MemPortDIN2 1 32 }  { DataRAM_1_q1 in_data 0 32 } } }
+	DataRAM_4 { ap_memory {  { DataRAM_4_address0 mem_address 1 12 }  { DataRAM_4_ce0 mem_ce 1 1 }  { DataRAM_4_we0 mem_we 1 1 }  { DataRAM_4_d0 mem_din 1 32 }  { DataRAM_4_q0 in_data 0 32 }  { DataRAM_4_address1 MemPortADDR2 1 12 }  { DataRAM_4_ce1 MemPortCE2 1 1 }  { DataRAM_4_we1 MemPortWE2 1 1 }  { DataRAM_4_d1 MemPortDIN2 1 32 }  { DataRAM_4_q1 in_data 0 32 } } }
+	DataRAM_7 { ap_memory {  { DataRAM_7_address0 mem_address 1 12 }  { DataRAM_7_ce0 mem_ce 1 1 }  { DataRAM_7_we0 mem_we 1 1 }  { DataRAM_7_d0 mem_din 1 32 }  { DataRAM_7_q0 in_data 0 32 }  { DataRAM_7_address1 MemPortADDR2 1 12 }  { DataRAM_7_ce1 MemPortCE2 1 1 }  { DataRAM_7_we1 MemPortWE2 1 1 }  { DataRAM_7_d1 MemPortDIN2 1 32 }  { DataRAM_7_q1 in_data 0 32 } } }
+	DataRAM_10 { ap_memory {  { DataRAM_10_address0 mem_address 1 12 }  { DataRAM_10_ce0 mem_ce 1 1 }  { DataRAM_10_we0 mem_we 1 1 }  { DataRAM_10_d0 mem_din 1 32 }  { DataRAM_10_q0 in_data 0 32 }  { DataRAM_10_address1 MemPortADDR2 1 12 }  { DataRAM_10_ce1 MemPortCE2 1 1 }  { DataRAM_10_we1 MemPortWE2 1 1 }  { DataRAM_10_d1 MemPortDIN2 1 32 }  { DataRAM_10_q1 in_data 0 32 } } }
+	RAMSel_cast { ap_none {  { RAMSel_cast in_data 0 2 } } }
+	RAMSel1_cast { ap_none {  { RAMSel1_cast in_data 0 2 } } }
+}

@@ -42,7 +42,7 @@ add_files TwiddleMemory.cpp
 add_files -tb main_TB.cpp -cflags "-Wno-unknown-pragmas"
 open_solution "solution1" -flow_target vivado
 set_part {xc7z020-clg400-1}
-create_clock -period 7 -name default
+create_clock -period 8 -name default
 config_export -format ip_catalog -rtl verilog
 source "./Crypto/solution1/directives.tcl"
 csim_design

@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'Crypto'
 ================================================================
-* Date:           Wed Feb  5 12:49:49 2025
+* Date:           Thu Feb 27 10:54:30 2025
 
 * Version:        2023.1 (Build 3854077 on May  4 2023)
 * Project:        Crypto
@@ -20,49 +20,83 @@
     +--------+---------+----------+------------+
     |  Clock |  Target | Estimated| Uncertainty|
     +--------+---------+----------+------------+
-    |ap_clk  |  7.00 ns|  5.104 ns|     1.89 ns|
+    |ap_clk  |  8.00 ns|  5.802 ns|     2.16 ns|
     +--------+---------+----------+------------+
 
 + Latency: 
     * Summary: 
-    +---------+---------+----------+----------+-----+-----+---------+
-    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
-    |   min   |   max   |    min   |    max   | min | max |   Type  |
-    +---------+---------+----------+----------+-----+-----+---------+
-    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
-    +---------+---------+----------+----------+-----+-----+---------+
+    +---------+----------------+----------+-------------+-----+----------------+---------+
+    |     Latency (cycles)     |   Latency (absolute)   |       Interval       | Pipeline|
+    |   min   |       max      |    min   |     max     | min |       max      |   Type  |
+    +---------+----------------+----------+-------------+-----+----------------+---------+
+    |        1|  14688788209999|  8.000 ns|  1.2e+05 sec|    2|  14688788210000|       no|
+    +---------+----------------+----------+-------------+-----+----------------+---------+
 
     + Detail: 
         * Instance: 
-        +-----------------------------------------------+------------------------------------+---------+-------------+-----------+-------------+-------+-------------+---------+
-        |                                               |                                    |    Latency (cycles)   |    Latency (absolute)   |       Interval      | Pipeline|
-        |                    Instance                   |               Module               |   min   |     max     |    min    |     max     |  min  |     max     |   Type  |
-        +-----------------------------------------------+------------------------------------+---------+-------------+-----------+-------------+-------+-------------+---------+
-        |grp_Crypto_Pipeline_PERMUTE_LOOP1_fu_514       |Crypto_Pipeline_PERMUTE_LOOP1       |     4100|         4100|  28.700 us|    28.700 us|   4100|         4100|       no|
-        |grp_Crypto_Pipeline_PERMUTE_LOOP_fu_615        |Crypto_Pipeline_PERMUTE_LOOP        |     4100|         4100|  28.700 us|    28.700 us|   4100|         4100|       no|
-        |grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_716       |Crypto_Pipeline_POLY_MUL_LOOP       |    77826|        77826|   0.545 ms|     0.545 ms|  77826|        77826|       no|
-        |grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_785       |Crypto_Pipeline_POLY_SUB_LOOP       |     8196|         8196|  57.372 us|    57.372 us|   8196|         8196|       no|
-        |grp_Crypto_Pipeline_VITIS_LOOP_79_1_fu_854     |Crypto_Pipeline_VITIS_LOOP_79_1     |    20482|        20482|   0.143 ms|     0.143 ms|  20482|        20482|       no|
-        |grp_Crypto_Pipeline_WRITE_TWIDDLE_LOOP_fu_923  |Crypto_Pipeline_WRITE_TWIDDLE_LOOP  |     2051|         2051|  14.357 us|    14.357 us|   2051|         2051|       no|
-        |grp_Crypto_Pipeline_READ_DATA_LOOP_fu_995      |Crypto_Pipeline_READ_DATA_LOOP      |     4100|         4100|  28.700 us|    28.700 us|   4100|         4100|       no|
-        |grp_Crypto_Pipeline_WRITE_DATA_LOOP_fu_1066    |Crypto_Pipeline_WRITE_DATA_LOOP     |     4099|         4099|  28.693 us|    28.693 us|   4099|         4099|       no|
-        |grp_Crypto_Pipeline_INTT_PERMUTE_LOOP_fu_1137  |Crypto_Pipeline_INTT_PERMUTE_LOOP   |     4100|         4100|  28.700 us|    28.700 us|   4100|         4100|       no|
-        |grp_Crypto_Pipeline_NTT_PERMUTE_LOOP_fu_1190   |Crypto_Pipeline_NTT_PERMUTE_LOOP    |     4100|         4100|  28.700 us|    28.700 us|   4100|         4100|       no|
-        |grp_Crypto_Pipeline_MUL_INV_LOOP_fu_1243       |Crypto_Pipeline_MUL_INV_LOOP        |    77826|        77826|   0.545 ms|     0.545 ms|  77826|        77826|       no|
-        |grp_Crypto_Pipeline_INTT_PE_LOOP_fu_1282       |Crypto_Pipeline_INTT_PE_LOOP        |        4|  25769803756|  28.000 ns|  180.389 sec|      4|  25769803756|       no|
-        |grp_Crypto_Pipeline_NTT_PE_LOOP_fu_1343        |Crypto_Pipeline_NTT_PE_LOOP         |        4|  25769803756|  28.000 ns|  180.389 sec|      4|  25769803756|       no|
-        +-----------------------------------------------+------------------------------------+---------+-------------+-----------+-------------+-------+-------------+---------+
+        +-----------------------------------------------------+------------------------------------------+---------+-------------+-----------+-------------+------+-------------+---------+
+        |                                                     |                                          |    Latency (cycles)   |    Latency (absolute)   |      Interval      | Pipeline|
+        |                       Instance                      |                  Module                  |   min   |     max     |    min    |     max     |  min |     max     |   Type  |
+        +-----------------------------------------------------+------------------------------------------+---------+-------------+-----------+-------------+------+-------------+---------+
+        |grp_apply_bit_reverse_fu_384                         |apply_bit_reverse                         |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        |grp_apply_bit_reverse_fu_392                         |apply_bit_reverse                         |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        |grp_apply_bit_reverse_fu_400                         |apply_bit_reverse                         |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        |grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_417             |Crypto_Pipeline_POLY_MUL_LOOP             |     4113|         4113|  32.904 us|    32.904 us|  4113|         4113|       no|
+        |grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_431           |Crypto_Pipeline_POLY_MUL_LOOP23           |     4113|         4113|  32.904 us|    32.904 us|  4113|         4113|       no|
+        |grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_445           |Crypto_Pipeline_POLY_MUL_LOOP24           |     4113|         4113|  32.904 us|    32.904 us|  4113|         4113|       no|
+        |grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_459             |Crypto_Pipeline_POLY_SUB_LOOP             |     4100|         4100|  32.800 us|    32.800 us|  4100|         4100|       no|
+        |grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_473           |Crypto_Pipeline_POLY_SUB_LOOP17           |     4100|         4100|  32.800 us|    32.800 us|  4100|         4100|       no|
+        |grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_487           |Crypto_Pipeline_POLY_SUB_LOOP18           |     4100|         4100|  32.800 us|    32.800 us|  4100|         4100|       no|
+        |grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_501             |Crypto_Pipeline_POLY_ADD_LOOP             |     4100|         4100|  32.800 us|    32.800 us|  4100|         4100|       no|
+        |grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_515           |Crypto_Pipeline_POLY_ADD_LOOP15           |     4100|         4100|  32.800 us|    32.800 us|  4100|         4100|       no|
+        |grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_529           |Crypto_Pipeline_POLY_ADD_LOOP16           |     4100|         4100|  32.800 us|    32.800 us|  4100|         4100|       no|
+        |grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_543    |Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1    |     4105|         4105|  32.840 us|    32.840 us|  4105|         4105|       no|
+        |grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_556  |Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113  |     4105|         4105|  32.840 us|    32.840 us|  4105|         4105|       no|
+        |grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_569  |Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114  |     4105|         4105|  32.840 us|    32.840 us|  4105|         4105|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_83_3_fu_582           |Crypto_Pipeline_VITIS_LOOP_83_3           |     2051|         2051|  16.408 us|    16.408 us|  2051|         2051|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_72_2_fu_594           |Crypto_Pipeline_VITIS_LOOP_72_2           |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_61_1_fu_609           |Crypto_Pipeline_VITIS_LOOP_61_1           |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_210_8_fu_624          |Crypto_Pipeline_VITIS_LOOP_210_8          |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_210_83_fu_634         |Crypto_Pipeline_VITIS_LOOP_210_83         |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_210_84_fu_644         |Crypto_Pipeline_VITIS_LOOP_210_84         |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        |grp_Crypto_Pipeline_INTT_PE_LOOP_fu_654              |Crypto_Pipeline_INTT_PE_LOOP              |       59|  20401094715|   0.472 us|  163.209 sec|    59|  20401094715|       no|
+        |grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_668             |Crypto_Pipeline_INTT_PE_LOOP5             |       59|  20401094715|   0.472 us|  163.209 sec|    59|  20401094715|       no|
+        |grp_Crypto_Pipeline_MUL_INV_LOOP_fu_682              |Crypto_Pipeline_MUL_INV_LOOP              |     4113|         4113|  32.904 us|    32.904 us|  4113|         4113|       no|
+        |grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_691            |Crypto_Pipeline_MUL_INV_LOOP21            |     4113|         4113|  32.904 us|    32.904 us|  4113|         4113|       no|
+        |grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_700            |Crypto_Pipeline_MUL_INV_LOOP22            |     4113|         4113|  32.904 us|    32.904 us|  4113|         4113|       no|
+        |grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_709             |Crypto_Pipeline_INTT_PE_LOOP6             |       59|  20401094715|   0.472 us|  163.209 sec|    59|  20401094715|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_165_5_fu_723          |Crypto_Pipeline_VITIS_LOOP_165_5          |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_165_51_fu_733         |Crypto_Pipeline_VITIS_LOOP_165_51         |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_165_52_fu_743         |Crypto_Pipeline_VITIS_LOOP_165_52         |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        |grp_Crypto_Pipeline_NTT_PE_LOOP_fu_753               |Crypto_Pipeline_NTT_PE_LOOP               |       59|  20401094715|   0.472 us|  163.209 sec|    59|  20401094715|       no|
+        |grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_767             |Crypto_Pipeline_NTT_PE_LOOP19             |       59|  20401094715|   0.472 us|  163.209 sec|    59|  20401094715|       no|
+        |grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_781             |Crypto_Pipeline_NTT_PE_LOOP20             |       59|  20401094715|   0.472 us|  163.209 sec|    59|  20401094715|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_83_311_fu_795         |Crypto_Pipeline_VITIS_LOOP_83_311         |     2051|         2051|  16.408 us|    16.408 us|  2051|         2051|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_72_29_fu_805          |Crypto_Pipeline_VITIS_LOOP_72_29          |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_61_17_fu_816          |Crypto_Pipeline_VITIS_LOOP_61_17          |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_83_312_fu_827         |Crypto_Pipeline_VITIS_LOOP_83_312         |     2051|         2051|  16.408 us|    16.408 us|  2051|         2051|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_72_210_fu_837         |Crypto_Pipeline_VITIS_LOOP_72_210         |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        |grp_Crypto_Pipeline_VITIS_LOOP_61_18_fu_848          |Crypto_Pipeline_VITIS_LOOP_61_18          |     4099|         4099|  32.792 us|    32.792 us|  4099|         4099|       no|
+        +-----------------------------------------------------+------------------------------------------+---------+-------------+-----------+-------------+------+-------------+---------+
 
         * Loop: 
-        +--------------------+---------+---------+-----------------+-----------+-----------+------+----------+
-        |                    |  Latency (cycles) |    Iteration    |  Initiation Interval  | Trip |          |
-        |      Loop Name     |   min   |   max   |     Latency     |  achieved |   target  | Count| Pipelined|
-        +--------------------+---------+---------+-----------------+-----------+-----------+------+----------+
-        |- NTT_STAGE_LOOP    |        ?|        ?|                ?|          -|          -|    12|        no|
-        | + NTT_GROUP_LOOP   |        ?|        ?|  6 ~ 25769803758|          -|          -|     ?|        no|
-        |- INTT_STAGE_LOOP   |        ?|        ?|                ?|          -|          -|    12|        no|
-        | + INTT_GROUP_LOOP  |        ?|        ?|  6 ~ 25769803758|          -|          -|     ?|        no|
-        +--------------------+---------+---------+-----------------+-----------+-----------+------+----------+
+        +--------------------+---------+---------------+--------------------+-----------+-----------+---------+----------+
+        |                    |     Latency (cycles)    |      Iteration     |  Initiation Interval  |   Trip  |          |
+        |      Loop Name     |   min   |      max      |       Latency      |  achieved |   target  |  Count  | Pipelined|
+        +--------------------+---------+---------------+--------------------+-----------+-----------+---------+----------+
+        |- VITIS_LOOP_174_6  |     7680|  4896262732560|  640 ~ 408021894380|          -|          -|       12|        no|
+        | + NTT_GROUP_LOOP   |      620|   408021894360|    62 ~ 20401094718|          -|          -|  10 ~ 20|        no|
+        |- VITIS_LOOP_219_9  |     7680|  4896262732560|  640 ~ 408021894380|          -|          -|       12|        no|
+        | + INTT_GROUP_LOOP  |      620|   408021894360|    62 ~ 20401094718|          -|          -|  10 ~ 20|        no|
+        |- VITIS_LOOP_174_6  |     7680|  4896262732560|  640 ~ 408021894380|          -|          -|       12|        no|
+        | + NTT_GROUP_LOOP   |      620|   408021894360|    62 ~ 20401094718|          -|          -|  10 ~ 20|        no|
+        |- VITIS_LOOP_174_6  |     7680|  4896262732560|  640 ~ 408021894380|          -|          -|       12|        no|
+        | + NTT_GROUP_LOOP   |      620|   408021894360|    62 ~ 20401094718|          -|          -|  10 ~ 20|        no|
+        |- VITIS_LOOP_219_9  |     7680|  4896262732560|  640 ~ 408021894380|          -|          -|       12|        no|
+        | + INTT_GROUP_LOOP  |      620|   408021894360|    62 ~ 20401094718|          -|          -|  10 ~ 20|        no|
+        |- VITIS_LOOP_219_9  |     7680|  4896262732560|  640 ~ 408021894380|          -|          -|       12|        no|
+        | + INTT_GROUP_LOOP  |      620|   408021894360|    62 ~ 20401094718|          -|          -|  10 ~ 20|        no|
+        +--------------------+---------+---------------+--------------------+-----------+-----------+---------+----------+
 
 
 
@@ -74,649 +108,416 @@
 |       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
 +-----------------+---------+-----+--------+-------+-----+
 |DSP              |        -|    -|       -|      -|    -|
-|Expression       |        -|    -|       0|    564|    -|
+|Expression       |        -|    -|       0|   1030|    -|
 |FIFO             |        -|    -|       -|      -|    -|
-|Instance         |       16|   36|   24569|  12777|    -|
-|Memory           |      112|    -|       0|      0|    0|
-|Multiplexer      |        -|    -|       -|  11802|    -|
-|Register         |        -|    -|     803|      -|    -|
+|Instance         |       64|   78|   33570|  30120|    -|
+|Memory           |      144|    -|       0|      0|    0|
+|Multiplexer      |        -|    -|       -|   6858|    -|
+|Register         |        -|    -|    1950|      -|    -|
 +-----------------+---------+-----+--------+-------+-----+
-|Total            |      128|   36|   25372|  25143|    0|
+|Total            |      208|   78|   35520|  38008|    0|
 +-----------------+---------+-----+--------+-------+-----+
 |Available        |      280|  220|  106400|  53200|    0|
 +-----------------+---------+-----+--------+-------+-----+
-|Utilization (%)  |       45|   16|      23|     47|    0|
+|Utilization (%)  |       74|   35|      33|     71|    0|
 +-----------------+---------+-----+--------+-------+-----+
 
 + Detail: 
     * Instance: 
-    +-----------------------------------------------+------------------------------------+---------+----+------+------+-----+
-    |                    Instance                   |               Module               | BRAM_18K| DSP|  FF  |  LUT | URAM|
-    +-----------------------------------------------+------------------------------------+---------+----+------+------+-----+
-    |grp_Crypto_Pipeline_INTT_PERMUTE_LOOP_fu_1137  |Crypto_Pipeline_INTT_PERMUTE_LOOP   |        0|   0|   704|   198|    0|
-    |grp_Crypto_Pipeline_INTT_PE_LOOP_fu_1282       |Crypto_Pipeline_INTT_PE_LOOP        |        0|   0|  3501|  2638|    0|
-    |grp_Crypto_Pipeline_MUL_INV_LOOP_fu_1243       |Crypto_Pipeline_MUL_INV_LOOP        |        0|  12|  3335|  1662|    0|
-    |grp_Crypto_Pipeline_NTT_PERMUTE_LOOP_fu_1190   |Crypto_Pipeline_NTT_PERMUTE_LOOP    |        0|   0|   704|   198|    0|
-    |grp_Crypto_Pipeline_NTT_PE_LOOP_fu_1343        |Crypto_Pipeline_NTT_PE_LOOP         |        0|   0|  3501|  2638|    0|
-    |grp_Crypto_Pipeline_PERMUTE_LOOP_fu_615        |Crypto_Pipeline_PERMUTE_LOOP        |        0|   0|  1224|   272|    0|
-    |grp_Crypto_Pipeline_PERMUTE_LOOP1_fu_514       |Crypto_Pipeline_PERMUTE_LOOP1       |        0|   0|  1224|   272|    0|
-    |grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_716       |Crypto_Pipeline_POLY_MUL_LOOP       |        0|  12|  3223|  1422|    0|
-    |grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_785       |Crypto_Pipeline_POLY_SUB_LOOP       |        0|   0|  1405|   542|    0|
-    |grp_Crypto_Pipeline_READ_DATA_LOOP_fu_995      |Crypto_Pipeline_READ_DATA_LOOP      |        0|   0|  1153|   240|    0|
-    |grp_Crypto_Pipeline_VITIS_LOOP_79_1_fu_854     |Crypto_Pipeline_VITIS_LOOP_79_1     |        0|   0|  1285|   784|    0|
-    |grp_Crypto_Pipeline_WRITE_DATA_LOOP_fu_1066    |Crypto_Pipeline_WRITE_DATA_LOOP     |        0|   0|    74|    69|    0|
-    |grp_Crypto_Pipeline_WRITE_TWIDDLE_LOOP_fu_923  |Crypto_Pipeline_WRITE_TWIDDLE_LOOP  |        0|   0|   103|    64|    0|
-    |grp_MUL_MOD_2_fu_1861                          |MUL_MOD_2                           |        0|  12|  1955|   832|    0|
-    |control_s_axi_U                                |control_s_axi                       |       16|   0|   390|   442|    0|
-    |mux_3_2_19_1_1_U639                            |mux_3_2_19_1_1                      |        0|   0|     0|    14|    0|
-    |mux_3_2_31_1_1_U637                            |mux_3_2_31_1_1                      |        0|   0|     0|    14|    0|
-    |sdiv_15ns_32s_11_19_seq_1_U638                 |sdiv_15ns_32s_11_19_seq_1           |        0|   0|   394|   238|    0|
-    |sdiv_15ns_32s_11_19_seq_1_U640                 |sdiv_15ns_32s_11_19_seq_1           |        0|   0|   394|   238|    0|
-    +-----------------------------------------------+------------------------------------+---------+----+------+------+-----+
-    |Total                                          |                                    |       16|  36| 24569| 12777|    0|
-    +-----------------------------------------------+------------------------------------+---------+----+------+------+-----+
+    +-----------------------------------------------------+------------------------------------------+---------+----+------+------+-----+
+    |                       Instance                      |                  Module                  | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +-----------------------------------------------------+------------------------------------------+---------+----+------+------+-----+
+    |grp_ADD_MOD_fu_1700                                  |ADD_MOD                                   |        0|   0|     0|   163|    0|
+    |grp_Crypto_Pipeline_INTT_PE_LOOP_fu_654              |Crypto_Pipeline_INTT_PE_LOOP              |        0|   1|  1093|  1463|    0|
+    |grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_668             |Crypto_Pipeline_INTT_PE_LOOP5             |        0|   1|  1093|  1463|    0|
+    |grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_709             |Crypto_Pipeline_INTT_PE_LOOP6             |        0|   1|  1093|  1463|    0|
+    |grp_Crypto_Pipeline_MUL_INV_LOOP_fu_682              |Crypto_Pipeline_MUL_INV_LOOP              |        0|  12|  1880|  1185|    0|
+    |grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_691            |Crypto_Pipeline_MUL_INV_LOOP21            |        0|   0|   479|   249|    0|
+    |grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_700            |Crypto_Pipeline_MUL_INV_LOOP22            |        0|  12|  1880|  1185|    0|
+    |grp_Crypto_Pipeline_NTT_PE_LOOP_fu_753               |Crypto_Pipeline_NTT_PE_LOOP               |        0|   1|  1093|  1463|    0|
+    |grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_767             |Crypto_Pipeline_NTT_PE_LOOP19             |        0|   1|  1093|  1463|    0|
+    |grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_781             |Crypto_Pipeline_NTT_PE_LOOP20             |        0|   1|  1093|  1463|    0|
+    |grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_501             |Crypto_Pipeline_POLY_ADD_LOOP             |        0|   0|   485|   709|    0|
+    |grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_515           |Crypto_Pipeline_POLY_ADD_LOOP15           |        0|   0|   485|   709|    0|
+    |grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_529           |Crypto_Pipeline_POLY_ADD_LOOP16           |        0|   0|   485|   709|    0|
+    |grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_543    |Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1    |        0|   0|  1559|  1397|    0|
+    |grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_556  |Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113  |        0|   0|  1559|  1397|    0|
+    |grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_569  |Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114  |        0|   0|  1559|  1397|    0|
+    |grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_417             |Crypto_Pipeline_POLY_MUL_LOOP             |        0|  12|  3056|  2044|    0|
+    |grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_431           |Crypto_Pipeline_POLY_MUL_LOOP23           |        0|  12|  3056|  2044|    0|
+    |grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_445           |Crypto_Pipeline_POLY_MUL_LOOP24           |        0|  12|  3056|  2044|    0|
+    |grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_459             |Crypto_Pipeline_POLY_SUB_LOOP             |        0|   0|   485|   631|    0|
+    |grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_473           |Crypto_Pipeline_POLY_SUB_LOOP17           |        0|   0|   485|   631|    0|
+    |grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_487           |Crypto_Pipeline_POLY_SUB_LOOP18           |        0|   0|   485|   631|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_165_5_fu_723          |Crypto_Pipeline_VITIS_LOOP_165_5          |        0|   0|   146|    69|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_165_51_fu_733         |Crypto_Pipeline_VITIS_LOOP_165_51         |        0|   0|   146|    69|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_165_52_fu_743         |Crypto_Pipeline_VITIS_LOOP_165_52         |        0|   0|   146|    69|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_210_8_fu_624          |Crypto_Pipeline_VITIS_LOOP_210_8          |        0|   0|   146|    69|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_210_83_fu_634         |Crypto_Pipeline_VITIS_LOOP_210_83         |        0|   0|   146|    69|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_210_84_fu_644         |Crypto_Pipeline_VITIS_LOOP_210_84         |        0|   0|   146|    69|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_61_1_fu_609           |Crypto_Pipeline_VITIS_LOOP_61_1           |        0|   0|    76|    69|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_61_17_fu_816          |Crypto_Pipeline_VITIS_LOOP_61_17          |        0|   0|    76|    69|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_61_18_fu_848          |Crypto_Pipeline_VITIS_LOOP_61_18          |        0|   0|    76|    69|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_72_2_fu_594           |Crypto_Pipeline_VITIS_LOOP_72_2           |        0|   0|    74|    89|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_72_210_fu_837         |Crypto_Pipeline_VITIS_LOOP_72_210         |        0|   0|    74|    89|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_72_29_fu_805          |Crypto_Pipeline_VITIS_LOOP_72_29          |        0|   0|    74|    89|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_83_3_fu_582           |Crypto_Pipeline_VITIS_LOOP_83_3           |        0|   0|   105|    64|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_83_311_fu_795         |Crypto_Pipeline_VITIS_LOOP_83_311         |        0|   0|   105|    64|    0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_83_312_fu_827         |Crypto_Pipeline_VITIS_LOOP_83_312         |        0|   0|   105|    64|    0|
+    |grp_MUL_MOD_fu_1706                                  |MUL_MOD                                   |        0|  12|  1401|   936|    0|
+    |grp_SUB_MOD_fu_1712                                  |SUB_MOD                                   |        0|   0|     0|   124|    0|
+    |grp_apply_bit_reverse_fu_384                         |apply_bit_reverse                         |        0|   0|    74|    69|    0|
+    |grp_apply_bit_reverse_fu_392                         |apply_bit_reverse                         |        0|   0|    74|    69|    0|
+    |grp_apply_bit_reverse_fu_400                         |apply_bit_reverse                         |        0|   0|    74|    69|    0|
+    |control_s_axi_U                                      |control_s_axi                             |       64|   0|   390|   442|    0|
+    |sdiv_15ns_32s_11_19_seq_1_U348                       |sdiv_15ns_32s_11_19_seq_1                 |        0|   0|   394|   238|    0|
+    |sdiv_15ns_32s_11_19_seq_1_U349                       |sdiv_15ns_32s_11_19_seq_1                 |        0|   0|   394|   238|    0|
+    |sdiv_15ns_32s_11_19_seq_1_U350                       |sdiv_15ns_32s_11_19_seq_1                 |        0|   0|   394|   238|    0|
+    |sdiv_15ns_32s_11_19_seq_1_U351                       |sdiv_15ns_32s_11_19_seq_1                 |        0|   0|   394|   238|    0|
+    |sdiv_15ns_32s_11_19_seq_1_U352                       |sdiv_15ns_32s_11_19_seq_1                 |        0|   0|   394|   238|    0|
+    |sdiv_15ns_32s_11_19_seq_1_U353                       |sdiv_15ns_32s_11_19_seq_1                 |        0|   0|   394|   238|    0|
+    +-----------------------------------------------------+------------------------------------------+---------+----+------+------+-----+
+    |Total                                                |                                          |       64|  78| 33570| 30120|    0|
+    +-----------------------------------------------------+------------------------------------------+---------+----+------+------+-----+
 
     * DSP: 
     N/A
 
     * Memory: 
-    +---------------------+------------------------------+---------+---+----+-----+------+-----+------+-------------+
-    |        Memory       |            Module            | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
-    +---------------------+------------------------------+---------+---+----+-----+------+-----+------+-------------+
-    |BitReverseData_U     |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_1_U   |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_2_U   |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_3_U   |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_4_U   |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_5_U   |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_6_U   |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_7_U   |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_8_U   |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_9_U   |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_10_U  |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_11_U  |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_12_U  |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_13_U  |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_14_U  |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |BitReverseData_15_U  |BitReverseData_RAM_AUTO_1R1W  |        1|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_U            |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_1_U          |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_2_U          |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_3_U          |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_4_U          |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_5_U          |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_6_U          |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_7_U          |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_8_U          |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_9_U          |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_10_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_11_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_12_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_13_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_14_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_15_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_16_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_17_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_18_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_19_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_20_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_21_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_22_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_23_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_24_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_25_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_26_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_27_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_28_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_29_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_30_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |DataRAM_31_U         |DataRAM_RAM_AUTO_1R1W         |        2|  0|   0|    0|   256|   32|     1|         8192|
-    |NTTTWiddleRAM_U      |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_1_U    |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_2_U    |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_3_U    |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_4_U    |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_5_U    |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_6_U    |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_7_U    |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_8_U    |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_9_U    |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_10_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_11_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_12_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_13_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_14_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |NTTTWiddleRAM_15_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_U     |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_1_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_2_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_3_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_4_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_5_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_6_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_7_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_8_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_9_U   |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_10_U  |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_11_U  |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_12_U  |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_13_U  |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_14_U  |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    |INTTTWiddleRAM_15_U  |NTTTWiddleRAM_RAM_AUTO_1R1W   |        1|  0|   0|    0|   128|   32|     1|         4096|
-    +---------------------+------------------------------+---------+---+----+-----+------+-----+------+-------------+
-    |Total                |                              |      112|  0|   0|    0| 16384| 2560|    80|       524288|
-    +---------------------+------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    +--------------------+----------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |       Memory       |              Module              | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +--------------------+----------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |BitReverseData_U    |BitReverseData_RAM_AUTO_1R1W      |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |BitReverseData_1_U  |BitReverseData_RAM_AUTO_1R1W      |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |BitReverseData_2_U  |BitReverseData_RAM_AUTO_1R1W      |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |DataRAM_U           |DataRAM_RAM_AUTO_1R1W             |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |DataRAM_1_U         |DataRAM_RAM_AUTO_1R1W             |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |DataRAM_2_U         |DataRAM_RAM_AUTO_1R1W             |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |DataRAM_3_U         |DataRAM_RAM_AUTO_1R1W             |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |DataRAM_4_U         |DataRAM_RAM_AUTO_1R1W             |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |DataRAM_5_U         |DataRAM_RAM_AUTO_1R1W             |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |DataRAM_6_U         |DataRAM_RAM_AUTO_1R1W             |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |DataRAM_7_U         |DataRAM_RAM_AUTO_1R1W             |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |DataRAM_8_U         |DataRAM_RAM_AUTO_1R1W             |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |DataRAM_9_U         |DataRAM_RAM_AUTO_1R1W             |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |DataRAM_10_U        |DataRAM_RAM_AUTO_1R1W             |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |DataRAM_11_U        |DataRAM_RAM_AUTO_1R1W             |        8|  0|   0|    0|  4096|   32|     1|       131072|
+    |NTTTWiddleRAM_U     |NTTTWiddleRAM_RAM_1WNR_AUTO_1R1W  |        4|  0|   0|    0|  2048|   32|     1|        65536|
+    |NTTTWiddleRAM_1_U   |NTTTWiddleRAM_RAM_1WNR_AUTO_1R1W  |        4|  0|   0|    0|  2048|   32|     1|        65536|
+    |NTTTWiddleRAM_2_U   |NTTTWiddleRAM_RAM_1WNR_AUTO_1R1W  |        4|  0|   0|    0|  2048|   32|     1|        65536|
+    |INTTTWiddleRAM_U    |NTTTWiddleRAM_RAM_1WNR_AUTO_1R1W  |        4|  0|   0|    0|  2048|   32|     1|        65536|
+    |INTTTWiddleRAM_1_U  |NTTTWiddleRAM_RAM_1WNR_AUTO_1R1W  |        4|  0|   0|    0|  2048|   32|     1|        65536|
+    |INTTTWiddleRAM_2_U  |NTTTWiddleRAM_RAM_1WNR_AUTO_1R1W  |        4|  0|   0|    0|  2048|   32|     1|        65536|
+    +--------------------+----------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total               |                                  |      144|  0|   0|    0| 73728|  672|    21|      2359296|
+    +--------------------+----------------------------------+---------+---+----+-----+------+-----+------+-------------+
 
     * FIFO: 
     N/A
 
     * Expression: 
-    +----------------------------------+----------+----+---+----+------------+------------+
-    |           Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
-    +----------------------------------+----------+----+---+----+------------+------------+
-    |add_ln119_fu_1692_p2              |         +|   0|  0|  71|          64|          64|
-    |add_ln153_fu_1569_p2              |         +|   0|  0|  71|          64|          64|
-    |sub_ln115_1_fu_1624_p2            |         -|   0|  0|  39|           1|          32|
-    |sub_ln115_fu_1599_p2              |         -|   0|  0|  39|           1|          32|
-    |sub_ln149_1_fu_1501_p2            |         -|   0|  0|  39|           1|          32|
-    |sub_ln149_fu_1476_p2              |         -|   0|  0|  39|           1|          32|
-    |icmp_ln114_fu_1587_p2             |      icmp|   0|  0|  39|          32|          13|
-    |icmp_ln119_fu_1676_p2             |      icmp|   0|  0|  59|          52|           1|
-    |icmp_ln148_fu_1452_p2             |      icmp|   0|  0|  39|          32|          13|
-    |icmp_ln153_fu_1553_p2             |      icmp|   0|  0|  59|          52|           1|
-    |ap_block_state2_on_subcall_done   |        or|   0|  0|   2|           1|           1|
-    |ap_block_state48_on_subcall_done  |        or|   0|  0|   2|           1|           1|
-    |ap_block_state4_on_subcall_done   |        or|   0|  0|   2|           1|           1|
-    |hf_1_fu_1520_p3                   |    select|   0|  0|  32|           1|          32|
-    |hf_fu_1643_p3                     |    select|   0|  0|  32|           1|          32|
-    +----------------------------------+----------+----+---+----+------------+------------+
-    |Total                             |          |   0|  0| 564|         305|         351|
-    +----------------------------------+----------+----+---+----+------------+------------+
+    +-----------------------------------+----------+----+---+----+------------+------------+
+    |           Variable Name           | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------------------+----------+----+---+----+------------+------------+
+    |add_ln178_1_fu_1280_p2             |         +|   0|  0|  71|          64|          64|
+    |add_ln178_2_fu_1355_p2             |         +|   0|  0|  71|          64|          64|
+    |add_ln178_fu_1200_p2               |         +|   0|  0|  71|          64|          64|
+    |add_ln223_1_fu_1040_p2             |         +|   0|  0|  71|          64|          64|
+    |add_ln223_2_fu_1115_p2             |         +|   0|  0|  71|          64|          64|
+    |add_ln223_fu_960_p2                |         +|   0|  0|  71|          64|          64|
+    |icmp_ln174_1_fu_1218_p2            |      icmp|   0|  0|  39|          32|          13|
+    |icmp_ln174_2_fu_1298_p2            |      icmp|   0|  0|  39|          32|          13|
+    |icmp_ln174_fu_1138_p2              |      icmp|   0|  0|  39|          32|          13|
+    |icmp_ln178_1_fu_1270_p2            |      icmp|   0|  0|  59|          52|           1|
+    |icmp_ln178_2_fu_1345_p2            |      icmp|   0|  0|  59|          52|           1|
+    |icmp_ln178_fu_1190_p2              |      icmp|   0|  0|  59|          52|           1|
+    |icmp_ln219_1_fu_978_p2             |      icmp|   0|  0|  39|          32|          13|
+    |icmp_ln219_2_fu_1058_p2            |      icmp|   0|  0|  39|          32|          13|
+    |icmp_ln219_fu_898_p2               |      icmp|   0|  0|  39|          32|          13|
+    |icmp_ln223_1_fu_1030_p2            |      icmp|   0|  0|  59|          52|           1|
+    |icmp_ln223_2_fu_1105_p2            |      icmp|   0|  0|  59|          52|           1|
+    |icmp_ln223_fu_950_p2               |      icmp|   0|  0|  59|          52|           1|
+    |ap_block_state141_on_subcall_done  |        or|   0|  0|   2|           1|           1|
+    |ap_block_state142_on_subcall_done  |        or|   0|  0|   2|           1|           1|
+    |ap_block_state144_on_subcall_done  |        or|   0|  0|   2|           1|           1|
+    |ap_block_state146_on_subcall_done  |        or|   0|  0|   2|           1|           1|
+    |ap_block_state2_on_subcall_done    |        or|   0|  0|   2|           1|           1|
+    |ap_block_state4_on_subcall_done    |        or|   0|  0|   2|           1|           1|
+    |ap_block_state71_on_subcall_done   |        or|   0|  0|   2|           1|           1|
+    |ap_block_state74_on_subcall_done   |        or|   0|  0|   2|           1|           1|
+    +-----------------------------------+----------+----+---+----+------------+------------+
+    |Total                              |          |   0|  0|1030|         896|         476|
+    +-----------------------------------+----------+----+---+----+------------+------------+
 
     * Multiplexer: 
-    +----------------------------------+-----+-----------+-----+-----------+
-    |               Name               | LUT | Input Size| Bits| Total Bits|
-    +----------------------------------+-----+-----------+-----+-----------+
-    |BitReverseData_10_address0        |   25|          5|    8|         40|
-    |BitReverseData_10_ce0             |   25|          5|    1|          5|
-    |BitReverseData_10_d0              |   14|          3|   32|         96|
-    |BitReverseData_10_we0             |   14|          3|    1|          3|
-    |BitReverseData_11_address0        |   25|          5|    8|         40|
-    |BitReverseData_11_ce0             |   25|          5|    1|          5|
-    |BitReverseData_11_d0              |   14|          3|   32|         96|
-    |BitReverseData_11_we0             |   14|          3|    1|          3|
-    |BitReverseData_12_address0        |   25|          5|    8|         40|
-    |BitReverseData_12_ce0             |   25|          5|    1|          5|
-    |BitReverseData_12_d0              |   14|          3|   32|         96|
-    |BitReverseData_12_we0             |   14|          3|    1|          3|
-    |BitReverseData_13_address0        |   25|          5|    8|         40|
-    |BitReverseData_13_ce0             |   25|          5|    1|          5|
-    |BitReverseData_13_d0              |   14|          3|   32|         96|
-    |BitReverseData_13_we0             |   14|          3|    1|          3|
-    |BitReverseData_14_address0        |   25|          5|    8|         40|
-    |BitReverseData_14_ce0             |   25|          5|    1|          5|
-    |BitReverseData_14_d0              |   14|          3|   32|         96|
-    |BitReverseData_14_we0             |   14|          3|    1|          3|
-    |BitReverseData_15_address0        |   25|          5|    8|         40|
-    |BitReverseData_15_ce0             |   25|          5|    1|          5|
-    |BitReverseData_15_d0              |   14|          3|   32|         96|
-    |BitReverseData_15_we0             |   14|          3|    1|          3|
-    |BitReverseData_1_address0         |   25|          5|    8|         40|
-    |BitReverseData_1_ce0              |   25|          5|    1|          5|
-    |BitReverseData_1_d0               |   14|          3|   32|         96|
-    |BitReverseData_1_we0              |   14|          3|    1|          3|
-    |BitReverseData_2_address0         |   25|          5|    8|         40|
-    |BitReverseData_2_ce0              |   25|          5|    1|          5|
-    |BitReverseData_2_d0               |   14|          3|   32|         96|
-    |BitReverseData_2_we0              |   14|          3|    1|          3|
-    |BitReverseData_3_address0         |   25|          5|    8|         40|
-    |BitReverseData_3_ce0              |   25|          5|    1|          5|
-    |BitReverseData_3_d0               |   14|          3|   32|         96|
-    |BitReverseData_3_we0              |   14|          3|    1|          3|
-    |BitReverseData_4_address0         |   25|          5|    8|         40|
-    |BitReverseData_4_ce0              |   25|          5|    1|          5|
-    |BitReverseData_4_d0               |   14|          3|   32|         96|
-    |BitReverseData_4_we0              |   14|          3|    1|          3|
-    |BitReverseData_5_address0         |   25|          5|    8|         40|
-    |BitReverseData_5_ce0              |   25|          5|    1|          5|
-    |BitReverseData_5_d0               |   14|          3|   32|         96|
-    |BitReverseData_5_we0              |   14|          3|    1|          3|
-    |BitReverseData_6_address0         |   25|          5|    8|         40|
-    |BitReverseData_6_ce0              |   25|          5|    1|          5|
-    |BitReverseData_6_d0               |   14|          3|   32|         96|
-    |BitReverseData_6_we0              |   14|          3|    1|          3|
-    |BitReverseData_7_address0         |   25|          5|    8|         40|
-    |BitReverseData_7_ce0              |   25|          5|    1|          5|
-    |BitReverseData_7_d0               |   14|          3|   32|         96|
-    |BitReverseData_7_we0              |   14|          3|    1|          3|
-    |BitReverseData_8_address0         |   25|          5|    8|         40|
-    |BitReverseData_8_ce0              |   25|          5|    1|          5|
-    |BitReverseData_8_d0               |   14|          3|   32|         96|
-    |BitReverseData_8_we0              |   14|          3|    1|          3|
-    |BitReverseData_9_address0         |   25|          5|    8|         40|
-    |BitReverseData_9_ce0              |   25|          5|    1|          5|
-    |BitReverseData_9_d0               |   14|          3|   32|         96|
-    |BitReverseData_9_we0              |   14|          3|    1|          3|
-    |BitReverseData_address0           |   25|          5|    8|         40|
-    |BitReverseData_ce0                |   25|          5|    1|          5|
-    |BitReverseData_d0                 |   14|          3|   32|         96|
-    |BitReverseData_we0                |   14|          3|    1|          3|
-    |DataIn_address0                   |   14|          3|   12|         36|
-    |DataIn_ce0                        |   14|          3|    1|          3|
-    |DataIn_we0                        |    9|          2|    1|          2|
-    |DataRAM_10_address0               |   65|         13|    8|        104|
-    |DataRAM_10_address1               |   20|          4|    8|         32|
-    |DataRAM_10_ce0                    |   65|         13|    1|         13|
-    |DataRAM_10_ce1                    |   20|          4|    1|          4|
-    |DataRAM_10_d0                     |   53|         10|   32|        320|
-    |DataRAM_10_d1                     |   14|          3|   32|         96|
-    |DataRAM_10_we0                    |   53|         10|    1|         10|
-    |DataRAM_10_we1                    |   14|          3|    1|          3|
-    |DataRAM_11_address0               |   65|         13|    8|        104|
-    |DataRAM_11_address1               |   20|          4|    8|         32|
-    |DataRAM_11_ce0                    |   65|         13|    1|         13|
-    |DataRAM_11_ce1                    |   20|          4|    1|          4|
-    |DataRAM_11_d0                     |   53|         10|   32|        320|
-    |DataRAM_11_d1                     |   14|          3|   32|         96|
-    |DataRAM_11_we0                    |   53|         10|    1|         10|
-    |DataRAM_11_we1                    |   14|          3|    1|          3|
-    |DataRAM_12_address0               |   65|         13|    8|        104|
-    |DataRAM_12_address1               |   20|          4|    8|         32|
-    |DataRAM_12_ce0                    |   65|         13|    1|         13|
-    |DataRAM_12_ce1                    |   20|          4|    1|          4|
-    |DataRAM_12_d0                     |   53|         10|   32|        320|
-    |DataRAM_12_d1                     |   14|          3|   32|         96|
-    |DataRAM_12_we0                    |   53|         10|    1|         10|
-    |DataRAM_12_we1                    |   14|          3|    1|          3|
-    |DataRAM_13_address0               |   65|         13|    8|        104|
-    |DataRAM_13_address1               |   20|          4|    8|         32|
-    |DataRAM_13_ce0                    |   65|         13|    1|         13|
-    |DataRAM_13_ce1                    |   20|          4|    1|          4|
-    |DataRAM_13_d0                     |   53|         10|   32|        320|
-    |DataRAM_13_d1                     |   14|          3|   32|         96|
-    |DataRAM_13_we0                    |   53|         10|    1|         10|
-    |DataRAM_13_we1                    |   14|          3|    1|          3|
-    |DataRAM_14_address0               |   65|         13|    8|        104|
-    |DataRAM_14_address1               |   20|          4|    8|         32|
-    |DataRAM_14_ce0                    |   65|         13|    1|         13|
-    |DataRAM_14_ce1                    |   20|          4|    1|          4|
-    |DataRAM_14_d0                     |   53|         10|   32|        320|
-    |DataRAM_14_d1                     |   14|          3|   32|         96|
-    |DataRAM_14_we0                    |   53|         10|    1|         10|
-    |DataRAM_14_we1                    |   14|          3|    1|          3|
-    |DataRAM_15_address0               |   65|         13|    8|        104|
-    |DataRAM_15_address1               |   20|          4|    8|         32|
-    |DataRAM_15_ce0                    |   65|         13|    1|         13|
-    |DataRAM_15_ce1                    |   20|          4|    1|          4|
-    |DataRAM_15_d0                     |   53|         10|   32|        320|
-    |DataRAM_15_d1                     |   14|          3|   32|         96|
-    |DataRAM_15_we0                    |   53|         10|    1|         10|
-    |DataRAM_15_we1                    |   14|          3|    1|          3|
-    |DataRAM_16_address0               |   65|         13|    8|        104|
-    |DataRAM_16_address1               |   14|          3|    8|         24|
-    |DataRAM_16_ce0                    |   65|         13|    1|         13|
-    |DataRAM_16_ce1                    |   14|          3|    1|          3|
-    |DataRAM_16_d0                     |   37|          7|   32|        224|
-    |DataRAM_16_d1                     |   14|          3|   32|         96|
-    |DataRAM_16_we0                    |   37|          7|    1|          7|
-    |DataRAM_16_we1                    |   14|          3|    1|          3|
-    |DataRAM_17_address0               |   65|         13|    8|        104|
-    |DataRAM_17_address1               |   14|          3|    8|         24|
-    |DataRAM_17_ce0                    |   65|         13|    1|         13|
-    |DataRAM_17_ce1                    |   14|          3|    1|          3|
-    |DataRAM_17_d0                     |   37|          7|   32|        224|
-    |DataRAM_17_d1                     |   14|          3|   32|         96|
-    |DataRAM_17_we0                    |   37|          7|    1|          7|
-    |DataRAM_17_we1                    |   14|          3|    1|          3|
-    |DataRAM_18_address0               |   65|         13|    8|        104|
-    |DataRAM_18_address1               |   14|          3|    8|         24|
-    |DataRAM_18_ce0                    |   65|         13|    1|         13|
-    |DataRAM_18_ce1                    |   14|          3|    1|          3|
-    |DataRAM_18_d0                     |   37|          7|   32|        224|
-    |DataRAM_18_d1                     |   14|          3|   32|         96|
-    |DataRAM_18_we0                    |   37|          7|    1|          7|
-    |DataRAM_18_we1                    |   14|          3|    1|          3|
-    |DataRAM_19_address0               |   65|         13|    8|        104|
-    |DataRAM_19_address1               |   14|          3|    8|         24|
-    |DataRAM_19_ce0                    |   65|         13|    1|         13|
-    |DataRAM_19_ce1                    |   14|          3|    1|          3|
-    |DataRAM_19_d0                     |   37|          7|   32|        224|
-    |DataRAM_19_d1                     |   14|          3|   32|         96|
-    |DataRAM_19_we0                    |   37|          7|    1|          7|
-    |DataRAM_19_we1                    |   14|          3|    1|          3|
-    |DataRAM_1_address0                |   65|         13|    8|        104|
-    |DataRAM_1_address1                |   20|          4|    8|         32|
-    |DataRAM_1_ce0                     |   65|         13|    1|         13|
-    |DataRAM_1_ce1                     |   20|          4|    1|          4|
-    |DataRAM_1_d0                      |   53|         10|   32|        320|
-    |DataRAM_1_d1                      |   14|          3|   32|         96|
-    |DataRAM_1_we0                     |   53|         10|    1|         10|
-    |DataRAM_1_we1                     |   14|          3|    1|          3|
-    |DataRAM_20_address0               |   65|         13|    8|        104|
-    |DataRAM_20_address1               |   14|          3|    8|         24|
-    |DataRAM_20_ce0                    |   65|         13|    1|         13|
-    |DataRAM_20_ce1                    |   14|          3|    1|          3|
-    |DataRAM_20_d0                     |   37|          7|   32|        224|
-    |DataRAM_20_d1                     |   14|          3|   32|         96|
-    |DataRAM_20_we0                    |   37|          7|    1|          7|
-    |DataRAM_20_we1                    |   14|          3|    1|          3|
-    |DataRAM_21_address0               |   65|         13|    8|        104|
-    |DataRAM_21_address1               |   14|          3|    8|         24|
-    |DataRAM_21_ce0                    |   65|         13|    1|         13|
-    |DataRAM_21_ce1                    |   14|          3|    1|          3|
-    |DataRAM_21_d0                     |   37|          7|   32|        224|
-    |DataRAM_21_d1                     |   14|          3|   32|         96|
-    |DataRAM_21_we0                    |   37|          7|    1|          7|
-    |DataRAM_21_we1                    |   14|          3|    1|          3|
-    |DataRAM_22_address0               |   65|         13|    8|        104|
-    |DataRAM_22_address1               |   14|          3|    8|         24|
-    |DataRAM_22_ce0                    |   65|         13|    1|         13|
-    |DataRAM_22_ce1                    |   14|          3|    1|          3|
-    |DataRAM_22_d0                     |   37|          7|   32|        224|
-    |DataRAM_22_d1                     |   14|          3|   32|         96|
-    |DataRAM_22_we0                    |   37|          7|    1|          7|
-    |DataRAM_22_we1                    |   14|          3|    1|          3|
-    |DataRAM_23_address0               |   65|         13|    8|        104|
-    |DataRAM_23_address1               |   14|          3|    8|         24|
-    |DataRAM_23_ce0                    |   65|         13|    1|         13|
-    |DataRAM_23_ce1                    |   14|          3|    1|          3|
-    |DataRAM_23_d0                     |   37|          7|   32|        224|
-    |DataRAM_23_d1                     |   14|          3|   32|         96|
-    |DataRAM_23_we0                    |   37|          7|    1|          7|
-    |DataRAM_23_we1                    |   14|          3|    1|          3|
-    |DataRAM_24_address0               |   65|         13|    8|        104|
-    |DataRAM_24_address1               |   14|          3|    8|         24|
-    |DataRAM_24_ce0                    |   65|         13|    1|         13|
-    |DataRAM_24_ce1                    |   14|          3|    1|          3|
-    |DataRAM_24_d0                     |   37|          7|   32|        224|
-    |DataRAM_24_d1                     |   14|          3|   32|         96|
-    |DataRAM_24_we0                    |   37|          7|    1|          7|
-    |DataRAM_24_we1                    |   14|          3|    1|          3|
-    |DataRAM_25_address0               |   65|         13|    8|        104|
-    |DataRAM_25_address1               |   14|          3|    8|         24|
-    |DataRAM_25_ce0                    |   65|         13|    1|         13|
-    |DataRAM_25_ce1                    |   14|          3|    1|          3|
-    |DataRAM_25_d0                     |   37|          7|   32|        224|
-    |DataRAM_25_d1                     |   14|          3|   32|         96|
-    |DataRAM_25_we0                    |   37|          7|    1|          7|
-    |DataRAM_25_we1                    |   14|          3|    1|          3|
-    |DataRAM_26_address0               |   65|         13|    8|        104|
-    |DataRAM_26_address1               |   14|          3|    8|         24|
-    |DataRAM_26_ce0                    |   65|         13|    1|         13|
-    |DataRAM_26_ce1                    |   14|          3|    1|          3|
-    |DataRAM_26_d0                     |   37|          7|   32|        224|
-    |DataRAM_26_d1                     |   14|          3|   32|         96|
-    |DataRAM_26_we0                    |   37|          7|    1|          7|
-    |DataRAM_26_we1                    |   14|          3|    1|          3|
-    |DataRAM_27_address0               |   65|         13|    8|        104|
-    |DataRAM_27_address1               |   14|          3|    8|         24|
-    |DataRAM_27_ce0                    |   65|         13|    1|         13|
-    |DataRAM_27_ce1                    |   14|          3|    1|          3|
-    |DataRAM_27_d0                     |   37|          7|   32|        224|
-    |DataRAM_27_d1                     |   14|          3|   32|         96|
-    |DataRAM_27_we0                    |   37|          7|    1|          7|
-    |DataRAM_27_we1                    |   14|          3|    1|          3|
-    |DataRAM_28_address0               |   65|         13|    8|        104|
-    |DataRAM_28_address1               |   14|          3|    8|         24|
-    |DataRAM_28_ce0                    |   65|         13|    1|         13|
-    |DataRAM_28_ce1                    |   14|          3|    1|          3|
-    |DataRAM_28_d0                     |   37|          7|   32|        224|
-    |DataRAM_28_d1                     |   14|          3|   32|         96|
-    |DataRAM_28_we0                    |   37|          7|    1|          7|
-    |DataRAM_28_we1                    |   14|          3|    1|          3|
-    |DataRAM_29_address0               |   65|         13|    8|        104|
-    |DataRAM_29_address1               |   14|          3|    8|         24|
-    |DataRAM_29_ce0                    |   65|         13|    1|         13|
-    |DataRAM_29_ce1                    |   14|          3|    1|          3|
-    |DataRAM_29_d0                     |   37|          7|   32|        224|
-    |DataRAM_29_d1                     |   14|          3|   32|         96|
-    |DataRAM_29_we0                    |   37|          7|    1|          7|
-    |DataRAM_29_we1                    |   14|          3|    1|          3|
-    |DataRAM_2_address0                |   65|         13|    8|        104|
-    |DataRAM_2_address1                |   20|          4|    8|         32|
-    |DataRAM_2_ce0                     |   65|         13|    1|         13|
-    |DataRAM_2_ce1                     |   20|          4|    1|          4|
-    |DataRAM_2_d0                      |   53|         10|   32|        320|
-    |DataRAM_2_d1                      |   14|          3|   32|         96|
-    |DataRAM_2_we0                     |   53|         10|    1|         10|
-    |DataRAM_2_we1                     |   14|          3|    1|          3|
-    |DataRAM_30_address0               |   65|         13|    8|        104|
-    |DataRAM_30_address1               |   14|          3|    8|         24|
-    |DataRAM_30_ce0                    |   65|         13|    1|         13|
-    |DataRAM_30_ce1                    |   14|          3|    1|          3|
-    |DataRAM_30_d0                     |   37|          7|   32|        224|
-    |DataRAM_30_d1                     |   14|          3|   32|         96|
-    |DataRAM_30_we0                    |   37|          7|    1|          7|
-    |DataRAM_30_we1                    |   14|          3|    1|          3|
-    |DataRAM_31_address0               |   65|         13|    8|        104|
-    |DataRAM_31_address1               |   14|          3|    8|         24|
-    |DataRAM_31_ce0                    |   65|         13|    1|         13|
-    |DataRAM_31_ce1                    |   14|          3|    1|          3|
-    |DataRAM_31_d0                     |   37|          7|   32|        224|
-    |DataRAM_31_d1                     |   14|          3|   32|         96|
-    |DataRAM_31_we0                    |   37|          7|    1|          7|
-    |DataRAM_31_we1                    |   14|          3|    1|          3|
-    |DataRAM_3_address0                |   65|         13|    8|        104|
-    |DataRAM_3_address1                |   20|          4|    8|         32|
-    |DataRAM_3_ce0                     |   65|         13|    1|         13|
-    |DataRAM_3_ce1                     |   20|          4|    1|          4|
-    |DataRAM_3_d0                      |   53|         10|   32|        320|
-    |DataRAM_3_d1                      |   14|          3|   32|         96|
-    |DataRAM_3_we0                     |   53|         10|    1|         10|
-    |DataRAM_3_we1                     |   14|          3|    1|          3|
-    |DataRAM_4_address0                |   65|         13|    8|        104|
-    |DataRAM_4_address1                |   20|          4|    8|         32|
-    |DataRAM_4_ce0                     |   65|         13|    1|         13|
-    |DataRAM_4_ce1                     |   20|          4|    1|          4|
-    |DataRAM_4_d0                      |   53|         10|   32|        320|
-    |DataRAM_4_d1                      |   14|          3|   32|         96|
-    |DataRAM_4_we0                     |   53|         10|    1|         10|
-    |DataRAM_4_we1                     |   14|          3|    1|          3|
-    |DataRAM_5_address0                |   65|         13|    8|        104|
-    |DataRAM_5_address1                |   20|          4|    8|         32|
-    |DataRAM_5_ce0                     |   65|         13|    1|         13|
-    |DataRAM_5_ce1                     |   20|          4|    1|          4|
-    |DataRAM_5_d0                      |   53|         10|   32|        320|
-    |DataRAM_5_d1                      |   14|          3|   32|         96|
-    |DataRAM_5_we0                     |   53|         10|    1|         10|
-    |DataRAM_5_we1                     |   14|          3|    1|          3|
-    |DataRAM_6_address0                |   65|         13|    8|        104|
-    |DataRAM_6_address1                |   20|          4|    8|         32|
-    |DataRAM_6_ce0                     |   65|         13|    1|         13|
-    |DataRAM_6_ce1                     |   20|          4|    1|          4|
-    |DataRAM_6_d0                      |   53|         10|   32|        320|
-    |DataRAM_6_d1                      |   14|          3|   32|         96|
-    |DataRAM_6_we0                     |   53|         10|    1|         10|
-    |DataRAM_6_we1                     |   14|          3|    1|          3|
-    |DataRAM_7_address0                |   65|         13|    8|        104|
-    |DataRAM_7_address1                |   20|          4|    8|         32|
-    |DataRAM_7_ce0                     |   65|         13|    1|         13|
-    |DataRAM_7_ce1                     |   20|          4|    1|          4|
-    |DataRAM_7_d0                      |   53|         10|   32|        320|
-    |DataRAM_7_d1                      |   14|          3|   32|         96|
-    |DataRAM_7_we0                     |   53|         10|    1|         10|
-    |DataRAM_7_we1                     |   14|          3|    1|          3|
-    |DataRAM_8_address0                |   65|         13|    8|        104|
-    |DataRAM_8_address1                |   20|          4|    8|         32|
-    |DataRAM_8_ce0                     |   65|         13|    1|         13|
-    |DataRAM_8_ce1                     |   20|          4|    1|          4|
-    |DataRAM_8_d0                      |   53|         10|   32|        320|
-    |DataRAM_8_d1                      |   14|          3|   32|         96|
-    |DataRAM_8_we0                     |   53|         10|    1|         10|
-    |DataRAM_8_we1                     |   14|          3|    1|          3|
-    |DataRAM_9_address0                |   65|         13|    8|        104|
-    |DataRAM_9_address1                |   20|          4|    8|         32|
-    |DataRAM_9_ce0                     |   65|         13|    1|         13|
-    |DataRAM_9_ce1                     |   20|          4|    1|          4|
-    |DataRAM_9_d0                      |   53|         10|   32|        320|
-    |DataRAM_9_d1                      |   14|          3|   32|         96|
-    |DataRAM_9_we0                     |   53|         10|    1|         10|
-    |DataRAM_9_we1                     |   14|          3|    1|          3|
-    |DataRAM_address0                  |   65|         13|    8|        104|
-    |DataRAM_address1                  |   20|          4|    8|         32|
-    |DataRAM_ce0                       |   65|         13|    1|         13|
-    |DataRAM_ce1                       |   20|          4|    1|          4|
-    |DataRAM_d0                        |   53|         10|   32|        320|
-    |DataRAM_d1                        |   14|          3|   32|         96|
-    |DataRAM_we0                       |   53|         10|    1|         10|
-    |DataRAM_we1                       |   14|          3|    1|          3|
-    |INTTTWiddleRAM_10_address0        |   14|          3|    7|         21|
-    |INTTTWiddleRAM_10_ce0             |   14|          3|    1|          3|
-    |INTTTWiddleRAM_10_we0             |    9|          2|    1|          2|
-    |INTTTWiddleRAM_11_address0        |   14|          3|    7|         21|
-    |INTTTWiddleRAM_11_ce0             |   14|          3|    1|          3|
-    |INTTTWiddleRAM_11_we0             |    9|          2|    1|          2|
-    |INTTTWiddleRAM_12_address0        |   14|          3|    7|         21|
-    |INTTTWiddleRAM_12_ce0             |   14|          3|    1|          3|
-    |INTTTWiddleRAM_12_we0             |    9|          2|    1|          2|
-    |INTTTWiddleRAM_13_address0        |   14|          3|    7|         21|
-    |INTTTWiddleRAM_13_ce0             |   14|          3|    1|          3|
-    |INTTTWiddleRAM_13_we0             |    9|          2|    1|          2|
-    |INTTTWiddleRAM_14_address0        |   14|          3|    7|         21|
-    |INTTTWiddleRAM_14_ce0             |   14|          3|    1|          3|
-    |INTTTWiddleRAM_14_we0             |    9|          2|    1|          2|
-    |INTTTWiddleRAM_15_address0        |   14|          3|    7|         21|
-    |INTTTWiddleRAM_15_ce0             |   14|          3|    1|          3|
-    |INTTTWiddleRAM_15_we0             |    9|          2|    1|          2|
-    |INTTTWiddleRAM_1_address0         |   14|          3|    7|         21|
-    |INTTTWiddleRAM_1_ce0              |   14|          3|    1|          3|
-    |INTTTWiddleRAM_1_we0              |    9|          2|    1|          2|
-    |INTTTWiddleRAM_2_address0         |   14|          3|    7|         21|
-    |INTTTWiddleRAM_2_ce0              |   14|          3|    1|          3|
-    |INTTTWiddleRAM_2_we0              |    9|          2|    1|          2|
-    |INTTTWiddleRAM_3_address0         |   14|          3|    7|         21|
-    |INTTTWiddleRAM_3_ce0              |   14|          3|    1|          3|
-    |INTTTWiddleRAM_3_we0              |    9|          2|    1|          2|
-    |INTTTWiddleRAM_4_address0         |   14|          3|    7|         21|
-    |INTTTWiddleRAM_4_ce0              |   14|          3|    1|          3|
-    |INTTTWiddleRAM_4_we0              |    9|          2|    1|          2|
-    |INTTTWiddleRAM_5_address0         |   14|          3|    7|         21|
-    |INTTTWiddleRAM_5_ce0              |   14|          3|    1|          3|
-    |INTTTWiddleRAM_5_we0              |    9|          2|    1|          2|
-    |INTTTWiddleRAM_6_address0         |   14|          3|    7|         21|
-    |INTTTWiddleRAM_6_ce0              |   14|          3|    1|          3|
-    |INTTTWiddleRAM_6_we0              |    9|          2|    1|          2|
-    |INTTTWiddleRAM_7_address0         |   14|          3|    7|         21|
-    |INTTTWiddleRAM_7_ce0              |   14|          3|    1|          3|
-    |INTTTWiddleRAM_7_we0              |    9|          2|    1|          2|
-    |INTTTWiddleRAM_8_address0         |   14|          3|    7|         21|
-    |INTTTWiddleRAM_8_ce0              |   14|          3|    1|          3|
-    |INTTTWiddleRAM_8_we0              |    9|          2|    1|          2|
-    |INTTTWiddleRAM_9_address0         |   14|          3|    7|         21|
-    |INTTTWiddleRAM_9_ce0              |   14|          3|    1|          3|
-    |INTTTWiddleRAM_9_we0              |    9|          2|    1|          2|
-    |INTTTWiddleRAM_address0           |   14|          3|    7|         21|
-    |INTTTWiddleRAM_ce0                |   14|          3|    1|          3|
-    |INTTTWiddleRAM_we0                |    9|          2|    1|          2|
-    |NTTTWiddleRAM_10_address0         |   14|          3|    7|         21|
-    |NTTTWiddleRAM_10_ce0              |   14|          3|    1|          3|
-    |NTTTWiddleRAM_10_we0              |    9|          2|    1|          2|
-    |NTTTWiddleRAM_11_address0         |   14|          3|    7|         21|
-    |NTTTWiddleRAM_11_ce0              |   14|          3|    1|          3|
-    |NTTTWiddleRAM_11_we0              |    9|          2|    1|          2|
-    |NTTTWiddleRAM_12_address0         |   14|          3|    7|         21|
-    |NTTTWiddleRAM_12_ce0              |   14|          3|    1|          3|
-    |NTTTWiddleRAM_12_we0              |    9|          2|    1|          2|
-    |NTTTWiddleRAM_13_address0         |   14|          3|    7|         21|
-    |NTTTWiddleRAM_13_ce0              |   14|          3|    1|          3|
-    |NTTTWiddleRAM_13_we0              |    9|          2|    1|          2|
-    |NTTTWiddleRAM_14_address0         |   14|          3|    7|         21|
-    |NTTTWiddleRAM_14_ce0              |   14|          3|    1|          3|
-    |NTTTWiddleRAM_14_we0              |    9|          2|    1|          2|
-    |NTTTWiddleRAM_15_address0         |   14|          3|    7|         21|
-    |NTTTWiddleRAM_15_ce0              |   14|          3|    1|          3|
-    |NTTTWiddleRAM_15_we0              |    9|          2|    1|          2|
-    |NTTTWiddleRAM_1_address0          |   14|          3|    7|         21|
-    |NTTTWiddleRAM_1_ce0               |   14|          3|    1|          3|
-    |NTTTWiddleRAM_1_we0               |    9|          2|    1|          2|
-    |NTTTWiddleRAM_2_address0          |   14|          3|    7|         21|
-    |NTTTWiddleRAM_2_ce0               |   14|          3|    1|          3|
-    |NTTTWiddleRAM_2_we0               |    9|          2|    1|          2|
-    |NTTTWiddleRAM_3_address0          |   14|          3|    7|         21|
-    |NTTTWiddleRAM_3_ce0               |   14|          3|    1|          3|
-    |NTTTWiddleRAM_3_we0               |    9|          2|    1|          2|
-    |NTTTWiddleRAM_4_address0          |   14|          3|    7|         21|
-    |NTTTWiddleRAM_4_ce0               |   14|          3|    1|          3|
-    |NTTTWiddleRAM_4_we0               |    9|          2|    1|          2|
-    |NTTTWiddleRAM_5_address0          |   14|          3|    7|         21|
-    |NTTTWiddleRAM_5_ce0               |   14|          3|    1|          3|
-    |NTTTWiddleRAM_5_we0               |    9|          2|    1|          2|
-    |NTTTWiddleRAM_6_address0          |   14|          3|    7|         21|
-    |NTTTWiddleRAM_6_ce0               |   14|          3|    1|          3|
-    |NTTTWiddleRAM_6_we0               |    9|          2|    1|          2|
-    |NTTTWiddleRAM_7_address0          |   14|          3|    7|         21|
-    |NTTTWiddleRAM_7_ce0               |   14|          3|    1|          3|
-    |NTTTWiddleRAM_7_we0               |    9|          2|    1|          2|
-    |NTTTWiddleRAM_8_address0          |   14|          3|    7|         21|
-    |NTTTWiddleRAM_8_ce0               |   14|          3|    1|          3|
-    |NTTTWiddleRAM_8_we0               |    9|          2|    1|          2|
-    |NTTTWiddleRAM_9_address0          |   14|          3|    7|         21|
-    |NTTTWiddleRAM_9_ce0               |   14|          3|    1|          3|
-    |NTTTWiddleRAM_9_we0               |    9|          2|    1|          2|
-    |NTTTWiddleRAM_address0            |   14|          3|    7|         21|
-    |NTTTWiddleRAM_ce0                 |   14|          3|    1|          3|
-    |NTTTWiddleRAM_we0                 |    9|          2|    1|          2|
-    |ap_NS_fsm                         |  217|         50|    1|         50|
-    |grp_MUL_MOD_2_fu_1861_MOD_INDEX   |   14|          3|    2|          6|
-    |grp_MUL_MOD_2_fu_1861_input1_val  |   14|          3|   32|         96|
-    |grp_MUL_MOD_2_fu_1861_input2_val  |   14|          3|   32|         96|
-    |grp_fu_1404_p4                    |   14|          3|    2|          6|
-    |h_1_fu_466                        |    9|          2|   31|         62|
-    |h_fu_470                          |    9|          2|   31|         62|
-    |i_9_reg_492                       |    9|          2|   64|        128|
-    |i_reg_503                         |    9|          2|   64|        128|
-    +----------------------------------+-----+-----------+-----+-----------+
-    |Total                             |11802|       2382| 3921|      20707|
-    +----------------------------------+-----+-----------+-----+-----------+
+    +-----------------------------------+-----+-----------+-----+-----------+
+    |                Name               | LUT | Input Size| Bits| Total Bits|
+    +-----------------------------------+-----+-----------+-----+-----------+
+    |BitReverseData_1_address0          |   20|          4|   12|         48|
+    |BitReverseData_1_ce0               |   20|          4|    1|          4|
+    |BitReverseData_1_we0               |    9|          2|    1|          2|
+    |BitReverseData_2_address0          |   20|          4|   12|         48|
+    |BitReverseData_2_ce0               |   20|          4|    1|          4|
+    |BitReverseData_2_we0               |    9|          2|    1|          2|
+    |BitReverseData_address0            |   20|          4|   12|         48|
+    |BitReverseData_ce0                 |   20|          4|    1|          4|
+    |BitReverseData_we0                 |    9|          2|    1|          2|
+    |DataIn_address0                    |   37|          7|   14|         98|
+    |DataIn_ce0                         |   37|          7|    1|          7|
+    |DataIn_d0                          |   20|          4|   32|        128|
+    |DataIn_we0                         |   20|          4|    1|          4|
+    |DataRAM_10_address0                |   65|         13|   12|        156|
+    |DataRAM_10_address1                |   42|          8|   12|         96|
+    |DataRAM_10_ce0                     |   65|         13|    1|         13|
+    |DataRAM_10_ce1                     |   42|          8|    1|          8|
+    |DataRAM_10_d0                      |   59|         11|   32|        352|
+    |DataRAM_10_d1                      |   37|          7|   32|        224|
+    |DataRAM_10_we0                     |   59|         11|    1|         11|
+    |DataRAM_10_we1                     |   37|          7|    1|          7|
+    |DataRAM_11_address0                |   65|         13|   12|        156|
+    |DataRAM_11_address1                |   42|          8|   12|         96|
+    |DataRAM_11_ce0                     |   65|         13|    1|         13|
+    |DataRAM_11_ce1                     |   42|          8|    1|          8|
+    |DataRAM_11_d0                      |   59|         11|   32|        352|
+    |DataRAM_11_d1                      |   37|          7|   32|        224|
+    |DataRAM_11_we0                     |   59|         11|    1|         11|
+    |DataRAM_11_we1                     |   37|          7|    1|          7|
+    |DataRAM_1_address0                 |   65|         13|   12|        156|
+    |DataRAM_1_address1                 |   42|          8|   12|         96|
+    |DataRAM_1_ce0                      |   65|         13|    1|         13|
+    |DataRAM_1_ce1                      |   42|          8|    1|          8|
+    |DataRAM_1_d0                       |   59|         11|   32|        352|
+    |DataRAM_1_d1                       |   37|          7|   32|        224|
+    |DataRAM_1_we0                      |   59|         11|    1|         11|
+    |DataRAM_1_we1                      |   37|          7|    1|          7|
+    |DataRAM_2_address0                 |   65|         13|   12|        156|
+    |DataRAM_2_address1                 |   42|          8|   12|         96|
+    |DataRAM_2_ce0                      |   65|         13|    1|         13|
+    |DataRAM_2_ce1                      |   42|          8|    1|          8|
+    |DataRAM_2_d0                       |   59|         11|   32|        352|
+    |DataRAM_2_d1                       |   37|          7|   32|        224|
+    |DataRAM_2_we0                      |   59|         11|    1|         11|
+    |DataRAM_2_we1                      |   37|          7|    1|          7|
+    |DataRAM_3_address0                 |   65|         13|   12|        156|
+    |DataRAM_3_address1                 |   42|          8|   12|         96|
+    |DataRAM_3_ce0                      |   65|         13|    1|         13|
+    |DataRAM_3_ce1                      |   42|          8|    1|          8|
+    |DataRAM_3_d0                       |   59|         11|   32|        352|
+    |DataRAM_3_d1                       |   37|          7|   32|        224|
+    |DataRAM_3_we0                      |   59|         11|    1|         11|
+    |DataRAM_3_we1                      |   37|          7|    1|          7|
+    |DataRAM_4_address0                 |   65|         13|   12|        156|
+    |DataRAM_4_address1                 |   42|          8|   12|         96|
+    |DataRAM_4_ce0                      |   65|         13|    1|         13|
+    |DataRAM_4_ce1                      |   42|          8|    1|          8|
+    |DataRAM_4_d0                       |   59|         11|   32|        352|
+    |DataRAM_4_d1                       |   37|          7|   32|        224|
+    |DataRAM_4_we0                      |   59|         11|    1|         11|
+    |DataRAM_4_we1                      |   37|          7|    1|          7|
+    |DataRAM_5_address0                 |   65|         13|   12|        156|
+    |DataRAM_5_address1                 |   42|          8|   12|         96|
+    |DataRAM_5_ce0                      |   65|         13|    1|         13|
+    |DataRAM_5_ce1                      |   42|          8|    1|          8|
+    |DataRAM_5_d0                       |   59|         11|   32|        352|
+    |DataRAM_5_d1                       |   37|          7|   32|        224|
+    |DataRAM_5_we0                      |   59|         11|    1|         11|
+    |DataRAM_5_we1                      |   37|          7|    1|          7|
+    |DataRAM_6_address0                 |   65|         13|   12|        156|
+    |DataRAM_6_address1                 |   42|          8|   12|         96|
+    |DataRAM_6_ce0                      |   65|         13|    1|         13|
+    |DataRAM_6_ce1                      |   42|          8|    1|          8|
+    |DataRAM_6_d0                       |   59|         11|   32|        352|
+    |DataRAM_6_d1                       |   37|          7|   32|        224|
+    |DataRAM_6_we0                      |   59|         11|    1|         11|
+    |DataRAM_6_we1                      |   37|          7|    1|          7|
+    |DataRAM_7_address0                 |   65|         13|   12|        156|
+    |DataRAM_7_address1                 |   42|          8|   12|         96|
+    |DataRAM_7_ce0                      |   65|         13|    1|         13|
+    |DataRAM_7_ce1                      |   42|          8|    1|          8|
+    |DataRAM_7_d0                       |   59|         11|   32|        352|
+    |DataRAM_7_d1                       |   37|          7|   32|        224|
+    |DataRAM_7_we0                      |   59|         11|    1|         11|
+    |DataRAM_7_we1                      |   37|          7|    1|          7|
+    |DataRAM_8_address0                 |   65|         13|   12|        156|
+    |DataRAM_8_address1                 |   42|          8|   12|         96|
+    |DataRAM_8_ce0                      |   65|         13|    1|         13|
+    |DataRAM_8_ce1                      |   42|          8|    1|          8|
+    |DataRAM_8_d0                       |   59|         11|   32|        352|
+    |DataRAM_8_d1                       |   37|          7|   32|        224|
+    |DataRAM_8_we0                      |   59|         11|    1|         11|
+    |DataRAM_8_we1                      |   37|          7|    1|          7|
+    |DataRAM_9_address0                 |   65|         13|   12|        156|
+    |DataRAM_9_address1                 |   42|          8|   12|         96|
+    |DataRAM_9_ce0                      |   65|         13|    1|         13|
+    |DataRAM_9_ce1                      |   42|          8|    1|          8|
+    |DataRAM_9_d0                       |   59|         11|   32|        352|
+    |DataRAM_9_d1                       |   37|          7|   32|        224|
+    |DataRAM_9_we0                      |   59|         11|    1|         11|
+    |DataRAM_9_we1                      |   37|          7|    1|          7|
+    |DataRAM_address0                   |   65|         13|   12|        156|
+    |DataRAM_address1                   |   42|          8|   12|         96|
+    |DataRAM_ce0                        |   65|         13|    1|         13|
+    |DataRAM_ce1                        |   42|          8|    1|          8|
+    |DataRAM_d0                         |   59|         11|   32|        352|
+    |DataRAM_d1                         |   37|          7|   32|        224|
+    |DataRAM_we0                        |   59|         11|    1|         11|
+    |DataRAM_we1                        |   37|          7|    1|          7|
+    |INTTTWiddleRAM_1_address0          |   14|          3|   11|         33|
+    |INTTTWiddleRAM_1_ce0               |   14|          3|    1|          3|
+    |INTTTWiddleRAM_1_ce1               |    9|          2|    1|          2|
+    |INTTTWiddleRAM_1_we0               |    9|          2|    1|          2|
+    |INTTTWiddleRAM_2_address0          |   14|          3|   11|         33|
+    |INTTTWiddleRAM_2_ce0               |   14|          3|    1|          3|
+    |INTTTWiddleRAM_2_ce1               |    9|          2|    1|          2|
+    |INTTTWiddleRAM_2_we0               |    9|          2|    1|          2|
+    |INTTTWiddleRAM_address0            |   14|          3|   11|         33|
+    |INTTTWiddleRAM_ce0                 |   14|          3|    1|          3|
+    |INTTTWiddleRAM_ce1                 |    9|          2|    1|          2|
+    |INTTTWiddleRAM_we0                 |    9|          2|    1|          2|
+    |INTTTwiddleIn_address0             |   20|          4|   13|         52|
+    |INTTTwiddleIn_ce0                  |   20|          4|    1|          4|
+    |NTTTWiddleRAM_1_address0           |   14|          3|   11|         33|
+    |NTTTWiddleRAM_1_ce0                |   14|          3|    1|          3|
+    |NTTTWiddleRAM_1_ce1                |    9|          2|    1|          2|
+    |NTTTWiddleRAM_1_we0                |    9|          2|    1|          2|
+    |NTTTWiddleRAM_2_address0           |   14|          3|   11|         33|
+    |NTTTWiddleRAM_2_ce0                |   14|          3|    1|          3|
+    |NTTTWiddleRAM_2_ce1                |    9|          2|    1|          2|
+    |NTTTWiddleRAM_2_we0                |    9|          2|    1|          2|
+    |NTTTWiddleRAM_address0             |   14|          3|   11|         33|
+    |NTTTWiddleRAM_ce0                  |   14|          3|    1|          3|
+    |NTTTWiddleRAM_ce1                  |    9|          2|    1|          2|
+    |NTTTWiddleRAM_we0                  |    9|          2|    1|          2|
+    |NTTTwiddleIn_address0              |   20|          4|   13|         52|
+    |NTTTwiddleIn_ce0                   |   20|          4|    1|          4|
+    |ap_NS_fsm                          |  790|        148|    1|        148|
+    |grp_ADD_MOD_fu_1700_MOD_INDEX      |   37|          7|    2|         14|
+    |grp_ADD_MOD_fu_1700_input1_val     |   37|          7|   32|        224|
+    |grp_ADD_MOD_fu_1700_input2_val     |   37|          7|   32|        224|
+    |grp_MUL_MOD_fu_1706_MOD_INDEX      |   42|          8|    2|         16|
+    |grp_MUL_MOD_fu_1706_ap_ce          |   48|          9|    1|          9|
+    |grp_MUL_MOD_fu_1706_input1_val     |   42|          8|   32|        256|
+    |grp_MUL_MOD_fu_1706_input2_val     |   42|          8|   32|        256|
+    |grp_SUB_MOD_fu_1712_MOD_INDEX      |   37|          7|    2|         14|
+    |grp_SUB_MOD_fu_1712_input1_val     |   37|          7|   32|        224|
+    |grp_SUB_MOD_fu_1712_input2_val     |   37|          7|   32|        224|
+    |grp_apply_bit_reverse_fu_384_x_q0  |   25|          5|   32|        160|
+    |grp_apply_bit_reverse_fu_392_x_q0  |   25|          5|   32|        160|
+    |grp_apply_bit_reverse_fu_400_x_q0  |   25|          5|   32|        160|
+    |h_1_fu_276                         |    9|          2|   31|         62|
+    |h_2_fu_292                         |    9|          2|   31|         62|
+    |h_3_fu_280                         |    9|          2|   31|         62|
+    |h_6_fu_296                         |    9|          2|   31|         62|
+    |h_7_fu_284                         |    9|          2|   31|         62|
+    |h_fu_288                           |    9|          2|   31|         62|
+    |j_21_reg_318                       |    9|          2|   64|        128|
+    |j_22_reg_362                       |    9|          2|   64|        128|
+    |j_23_reg_329                       |    9|          2|   64|        128|
+    |j_24_reg_373                       |    9|          2|   64|        128|
+    |j_25_reg_340                       |    9|          2|   64|        128|
+    |j_reg_351                          |    9|          2|   64|        128|
+    +-----------------------------------+-----+-----------+-----+-----------+
+    |Total                              | 6858|       1326| 2172|      14384|
+    +-----------------------------------+-----+-----------+-----+-----------+
 
     * Register: 
-    +------------------------------------------------------------+----+----+-----+-----------+
-    |                            Name                            | FF | LUT| Bits| Const Bits|
-    +------------------------------------------------------------+----+----+-----+-----------+
-    |OP_read_reg_1707                                            |  32|   0|   32|          0|
-    |add_ln119_reg_1856                                          |  64|   0|   64|          0|
-    |add_ln153_reg_1802                                          |  64|   0|   64|          0|
-    |ap_CS_fsm                                                   |  49|   0|   49|          0|
-    |empty_reg_1721                                              |   1|   0|    1|          0|
-    |grp_Crypto_Pipeline_INTT_PERMUTE_LOOP_fu_1137_ap_start_reg  |   1|   0|    1|          0|
-    |grp_Crypto_Pipeline_INTT_PE_LOOP_fu_1282_ap_start_reg       |   1|   0|    1|          0|
-    |grp_Crypto_Pipeline_MUL_INV_LOOP_fu_1243_ap_start_reg       |   1|   0|    1|          0|
-    |grp_Crypto_Pipeline_NTT_PERMUTE_LOOP_fu_1190_ap_start_reg   |   1|   0|    1|          0|
-    |grp_Crypto_Pipeline_NTT_PE_LOOP_fu_1343_ap_start_reg        |   1|   0|    1|          0|
-    |grp_Crypto_Pipeline_PERMUTE_LOOP1_fu_514_ap_start_reg       |   1|   0|    1|          0|
-    |grp_Crypto_Pipeline_PERMUTE_LOOP_fu_615_ap_start_reg        |   1|   0|    1|          0|
-    |grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_716_ap_start_reg       |   1|   0|    1|          0|
-    |grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_785_ap_start_reg       |   1|   0|    1|          0|
-    |grp_Crypto_Pipeline_READ_DATA_LOOP_fu_995_ap_start_reg      |   1|   0|    1|          0|
-    |grp_Crypto_Pipeline_VITIS_LOOP_79_1_fu_854_ap_start_reg     |   1|   0|    1|          0|
-    |grp_Crypto_Pipeline_WRITE_DATA_LOOP_fu_1066_ap_start_reg    |   1|   0|    1|          0|
-    |grp_Crypto_Pipeline_WRITE_TWIDDLE_LOOP_fu_923_ap_start_reg  |   1|   0|    1|          0|
-    |h_1_fu_466                                                  |  31|   0|   32|          1|
-    |h_fu_470                                                    |  31|   0|   32|          1|
-    |hf_1_reg_1764                                               |  32|   0|   32|          0|
-    |hf_reg_1818                                                 |  32|   0|   32|          0|
-    |i_9_reg_492                                                 |  64|   0|   64|          0|
-    |i_reg_503                                                   |  64|   0|   64|          0|
-    |lshr_ln115_1_reg_1813                                       |  31|   0|   31|          0|
-    |lshr_ln149_1_reg_1759                                       |  31|   0|   31|          0|
-    |n_inv_reg_1754                                              |  19|   0|   19|          0|
-    |reg_1417                                                    |  31|   0|   31|          0|
-    |sext_ln119_reg_1833                                         |  63|   0|   64|          1|
-    |sext_ln153_reg_1779                                         |  63|   0|   64|          1|
-    |trunc_ln119_1_reg_1828                                      |  12|   0|   12|          0|
-    |trunc_ln119_2_reg_1846                                      |  12|   0|   12|          0|
-    |trunc_ln119_reg_1823                                        |  11|   0|   11|          0|
-    |trunc_ln11_reg_1711                                         |   2|   0|    2|          0|
-    |trunc_ln124_reg_1851                                        |   4|   0|    4|          0|
-    |trunc_ln125_reg_1838                                        |   4|   0|    4|          0|
-    |trunc_ln153_1_reg_1774                                      |  12|   0|   12|          0|
-    |trunc_ln153_2_reg_1792                                      |  12|   0|   12|          0|
-    |trunc_ln153_reg_1769                                        |  11|   0|   11|          0|
-    |trunc_ln158_reg_1797                                        |   4|   0|    4|          0|
-    |trunc_ln159_reg_1784                                        |   4|   0|    4|          0|
-    +------------------------------------------------------------+----+----+-----+-----------+
-    |Total                                                       | 803|   0|  807|          4|
-    +------------------------------------------------------------+----+----+-----+-----------+
+    +------------------------------------------------------------------+-----+----+-----+-----------+
+    |                               Name                               |  FF | LUT| Bits| Const Bits|
+    +------------------------------------------------------------------+-----+----+-----+-----------+
+    |OP_read_reg_1370                                                  |   32|   0|   32|          0|
+    |add_ln178_1_reg_1656                                              |   64|   0|   64|          0|
+    |add_ln178_2_reg_1695                                              |   64|   0|   64|          0|
+    |add_ln178_reg_1610                                                |   64|   0|   64|          0|
+    |add_ln223_1_reg_1518                                              |   64|   0|   64|          0|
+    |add_ln223_2_reg_1557                                              |   64|   0|   64|          0|
+    |add_ln223_reg_1472                                                |   64|   0|   64|          0|
+    |ap_CS_fsm                                                         |  147|   0|  147|          0|
+    |empty_133_reg_1411                                                |    2|   0|    2|          0|
+    |empty_reg_1374                                                    |    2|   0|    2|          0|
+    |grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_668_ap_start_reg             |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_709_ap_start_reg             |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_INTT_PE_LOOP_fu_654_ap_start_reg              |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_691_ap_start_reg            |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_700_ap_start_reg            |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_MUL_INV_LOOP_fu_682_ap_start_reg              |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_767_ap_start_reg             |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_781_ap_start_reg             |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_NTT_PE_LOOP_fu_753_ap_start_reg               |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_515_ap_start_reg           |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_529_ap_start_reg           |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_501_ap_start_reg             |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_556_ap_start_reg  |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_569_ap_start_reg  |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_543_ap_start_reg    |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_431_ap_start_reg           |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_445_ap_start_reg           |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_417_ap_start_reg             |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_473_ap_start_reg           |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_487_ap_start_reg           |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_459_ap_start_reg             |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_165_51_fu_733_ap_start_reg         |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_165_52_fu_743_ap_start_reg         |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_165_5_fu_723_ap_start_reg          |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_210_83_fu_634_ap_start_reg         |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_210_84_fu_644_ap_start_reg         |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_210_8_fu_624_ap_start_reg          |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_61_17_fu_816_ap_start_reg          |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_61_18_fu_848_ap_start_reg          |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_61_1_fu_609_ap_start_reg           |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_72_210_fu_837_ap_start_reg         |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_72_29_fu_805_ap_start_reg          |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_72_2_fu_594_ap_start_reg           |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_83_311_fu_795_ap_start_reg         |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_83_312_fu_827_ap_start_reg         |    1|   0|    1|          0|
+    |grp_Crypto_Pipeline_VITIS_LOOP_83_3_fu_582_ap_start_reg           |    1|   0|    1|          0|
+    |grp_apply_bit_reverse_fu_384_ap_start_reg                         |    1|   0|    1|          0|
+    |grp_apply_bit_reverse_fu_392_ap_start_reg                         |    1|   0|    1|          0|
+    |grp_apply_bit_reverse_fu_400_ap_start_reg                         |    1|   0|    1|          0|
+    |h_1_fu_276                                                        |   31|   0|   32|          1|
+    |h_2_fu_292                                                        |   31|   0|   32|          1|
+    |h_3_fu_280                                                        |   31|   0|   32|          1|
+    |h_6_fu_296                                                        |   31|   0|   32|          1|
+    |h_7_fu_284                                                        |   31|   0|   32|          1|
+    |h_fu_288                                                          |   31|   0|   32|          1|
+    |hf_1_reg_1444                                                     |   31|   0|   31|          0|
+    |hf_2_reg_1628                                                     |   31|   0|   31|          0|
+    |hf_3_reg_1490                                                     |   31|   0|   31|          0|
+    |hf_4_reg_1667                                                     |   31|   0|   31|          0|
+    |hf_5_reg_1529                                                     |   31|   0|   31|          0|
+    |hf_reg_1582                                                       |   31|   0|   31|          0|
+    |j_21_reg_318                                                      |   64|   0|   64|          0|
+    |j_22_reg_362                                                      |   64|   0|   64|          0|
+    |j_23_reg_329                                                      |   64|   0|   64|          0|
+    |j_24_reg_373                                                      |   64|   0|   64|          0|
+    |j_25_reg_340                                                      |   64|   0|   64|          0|
+    |j_reg_351                                                         |   64|   0|   64|          0|
+    |sext_ln178_1_reg_1643                                             |   63|   0|   64|          1|
+    |sext_ln178_2_reg_1682                                             |   63|   0|   64|          1|
+    |sext_ln178_reg_1597                                               |   63|   0|   64|          1|
+    |sext_ln223_1_reg_1505                                             |   63|   0|   64|          1|
+    |sext_ln223_2_reg_1544                                             |   63|   0|   64|          1|
+    |sext_ln223_reg_1459                                               |   63|   0|   64|          1|
+    |trunc_ln178_1_reg_1605                                            |   12|   0|   12|          0|
+    |trunc_ln178_2_reg_1638                                            |   11|   0|   11|          0|
+    |trunc_ln178_3_reg_1651                                            |   12|   0|   12|          0|
+    |trunc_ln178_4_reg_1633                                            |   12|   0|   12|          0|
+    |trunc_ln178_5_reg_1677                                            |   11|   0|   11|          0|
+    |trunc_ln178_6_reg_1690                                            |   12|   0|   12|          0|
+    |trunc_ln178_8_reg_1672                                            |   12|   0|   12|          0|
+    |trunc_ln178_reg_1592                                              |   11|   0|   11|          0|
+    |trunc_ln1_reg_1449                                                |   12|   0|   12|          0|
+    |trunc_ln223_1_reg_1467                                            |   12|   0|   12|          0|
+    |trunc_ln223_2_reg_1500                                            |   11|   0|   11|          0|
+    |trunc_ln223_3_reg_1513                                            |   12|   0|   12|          0|
+    |trunc_ln223_4_reg_1495                                            |   12|   0|   12|          0|
+    |trunc_ln223_5_reg_1539                                            |   11|   0|   11|          0|
+    |trunc_ln223_6_reg_1552                                            |   12|   0|   12|          0|
+    |trunc_ln223_8_reg_1534                                            |   12|   0|   12|          0|
+    |trunc_ln223_reg_1454                                              |   11|   0|   11|          0|
+    |trunc_ln_reg_1587                                                 |   12|   0|   12|          0|
+    +------------------------------------------------------------------+-----+----+-----+-----------+
+    |Total                                                             | 1950|   0| 1962|         12|
+    +------------------------------------------------------------------+-----+----+-----+-----------+
 
 
 
@@ -729,14 +530,14 @@
 +-----------------------+-----+-----+------------+--------------+--------------+
 |s_axi_control_AWVALID  |   in|    1|       s_axi|       control|         array|
 |s_axi_control_AWREADY  |  out|    1|       s_axi|       control|         array|
-|s_axi_control_AWADDR   |   in|   16|       s_axi|       control|         array|
+|s_axi_control_AWADDR   |   in|   18|       s_axi|       control|         array|
 |s_axi_control_WVALID   |   in|    1|       s_axi|       control|         array|
 |s_axi_control_WREADY   |  out|    1|       s_axi|       control|         array|
 |s_axi_control_WDATA    |   in|   32|       s_axi|       control|         array|
 |s_axi_control_WSTRB    |   in|    4|       s_axi|       control|         array|
 |s_axi_control_ARVALID  |   in|    1|       s_axi|       control|         array|
 |s_axi_control_ARREADY  |  out|    1|       s_axi|       control|         array|
-|s_axi_control_ARADDR   |   in|   16|       s_axi|       control|         array|
+|s_axi_control_ARADDR   |   in|   18|       s_axi|       control|         array|
 |s_axi_control_RVALID   |  out|    1|       s_axi|       control|         array|
 |s_axi_control_RREADY   |   in|    1|       s_axi|       control|         array|
 |s_axi_control_RDATA    |  out|   32|       s_axi|       control|         array|

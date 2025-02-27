@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Crypto_Pipeline_INTT_PE_LOOP'" level="0">
-<item name = "Date">Wed Feb  5 12:49:43 2025
+<item name = "Date">Thu Feb 27 10:54:13 2025
 </item>
 <item name = "Version">2023.1 (Build 3854077 on May  4 2023)</item>
 <item name = "Project">Crypto</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">7.00 ns, 5.104 ns, 1.89 ns</column>
+<column name="ap_clk">8.00 ns, 5.802 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">4, 25769803756, 28.000 ns, 180.389 sec, 4, 25769803756, no</column>
+<column name="">59, 20401094715, 0.472 us, 163.209 sec, 59, 20401094715, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,7 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- INTT_PE_LOOP">2, 25769803754, 25, 24, 1, 0 ~ 1073741823, yes</column>
+<column name="- INTT_PE_LOOP">57, 20401094713, 77, 76, 1, 0 ~ 268435456, yes</column>
 </table>
 </item>
 </section>

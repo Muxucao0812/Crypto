@@ -52,7 +52,7 @@ Diagnostics:
     FilePath:        PE_ARRAY.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/PE_ARRAY.pp.0.cpp
-        Offset:          1849878
+        Offset:          1849914
         Length:          0
         ReplacementText: 'VITIS_LOOP_21_1: '
   - DiagnosticName:  xilinx-label-all-loops
@@ -61,7 +61,7 @@ Diagnostics:
     FilePath:        PE_ARRAY.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/PE_ARRAY.pp.0.cpp
-        Offset:          1849944
+        Offset:          1849980
         Length:          0
         ReplacementText: 'VITIS_LOOP_22_2: '
   - DiagnosticName:  xilinx-label-all-loops
@@ -70,7 +70,7 @@ Diagnostics:
     FilePath:        PE_ARRAY.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/PE_ARRAY.pp.0.cpp
-        Offset:          1850287
+        Offset:          1850323
         Length:          0
         ReplacementText: 'VITIS_LOOP_31_3: '
   - DiagnosticName:  xilinx-label-all-loops
@@ -79,7 +79,7 @@ Diagnostics:
     FilePath:        PE_ARRAY.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/PE_ARRAY.pp.0.cpp
-        Offset:          1850357
+        Offset:          1850393
         Length:          0
         ReplacementText: 'VITIS_LOOP_32_4: '
 ...

@@ -52,7 +52,7 @@ Diagnostics:
     FilePath:        TwiddleMemory.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/TwiddleMemory.pp.0.cpp
-        Offset:          1848463
+        Offset:          1848441
         Length:          0
         ReplacementText: 'VITIS_LOOP_7_1: '
   - DiagnosticName:  xilinx-label-all-loops
@@ -61,7 +61,7 @@ Diagnostics:
     FilePath:        TwiddleMemory.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/TwiddleMemory.pp.0.cpp
-        Offset:          1848553
+        Offset:          1848531
         Length:          0
         ReplacementText: 'VITIS_LOOP_11_2: '
   - DiagnosticName:  xilinx-label-all-loops
@@ -70,7 +70,7 @@ Diagnostics:
     FilePath:        TwiddleMemory.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/TwiddleMemory.pp.0.cpp
-        Offset:          1848788
+        Offset:          1848766
         Length:          0
         ReplacementText: 'VITIS_LOOP_21_1: '
   - DiagnosticName:  xilinx-label-all-loops
@@ -79,7 +79,7 @@ Diagnostics:
     FilePath:        TwiddleMemory.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/TwiddleMemory.pp.0.cpp
-        Offset:          1848923
+        Offset:          1848901
         Length:          0
         ReplacementText: 'VITIS_LOOP_27_2: '
 ...

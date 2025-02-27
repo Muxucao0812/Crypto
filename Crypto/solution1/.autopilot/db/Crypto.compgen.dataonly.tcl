@@ -10,7 +10,7 @@ RAMSel {
 	offset 16
 	offset_end 23
 }
-OP { 
+RAMSel1 { 
 	dir I
 	width 32
 	depth 1
@@ -18,7 +18,7 @@ OP {
 	offset 24
 	offset_end 31
 }
-ModIndex { 
+OP { 
 	dir I
 	width 32
 	depth 1
@@ -29,10 +29,10 @@ ModIndex {
 NTTTwiddleIn { 
 	dir I
 	width 32
-	depth 2048
+	depth 6144
 	mode ap_memory
-	offset 8192
-	offset_end 16383
+	offset 32768
+	offset_end 65535
 	core_op ram_1p
 	core_impl auto
 	core_latency 1
@@ -41,10 +41,10 @@ NTTTwiddleIn {
 DataIn { 
 	dir IO
 	width 32
-	depth 4096
+	depth 12288
 	mode ap_memory
-	offset 16384
-	offset_end 32767
+	offset 65536
+	offset_end 131071
 	core_op ram_1p
 	core_impl auto
 	core_latency 1
@@ -53,10 +53,10 @@ DataIn {
 INTTTwiddleIn { 
 	dir I
 	width 32
-	depth 2048
+	depth 6144
 	mode ap_memory
-	offset 32768
-	offset_end 40959
+	offset 131072
+	offset_end 163839
 	core_op ram_1p
 	core_impl auto
 	core_latency 1

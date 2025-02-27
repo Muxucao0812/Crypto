@@ -93,6 +93,23 @@ u32 XCrypto_Get_RAMSel(XCrypto *InstancePtr) {
     return Data;
 }
 
+void XCrypto_Set_RAMSel1(XCrypto *InstancePtr, u32 Data) {
+    Xil_AssertVoid(InstancePtr != NULL);
+    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    XCrypto_WriteReg(InstancePtr->Control_BaseAddress, XCRYPTO_CONTROL_ADDR_RAMSEL1_DATA, Data);
+}
+
+u32 XCrypto_Get_RAMSel1(XCrypto *InstancePtr) {
+    u32 Data;
+
+    Xil_AssertNonvoid(InstancePtr != NULL);
+    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
+
+    Data = XCrypto_ReadReg(InstancePtr->Control_BaseAddress, XCRYPTO_CONTROL_ADDR_RAMSEL1_DATA);
+    return Data;
+}
+
 void XCrypto_Set_OP(XCrypto *InstancePtr, u32 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
@@ -107,23 +124,6 @@ u32 XCrypto_Get_OP(XCrypto *InstancePtr) {
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
     Data = XCrypto_ReadReg(InstancePtr->Control_BaseAddress, XCRYPTO_CONTROL_ADDR_OP_DATA);
-    return Data;
-}
-
-void XCrypto_Set_ModIndex(XCrypto *InstancePtr, u32 Data) {
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    XCrypto_WriteReg(InstancePtr->Control_BaseAddress, XCRYPTO_CONTROL_ADDR_MODINDEX_DATA, Data);
-}
-
-u32 XCrypto_Get_ModIndex(XCrypto *InstancePtr) {
-    u32 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XCrypto_ReadReg(InstancePtr->Control_BaseAddress, XCRYPTO_CONTROL_ADDR_MODINDEX_DATA);
     return Data;
 }
 

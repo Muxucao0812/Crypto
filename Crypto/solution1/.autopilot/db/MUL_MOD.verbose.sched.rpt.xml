@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'MUL_MOD'" level="0">
-<item name = "Date">Wed Feb  5 12:49:44 2025
+<item name = "Date">Thu Feb 27 10:54:13 2025
 </item>
 <item name = "Version">2023.1 (Build 3854077 on May  4 2023)</item>
 <item name = "Project">Crypto</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">7.00 ns, 5.056 ns, 1.89 ns</column>
+<column name="ap_clk">8.00 ns, 5.655 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">14, 14, 98.000 ns, 98.000 ns, 1, 1, yes</column>
+<column name="">12, 12, 96.000 ns, 96.000 ns, 1, 1, yes</column>
 </table>
 </item>
 <item name = "Detail">

@@ -57,6 +57,30 @@ void SUB_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
     }
 }
 
+// res = input % Mod (Mod = 2^k+1)
+void MOD_PLAINTEXTMODULUS(long_int *input, long_int *res){
+    long_int mod = T;
+    const int k_half = 17;
+    const long_int m = 262140;
+    
+    #pragma HLS PIPELINE
+
+    long_int fixed = 1;
+    long_long_int res_mult;
+    STEPMUL(input, &fixed, &res_mult);
+    long_int res_mult_high = static_cast<long_int>(res_mult(BASE_WIDTH+k_half-2, k_half-1));
+    long_long_int res_mult_shift;
+    STEPMUL(&res_mult_high, const_cast<long_int*>(&m), &res_mult_shift);
+    long_long_int res_shift;
+    long_int res_mult_shift_part = static_cast<long_int>(res_mult_shift >> (k_half + 1));
+    STEPMUL(&res_mult_shift_part, &mod, &res_shift);
+    long_long_int res_mod;
+    res_mod = res_mult - res_shift;
+    long_long_int temp1 = res_mod - T;
+    long_long_int temp2 = res_mod - 2*T;
+    *res = static_cast<long_int>((temp1 < 0) ? res_mod : (temp2 < 0) ? temp1 : temp2);
+}
+
 // res = (input1 * input2) % Mod
 void MUL_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
     long_int mod = MOD[MOD_INDEX];

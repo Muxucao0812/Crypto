@@ -1,35 +1,49 @@
 --- !Passed
 Pass:            inline
 Name:            AlwaysInline
-DebugLoc:        { File: Arithmetic.cpp, Line: 81, Column: 5 }
-Function:        _Z7MUL_MODP6ap_intILi32EES1_S1_i
+DebugLoc:        { File: Arithmetic.cpp, Line: 76, Column: 5 }
+Function:        _Z20MOD_PLAINTEXTMODULUSP6ap_intILi32EES1_
 Args:            
   - String:          'Inlining function '''
   - Callee:          'STEPMUL(ap_int<32>*, ap_int<32>*, ap_int<64>*)'
     DebugLoc:        { File: Arithmetic.cpp, Line: 8, Column: 0 }
   - String:          ''' into '''
-  - Caller:          'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+  - Caller:          'MOD_PLAINTEXTMODULUS(ap_int<32>*, ap_int<32>*)'
     DebugLoc:        { File: Arithmetic.cpp, Line: 61, Column: 0 }
   - String:          ''''
 ...
 --- !Passed
 Pass:            inline
 Name:            AlwaysInline
-DebugLoc:        { File: Arithmetic.cpp, Line: 75, Column: 5 }
-Function:        _Z7MUL_MODP6ap_intILi32EES1_S1_i
+DebugLoc:        { File: Arithmetic.cpp, Line: 73, Column: 5 }
+Function:        _Z20MOD_PLAINTEXTMODULUSP6ap_intILi32EES1_
 Args:            
   - String:          'Inlining function '''
   - Callee:          'STEPMUL(ap_int<32>*, ap_int<32>*, ap_int<64>*)'
     DebugLoc:        { File: Arithmetic.cpp, Line: 8, Column: 0 }
   - String:          ''' into '''
-  - Caller:          'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+  - Caller:          'MOD_PLAINTEXTMODULUS(ap_int<32>*, ap_int<32>*)'
     DebugLoc:        { File: Arithmetic.cpp, Line: 61, Column: 0 }
   - String:          ''''
 ...
 --- !Passed
 Pass:            inline
 Name:            AlwaysInline
-DebugLoc:        { File: Arithmetic.cpp, Line: 69, Column: 5 }
+DebugLoc:        { File: Arithmetic.cpp, Line: 70, Column: 5 }
+Function:        _Z20MOD_PLAINTEXTMODULUSP6ap_intILi32EES1_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'STEPMUL(ap_int<32>*, ap_int<32>*, ap_int<64>*)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 8, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'MOD_PLAINTEXTMODULUS(ap_int<32>*, ap_int<32>*)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 61, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: Arithmetic.cpp, Line: 105, Column: 5 }
 Function:        _Z7MUL_MODP6ap_intILi32EES1_S1_i
 Args:            
   - String:          'Inlining function '''
@@ -37,57 +51,1209 @@ Args:
     DebugLoc:        { File: Arithmetic.cpp, Line: 8, Column: 0 }
   - String:          ''' into '''
   - Caller:          'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
-    DebugLoc:        { File: Arithmetic.cpp, Line: 61, Column: 0 }
+    DebugLoc:        { File: Arithmetic.cpp, Line: 85, Column: 0 }
   - String:          ''''
 ...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: Arithmetic.cpp, Line: 99, Column: 5 }
+Function:        _Z7MUL_MODP6ap_intILi32EES1_S1_i
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'STEPMUL(ap_int<32>*, ap_int<32>*, ap_int<64>*)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 8, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 85, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: Arithmetic.cpp, Line: 93, Column: 5 }
+Function:        _Z7MUL_MODP6ap_intILi32EES1_S1_i
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'STEPMUL(ap_int<32>*, ap_int<32>*, ap_int<64>*)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 8, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 85, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        WRITE_DATA_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:59:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        WRITE_DATA_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:59:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        READ_DATA_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:70:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        READ_DATA_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:70:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        WRITE_TWIDDLE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:81:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        WRITE_TWIDDLE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:81:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_MOD_MODULUS_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:93:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_MOD_MODULUS_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:93:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_MOD_MODULUS_LOOP1
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:96:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_MOD_MODULUS_LOOP1
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:96:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_MOD_MODULUS_LOOP1
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:96:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_ADD_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:108:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_ADD_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:108:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_ADD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:111:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_ADD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:111:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_ADD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:111:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_SUB_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:124:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_SUB_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:124:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_SUB_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:127:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_SUB_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:127:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_SUB_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:127:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_MUL_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:141:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_MUL_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:141:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_MUL_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:145:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_MUL_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:145:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_MUL_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:145:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        NTT_STAGE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:172:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        NTT_STAGE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:172:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        NTT_PE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:182:25'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        NTT_PE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:182:25'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        NTT_PE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:182:25'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        NTT_PERMUTE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:163:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        NTT_PERMUTE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:163:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_157_4
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:157:31'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_157_4
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:157:31'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_244_10
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:244:32'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_244_10
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:244:32'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        INTT_STAGE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:217:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        INTT_STAGE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:217:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        INTT_PE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:227:25'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        INTT_PE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:227:25'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        INTT_PE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:227:25'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '4'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        INTT_PERMUTE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:208:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        INTT_PERMUTE_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:208:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_202_7
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:202:31'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_202_7
+  - String:          ''' ('
+  - LoopLoc:         'Crypto.cpp:202:31'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
-  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.3)'
+  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
   - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
 ...
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 129, Column: 25 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
-  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.3)'
+  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
   - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
 ...
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 163, Column: 25 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
-  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.3)'
+  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
   - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
 ...
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 90, Column: 2 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
-  - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.6.18)'
+  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
   - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
 ...
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 80, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
-  - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.9.15)'
+  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
   - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
 ...
 --- !Passed
@@ -105,80 +1271,10 @@ Args:
   - String:          ''''
 ...
 --- !Passed
-Pass:            reflow-inliner
-Name:            AutoInline
-DebugLoc:        { File: Crypto.cpp, Line: 19, Column: 0 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Inlining function '''
-  - Callee:          'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.9.15.94)'
-    DebugLoc:        { File: Arithmetic.cpp, Line: 38, Column: 0 }
-  - String:          ''' into '''
-  - Caller:          'Crypto(ap_int<32>*, int, ap_int<32>*, ap_int<32>*, CryptoOperation, int)'
-    DebugLoc:        { File: Crypto.cpp, Line: 19, Column: 0 }
-  - String:          ''''
-...
---- !Passed
-Pass:            reflow-inliner
-Name:            AutoInline
-DebugLoc:        { File: Crypto.cpp, Line: 19, Column: 0 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Inlining function '''
-  - Callee:          'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.6.18.93)'
-    DebugLoc:        { File: Arithmetic.cpp, Line: 51, Column: 0 }
-  - String:          ''' into '''
-  - Caller:          'Crypto(ap_int<32>*, int, ap_int<32>*, ap_int<32>*, CryptoOperation, int)'
-    DebugLoc:        { File: Crypto.cpp, Line: 19, Column: 0 }
-  - String:          ''''
-...
---- !Passed
-Pass:            reflow-inliner
-Name:            AutoInline
-DebugLoc:        { File: Crypto.cpp, Line: 19, Column: 0 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Inlining function '''
-  - Callee:          'apply_bit_reverse(ap_int<32>*, ap_int<32>*)'
-    DebugLoc:        { File: Utils.cpp, Line: 19, Column: 0 }
-  - String:          ''' into '''
-  - Caller:          'Crypto(ap_int<32>*, int, ap_int<32>*, ap_int<32>*, CryptoOperation, int)'
-    DebugLoc:        { File: Crypto.cpp, Line: 19, Column: 0 }
-  - String:          ''''
-...
---- !Passed
-Pass:            reflow-inliner
-Name:            AutoInline
-DebugLoc:        { File: Crypto.cpp, Line: 19, Column: 0 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Inlining function '''
-  - Callee:          'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.9.15)'
-    DebugLoc:        { File: Arithmetic.cpp, Line: 38, Column: 0 }
-  - String:          ''' into '''
-  - Caller:          'Crypto(ap_int<32>*, int, ap_int<32>*, ap_int<32>*, CryptoOperation, int)'
-    DebugLoc:        { File: Crypto.cpp, Line: 19, Column: 0 }
-  - String:          ''''
-...
---- !Passed
-Pass:            reflow-inliner
-Name:            AutoInline
-DebugLoc:        { File: Crypto.cpp, Line: 19, Column: 0 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Inlining function '''
-  - Callee:          'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.6.18)'
-    DebugLoc:        { File: Arithmetic.cpp, Line: 51, Column: 0 }
-  - String:          ''' into '''
-  - Caller:          'Crypto(ap_int<32>*, int, ap_int<32>*, ap_int<32>*, CryptoOperation, int)'
-    DebugLoc:        { File: Crypto.cpp, Line: 19, Column: 0 }
-  - String:          ''''
-...
---- !Passed
 Pass:            reflow-array-partition
 Name:            ArrayXform
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 14 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+DebugLoc:        { File: Crypto.cpp, Line: 28, Column: 14 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
   - String:          'Applying '
   - String:          array_partition
@@ -203,8 +1299,8 @@ Args:
 --- !Passed
 Pass:            reflow-array-partition
 Name:            ArrayXform
-DebugLoc:        { File: Crypto.cpp, Line: 28, Column: 11 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+DebugLoc:        { File: Crypto.cpp, Line: 32, Column: 11 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
   - String:          'Applying '
   - String:          array_partition
@@ -223,8 +1319,8 @@ Args:
 --- !Passed
 Pass:            reflow-array-partition
 Name:            ArrayXform
-DebugLoc:        { File: Crypto.cpp, Line: 31, Column: 11 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+DebugLoc:        { File: Crypto.cpp, Line: 35, Column: 11 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
   - String:          'Applying '
   - String:          array_partition
@@ -243,8 +1339,8 @@ Args:
 --- !Passed
 Pass:            reflow-array-partition
 Name:            ArrayXform
-DebugLoc:        { File: Crypto.cpp, Line: 33, Column: 11 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+DebugLoc:        { File: Crypto.cpp, Line: 36, Column: 14 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
   - String:          'Applying '
   - String:          array_partition
@@ -263,728 +1359,264 @@ Args:
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: Crypto.cpp, Line: 119, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+DebugLoc:        { File: Crypto.cpp, Line: 182, Column: 25 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
-  - LoopName:        NTT_GROUP_LOOP
+  - LoopName:        NTT_PE_LOOP
   - String:          ' '
-  - LoopLoc:         'Crypto.cpp:119:17'
+  - LoopLoc:         'Crypto.cpp:182:25'
   - String:          ' '
-  - Function:        'Crypto(ap_int<32>*, int, ap_int<32>*, ap_int<32>*, CryptoOperation, int)'
-    DebugLoc:        { File: Crypto.cpp, Line: 19, Column: 0 }
+  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
   - String:          ' '
 ...
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: Crypto.cpp, Line: 153, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+DebugLoc:        { File: Crypto.cpp, Line: 178, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        NTT_GROUP_LOOP
+  - String:          ' '
+  - LoopLoc:         'Crypto.cpp:178:21'
+  - String:          ' '
+  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: Crypto.cpp, Line: 182, Column: 25 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        NTT_PE_LOOP
+  - String:          ' '
+  - LoopLoc:         'Crypto.cpp:182:25'
+  - String:          ' '
+  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: Crypto.cpp, Line: 178, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        NTT_GROUP_LOOP
+  - String:          ' '
+  - LoopLoc:         'Crypto.cpp:178:21'
+  - String:          ' '
+  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: Crypto.cpp, Line: 182, Column: 25 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        NTT_PE_LOOP
+  - String:          ' '
+  - LoopLoc:         'Crypto.cpp:182:25'
+  - String:          ' '
+  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: Crypto.cpp, Line: 178, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        NTT_GROUP_LOOP
+  - String:          ' '
+  - LoopLoc:         'Crypto.cpp:178:21'
+  - String:          ' '
+  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: Crypto.cpp, Line: 227, Column: 25 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        INTT_PE_LOOP
+  - String:          ' '
+  - LoopLoc:         'Crypto.cpp:227:25'
+  - String:          ' '
+  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: Crypto.cpp, Line: 223, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
   - LoopName:        INTT_GROUP_LOOP
   - String:          ' '
-  - LoopLoc:         'Crypto.cpp:153:17'
+  - LoopLoc:         'Crypto.cpp:223:21'
   - String:          ' '
-  - Function:        'Crypto(ap_int<32>*, int, ap_int<32>*, ap_int<32>*, CryptoOperation, int)'
-    DebugLoc:        { File: Crypto.cpp, Line: 19, Column: 0 }
+  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
   - String:          ' '
 ...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: Crypto.cpp, Line: 227, Column: 25 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.14
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        INTT_PE_LOOP
+  - String:          ' '
+  - LoopLoc:         'Crypto.cpp:227:25'
+  - String:          ' '
+  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - String:          ' '
 ...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: Crypto.cpp, Line: 223, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.13
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        INTT_GROUP_LOOP
+  - String:          ' '
+  - LoopLoc:         'Crypto.cpp:223:21'
+  - String:          ' '
+  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - String:          ' '
 ...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: Crypto.cpp, Line: 227, Column: 25 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.12
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        INTT_PE_LOOP
+  - String:          ' '
+  - LoopLoc:         'Crypto.cpp:227:25'
+  - String:          ' '
+  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - String:          ' '
 ...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzeBoundsPattern
+DebugLoc:        { File: Crypto.cpp, Line: 223, Column: 21 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.11
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.10
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.9
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.8
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.7
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.6
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.5
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.4
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.3
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.2
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.1
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.0
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 100, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx11015.case.15
-  - String:          ''' living in '''
-  - LoopName:        POLY_MUL_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:98:13'
-  - String:          ') .'
+  - String:          Could not analyze the loop bounds
+  - String:          ' _XLX_SEP_ '
+  - LoopName:        INTT_GROUP_LOOP
+  - String:          ' '
+  - LoopLoc:         'Crypto.cpp:223:21'
+  - String:          ' '
+  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - String:          ' '
 ...
 --- !Failure
 Pass:            reflow-occurrence-inference
 Name:            NonComputableLoopForm
-DebugLoc:        { File: Crypto.cpp, Line: 114, Column: 13 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+DebugLoc:        { File: Crypto.cpp, Line: 174, Column: 20 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
   - String:          'Could not analyze occurrence information within '''
-  - LoopName:        NTT_STAGE_LOOP
+  - LoopName:        VITIS_LOOP_174_6
   - String:          '''('
-  - LoopLoc:         'Crypto.cpp:114:13'
+  - LoopLoc:         'Crypto.cpp:174:20'
   - String:          ') . Requires loop in simplify form and with single exit.'
 ...
 --- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: Crypto.cpp, Line: 174, Column: 20 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.14385
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_174_6
   - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.13384
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.12383
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.11382
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.10381
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.9380
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.8379
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.7378
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.6377
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.5376
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.4375
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.3374
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.2373
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.1372
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.0371
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.15386
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.14
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.13
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.12
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.11
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.10
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.9
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.8
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.7
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.6
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.5
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.4
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.3
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.2
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.1272
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.0271
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
-...
---- !Failure
-Pass:            reflow-occurrence-analysis
-Name:            CouldNotAnalyzeBBInfo
-DebugLoc:        { File: Crypto.cpp, Line: 176, Column: 17 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
-Args:            
-  - String:          'Could not analyze occurrence information for '''
-  - BBName:          arrayidx2712.case.15
-  - String:          ''' living in '''
-  - LoopName:        MUL_INV_LOOP
-  - String:          '''('
-  - LoopLoc:         'Crypto.cpp:175:13'
-  - String:          ') .'
+  - LoopLoc:         'Crypto.cpp:174:20'
+  - String:          ') . Requires loop in simplify form and with single exit.'
 ...
 --- !Failure
 Pass:            reflow-occurrence-inference
 Name:            NonComputableLoopForm
-DebugLoc:        { File: Crypto.cpp, Line: 148, Column: 13 }
-Function:        _Z6CryptoP6ap_intILi32EEiS1_S1_15CryptoOperationi
+DebugLoc:        { File: Crypto.cpp, Line: 174, Column: 20 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
 Args:            
   - String:          'Could not analyze occurrence information within '''
-  - LoopName:        INTT_STAGE_LOOP
+  - LoopName:        VITIS_LOOP_174_6
   - String:          '''('
-  - LoopLoc:         'Crypto.cpp:148:13'
+  - LoopLoc:         'Crypto.cpp:174:20'
+  - String:          ') . Requires loop in simplify form and with single exit.'
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: Crypto.cpp, Line: 219, Column: 20 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_219_9
+  - String:          '''('
+  - LoopLoc:         'Crypto.cpp:219:20'
+  - String:          ') . Requires loop in simplify form and with single exit.'
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: Crypto.cpp, Line: 219, Column: 20 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_219_9
+  - String:          '''('
+  - LoopLoc:         'Crypto.cpp:219:20'
+  - String:          ') . Requires loop in simplify form and with single exit.'
+...
+--- !Failure
+Pass:            reflow-occurrence-inference
+Name:            NonComputableLoopForm
+DebugLoc:        { File: Crypto.cpp, Line: 219, Column: 20 }
+Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Args:            
+  - String:          'Could not analyze occurrence information within '''
+  - LoopName:        VITIS_LOOP_219_9
+  - String:          '''('
+  - LoopLoc:         'Crypto.cpp:219:20'
   - String:          ') . Requires loop in simplify form and with single exit.'
 ...

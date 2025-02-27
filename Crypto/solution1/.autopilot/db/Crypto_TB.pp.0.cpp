@@ -38308,10 +38308,10 @@ const int MOD_NUM = 3;
 const int N = 4096;
 const int T = 65537;
 const int ROOT = 6561;
-const int RAMNum = 2;
+const int RAMNum = 4;
 
-const int PE_NUM = 1;
-const int BANKNum = 1;
+const int PE_NUM = 4;
+const int BANKNum = 16;
 const int STAGE_NUM = int(log2(N));
 const int RAMDepth = N / BANKNum;
 const int LOG2_N_DIV_2 = int(log2(N) / 2);
@@ -38350,20 +38350,18 @@ enum CryptoOperation {
     POLY_WRITE,
     POLY_READ,
     TWIDDLE_WRITE,
-    NTT_TWIDDLE_READ,
-    INTT_TWIDDLE_READ,
+    POLY_MOD_MODULUS,
 };
 # 5 "./Crypto.hpp" 2
 
 
 void Crypto(
-    long_int DataIn[N],
+    long_int DataIn[MOD_NUM][N],
     int RAMSel,
-    long_int NTTTwiddleIn[N/2],
-    long_int INTTTwiddleIn[N/2],
-
-    CryptoOperation OP,
-    int ModIndex
+    int RAMSel1,
+    long_int NTTTwiddleIn[MOD_NUM][N/2],
+    long_int INTTTwiddleIn[MOD_NUM][N/2],
+    CryptoOperation OP
 );
 # 5 "./Crypto_TB.hpp" 2
 
@@ -42371,7 +42369,7 @@ long_int compute_phi(long_int n);
 void generate_twiddle_factors(long_int *twiddle_factors, int size, long_int root, long_int mod, Operation op);
 std::vector<int> generate_permutation(int n);
 void permute_twiddle_factors(long_int *twiddle_factors, long_int *inv_twiddle_factors);
-void precompute_weights(int MOD_INDEX, long_int twiddle_factor[N/2], long_int inv_twiddle_factor[N/2]);
+void precompute_weights(long_int twiddle_factor[MOD_NUM][N/2], long_int inv_twiddle_factor[MOD_NUM][N/2]);
 int bit_reverse(int x, int n);
 void apply_bit_reverse(long_int x[N], long_int result[N]);
 # 7 "./Crypto_TB.hpp" 2
@@ -42389,22 +42387,24 @@ void Crypto_Test(){
     std::cout << "======================" << std::endl;
     std::cout << std::endl;
 
-    long_int DataIn[N];
-    long_int DataIn1[N];
-    long_int DataOut[N];
+    long_int DataIn[MOD_NUM][N];
+    long_int DataIn1[MOD_NUM][N];
+    long_int DataOut[MOD_NUM][N];
 
     int TestIter = 1;
     VITIS_LOOP_18_1: for (int i = 0; i < TestIter; i++){
-        VITIS_LOOP_19_2: for (int j = 0; j < MOD_NUM; j++){
-            VITIS_LOOP_20_3: for (int k = 0; k < RAMDepth; k++){
-                DataIn[k] = (long_int)(rand() % MOD[j]);
+        int RAMSel = rand() % RAMNum;
+        VITIS_LOOP_20_2: for (int j = 0; j < MOD_NUM; j++){
+            VITIS_LOOP_21_3: for (int k = 0; k < RAMDepth; k++){
+                DataIn[j][k] = (long_int)(rand() % MOD[j]);
             }
-            int RAMSel = rand() % RAMNum;
-            Crypto(DataIn, RAMSel, nullptr, nullptr, POLY_WRITE, j);
-            Crypto(DataOut, RAMSel, nullptr, nullptr, POLY_READ, j);
-            VITIS_LOOP_26_4: for (int k = 0; k < RAMDepth; k++){
-                if (DataIn[k] != DataOut[k]){
-                    std::cout << "DataIn: " << DataIn[k] << " DataOut: " << DataOut[k] << std::endl;
+        }
+        Crypto(DataIn, RAMSel, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto(DataOut, RAMSel, 0, nullptr, nullptr, POLY_READ);
+        VITIS_LOOP_27_4: for (int j = 0; j < MOD_NUM; j++){
+            VITIS_LOOP_28_5: for (int k = 0; k < RAMDepth; k++){
+                if (DataIn[j][k] != DataOut[j][k]){
+                    std::cout << "DataIn: " << DataIn[j][k] << " DataOut: " << DataOut[j][k] << std::endl;
                     std::cout << "Test Failed" << std::endl;
                     return;
                 }
@@ -42417,32 +42417,36 @@ void Crypto_Test(){
     std::cout << std::endl;
 
 
-    std::cout << "======================" << std::endl;
-    std::cout << "Test ADD MOD" << std::endl;
-    std::cout << "======================" << std::endl;
-    std::cout << std::endl;
+     std::cout << "======================" << std::endl;
+     std::cout << "Test ADD MOD" << std::endl;
+     std::cout << "======================" << std::endl;
+     std::cout << std::endl;
 
 
+     VITIS_LOOP_49_6: for (int i = 0; i < TestIter; i++){
+         VITIS_LOOP_50_7: for (int j = 0; j < MOD_NUM; j++){
+             VITIS_LOOP_51_8: for (int k = 0; k < RAMDepth; k++){
+                 DataIn1[j][k] = (long_int)(rand() % MOD[j]);
+                 DataIn[j][k] = (long_int)(rand() % MOD[j]);
+             }
+         }
 
-    VITIS_LOOP_48_5: for (int i = 0; i < TestIter; i++){
-        VITIS_LOOP_49_6: for (int j = 0; j < MOD_NUM; j++){
-            VITIS_LOOP_50_7: for (int k = 0; k < RAMDepth; k++){
-                DataIn1[k] = (long_int)(rand() % MOD[j]);
-                DataIn[k] = (long_int)(rand() % MOD[j]);
-            }
-            Crypto(DataIn1, 0, nullptr, nullptr, POLY_WRITE, j);
-            Crypto(DataIn, 1, nullptr, nullptr, POLY_WRITE, j);
-            Crypto(nullptr, 0, nullptr, nullptr, POLY_ADD, j);
-            Crypto(DataOut, 0, nullptr, nullptr, POLY_READ, j);
-            VITIS_LOOP_58_8: for (int k = 0; k < RAMDepth; k++){
-                if ((DataIn1[k] + DataIn[k]) % MOD[j] != DataOut[k]){
-                    std::cout << "DataIn1: " << DataIn1[k] << " DataIn: " << DataIn[k] << " DataOut: " << DataOut[k] << std::endl;
-                    std::cout << "Test Failed" << std::endl;
-                    return;
-                }
-            }
-        }
-    }
+         Crypto(DataIn1, 0, 0, nullptr, nullptr, POLY_WRITE);
+         Crypto(DataIn, 1, 0, nullptr, nullptr, POLY_WRITE);
+         Crypto(nullptr, 0, 1, nullptr, nullptr, POLY_ADD);
+         Crypto(DataOut, 0, 0, nullptr, nullptr, POLY_READ);
+
+         VITIS_LOOP_62_9: for(int j = 0; j < MOD_NUM; j++){
+             VITIS_LOOP_63_10: for (int k = 0; k < RAMDepth; k++){
+                 if ((DataIn1[j][k] + DataIn[j][k]) % MOD[j] != DataOut[j][k]){
+                     std::cout << "DataIn1: " << DataIn1[j][k] << " DataIn: " << DataIn[j][k] << " DataOut: " << DataOut[j][k] << std::endl;
+                     std::cout << "Test Failed" << std::endl;
+                     return;
+                 }
+             }
+         }
+
+     }
 
     std::cout << "======================" << std::endl;
     std::cout << "ADD MOD Test Passed" << std::endl;
@@ -42456,19 +42460,22 @@ void Crypto_Test(){
     std::cout << std::endl;
 
 
-    VITIS_LOOP_80_9: for (int i = 0; i < TestIter; i++){
-        VITIS_LOOP_81_10: for (int j = 0; j < MOD_NUM; j++){
-            VITIS_LOOP_82_11: for (int k = 0; k < RAMDepth; k++){
-                DataIn1[k] = (long_int)(rand() % MOD[j]);
-                DataIn[k] = (long_int)(rand() % MOD[j]);
+    VITIS_LOOP_86_11: for (int i = 0; i < TestIter; i++){
+        VITIS_LOOP_87_12: for (int j = 0; j < MOD_NUM; j++){
+            VITIS_LOOP_88_13: for (int k = 0; k < RAMDepth; k++){
+                DataIn1[j][k] = (long_int)(rand() % MOD[j]);
+                DataIn[j][k] = (long_int)(rand() % MOD[j]);
             }
-            Crypto(DataIn1, 0, nullptr, nullptr, POLY_WRITE, j);
-            Crypto(DataIn, 1, nullptr, nullptr, POLY_WRITE, j);
-            Crypto(nullptr, 0, nullptr, nullptr, POLY_MUL, j);
-            Crypto(DataOut, 0, nullptr, nullptr, POLY_READ, j);
-            VITIS_LOOP_90_12: for (int k = 0; k < RAMDepth; k++){
-                if ((DataIn1[k] * DataIn[k]) % MOD[j] != DataOut[k]){
-                    std::cout << "DataIn1: " << DataIn1[k] << " DataIn: " << DataIn[k] << " DataOut: " << DataOut[k] << std::endl;
+        }
+        Crypto(DataIn1, 0, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto(DataIn, 1, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto(nullptr, 0, 1, nullptr, nullptr, POLY_MUL);
+        Crypto(DataOut, 0, 0, nullptr, nullptr, POLY_READ);
+        VITIS_LOOP_97_14: for (int j = 0; j < MOD_NUM; j++){
+            VITIS_LOOP_98_15: for (int k = 0; k < RAMDepth; k++){
+                if ((DataIn1[j][k] * DataIn[j][k]) % MOD[j] != DataOut[j][k]){
+                    std::cout << "MOD " << MOD[j] << " DataIn1: " << DataIn1[j][k] << " DataIn: " << DataIn[j][k] << " DataOut: " << DataOut[j][k] << std::endl;
+                    std::cout << "Expected: " << (DataIn1[j][k] * DataIn[j][k]) % MOD[j] << std::endl;
                     std::cout << "Test Failed" << std::endl;
                     return;
                 }
@@ -42488,19 +42495,21 @@ void Crypto_Test(){
     std::cout << "======================" << std::endl;
     std::cout << std::endl;
 
-    VITIS_LOOP_112_13: for (int i = 0; i < TestIter; i++){
-        VITIS_LOOP_113_14: for (int j = 0; j < MOD_NUM; j++){
-            VITIS_LOOP_114_15: for (int k = 0; k < RAMDepth; k++){
-                DataIn1[k] = (long_int)(rand() % MOD[j]);
-                DataIn[k] = (long_int)(rand() % MOD[j]);
+    VITIS_LOOP_121_16: for (int i = 0; i < TestIter; i++){
+        VITIS_LOOP_122_17: for (int j = 0; j < MOD_NUM; j++){
+            VITIS_LOOP_123_18: for (int k = 0; k < RAMDepth; k++){
+                DataIn1[j][k] = (long_int)(rand() % MOD[j]);
+                DataIn[j][k] = (long_int)(rand() % MOD[j]);
             }
-            Crypto(DataIn1, 0, nullptr, nullptr, POLY_WRITE, j);
-            Crypto(DataIn, 1, nullptr, nullptr, POLY_WRITE, j);
-            Crypto(nullptr, 0, nullptr, nullptr, POLY_SUB, j);
-            Crypto(DataOut, 0, nullptr, nullptr, POLY_READ, j);
-            VITIS_LOOP_122_16: for (int k = 0; k < RAMDepth; k++){
-                if ((DataIn1[k] - DataIn[k] + MOD[j]) % MOD[j] != DataOut[k]){
-                    std::cout << "DataIn1: " << DataIn1[k] << " DataIn: " << DataIn[k] << " DataOut: " << DataOut[k] << std::endl;
+        }
+        Crypto(DataIn1, 0, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto(DataIn, 1, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto(nullptr, 0, 1, nullptr, nullptr, POLY_SUB);
+        Crypto(DataOut, 0, 0, nullptr, nullptr, POLY_READ);
+        VITIS_LOOP_132_19: for (int j = 0; j < MOD_NUM; j++){
+            VITIS_LOOP_133_20: for (int k = 0; k < RAMDepth; k++){
+                if ((DataIn1[j][k] - DataIn[j][k] + MOD[j]) % MOD[j] != DataOut[j][k]){
+                    std::cout << "MOD " << MOD[j] << " DataIn1: " << DataIn1[j][k] << " DataIn: " << DataIn[j][k] << " DataOut: " << DataOut[j][k] << std::endl;
                     std::cout << "Test Failed" << std::endl;
                     return;
                 }
@@ -42519,45 +42528,74 @@ void Crypto_Test(){
     std::cout << std::endl;
 
 
-
     TestIteration_Loop:
     for (int i = 0; i < TestIter; i++){
         MOD_NUM_Loop:
         for (int j = 0; j < MOD_NUM; j++){
-            VITIS_LOOP_148_17: for (int k = 0; k < RAMDepth; k++){
-                DataIn[k] = (long_int)(k);
+            VITIS_LOOP_158_21: for (int k = 0; k < N; k++){
+                DataIn[j][k] = (long_int)(k);
             }
-            Crypto(DataIn, 0, nullptr, nullptr, POLY_WRITE, j);
+        }
+        Crypto(DataIn, 0, 0, nullptr, nullptr, POLY_WRITE);
 
-            long_int TwiddleInTemp [N/2];
-            long_int INVTwiddleInTemp [N/2];
-            precompute_weights(j, TwiddleInTemp, INVTwiddleInTemp);
+        long_int TwiddleInTemp [MOD_NUM][N/2];
+        long_int INVTwiddleInTemp [MOD_NUM][N/2];
 
-            Crypto(nullptr, 0, TwiddleInTemp, INVTwiddleInTemp, TWIDDLE_WRITE, j);
+        precompute_weights(TwiddleInTemp, INVTwiddleInTemp);
 
-            Crypto(nullptr, 0, nullptr, nullptr, POLY_NTT, j);
+        Crypto(nullptr, 0, 0, TwiddleInTemp, INVTwiddleInTemp, TWIDDLE_WRITE);
+        Crypto(nullptr, 0, 0, nullptr, nullptr, POLY_NTT);
+        Crypto(DataOut, 0, 0, nullptr, nullptr, POLY_READ);
+        Crypto(nullptr, 0, 0, nullptr, nullptr, POLY_INTT);
+        Crypto(DataOut, 0, 0, nullptr, nullptr, POLY_READ);
 
-
-            Crypto(nullptr, 0, nullptr, nullptr, POLY_INTT, j);
-
-            Crypto(DataOut, 0, nullptr, nullptr, POLY_READ, j);
-
-
-            VITIS_LOOP_167_18: for (int k = 0; k < RAMDepth; k++){
-                if (DataIn[k] != DataOut[k]){
-                    std::cout << "DataIn: " << DataIn[k] << " DataOut: " << DataOut[k] << std::endl;
+        VITIS_LOOP_175_22: for (int j = 0; j < MOD_NUM; j++){
+            VITIS_LOOP_176_23: for (int k = 0; k < N; k++){
+                if (DataIn[j][k] != DataOut[j][k]){
+                    std::cout << "MOD NUM " << j << " MOD: " << MOD[j] << " Address: " << k << std::endl;
+                    std::cout << "DataIn: " << DataIn[j][k] << " DataOut: " << DataOut[j][k] << std::endl;
                     std::cout << "Test Failed" << std::endl;
                     return;
                 }
             }
-
         }
     }
 
     std::cout << "======================" << std::endl;
     std::cout << "NTT and INTT Test Passed" << std::endl;
     std::cout << "======================" << std::endl;
+    std::cout << std::endl;
 
+
+    std::cout << "======================" << std::endl;
+    std::cout << "Test MOD PLAINTTEXT MODULUS" << std::endl;
+    std::cout << "======================" << std::endl;
+    std::cout << std::endl;
+
+    VITIS_LOOP_198_24: for (int i = 0; i < TestIter; i++){
+        VITIS_LOOP_199_25: for (int j = 0; j < MOD_NUM; j++){
+            VITIS_LOOP_200_26: for (int k = 0; k < RAMDepth; k++){
+                DataIn[j][k] = static_cast<long_int>((rand() % T) * 10);
+            }
+        }
+        Crypto(DataIn, 0, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto(nullptr, 0, 0, nullptr, nullptr, POLY_MOD_MODULUS);
+        Crypto(DataOut, 0, 0, nullptr, nullptr, POLY_READ);
+        VITIS_LOOP_207_27: for (int j = 0; j < MOD_NUM; j++){
+            VITIS_LOOP_208_28: for (int k = 0; k < RAMDepth; k++){
+                if (static_cast<long long>(DataIn[j][k]) % static_cast<long long>(T) != DataOut[j][k]){
+                    std::cout << "MOD " << T << " Expected: " << static_cast<long long>(DataIn[j][k]) % static_cast<long long>(T) << std::endl;
+                    std::cout << "MOD " << T << " DataIn: " << DataIn[j][k] << " DataOut: " << DataOut[j][k] << std::endl;
+                    std::cout << "Test Failed" << std::endl;
+                    return;
+                }
+            }
+        }
+    }
+    std::cout << "======================" << std::endl;
+    std::cout << "SUB MOD Test Passed" << std::endl;
+    std::cout << "======================" << std::endl;
+    std::cout << std::endl;
 
 
 };

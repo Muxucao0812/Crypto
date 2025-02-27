@@ -38302,10 +38302,10 @@ const int MOD_NUM = 3;
 const int N = 4096;
 const int T = 65537;
 const int ROOT = 6561;
-const int RAMNum = 2;
+const int RAMNum = 4;
 
-const int PE_NUM = 1;
-const int BANKNum = 1;
+const int PE_NUM = 4;
+const int BANKNum = 16;
 const int STAGE_NUM = int(log2(N));
 const int RAMDepth = N / BANKNum;
 const int LOG2_N_DIV_2 = int(log2(N) / 2);
@@ -38344,8 +38344,7 @@ enum CryptoOperation {
     POLY_WRITE,
     POLY_READ,
     TWIDDLE_WRITE,
-    NTT_TWIDDLE_READ,
-    INTT_TWIDDLE_READ,
+    POLY_MOD_MODULUS,
 };
 # 3 "pow_mod.cpp" 2
 # 1 "./pow_mod.hpp" 1
@@ -38376,7 +38375,7 @@ void encode(long_int poly[N], long_int basis[N], long_int ret[N]);
 void ADD_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX);
 void SUB_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX);
 void MUL_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX);
-
+void MOD_PLAINTEXTMODULUS(long_int *input, long_int *res);
 void STEPMUL(long_int *input1, long_int *input2, long_long_int *res);
 void NTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX);
 void INTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX);

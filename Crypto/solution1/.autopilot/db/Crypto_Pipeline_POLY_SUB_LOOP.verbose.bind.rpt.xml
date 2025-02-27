@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Crypto_Pipeline_POLY_SUB_LOOP'" level="0">
-<item name = "Date">Wed Feb  5 12:49:46 2025
+<item name = "Date">Thu Feb 27 10:54:20 2025
 </item>
 <item name = "Version">2023.1 (Build 3854077 on May  4 2023)</item>
 <item name = "Project">Crypto</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">7.00 ns, 4.616 ns, 1.89 ns</column>
+<column name="ap_clk">8.00 ns, 5.802 ns, 2.16 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">8196, 8196, 57.372 us, 57.372 us, 8196, 8196, no</column>
+<column name="">4100, 4100, 32.800 us, 32.800 us, 4100, 4100, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,7 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- POLY_SUB_LOOP">8194, 8194, 5, 2, 1, 4096, yes</column>
+<column name="- POLY_SUB_LOOP">4098, 4098, 7, 4, 1, 1024, yes</column>
 </table>
 </item>
 </section>

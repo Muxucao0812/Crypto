@@ -38299,10 +38299,10 @@ const int MOD_NUM = 3;
 const int N = 4096;
 const int T = 65537;
 const int ROOT = 6561;
-const int RAMNum = 2;
+const int RAMNum = 4;
 
-const int PE_NUM = 1;
-const int BANKNum = 1;
+const int PE_NUM = 4;
+const int BANKNum = 16;
 const int STAGE_NUM = int(log2(N));
 const int RAMDepth = N / BANKNum;
 const int LOG2_N_DIV_2 = int(log2(N) / 2);
@@ -38341,8 +38341,7 @@ enum CryptoOperation {
     POLY_WRITE,
     POLY_READ,
     TWIDDLE_WRITE,
-    NTT_TWIDDLE_READ,
-    INTT_TWIDDLE_READ,
+    POLY_MOD_MODULUS,
 };
 # 7 "./Arithmetic.hpp" 2
 
@@ -38350,7 +38349,7 @@ enum CryptoOperation {
 void ADD_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX);
 void SUB_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX);
 void MUL_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX);
-
+void MOD_PLAINTEXTMODULUS(long_int *input, long_int *res);
 void STEPMUL(long_int *input1, long_int *input2, long_long_int *res);
 void NTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX);
 void INTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX);
@@ -38415,6 +38414,30 @@ void SUB_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
 }
 
 
+void MOD_PLAINTEXTMODULUS(long_int *input, long_int *res){
+    long_int mod = T;
+    const int k_half = 17;
+    const long_int m = 262140;
+
+#pragma HLS PIPELINE
+
+ long_int fixed = 1;
+    long_long_int res_mult;
+    STEPMUL(input, &fixed, &res_mult);
+    long_int res_mult_high = static_cast<long_int>(res_mult(BASE_WIDTH+k_half-2, k_half-1));
+    long_long_int res_mult_shift;
+    STEPMUL(&res_mult_high, const_cast<long_int*>(&m), &res_mult_shift);
+    long_long_int res_shift;
+    long_int res_mult_shift_part = static_cast<long_int>(res_mult_shift >> (k_half + 1));
+    STEPMUL(&res_mult_shift_part, &mod, &res_shift);
+    long_long_int res_mod;
+    res_mod = res_mult - res_shift;
+    long_long_int temp1 = res_mod - T;
+    long_long_int temp2 = res_mod - 2*T;
+    *res = static_cast<long_int>((temp1 < 0) ? res_mod : (temp2 < 0) ? temp1 : temp2);
+}
+
+
 void MUL_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
     long_int mod = MOD[MOD_INDEX];
     const int k_half = K_HALF;
@@ -38449,7 +38472,7 @@ void MUL_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
     *res = static_cast<long_int>((temp1 < 0) ? res_mod : (temp2 < 0) ? temp1 : temp2);
 
 }
-# 106 "Arithmetic.cpp"
+# 130 "Arithmetic.cpp"
 void NTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX) {
     long_int temp;
     MUL_MOD(input2, twiddle_factor, &temp, MOD_INDEX);

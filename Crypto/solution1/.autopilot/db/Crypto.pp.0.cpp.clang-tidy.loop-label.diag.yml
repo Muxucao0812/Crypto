@@ -47,12 +47,93 @@ Diagnostics:
         Length:          0
         ReplacementText: 'VITIS_LOOP_1247_1: '
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_79_1:  '
-    FileOffset:      79
+    Message:         'Added loop label VITIS_LOOP_61_1:  '
+    FileOffset:      61
     FilePath:        Crypto.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
-        Offset:          1959996
+        Offset:          1959582
         Length:          0
-        ReplacementText: 'VITIS_LOOP_79_1: '
+        ReplacementText: 'VITIS_LOOP_61_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_72_2:  '
+    FileOffset:      72
+    FilePath:        Crypto.cpp
+    Replacements:    
+      - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
+        Offset:          1959856
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_72_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_83_3:  '
+    FileOffset:      83
+    FilePath:        Crypto.cpp
+    Replacements:    
+      - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
+        Offset:          1960139
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_83_3: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_157_4:  '
+    FileOffset:      157
+    FilePath:        Crypto.cpp
+    Replacements:    
+      - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
+        Offset:          1962573
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_157_4: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_165_5:  '
+    FileOffset:      165
+    FilePath:        Crypto.cpp
+    Replacements:    
+      - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
+        Offset:          1962826
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_165_5: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_174_6:  '
+    FileOffset:      174
+    FilePath:        Crypto.cpp
+    Replacements:    
+      - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
+        Offset:          1963067
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_174_6: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_202_7:  '
+    FileOffset:      202
+    FilePath:        Crypto.cpp
+    Replacements:    
+      - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
+        Offset:          1964022
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_202_7: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_210_8:  '
+    FileOffset:      210
+    FilePath:        Crypto.cpp
+    Replacements:    
+      - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
+        Offset:          1964276
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_210_8: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_219_9:  '
+    FileOffset:      219
+    FilePath:        Crypto.cpp
+    Replacements:    
+      - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
+        Offset:          1964517
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_219_9: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_244_10:  '
+    FileOffset:      244
+    FilePath:        Crypto.cpp
+    Replacements:    
+      - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
+        Offset:          1965431
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_244_10: '
 ...

@@ -29,19 +29,22 @@ void apply_bit_reverse(long_int x[N], long_int result[N]) {
 
 
 
-void precompute_weights(int MOD_INDEX, long_int twiddle_factor[N/2], long_int inv_twiddle_factor[N/2]) {
+void precompute_weights(long_int twiddle_factor[MOD_NUM][N/2], long_int inv_twiddle_factor[MOD_NUM][N/2]) {
 
-    long_int w = 1;
-    long_int w_inv = 1;
-    long_int ROOT = MOD_ROOT[MOD_INDEX];
-    long_int ROOT_INV = MOD_INV[MOD_INDEX];
-    long_int MODULUS = MOD[MOD_INDEX];
-    
-    for (int i = 0; i < N / 2; i++) {
-        twiddle_factor[i] = w;
-        inv_twiddle_factor[i] = w_inv;
-        w = (w * ROOT) % MODULUS;
-        w_inv = (w_inv * ROOT_INV) % MODULUS;
+
+    for(int MOD_INDEX = 0; MOD_INDEX < MOD_NUM; MOD_INDEX++){
+        long_int w = 1;
+        long_int w_inv = 1;
+        long_int TF_ROOT = MOD_ROOT[MOD_INDEX];
+        long_int TF_ROOT_INV = MOD_INV[MOD_INDEX];
+        long_int MODULUS = MOD[MOD_INDEX];
+        
+        for (int i = 0; i < N / 2; i++) {
+            twiddle_factor[MOD_INDEX][i] = w;
+            inv_twiddle_factor[MOD_INDEX][i] = w_inv;
+            w = (w * TF_ROOT) % MODULUS;
+            w_inv = (w_inv * TF_ROOT_INV) % MODULUS;
+        }
     }
 }
 

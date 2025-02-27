@@ -8,7 +8,7 @@
 `timescale 1ns/1ps
 module Crypto_control_s_axi
 #(parameter
-    C_S_AXI_ADDR_WIDTH = 16,
+    C_S_AXI_ADDR_WIDTH = 18,
     C_S_AXI_DATA_WIDTH = 32
 )(
     input  wire                          ACLK,
@@ -33,17 +33,17 @@ module Crypto_control_s_axi
     input  wire                          RREADY,
     output wire                          interrupt,
     output wire [31:0]                   RAMSel,
+    output wire [31:0]                   RAMSel1,
     output wire [31:0]                   OP,
-    output wire [31:0]                   ModIndex,
-    input  wire [10:0]                   NTTTwiddleIn_address0,
+    input  wire [12:0]                   NTTTwiddleIn_address0,
     input  wire                          NTTTwiddleIn_ce0,
     output wire [31:0]                   NTTTwiddleIn_q0,
-    input  wire [11:0]                   DataIn_address0,
+    input  wire [13:0]                   DataIn_address0,
     input  wire                          DataIn_ce0,
     input  wire                          DataIn_we0,
     input  wire [31:0]                   DataIn_d0,
     output wire [31:0]                   DataIn_q0,
-    input  wire [10:0]                   INTTTwiddleIn_address0,
+    input  wire [12:0]                   INTTTwiddleIn_address0,
     input  wire                          INTTTwiddleIn_ce0,
     output wire [31:0]                   INTTTwiddleIn_q0,
     output wire                          ap_start,
@@ -52,63 +52,63 @@ module Crypto_control_s_axi
     input  wire                          ap_idle
 );
 //------------------------Address Info-------------------
-// 0x0000 : Control signals
-//          bit 0  - ap_start (Read/Write/COH)
-//          bit 1  - ap_done (Read/COR)
-//          bit 2  - ap_idle (Read)
-//          bit 3  - ap_ready (Read/COR)
-//          bit 7  - auto_restart (Read/Write)
-//          bit 9  - interrupt (Read)
-//          others - reserved
-// 0x0004 : Global Interrupt Enable Register
-//          bit 0  - Global Interrupt Enable (Read/Write)
-//          others - reserved
-// 0x0008 : IP Interrupt Enable Register (Read/Write)
-//          bit 0 - enable ap_done interrupt (Read/Write)
-//          bit 1 - enable ap_ready interrupt (Read/Write)
-//          others - reserved
-// 0x000c : IP Interrupt Status Register (Read/TOW)
-//          bit 0 - ap_done (Read/TOW)
-//          bit 1 - ap_ready (Read/TOW)
-//          others - reserved
-// 0x0010 : Data signal of RAMSel
-//          bit 31~0 - RAMSel[31:0] (Read/Write)
-// 0x0014 : reserved
-// 0x0018 : Data signal of OP
-//          bit 31~0 - OP[31:0] (Read/Write)
-// 0x001c : reserved
-// 0x0020 : Data signal of ModIndex
-//          bit 31~0 - ModIndex[31:0] (Read/Write)
-// 0x0024 : reserved
-// 0x2000 ~
-// 0x3fff : Memory 'NTTTwiddleIn' (2048 * 32b)
-//          Word n : bit [31:0] - NTTTwiddleIn[n]
-// 0x4000 ~
-// 0x7fff : Memory 'DataIn' (4096 * 32b)
-//          Word n : bit [31:0] - DataIn[n]
-// 0x8000 ~
-// 0x9fff : Memory 'INTTTwiddleIn' (2048 * 32b)
-//          Word n : bit [31:0] - INTTTwiddleIn[n]
+// 0x00000 : Control signals
+//           bit 0  - ap_start (Read/Write/COH)
+//           bit 1  - ap_done (Read/COR)
+//           bit 2  - ap_idle (Read)
+//           bit 3  - ap_ready (Read/COR)
+//           bit 7  - auto_restart (Read/Write)
+//           bit 9  - interrupt (Read)
+//           others - reserved
+// 0x00004 : Global Interrupt Enable Register
+//           bit 0  - Global Interrupt Enable (Read/Write)
+//           others - reserved
+// 0x00008 : IP Interrupt Enable Register (Read/Write)
+//           bit 0 - enable ap_done interrupt (Read/Write)
+//           bit 1 - enable ap_ready interrupt (Read/Write)
+//           others - reserved
+// 0x0000c : IP Interrupt Status Register (Read/TOW)
+//           bit 0 - ap_done (Read/TOW)
+//           bit 1 - ap_ready (Read/TOW)
+//           others - reserved
+// 0x00010 : Data signal of RAMSel
+//           bit 31~0 - RAMSel[31:0] (Read/Write)
+// 0x00014 : reserved
+// 0x00018 : Data signal of RAMSel1
+//           bit 31~0 - RAMSel1[31:0] (Read/Write)
+// 0x0001c : reserved
+// 0x00020 : Data signal of OP
+//           bit 31~0 - OP[31:0] (Read/Write)
+// 0x00024 : reserved
+// 0x08000 ~
+// 0x0ffff : Memory 'NTTTwiddleIn' (6144 * 32b)
+//           Word n : bit [31:0] - NTTTwiddleIn[n]
+// 0x10000 ~
+// 0x1ffff : Memory 'DataIn' (12288 * 32b)
+//           Word n : bit [31:0] - DataIn[n]
+// 0x20000 ~
+// 0x27fff : Memory 'INTTTwiddleIn' (6144 * 32b)
+//           Word n : bit [31:0] - INTTTwiddleIn[n]
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 //------------------------Parameter----------------------
 localparam
-    ADDR_AP_CTRL            = 16'h0000,
-    ADDR_GIE                = 16'h0004,
-    ADDR_IER                = 16'h0008,
-    ADDR_ISR                = 16'h000c,
-    ADDR_RAMSEL_DATA_0      = 16'h0010,
-    ADDR_RAMSEL_CTRL        = 16'h0014,
-    ADDR_OP_DATA_0          = 16'h0018,
-    ADDR_OP_CTRL            = 16'h001c,
-    ADDR_MODINDEX_DATA_0    = 16'h0020,
-    ADDR_MODINDEX_CTRL      = 16'h0024,
-    ADDR_NTTTWIDDLEIN_BASE  = 16'h2000,
-    ADDR_NTTTWIDDLEIN_HIGH  = 16'h3fff,
-    ADDR_DATAIN_BASE        = 16'h4000,
-    ADDR_DATAIN_HIGH        = 16'h7fff,
-    ADDR_INTTTWIDDLEIN_BASE = 16'h8000,
-    ADDR_INTTTWIDDLEIN_HIGH = 16'h9fff,
+    ADDR_AP_CTRL            = 18'h00000,
+    ADDR_GIE                = 18'h00004,
+    ADDR_IER                = 18'h00008,
+    ADDR_ISR                = 18'h0000c,
+    ADDR_RAMSEL_DATA_0      = 18'h00010,
+    ADDR_RAMSEL_CTRL        = 18'h00014,
+    ADDR_RAMSEL1_DATA_0     = 18'h00018,
+    ADDR_RAMSEL1_CTRL       = 18'h0001c,
+    ADDR_OP_DATA_0          = 18'h00020,
+    ADDR_OP_CTRL            = 18'h00024,
+    ADDR_NTTTWIDDLEIN_BASE  = 18'h08000,
+    ADDR_NTTTWIDDLEIN_HIGH  = 18'h0ffff,
+    ADDR_DATAIN_BASE        = 18'h10000,
+    ADDR_DATAIN_HIGH        = 18'h1ffff,
+    ADDR_INTTTWIDDLEIN_BASE = 18'h20000,
+    ADDR_INTTTWIDDLEIN_HIGH = 18'h27fff,
     WRIDLE                  = 2'd0,
     WRDATA                  = 2'd1,
     WRRESP                  = 2'd2,
@@ -116,7 +116,7 @@ localparam
     RDIDLE                  = 2'd0,
     RDDATA                  = 2'd1,
     RDRESET                 = 2'd2,
-    ADDR_BITS                = 16;
+    ADDR_BITS                = 18;
 
 //------------------------Local signal-------------------
     reg  [1:0]                    wstate = WRRESET;
@@ -146,13 +146,13 @@ localparam
     reg  [1:0]                    int_ier = 2'b0;
     reg  [1:0]                    int_isr = 2'b0;
     reg  [31:0]                   int_RAMSel = 'b0;
+    reg  [31:0]                   int_RAMSel1 = 'b0;
     reg  [31:0]                   int_OP = 'b0;
-    reg  [31:0]                   int_ModIndex = 'b0;
     // memory signals
-    wire [10:0]                   int_NTTTwiddleIn_address0;
+    wire [12:0]                   int_NTTTwiddleIn_address0;
     wire                          int_NTTTwiddleIn_ce0;
     wire [31:0]                   int_NTTTwiddleIn_q0;
-    wire [10:0]                   int_NTTTwiddleIn_address1;
+    wire [12:0]                   int_NTTTwiddleIn_address1;
     wire                          int_NTTTwiddleIn_ce1;
     wire                          int_NTTTwiddleIn_we1;
     wire [3:0]                    int_NTTTwiddleIn_be1;
@@ -160,12 +160,12 @@ localparam
     wire [31:0]                   int_NTTTwiddleIn_q1;
     reg                           int_NTTTwiddleIn_read;
     reg                           int_NTTTwiddleIn_write;
-    wire [11:0]                   int_DataIn_address0;
+    wire [13:0]                   int_DataIn_address0;
     wire                          int_DataIn_ce0;
     wire [3:0]                    int_DataIn_be0;
     wire [31:0]                   int_DataIn_d0;
     wire [31:0]                   int_DataIn_q0;
-    wire [11:0]                   int_DataIn_address1;
+    wire [13:0]                   int_DataIn_address1;
     wire                          int_DataIn_ce1;
     wire                          int_DataIn_we1;
     wire [3:0]                    int_DataIn_be1;
@@ -173,10 +173,10 @@ localparam
     wire [31:0]                   int_DataIn_q1;
     reg                           int_DataIn_read;
     reg                           int_DataIn_write;
-    wire [10:0]                   int_INTTTwiddleIn_address0;
+    wire [12:0]                   int_INTTTwiddleIn_address0;
     wire                          int_INTTTwiddleIn_ce0;
     wire [31:0]                   int_INTTTwiddleIn_q0;
-    wire [10:0]                   int_INTTTwiddleIn_address1;
+    wire [12:0]                   int_INTTTwiddleIn_address1;
     wire                          int_INTTTwiddleIn_ce1;
     wire                          int_INTTTwiddleIn_we1;
     wire [3:0]                    int_INTTTwiddleIn_be1;
@@ -191,7 +191,7 @@ Crypto_control_s_axi_ram #(
     .MEM_STYLE ( "auto" ),
     .MEM_TYPE  ( "2P" ),
     .BYTES     ( 4 ),
-    .DEPTH     ( 2048 )
+    .DEPTH     ( 6144 )
 ) int_NTTTwiddleIn (
     .clk0      ( ACLK ),
     .address0  ( int_NTTTwiddleIn_address0 ),
@@ -211,7 +211,7 @@ Crypto_control_s_axi_ram #(
     .MEM_STYLE ( "auto" ),
     .MEM_TYPE  ( "T2P" ),
     .BYTES     ( 4 ),
-    .DEPTH     ( 4096 )
+    .DEPTH     ( 12288 )
 ) int_DataIn (
     .clk0      ( ACLK ),
     .address0  ( int_DataIn_address0 ),
@@ -231,7 +231,7 @@ Crypto_control_s_axi_ram #(
     .MEM_STYLE ( "auto" ),
     .MEM_TYPE  ( "2P" ),
     .BYTES     ( 4 ),
-    .DEPTH     ( 2048 )
+    .DEPTH     ( 6144 )
 ) int_INTTTwiddleIn (
     .clk0      ( ACLK ),
     .address0  ( int_INTTTwiddleIn_address0 ),
@@ -356,11 +356,11 @@ always @(posedge ACLK) begin
                 ADDR_RAMSEL_DATA_0: begin
                     rdata <= int_RAMSel[31:0];
                 end
+                ADDR_RAMSEL1_DATA_0: begin
+                    rdata <= int_RAMSel1[31:0];
+                end
                 ADDR_OP_DATA_0: begin
                     rdata <= int_OP[31:0];
-                end
-                ADDR_MODINDEX_DATA_0: begin
-                    rdata <= int_ModIndex[31:0];
                 end
             endcase
         end
@@ -384,8 +384,8 @@ assign task_ap_done      = (ap_done && !auto_restart_status) || auto_restart_don
 assign task_ap_ready     = ap_ready && !int_auto_restart;
 assign auto_restart_done = auto_restart_status && (ap_idle && !int_ap_idle);
 assign RAMSel            = int_RAMSel;
+assign RAMSel1           = int_RAMSel1;
 assign OP                = int_OP;
-assign ModIndex          = int_ModIndex;
 // int_interrupt
 always @(posedge ACLK) begin
     if (ARESET)
@@ -528,6 +528,16 @@ always @(posedge ACLK) begin
     end
 end
 
+// int_RAMSel1[31:0]
+always @(posedge ACLK) begin
+    if (ARESET)
+        int_RAMSel1[31:0] <= 0;
+    else if (ACLK_EN) begin
+        if (w_hs && waddr == ADDR_RAMSEL1_DATA_0)
+            int_RAMSel1[31:0] <= (WDATA[31:0] & wmask) | (int_RAMSel1[31:0] & ~wmask);
+    end
+end
+
 // int_OP[31:0]
 always @(posedge ACLK) begin
     if (ARESET)
@@ -535,16 +545,6 @@ always @(posedge ACLK) begin
     else if (ACLK_EN) begin
         if (w_hs && waddr == ADDR_OP_DATA_0)
             int_OP[31:0] <= (WDATA[31:0] & wmask) | (int_OP[31:0] & ~wmask);
-    end
-end
-
-// int_ModIndex[31:0]
-always @(posedge ACLK) begin
-    if (ARESET)
-        int_ModIndex[31:0] <= 0;
-    else if (ACLK_EN) begin
-        if (w_hs && waddr == ADDR_MODINDEX_DATA_0)
-            int_ModIndex[31:0] <= (WDATA[31:0] & wmask) | (int_ModIndex[31:0] & ~wmask);
     end
 end
 
@@ -564,7 +564,7 @@ end
 assign int_NTTTwiddleIn_address0  = NTTTwiddleIn_address0;
 assign int_NTTTwiddleIn_ce0       = NTTTwiddleIn_ce0;
 assign NTTTwiddleIn_q0            = int_NTTTwiddleIn_q0;
-assign int_NTTTwiddleIn_address1  = ar_hs? raddr[12:2] : waddr[12:2];
+assign int_NTTTwiddleIn_address1  = ar_hs? raddr[14:2] : waddr[14:2];
 assign int_NTTTwiddleIn_ce1       = ar_hs | (int_NTTTwiddleIn_write & WVALID);
 assign int_NTTTwiddleIn_we1       = int_NTTTwiddleIn_write & w_hs;
 assign int_NTTTwiddleIn_be1       = int_NTTTwiddleIn_we1 ? WSTRB : 'b0;
@@ -575,7 +575,7 @@ assign int_DataIn_ce0             = DataIn_ce0;
 assign int_DataIn_be0             = {4{DataIn_we0}};
 assign int_DataIn_d0              = DataIn_d0;
 assign DataIn_q0                  = int_DataIn_q0;
-assign int_DataIn_address1        = ar_hs? raddr[13:2] : waddr[13:2];
+assign int_DataIn_address1        = ar_hs? raddr[15:2] : waddr[15:2];
 assign int_DataIn_ce1             = ar_hs | (int_DataIn_write & WVALID);
 assign int_DataIn_we1             = int_DataIn_write & w_hs;
 assign int_DataIn_be1             = int_DataIn_we1 ? WSTRB : 'b0;
@@ -584,7 +584,7 @@ assign int_DataIn_d1              = WDATA;
 assign int_INTTTwiddleIn_address0 = INTTTwiddleIn_address0;
 assign int_INTTTwiddleIn_ce0      = INTTTwiddleIn_ce0;
 assign INTTTwiddleIn_q0           = int_INTTTwiddleIn_q0;
-assign int_INTTTwiddleIn_address1 = ar_hs? raddr[12:2] : waddr[12:2];
+assign int_INTTTwiddleIn_address1 = ar_hs? raddr[14:2] : waddr[14:2];
 assign int_INTTTwiddleIn_ce1      = ar_hs | (int_INTTTwiddleIn_write & WVALID);
 assign int_INTTTwiddleIn_we1      = int_INTTTwiddleIn_write & w_hs;
 assign int_INTTTwiddleIn_be1      = int_INTTTwiddleIn_we1 ? WSTRB : 'b0;

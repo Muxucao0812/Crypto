@@ -2,7 +2,7 @@
     <includePaths/>
     <libraryPaths/>
     <Simulation>
-        <SimFlow name="csim"/>
+        <SimFlow askAgain="false" name="csim" csimMode="0" lastCsimMode="0"/>
     </Simulation>
     <files xmlns="">
         <file name="../../main_TB.cpp" sc="0" tb="1" cflags="-Wno-unknown-pragmas" csimflags="" blackbox="false"/>

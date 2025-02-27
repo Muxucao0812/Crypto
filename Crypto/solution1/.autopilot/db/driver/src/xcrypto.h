@@ -92,10 +92,10 @@ void XCrypto_DisableAutoRestart(XCrypto *InstancePtr);
 
 void XCrypto_Set_RAMSel(XCrypto *InstancePtr, u32 Data);
 u32 XCrypto_Get_RAMSel(XCrypto *InstancePtr);
+void XCrypto_Set_RAMSel1(XCrypto *InstancePtr, u32 Data);
+u32 XCrypto_Get_RAMSel1(XCrypto *InstancePtr);
 void XCrypto_Set_OP(XCrypto *InstancePtr, u32 Data);
 u32 XCrypto_Get_OP(XCrypto *InstancePtr);
-void XCrypto_Set_ModIndex(XCrypto *InstancePtr, u32 Data);
-u32 XCrypto_Get_ModIndex(XCrypto *InstancePtr);
 u32 XCrypto_Get_NTTTwiddleIn_BaseAddress(XCrypto *InstancePtr);
 u32 XCrypto_Get_NTTTwiddleIn_HighAddress(XCrypto *InstancePtr);
 u32 XCrypto_Get_NTTTwiddleIn_TotalBytes(XCrypto *InstancePtr);

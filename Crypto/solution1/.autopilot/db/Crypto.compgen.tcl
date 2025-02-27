@@ -6,53 +6,6 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 }
 
 
-set id 639
-set name Crypto_mux_3_2_19_1_1
-set corename simcore_mux
-set op mux
-set stage_num 1
-set din0_width 19
-set din0_signed 1
-set din1_width 19
-set din1_signed 1
-set din2_width 19
-set din2_signed 1
-set din3_width 2
-set din3_signed 0
-set dout_width 19
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $name BINDTYPE {op} TYPE {mux} IMPL {auto} LATENCY 0 ALLOW_PRAGMA 1
-}
-
-
-set op mux
-set corename Multiplexer
-if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
-if {[info proc ::AESL_LIB_VIRTEX::xil_gen_pipemux] == "::AESL_LIB_VIRTEX::xil_gen_pipemux"} {
-eval "::AESL_LIB_VIRTEX::xil_gen_pipemux { \
-    id ${id} \
-    name ${name} \
-    corename ${corename} \
-    op ${op} \
-    reset_level 1 \
-    sync_rst true \
-    stage_num ${stage_num} \
-    din0_width ${din0_width} \
-    din0_signed ${din0_signed} \
-    din1_width ${din1_width} \
-    din1_signed ${din1_signed} \
-    din2_width ${din2_width} \
-    din2_signed ${din2_signed} \
-    din3_width ${din3_width} \
-    din3_signed ${din3_signed} \
-    dout_width ${dout_width} \
-}"
-} else {
-puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_pipemux, check your platform lib"
-}
-}
-
-
 if {${::AESL::PGuard_rtl_comp_handler}} {
 	::AP::rtl_comp_handler Crypto_DataRAM_RAM_AUTO_1R1W BINDTYPE {storage} TYPE {ram} IMPL {auto} LATENCY 2 ALLOW_PRAGMA 1
 }
@@ -64,7 +17,7 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 
 
 if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler Crypto_NTTTWiddleRAM_RAM_AUTO_1R1W BINDTYPE {storage} TYPE {ram} IMPL {auto} LATENCY 2 ALLOW_PRAGMA 1
+	::AP::rtl_comp_handler Crypto_NTTTWiddleRAM_RAM_1WNR_AUTO_1R1W BINDTYPE {storage} TYPE {ram_1wnr} IMPL {auto} LATENCY 2 ALLOW_PRAGMA 1
 }
 
 
@@ -85,7 +38,7 @@ RAMSel {
 	offset 16
 	offset_end 23
 }
-OP { 
+RAMSel1 { 
 	dir I
 	width 32
 	depth 1
@@ -93,7 +46,7 @@ OP {
 	offset 24
 	offset_end 31
 }
-ModIndex { 
+OP { 
 	dir I
 	width 32
 	depth 1
@@ -104,10 +57,10 @@ ModIndex {
 NTTTwiddleIn { 
 	dir I
 	width 32
-	depth 2048
+	depth 6144
 	mode ap_memory
-	offset 8192
-	offset_end 16383
+	offset 32768
+	offset_end 65535
 	core_op ram_1p
 	core_impl auto
 	core_latency 1
@@ -116,10 +69,10 @@ NTTTwiddleIn {
 DataIn { 
 	dir IO
 	width 32
-	depth 4096
+	depth 12288
 	mode ap_memory
-	offset 16384
-	offset_end 32767
+	offset 65536
+	offset_end 131071
 	core_op ram_1p
 	core_impl auto
 	core_latency 1
@@ -128,10 +81,10 @@ DataIn {
 INTTTwiddleIn { 
 	dir I
 	width 32
-	depth 2048
+	depth 6144
 	mode ap_memory
-	offset 32768
-	offset_end 40959
+	offset 131072
+	offset_end 163839
 	core_op ram_1p
 	core_impl auto
 	core_latency 1
@@ -151,7 +104,7 @@ dict set axilite_register_dict control $port_control
 if {${::AESL::PGuard_simmodel_gen}} {
 	if {[info proc ::AESL_LIB_XILADAPTER::s_axilite_gen] == "::AESL_LIB_XILADAPTER::s_axilite_gen"} {
 		eval "::AESL_LIB_XILADAPTER::s_axilite_gen { \
-			id 646 \
+			id 358 \
 			corename Crypto_control_axilite \
 			name Crypto_control_s_axi \
 			ports {$port_control} \

@@ -142,29 +142,14 @@
 			<location>/home/meng/HLS/Crypto/Utils.hpp</location>
 		</link>
 		<link>
-			<name>source/basis.txt</name>
-			<type>1</type>
-			<location>/home/meng/HLS/Crypto/basis.txt</location>
-		</link>
-		<link>
 			<name>source/define.h</name>
 			<type>1</type>
 			<location>/home/meng/HLS/Crypto/define.h</location>
 		</link>
 		<link>
-			<name>source/poly.txt</name>
-			<type>1</type>
-			<location>/home/meng/HLS/Crypto/poly.txt</location>
-		</link>
-		<link>
 			<name>source/pow_mod.cpp</name>
 			<type>1</type>
 			<location>/home/meng/HLS/Crypto/pow_mod.cpp</location>
-		</link>
-		<link>
-			<name>source/ret.txt</name>
-			<type>1</type>
-			<location>/home/meng/HLS/Crypto/ret.txt</location>
 		</link>
 		<link>
 			<name>source/source</name>

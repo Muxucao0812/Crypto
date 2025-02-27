@@ -3,26 +3,43 @@
   <errorLogs>
     <logs>
       <packageLog/>
+      <csimLog/>
     </logs>
   </errorLogs>
   <warningLogs>
     <logs>
       <packageLog>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file '#'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.080+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'Add'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.078+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'all'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.075+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'necessary'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.071+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'source'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.069+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'files'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.066+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'pow_mod.h'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.054+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'header'" projectName="Crypto" solutionName="solution1" date="2025-02-09T19:27:24.051+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file '#'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.170+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'Add'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.169+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'all'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.168+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'necessary'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.166+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'source'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.165+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'files'" projectName="Crypto" solutionName="solution1" date="2025-02-05T12:50:52.164+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'poly.txt'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:55:08.966+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'basis.txt'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:55:08.964+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'ret.txt'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:55:08.963+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file '#'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:55:08.962+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'Add'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:55:08.961+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'all'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:55:08.959+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'necessary'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:55:08.958+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'source'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:55:08.956+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'files'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:55:08.955+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'pow_mod.h'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:55:08.940+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'header'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:55:08.939+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'poly.txt'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:54:44.364+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'basis.txt'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:54:44.363+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'ret.txt'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:54:44.362+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file '#'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:54:44.362+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'Add'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:54:44.361+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'all'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:54:44.361+0800" type="Warning"/>
       </packageLog>
+      <csimLog>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'poly.txt'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:59:07.169+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'basis.txt'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:59:07.168+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'ret.txt'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:59:07.166+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file '#'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:59:07.165+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'Add'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:59:07.164+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'all'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:59:07.163+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'necessary'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:59:07.162+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'source'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:59:07.160+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'files'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:59:07.159+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'pow_mod.h'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:59:07.143+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'header'" projectName="Crypto" solutionName="solution1" date="2025-02-27T10:59:07.142+0800" type="Warning"/>
+      </csimLog>
     </logs>
   </warningLogs>
 </vivadoHLSLog:LogRoot>

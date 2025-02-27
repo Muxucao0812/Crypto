@@ -3,17 +3,19 @@
 ================================================================
 
 * Instructions per Function for each Compilation Phase
-+----------------------+-------------------+-------------------+-----------------+----------------------+------------------+
-| Function             | Location          | Compile/Link      | Unroll/Inline   | Performance/Pipeline | Optimizations    |
-+----------------------+-------------------+-------------------+-----------------+----------------------+------------------+
-| + Crypto             | Crypto.cpp:11     | 23,271            | 1,252           | 8,636                | 8,675            |
-|    ADD_MOD           | Arithmetic.cpp:38 |    858 (3 calls)  |    72 (3 calls) |                      |                  |
-|    SUB_MOD           | Arithmetic.cpp:51 |    900 (3 calls)  |    63 (3 calls) |                      |                  |
-|  + MUL_MOD           | Arithmetic.cpp:61 | 20,952 (4 calls)  |   680 (4 calls) | 5,750 (50 calls)     | 5,800 (50 calls) |
-|     STEPMUL          | Arithmetic.cpp:8  | 17,520 (12 calls) |                 |                      |                  |
-|  + apply_bit_reverse | Utils.cpp:19      |     82 (2 calls)  |    90 (2 calls) |                      |                  |
-|     bit_reverse      | Utils.cpp:9       |     32 (2 calls)  |    42 (2 calls) |                      |                  |
-+----------------------+-------------------+-------------------+-----------------+----------------------+------------------+
++-------------------------+-------------------+-------------------+-------------------+----------------------+--------------------+
+| Function                | Location          | Compile/Link      | Unroll/Inline     | Performance/Pipeline | Optimizations      |
++-------------------------+-------------------+-------------------+-------------------+----------------------+--------------------+
+| + Crypto                | Crypto.cpp:15     | 28,958            | 12,392            | 13,455               | 12,575             |
+|  + MOD_PLAINTEXTMODULUS | Arithmetic.cpp:61 |  5,197            |  1,476 (12 calls) |    828 (12 calls)    |    840 (12 calls)  |
+|     STEPMUL             | Arithmetic.cpp:8  |  4,380 (3 calls)  |                   |                      |                    |
+|    ADD_MOD              | Arithmetic.cpp:38 |    858 (3 calls)  |    864 (36 calls) |  1,836 (108 calls)   |  1,836 (108 calls) |
+|    SUB_MOD              | Arithmetic.cpp:51 |    900 (3 calls)  |    756 (36 calls) |  1,836 (108 calls)   |  1,836 (108 calls) |
+|  + MUL_MOD              | Arithmetic.cpp:85 | 20,952 (4 calls)  |  6,630 (39 calls) |  4,485 (39 calls)    |  4,524 (39 calls)  |
+|     STEPMUL             | Arithmetic.cpp:8  | 17,520 (12 calls) |                   |                      |                    |
+|  + apply_bit_reverse    | Utils.cpp:19      |     82 (2 calls)  |    270 (6 calls)  |    552 (24 calls)    |    672 (24 calls)  |
+|     bit_reverse         | Utils.cpp:9       |     32 (2 calls)  |    126 (6 calls)  |                      |                    |
++-------------------------+-------------------+-------------------+-------------------+----------------------+--------------------+
 
 * Description of Compilation Phases
 +----------------------+------------------------------------------------------------+

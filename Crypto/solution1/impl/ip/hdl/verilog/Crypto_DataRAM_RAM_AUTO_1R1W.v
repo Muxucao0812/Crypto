@@ -17,8 +17,8 @@ module Crypto_DataRAM_RAM_AUTO_1R1W (
     reset, clk);
 
 parameter DataWidth = 32;
-parameter AddressWidth = 8;
-parameter AddressRange = 256;
+parameter AddressWidth = 12;
+parameter AddressRange = 4096;
  
 input[AddressWidth-1:0] address0;
 input ce0;

@@ -38293,10 +38293,10 @@ const int MOD_NUM = 3;
 const int N = 4096;
 const int T = 65537;
 const int ROOT = 6561;
-const int RAMNum = 2;
+const int RAMNum = 4;
 
-const int PE_NUM = 1;
-const int BANKNum = 1;
+const int PE_NUM = 4;
+const int BANKNum = 16;
 const int STAGE_NUM = int(log2(N));
 const int RAMDepth = N / BANKNum;
 const int LOG2_N_DIV_2 = int(log2(N) / 2);
@@ -38335,8 +38335,7 @@ enum CryptoOperation {
     POLY_WRITE,
     POLY_READ,
     TWIDDLE_WRITE,
-    NTT_TWIDDLE_READ,
-    INTT_TWIDDLE_READ,
+    POLY_MOD_MODULUS,
 };
 # 4 "AddressGen.cpp" 2
 
