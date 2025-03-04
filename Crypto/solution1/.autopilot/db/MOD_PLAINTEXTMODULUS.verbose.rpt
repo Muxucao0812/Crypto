@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'MOD_PLAINTEXTMODULUS'
 ================================================================
-* Date:           Thu Feb 27 10:54:28 2025
+* Date:           Tue Mar  4 14:33:30 2025
 
 * Version:        2023.1 (Build 3854077 on May  4 2023)
 * Project:        Crypto
@@ -236,7 +236,7 @@ ST_4 : Operation 46 [1/1] (0.00ns) (grouped into LUT with out node add_ln81)   -
 ST_4 : Operation 47 [1/1] (2.55ns) (out node of the LUT)   --->   "%add_ln81 = add i32 %trunc_ln80, i32 %select_ln81" [Arithmetic.cpp:81]   --->   Operation 47 'add' 'add_ln81' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 
 State 5 <SV = 4> <Delay = 0.69>
-ST_5 : Operation 48 [1/1] (0.00ns)   --->   "%specpipeline_ln62 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_27" [Arithmetic.cpp:62]   --->   Operation 48 'specpipeline' 'specpipeline_ln62' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 48 [1/1] (0.00ns)   --->   "%specpipeline_ln62 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_28" [Arithmetic.cpp:62]   --->   Operation 48 'specpipeline' 'specpipeline_ln62' <Predicate = true> <Delay = 0.00>
 ST_5 : Operation 49 [1/1] (0.69ns)   --->   "%select_ln81_1 = select i1 %tmp, i32 %trunc_ln80, i32 %add_ln81" [Arithmetic.cpp:81]   --->   Operation 49 'select' 'select_ln81_1' <Predicate = true> <Delay = 0.69> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
 ST_5 : Operation 50 [1/1] (0.00ns)   --->   "%ret_ln82 = ret i32 %select_ln81_1" [Arithmetic.cpp:82]   --->   Operation 50 'ret' 'ret_ln82' <Predicate = true> <Delay = 0.00>
 
@@ -584,7 +584,7 @@ ret_ln82            (ret           ) [ 000000]
 <pin id="61" dir="1" index="0" bw="1" slack="2147483647"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="empty_27"/></StgValue>
+<StgValue><ssdm name="empty_28"/></StgValue>
 </bind>
 </comp>
 

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Crypto'" level="0">
-<item name = "Date">Thu Feb 27 10:54:23 2025
+<item name = "Date">Tue Mar  4 14:33:24 2025
 </item>
 <item name = "Version">2023.1 (Build 3854077 on May  4 2023)</item>
 <item name = "Project">Crypto</item>
@@ -35,17 +35,17 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- VITIS_LOOP_174_6">7680, 4896262732560, 640 ~ 408021894380, -, -, 12, no</column>
+<column name="- VITIS_LOOP_179_8">7680, 4896262732560, 640 ~ 408021894380, -, -, 12, no</column>
 <column name=" + NTT_GROUP_LOOP">620, 408021894360, 62 ~ 20401094718, -, -, 10 ~ 20, no</column>
-<column name="- VITIS_LOOP_219_9">7680, 4896262732560, 640 ~ 408021894380, -, -, 12, no</column>
+<column name="- VITIS_LOOP_224_11">7680, 4896262732560, 640 ~ 408021894380, -, -, 12, no</column>
 <column name=" + INTT_GROUP_LOOP">620, 408021894360, 62 ~ 20401094718, -, -, 10 ~ 20, no</column>
-<column name="- VITIS_LOOP_174_6">7680, 4896262732560, 640 ~ 408021894380, -, -, 12, no</column>
+<column name="- VITIS_LOOP_179_8">7680, 4896262732560, 640 ~ 408021894380, -, -, 12, no</column>
 <column name=" + NTT_GROUP_LOOP">620, 408021894360, 62 ~ 20401094718, -, -, 10 ~ 20, no</column>
-<column name="- VITIS_LOOP_174_6">7680, 4896262732560, 640 ~ 408021894380, -, -, 12, no</column>
+<column name="- VITIS_LOOP_179_8">7680, 4896262732560, 640 ~ 408021894380, -, -, 12, no</column>
 <column name=" + NTT_GROUP_LOOP">620, 408021894360, 62 ~ 20401094718, -, -, 10 ~ 20, no</column>
-<column name="- VITIS_LOOP_219_9">7680, 4896262732560, 640 ~ 408021894380, -, -, 12, no</column>
+<column name="- VITIS_LOOP_224_11">7680, 4896262732560, 640 ~ 408021894380, -, -, 12, no</column>
 <column name=" + INTT_GROUP_LOOP">620, 408021894360, 62 ~ 20401094718, -, -, 10 ~ 20, no</column>
-<column name="- VITIS_LOOP_219_9">7680, 4896262732560, 640 ~ 408021894380, -, -, 12, no</column>
+<column name="- VITIS_LOOP_224_11">7680, 4896262732560, 640 ~ 408021894380, -, -, 12, no</column>
 <column name=" + INTT_GROUP_LOOP">620, 408021894360, 62 ~ 20401094718, -, -, 10 ~ 20, no</column>
 </table>
 </item>

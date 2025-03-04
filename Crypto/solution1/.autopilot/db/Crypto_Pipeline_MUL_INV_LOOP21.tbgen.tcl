@@ -66,11 +66,11 @@ set portList {
 	{ DataRAM_1_ce1 sc_out sc_logic 1 signal 3 } 
 	{ DataRAM_1_q1 sc_in sc_lv 32 signal 3 } 
 	{ RAMSel_cast sc_in sc_lv 2 signal 4 } 
-	{ grp_MUL_MOD_fu_1706_p_din1 sc_out sc_lv 32 signal -1 } 
-	{ grp_MUL_MOD_fu_1706_p_din2 sc_out sc_lv 32 signal -1 } 
-	{ grp_MUL_MOD_fu_1706_p_din3 sc_out sc_lv 2 signal -1 } 
-	{ grp_MUL_MOD_fu_1706_p_dout0 sc_in sc_lv 32 signal -1 } 
-	{ grp_MUL_MOD_fu_1706_p_ce sc_out sc_logic 1 signal -1 } 
+	{ grp_MUL_MOD_fu_1763_p_din1 sc_out sc_lv 32 signal -1 } 
+	{ grp_MUL_MOD_fu_1763_p_din2 sc_out sc_lv 32 signal -1 } 
+	{ grp_MUL_MOD_fu_1763_p_din3 sc_out sc_lv 2 signal -1 } 
+	{ grp_MUL_MOD_fu_1763_p_dout0 sc_in sc_lv 32 signal -1 } 
+	{ grp_MUL_MOD_fu_1763_p_ce sc_out sc_logic 1 signal -1 } 
 }
 set NewPortList {[ 
 	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
@@ -108,11 +108,11 @@ set NewPortList {[
  	{ "name": "DataRAM_1_ce1", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_1", "role": "ce1" }} , 
  	{ "name": "DataRAM_1_q1", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_1", "role": "q1" }} , 
  	{ "name": "RAMSel_cast", "direction": "in", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "RAMSel_cast", "role": "default" }} , 
- 	{ "name": "grp_MUL_MOD_fu_1706_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1706_p_din1", "role": "default" }} , 
- 	{ "name": "grp_MUL_MOD_fu_1706_p_din2", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1706_p_din2", "role": "default" }} , 
- 	{ "name": "grp_MUL_MOD_fu_1706_p_din3", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1706_p_din3", "role": "default" }} , 
- 	{ "name": "grp_MUL_MOD_fu_1706_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1706_p_dout0", "role": "default" }} , 
- 	{ "name": "grp_MUL_MOD_fu_1706_p_ce", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1706_p_ce", "role": "default" }}  ]}
+ 	{ "name": "grp_MUL_MOD_fu_1763_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1763_p_din1", "role": "default" }} , 
+ 	{ "name": "grp_MUL_MOD_fu_1763_p_din2", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1763_p_din2", "role": "default" }} , 
+ 	{ "name": "grp_MUL_MOD_fu_1763_p_din3", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1763_p_din3", "role": "default" }} , 
+ 	{ "name": "grp_MUL_MOD_fu_1763_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1763_p_dout0", "role": "default" }} , 
+ 	{ "name": "grp_MUL_MOD_fu_1763_p_ce", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1763_p_ce", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
 	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2"],

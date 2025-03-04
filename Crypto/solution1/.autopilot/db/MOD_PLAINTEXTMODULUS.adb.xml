@@ -685,7 +685,7 @@ entry:42 %add_ln81 = add i32 %trunc_ln80, i32 %select_ln81
 
 <Node id="2" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="0">
 <![CDATA[
-entry:0 %specpipeline_ln62 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_27
+entry:0 %specpipeline_ln62 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_28
 
 ]]></Node>
 <StgValue><ssdm name="specpipeline_ln62"/></StgValue>
@@ -916,7 +916,7 @@ entry:44 %ret_ln82 = ret i32 %select_ln81_1
 </dataflow>
 <dataflow id="181" from="StgValue_178" to="specpipeline_ln62" fromId="178" toId="48">
 </dataflow>
-<dataflow id="183" from="empty_27" to="specpipeline_ln62" fromId="182" toId="48">
+<dataflow id="183" from="empty_28" to="specpipeline_ln62" fromId="182" toId="48">
 </dataflow>
 <dataflow id="184" from="tmp" to="select_ln81_1" fromId="44" toId="49">
 </dataflow>

@@ -84,33 +84,30 @@ Args:
 ...
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
-Name:            PragmaPartially2FullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
-  - LoopName:        WRITE_DATA_LOOP
+  - LoopName:        VITIS_LOOP_61_1
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:59:13'
+  - LoopLoc:         'Crypto.cpp:61:30'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
-  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - String:          ''' completely with a factor of '
   - Factor:          '3'
-  - String:          ') is no less than the loop trip count (='
-  - TripCount:       '3'
-  - String:          ').'
 ...
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
-  - LoopName:        WRITE_DATA_LOOP
+  - LoopName:        VITIS_LOOP_72_3
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:59:13'
+  - LoopLoc:         'Crypto.cpp:72:30'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -120,48 +117,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartially2FullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        READ_DATA_LOOP
-  - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:70:13'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          Crypto
-  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
-  - Factor:          '3'
-  - String:          ') is no less than the loop trip count (='
-  - TripCount:       '3'
-  - String:          ').'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        READ_DATA_LOOP
-  - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:70:13'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          Crypto
-  - String:          ''' completely with a factor of '
-  - Factor:          '3'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaPartially2FullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        WRITE_TWIDDLE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:81:13'
+  - LoopLoc:         'Crypto.cpp:86:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -174,13 +136,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        WRITE_TWIDDLE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:81:13'
+  - LoopLoc:         'Crypto.cpp:86:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -190,13 +152,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartially2FullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_MOD_MODULUS_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:93:13'
+  - LoopLoc:         'Crypto.cpp:98:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -209,13 +171,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_MOD_MODULUS_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:93:13'
+  - LoopLoc:         'Crypto.cpp:98:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -225,13 +187,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_MOD_MODULUS_LOOP1
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:96:17'
+  - LoopLoc:         'Crypto.cpp:101:17'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -243,13 +205,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_MOD_MODULUS_LOOP1
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:96:17'
+  - LoopLoc:         'Crypto.cpp:101:17'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -261,13 +223,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_MOD_MODULUS_LOOP1
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:96:17'
+  - LoopLoc:         'Crypto.cpp:101:17'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -279,13 +241,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartially2FullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_ADD_MOD_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:108:13'
+  - LoopLoc:         'Crypto.cpp:113:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -298,13 +260,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_ADD_MOD_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:108:13'
+  - LoopLoc:         'Crypto.cpp:113:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -314,13 +276,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_ADD_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:111:17'
+  - LoopLoc:         'Crypto.cpp:116:17'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -332,13 +294,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_ADD_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:111:17'
+  - LoopLoc:         'Crypto.cpp:116:17'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -350,13 +312,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_ADD_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:111:17'
+  - LoopLoc:         'Crypto.cpp:116:17'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -368,13 +330,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartially2FullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_SUB_MOD_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:124:13'
+  - LoopLoc:         'Crypto.cpp:129:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -387,13 +349,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_SUB_MOD_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:124:13'
+  - LoopLoc:         'Crypto.cpp:129:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -403,13 +365,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_SUB_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:127:17'
+  - LoopLoc:         'Crypto.cpp:132:17'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -421,13 +383,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_SUB_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:127:17'
+  - LoopLoc:         'Crypto.cpp:132:17'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -439,13 +401,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_SUB_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:127:17'
+  - LoopLoc:         'Crypto.cpp:132:17'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -457,13 +419,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartially2FullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_MUL_MOD_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:141:13'
+  - LoopLoc:         'Crypto.cpp:146:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -476,13 +438,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_MUL_MOD_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:141:13'
+  - LoopLoc:         'Crypto.cpp:146:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -492,13 +454,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_MUL_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:145:17'
+  - LoopLoc:         'Crypto.cpp:150:17'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -510,13 +472,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_MUL_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:145:17'
+  - LoopLoc:         'Crypto.cpp:150:17'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -528,13 +490,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        POLY_MUL_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:145:17'
+  - LoopLoc:         'Crypto.cpp:150:17'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -546,13 +508,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartially2FullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        NTT_STAGE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:172:13'
+  - LoopLoc:         'Crypto.cpp:177:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -565,13 +527,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        NTT_STAGE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:172:13'
+  - LoopLoc:         'Crypto.cpp:177:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -581,13 +543,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        NTT_PE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:182:25'
+  - LoopLoc:         'Crypto.cpp:187:25'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -599,13 +561,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        NTT_PE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:182:25'
+  - LoopLoc:         'Crypto.cpp:187:25'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -617,13 +579,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        NTT_PE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:182:25'
+  - LoopLoc:         'Crypto.cpp:187:25'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -635,13 +597,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartially2FullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        NTT_PERMUTE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:163:13'
+  - LoopLoc:         'Crypto.cpp:168:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -654,13 +616,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        NTT_PERMUTE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:163:13'
+  - LoopLoc:         'Crypto.cpp:168:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -670,13 +632,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartially2FullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_157_4
+  - LoopName:        VITIS_LOOP_162_6
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:157:31'
+  - LoopLoc:         'Crypto.cpp:162:31'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -689,13 +651,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_157_4
+  - LoopName:        VITIS_LOOP_162_6
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:157:31'
+  - LoopLoc:         'Crypto.cpp:162:31'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -705,13 +667,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartially2FullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_244_10
+  - LoopName:        VITIS_LOOP_249_12
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:244:32'
+  - LoopLoc:         'Crypto.cpp:249:32'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -724,13 +686,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_244_10
+  - LoopName:        VITIS_LOOP_249_12
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:244:32'
+  - LoopLoc:         'Crypto.cpp:249:32'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -740,13 +702,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartially2FullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        INTT_STAGE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:217:13'
+  - LoopLoc:         'Crypto.cpp:222:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -759,13 +721,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        INTT_STAGE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:217:13'
+  - LoopLoc:         'Crypto.cpp:222:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -775,13 +737,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        INTT_PE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:227:25'
+  - LoopLoc:         'Crypto.cpp:232:25'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -793,13 +755,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        INTT_PE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:227:25'
+  - LoopLoc:         'Crypto.cpp:232:25'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -811,13 +773,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartiallyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        INTT_PE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:227:25'
+  - LoopLoc:         'Crypto.cpp:232:25'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -829,13 +791,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartially2FullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        INTT_PERMUTE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:208:13'
+  - LoopLoc:         'Crypto.cpp:213:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -848,13 +810,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
   - LoopName:        INTT_PERMUTE_LOOP
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:208:13'
+  - LoopLoc:         'Crypto.cpp:213:13'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -864,13 +826,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaPartially2FullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_202_7
+  - LoopName:        VITIS_LOOP_207_9
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:202:31'
+  - LoopLoc:         'Crypto.cpp:207:31'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -883,13 +845,13 @@ Args:
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
 Name:            PragmaFullyUnroll
-DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_202_7
+  - LoopName:        VITIS_LOOP_207_9
   - String:          ''' ('
-  - LoopLoc:         'Crypto.cpp:202:31'
+  - LoopLoc:         'Crypto.cpp:207:31'
   - String:          ') '
   - String:          'in function '''
   - String:          Crypto
@@ -899,8 +861,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 155, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
@@ -909,8 +871,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 155, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
@@ -919,8 +881,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 155, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
@@ -929,8 +891,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 155, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
@@ -939,8 +901,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 155, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
@@ -949,8 +911,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 155, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
@@ -959,8 +921,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 155, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
@@ -969,8 +931,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 155, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
@@ -979,8 +941,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 155, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
@@ -989,8 +951,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 155, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
@@ -999,8 +961,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 155, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
@@ -1009,8 +971,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 150, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 155, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
@@ -1019,8 +981,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 137, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
@@ -1029,8 +991,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 137, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
@@ -1039,8 +1001,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 137, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
@@ -1049,8 +1011,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 137, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
@@ -1059,8 +1021,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 137, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
@@ -1069,8 +1031,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 137, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
@@ -1079,8 +1041,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 137, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
@@ -1089,8 +1051,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 137, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
@@ -1099,8 +1061,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 137, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
@@ -1109,8 +1071,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 137, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
@@ -1119,8 +1081,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 137, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
@@ -1129,8 +1091,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 132, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 137, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.12.21)'
@@ -1139,8 +1101,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 121, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
@@ -1149,8 +1111,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 121, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
@@ -1159,8 +1121,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 121, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
@@ -1169,8 +1131,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 121, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
@@ -1179,8 +1141,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 121, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
@@ -1189,8 +1151,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 121, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
@@ -1199,8 +1161,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 121, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
@@ -1209,8 +1171,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 121, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
@@ -1219,8 +1181,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 121, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
@@ -1229,8 +1191,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 121, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
@@ -1239,8 +1201,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 121, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
@@ -1249,8 +1211,8 @@ Args:
 --- !Failure
 Pass:            reflow-function-uniquification
 Name:            FunctionUniquification
-DebugLoc:        { File: Crypto.cpp, Line: 116, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 121, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Duplicating function '''
   - Name:            'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.15.18)'
@@ -1273,8 +1235,8 @@ Args:
 --- !Passed
 Pass:            reflow-array-partition
 Name:            ArrayXform
-DebugLoc:        { File: Crypto.cpp, Line: 28, Column: 14 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 30, Column: 14 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Applying '
   - String:          array_partition
@@ -1299,8 +1261,8 @@ Args:
 --- !Passed
 Pass:            reflow-array-partition
 Name:            ArrayXform
-DebugLoc:        { File: Crypto.cpp, Line: 32, Column: 11 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 34, Column: 11 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Applying '
   - String:          array_partition
@@ -1319,8 +1281,8 @@ Args:
 --- !Passed
 Pass:            reflow-array-partition
 Name:            ArrayXform
-DebugLoc:        { File: Crypto.cpp, Line: 35, Column: 11 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 37, Column: 11 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Applying '
   - String:          array_partition
@@ -1339,8 +1301,8 @@ Args:
 --- !Passed
 Pass:            reflow-array-partition
 Name:            ArrayXform
-DebugLoc:        { File: Crypto.cpp, Line: 36, Column: 14 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 38, Column: 14 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Applying '
   - String:          array_partition
@@ -1359,264 +1321,264 @@ Args:
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: Crypto.cpp, Line: 182, Column: 25 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 187, Column: 25 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
   - LoopName:        NTT_PE_LOOP
   - String:          ' '
-  - LoopLoc:         'Crypto.cpp:182:25'
+  - LoopLoc:         'Crypto.cpp:187:25'
   - String:          ' '
-  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
-    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - Function:        'Crypto(hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
   - String:          ' '
 ...
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: Crypto.cpp, Line: 178, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 183, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
   - LoopName:        NTT_GROUP_LOOP
   - String:          ' '
-  - LoopLoc:         'Crypto.cpp:178:21'
+  - LoopLoc:         'Crypto.cpp:183:21'
   - String:          ' '
-  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
-    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - Function:        'Crypto(hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
   - String:          ' '
 ...
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: Crypto.cpp, Line: 182, Column: 25 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 187, Column: 25 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
   - LoopName:        NTT_PE_LOOP
   - String:          ' '
-  - LoopLoc:         'Crypto.cpp:182:25'
+  - LoopLoc:         'Crypto.cpp:187:25'
   - String:          ' '
-  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
-    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - Function:        'Crypto(hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
   - String:          ' '
 ...
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: Crypto.cpp, Line: 178, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 183, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
   - LoopName:        NTT_GROUP_LOOP
   - String:          ' '
-  - LoopLoc:         'Crypto.cpp:178:21'
+  - LoopLoc:         'Crypto.cpp:183:21'
   - String:          ' '
-  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
-    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - Function:        'Crypto(hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
   - String:          ' '
 ...
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: Crypto.cpp, Line: 182, Column: 25 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 187, Column: 25 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
   - LoopName:        NTT_PE_LOOP
   - String:          ' '
-  - LoopLoc:         'Crypto.cpp:182:25'
+  - LoopLoc:         'Crypto.cpp:187:25'
   - String:          ' '
-  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
-    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - Function:        'Crypto(hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
   - String:          ' '
 ...
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: Crypto.cpp, Line: 178, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 183, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
   - LoopName:        NTT_GROUP_LOOP
   - String:          ' '
-  - LoopLoc:         'Crypto.cpp:178:21'
+  - LoopLoc:         'Crypto.cpp:183:21'
   - String:          ' '
-  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
-    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - Function:        'Crypto(hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
   - String:          ' '
 ...
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: Crypto.cpp, Line: 227, Column: 25 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 232, Column: 25 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
   - LoopName:        INTT_PE_LOOP
   - String:          ' '
-  - LoopLoc:         'Crypto.cpp:227:25'
+  - LoopLoc:         'Crypto.cpp:232:25'
   - String:          ' '
-  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
-    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - Function:        'Crypto(hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
   - String:          ' '
 ...
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: Crypto.cpp, Line: 223, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 228, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
   - LoopName:        INTT_GROUP_LOOP
   - String:          ' '
-  - LoopLoc:         'Crypto.cpp:223:21'
+  - LoopLoc:         'Crypto.cpp:228:21'
   - String:          ' '
-  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
-    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - Function:        'Crypto(hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
   - String:          ' '
 ...
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: Crypto.cpp, Line: 227, Column: 25 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 232, Column: 25 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
   - LoopName:        INTT_PE_LOOP
   - String:          ' '
-  - LoopLoc:         'Crypto.cpp:227:25'
+  - LoopLoc:         'Crypto.cpp:232:25'
   - String:          ' '
-  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
-    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - Function:        'Crypto(hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
   - String:          ' '
 ...
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: Crypto.cpp, Line: 223, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 228, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
   - LoopName:        INTT_GROUP_LOOP
   - String:          ' '
-  - LoopLoc:         'Crypto.cpp:223:21'
+  - LoopLoc:         'Crypto.cpp:228:21'
   - String:          ' '
-  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
-    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - Function:        'Crypto(hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
   - String:          ' '
 ...
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: Crypto.cpp, Line: 227, Column: 25 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 232, Column: 25 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
   - LoopName:        INTT_PE_LOOP
   - String:          ' '
-  - LoopLoc:         'Crypto.cpp:227:25'
+  - LoopLoc:         'Crypto.cpp:232:25'
   - String:          ' '
-  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
-    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - Function:        'Crypto(hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
   - String:          ' '
 ...
 --- !Missed
 Pass:            reflow-burst-inference
 Name:            CouldNotAnalyzeBoundsPattern
-DebugLoc:        { File: Crypto.cpp, Line: 223, Column: 21 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 228, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          Could not analyze the loop bounds
   - String:          ' _XLX_SEP_ '
   - LoopName:        INTT_GROUP_LOOP
   - String:          ' '
-  - LoopLoc:         'Crypto.cpp:223:21'
+  - LoopLoc:         'Crypto.cpp:228:21'
   - String:          ' '
-  - Function:        'Crypto(ap_int<32> (*) [4096], int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
-    DebugLoc:        { File: Crypto.cpp, Line: 22, Column: 0 }
+  - Function:        'Crypto(hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, hls::stream<hls::axis<ap_uint<32>, 0ul, 0ul, 0ul>, 0>&, int, int, ap_int<32> (*) [2048], ap_int<32> (*) [2048], CryptoOperation)'
+    DebugLoc:        { File: Crypto.cpp, Line: 24, Column: 0 }
   - String:          ' '
 ...
 --- !Failure
 Pass:            reflow-occurrence-inference
 Name:            NonComputableLoopForm
-DebugLoc:        { File: Crypto.cpp, Line: 174, Column: 20 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 179, Column: 20 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Could not analyze occurrence information within '''
-  - LoopName:        VITIS_LOOP_174_6
+  - LoopName:        VITIS_LOOP_179_8
   - String:          '''('
-  - LoopLoc:         'Crypto.cpp:174:20'
+  - LoopLoc:         'Crypto.cpp:179:20'
   - String:          ') . Requires loop in simplify form and with single exit.'
 ...
 --- !Failure
 Pass:            reflow-occurrence-inference
 Name:            NonComputableLoopForm
-DebugLoc:        { File: Crypto.cpp, Line: 174, Column: 20 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 179, Column: 20 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Could not analyze occurrence information within '''
-  - LoopName:        VITIS_LOOP_174_6
+  - LoopName:        VITIS_LOOP_179_8
   - String:          '''('
-  - LoopLoc:         'Crypto.cpp:174:20'
+  - LoopLoc:         'Crypto.cpp:179:20'
   - String:          ') . Requires loop in simplify form and with single exit.'
 ...
 --- !Failure
 Pass:            reflow-occurrence-inference
 Name:            NonComputableLoopForm
-DebugLoc:        { File: Crypto.cpp, Line: 174, Column: 20 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 179, Column: 20 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Could not analyze occurrence information within '''
-  - LoopName:        VITIS_LOOP_174_6
+  - LoopName:        VITIS_LOOP_179_8
   - String:          '''('
-  - LoopLoc:         'Crypto.cpp:174:20'
+  - LoopLoc:         'Crypto.cpp:179:20'
   - String:          ') . Requires loop in simplify form and with single exit.'
 ...
 --- !Failure
 Pass:            reflow-occurrence-inference
 Name:            NonComputableLoopForm
-DebugLoc:        { File: Crypto.cpp, Line: 219, Column: 20 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 224, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Could not analyze occurrence information within '''
-  - LoopName:        VITIS_LOOP_219_9
+  - LoopName:        VITIS_LOOP_224_11
   - String:          '''('
-  - LoopLoc:         'Crypto.cpp:219:20'
+  - LoopLoc:         'Crypto.cpp:224:21'
   - String:          ') . Requires loop in simplify form and with single exit.'
 ...
 --- !Failure
 Pass:            reflow-occurrence-inference
 Name:            NonComputableLoopForm
-DebugLoc:        { File: Crypto.cpp, Line: 219, Column: 20 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 224, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Could not analyze occurrence information within '''
-  - LoopName:        VITIS_LOOP_219_9
+  - LoopName:        VITIS_LOOP_224_11
   - String:          '''('
-  - LoopLoc:         'Crypto.cpp:219:20'
+  - LoopLoc:         'Crypto.cpp:224:21'
   - String:          ') . Requires loop in simplify form and with single exit.'
 ...
 --- !Failure
 Pass:            reflow-occurrence-inference
 Name:            NonComputableLoopForm
-DebugLoc:        { File: Crypto.cpp, Line: 219, Column: 20 }
-Function:        _Z6CryptoPA4096_6ap_intILi32EEiiPA2048_S0_S4_15CryptoOperation
+DebugLoc:        { File: Crypto.cpp, Line: 224, Column: 21 }
+Function:        _Z6CryptoRN3hls6streamINS_4axisI7ap_uintILi32EELm0ELm0ELm0EEELi0EEES6_iiPA2048_6ap_intILi32EESA_15CryptoOperation
 Args:            
   - String:          'Could not analyze occurrence information within '''
-  - LoopName:        VITIS_LOOP_219_9
+  - LoopName:        VITIS_LOOP_224_11
   - String:          '''('
-  - LoopLoc:         'Crypto.cpp:219:20'
+  - LoopLoc:         'Crypto.cpp:224:21'
   - String:          ') . Requires loop in simplify form and with single exit.'
 ...

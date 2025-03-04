@@ -1297,7 +1297,7 @@ entry:72 %sub_ln109 = sub i64 %res_shift, i64 %zext_ln28_3
 
 <Node id="9" bw="0" op_0_bw="0" op_1_bw="32" op_2_bw="32" op_3_bw="32" op_4_bw="32" op_5_bw="0">
 <![CDATA[
-entry:5 %specpipeline_ln86 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_27
+entry:5 %specpipeline_ln86 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_28
 
 ]]></Node>
 <StgValue><ssdm name="specpipeline_ln86"/></StgValue>

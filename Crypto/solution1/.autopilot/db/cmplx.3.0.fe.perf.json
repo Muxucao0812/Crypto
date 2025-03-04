@@ -1,20 +1,19 @@
 {
   "0": {
     "basicblocks": 391,
-    "calls": "1 1 1 1 4 4 4 4 6 6 6 6 3 3 3 3 5 5 5 5 5 5 5 5 5 5 5 5 2 7 8 7 8 7 8 7 8 5 5 5 5 5 5 5 5 5 5 5 5 2 7 8 7 8 7 8 7 8 2 1 1 1 1 1 1 1 1 4 4 4 4 4 4 4 4 6 6 6 6 6 6 6 6 3 3 3 3 3 3 3 3 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 2 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8 2 7 8 7 8 7 8 7 8",
+    "calls": "1 1 1 1 4 4 4 4 6 6 6 6 8 8 8 8 3 3 3 3 3 3 3 3 3 3 3 3 2 5 7 5 7 5 7 5 7 3 3 3 3 3 3 3 3 3 3 3 3 2 5 7 5 7 5 7 5 7 2 1 1 1 1 1 1 1 1 4 4 4 4 4 4 4 4 6 6 6 6 6 6 6 6 8 8 8 8 8 8 8 8 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 2 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7",
     "file": "Crypto.cpp",
-    "fileloc": 15,
-    "instructions": 3918,
+    "fileloc": 16,
+    "instructions": 3977,
     "loads": {
-      "L": 513,
-      "T": 9
+      "L": 516,
+      "T": 6
     },
     "name": "Crypto",
     "stores": {
-      "L": 246,
-      "T": 3
+      "L": 267
     },
-    "total_instructions": 13455
+    "total_instructions": 13514
   },
   "1": {
     "basicblocks": 1,
@@ -44,19 +43,19 @@
     "total_instructions": 115
   },
   "3": {
-    "basicblocks": 1,
+    "basicblocks": 5,
     "calls": "",
-    "file": "Arithmetic.cpp",
-    "fileloc": 85,
-    "instructions": 115,
+    "file": "Utils.cpp",
+    "fileloc": 19,
+    "instructions": 23,
     "loads": {
-      "G": 2
+      "L": 1
     },
-    "name": "MUL_MOD",
+    "name": "apply_bit_reverse",
     "stores": {
       "L": 1
     },
-    "total_instructions": 115
+    "total_instructions": 23
   },
   "4": {
     "basicblocks": 3,
@@ -74,19 +73,19 @@
     "total_instructions": 17
   },
   "5": {
-    "basicblocks": 5,
+    "basicblocks": 3,
     "calls": "",
-    "file": "Utils.cpp",
-    "fileloc": 19,
-    "instructions": 23,
+    "file": "Arithmetic.cpp",
+    "fileloc": 38,
+    "instructions": 17,
     "loads": {
-      "L": 1
+      "G": 1
     },
-    "name": "apply_bit_reverse",
+    "name": "ADD_MOD",
     "stores": {
-      "L": 1
+      "L": 2
     },
-    "total_instructions": 23
+    "total_instructions": 17
   },
   "6": {
     "basicblocks": 3,
@@ -107,21 +106,6 @@
     "basicblocks": 3,
     "calls": "",
     "file": "Arithmetic.cpp",
-    "fileloc": 38,
-    "instructions": 17,
-    "loads": {
-      "G": 1
-    },
-    "name": "ADD_MOD",
-    "stores": {
-      "L": 2
-    },
-    "total_instructions": 17
-  },
-  "8": {
-    "basicblocks": 3,
-    "calls": "",
-    "file": "Arithmetic.cpp",
     "fileloc": 51,
     "instructions": 17,
     "loads": {
@@ -132,5 +116,20 @@
       "L": 2
     },
     "total_instructions": 17
+  },
+  "8": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 85,
+    "instructions": 115,
+    "loads": {
+      "G": 2
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 115
   }
 }

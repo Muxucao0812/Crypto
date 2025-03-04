@@ -1,23 +1,47 @@
 {
   "0": {
-    "basicblocks": 227,
-    "calls": "5 7 9 11 8 11 7 9 8 11 7 9 11",
+    "basicblocks": 229,
+    "calls": "4 7 9 10 13 10 7 9 13 10 7 9 10",
     "file": "Crypto.cpp",
-    "fileloc": 15,
-    "instructions": 836,
+    "fileloc": 16,
+    "instructions": 872,
     "loads": {
       "G": 1,
-      "L": 22,
-      "T": 3
+      "L": 24,
+      "T": 2
     },
     "name": "Crypto",
     "stores": {
-      "L": 25,
-      "T": 1
+      "L": 27
     },
-    "total_instructions": 28958
+    "total_instructions": 29268
   },
   "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "define.h",
+    "fileloc": 36,
+    "instructions": 4,
+    "name": "__cxx_global_var_init.4",
+    "total_instructions": 49
+  },
+  "10": {
+    "basicblocks": 7,
+    "calls": "11 11 11",
+    "file": "Arithmetic.cpp",
+    "fileloc": 85,
+    "instructions": 153,
+    "loads": {
+      "G": 2,
+      "L": 2
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 5238
+  },
+  "11": {
     "basicblocks": 1,
     "calls": "",
     "file": "Arithmetic.cpp",
@@ -32,50 +56,7 @@
     },
     "total_instructions": 1460
   },
-  "10": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "define.h",
-    "fileloc": 36,
-    "instructions": 4,
-    "name": "__cxx_global_var_init.4",
-    "total_instructions": 49
-  },
-  "11": {
-    "basicblocks": 7,
-    "calls": "1 1 1",
-    "file": "Arithmetic.cpp",
-    "fileloc": 85,
-    "instructions": 153,
-    "loads": {
-      "G": 2,
-      "L": 2
-    },
-    "name": "MUL_MOD",
-    "stores": {
-      "L": 4
-    },
-    "total_instructions": 5238
-  },
   "12": {
-    "basicblocks": 7,
-    "calls": "",
-    "file": "Utils.cpp",
-    "fileloc": 9,
-    "instructions": 16,
-    "name": "bit_reverse",
-    "total_instructions": 16
-  },
-  "13": {
-    "basicblocks": 1,
-    "calls": "10",
-    "file": "Crypto.pp.0.cpp",
-    "fileloc": 0,
-    "instructions": 2,
-    "name": "",
-    "total_instructions": 51
-  },
-  "2": {
     "basicblocks": 1,
     "calls": "",
     "file": "define.h",
@@ -84,7 +65,22 @@
     "name": "__cxx_global_var_init.6",
     "total_instructions": 49
   },
-  "3": {
+  "13": {
+    "basicblocks": 11,
+    "calls": "5",
+    "file": "Utils.cpp",
+    "fileloc": 19,
+    "instructions": 25,
+    "loads": {
+      "L": 1
+    },
+    "name": "apply_bit_reverse",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 41
+  },
+  "2": {
     "basicblocks": 1,
     "calls": "",
     "file": "define.h",
@@ -93,18 +89,18 @@
     "name": "__cxx_global_var_init.5",
     "total_instructions": 17
   },
-  "4": {
+  "3": {
     "basicblocks": 1,
-    "calls": "6 3 2",
-    "file": "Arithmetic.pp.0.cpp",
-    "fileloc": 0,
+    "calls": "",
+    "file": "define.h",
+    "fileloc": 33,
     "instructions": 4,
-    "name": "",
-    "total_instructions": 119
+    "name": "__cxx_global_var_init.1",
+    "total_instructions": 49
   },
-  "5": {
+  "4": {
     "basicblocks": 7,
-    "calls": "1 1 1",
+    "calls": "11 11 11",
     "file": "Arithmetic.cpp",
     "fileloc": 61,
     "instructions": 134,
@@ -117,14 +113,23 @@
     },
     "total_instructions": 5197
   },
+  "5": {
+    "basicblocks": 7,
+    "calls": "",
+    "file": "Utils.cpp",
+    "fileloc": 9,
+    "instructions": 16,
+    "name": "bit_reverse",
+    "total_instructions": 16
+  },
   "6": {
     "basicblocks": 1,
-    "calls": "",
-    "file": "define.h",
-    "fileloc": 33,
+    "calls": "3 2 12",
+    "file": "Arithmetic.pp.0.cpp",
+    "fileloc": 0,
     "instructions": 4,
-    "name": "__cxx_global_var_init.1",
-    "total_instructions": 49
+    "name": "",
+    "total_instructions": 119
   },
   "7": {
     "basicblocks": 3,
@@ -142,19 +147,13 @@
     "total_instructions": 286
   },
   "8": {
-    "basicblocks": 11,
-    "calls": "12",
-    "file": "Utils.cpp",
-    "fileloc": 19,
-    "instructions": 25,
-    "loads": {
-      "L": 1
-    },
-    "name": "apply_bit_reverse",
-    "stores": {
-      "L": 1
-    },
-    "total_instructions": 41
+    "basicblocks": 1,
+    "calls": "1",
+    "file": "Crypto.pp.0.cpp",
+    "fileloc": 0,
+    "instructions": 2,
+    "name": "",
+    "total_instructions": 51
   },
   "9": {
     "basicblocks": 3,

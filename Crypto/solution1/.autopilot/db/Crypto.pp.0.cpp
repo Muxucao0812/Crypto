@@ -38345,6 +38345,138 @@ enum CryptoOperation {
     POLY_MOD_MODULUS,
 };
 # 2 "Crypto.cpp" 2
+# 1 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/hls_stream.h" 1
+# 15 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/hls_stream.h"
+# 1 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/hls_stream_39.h" 1
+# 26 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/hls_stream_39.h"
+namespace hls {
+# 52 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/hls_stream_39.h"
+template<typename __STREAM_T__, int DEPTH=0>
+class stream;
+
+template<typename __STREAM_T__>
+class stream<__STREAM_T__, 0>
+{
+  public:
+    using value_type = __STREAM_T__;
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) stream() {
+      __fpga_set_stream_depth(&this->V, 0);
+    }
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) stream(const char* name) {
+      (void)(name);
+      __fpga_set_stream_depth(&this->V, 0);
+    }
+
+
+  private:
+    inline __attribute__((always_inline)) __attribute__((nodebug)) stream(const stream< __STREAM_T__ >& chn):V(chn.V) {
+    }
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) stream& operator= (const stream< __STREAM_T__ >& chn) {
+        V = chn.V;
+        return *this;
+    }
+
+  public:
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) void operator >> (__STREAM_T__& rdata) {
+        read(rdata);
+    }
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) void operator << (const __STREAM_T__& wdata) {
+        write(wdata);
+    }
+
+
+  public:
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) bool empty() const {
+        return !__fpga_fifo_not_empty(&V);
+    }
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) bool full() const {
+        return !__fpga_fifo_not_full(&V);
+    }
+
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) void read(__STREAM_T__& dout) {
+        __fpga_fifo_pop(&V, &dout);
+    }
+
+
+    inline __attribute__((noinline)) __attribute__((nodebug)) bool read_dep(__STREAM_T__& dout, volatile bool flag) {
+        __fpga_fifo_pop(&V, &dout);
+        return flag;
+    }
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) __STREAM_T__ read() {
+        __STREAM_T__ tmp;
+        read(tmp);
+        return tmp;
+    }
+
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) bool read_nb(__STREAM_T__& dout) {
+        __STREAM_T__ tmp;
+
+        if (__fpga_fifo_nb_pop(&V, &tmp)) {
+            dout = tmp;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) void write(const __STREAM_T__& din) {
+        __fpga_fifo_push(&V, &din);
+    }
+
+
+    inline __attribute__((noinline)) __attribute__((nodebug)) bool write_dep(const __STREAM_T__& din, volatile bool flag) {
+        __fpga_fifo_push(&V, &din);
+        return flag;
+    }
+
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) bool write_nb(const __STREAM_T__& din) {
+        return __fpga_fifo_nb_push(&V, &din);
+    }
+
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) unsigned size() const {
+        return __fpga_fifo_size(&V);
+    }
+
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) unsigned capacity() const {
+        return __fpga_fifo_capacity(&V);
+    }
+
+
+    void set_name(const char* name) { (void)(name); }
+
+  public:
+    __STREAM_T__ V __attribute__((no_ctor));
+};
+
+template<typename __STREAM_T__, int DEPTH>
+class stream : public stream<__STREAM_T__, 0> {
+  public:
+    inline __attribute__((always_inline)) __attribute__((nodebug)) stream() {
+      __fpga_set_stream_depth(&this->V, DEPTH);
+    }
+
+    inline __attribute__((always_inline)) __attribute__((nodebug)) stream(const char* name) {
+      (void)(name);
+      __fpga_set_stream_depth(&this->V, DEPTH);
+    }
+};
+}
+# 16 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/hls_stream.h" 2
+# 3 "Crypto.cpp" 2
 # 1 "./AddressGen.hpp" 1
 
 
@@ -38355,23 +38487,417 @@ void GenerateInputIndex(int *address, int stage, int Index[BANKNum]);
 void GenerateOutputIndex(int *address, int stage, int Index[BANKNum]);
 void GenerateAddress(int *address, int stage, int Address[BANKNum]);
 void GenerateTFAddress(int *address, int stage, int Address[PE_NUM]);
-# 3 "Crypto.cpp" 2
+# 4 "Crypto.cpp" 2
 # 1 "./Crypto.hpp" 1
 
 
 
 
+# 1 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/ap_axi_sdata.h" 1
+# 41 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/ap_axi_sdata.h"
+# 1 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/climits" 1 3
+# 40 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/climits" 3
 
+
+# 1 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/limits.h" 1 3
+# 37 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/limits.h" 3
+# 1 "/usr/include/limits.h" 1 3 4
+# 26 "/usr/include/limits.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
+# 27 "/usr/include/limits.h" 2 3 4
+# 195 "/usr/include/limits.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/posix1_lim.h" 1 3 4
+# 27 "/usr/include/x86_64-linux-gnu/bits/posix1_lim.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 28 "/usr/include/x86_64-linux-gnu/bits/posix1_lim.h" 2 3 4
+# 161 "/usr/include/x86_64-linux-gnu/bits/posix1_lim.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/local_lim.h" 1 3 4
+# 38 "/usr/include/x86_64-linux-gnu/bits/local_lim.h" 3 4
+# 1 "/usr/include/linux/limits.h" 1 3 4
+# 39 "/usr/include/x86_64-linux-gnu/bits/local_lim.h" 2 3 4
+# 162 "/usr/include/x86_64-linux-gnu/bits/posix1_lim.h" 2 3 4
+# 196 "/usr/include/limits.h" 2 3 4
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/posix2_lim.h" 1 3 4
+# 200 "/usr/include/limits.h" 2 3 4
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/xopen_lim.h" 1 3 4
+# 64 "/usr/include/x86_64-linux-gnu/bits/xopen_lim.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/uio_lim.h" 1 3 4
+# 65 "/usr/include/x86_64-linux-gnu/bits/xopen_lim.h" 2 3 4
+# 204 "/usr/include/limits.h" 2 3 4
+# 38 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/lnx64/tools/clang-3.9-csynth/lib/clang/7.0.0/include/limits.h" 2 3
+# 43 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/climits" 2 3
+# 42 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/ap_axi_sdata.h" 2
+# 1 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/ap_int.h" 1
+# 43 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/ap_axi_sdata.h" 2
+
+template <int _AP_W, int _AP_I, ap_q_mode _AP_Q, ap_o_mode _AP_O, int _AP_N>
+struct ap_fixed;
+template <int _AP_W, int _AP_I, ap_q_mode _AP_Q, ap_o_mode _AP_O, int _AP_N>
+struct ap_ufixed;
+
+namespace hls {
+
+template <typename T> constexpr std::size_t bitwidth = sizeof(T) * 8;
+
+template <std::size_t W> constexpr std::size_t bitwidth<ap_int<W>> = W;
+template <std::size_t W> constexpr std::size_t bitwidth<ap_uint<W>> = W;
+template <int _AP_W, int _AP_I, ap_q_mode _AP_Q, ap_o_mode _AP_O, int _AP_N>
+constexpr std::size_t bitwidth<ap_fixed<_AP_W, _AP_I, _AP_Q, _AP_O, _AP_N>> = _AP_W;
+template <int _AP_W, int _AP_I, ap_q_mode _AP_Q, ap_o_mode _AP_O, int _AP_N>
+constexpr std::size_t bitwidth<ap_ufixed<_AP_W, _AP_I, _AP_Q, _AP_O, _AP_N>> = _AP_W;
+
+template <typename T>
+constexpr std::size_t bytewidth = (bitwidth<T> + 8 - 1) / 8;
+
+template <typename T, std::size_t WUser, std::size_t WId, std::size_t WDest> struct axis {
+  static constexpr std::size_t NewWUser = (WUser == 0) ? 1 : WUser;
+  static constexpr std::size_t NewWId = (WId == 0) ? 1 : WId;
+  static constexpr std::size_t NewWDest = (WDest == 0) ? 1 : WDest;
+  T data;
+  ap_uint<bytewidth<T>> keep;
+  ap_uint<bytewidth<T>> strb;
+  ap_uint<NewWUser> user;
+  ap_uint<1> last;
+  ap_uint<NewWId> id;
+  ap_uint<NewWDest> dest;
+
+  __attribute__((nodebug)) ap_uint<NewWUser> *get_user_ptr() {
+#pragma HLS inline
+ return (WUser == 0) ? nullptr : &user;
+  }
+  __attribute__((nodebug)) ap_uint<NewWId> *get_id_ptr() {
+#pragma HLS inline
+ return (WId == 0) ? nullptr : &id;
+  }
+  __attribute__((nodebug)) ap_uint<NewWDest> *get_dest_ptr() {
+#pragma HLS inline
+ return (WDest == 0) ? nullptr : &dest;
+  }
+};
+
+}
+
+template <std::size_t WData, std::size_t WUser, std::size_t WId, std::size_t WDest>
+using ap_axis = hls::axis<ap_int<WData>, WUser, WId, WDest>;
+
+template <std::size_t WData, std::size_t WUser, std::size_t WId, std::size_t WDest>
+using ap_axiu = hls::axis<ap_uint<WData>, WUser, WId, WDest>;
+
+
+template <std::size_t WData, std::size_t WUser, std::size_t WId, std::size_t WDest>
+struct qdma_axis;
+
+template <std::size_t WData> struct qdma_axis<WData, 0, 0, 0> {
+
+  static constexpr std::size_t kBytes = (WData + 7) / 8;
+
+  ap_uint<WData> data;
+  ap_uint<kBytes> keep;
+  ap_uint<1> strb;
+  ap_uint<1> user;
+  ap_uint<1> last;
+  ap_uint<1> id;
+  ap_uint<1> dest;
+
+  __attribute__((nodebug)) ap_uint<1> *get_strb_ptr() {
+#pragma HLS inline
+ return nullptr;
+  }
+  __attribute__((nodebug)) ap_uint<1> *get_user_ptr() {
+#pragma HLS inline
+ return nullptr;
+  }
+  __attribute__((nodebug)) ap_uint<1> *get_id_ptr() {
+#pragma HLS inline
+ return nullptr;
+  }
+  __attribute__((nodebug)) ap_uint<1> *get_dest_ptr() {
+#pragma HLS inline
+ return nullptr;
+  }
+
+
+  __attribute__((nodebug)) ap_uint<WData> get_data() const {
+#pragma HLS inline
+ return data;
+  }
+  __attribute__((nodebug)) ap_uint<kBytes> get_keep() const {
+#pragma HLS inline
+ return keep;
+  }
+  __attribute__((nodebug)) ap_uint<1> get_last() const {
+#pragma HLS inline
+ return last;
+  }
+
+  __attribute__((nodebug)) void set_data(const ap_uint<WData> &d) {
+#pragma HLS inline
+ data = d;
+  }
+  __attribute__((nodebug)) void set_keep(const ap_uint<kBytes> &k) {
+#pragma HLS inline
+ keep = k;
+  }
+  __attribute__((nodebug)) void set_last(const ap_uint<1> &l) {
+#pragma HLS inline
+ last = l;
+  }
+  __attribute__((nodebug)) void keep_all() {
+#pragma HLS inline
+ ap_uint<kBytes> k = 0;
+    keep = ~k;
+  }
+
+  __attribute__((nodebug)) qdma_axis() {
+#pragma HLS inline
+ ;
+  }
+  __attribute__((nodebug)) qdma_axis(ap_uint<WData> d) : data(d) {
+#pragma HLS inline
+ ;
+  }
+  __attribute__((nodebug)) qdma_axis(ap_uint<WData> d, ap_uint<kBytes> k) : data(d), keep(k) {
+#pragma HLS inline
+ ;
+  }
+  __attribute__((nodebug)) qdma_axis(ap_uint<WData> d, ap_uint<kBytes> k, ap_uint<1> l)
+      : data(d), keep(k), last(l) {
+#pragma HLS inline
+ ;
+  }
+  __attribute__((nodebug)) qdma_axis(const qdma_axis<WData, 0, 0, 0> &d)
+      : data(d.data), keep(d.keep), last(d.last) {
+#pragma HLS inline
+ ;
+  }
+  __attribute__((nodebug)) qdma_axis &operator=(const qdma_axis<WData, 0, 0, 0> &d) {
+#pragma HLS inline
+ data = d.data;
+    keep = d.keep;
+    last = d.last;
+    return *this;
+  }
+};
+
+
+
+
+namespace hls {
+
+template <typename T, std::size_t WUser, std::size_t WId, std::size_t WDest>
+class stream<axis<T, WUser, WId, WDest>> final {
+  typedef axis<T, WUser, WId, WDest> __STREAM_T__;
+
+public:
+
+  inline __attribute__((always_inline)) __attribute__((nodebug)) stream() {}
+
+  inline __attribute__((always_inline)) __attribute__((nodebug)) stream(const char *name) { (void)name; }
+
+
+private:
+  inline __attribute__((always_inline)) __attribute__((nodebug)) stream(const stream<__STREAM_T__> &chn) : V(chn.V) {}
+
+public:
+
+  inline __attribute__((always_inline)) __attribute__((nodebug)) void operator>>(__STREAM_T__ &rdata) { read(rdata); }
+
+  inline __attribute__((always_inline)) __attribute__((nodebug)) void operator<<(const __STREAM_T__ &wdata) { write(wdata); }
+
+
+  __attribute__((nodebug)) bool empty() {
+#pragma HLS inline
+ bool tmp = __fpga_axis_valid(&V.data, &V.keep, &V.strb, V.get_user_ptr(),
+                                 &V.last, V.get_id_ptr(), V.get_dest_ptr());
+    return !tmp;
+  }
+
+  __attribute__((nodebug)) bool full() {
+#pragma HLS inline
+ bool tmp = __fpga_axis_ready(&V.data, &V.keep, &V.strb, V.get_user_ptr(),
+                                 &V.last, V.get_id_ptr(), V.get_dest_ptr());
+    return !tmp;
+  }
+
+
+  __attribute__((nodebug)) void read(__STREAM_T__ &dout) {
+#pragma HLS inline
+ __STREAM_T__ tmp;
+    __fpga_axis_pop(&V.data, &V.keep, &V.strb, V.get_user_ptr(), &V.last,
+                    V.get_id_ptr(), V.get_dest_ptr(), &tmp.data, &tmp.keep,
+                    &tmp.strb, tmp.get_user_ptr(), &tmp.last, tmp.get_id_ptr(),
+                    tmp.get_dest_ptr());
+    dout = tmp;
+  }
+
+  __attribute__((nodebug)) __STREAM_T__ read() {
+#pragma HLS inline
+ __STREAM_T__ tmp;
+    __fpga_axis_pop(&V.data, &V.keep, &V.strb, V.get_user_ptr(), &V.last,
+                    V.get_id_ptr(), V.get_dest_ptr(), &tmp.data, &tmp.keep,
+                    &tmp.strb, tmp.get_user_ptr(), &tmp.last, tmp.get_id_ptr(),
+                    tmp.get_dest_ptr());
+    return tmp;
+  }
+
+
+  __attribute__((nodebug)) void write(const __STREAM_T__ &din) {
+#pragma HLS inline
+ __STREAM_T__ tmp = din;
+    __fpga_axis_push(&V.data, &V.keep, &V.strb, V.get_user_ptr(), &V.last,
+                     V.get_id_ptr(), V.get_dest_ptr(), &tmp.data, &tmp.keep,
+                     &tmp.strb, tmp.get_user_ptr(), &tmp.last, tmp.get_id_ptr(),
+                     tmp.get_dest_ptr());
+  }
+
+
+  __attribute__((nodebug)) bool read_nb(__STREAM_T__ &dout) {
+#pragma HLS inline
+ __STREAM_T__ tmp;
+    if (__fpga_axis_nb_pop(&V.data, &V.keep, &V.strb, V.get_user_ptr(), &V.last,
+                           V.get_id_ptr(), V.get_dest_ptr(), &tmp.data,
+                           &tmp.keep, &tmp.strb, tmp.get_user_ptr(),
+                           &tmp.last, tmp.get_id_ptr(), tmp.get_dest_ptr())) {
+      dout = tmp;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+  __attribute__((nodebug)) bool write_nb(const __STREAM_T__ &in) {
+#pragma HLS inline
+ __STREAM_T__ tmp = in;
+    bool full_n = __fpga_axis_nb_push(
+        &V.data, &V.keep, &V.strb, V.get_user_ptr(), &V.last, V.get_id_ptr(),
+        V.get_dest_ptr(), &tmp.data, &tmp.keep, &tmp.strb, tmp.get_user_ptr(),
+        &tmp.last, tmp.get_id_ptr(), tmp.get_dest_ptr());
+    return full_n;
+  }
+
+private:
+  __STREAM_T__ V __attribute__((no_ctor));
+};
+
+
+template <std::size_t WData>
+class stream<qdma_axis<WData, 0, 0, 0>> {
+  typedef qdma_axis<WData, 0, 0, 0> __STREAM_T__;
+
+public:
+
+  inline __attribute__((always_inline)) __attribute__((nodebug)) stream() {}
+
+  inline __attribute__((always_inline)) __attribute__((nodebug)) stream(const char *name) { (void)name; }
+
+
+private:
+  inline __attribute__((always_inline)) __attribute__((nodebug)) stream(const stream<__STREAM_T__> &chn) : V(chn.V) {}
+
+public:
+
+  inline __attribute__((always_inline)) __attribute__((nodebug)) void operator>>(__STREAM_T__ &rdata) { read(rdata); }
+
+  inline __attribute__((always_inline)) __attribute__((nodebug)) void operator<<(const __STREAM_T__ &wdata) { write(wdata); }
+
+
+  __attribute__((nodebug)) bool empty() {
+#pragma HLS inline
+ bool tmp = __fpga_axis_valid(&V.data, &V.keep, V.get_strb_ptr(), V.get_user_ptr(),
+                                 &V.last, V.get_id_ptr(), V.get_dest_ptr());
+    return !tmp;
+  }
+
+  __attribute__((nodebug)) bool full() {
+#pragma HLS inline
+ bool tmp = __fpga_axis_ready(&V.data, &V.keep, V.get_strb_ptr(), V.get_user_ptr(),
+                                 &V.last, V.get_id_ptr(), V.get_dest_ptr());
+    return !tmp;
+  }
+
+
+  __attribute__((nodebug)) void read(__STREAM_T__ &dout) {
+#pragma HLS inline
+ __STREAM_T__ tmp;
+    __fpga_axis_pop(&V.data, &V.keep, V.get_strb_ptr(), V.get_user_ptr(),
+                    &V.last, V.get_id_ptr(), V.get_dest_ptr(), &tmp.data,
+                    &tmp.keep, tmp.get_strb_ptr(), tmp.get_user_ptr(),
+                    &tmp.last, tmp.get_id_ptr(), tmp.get_dest_ptr());
+    dout = tmp;
+  }
+
+  __attribute__((nodebug)) __STREAM_T__ read() {
+#pragma HLS inline
+ __STREAM_T__ tmp;
+    __fpga_axis_pop(&V.data, &V.keep, V.get_strb_ptr(), V.get_user_ptr(), &V.last,
+                    V.get_id_ptr(), V.get_dest_ptr(), &tmp.data, &tmp.keep,
+                    tmp.get_strb_ptr(), tmp.get_user_ptr(), &tmp.last, tmp.get_id_ptr(),
+                    tmp.get_dest_ptr());
+    return tmp;
+  }
+
+
+  __attribute__((nodebug)) void write(const __STREAM_T__ &din) {
+#pragma HLS inline
+ __STREAM_T__ tmp = din;
+    __fpga_axis_push(&V.data, &V.keep, V.get_strb_ptr(), V.get_user_ptr(), &V.last,
+                     V.get_id_ptr(), V.get_dest_ptr(), &tmp.data, &tmp.keep,
+                     tmp.get_strb_ptr(), tmp.get_user_ptr(), &tmp.last, tmp.get_id_ptr(),
+                     tmp.get_dest_ptr());
+  }
+
+
+  __attribute__((nodebug)) bool read_nb(__STREAM_T__ &dout) {
+#pragma HLS inline
+ __STREAM_T__ tmp;
+
+    if (__fpga_axis_nb_pop(&V.data, &V.keep, &V.strb, V.get_user_ptr(), &V.last,
+                           V.get_id_ptr(), V.get_dest_ptr(), &tmp.data,
+                           &tmp.keep, &tmp.strb, tmp.get_user_ptr(),
+                           &tmp.last, tmp.get_id_ptr(), tmp.get_dest_ptr())) {
+      dout = tmp;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+  __attribute__((nodebug)) bool write_nb(const __STREAM_T__ &in) {
+#pragma HLS inline
+ __STREAM_T__ tmp = in;
+    bool full_n = __fpga_axis_nb_push(
+        &V.data, &V.keep, V.get_strb_ptr(), V.get_user_ptr(), &V.last, V.get_id_ptr(),
+        V.get_dest_ptr(), &tmp.data, &tmp.keep, tmp.get_strb_ptr(), tmp.get_user_ptr(),
+        &tmp.last, tmp.get_id_ptr(), tmp.get_dest_ptr());
+    return full_n;
+  }
+
+private:
+  __STREAM_T__ V __attribute__((no_ctor));
+};
+
+}
+# 6 "./Crypto.hpp" 2
+typedef ap_axiu<32, 0, 0, 0> axi_stream;
 
 __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
-    long_int DataIn[MOD_NUM][N],
+    hls::stream<axi_stream>& dataInStream,
+    hls::stream<axi_stream>& dataOutStream,
     int RAMSel,
     int RAMSel1,
     long_int NTTTwiddleIn[MOD_NUM][N/2],
     long_int INTTTwiddleIn[MOD_NUM][N/2],
     CryptoOperation OP
 );
-# 4 "Crypto.cpp" 2
+# 5 "Crypto.cpp" 2
 # 1 "./Arithmetic.hpp" 1
 
 
@@ -38390,7 +38916,7 @@ void MOD_PLAINTEXTMODULUS(long_int *input, long_int *res);
 void STEPMUL(long_int *input1, long_int *input2, long_long_int *res);
 void NTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX);
 void INTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX);
-# 5 "Crypto.cpp" 2
+# 6 "Crypto.cpp" 2
 # 1 "./PE_UNIT.hpp" 1
 
 
@@ -38399,7 +38925,7 @@ void INTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_
 
 
 void PE_UNIT(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, Operation op, int MOD_INDEX);
-# 6 "Crypto.cpp" 2
+# 7 "Crypto.cpp" 2
 # 1 "./PE_ARRAY.hpp" 1
 
 
@@ -38413,7 +38939,7 @@ void PE_ARRAY(
     long_int res2[BANKNum],
     Operation op,
     int MOD_INDEX);
-# 7 "Crypto.cpp" 2
+# 8 "Crypto.cpp" 2
 # 1 "./DATAMemory.hpp" 1
 
 
@@ -38424,7 +38950,7 @@ extern long_int data_ram[RAMNum][BANKNum][RAMDepth];
 
 void write_data(int address[BANKNum], long_int data[BANKNum], int ram_sel);
 void read_data(int address[BANKNum], long_int data[BANKNum], int ram_sel);
-# 8 "Crypto.cpp" 2
+# 9 "Crypto.cpp" 2
 # 1 "./Utils.hpp" 1
 
 
@@ -42432,7 +42958,7 @@ void permute_twiddle_factors(long_int *twiddle_factors, long_int *inv_twiddle_fa
 void precompute_weights(long_int twiddle_factor[MOD_NUM][N/2], long_int inv_twiddle_factor[MOD_NUM][N/2]);
 int bit_reverse(int x, int n);
 void apply_bit_reverse(long_int x[N], long_int result[N]);
-# 9 "Crypto.cpp" 2
+# 10 "Crypto.cpp" 2
 # 1 "./TwiddleMemory.hpp" 1
 
 
@@ -42445,14 +42971,15 @@ extern long_int twiddle_ram[2*PE_NUM][N];
 
 void write_twiddle_factor(int address[PE_NUM], long_int data[2*PE_NUM]);
 void read_twiddle_factor(int address[PE_NUM], long_int data[PE_NUM], Operation op);
-# 10 "Crypto.cpp" 2
+# 11 "Crypto.cpp" 2
 
 
 
 
 
 __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
-    long_int DataIn[MOD_NUM][N],
+    hls::stream<axi_stream>& dataInStream,
+    hls::stream<axi_stream>& dataOutStream,
     int RAMSel,
     int RAMSel1,
     long_int NTTTwiddleIn[MOD_NUM][N/2],
@@ -42461,11 +42988,11 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
 ){
 #line 48 "/home/meng/HLS/Crypto/Crypto/solution1/csynth.tcl"
 #pragma HLSDIRECTIVE TOP name=Crypto
-# 22 "Crypto.cpp"
+# 24 "Crypto.cpp"
 
 #line 7 "/home/meng/HLS/Crypto/Crypto/solution1/directives.tcl"
 #pragma HLSDIRECTIVE TOP name=Crypto
-# 22 "Crypto.cpp"
+# 24 "Crypto.cpp"
 
 
 
@@ -42489,36 +43016,39 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
 
 
 
-#pragma HLS INTERFACE s_axilite port=DataIn
-#pragma HLS INTERFACE s_axilite port=NTTTwiddleIn
-#pragma HLS INTERFACE s_axilite port=INTTTwiddleIn
+#pragma HLS INTERFACE axis port=dataInStream
+#pragma HLS INTERFACE axis port=dataOutStream
 
-#pragma HLS INTERFACE s_axilite port=return
-#pragma HLS INTERFACE s_axilite port=RAMSel
-#pragma HLS INTERFACE s_axilite port=RAMSel1
-#pragma HLS INTERFACE s_axilite port=OP
+#pragma HLS INTERFACE s_axilite port=NTTTwiddleIn bundle=control
+#pragma HLS INTERFACE s_axilite port=INTTTwiddleIn bundle=control
+#pragma HLS INTERFACE s_axilite port=return bundle=control
+#pragma HLS INTERFACE s_axilite port=RAMSel bundle=control
+#pragma HLS INTERFACE s_axilite port=RAMSel1 bundle=control
+#pragma HLS INTERFACE s_axilite port=OP bundle=control
 
 
  switch (OP)
     {
         case POLY_WRITE:
-            WRITE_DATA_LOOP:
-            for(int i = 0; i < MOD_NUM; i++){
-#pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_61_1: for (int j = 0; j < N; j++){
+            VITIS_LOOP_61_1: for (int i = 0; i < MOD_NUM; i++) {
+#pragma HLS UNROLL
+ VITIS_LOOP_63_2: for (int j = 0; j < N; j++) {
 #pragma HLS PIPELINE
- DataRAM[RAMSel][i][j] = DataIn[i][j];
+ axi_stream in = dataInStream.read();
+                    DataRAM[RAMSel][i][j] = in.data;
                 }
             }
             break;
 
         case POLY_READ:
-            READ_DATA_LOOP:
-            for(int i = 0; i < MOD_NUM; i++){
-#pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_72_2: for (int j = 0; j < N; j++){
+            VITIS_LOOP_72_3: for (int i = 0; i < MOD_NUM; i++) {
+#pragma HLS UNROLL
+ VITIS_LOOP_74_4: for (int j = 0; j < N; j++) {
 #pragma HLS PIPELINE
- DataIn[i][j] = DataRAM[RAMSel][i][j];
+ axi_stream out;
+                    out.data = DataRAM[RAMSel][i][j];
+                    out.last = (i == MOD_NUM - 1 && j == N - 1);
+                    dataOutStream.write(out);
                 }
             }
             break;
@@ -42527,7 +43057,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
             WRITE_TWIDDLE_LOOP:
             for (int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_83_3: for (int j = 0; j < N/2; j++){
+ VITIS_LOOP_88_5: for (int j = 0; j < N/2; j++){
 #pragma HLS PIPELINE
  NTTTWiddleRAM[i][j] = NTTTwiddleIn[i][j];
                     INTTTWiddleRAM[i][j] = INTTTwiddleIn[i][j];
@@ -42601,7 +43131,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
             break;
 
         case POLY_NTT:
-            VITIS_LOOP_157_4: for(int i = 0; i < MOD_NUM; i++){
+            VITIS_LOOP_162_6: for(int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
  apply_bit_reverse(DataRAM[RAMSel][i], BitReverseData[i]);
             }
@@ -42609,7 +43139,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
             NTT_PERMUTE_LOOP:
             for(int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_165_5: for (int j = 0; j < N; j++){
+ VITIS_LOOP_170_7: for (int j = 0; j < N; j++){
 #pragma HLS PIPELINE
  DataRAM[RAMSel][i][j] = BitReverseData[i][j];
                 }
@@ -42618,7 +43148,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
             NTT_STAGE_LOOP:
             for (int i = 0 ; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_174_6: for(int h = 2; h <= N; h *= 2){
+ VITIS_LOOP_179_8: for(int h = 2; h <= N; h *= 2){
                     int hf = h >> 1;
                     int ut = N / h;
                     NTT_GROUP_LOOP:
@@ -42646,7 +43176,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
 
 
         case POLY_INTT:
-            VITIS_LOOP_202_7: for(int i = 0; i < MOD_NUM; i++){
+            VITIS_LOOP_207_9: for(int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
  apply_bit_reverse(DataRAM[RAMSel][i], BitReverseData[i]);
             }
@@ -42654,7 +43184,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
             INTT_PERMUTE_LOOP:
             for(int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_210_8: for (int j = 0; j < N; j++){
+ VITIS_LOOP_215_10: for (int j = 0; j < N; j++){
 #pragma HLS PIPELINE
  DataRAM[RAMSel][i][j] = BitReverseData[i][j];
                 }
@@ -42663,7 +43193,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
             INTT_STAGE_LOOP:
             for (int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_219_9: for(int h = 2; h <= N; h *= 2){
+ VITIS_LOOP_224_11: for(int h = 2; h <= N; h *= 2){
                     int hf = h >> 1;
                     int ut = N / h;
                     INTT_GROUP_LOOP:
@@ -42688,7 +43218,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
                 }
             }
 
-            VITIS_LOOP_244_10: for (int i = 0; i < MOD_NUM; i++){
+            VITIS_LOOP_249_12: for (int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
  long_int n_inv = static_cast<long_int>(N_INV[i]);
                 MUL_INV_LOOP:

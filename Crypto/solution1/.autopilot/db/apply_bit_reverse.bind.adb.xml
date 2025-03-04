@@ -283,7 +283,7 @@ for.body.lr.ph.i.split:1 %speclooptripcount_ln24 = speclooptripcount void @_ssdm
 
 <Node id="15" bw="0" op_0_bw="0" op_1_bw="0">
 <![CDATA[
-for.body.lr.ph.i.split:2 %specloopname_ln24 = specloopname void @_ssdm_op_SpecLoopName, void @empty_10
+for.body.lr.ph.i.split:2 %specloopname_ln24 = specloopname void @_ssdm_op_SpecLoopName, void @empty_11
 
 ]]></Node>
 <StgValue><ssdm name="specloopname_ln24"/></StgValue>
@@ -429,7 +429,7 @@ for.body.lr.ph.i.split:10 %br_ln24 = br void %for.body.lr.ph.i
 </dataflow>
 <dataflow id="85" from="_ssdm_op_SpecLoopName" to="specloopname_ln24" fromId="84" toId="21">
 </dataflow>
-<dataflow id="87" from="empty_10" to="specloopname_ln24" fromId="86" toId="21">
+<dataflow id="87" from="empty_11" to="specloopname_ln24" fromId="86" toId="21">
 </dataflow>
 <dataflow id="88" from="or_ln13_s" to="zext_ln26" fromId="15" toId="22">
 </dataflow>

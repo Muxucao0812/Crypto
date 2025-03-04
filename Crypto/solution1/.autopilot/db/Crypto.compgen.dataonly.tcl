@@ -38,25 +38,13 @@ NTTTwiddleIn {
 	core_latency 1
 	byte_write 0
 }
-DataIn { 
-	dir IO
-	width 32
-	depth 12288
-	mode ap_memory
-	offset 65536
-	offset_end 131071
-	core_op ram_1p
-	core_impl auto
-	core_latency 1
-	byte_write 0
-}
 INTTTwiddleIn { 
 	dir I
 	width 32
 	depth 6144
 	mode ap_memory
-	offset 131072
-	offset_end 163839
+	offset 65536
+	offset_end 98303
 	core_op ram_1p
 	core_impl auto
 	core_latency 1

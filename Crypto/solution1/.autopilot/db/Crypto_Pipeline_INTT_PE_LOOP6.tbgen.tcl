@@ -16,27 +16,27 @@ set C_modelName {Crypto_Pipeline_INTT_PE_LOOP6}
 set C_modelType { void 0 }
 set C_modelArgList {
 	{ hf_11 int 31 regular  }
-	{ trunc_ln223_s int 12 regular  }
+	{ trunc_ln228_s int 12 regular  }
 	{ DataRAM_2 int 32 regular {array 4096 { 2 2 } 1 1 }  }
 	{ DataRAM_5 int 32 regular {array 4096 { 2 2 } 1 1 }  }
 	{ DataRAM_8 int 32 regular {array 4096 { 2 2 } 1 1 }  }
 	{ DataRAM_11 int 32 regular {array 4096 { 2 2 } 1 1 }  }
 	{ RAMSel_cast int 2 regular  }
-	{ trunc_ln223_8 int 12 regular  }
-	{ trunc_ln223_9 int 11 regular  }
+	{ trunc_ln228_8 int 12 regular  }
+	{ trunc_ln228_9 int 11 regular  }
 	{ INTTTWiddleRAM_2 int 32 regular {array 2048 { 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 } 1 1 }  }
 }
 set hasAXIMCache 0
 set C_modelArgMapList {[ 
 	{ "Name" : "hf_11", "interface" : "wire", "bitwidth" : 31, "direction" : "READONLY"} , 
- 	{ "Name" : "trunc_ln223_s", "interface" : "wire", "bitwidth" : 12, "direction" : "READONLY"} , 
+ 	{ "Name" : "trunc_ln228_s", "interface" : "wire", "bitwidth" : 12, "direction" : "READONLY"} , 
  	{ "Name" : "DataRAM_2", "interface" : "memory", "bitwidth" : 32, "direction" : "READWRITE"} , 
  	{ "Name" : "DataRAM_5", "interface" : "memory", "bitwidth" : 32, "direction" : "READWRITE"} , 
  	{ "Name" : "DataRAM_8", "interface" : "memory", "bitwidth" : 32, "direction" : "READWRITE"} , 
  	{ "Name" : "DataRAM_11", "interface" : "memory", "bitwidth" : 32, "direction" : "READWRITE"} , 
  	{ "Name" : "RAMSel_cast", "interface" : "wire", "bitwidth" : 2, "direction" : "READONLY"} , 
- 	{ "Name" : "trunc_ln223_8", "interface" : "wire", "bitwidth" : 12, "direction" : "READONLY"} , 
- 	{ "Name" : "trunc_ln223_9", "interface" : "wire", "bitwidth" : 11, "direction" : "READONLY"} , 
+ 	{ "Name" : "trunc_ln228_8", "interface" : "wire", "bitwidth" : 12, "direction" : "READONLY"} , 
+ 	{ "Name" : "trunc_ln228_9", "interface" : "wire", "bitwidth" : 11, "direction" : "READONLY"} , 
  	{ "Name" : "INTTTWiddleRAM_2", "interface" : "memory", "bitwidth" : 32, "direction" : "READONLY"} ]}
 # RTL Port declarations: 
 set portNum 72
@@ -48,7 +48,7 @@ set portList {
 	{ ap_idle sc_out sc_logic 1 done -1 } 
 	{ ap_ready sc_out sc_logic 1 ready -1 } 
 	{ hf_11 sc_in sc_lv 31 signal 0 } 
-	{ trunc_ln223_s sc_in sc_lv 12 signal 1 } 
+	{ trunc_ln228_s sc_in sc_lv 12 signal 1 } 
 	{ DataRAM_2_address0 sc_out sc_lv 12 signal 2 } 
 	{ DataRAM_2_ce0 sc_out sc_logic 1 signal 2 } 
 	{ DataRAM_2_we0 sc_out sc_logic 1 signal 2 } 
@@ -90,29 +90,29 @@ set portList {
 	{ DataRAM_11_d1 sc_out sc_lv 32 signal 5 } 
 	{ DataRAM_11_q1 sc_in sc_lv 32 signal 5 } 
 	{ RAMSel_cast sc_in sc_lv 2 signal 6 } 
-	{ trunc_ln223_8 sc_in sc_lv 12 signal 7 } 
-	{ trunc_ln223_9 sc_in sc_lv 11 signal 8 } 
+	{ trunc_ln228_8 sc_in sc_lv 12 signal 7 } 
+	{ trunc_ln228_9 sc_in sc_lv 11 signal 8 } 
 	{ INTTTWiddleRAM_2_address0 sc_out sc_lv 11 signal 9 } 
 	{ INTTTWiddleRAM_2_ce0 sc_out sc_logic 1 signal 9 } 
 	{ INTTTWiddleRAM_2_q0 sc_in sc_lv 32 signal 9 } 
 	{ INTTTWiddleRAM_2_address1 sc_out sc_lv 11 signal 9 } 
 	{ INTTTWiddleRAM_2_ce1 sc_out sc_logic 1 signal 9 } 
 	{ INTTTWiddleRAM_2_q1 sc_in sc_lv 32 signal 9 } 
-	{ grp_ADD_MOD_fu_1700_p_din1 sc_out sc_lv 32 signal -1 } 
-	{ grp_ADD_MOD_fu_1700_p_din2 sc_out sc_lv 32 signal -1 } 
-	{ grp_ADD_MOD_fu_1700_p_din3 sc_out sc_lv 2 signal -1 } 
-	{ grp_ADD_MOD_fu_1700_p_dout0 sc_in sc_lv 32 signal -1 } 
-	{ grp_ADD_MOD_fu_1700_p_ready sc_in sc_logic 1 signal -1 } 
-	{ grp_MUL_MOD_fu_1706_p_din1 sc_out sc_lv 32 signal -1 } 
-	{ grp_MUL_MOD_fu_1706_p_din2 sc_out sc_lv 32 signal -1 } 
-	{ grp_MUL_MOD_fu_1706_p_din3 sc_out sc_lv 2 signal -1 } 
-	{ grp_MUL_MOD_fu_1706_p_dout0 sc_in sc_lv 32 signal -1 } 
-	{ grp_MUL_MOD_fu_1706_p_ce sc_out sc_logic 1 signal -1 } 
-	{ grp_SUB_MOD_fu_1712_p_din1 sc_out sc_lv 32 signal -1 } 
-	{ grp_SUB_MOD_fu_1712_p_din2 sc_out sc_lv 32 signal -1 } 
-	{ grp_SUB_MOD_fu_1712_p_din3 sc_out sc_lv 2 signal -1 } 
-	{ grp_SUB_MOD_fu_1712_p_dout0 sc_in sc_lv 32 signal -1 } 
-	{ grp_SUB_MOD_fu_1712_p_ready sc_in sc_logic 1 signal -1 } 
+	{ grp_ADD_MOD_fu_1757_p_din1 sc_out sc_lv 32 signal -1 } 
+	{ grp_ADD_MOD_fu_1757_p_din2 sc_out sc_lv 32 signal -1 } 
+	{ grp_ADD_MOD_fu_1757_p_din3 sc_out sc_lv 2 signal -1 } 
+	{ grp_ADD_MOD_fu_1757_p_dout0 sc_in sc_lv 32 signal -1 } 
+	{ grp_ADD_MOD_fu_1757_p_ready sc_in sc_logic 1 signal -1 } 
+	{ grp_MUL_MOD_fu_1763_p_din1 sc_out sc_lv 32 signal -1 } 
+	{ grp_MUL_MOD_fu_1763_p_din2 sc_out sc_lv 32 signal -1 } 
+	{ grp_MUL_MOD_fu_1763_p_din3 sc_out sc_lv 2 signal -1 } 
+	{ grp_MUL_MOD_fu_1763_p_dout0 sc_in sc_lv 32 signal -1 } 
+	{ grp_MUL_MOD_fu_1763_p_ce sc_out sc_logic 1 signal -1 } 
+	{ grp_SUB_MOD_fu_1769_p_din1 sc_out sc_lv 32 signal -1 } 
+	{ grp_SUB_MOD_fu_1769_p_din2 sc_out sc_lv 32 signal -1 } 
+	{ grp_SUB_MOD_fu_1769_p_din3 sc_out sc_lv 2 signal -1 } 
+	{ grp_SUB_MOD_fu_1769_p_dout0 sc_in sc_lv 32 signal -1 } 
+	{ grp_SUB_MOD_fu_1769_p_ready sc_in sc_logic 1 signal -1 } 
 }
 set NewPortList {[ 
 	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
@@ -122,7 +122,7 @@ set NewPortList {[
  	{ "name": "ap_idle", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "done", "bundle":{"name": "ap_idle", "role": "default" }} , 
  	{ "name": "ap_ready", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "ready", "bundle":{"name": "ap_ready", "role": "default" }} , 
  	{ "name": "hf_11", "direction": "in", "datatype": "sc_lv", "bitwidth":31, "type": "signal", "bundle":{"name": "hf_11", "role": "default" }} , 
- 	{ "name": "trunc_ln223_s", "direction": "in", "datatype": "sc_lv", "bitwidth":12, "type": "signal", "bundle":{"name": "trunc_ln223_s", "role": "default" }} , 
+ 	{ "name": "trunc_ln228_s", "direction": "in", "datatype": "sc_lv", "bitwidth":12, "type": "signal", "bundle":{"name": "trunc_ln228_s", "role": "default" }} , 
  	{ "name": "DataRAM_2_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":12, "type": "signal", "bundle":{"name": "DataRAM_2", "role": "address0" }} , 
  	{ "name": "DataRAM_2_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_2", "role": "ce0" }} , 
  	{ "name": "DataRAM_2_we0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM_2", "role": "we0" }} , 
@@ -164,29 +164,29 @@ set NewPortList {[
  	{ "name": "DataRAM_11_d1", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_11", "role": "d1" }} , 
  	{ "name": "DataRAM_11_q1", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM_11", "role": "q1" }} , 
  	{ "name": "RAMSel_cast", "direction": "in", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "RAMSel_cast", "role": "default" }} , 
- 	{ "name": "trunc_ln223_8", "direction": "in", "datatype": "sc_lv", "bitwidth":12, "type": "signal", "bundle":{"name": "trunc_ln223_8", "role": "default" }} , 
- 	{ "name": "trunc_ln223_9", "direction": "in", "datatype": "sc_lv", "bitwidth":11, "type": "signal", "bundle":{"name": "trunc_ln223_9", "role": "default" }} , 
+ 	{ "name": "trunc_ln228_8", "direction": "in", "datatype": "sc_lv", "bitwidth":12, "type": "signal", "bundle":{"name": "trunc_ln228_8", "role": "default" }} , 
+ 	{ "name": "trunc_ln228_9", "direction": "in", "datatype": "sc_lv", "bitwidth":11, "type": "signal", "bundle":{"name": "trunc_ln228_9", "role": "default" }} , 
  	{ "name": "INTTTWiddleRAM_2_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":11, "type": "signal", "bundle":{"name": "INTTTWiddleRAM_2", "role": "address0" }} , 
  	{ "name": "INTTTWiddleRAM_2_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "INTTTWiddleRAM_2", "role": "ce0" }} , 
  	{ "name": "INTTTWiddleRAM_2_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "INTTTWiddleRAM_2", "role": "q0" }} , 
  	{ "name": "INTTTWiddleRAM_2_address1", "direction": "out", "datatype": "sc_lv", "bitwidth":11, "type": "signal", "bundle":{"name": "INTTTWiddleRAM_2", "role": "address1" }} , 
  	{ "name": "INTTTWiddleRAM_2_ce1", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "INTTTWiddleRAM_2", "role": "ce1" }} , 
  	{ "name": "INTTTWiddleRAM_2_q1", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "INTTTWiddleRAM_2", "role": "q1" }} , 
- 	{ "name": "grp_ADD_MOD_fu_1700_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_ADD_MOD_fu_1700_p_din1", "role": "default" }} , 
- 	{ "name": "grp_ADD_MOD_fu_1700_p_din2", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_ADD_MOD_fu_1700_p_din2", "role": "default" }} , 
- 	{ "name": "grp_ADD_MOD_fu_1700_p_din3", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "grp_ADD_MOD_fu_1700_p_din3", "role": "default" }} , 
- 	{ "name": "grp_ADD_MOD_fu_1700_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_ADD_MOD_fu_1700_p_dout0", "role": "default" }} , 
- 	{ "name": "grp_ADD_MOD_fu_1700_p_ready", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_ADD_MOD_fu_1700_p_ready", "role": "default" }} , 
- 	{ "name": "grp_MUL_MOD_fu_1706_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1706_p_din1", "role": "default" }} , 
- 	{ "name": "grp_MUL_MOD_fu_1706_p_din2", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1706_p_din2", "role": "default" }} , 
- 	{ "name": "grp_MUL_MOD_fu_1706_p_din3", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1706_p_din3", "role": "default" }} , 
- 	{ "name": "grp_MUL_MOD_fu_1706_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1706_p_dout0", "role": "default" }} , 
- 	{ "name": "grp_MUL_MOD_fu_1706_p_ce", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1706_p_ce", "role": "default" }} , 
- 	{ "name": "grp_SUB_MOD_fu_1712_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_SUB_MOD_fu_1712_p_din1", "role": "default" }} , 
- 	{ "name": "grp_SUB_MOD_fu_1712_p_din2", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_SUB_MOD_fu_1712_p_din2", "role": "default" }} , 
- 	{ "name": "grp_SUB_MOD_fu_1712_p_din3", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "grp_SUB_MOD_fu_1712_p_din3", "role": "default" }} , 
- 	{ "name": "grp_SUB_MOD_fu_1712_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_SUB_MOD_fu_1712_p_dout0", "role": "default" }} , 
- 	{ "name": "grp_SUB_MOD_fu_1712_p_ready", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_SUB_MOD_fu_1712_p_ready", "role": "default" }}  ]}
+ 	{ "name": "grp_ADD_MOD_fu_1757_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_ADD_MOD_fu_1757_p_din1", "role": "default" }} , 
+ 	{ "name": "grp_ADD_MOD_fu_1757_p_din2", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_ADD_MOD_fu_1757_p_din2", "role": "default" }} , 
+ 	{ "name": "grp_ADD_MOD_fu_1757_p_din3", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "grp_ADD_MOD_fu_1757_p_din3", "role": "default" }} , 
+ 	{ "name": "grp_ADD_MOD_fu_1757_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_ADD_MOD_fu_1757_p_dout0", "role": "default" }} , 
+ 	{ "name": "grp_ADD_MOD_fu_1757_p_ready", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_ADD_MOD_fu_1757_p_ready", "role": "default" }} , 
+ 	{ "name": "grp_MUL_MOD_fu_1763_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1763_p_din1", "role": "default" }} , 
+ 	{ "name": "grp_MUL_MOD_fu_1763_p_din2", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1763_p_din2", "role": "default" }} , 
+ 	{ "name": "grp_MUL_MOD_fu_1763_p_din3", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1763_p_din3", "role": "default" }} , 
+ 	{ "name": "grp_MUL_MOD_fu_1763_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1763_p_dout0", "role": "default" }} , 
+ 	{ "name": "grp_MUL_MOD_fu_1763_p_ce", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_MUL_MOD_fu_1763_p_ce", "role": "default" }} , 
+ 	{ "name": "grp_SUB_MOD_fu_1769_p_din1", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_SUB_MOD_fu_1769_p_din1", "role": "default" }} , 
+ 	{ "name": "grp_SUB_MOD_fu_1769_p_din2", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_SUB_MOD_fu_1769_p_din2", "role": "default" }} , 
+ 	{ "name": "grp_SUB_MOD_fu_1769_p_din3", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "grp_SUB_MOD_fu_1769_p_din3", "role": "default" }} , 
+ 	{ "name": "grp_SUB_MOD_fu_1769_p_dout0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "grp_SUB_MOD_fu_1769_p_dout0", "role": "default" }} , 
+ 	{ "name": "grp_SUB_MOD_fu_1769_p_ready", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "grp_SUB_MOD_fu_1769_p_ready", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
 	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4"],
@@ -205,14 +205,14 @@ set RtlHierarchyInfo {[
 		"IsBlackBox" : "0",
 		"Port" : [
 			{"Name" : "hf_11", "Type" : "None", "Direction" : "I"},
-			{"Name" : "trunc_ln223_s", "Type" : "None", "Direction" : "I"},
+			{"Name" : "trunc_ln228_s", "Type" : "None", "Direction" : "I"},
 			{"Name" : "DataRAM_2", "Type" : "Memory", "Direction" : "IO"},
 			{"Name" : "DataRAM_5", "Type" : "Memory", "Direction" : "IO"},
 			{"Name" : "DataRAM_8", "Type" : "Memory", "Direction" : "IO"},
 			{"Name" : "DataRAM_11", "Type" : "Memory", "Direction" : "IO"},
 			{"Name" : "RAMSel_cast", "Type" : "None", "Direction" : "I"},
-			{"Name" : "trunc_ln223_8", "Type" : "None", "Direction" : "I"},
-			{"Name" : "trunc_ln223_9", "Type" : "None", "Direction" : "I"},
+			{"Name" : "trunc_ln228_8", "Type" : "None", "Direction" : "I"},
+			{"Name" : "trunc_ln228_9", "Type" : "None", "Direction" : "I"},
 			{"Name" : "INTTTWiddleRAM_2", "Type" : "Memory", "Direction" : "I"}],
 		"Loop" : [
 			{"Name" : "INTT_PE_LOOP", "PipelineType" : "UPC",
@@ -226,14 +226,14 @@ set RtlHierarchyInfo {[
 set ArgLastReadFirstWriteLatency {
 	Crypto_Pipeline_INTT_PE_LOOP6 {
 		hf_11 {Type I LastRead 0 FirstWrite -1}
-		trunc_ln223_s {Type I LastRead 0 FirstWrite -1}
+		trunc_ln228_s {Type I LastRead 0 FirstWrite -1}
 		DataRAM_2 {Type IO LastRead 59 FirstWrite 18}
 		DataRAM_5 {Type IO LastRead 59 FirstWrite 18}
 		DataRAM_8 {Type IO LastRead 59 FirstWrite 18}
 		DataRAM_11 {Type IO LastRead 59 FirstWrite 18}
 		RAMSel_cast {Type I LastRead 0 FirstWrite -1}
-		trunc_ln223_8 {Type I LastRead 0 FirstWrite -1}
-		trunc_ln223_9 {Type I LastRead 0 FirstWrite -1}
+		trunc_ln228_8 {Type I LastRead 0 FirstWrite -1}
+		trunc_ln228_9 {Type I LastRead 0 FirstWrite -1}
 		INTTTWiddleRAM_2 {Type I LastRead 3 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
@@ -249,13 +249,13 @@ set PipelineEnableSignalInfo {[
 
 set Spec2ImplPortList { 
 	hf_11 { ap_none {  { hf_11 in_data 0 31 } } }
-	trunc_ln223_s { ap_none {  { trunc_ln223_s in_data 0 12 } } }
+	trunc_ln228_s { ap_none {  { trunc_ln228_s in_data 0 12 } } }
 	DataRAM_2 { ap_memory {  { DataRAM_2_address0 mem_address 1 12 }  { DataRAM_2_ce0 mem_ce 1 1 }  { DataRAM_2_we0 mem_we 1 1 }  { DataRAM_2_d0 mem_din 1 32 }  { DataRAM_2_q0 mem_dout 0 32 }  { DataRAM_2_address1 MemPortADDR2 1 12 }  { DataRAM_2_ce1 MemPortCE2 1 1 }  { DataRAM_2_we1 MemPortWE2 1 1 }  { DataRAM_2_d1 MemPortDIN2 1 32 }  { DataRAM_2_q1 MemPortDOUT2 0 32 } } }
 	DataRAM_5 { ap_memory {  { DataRAM_5_address0 mem_address 1 12 }  { DataRAM_5_ce0 mem_ce 1 1 }  { DataRAM_5_we0 mem_we 1 1 }  { DataRAM_5_d0 mem_din 1 32 }  { DataRAM_5_q0 mem_dout 0 32 }  { DataRAM_5_address1 MemPortADDR2 1 12 }  { DataRAM_5_ce1 MemPortCE2 1 1 }  { DataRAM_5_we1 MemPortWE2 1 1 }  { DataRAM_5_d1 MemPortDIN2 1 32 }  { DataRAM_5_q1 MemPortDOUT2 0 32 } } }
 	DataRAM_8 { ap_memory {  { DataRAM_8_address0 mem_address 1 12 }  { DataRAM_8_ce0 mem_ce 1 1 }  { DataRAM_8_we0 mem_we 1 1 }  { DataRAM_8_d0 mem_din 1 32 }  { DataRAM_8_q0 mem_dout 0 32 }  { DataRAM_8_address1 MemPortADDR2 1 12 }  { DataRAM_8_ce1 MemPortCE2 1 1 }  { DataRAM_8_we1 MemPortWE2 1 1 }  { DataRAM_8_d1 MemPortDIN2 1 32 }  { DataRAM_8_q1 MemPortDOUT2 0 32 } } }
 	DataRAM_11 { ap_memory {  { DataRAM_11_address0 mem_address 1 12 }  { DataRAM_11_ce0 mem_ce 1 1 }  { DataRAM_11_we0 mem_we 1 1 }  { DataRAM_11_d0 mem_din 1 32 }  { DataRAM_11_q0 mem_dout 0 32 }  { DataRAM_11_address1 MemPortADDR2 1 12 }  { DataRAM_11_ce1 MemPortCE2 1 1 }  { DataRAM_11_we1 MemPortWE2 1 1 }  { DataRAM_11_d1 MemPortDIN2 1 32 }  { DataRAM_11_q1 MemPortDOUT2 0 32 } } }
 	RAMSel_cast { ap_none {  { RAMSel_cast in_data 0 2 } } }
-	trunc_ln223_8 { ap_none {  { trunc_ln223_8 in_data 0 12 } } }
-	trunc_ln223_9 { ap_none {  { trunc_ln223_9 in_data 0 11 } } }
+	trunc_ln228_8 { ap_none {  { trunc_ln228_8 in_data 0 12 } } }
+	trunc_ln228_9 { ap_none {  { trunc_ln228_9 in_data 0 11 } } }
 	INTTTWiddleRAM_2 { ap_memory {  { INTTTWiddleRAM_2_address0 mem_address 1 11 }  { INTTTWiddleRAM_2_ce0 mem_ce 1 1 }  { INTTTWiddleRAM_2_q0 mem_dout 0 32 }  { INTTTWiddleRAM_2_address1 MemPortADDR2 1 11 }  { INTTTWiddleRAM_2_ce1 MemPortCE2 1 1 }  { INTTTWiddleRAM_2_q1 MemPortDOUT2 0 32 } } }
 }

@@ -4,9 +4,9 @@ set SynModuleInfo {
       {MODELNAME Crypto_flow_control_loop_pipe_sequential_init RTLNAME Crypto_flow_control_loop_pipe_sequential_init BINDTYPE interface TYPE internal_upc_flow_control INSTNAME Crypto_flow_control_loop_pipe_sequential_init_U}
     }
   }
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_210_8 MODELNAME Crypto_Pipeline_VITIS_LOOP_210_8 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_210_8}
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_210_83 MODELNAME Crypto_Pipeline_VITIS_LOOP_210_83 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_210_83}
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_210_84 MODELNAME Crypto_Pipeline_VITIS_LOOP_210_84 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_210_84}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_215_10 MODELNAME Crypto_Pipeline_VITIS_LOOP_215_10 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_215_10}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_215_103 MODELNAME Crypto_Pipeline_VITIS_LOOP_215_103 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_215_103}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_215_104 MODELNAME Crypto_Pipeline_VITIS_LOOP_215_104 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_215_104}
   {SRCNAME MUL_MOD MODELNAME MUL_MOD RTLNAME Crypto_MUL_MOD
     SUBMODULES {
       {MODELNAME Crypto_mul_16ns_16ns_32_1_0 RTLNAME Crypto_mul_16ns_16ns_32_1_0 BINDTYPE op TYPE mul IMPL auto LATENCY 0 ALLOW_PRAGMA 1}
@@ -30,9 +30,9 @@ set SynModuleInfo {
   {SRCNAME Crypto_Pipeline_MUL_INV_LOOP MODELNAME Crypto_Pipeline_MUL_INV_LOOP RTLNAME Crypto_Crypto_Pipeline_MUL_INV_LOOP}
   {SRCNAME Crypto_Pipeline_MUL_INV_LOOP21 MODELNAME Crypto_Pipeline_MUL_INV_LOOP21 RTLNAME Crypto_Crypto_Pipeline_MUL_INV_LOOP21}
   {SRCNAME Crypto_Pipeline_MUL_INV_LOOP22 MODELNAME Crypto_Pipeline_MUL_INV_LOOP22 RTLNAME Crypto_Crypto_Pipeline_MUL_INV_LOOP22}
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_165_5 MODELNAME Crypto_Pipeline_VITIS_LOOP_165_5 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_165_5}
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_165_51 MODELNAME Crypto_Pipeline_VITIS_LOOP_165_51 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_165_51}
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_165_52 MODELNAME Crypto_Pipeline_VITIS_LOOP_165_52 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_165_52}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_170_7 MODELNAME Crypto_Pipeline_VITIS_LOOP_170_7 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_170_7}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_170_71 MODELNAME Crypto_Pipeline_VITIS_LOOP_170_71 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_170_71}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_170_72 MODELNAME Crypto_Pipeline_VITIS_LOOP_170_72 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_170_72}
   {SRCNAME Crypto_Pipeline_NTT_PE_LOOP MODELNAME Crypto_Pipeline_NTT_PE_LOOP RTLNAME Crypto_Crypto_Pipeline_NTT_PE_LOOP}
   {SRCNAME Crypto_Pipeline_NTT_PE_LOOP19 MODELNAME Crypto_Pipeline_NTT_PE_LOOP19 RTLNAME Crypto_Crypto_Pipeline_NTT_PE_LOOP19}
   {SRCNAME Crypto_Pipeline_NTT_PE_LOOP20 MODELNAME Crypto_Pipeline_NTT_PE_LOOP20 RTLNAME Crypto_Crypto_Pipeline_NTT_PE_LOOP20}
@@ -50,15 +50,15 @@ set SynModuleInfo {
   {SRCNAME Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1 MODELNAME Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1 RTLNAME Crypto_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1}
   {SRCNAME Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113 MODELNAME Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113 RTLNAME Crypto_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113}
   {SRCNAME Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114 MODELNAME Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114 RTLNAME Crypto_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114}
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_83_3 MODELNAME Crypto_Pipeline_VITIS_LOOP_83_3 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_83_3}
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_83_311 MODELNAME Crypto_Pipeline_VITIS_LOOP_83_311 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_83_311}
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_83_312 MODELNAME Crypto_Pipeline_VITIS_LOOP_83_312 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_83_312}
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_72_2 MODELNAME Crypto_Pipeline_VITIS_LOOP_72_2 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_72_2}
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_72_29 MODELNAME Crypto_Pipeline_VITIS_LOOP_72_29 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_72_29}
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_72_210 MODELNAME Crypto_Pipeline_VITIS_LOOP_72_210 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_72_210}
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_61_1 MODELNAME Crypto_Pipeline_VITIS_LOOP_61_1 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_61_1}
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_61_17 MODELNAME Crypto_Pipeline_VITIS_LOOP_61_17 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_61_17}
-  {SRCNAME Crypto_Pipeline_VITIS_LOOP_61_18 MODELNAME Crypto_Pipeline_VITIS_LOOP_61_18 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_61_18}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_88_5 MODELNAME Crypto_Pipeline_VITIS_LOOP_88_5 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_88_5}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_88_511 MODELNAME Crypto_Pipeline_VITIS_LOOP_88_511 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_88_511}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_88_512 MODELNAME Crypto_Pipeline_VITIS_LOOP_88_512 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_88_512}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_74_4 MODELNAME Crypto_Pipeline_VITIS_LOOP_74_4 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_74_4}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_74_49 MODELNAME Crypto_Pipeline_VITIS_LOOP_74_49 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_74_49}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_74_410 MODELNAME Crypto_Pipeline_VITIS_LOOP_74_410 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_74_410}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_63_2 MODELNAME Crypto_Pipeline_VITIS_LOOP_63_2 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_63_2}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_63_27 MODELNAME Crypto_Pipeline_VITIS_LOOP_63_27 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_63_27}
+  {SRCNAME Crypto_Pipeline_VITIS_LOOP_63_28 MODELNAME Crypto_Pipeline_VITIS_LOOP_63_28 RTLNAME Crypto_Crypto_Pipeline_VITIS_LOOP_63_28}
   {SRCNAME Crypto MODELNAME Crypto RTLNAME Crypto IS_TOP 1
     SUBMODULES {
       {MODELNAME Crypto_sdiv_15ns_32s_11_19_seq_1 RTLNAME Crypto_sdiv_15ns_32s_11_19_seq_1 BINDTYPE op TYPE sdiv IMPL auto_seq LATENCY 18 ALLOW_PRAGMA 1}
@@ -66,6 +66,7 @@ set SynModuleInfo {
       {MODELNAME Crypto_BitReverseData_RAM_AUTO_1R1W RTLNAME Crypto_BitReverseData_RAM_AUTO_1R1W BINDTYPE storage TYPE ram IMPL auto LATENCY 2 ALLOW_PRAGMA 1}
       {MODELNAME Crypto_NTTTWiddleRAM_RAM_1WNR_AUTO_1R1W RTLNAME Crypto_NTTTWiddleRAM_RAM_1WNR_AUTO_1R1W BINDTYPE storage TYPE ram_1wnr IMPL auto LATENCY 2 ALLOW_PRAGMA 1}
       {MODELNAME Crypto_control_s_axi RTLNAME Crypto_control_s_axi BINDTYPE interface TYPE interface_s_axilite}
+      {MODELNAME Crypto_regslice_both RTLNAME Crypto_regslice_both BINDTYPE interface TYPE interface_regslice INSTNAME Crypto_regslice_both_U}
     }
   }
 }

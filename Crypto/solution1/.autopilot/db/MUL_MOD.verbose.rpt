@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'MUL_MOD'
 ================================================================
-* Date:           Thu Feb 27 10:54:24 2025
+* Date:           Tue Mar  4 14:33:25 2025
 
 * Version:        2023.1 (Build 3854077 on May  4 2023)
 * Project:        Crypto
@@ -351,7 +351,7 @@ ST_12 : Operation 90 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%res_s
 ST_12 : Operation 91 [1/1] (5.30ns) (root node of TernaryAdder)   --->   "%sub_ln109 = sub i64 %res_shift, i64 %zext_ln28_6" [Arithmetic.cpp:109]   --->   Operation 91 'sub' 'sub_ln109' <Predicate = true> <Delay = 5.30> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.65> <IPBlock> <Opcode : '<invalid operator> ' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
 
 State 13 <SV = 12> <Delay = 4.21>
-ST_13 : Operation 92 [1/1] (0.00ns)   --->   "%specpipeline_ln86 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_27" [Arithmetic.cpp:86]   --->   Operation 92 'specpipeline' 'specpipeline_ln86' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 92 [1/1] (0.00ns)   --->   "%specpipeline_ln86 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_28" [Arithmetic.cpp:86]   --->   Operation 92 'specpipeline' 'specpipeline_ln86' <Predicate = true> <Delay = 0.00>
 ST_13 : Operation 93 [1/1] (0.00ns)   --->   "%zext_ln113 = zext i31 %mod" [Arithmetic.cpp:113]   --->   Operation 93 'zext' 'zext_ln113' <Predicate = true> <Delay = 0.00>
 ST_13 : Operation 94 [1/1] (3.52ns)   --->   "%sub_ln113 = sub i64 %sub_ln109, i64 %zext_ln113" [Arithmetic.cpp:113]   --->   Operation 94 'sub' 'sub_ln113' <Predicate = true> <Delay = 3.52> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.52> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_13 : Operation 95 [1/1] (0.00ns)   --->   "%zext_ln114_cast = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i31.i1, i31 %mod, i1 0" [Arithmetic.cpp:114]   --->   Operation 95 'bitconcatenate' 'zext_ln114_cast' <Predicate = true> <Delay = 0.00>
@@ -825,7 +825,7 @@ ret_ln118           (ret           ) [ 00000000000000]
 <pin id="77" dir="1" index="0" bw="1" slack="2147483647"/>
 </pin_list>
 <bind>
-<StgValue><ssdm name="empty_27"/></StgValue>
+<StgValue><ssdm name="empty_28"/></StgValue>
 </bind>
 </comp>
 

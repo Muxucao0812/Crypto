@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1740624867567">
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1741070008884">
   <ports id="1" name="DataRAM" type="PortType" coreName="RAM" coreId="55" bitwidth="32" direction="DirInOut" iftype="IfTypeRegister" arraysize="4096">
     <dataInputObjs>getelementptr</dataInputObjs>
     <dataInputObjs>getelementptr</dataInputObjs>
@@ -252,21 +252,21 @@
   <edges id="-219" source_obj="//@regions.0/@basic_blocks.1/@node_objs.29" sink_obj="//@ports.2"/>
   <edges id="-222" source_obj="//@regions.0/@basic_blocks.1/@node_objs.30" sink_obj="//@ports.3"/>
   <blocks id="12" name="newFuncRoot" type="BlockType">
-    <controlOutputObjs>for.inc290</controlOutputObjs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="7" name="j_6" originalName="j" coreId="3824659216" bitwidth="13" opcode="alloca" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
+    <controlOutputObjs>for.inc287</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="7" name="j_6" originalName="j" coreId="3266641955" bitwidth="13" opcode="alloca" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
       <dataOutputObjs>store</dataOutputObjs>
       <dataOutputObjs>load</dataOutputObjs>
       <dataOutputObjs>store</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="8" name="RAMSel1_cast_read" coreId="3824659216" bitwidth="2" opcode="read" m_display="0" m_topoIndex="2" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="8" name="RAMSel1_cast_read" coreId="742464384" bitwidth="2" opcode="read" m_display="0" m_topoIndex="2" m_clusterGroupNumber="-1">
       <dataInputObjs>RAMSel1_cast</dataInputObjs>
       <dataOutputObjs>mux</dataOutputObjs>
       <dataOutputObjs>mux</dataOutputObjs>
       <dataOutputObjs>mux</dataOutputObjs>
       <dataOutputObjs>mux</dataOutputObjs>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="9" name="RAMSel_cast_read" coreId="3697328896" bitwidth="2" opcode="read" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="9" name="RAMSel_cast_read" coreId="870319456" bitwidth="2" opcode="read" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
       <dataInputObjs>RAMSel_cast</dataInputObjs>
       <dataOutputObjs>mux</dataOutputObjs>
       <dataOutputObjs>mux</dataOutputObjs>
@@ -278,636 +278,636 @@
       <dataInputObjs>alloca</dataInputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="11" name="br_ln0" coreId="1684959075" opcode="br" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
-      <controlInputObjs>for.inc290</controlInputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="11" name="br_ln0" coreId="740161040" opcode="br" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
+      <controlInputObjs>for.inc287</controlInputObjs>
     </node_objs>
   </blocks>
-  <blocks id="103" name="for.inc290.1.preheader.exitStub" type="BlockType">
-    <controlInputObjs>for.inc290</controlInputObjs>
+  <blocks id="103" name="for.inc287.1.preheader.exitStub" type="BlockType">
+    <controlInputObjs>for.inc287</controlInputObjs>
     <controlOutputObjs>br</controlOutputObjs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="102" name="_ln0" coreId="3696295152" opcode="ret" nodeLabel="15.0" m_display="0" m_topoIndex="65" m_clusterGroupNumber="-1"/>
+    <node_objs xsi:type="cdfg:CdfgNode" id="102" name="_ln0" coreId="3266226486" opcode="ret" nodeLabel="15.0" m_display="0" m_topoIndex="65" m_clusterGroupNumber="-1"/>
   </blocks>
   <regions anchor_node="-1" region_type="8" interval="4" typeName="Pipeline" iiViolation="Resource Limitation;mFailedII=3;mDependenceDistancedII=-1;mLimitedResource=3;nodes=60__core/RAM/DataRAM_6//load/store,67__core/RAM/DataRAM_6//load/store,76__core/RAM/DataRAM_6//load/store,28__core/RAM/DataRAM_6//load/store,53__core/RAM/DataRAM_6//load/store,74__core/RAM/DataRAM_6//load/store,75__;" id="537" pipe_depth="20" RegionName="POLY_MUL_LOOP">
-    <basic_blocks id="17" name="for.inc290" type="BlockType">
+    <basic_blocks id="17" name="for.inc287" type="BlockType">
       <controlInputObjs>newFuncRoot</controlInputObjs>
-      <controlInputObjs>arrayidx26537.3.exit</controlInputObjs>
+      <controlInputObjs>arrayidx26237.3.exit</controlInputObjs>
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>br</controlOutputObjs>
-      <controlOutputObjs>for.inc290.1.preheader.exitStub</controlOutputObjs>
-      <controlOutputObjs>for.inc290.split</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="13" name="j" originalName="j" coreId="3824914864" bitwidth="13" opcode="load" m_display="0" m_topoIndex="6" m_clusterGroupNumber="-1">
+      <controlOutputObjs>for.inc287.1.preheader.exitStub</controlOutputObjs>
+      <controlOutputObjs>for.inc287.split</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="13" name="j" originalName="j" coreId="1668180339" bitwidth="13" opcode="load" m_display="0" m_topoIndex="6" m_clusterGroupNumber="-1">
         <dataInputObjs>alloca</dataInputObjs>
         <dataOutputObjs>bitselect</dataOutputObjs>
         <dataOutputObjs>add</dataOutputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
         <dataOutputObjs>trunc</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="15" name="tmp" lineNumber="145" fileName="Crypto.cpp" fileDirectory="../." rtlName="tmp_reg_408" coreId="1668180339" bitwidth="1" opcode="bitselect" m_display="0" m_topoIndex="7" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="145" fileDirectory="/home/meng/HLS/Crypto"/>
+      <node_objs xsi:type="cdfg:CdfgNode" id="15" name="tmp" lineNumber="150" fileName="Crypto.cpp" fileDirectory="../." rtlName="tmp_reg_408" coreId="1599294536" bitwidth="1" opcode="bitselect" m_display="0" m_topoIndex="7" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="150" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>load</dataInputObjs>
         <dataOutputObjs>br</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="16" name="br_ln145" lineNumber="145" fileName="Crypto.cpp" fileDirectory="../." coreId="1819113532" opcode="br" m_display="0" m_topoIndex="8" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="145" fileDirectory="/home/meng/HLS/Crypto"/>
+      <node_objs xsi:type="cdfg:CdfgNode" id="16" name="br_ln150" lineNumber="150" fileName="Crypto.cpp" fileDirectory="../." coreId="740161056" opcode="br" m_display="0" m_topoIndex="8" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="150" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>bitselect</dataInputObjs>
-        <controlInputObjs>for.inc290.split</controlInputObjs>
-        <controlInputObjs>for.inc290.1.preheader.exitStub</controlInputObjs>
+        <controlInputObjs>for.inc287.split</controlInputObjs>
+        <controlInputObjs>for.inc287.1.preheader.exitStub</controlInputObjs>
       </node_objs>
       <fileValidLineNumbers fileName="Crypto.cpp">
-        <validLinenumbers>145</validLinenumbers>
-      </fileValidLineNumbers>
-    </basic_blocks>
-    <basic_blocks id="73" name="for.inc290.split" type="BlockType">
-      <controlInputObjs>for.inc290</controlInputObjs>
-      <controlOutputObjs>br</controlOutputObjs>
-      <controlOutputObjs>arrayidx26537.3.case.3</controlOutputObjs>
-      <controlOutputObjs>arrayidx26537.3.case.0</controlOutputObjs>
-      <controlOutputObjs>arrayidx26537.3.case.1</controlOutputObjs>
-      <controlOutputObjs>arrayidx26537.3.case.2</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="18" name="j_6_cast75" rtlName="j_6_cast75_fu_326_p1" coreId="3824914864" bitwidth="64" opcode="zext" m_display="0" m_topoIndex="9" m_clusterGroupNumber="-1">
-        <dataInputObjs>load</dataInputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="19" name="empty" rtlName="empty_fu_334_p1" coreId="3695875056" bitwidth="12" opcode="trunc" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
-        <dataInputObjs>load</dataInputObjs>
-        <dataOutputObjs>or</dataOutputObjs>
-        <dataOutputObjs>or</dataOutputObjs>
-        <dataOutputObjs>or</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="22" name="DataRAM_addr" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="3696128080" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="11" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>DataRAM</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="23" name="DataRAM_3_addr" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="1819113532" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="12" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM_3</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>DataRAM_3</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="24" name="DataRAM_6_addr" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="3693934720" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="13" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM_6</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>DataRAM_6</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="25" name="DataRAM_9_addr" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="0" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM_9</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>DataRAM_9</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="26" name="DataRAM_load" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="15" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="27" name="DataRAM_3_load" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="16" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="28" name="DataRAM_6_load" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="17" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="29" name="DataRAM_9_load" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="18" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="30" name="MulInput1" lineNumber="148" originalName="MulInput1" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U185" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="1.0" m_display="0" m_delay="1.82" m_topoIndex="33" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>read</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="31" name="MulInput2" lineNumber="149" originalName="MulInput2" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U186" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="1.0" m_display="0" m_delay="1.82" m_topoIndex="34" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="149" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>read</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="32" name="call_ret1" lineNumber="150" fileName="Crypto.cpp" fileDirectory="../." rtlName="grp_MUL_MOD_1_fu_238" coreId="0" bitwidth="32" opcode="call" nodeLabel="2.0" nodeLatency="13" m_display="0" m_delay="1.05" m_topoIndex="57" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="150" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>mux</dataInputObjs>
-        <dataInputObjs>mux</dataInputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <constName>MUL_MOD_1</constName>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="33" name="or_ln145" lineNumber="145" fileName="Crypto.cpp" fileDirectory="../." rtlName="or_ln145_fu_338_p2" coreId="0" bitwidth="12" opcode="or" m_display="0" m_topoIndex="19" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="145" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>trunc</dataInputObjs>
-        <dataOutputObjs>zext</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="34" name="zext_ln148" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." rtlName="zext_ln148_fu_344_p1" coreId="0" bitwidth="64" opcode="zext" m_display="0" m_topoIndex="20" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>or</dataInputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="35" name="DataRAM_addr_4" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="3696747472" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="21" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>DataRAM</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="36" name="DataRAM_3_addr_4" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="3226066497" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="22" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM_3</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>DataRAM_3</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="37" name="DataRAM_6_addr_4" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="1330007625" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="23" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM_6</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>DataRAM_6</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="38" name="DataRAM_9_addr_4" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="3696018896" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="24" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM_9</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>DataRAM_9</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="39" name="or_ln145_1" lineNumber="145" fileName="Crypto.cpp" fileDirectory="../." rtlName="or_ln145_1_fu_363_p2" coreId="3695874864" bitwidth="12" opcode="or" nodeLabel="1.0" m_display="0" m_topoIndex="35" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="145" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>trunc</dataInputObjs>
-        <dataOutputObjs>zext</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="40" name="zext_ln148_1" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." rtlName="zext_ln148_1_fu_368_p1" coreId="3694090472" bitwidth="64" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="36" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>or</dataInputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="41" name="DataRAM_addr_5" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="3696160272" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="37" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>DataRAM</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="42" name="DataRAM_3_addr_5" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="1819113532" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="38" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM_3</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>DataRAM_3</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="43" name="DataRAM_6_addr_5" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="3696158384" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="39" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM_6</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>DataRAM_6</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="44" name="DataRAM_9_addr_5" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="574451311" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="40" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM_9</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>DataRAM_9</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="45" name="or_ln145_2" lineNumber="145" fileName="Crypto.cpp" fileDirectory="../." rtlName="or_ln145_2_fu_376_p2" coreId="3229545443" bitwidth="12" opcode="or" nodeLabel="1.0" m_display="0" m_topoIndex="41" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="145" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>trunc</dataInputObjs>
-        <dataOutputObjs>zext</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="46" name="zext_ln148_2" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." rtlName="zext_ln148_2_fu_381_p1" coreId="1952805408" bitwidth="64" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="42" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>or</dataInputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-        <dataOutputObjs>getelementptr</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="47" name="DataRAM_addr_6" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="3226308933" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="43" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>DataRAM</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="48" name="DataRAM_3_addr_6" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="7955819" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="44" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM_3</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>DataRAM_3</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="49" name="DataRAM_6_addr_6" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="3697547920" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="45" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM_6</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>DataRAM_6</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="50" name="DataRAM_9_addr_6" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreId="1869833586" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="46" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>DataRAM_9</dataInputObjs>
-        <dataInputObjs>zext</dataInputObjs>
-        <dataOutputObjs>load</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>DataRAM_9</dataOutputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="51" name="DataRAM_load_4" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="1" m_delay="3.25" m_isLCDNode="true" m_isStartOfPath="true" m_topoIndex="25" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="52" name="DataRAM_3_load_4" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="26" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="53" name="DataRAM_6_load_4" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="27" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="54" name="DataRAM_9_load_4" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="28" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="55" name="MulInput1_1" lineNumber="148" originalName="MulInput1" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U187" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="1.0" m_display="0" m_delay="1.82" m_topoIndex="47" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>read</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="56" name="MulInput2_1" lineNumber="149" originalName="MulInput2" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U188" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="1.0" m_display="0" m_delay="1.82" m_topoIndex="48" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="149" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>read</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="57" name="call_ret2" lineNumber="150" fileName="Crypto.cpp" fileDirectory="../." rtlName="grp_MUL_MOD_1_fu_238" coreId="3697643104" bitwidth="32" opcode="call" nodeLabel="3.0" nodeLatency="13" m_display="0" m_delay="1.05" m_topoIndex="62" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="150" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>mux</dataInputObjs>
-        <dataInputObjs>mux</dataInputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <constName>MUL_MOD_1</constName>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="58" name="DataRAM_load_5" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="49" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="59" name="DataRAM_3_load_5" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="50" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="60" name="DataRAM_6_load_5" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="51" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="61" name="DataRAM_9_load_5" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="52" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="62" name="MulInput1_2" lineNumber="148" originalName="MulInput1" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U185" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="2.0" m_display="0" m_delay="1.82" m_topoIndex="58" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>read</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="63" name="MulInput2_2" lineNumber="149" originalName="MulInput2" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U186" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="2.0" m_display="0" m_delay="1.82" m_topoIndex="59" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="149" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>read</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="64" name="call_ret3" lineNumber="150" fileName="Crypto.cpp" fileDirectory="../." rtlName="grp_MUL_MOD_1_fu_238" coreId="3228814277" bitwidth="32" opcode="call" nodeLabel="4.0" nodeLatency="13" m_display="0" m_delay="1.05" m_topoIndex="63" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="150" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>mux</dataInputObjs>
-        <dataInputObjs>mux</dataInputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <constName>MUL_MOD_1</constName>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="65" name="DataRAM_load_6" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="53" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="66" name="DataRAM_3_load_6" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="54" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="67" name="DataRAM_6_load_6" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="1" m_delay="3.25" m_isLCDNode="true" m_isStartOfPath="true" m_topoIndex="55" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="68" name="DataRAM_9_load_6" lineNumber="148" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="56" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>getelementptr</dataInputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-        <dataOutputObjs>mux</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="69" name="MulInput1_3" lineNumber="148" originalName="MulInput1" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U187" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="2.0" m_display="0" m_delay="1.82" m_topoIndex="60" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="148" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>read</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="70" name="MulInput2_3" lineNumber="149" originalName="MulInput2" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U188" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="2.0" m_display="0" m_delay="1.82" m_topoIndex="61" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="149" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>load</dataInputObjs>
-        <dataInputObjs>read</dataInputObjs>
-        <dataOutputObjs>call</dataOutputObjs>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="71" name="MulRes_0" lineNumber="150" originalName="MulRes[0]" fileName="Crypto.cpp" fileDirectory="../." rtlName="grp_MUL_MOD_1_fu_238" coreId="3226290568" bitwidth="32" opcode="call" nodeLabel="5.0" nodeLatency="13" m_display="0" m_delay="1.05" m_topoIndex="64" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="150" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>mux</dataInputObjs>
-        <dataInputObjs>mux</dataInputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <dataOutputObjs>store</dataOutputObjs>
-        <constName>MUL_MOD_1</constName>
-        <constName>empty</constName>
-      </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="72" name="_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreId="542329928" opcode="switch" m_display="0" m_delay="1.86" m_topoIndex="29" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>read</dataInputObjs>
-        <controlInputObjs>arrayidx26537.3.case.3</controlInputObjs>
-        <controlInputObjs>arrayidx26537.3.case.0</controlInputObjs>
-        <controlInputObjs>arrayidx26537.3.case.1</controlInputObjs>
-        <controlInputObjs>arrayidx26537.3.case.2</controlInputObjs>
-        <constName>empty</constName>
-      </node_objs>
-      <fileValidLineNumbers fileName="Crypto.cpp">
-        <validLinenumbers>148</validLinenumbers>
-        <validLinenumbers>149</validLinenumbers>
         <validLinenumbers>150</validLinenumbers>
-        <validLinenumbers>145</validLinenumbers>
-        <validLinenumbers>151</validLinenumbers>
       </fileValidLineNumbers>
     </basic_blocks>
-    <basic_blocks id="79" name="arrayidx26537.3.case.2" type="BlockType">
-      <controlInputObjs>for.inc290.split</controlInputObjs>
-      <controlOutputObjs>switch</controlOutputObjs>
-      <controlOutputObjs>arrayidx26537.3.exit</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="74" name="DataRAM_6_addr_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="66" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>call</dataInputObjs>
-        <dataInputObjs>getelementptr</dataInputObjs>
+    <basic_blocks id="73" name="for.inc287.split" type="BlockType">
+      <controlInputObjs>for.inc287</controlInputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>arrayidx26237.3.case.3</controlOutputObjs>
+      <controlOutputObjs>arrayidx26237.3.case.0</controlOutputObjs>
+      <controlOutputObjs>arrayidx26237.3.case.1</controlOutputObjs>
+      <controlOutputObjs>arrayidx26237.3.case.2</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="18" name="j_6_cast73" rtlName="j_6_cast73_fu_326_p1" coreId="1590524400" bitwidth="64" opcode="zext" m_display="0" m_topoIndex="9" m_clusterGroupNumber="-1">
+        <dataInputObjs>load</dataInputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="75" name="DataRAM_6_addr_4_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="67" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>call</dataInputObjs>
-        <dataInputObjs>getelementptr</dataInputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="19" name="empty" rtlName="empty_fu_334_p1" coreId="745794032" bitwidth="12" opcode="trunc" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
+        <dataInputObjs>load</dataInputObjs>
+        <dataOutputObjs>or</dataOutputObjs>
+        <dataOutputObjs>or</dataOutputObjs>
+        <dataOutputObjs>or</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="76" name="DataRAM_6_addr_5_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="74" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>call</dataInputObjs>
-        <dataInputObjs>getelementptr</dataInputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="22" name="DataRAM_addr" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="744018752" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="11" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>DataRAM</dataOutputObjs>
+        <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="77" name="DataRAM_6_addr_6_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="75" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
-        <dataInputObjs>call</dataInputObjs>
-        <dataInputObjs>getelementptr</dataInputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="23" name="DataRAM_3_addr" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="3267258650" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="12" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM_3</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>DataRAM_3</dataOutputObjs>
+        <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="78" name="br_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreId="3226298714" opcode="br" nodeLabel="19.0" m_display="0" m_topoIndex="76" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
-        <controlInputObjs>arrayidx26537.3.exit</controlInputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="24" name="DataRAM_6_addr" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="1281312080" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="13" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM_6</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>DataRAM_6</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="25" name="DataRAM_9_addr" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="1701994348" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM_9</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>DataRAM_9</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="26" name="DataRAM_load" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="15" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="27" name="DataRAM_3_load" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="16" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="28" name="DataRAM_6_load" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="17" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="29" name="DataRAM_9_load" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="18" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="30" name="MulInput1" lineNumber="153" originalName="MulInput1" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U185" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="1.0" m_display="0" m_delay="1.82" m_topoIndex="33" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>read</dataInputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="31" name="MulInput2" lineNumber="154" originalName="MulInput2" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U186" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="1.0" m_display="0" m_delay="1.82" m_topoIndex="34" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="154" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>read</dataInputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="32" name="call_ret1" lineNumber="155" fileName="Crypto.cpp" fileDirectory="../." rtlName="grp_MUL_MOD_1_fu_238" coreId="743456864" bitwidth="32" opcode="call" nodeLabel="2.0" nodeLatency="13" m_display="0" m_delay="1.05" m_topoIndex="57" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="155" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>mux</dataInputObjs>
+        <dataInputObjs>mux</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>MUL_MOD_1</constName>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="33" name="or_ln150" lineNumber="150" fileName="Crypto.cpp" fileDirectory="../." rtlName="or_ln150_fu_338_p2" coreId="745773352" bitwidth="12" opcode="or" m_display="0" m_topoIndex="19" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="150" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>trunc</dataInputObjs>
+        <dataOutputObjs>zext</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="34" name="zext_ln153" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." rtlName="zext_ln153_fu_344_p1" coreId="0" bitwidth="64" opcode="zext" m_display="0" m_topoIndex="20" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>or</dataInputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="35" name="DataRAM_addr_4" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="3263984411" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="21" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>DataRAM</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="36" name="DataRAM_3_addr_4" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="743951696" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="22" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM_3</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>DataRAM_3</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="37" name="DataRAM_6_addr_4" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="745454664" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="23" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM_6</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>DataRAM_6</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="38" name="DataRAM_9_addr_4" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="744136480" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="24" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM_9</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>DataRAM_9</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="39" name="or_ln150_1" lineNumber="150" fileName="Crypto.cpp" fileDirectory="../." rtlName="or_ln150_1_fu_363_p2" coreId="0" bitwidth="12" opcode="or" nodeLabel="1.0" m_display="0" m_topoIndex="35" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="150" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>trunc</dataInputObjs>
+        <dataOutputObjs>zext</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="40" name="zext_ln153_1" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." rtlName="zext_ln153_1_fu_368_p1" coreId="3268489231" bitwidth="64" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="36" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>or</dataInputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="41" name="DataRAM_addr_5" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="741602792" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="37" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>DataRAM</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="42" name="DataRAM_3_addr_5" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="741603728" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="38" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM_3</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>DataRAM_3</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="43" name="DataRAM_6_addr_5" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="3267516137" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="39" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM_6</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>DataRAM_6</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="44" name="DataRAM_9_addr_5" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="0" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="40" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM_9</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>DataRAM_9</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="45" name="or_ln150_2" lineNumber="150" fileName="Crypto.cpp" fileDirectory="../." rtlName="or_ln150_2_fu_376_p2" coreId="3266239681" bitwidth="12" opcode="or" nodeLabel="1.0" m_display="0" m_topoIndex="41" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="150" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>trunc</dataInputObjs>
+        <dataOutputObjs>zext</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="46" name="zext_ln153_2" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." rtlName="zext_ln153_2_fu_381_p1" coreId="304" bitwidth="64" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="42" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>or</dataInputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="47" name="DataRAM_addr_6" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="0" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="43" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>DataRAM</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="48" name="DataRAM_3_addr_6" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="745454272" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="44" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM_3</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>DataRAM_3</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="49" name="DataRAM_6_addr_6" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="46" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="45" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM_6</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>DataRAM_6</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="50" name="DataRAM_9_addr_6" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreId="739824512" bitwidth="12" opcode="getelementptr" nodeLabel="1.0" m_display="0" m_topoIndex="46" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>DataRAM_9</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>DataRAM_9</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="51" name="DataRAM_load_4" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="1" m_delay="3.25" m_isLCDNode="true" m_isStartOfPath="true" m_topoIndex="25" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="52" name="DataRAM_3_load_4" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="26" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="53" name="DataRAM_6_load_4" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="27" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="54" name="DataRAM_9_load_4" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="28" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="55" name="MulInput1_1" lineNumber="153" originalName="MulInput1" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U187" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="1.0" m_display="0" m_delay="1.82" m_topoIndex="47" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>read</dataInputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="56" name="MulInput2_1" lineNumber="154" originalName="MulInput2" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U188" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="1.0" m_display="0" m_delay="1.82" m_topoIndex="48" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="154" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>read</dataInputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="57" name="call_ret2" lineNumber="155" fileName="Crypto.cpp" fileDirectory="../." rtlName="grp_MUL_MOD_1_fu_238" coreId="1953394531" bitwidth="32" opcode="call" nodeLabel="3.0" nodeLatency="13" m_display="0" m_delay="1.05" m_topoIndex="62" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="155" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>mux</dataInputObjs>
+        <dataInputObjs>mux</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>MUL_MOD_1</constName>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="58" name="DataRAM_load_5" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="49" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="59" name="DataRAM_3_load_5" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="50" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="60" name="DataRAM_6_load_5" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="51" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="61" name="DataRAM_9_load_5" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="52" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="62" name="MulInput1_2" lineNumber="153" originalName="MulInput1" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U185" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="2.0" m_display="0" m_delay="1.82" m_topoIndex="58" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>read</dataInputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="63" name="MulInput2_2" lineNumber="154" originalName="MulInput2" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U186" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="2.0" m_display="0" m_delay="1.82" m_topoIndex="59" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="154" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>read</dataInputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="64" name="call_ret3" lineNumber="155" fileName="Crypto.cpp" fileDirectory="../." rtlName="grp_MUL_MOD_1_fu_238" coreId="1582825472" bitwidth="32" opcode="call" nodeLabel="4.0" nodeLatency="13" m_display="0" m_delay="1.05" m_topoIndex="63" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="155" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>mux</dataInputObjs>
+        <dataInputObjs>mux</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>MUL_MOD_1</constName>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="65" name="DataRAM_load_6" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="53" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="66" name="DataRAM_3_load_6" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="54" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="67" name="DataRAM_6_load_6" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="1" m_delay="3.25" m_isLCDNode="true" m_isStartOfPath="true" m_topoIndex="55" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="68" name="DataRAM_9_load_6" lineNumber="153" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLabel="1.0" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="56" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+        <dataOutputObjs>mux</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="69" name="MulInput1_3" lineNumber="153" originalName="MulInput1" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U187" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="2.0" m_display="0" m_delay="1.82" m_topoIndex="60" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="153" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>read</dataInputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="70" name="MulInput2_3" lineNumber="154" originalName="MulInput2" fileName="Crypto.cpp" fileDirectory="../." rtlName="mux_4_2_32_1_1_U188" coreName="Multiplexer" implIndex="auto" control="no" opType="mux" coreId="76" bitwidth="32" opcode="mux" nodeLabel="2.0" m_display="0" m_delay="1.82" m_topoIndex="61" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="154" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>read</dataInputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="71" name="MulRes_0" lineNumber="155" originalName="MulRes[0]" fileName="Crypto.cpp" fileDirectory="../." rtlName="grp_MUL_MOD_1_fu_238" coreId="745724848" bitwidth="32" opcode="call" nodeLabel="5.0" nodeLatency="13" m_display="0" m_delay="1.05" m_topoIndex="64" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="155" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>mux</dataInputObjs>
+        <dataInputObjs>mux</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>MUL_MOD_1</constName>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="72" name="_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreId="745747616" opcode="switch" m_display="0" m_delay="1.86" m_topoIndex="29" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>read</dataInputObjs>
+        <controlInputObjs>arrayidx26237.3.case.3</controlInputObjs>
+        <controlInputObjs>arrayidx26237.3.case.0</controlInputObjs>
+        <controlInputObjs>arrayidx26237.3.case.1</controlInputObjs>
+        <controlInputObjs>arrayidx26237.3.case.2</controlInputObjs>
+        <constName>empty</constName>
       </node_objs>
       <fileValidLineNumbers fileName="Crypto.cpp">
-        <validLinenumbers>151</validLinenumbers>
+        <validLinenumbers>153</validLinenumbers>
+        <validLinenumbers>154</validLinenumbers>
+        <validLinenumbers>155</validLinenumbers>
+        <validLinenumbers>150</validLinenumbers>
+        <validLinenumbers>156</validLinenumbers>
       </fileValidLineNumbers>
     </basic_blocks>
-    <basic_blocks id="85" name="arrayidx26537.3.case.1" type="BlockType">
-      <controlInputObjs>for.inc290.split</controlInputObjs>
+    <basic_blocks id="79" name="arrayidx26237.3.case.2" type="BlockType">
+      <controlInputObjs>for.inc287.split</controlInputObjs>
       <controlOutputObjs>switch</controlOutputObjs>
-      <controlOutputObjs>arrayidx26537.3.exit</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="80" name="DataRAM_3_addr_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="68" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
+      <controlOutputObjs>arrayidx26237.3.exit</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="74" name="DataRAM_6_addr_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="66" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>call</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="81" name="DataRAM_3_addr_4_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="69" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
+      <node_objs xsi:type="cdfg:CdfgNode" id="75" name="DataRAM_6_addr_4_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="67" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>call</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="82" name="DataRAM_3_addr_5_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="77" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
+      <node_objs xsi:type="cdfg:CdfgNode" id="76" name="DataRAM_6_addr_5_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="74" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>call</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="83" name="DataRAM_3_addr_6_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="78" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
+      <node_objs xsi:type="cdfg:CdfgNode" id="77" name="DataRAM_6_addr_6_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="75" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>call</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="84" name="br_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreId="3697656104" opcode="br" nodeLabel="19.0" m_display="0" m_topoIndex="79" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
-        <controlInputObjs>arrayidx26537.3.exit</controlInputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="78" name="br_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreId="3267236045" opcode="br" nodeLabel="19.0" m_display="0" m_topoIndex="76" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
+        <controlInputObjs>arrayidx26237.3.exit</controlInputObjs>
       </node_objs>
       <fileValidLineNumbers fileName="Crypto.cpp">
-        <validLinenumbers>151</validLinenumbers>
+        <validLinenumbers>156</validLinenumbers>
       </fileValidLineNumbers>
     </basic_blocks>
-    <basic_blocks id="91" name="arrayidx26537.3.case.0" type="BlockType">
-      <controlInputObjs>for.inc290.split</controlInputObjs>
+    <basic_blocks id="85" name="arrayidx26237.3.case.1" type="BlockType">
+      <controlInputObjs>for.inc287.split</controlInputObjs>
       <controlOutputObjs>switch</controlOutputObjs>
-      <controlOutputObjs>arrayidx26537.3.exit</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="86" name="DataRAM_addr_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="70" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
+      <controlOutputObjs>arrayidx26237.3.exit</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="80" name="DataRAM_3_addr_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="68" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>call</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="87" name="DataRAM_addr_4_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="71" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
+      <node_objs xsi:type="cdfg:CdfgNode" id="81" name="DataRAM_3_addr_4_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="69" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>call</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="88" name="DataRAM_addr_5_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="80" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
+      <node_objs xsi:type="cdfg:CdfgNode" id="82" name="DataRAM_3_addr_5_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="77" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>call</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="89" name="DataRAM_addr_6_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="81" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
+      <node_objs xsi:type="cdfg:CdfgNode" id="83" name="DataRAM_3_addr_6_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="78" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>call</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="90" name="br_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreId="3222712118" opcode="br" nodeLabel="19.0" m_display="0" m_topoIndex="82" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
-        <controlInputObjs>arrayidx26537.3.exit</controlInputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="84" name="br_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreId="0" opcode="br" nodeLabel="19.0" m_display="0" m_topoIndex="79" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
+        <controlInputObjs>arrayidx26237.3.exit</controlInputObjs>
       </node_objs>
       <fileValidLineNumbers fileName="Crypto.cpp">
-        <validLinenumbers>151</validLinenumbers>
+        <validLinenumbers>156</validLinenumbers>
       </fileValidLineNumbers>
     </basic_blocks>
-    <basic_blocks id="97" name="arrayidx26537.3.case.3" type="BlockType">
-      <controlInputObjs>for.inc290.split</controlInputObjs>
+    <basic_blocks id="91" name="arrayidx26237.3.case.0" type="BlockType">
+      <controlInputObjs>for.inc287.split</controlInputObjs>
       <controlOutputObjs>switch</controlOutputObjs>
-      <controlOutputObjs>arrayidx26537.3.exit</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="92" name="DataRAM_9_addr_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="72" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
+      <controlOutputObjs>arrayidx26237.3.exit</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="86" name="DataRAM_addr_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="70" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>call</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="93" name="DataRAM_9_addr_4_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="73" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
+      <node_objs xsi:type="cdfg:CdfgNode" id="87" name="DataRAM_addr_4_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="71" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>call</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="94" name="DataRAM_9_addr_5_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="83" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
+      <node_objs xsi:type="cdfg:CdfgNode" id="88" name="DataRAM_addr_5_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="80" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>call</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="95" name="DataRAM_9_addr_6_write_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="84" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
+      <node_objs xsi:type="cdfg:CdfgNode" id="89" name="DataRAM_addr_6_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="81" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>call</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="96" name="br_ln151" lineNumber="151" fileName="Crypto.cpp" fileDirectory="../." coreId="3694901288" opcode="br" nodeLabel="19.0" m_display="0" m_topoIndex="85" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="151" fileDirectory="/home/meng/HLS/Crypto"/>
-        <controlInputObjs>arrayidx26537.3.exit</controlInputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="90" name="br_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreId="1330007625" opcode="br" nodeLabel="19.0" m_display="0" m_topoIndex="82" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
+        <controlInputObjs>arrayidx26237.3.exit</controlInputObjs>
       </node_objs>
       <fileValidLineNumbers fileName="Crypto.cpp">
-        <validLinenumbers>151</validLinenumbers>
+        <validLinenumbers>156</validLinenumbers>
       </fileValidLineNumbers>
     </basic_blocks>
-    <basic_blocks id="101" name="arrayidx26537.3.exit" type="BlockType">
-      <controlInputObjs>arrayidx26537.3.case.2</controlInputObjs>
-      <controlInputObjs>arrayidx26537.3.case.1</controlInputObjs>
-      <controlInputObjs>arrayidx26537.3.case.0</controlInputObjs>
-      <controlInputObjs>arrayidx26537.3.case.3</controlInputObjs>
+    <basic_blocks id="97" name="arrayidx26237.3.case.3" type="BlockType">
+      <controlInputObjs>for.inc287.split</controlInputObjs>
+      <controlOutputObjs>switch</controlOutputObjs>
+      <controlOutputObjs>arrayidx26237.3.exit</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="92" name="DataRAM_9_addr_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="72" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>call</dataInputObjs>
+        <dataInputObjs>getelementptr</dataInputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="93" name="DataRAM_9_addr_4_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="18.0" m_display="0" m_delay="3.25" m_topoIndex="73" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>call</dataInputObjs>
+        <dataInputObjs>getelementptr</dataInputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="94" name="DataRAM_9_addr_5_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="83" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>call</dataInputObjs>
+        <dataInputObjs>getelementptr</dataInputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="95" name="DataRAM_9_addr_6_write_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="19.0" m_display="0" m_delay="3.25" m_topoIndex="84" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>call</dataInputObjs>
+        <dataInputObjs>getelementptr</dataInputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="96" name="br_ln156" lineNumber="156" fileName="Crypto.cpp" fileDirectory="../." coreId="1330007625" opcode="br" nodeLabel="19.0" m_display="0" m_topoIndex="85" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="156" fileDirectory="/home/meng/HLS/Crypto"/>
+        <controlInputObjs>arrayidx26237.3.exit</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="Crypto.cpp">
+        <validLinenumbers>156</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+    <basic_blocks id="101" name="arrayidx26237.3.exit" type="BlockType">
+      <controlInputObjs>arrayidx26237.3.case.2</controlInputObjs>
+      <controlInputObjs>arrayidx26237.3.case.1</controlInputObjs>
+      <controlInputObjs>arrayidx26237.3.case.0</controlInputObjs>
+      <controlInputObjs>arrayidx26237.3.case.3</controlInputObjs>
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>br</controlOutputObjs>
-      <controlOutputObjs>for.inc290</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="98" name="add_ln145" lineNumber="145" fileName="Crypto.cpp" fileDirectory="../." rtlName="add_ln145_fu_352_p2" coreName="Adder" implIndex="fabric" control="no" opType="add" coreId="1" bitwidth="13" opcode="add" m_display="0" m_delay="1.67" m_topoIndex="30" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="145" fileDirectory="/home/meng/HLS/Crypto"/>
+      <controlOutputObjs>for.inc287</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="98" name="add_ln150" lineNumber="150" fileName="Crypto.cpp" fileDirectory="../." rtlName="add_ln150_fu_352_p2" coreName="Adder" implIndex="fabric" control="no" opType="add" coreId="1" bitwidth="13" opcode="add" m_display="0" m_delay="1.67" m_topoIndex="30" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="150" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>load</dataInputObjs>
         <dataOutputObjs>store</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="99" name="j_6_write_ln145" lineNumber="145" fileName="Crypto.cpp" fileDirectory="../." coreId="3696297192" opcode="store" m_display="0" m_delay="1.58" m_topoIndex="31" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="145" fileDirectory="/home/meng/HLS/Crypto"/>
+      <node_objs xsi:type="cdfg:CdfgNode" id="99" name="j_6_write_ln150" lineNumber="150" fileName="Crypto.cpp" fileDirectory="../." coreId="1330007625" opcode="store" m_display="0" m_delay="1.58" m_topoIndex="31" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="150" fileDirectory="/home/meng/HLS/Crypto"/>
         <dataInputObjs>add</dataInputObjs>
         <dataInputObjs>alloca</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="100" name="br_ln145" lineNumber="145" fileName="Crypto.cpp" fileDirectory="../." coreId="3228659723" opcode="br" m_display="0" m_topoIndex="32" m_clusterGroupNumber="-1">
-        <inlineStackInfo fileName="Crypto.cpp" linenumber="145" fileDirectory="/home/meng/HLS/Crypto"/>
-        <controlInputObjs>for.inc290</controlInputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="100" name="br_ln150" lineNumber="150" fileName="Crypto.cpp" fileDirectory="../." coreId="0" opcode="br" m_display="0" m_topoIndex="32" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="150" fileDirectory="/home/meng/HLS/Crypto"/>
+        <controlInputObjs>for.inc287</controlInputObjs>
       </node_objs>
       <fileValidLineNumbers fileName="Crypto.cpp">
-        <validLinenumbers>145</validLinenumbers>
+        <validLinenumbers>150</validLinenumbers>
       </fileValidLineNumbers>
     </basic_blocks>
   </regions>
@@ -1028,26 +1028,32 @@
   <regnodes realName="DataRAM_9_addr_6_reg_503">
     <nodeIds>50</nodeIds>
   </regnodes>
+  <expressionNodes realName="or_ln150_2_fu_376">
+    <nodeIds>45</nodeIds>
+  </expressionNodes>
   <expressionNodes realName="DataRAM_6_addr_5_gep_fu_188">
     <nodeIds>43</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="zext_ln153_1_fu_368">
+    <nodeIds>40</nodeIds>
   </expressionNodes>
   <expressionNodes realName="DataRAM_addr_6_gep_fu_202">
     <nodeIds>47</nodeIds>
   </expressionNodes>
-  <expressionNodes realName="zext_ln148_2_fu_381">
+  <expressionNodes realName="zext_ln153_2_fu_381">
     <nodeIds>46</nodeIds>
-  </expressionNodes>
-  <expressionNodes realName="add_ln145_fu_352">
-    <nodeIds>98</nodeIds>
   </expressionNodes>
   <expressionNodes realName="DataRAM_3_addr_5_gep_fu_181">
     <nodeIds>42</nodeIds>
   </expressionNodes>
-  <expressionNodes realName="or_ln145_2_fu_376">
-    <nodeIds>45</nodeIds>
+  <expressionNodes realName="or_ln150_fu_338">
+    <nodeIds>33</nodeIds>
   </expressionNodes>
   <expressionNodes realName="DataRAM_3_addr_4_gep_fu_149">
     <nodeIds>36</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="add_ln150_fu_352">
+    <nodeIds>98</nodeIds>
   </expressionNodes>
   <expressionNodes realName="grp_fu_272">
     <nodeIds>55</nodeIds>
@@ -1056,20 +1062,17 @@
   <expressionNodes realName="j_6_fu_58">
     <nodeIds>7</nodeIds>
   </expressionNodes>
-  <expressionNodes realName="zext_ln148_1_fu_368">
-    <nodeIds>40</nodeIds>
-  </expressionNodes>
   <expressionNodes realName="DataRAM_9_addr_4_gep_fu_163">
     <nodeIds>38</nodeIds>
-  </expressionNodes>
-  <expressionNodes realName="or_ln145_fu_338">
-    <nodeIds>33</nodeIds>
   </expressionNodes>
   <expressionNodes realName="tmp_fu_318">
     <nodeIds>15</nodeIds>
   </expressionNodes>
   <expressionNodes realName="DataRAM_6_addr_6_gep_fu_216">
     <nodeIds>49</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="or_ln150_1_fu_363">
+    <nodeIds>39</nodeIds>
   </expressionNodes>
   <expressionNodes realName="DataRAM_addr_4_gep_fu_142">
     <nodeIds>35</nodeIds>
@@ -1081,17 +1084,14 @@
   <expressionNodes realName="DataRAM_3_addr_gep_fu_81">
     <nodeIds>23</nodeIds>
   </expressionNodes>
-  <expressionNodes realName="zext_ln148_fu_344">
-    <nodeIds>34</nodeIds>
-  </expressionNodes>
   <expressionNodes realName="DataRAM_9_addr_5_gep_fu_195">
     <nodeIds>44</nodeIds>
   </expressionNodes>
+  <expressionNodes realName="zext_ln153_fu_344">
+    <nodeIds>34</nodeIds>
+  </expressionNodes>
   <expressionNodes realName="DataRAM_9_addr_gep_fu_95">
     <nodeIds>25</nodeIds>
-  </expressionNodes>
-  <expressionNodes realName="or_ln145_1_fu_363">
-    <nodeIds>39</nodeIds>
   </expressionNodes>
   <expressionNodes realName="DataRAM_3_addr_6_gep_fu_209">
     <nodeIds>48</nodeIds>
@@ -1102,9 +1102,6 @@
   <expressionNodes realName="DataRAM_addr_5_gep_fu_174">
     <nodeIds>41</nodeIds>
   </expressionNodes>
-  <expressionNodes realName="j_6_cast75_fu_326">
-    <nodeIds>18</nodeIds>
-  </expressionNodes>
   <expressionNodes realName="empty_fu_334">
     <nodeIds>19</nodeIds>
   </expressionNodes>
@@ -1114,6 +1111,9 @@
   <expressionNodes realName="grp_fu_246">
     <nodeIds>30</nodeIds>
     <nodeIds>62</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="j_6_cast73_fu_326">
+    <nodeIds>18</nodeIds>
   </expressionNodes>
   <expressionNodes realName="grp_fu_285">
     <nodeIds>56</nodeIds>
@@ -1137,11 +1137,11 @@
   <ioNodes realName="j_load_fu_315">
     <nodeIds>13</nodeIds>
   </ioNodes>
+  <ioNodes realName="store_ln150_store_fu_358">
+    <nodeIds>99</nodeIds>
+  </ioNodes>
   <ioNodes realName="RAMSel1_cast_read_read_fu_62">
     <nodeIds>8</nodeIds>
-  </ioNodes>
-  <ioNodes realName="store_ln145_store_fu_358">
-    <nodeIds>99</nodeIds>
   </ioNodes>
   <ioNodes realName="RAMSel_cast_read_read_fu_68">
     <nodeIds>9</nodeIds>

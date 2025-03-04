@@ -1,0 +1,155 @@
+
+
+================================================================
+== Vitis HLS Report for 'Crypto_Pipeline_VITIS_LOOP_88_511'
+================================================================
+* Date:           Tue Mar  4 14:33:30 2025
+
+* Version:        2023.1 (Build 3854077 on May  4 2023)
+* Project:        Crypto
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  3.254 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+------+------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
+    |   min   |   max   |    min    |    max    |  min |  max |   Type  |
+    +---------+---------+-----------+-----------+------+------+---------+
+    |     2051|     2051|  16.408 us|  16.408 us|  2051|  2051|       no|
+    +---------+---------+-----------+-----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_88_5  |     2049|     2049|         3|          1|          1|  2048|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|     28|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       -|      -|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|     36|    -|
+|Register         |        -|    -|     105|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|     105|     64|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------+----------+----+---+----+------------+------------+
+    |    Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------+----------+----+---+----+------------+------------+
+    |add_ln88_fu_120_p2   |         +|   0|  0|  12|          12|           1|
+    |icmp_ln88_fu_114_p2  |      icmp|   0|  0|  14|          12|          13|
+    |ap_enable_pp0        |       xor|   0|  0|   2|           1|           2|
+    +---------------------+----------+----+---+----+------------+------------+
+    |Total                |          |   0|  0|  28|          25|          16|
+    +---------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_j_2     |   9|          2|   12|         24|
+    |j_fu_50                  |   9|          2|   12|         24|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  36|          8|   26|         52|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------+----+----+-----+-----------+
+    |               Name               | FF | LUT| Bits| Const Bits|
+    +----------------------------------+----+----+-----+-----------+
+    |INTTTwiddleIn_load_reg_185        |  32|   0|   32|          0|
+    |NTTTwiddleIn_load_reg_180         |  32|   0|   32|          0|
+    |ap_CS_fsm                         |   1|   0|    1|          0|
+    |ap_done_reg                       |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2           |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg  |   1|   0|    1|          0|
+    |j_2_reg_161                       |  12|   0|   12|          0|
+    |j_2_reg_161_pp0_iter1_reg         |  12|   0|   12|          0|
+    |j_fu_50                           |  12|   0|   12|          0|
+    +----------------------------------+----+----+-----+-----------+
+    |Total                             | 105|   0|  105|          0|
+    +----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------+-----+-----+------------+-----------------------------------+--------------+
+|         RTL Ports         | Dir | Bits|  Protocol  |           Source Object           |    C Type    |
++---------------------------+-----+-----+------------+-----------------------------------+--------------+
+|ap_clk                     |   in|    1|  ap_ctrl_hs|  Crypto_Pipeline_VITIS_LOOP_88_511|  return value|
+|ap_rst                     |   in|    1|  ap_ctrl_hs|  Crypto_Pipeline_VITIS_LOOP_88_511|  return value|
+|ap_start                   |   in|    1|  ap_ctrl_hs|  Crypto_Pipeline_VITIS_LOOP_88_511|  return value|
+|ap_done                    |  out|    1|  ap_ctrl_hs|  Crypto_Pipeline_VITIS_LOOP_88_511|  return value|
+|ap_idle                    |  out|    1|  ap_ctrl_hs|  Crypto_Pipeline_VITIS_LOOP_88_511|  return value|
+|ap_ready                   |  out|    1|  ap_ctrl_hs|  Crypto_Pipeline_VITIS_LOOP_88_511|  return value|
+|INTTTWiddleRAM_1_address0  |  out|   11|   ap_memory|                   INTTTWiddleRAM_1|         array|
+|INTTTWiddleRAM_1_ce0       |  out|    1|   ap_memory|                   INTTTWiddleRAM_1|         array|
+|INTTTWiddleRAM_1_we0       |  out|    1|   ap_memory|                   INTTTWiddleRAM_1|         array|
+|INTTTWiddleRAM_1_d0        |  out|   32|   ap_memory|                   INTTTWiddleRAM_1|         array|
+|NTTTWiddleRAM_1_address0   |  out|   11|   ap_memory|                    NTTTWiddleRAM_1|         array|
+|NTTTWiddleRAM_1_ce0        |  out|    1|   ap_memory|                    NTTTWiddleRAM_1|         array|
+|NTTTWiddleRAM_1_we0        |  out|    1|   ap_memory|                    NTTTWiddleRAM_1|         array|
+|NTTTWiddleRAM_1_d0         |  out|   32|   ap_memory|                    NTTTWiddleRAM_1|         array|
+|NTTTwiddleIn_address0      |  out|   13|   ap_memory|                       NTTTwiddleIn|         array|
+|NTTTwiddleIn_ce0           |  out|    1|   ap_memory|                       NTTTwiddleIn|         array|
+|NTTTwiddleIn_q0            |   in|   32|   ap_memory|                       NTTTwiddleIn|         array|
+|INTTTwiddleIn_address0     |  out|   13|   ap_memory|                      INTTTwiddleIn|         array|
+|INTTTwiddleIn_ce0          |  out|    1|   ap_memory|                      INTTTwiddleIn|         array|
+|INTTTwiddleIn_q0           |   in|   32|   ap_memory|                      INTTTwiddleIn|         array|
++---------------------------+-----+-----+------------+-----------------------------------+--------------+
+
