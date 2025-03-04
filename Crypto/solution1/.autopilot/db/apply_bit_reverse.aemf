@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1741070005694">
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1741095101733">
   <ports id="1" name="x" type="PortType" coreName="RAM" coreId="1852727619" bitwidth="32" iftype="IfTypeRegister" arraysize="4096">
     <dataOutputObjs>getelementptr</dataOutputObjs>
   </ports>
-  <ports id="2" name="result" type="PortType" coreName="RAM" coreId="1579072992" bitwidth="32" direction="DirOut" iftype="IfTypeRegister" arraysize="4096">
+  <ports id="2" name="result" type="PortType" coreName="RAM" coreId="0" bitwidth="32" direction="DirOut" iftype="IfTypeRegister" arraysize="4096">
     <dataInputObjs>getelementptr</dataInputObjs>
   </ports>
   <edges id="31" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.0/@node_objs.1"/>
@@ -36,18 +36,18 @@
   <edges id="90" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.7"/>
   <blocks id="6" name="entry" type="BlockType">
     <controlOutputObjs>for.body.lr.ph.i</controlOutputObjs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="3" name="i" originalName="index" coreId="1607210960" bitwidth="13" opcode="alloca" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="3" name="i" originalName="index" coreId="3636476512" bitwidth="13" opcode="alloca" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
       <dataOutputObjs>store</dataOutputObjs>
       <dataOutputObjs>load</dataOutputObjs>
       <dataOutputObjs>store</dataOutputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="4" name="i_write_ln24" lineNumber="24" fileName="Utils.cpp" fileDirectory="../." coreId="1570204288" contextFuncName="apply_bit_reverse" opcode="store" m_display="0" m_delay="1.58" m_topoIndex="2" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="4" name="i_write_ln24" lineNumber="24" fileName="Utils.cpp" fileDirectory="../." coreId="1836020336" contextFuncName="apply_bit_reverse" opcode="store" m_display="0" m_delay="1.58" m_topoIndex="2" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="Utils.cpp" linenumber="24" fileDirectory="/home/meng/HLS/Crypto" functionName="apply_bit_reverse"/>
       <dataInputObjs>alloca</dataInputObjs>
       <constName>empty</constName>
     </node_objs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="5" name="br_ln24" lineNumber="24" fileName="Utils.cpp" fileDirectory="../." coreId="1567573952" contextFuncName="apply_bit_reverse" opcode="br" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="5" name="br_ln24" lineNumber="24" fileName="Utils.cpp" fileDirectory="../." coreId="3802991840" contextFuncName="apply_bit_reverse" opcode="br" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="Utils.cpp" linenumber="24" fileDirectory="/home/meng/HLS/Crypto" functionName="apply_bit_reverse"/>
       <controlInputObjs>for.body.lr.ph.i</controlInputObjs>
     </node_objs>
@@ -58,7 +58,7 @@
   <blocks id="26" name="for.end" type="BlockType">
     <controlInputObjs>for.body.lr.ph.i</controlInputObjs>
     <controlOutputObjs>br</controlOutputObjs>
-    <node_objs xsi:type="cdfg:CdfgNode" id="25" name="_ln28" lineNumber="28" fileName="Utils.cpp" fileDirectory="../." coreId="857913984" contextFuncName="apply_bit_reverse" opcode="ret" nodeLabel="1.0" m_display="0" m_topoIndex="13" m_clusterGroupNumber="-1">
+    <node_objs xsi:type="cdfg:CdfgNode" id="25" name="_ln28" lineNumber="28" fileName="Utils.cpp" fileDirectory="../." coreId="2974963128" contextFuncName="apply_bit_reverse" opcode="ret" nodeLabel="1.0" m_display="0" m_topoIndex="13" m_clusterGroupNumber="-1">
       <inlineStackInfo fileName="Utils.cpp" linenumber="28" fileDirectory="/home/meng/HLS/Crypto" functionName="apply_bit_reverse"/>
     </node_objs>
     <fileValidLineNumbers fileName="Utils.cpp">
@@ -73,7 +73,7 @@
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>for.end</controlOutputObjs>
       <controlOutputObjs>for.body.lr.ph.i.split</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="7" name="i_1" lineNumber="24" originalName="i" fileName="Utils.cpp" fileDirectory="../." coreId="1572361376" contextFuncName="apply_bit_reverse" bitwidth="13" opcode="load" m_display="0" m_topoIndex="4" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="7" name="i_1" lineNumber="24" originalName="i" fileName="Utils.cpp" fileDirectory="../." coreId="3796745136" contextFuncName="apply_bit_reverse" bitwidth="13" opcode="load" m_display="0" m_topoIndex="4" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Utils.cpp" linenumber="24" fileDirectory="/home/meng/HLS/Crypto" functionName="apply_bit_reverse"/>
         <dataInputObjs>alloca</dataInputObjs>
         <dataOutputObjs>icmp</dataOutputObjs>
@@ -107,31 +107,31 @@
       <controlInputObjs>for.body.lr.ph.i</controlInputObjs>
       <controlOutputObjs>br</controlOutputObjs>
       <controlOutputObjs>for.body.lr.ph.i</controlOutputObjs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="13" name="i_cast" lineNumber="24" fileName="Utils.cpp" fileDirectory="../." rtlName="i_cast_fu_84_p1" coreId="857943536" contextFuncName="apply_bit_reverse" bitwidth="64" opcode="zext" m_display="0" m_topoIndex="8" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="13" name="i_cast" lineNumber="24" fileName="Utils.cpp" fileDirectory="../." rtlName="i_cast_fu_84_p1" coreId="0" contextFuncName="apply_bit_reverse" bitwidth="64" opcode="zext" m_display="0" m_topoIndex="8" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Utils.cpp" linenumber="24" fileDirectory="/home/meng/HLS/Crypto" functionName="apply_bit_reverse"/>
         <dataInputObjs>load</dataInputObjs>
         <dataOutputObjs>getelementptr</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="16" name="or_ln13_s" lineNumber="13" fileName="Utils.cpp" fileDirectory="../." rtlName="or_ln13_s_fu_89_p4" coreId="3720377156" contextFuncName="bit_reverse" bitwidth="12" opcode="partselect" m_display="0" m_topoIndex="9" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="16" name="or_ln13_s" lineNumber="13" fileName="Utils.cpp" fileDirectory="../." rtlName="or_ln13_s_fu_89_p4" coreId="1668180224" contextFuncName="bit_reverse" bitwidth="12" opcode="partselect" m_display="0" m_topoIndex="9" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Utils.cpp" linenumber="25" fileDirectory="/home/meng/HLS/Crypto" functionName="apply_bit_reverse"/>
         <inlineStackInfo fileName="Utils.cpp" linenumber="13" fileDirectory="/home/meng/HLS/Crypto" functionName="bit_reverse"/>
         <dataInputObjs>load</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="17" name="x_addr" lineNumber="26" fileName="Utils.cpp" fileDirectory="../." coreId="857772096" contextFuncName="apply_bit_reverse" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="17" name="x_addr" lineNumber="26" fileName="Utils.cpp" fileDirectory="../." coreId="0" contextFuncName="apply_bit_reverse" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Utils.cpp" linenumber="26" fileDirectory="/home/meng/HLS/Crypto" functionName="apply_bit_reverse"/>
         <dataInputObjs>x</dataInputObjs>
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>load</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="18" name="zext_ln26" lineNumber="26" fileName="Utils.cpp" fileDirectory="../." rtlName="zext_ln26_fu_104_p1" coreId="1735289196" contextFuncName="apply_bit_reverse" bitwidth="64" opcode="zext" nodeLabel="2.0" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="18" name="zext_ln26" lineNumber="26" fileName="Utils.cpp" fileDirectory="../." rtlName="zext_ln26_fu_104_p1" coreId="0" contextFuncName="apply_bit_reverse" bitwidth="64" opcode="zext" nodeLabel="2.0" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Utils.cpp" linenumber="26" fileDirectory="/home/meng/HLS/Crypto" functionName="apply_bit_reverse"/>
         <dataInputObjs>partselect</dataInputObjs>
         <dataOutputObjs>getelementptr</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="19" name="result_addr" lineNumber="26" fileName="Utils.cpp" fileDirectory="../." coreId="0" contextFuncName="apply_bit_reverse" bitwidth="12" opcode="getelementptr" nodeLabel="2.0" m_display="0" m_topoIndex="15" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="19" name="result_addr" lineNumber="26" fileName="Utils.cpp" fileDirectory="../." coreId="2975391056" contextFuncName="apply_bit_reverse" bitwidth="12" opcode="getelementptr" nodeLabel="2.0" m_display="0" m_topoIndex="15" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Utils.cpp" linenumber="26" fileDirectory="/home/meng/HLS/Crypto" functionName="apply_bit_reverse"/>
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>result</dataOutputObjs>
@@ -148,12 +148,12 @@
         <dataInputObjs>load</dataInputObjs>
         <dataInputObjs>getelementptr</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="22" name="i_write_ln24" lineNumber="24" fileName="Utils.cpp" fileDirectory="../." coreId="857869664" contextFuncName="apply_bit_reverse" opcode="store" m_display="0" m_delay="1.58" m_topoIndex="12" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="22" name="i_write_ln24" lineNumber="24" fileName="Utils.cpp" fileDirectory="../." coreId="2975214448" contextFuncName="apply_bit_reverse" opcode="store" m_display="0" m_delay="1.58" m_topoIndex="12" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Utils.cpp" linenumber="24" fileDirectory="/home/meng/HLS/Crypto" functionName="apply_bit_reverse"/>
         <dataInputObjs>add</dataInputObjs>
         <dataInputObjs>alloca</dataInputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="23" name="br_ln24" lineNumber="24" fileName="Utils.cpp" fileDirectory="../." coreId="857913072" contextFuncName="apply_bit_reverse" opcode="br" nodeLabel="2.0" m_display="0" m_topoIndex="17" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="23" name="br_ln24" lineNumber="24" fileName="Utils.cpp" fileDirectory="../." coreId="0" contextFuncName="apply_bit_reverse" opcode="br" nodeLabel="2.0" m_display="0" m_topoIndex="17" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Utils.cpp" linenumber="24" fileDirectory="/home/meng/HLS/Crypto" functionName="apply_bit_reverse"/>
         <controlInputObjs>for.body.lr.ph.i</controlInputObjs>
       </node_objs>

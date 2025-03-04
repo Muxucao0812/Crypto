@@ -30,7 +30,10 @@
 // 0x0ffff : Memory 'NTTTwiddleIn' (6144 * 32b)
 //           Word n : bit [31:0] - NTTTwiddleIn[n]
 // 0x10000 ~
-// 0x17fff : Memory 'INTTTwiddleIn' (6144 * 32b)
+// 0x1ffff : Memory 'DataOutStream' (12288 * 32b)
+//           Word n : bit [31:0] - DataOutStream[n]
+// 0x20000 ~
+// 0x27fff : Memory 'INTTTwiddleIn' (6144 * 32b)
 //           Word n : bit [31:0] - INTTTwiddleIn[n]
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
@@ -48,7 +51,11 @@
 #define CONTROL_ADDR_NTTTWIDDLEIN_HIGH  0x0ffff
 #define CONTROL_WIDTH_NTTTWIDDLEIN      32
 #define CONTROL_DEPTH_NTTTWIDDLEIN      6144
-#define CONTROL_ADDR_INTTTWIDDLEIN_BASE 0x10000
-#define CONTROL_ADDR_INTTTWIDDLEIN_HIGH 0x17fff
+#define CONTROL_ADDR_DATAOUTSTREAM_BASE 0x10000
+#define CONTROL_ADDR_DATAOUTSTREAM_HIGH 0x1ffff
+#define CONTROL_WIDTH_DATAOUTSTREAM     32
+#define CONTROL_DEPTH_DATAOUTSTREAM     12288
+#define CONTROL_ADDR_INTTTWIDDLEIN_BASE 0x20000
+#define CONTROL_ADDR_INTTTWIDDLEIN_HIGH 0x27fff
 #define CONTROL_WIDTH_INTTTWIDDLEIN     32
 #define CONTROL_DEPTH_INTTTWIDDLEIN     6144

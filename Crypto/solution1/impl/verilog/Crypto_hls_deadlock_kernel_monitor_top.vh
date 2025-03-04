@@ -5,27 +5,21 @@ wire kernel_monitor_report;
 assign kernel_monitor_reset = ~ap_rst_n;
 assign kernel_monitor_clock = ap_clk;
 assign kernel_monitor_report = 1'b0;
-wire [5:0] axis_block_sigs;
-wire [6:0] inst_idle_sigs;
+wire [2:0] axis_block_sigs;
+wire [3:0] inst_idle_sigs;
 wire [0:0] inst_block_sigs;
 wire kernel_block;
 
-assign axis_block_sigs[0] = ~grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620.dataOutStream_TDATA_blk_n;
-assign axis_block_sigs[1] = ~grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832.dataOutStream_TDATA_blk_n;
-assign axis_block_sigs[2] = ~grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849.dataOutStream_TDATA_blk_n;
-assign axis_block_sigs[3] = ~grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866.dataInStream_TDATA_blk_n;
-assign axis_block_sigs[4] = ~grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883.dataInStream_TDATA_blk_n;
-assign axis_block_sigs[5] = ~grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900.dataInStream_TDATA_blk_n;
+assign axis_block_sigs[0] = ~grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842.DataInStream_TDATA_blk_n;
+assign axis_block_sigs[1] = ~grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859.DataInStream_TDATA_blk_n;
+assign axis_block_sigs[2] = ~grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876.DataInStream_TDATA_blk_n;
 
 assign inst_block_sigs[0] = 1'b0;
 
 assign inst_idle_sigs[0] = 1'b0;
-assign inst_idle_sigs[1] = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620.ap_idle;
-assign inst_idle_sigs[2] = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832.ap_idle;
-assign inst_idle_sigs[3] = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849.ap_idle;
-assign inst_idle_sigs[4] = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866.ap_idle;
-assign inst_idle_sigs[5] = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883.ap_idle;
-assign inst_idle_sigs[6] = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900.ap_idle;
+assign inst_idle_sigs[1] = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842.ap_idle;
+assign inst_idle_sigs[2] = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859.ap_idle;
+assign inst_idle_sigs[3] = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876.ap_idle;
 
 Crypto_hls_deadlock_idx0_monitor Crypto_hls_deadlock_idx0_monitor_U (
     .clock(kernel_monitor_clock),

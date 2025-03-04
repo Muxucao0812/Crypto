@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Crypto_Pipeline_MUL_INV_LOOP21'" level="0">
-<item name = "Date">Tue Mar  4 14:33:27 2025
+<item name = "Date">Tue Mar  4 21:31:43 2025
 </item>
 <item name = "Version">2023.1 (Build 3854077 on May  4 2023)</item>
 <item name = "Project">Crypto</item>
@@ -80,8 +80,8 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln253_fu_151_p2">+, 0, 0, 14, 13, 1</column>
-<column name="icmp_ln253_fu_145_p2">icmp, 0, 0, 17, 13, 14</column>
+<column name="add_ln258_fu_151_p2">+, 0, 0, 14, 13, 1</column>
+<column name="icmp_ln258_fu_145_p2">icmp, 0, 0, 17, 13, 14</column>
 <column name="ap_enable_pp0">xor, 0, 0, 2, 1, 2</column>
 </table>
 </item>
@@ -134,13 +134,13 @@
 <column name="ap_loop_exit_ready_pp0_iter7_reg">1, 0, 1, 0</column>
 <column name="ap_loop_exit_ready_pp0_iter8_reg">1, 0, 1, 0</column>
 <column name="ap_loop_exit_ready_pp0_iter9_reg">1, 0, 1, 0</column>
-<column name="icmp_ln253_reg_195">1, 0, 1, 0</column>
+<column name="icmp_ln258_reg_195">1, 0, 1, 0</column>
 <column name="j_fu_50">13, 0, 13, 0</column>
 <column name="DataRAM_10_addr_reg_217">64, 32, 12, 0</column>
 <column name="DataRAM_1_addr_reg_199">64, 32, 12, 0</column>
 <column name="DataRAM_4_addr_reg_205">64, 32, 12, 0</column>
 <column name="DataRAM_7_addr_reg_211">64, 32, 12, 0</column>
-<column name="icmp_ln253_reg_195">64, 32, 1, 0</column>
+<column name="icmp_ln258_reg_195">64, 32, 1, 0</column>
 </table>
 </item>
 </section>
@@ -156,11 +156,11 @@
 <column name="ap_done">out, 1, ap_ctrl_hs, Crypto_Pipeline_MUL_INV_LOOP21, return value</column>
 <column name="ap_idle">out, 1, ap_ctrl_hs, Crypto_Pipeline_MUL_INV_LOOP21, return value</column>
 <column name="ap_ready">out, 1, ap_ctrl_hs, Crypto_Pipeline_MUL_INV_LOOP21, return value</column>
-<column name="grp_MUL_MOD_fu_1763_p_din1">out, 32, ap_ctrl_hs, Crypto_Pipeline_MUL_INV_LOOP21, return value</column>
-<column name="grp_MUL_MOD_fu_1763_p_din2">out, 32, ap_ctrl_hs, Crypto_Pipeline_MUL_INV_LOOP21, return value</column>
-<column name="grp_MUL_MOD_fu_1763_p_din3">out, 2, ap_ctrl_hs, Crypto_Pipeline_MUL_INV_LOOP21, return value</column>
-<column name="grp_MUL_MOD_fu_1763_p_dout0">in, 32, ap_ctrl_hs, Crypto_Pipeline_MUL_INV_LOOP21, return value</column>
-<column name="grp_MUL_MOD_fu_1763_p_ce">out, 1, ap_ctrl_hs, Crypto_Pipeline_MUL_INV_LOOP21, return value</column>
+<column name="grp_MUL_MOD_fu_1739_p_din1">out, 32, ap_ctrl_hs, Crypto_Pipeline_MUL_INV_LOOP21, return value</column>
+<column name="grp_MUL_MOD_fu_1739_p_din2">out, 32, ap_ctrl_hs, Crypto_Pipeline_MUL_INV_LOOP21, return value</column>
+<column name="grp_MUL_MOD_fu_1739_p_din3">out, 2, ap_ctrl_hs, Crypto_Pipeline_MUL_INV_LOOP21, return value</column>
+<column name="grp_MUL_MOD_fu_1739_p_dout0">in, 32, ap_ctrl_hs, Crypto_Pipeline_MUL_INV_LOOP21, return value</column>
+<column name="grp_MUL_MOD_fu_1739_p_ce">out, 1, ap_ctrl_hs, Crypto_Pipeline_MUL_INV_LOOP21, return value</column>
 <column name="DataRAM_10_address0">out, 12, ap_memory, DataRAM_10, array</column>
 <column name="DataRAM_10_ce0">out, 1, ap_memory, DataRAM_10, array</column>
 <column name="DataRAM_10_we0">out, 1, ap_memory, DataRAM_10, array</column>

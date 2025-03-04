@@ -6,23 +6,17 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="Crypto_Crypto,hls_ip_2023_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=8.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=5.802000,HLS_SYN_LAT=1101659125036,HLS_SYN_TPT=none,HLS_SYN_MEM=176,HLS_SYN_DSP=0,HLS_SYN_FF=35099,HLS_SYN_LUT=38077,HLS_VERSION=2023_1}" *)
+(* CORE_GENERATION_INFO="Crypto_Crypto,hls_ip_2023_1,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020-clg400-1,HLS_INPUT_CLOCK=8.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=5.802000,HLS_SYN_LAT=1101659125036,HLS_SYN_TPT=none,HLS_SYN_MEM=208,HLS_SYN_DSP=0,HLS_SYN_FF=35345,HLS_SYN_LUT=38043,HLS_VERSION=2023_1}" *)
 
 module Crypto (
         ap_clk,
         ap_rst_n,
-        dataInStream_TDATA,
-        dataInStream_TVALID,
-        dataInStream_TREADY,
-        dataInStream_TKEEP,
-        dataInStream_TSTRB,
-        dataInStream_TLAST,
-        dataOutStream_TDATA,
-        dataOutStream_TVALID,
-        dataOutStream_TREADY,
-        dataOutStream_TKEEP,
-        dataOutStream_TSTRB,
-        dataOutStream_TLAST,
+        DataInStream_TDATA,
+        DataInStream_TVALID,
+        DataInStream_TREADY,
+        DataInStream_TKEEP,
+        DataInStream_TSTRB,
+        DataInStream_TLAST,
         s_axi_control_AWVALID,
         s_axi_control_AWREADY,
         s_axi_control_AWADDR,
@@ -43,170 +37,163 @@ module Crypto (
         interrupt
 );
 
-parameter    ap_ST_fsm_state1 = 162'd1;
-parameter    ap_ST_fsm_state2 = 162'd2;
-parameter    ap_ST_fsm_state3 = 162'd4;
-parameter    ap_ST_fsm_state4 = 162'd8;
-parameter    ap_ST_fsm_state5 = 162'd16;
-parameter    ap_ST_fsm_state6 = 162'd32;
-parameter    ap_ST_fsm_state7 = 162'd64;
-parameter    ap_ST_fsm_state8 = 162'd128;
-parameter    ap_ST_fsm_state9 = 162'd256;
-parameter    ap_ST_fsm_state10 = 162'd512;
-parameter    ap_ST_fsm_state11 = 162'd1024;
-parameter    ap_ST_fsm_state12 = 162'd2048;
-parameter    ap_ST_fsm_state13 = 162'd4096;
-parameter    ap_ST_fsm_state14 = 162'd8192;
-parameter    ap_ST_fsm_state15 = 162'd16384;
-parameter    ap_ST_fsm_state16 = 162'd32768;
-parameter    ap_ST_fsm_state17 = 162'd65536;
-parameter    ap_ST_fsm_state18 = 162'd131072;
-parameter    ap_ST_fsm_state19 = 162'd262144;
-parameter    ap_ST_fsm_state20 = 162'd524288;
-parameter    ap_ST_fsm_state21 = 162'd1048576;
-parameter    ap_ST_fsm_state22 = 162'd2097152;
-parameter    ap_ST_fsm_state23 = 162'd4194304;
-parameter    ap_ST_fsm_state24 = 162'd8388608;
-parameter    ap_ST_fsm_state25 = 162'd16777216;
-parameter    ap_ST_fsm_state26 = 162'd33554432;
-parameter    ap_ST_fsm_state27 = 162'd67108864;
-parameter    ap_ST_fsm_state28 = 162'd134217728;
-parameter    ap_ST_fsm_state29 = 162'd268435456;
-parameter    ap_ST_fsm_state30 = 162'd536870912;
-parameter    ap_ST_fsm_state31 = 162'd1073741824;
-parameter    ap_ST_fsm_state32 = 162'd2147483648;
-parameter    ap_ST_fsm_state33 = 162'd4294967296;
-parameter    ap_ST_fsm_state34 = 162'd8589934592;
-parameter    ap_ST_fsm_state35 = 162'd17179869184;
-parameter    ap_ST_fsm_state36 = 162'd34359738368;
-parameter    ap_ST_fsm_state37 = 162'd68719476736;
-parameter    ap_ST_fsm_state38 = 162'd137438953472;
-parameter    ap_ST_fsm_state39 = 162'd274877906944;
-parameter    ap_ST_fsm_state40 = 162'd549755813888;
-parameter    ap_ST_fsm_state41 = 162'd1099511627776;
-parameter    ap_ST_fsm_state42 = 162'd2199023255552;
-parameter    ap_ST_fsm_state43 = 162'd4398046511104;
-parameter    ap_ST_fsm_state44 = 162'd8796093022208;
-parameter    ap_ST_fsm_state45 = 162'd17592186044416;
-parameter    ap_ST_fsm_state46 = 162'd35184372088832;
-parameter    ap_ST_fsm_state47 = 162'd70368744177664;
-parameter    ap_ST_fsm_state48 = 162'd140737488355328;
-parameter    ap_ST_fsm_state49 = 162'd281474976710656;
-parameter    ap_ST_fsm_state50 = 162'd562949953421312;
-parameter    ap_ST_fsm_state51 = 162'd1125899906842624;
-parameter    ap_ST_fsm_state52 = 162'd2251799813685248;
-parameter    ap_ST_fsm_state53 = 162'd4503599627370496;
-parameter    ap_ST_fsm_state54 = 162'd9007199254740992;
-parameter    ap_ST_fsm_state55 = 162'd18014398509481984;
-parameter    ap_ST_fsm_state56 = 162'd36028797018963968;
-parameter    ap_ST_fsm_state57 = 162'd72057594037927936;
-parameter    ap_ST_fsm_state58 = 162'd144115188075855872;
-parameter    ap_ST_fsm_state59 = 162'd288230376151711744;
-parameter    ap_ST_fsm_state60 = 162'd576460752303423488;
-parameter    ap_ST_fsm_state61 = 162'd1152921504606846976;
-parameter    ap_ST_fsm_state62 = 162'd2305843009213693952;
-parameter    ap_ST_fsm_state63 = 162'd4611686018427387904;
-parameter    ap_ST_fsm_state64 = 162'd9223372036854775808;
-parameter    ap_ST_fsm_state65 = 162'd18446744073709551616;
-parameter    ap_ST_fsm_state66 = 162'd36893488147419103232;
-parameter    ap_ST_fsm_state67 = 162'd73786976294838206464;
-parameter    ap_ST_fsm_state68 = 162'd147573952589676412928;
-parameter    ap_ST_fsm_state69 = 162'd295147905179352825856;
-parameter    ap_ST_fsm_state70 = 162'd590295810358705651712;
-parameter    ap_ST_fsm_state71 = 162'd1180591620717411303424;
-parameter    ap_ST_fsm_state72 = 162'd2361183241434822606848;
-parameter    ap_ST_fsm_state73 = 162'd4722366482869645213696;
-parameter    ap_ST_fsm_state74 = 162'd9444732965739290427392;
-parameter    ap_ST_fsm_state75 = 162'd18889465931478580854784;
-parameter    ap_ST_fsm_state76 = 162'd37778931862957161709568;
-parameter    ap_ST_fsm_state77 = 162'd75557863725914323419136;
-parameter    ap_ST_fsm_state78 = 162'd151115727451828646838272;
-parameter    ap_ST_fsm_state79 = 162'd302231454903657293676544;
-parameter    ap_ST_fsm_state80 = 162'd604462909807314587353088;
-parameter    ap_ST_fsm_state81 = 162'd1208925819614629174706176;
-parameter    ap_ST_fsm_state82 = 162'd2417851639229258349412352;
-parameter    ap_ST_fsm_state83 = 162'd4835703278458516698824704;
-parameter    ap_ST_fsm_state84 = 162'd9671406556917033397649408;
-parameter    ap_ST_fsm_state85 = 162'd19342813113834066795298816;
-parameter    ap_ST_fsm_state86 = 162'd38685626227668133590597632;
-parameter    ap_ST_fsm_state87 = 162'd77371252455336267181195264;
-parameter    ap_ST_fsm_state88 = 162'd154742504910672534362390528;
-parameter    ap_ST_fsm_state89 = 162'd309485009821345068724781056;
-parameter    ap_ST_fsm_state90 = 162'd618970019642690137449562112;
-parameter    ap_ST_fsm_state91 = 162'd1237940039285380274899124224;
-parameter    ap_ST_fsm_state92 = 162'd2475880078570760549798248448;
-parameter    ap_ST_fsm_state93 = 162'd4951760157141521099596496896;
-parameter    ap_ST_fsm_state94 = 162'd9903520314283042199192993792;
-parameter    ap_ST_fsm_state95 = 162'd19807040628566084398385987584;
-parameter    ap_ST_fsm_state96 = 162'd39614081257132168796771975168;
-parameter    ap_ST_fsm_state97 = 162'd79228162514264337593543950336;
-parameter    ap_ST_fsm_state98 = 162'd158456325028528675187087900672;
-parameter    ap_ST_fsm_state99 = 162'd316912650057057350374175801344;
-parameter    ap_ST_fsm_state100 = 162'd633825300114114700748351602688;
-parameter    ap_ST_fsm_state101 = 162'd1267650600228229401496703205376;
-parameter    ap_ST_fsm_state102 = 162'd2535301200456458802993406410752;
-parameter    ap_ST_fsm_state103 = 162'd5070602400912917605986812821504;
-parameter    ap_ST_fsm_state104 = 162'd10141204801825835211973625643008;
-parameter    ap_ST_fsm_state105 = 162'd20282409603651670423947251286016;
-parameter    ap_ST_fsm_state106 = 162'd40564819207303340847894502572032;
-parameter    ap_ST_fsm_state107 = 162'd81129638414606681695789005144064;
-parameter    ap_ST_fsm_state108 = 162'd162259276829213363391578010288128;
-parameter    ap_ST_fsm_state109 = 162'd324518553658426726783156020576256;
-parameter    ap_ST_fsm_state110 = 162'd649037107316853453566312041152512;
-parameter    ap_ST_fsm_state111 = 162'd1298074214633706907132624082305024;
-parameter    ap_ST_fsm_state112 = 162'd2596148429267413814265248164610048;
-parameter    ap_ST_fsm_state113 = 162'd5192296858534827628530496329220096;
-parameter    ap_ST_fsm_state114 = 162'd10384593717069655257060992658440192;
-parameter    ap_ST_fsm_state115 = 162'd20769187434139310514121985316880384;
-parameter    ap_ST_fsm_state116 = 162'd41538374868278621028243970633760768;
-parameter    ap_ST_fsm_state117 = 162'd83076749736557242056487941267521536;
-parameter    ap_ST_fsm_state118 = 162'd166153499473114484112975882535043072;
-parameter    ap_ST_fsm_state119 = 162'd332306998946228968225951765070086144;
-parameter    ap_ST_fsm_state120 = 162'd664613997892457936451903530140172288;
-parameter    ap_ST_fsm_state121 = 162'd1329227995784915872903807060280344576;
-parameter    ap_ST_fsm_state122 = 162'd2658455991569831745807614120560689152;
-parameter    ap_ST_fsm_state123 = 162'd5316911983139663491615228241121378304;
-parameter    ap_ST_fsm_state124 = 162'd10633823966279326983230456482242756608;
-parameter    ap_ST_fsm_state125 = 162'd21267647932558653966460912964485513216;
-parameter    ap_ST_fsm_state126 = 162'd42535295865117307932921825928971026432;
-parameter    ap_ST_fsm_state127 = 162'd85070591730234615865843651857942052864;
-parameter    ap_ST_fsm_state128 = 162'd170141183460469231731687303715884105728;
-parameter    ap_ST_fsm_state129 = 162'd340282366920938463463374607431768211456;
-parameter    ap_ST_fsm_state130 = 162'd680564733841876926926749214863536422912;
-parameter    ap_ST_fsm_state131 = 162'd1361129467683753853853498429727072845824;
-parameter    ap_ST_fsm_state132 = 162'd2722258935367507707706996859454145691648;
-parameter    ap_ST_fsm_state133 = 162'd5444517870735015415413993718908291383296;
-parameter    ap_ST_fsm_state134 = 162'd10889035741470030830827987437816582766592;
-parameter    ap_ST_fsm_state135 = 162'd21778071482940061661655974875633165533184;
-parameter    ap_ST_fsm_state136 = 162'd43556142965880123323311949751266331066368;
-parameter    ap_ST_fsm_state137 = 162'd87112285931760246646623899502532662132736;
-parameter    ap_ST_fsm_state138 = 162'd174224571863520493293247799005065324265472;
-parameter    ap_ST_fsm_state139 = 162'd348449143727040986586495598010130648530944;
-parameter    ap_ST_fsm_state140 = 162'd696898287454081973172991196020261297061888;
-parameter    ap_ST_fsm_state141 = 162'd1393796574908163946345982392040522594123776;
-parameter    ap_ST_fsm_state142 = 162'd2787593149816327892691964784081045188247552;
-parameter    ap_ST_fsm_state143 = 162'd5575186299632655785383929568162090376495104;
-parameter    ap_ST_fsm_state144 = 162'd11150372599265311570767859136324180752990208;
-parameter    ap_ST_fsm_state145 = 162'd22300745198530623141535718272648361505980416;
-parameter    ap_ST_fsm_state146 = 162'd44601490397061246283071436545296723011960832;
-parameter    ap_ST_fsm_state147 = 162'd89202980794122492566142873090593446023921664;
-parameter    ap_ST_fsm_state148 = 162'd178405961588244985132285746181186892047843328;
-parameter    ap_ST_fsm_state149 = 162'd356811923176489970264571492362373784095686656;
-parameter    ap_ST_fsm_state150 = 162'd713623846352979940529142984724747568191373312;
-parameter    ap_ST_fsm_state151 = 162'd1427247692705959881058285969449495136382746624;
-parameter    ap_ST_fsm_state152 = 162'd2854495385411919762116571938898990272765493248;
-parameter    ap_ST_fsm_state153 = 162'd5708990770823839524233143877797980545530986496;
-parameter    ap_ST_fsm_state154 = 162'd11417981541647679048466287755595961091061972992;
-parameter    ap_ST_fsm_state155 = 162'd22835963083295358096932575511191922182123945984;
-parameter    ap_ST_fsm_state156 = 162'd45671926166590716193865151022383844364247891968;
-parameter    ap_ST_fsm_state157 = 162'd91343852333181432387730302044767688728495783936;
-parameter    ap_ST_fsm_state158 = 162'd182687704666362864775460604089535377456991567872;
-parameter    ap_ST_fsm_state159 = 162'd365375409332725729550921208179070754913983135744;
-parameter    ap_ST_fsm_state160 = 162'd730750818665451459101842416358141509827966271488;
-parameter    ap_ST_fsm_state161 = 162'd1461501637330902918203684832716283019655932542976;
-parameter    ap_ST_fsm_state162 = 162'd2923003274661805836407369665432566039311865085952;
+parameter    ap_ST_fsm_state1 = 155'd1;
+parameter    ap_ST_fsm_state2 = 155'd2;
+parameter    ap_ST_fsm_state3 = 155'd4;
+parameter    ap_ST_fsm_state4 = 155'd8;
+parameter    ap_ST_fsm_state5 = 155'd16;
+parameter    ap_ST_fsm_state6 = 155'd32;
+parameter    ap_ST_fsm_state7 = 155'd64;
+parameter    ap_ST_fsm_state8 = 155'd128;
+parameter    ap_ST_fsm_state9 = 155'd256;
+parameter    ap_ST_fsm_state10 = 155'd512;
+parameter    ap_ST_fsm_state11 = 155'd1024;
+parameter    ap_ST_fsm_state12 = 155'd2048;
+parameter    ap_ST_fsm_state13 = 155'd4096;
+parameter    ap_ST_fsm_state14 = 155'd8192;
+parameter    ap_ST_fsm_state15 = 155'd16384;
+parameter    ap_ST_fsm_state16 = 155'd32768;
+parameter    ap_ST_fsm_state17 = 155'd65536;
+parameter    ap_ST_fsm_state18 = 155'd131072;
+parameter    ap_ST_fsm_state19 = 155'd262144;
+parameter    ap_ST_fsm_state20 = 155'd524288;
+parameter    ap_ST_fsm_state21 = 155'd1048576;
+parameter    ap_ST_fsm_state22 = 155'd2097152;
+parameter    ap_ST_fsm_state23 = 155'd4194304;
+parameter    ap_ST_fsm_state24 = 155'd8388608;
+parameter    ap_ST_fsm_state25 = 155'd16777216;
+parameter    ap_ST_fsm_state26 = 155'd33554432;
+parameter    ap_ST_fsm_state27 = 155'd67108864;
+parameter    ap_ST_fsm_state28 = 155'd134217728;
+parameter    ap_ST_fsm_state29 = 155'd268435456;
+parameter    ap_ST_fsm_state30 = 155'd536870912;
+parameter    ap_ST_fsm_state31 = 155'd1073741824;
+parameter    ap_ST_fsm_state32 = 155'd2147483648;
+parameter    ap_ST_fsm_state33 = 155'd4294967296;
+parameter    ap_ST_fsm_state34 = 155'd8589934592;
+parameter    ap_ST_fsm_state35 = 155'd17179869184;
+parameter    ap_ST_fsm_state36 = 155'd34359738368;
+parameter    ap_ST_fsm_state37 = 155'd68719476736;
+parameter    ap_ST_fsm_state38 = 155'd137438953472;
+parameter    ap_ST_fsm_state39 = 155'd274877906944;
+parameter    ap_ST_fsm_state40 = 155'd549755813888;
+parameter    ap_ST_fsm_state41 = 155'd1099511627776;
+parameter    ap_ST_fsm_state42 = 155'd2199023255552;
+parameter    ap_ST_fsm_state43 = 155'd4398046511104;
+parameter    ap_ST_fsm_state44 = 155'd8796093022208;
+parameter    ap_ST_fsm_state45 = 155'd17592186044416;
+parameter    ap_ST_fsm_state46 = 155'd35184372088832;
+parameter    ap_ST_fsm_state47 = 155'd70368744177664;
+parameter    ap_ST_fsm_state48 = 155'd140737488355328;
+parameter    ap_ST_fsm_state49 = 155'd281474976710656;
+parameter    ap_ST_fsm_state50 = 155'd562949953421312;
+parameter    ap_ST_fsm_state51 = 155'd1125899906842624;
+parameter    ap_ST_fsm_state52 = 155'd2251799813685248;
+parameter    ap_ST_fsm_state53 = 155'd4503599627370496;
+parameter    ap_ST_fsm_state54 = 155'd9007199254740992;
+parameter    ap_ST_fsm_state55 = 155'd18014398509481984;
+parameter    ap_ST_fsm_state56 = 155'd36028797018963968;
+parameter    ap_ST_fsm_state57 = 155'd72057594037927936;
+parameter    ap_ST_fsm_state58 = 155'd144115188075855872;
+parameter    ap_ST_fsm_state59 = 155'd288230376151711744;
+parameter    ap_ST_fsm_state60 = 155'd576460752303423488;
+parameter    ap_ST_fsm_state61 = 155'd1152921504606846976;
+parameter    ap_ST_fsm_state62 = 155'd2305843009213693952;
+parameter    ap_ST_fsm_state63 = 155'd4611686018427387904;
+parameter    ap_ST_fsm_state64 = 155'd9223372036854775808;
+parameter    ap_ST_fsm_state65 = 155'd18446744073709551616;
+parameter    ap_ST_fsm_state66 = 155'd36893488147419103232;
+parameter    ap_ST_fsm_state67 = 155'd73786976294838206464;
+parameter    ap_ST_fsm_state68 = 155'd147573952589676412928;
+parameter    ap_ST_fsm_state69 = 155'd295147905179352825856;
+parameter    ap_ST_fsm_state70 = 155'd590295810358705651712;
+parameter    ap_ST_fsm_state71 = 155'd1180591620717411303424;
+parameter    ap_ST_fsm_state72 = 155'd2361183241434822606848;
+parameter    ap_ST_fsm_state73 = 155'd4722366482869645213696;
+parameter    ap_ST_fsm_state74 = 155'd9444732965739290427392;
+parameter    ap_ST_fsm_state75 = 155'd18889465931478580854784;
+parameter    ap_ST_fsm_state76 = 155'd37778931862957161709568;
+parameter    ap_ST_fsm_state77 = 155'd75557863725914323419136;
+parameter    ap_ST_fsm_state78 = 155'd151115727451828646838272;
+parameter    ap_ST_fsm_state79 = 155'd302231454903657293676544;
+parameter    ap_ST_fsm_state80 = 155'd604462909807314587353088;
+parameter    ap_ST_fsm_state81 = 155'd1208925819614629174706176;
+parameter    ap_ST_fsm_state82 = 155'd2417851639229258349412352;
+parameter    ap_ST_fsm_state83 = 155'd4835703278458516698824704;
+parameter    ap_ST_fsm_state84 = 155'd9671406556917033397649408;
+parameter    ap_ST_fsm_state85 = 155'd19342813113834066795298816;
+parameter    ap_ST_fsm_state86 = 155'd38685626227668133590597632;
+parameter    ap_ST_fsm_state87 = 155'd77371252455336267181195264;
+parameter    ap_ST_fsm_state88 = 155'd154742504910672534362390528;
+parameter    ap_ST_fsm_state89 = 155'd309485009821345068724781056;
+parameter    ap_ST_fsm_state90 = 155'd618970019642690137449562112;
+parameter    ap_ST_fsm_state91 = 155'd1237940039285380274899124224;
+parameter    ap_ST_fsm_state92 = 155'd2475880078570760549798248448;
+parameter    ap_ST_fsm_state93 = 155'd4951760157141521099596496896;
+parameter    ap_ST_fsm_state94 = 155'd9903520314283042199192993792;
+parameter    ap_ST_fsm_state95 = 155'd19807040628566084398385987584;
+parameter    ap_ST_fsm_state96 = 155'd39614081257132168796771975168;
+parameter    ap_ST_fsm_state97 = 155'd79228162514264337593543950336;
+parameter    ap_ST_fsm_state98 = 155'd158456325028528675187087900672;
+parameter    ap_ST_fsm_state99 = 155'd316912650057057350374175801344;
+parameter    ap_ST_fsm_state100 = 155'd633825300114114700748351602688;
+parameter    ap_ST_fsm_state101 = 155'd1267650600228229401496703205376;
+parameter    ap_ST_fsm_state102 = 155'd2535301200456458802993406410752;
+parameter    ap_ST_fsm_state103 = 155'd5070602400912917605986812821504;
+parameter    ap_ST_fsm_state104 = 155'd10141204801825835211973625643008;
+parameter    ap_ST_fsm_state105 = 155'd20282409603651670423947251286016;
+parameter    ap_ST_fsm_state106 = 155'd40564819207303340847894502572032;
+parameter    ap_ST_fsm_state107 = 155'd81129638414606681695789005144064;
+parameter    ap_ST_fsm_state108 = 155'd162259276829213363391578010288128;
+parameter    ap_ST_fsm_state109 = 155'd324518553658426726783156020576256;
+parameter    ap_ST_fsm_state110 = 155'd649037107316853453566312041152512;
+parameter    ap_ST_fsm_state111 = 155'd1298074214633706907132624082305024;
+parameter    ap_ST_fsm_state112 = 155'd2596148429267413814265248164610048;
+parameter    ap_ST_fsm_state113 = 155'd5192296858534827628530496329220096;
+parameter    ap_ST_fsm_state114 = 155'd10384593717069655257060992658440192;
+parameter    ap_ST_fsm_state115 = 155'd20769187434139310514121985316880384;
+parameter    ap_ST_fsm_state116 = 155'd41538374868278621028243970633760768;
+parameter    ap_ST_fsm_state117 = 155'd83076749736557242056487941267521536;
+parameter    ap_ST_fsm_state118 = 155'd166153499473114484112975882535043072;
+parameter    ap_ST_fsm_state119 = 155'd332306998946228968225951765070086144;
+parameter    ap_ST_fsm_state120 = 155'd664613997892457936451903530140172288;
+parameter    ap_ST_fsm_state121 = 155'd1329227995784915872903807060280344576;
+parameter    ap_ST_fsm_state122 = 155'd2658455991569831745807614120560689152;
+parameter    ap_ST_fsm_state123 = 155'd5316911983139663491615228241121378304;
+parameter    ap_ST_fsm_state124 = 155'd10633823966279326983230456482242756608;
+parameter    ap_ST_fsm_state125 = 155'd21267647932558653966460912964485513216;
+parameter    ap_ST_fsm_state126 = 155'd42535295865117307932921825928971026432;
+parameter    ap_ST_fsm_state127 = 155'd85070591730234615865843651857942052864;
+parameter    ap_ST_fsm_state128 = 155'd170141183460469231731687303715884105728;
+parameter    ap_ST_fsm_state129 = 155'd340282366920938463463374607431768211456;
+parameter    ap_ST_fsm_state130 = 155'd680564733841876926926749214863536422912;
+parameter    ap_ST_fsm_state131 = 155'd1361129467683753853853498429727072845824;
+parameter    ap_ST_fsm_state132 = 155'd2722258935367507707706996859454145691648;
+parameter    ap_ST_fsm_state133 = 155'd5444517870735015415413993718908291383296;
+parameter    ap_ST_fsm_state134 = 155'd10889035741470030830827987437816582766592;
+parameter    ap_ST_fsm_state135 = 155'd21778071482940061661655974875633165533184;
+parameter    ap_ST_fsm_state136 = 155'd43556142965880123323311949751266331066368;
+parameter    ap_ST_fsm_state137 = 155'd87112285931760246646623899502532662132736;
+parameter    ap_ST_fsm_state138 = 155'd174224571863520493293247799005065324265472;
+parameter    ap_ST_fsm_state139 = 155'd348449143727040986586495598010130648530944;
+parameter    ap_ST_fsm_state140 = 155'd696898287454081973172991196020261297061888;
+parameter    ap_ST_fsm_state141 = 155'd1393796574908163946345982392040522594123776;
+parameter    ap_ST_fsm_state142 = 155'd2787593149816327892691964784081045188247552;
+parameter    ap_ST_fsm_state143 = 155'd5575186299632655785383929568162090376495104;
+parameter    ap_ST_fsm_state144 = 155'd11150372599265311570767859136324180752990208;
+parameter    ap_ST_fsm_state145 = 155'd22300745198530623141535718272648361505980416;
+parameter    ap_ST_fsm_state146 = 155'd44601490397061246283071436545296723011960832;
+parameter    ap_ST_fsm_state147 = 155'd89202980794122492566142873090593446023921664;
+parameter    ap_ST_fsm_state148 = 155'd178405961588244985132285746181186892047843328;
+parameter    ap_ST_fsm_state149 = 155'd356811923176489970264571492362373784095686656;
+parameter    ap_ST_fsm_state150 = 155'd713623846352979940529142984724747568191373312;
+parameter    ap_ST_fsm_state151 = 155'd1427247692705959881058285969449495136382746624;
+parameter    ap_ST_fsm_state152 = 155'd2854495385411919762116571938898990272765493248;
+parameter    ap_ST_fsm_state153 = 155'd5708990770823839524233143877797980545530986496;
+parameter    ap_ST_fsm_state154 = 155'd11417981541647679048466287755595961091061972992;
+parameter    ap_ST_fsm_state155 = 155'd22835963083295358096932575511191922182123945984;
 parameter    C_S_AXI_CONTROL_DATA_WIDTH = 32;
-parameter    C_S_AXI_CONTROL_ADDR_WIDTH = 17;
+parameter    C_S_AXI_CONTROL_ADDR_WIDTH = 18;
 parameter    C_S_AXI_DATA_WIDTH = 32;
 
 parameter C_S_AXI_CONTROL_WSTRB_WIDTH = (32 / 8);
@@ -214,18 +201,12 @@ parameter C_S_AXI_WSTRB_WIDTH = (32 / 8);
 
 input   ap_clk;
 input   ap_rst_n;
-input  [31:0] dataInStream_TDATA;
-input   dataInStream_TVALID;
-output   dataInStream_TREADY;
-input  [3:0] dataInStream_TKEEP;
-input  [3:0] dataInStream_TSTRB;
-input  [0:0] dataInStream_TLAST;
-output  [31:0] dataOutStream_TDATA;
-output   dataOutStream_TVALID;
-input   dataOutStream_TREADY;
-output  [3:0] dataOutStream_TKEEP;
-output  [3:0] dataOutStream_TSTRB;
-output  [0:0] dataOutStream_TLAST;
+input  [31:0] DataInStream_TDATA;
+input   DataInStream_TVALID;
+output   DataInStream_TREADY;
+input  [3:0] DataInStream_TKEEP;
+input  [3:0] DataInStream_TSTRB;
+input  [0:0] DataInStream_TLAST;
 input   s_axi_control_AWVALID;
 output   s_axi_control_AWREADY;
 input  [C_S_AXI_CONTROL_ADDR_WIDTH - 1:0] s_axi_control_AWADDR;
@@ -249,9 +230,13 @@ output   interrupt;
 wire    ap_start;
 reg    ap_done;
 reg    ap_idle;
-(* fsm_encoding = "none" *) reg   [161:0] ap_CS_fsm;
+(* fsm_encoding = "none" *) reg   [154:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
 reg    ap_ready;
+reg   [13:0] DataOutStream_address0;
+reg    DataOutStream_ce0;
+reg    DataOutStream_we0;
+reg   [31:0] DataOutStream_d0;
 wire   [31:0] RAMSel;
 wire   [31:0] RAMSel1;
 reg   [12:0] NTTTwiddleIn_address0;
@@ -261,90 +246,90 @@ reg   [12:0] INTTTwiddleIn_address0;
 reg    INTTTwiddleIn_ce0;
 wire   [31:0] INTTTwiddleIn_q0;
 wire   [31:0] OP;
-wire   [31:0] OP_read_read_fu_326_p2;
-reg   [31:0] OP_read_reg_1427;
-wire   [1:0] empty_fu_917_p1;
-reg   [1:0] empty_reg_1431;
-wire   [1:0] empty_133_fu_934_p1;
-reg   [1:0] empty_133_reg_1468;
-reg   [30:0] hf_1_reg_1501;
+wire   [31:0] OP_read_read_fu_320_p2;
+reg   [31:0] OP_read_reg_1403;
+wire   [1:0] empty_fu_893_p1;
+reg   [1:0] empty_reg_1407;
+wire   [1:0] empty_139_fu_910_p1;
+reg   [1:0] empty_139_reg_1444;
+reg   [30:0] hf_1_reg_1477;
 wire    ap_CS_fsm_state23;
-reg   [11:0] trunc_ln1_reg_1506;
-wire   [10:0] trunc_ln228_fu_990_p1;
-reg   [10:0] trunc_ln228_reg_1511;
-wire  signed [63:0] sext_ln228_fu_994_p1;
-reg  signed [63:0] sext_ln228_reg_1516;
-wire   [11:0] trunc_ln228_1_fu_1013_p1;
-reg   [11:0] trunc_ln228_1_reg_1524;
+reg   [11:0] trunc_ln1_reg_1482;
+wire   [10:0] trunc_ln233_fu_966_p1;
+reg   [10:0] trunc_ln233_reg_1487;
+wire  signed [63:0] sext_ln233_fu_970_p1;
+reg  signed [63:0] sext_ln233_reg_1492;
+wire   [11:0] trunc_ln233_1_fu_989_p1;
+reg   [11:0] trunc_ln233_1_reg_1500;
 wire    ap_CS_fsm_state24;
-wire   [0:0] icmp_ln228_fu_1007_p2;
-wire   [63:0] add_ln228_fu_1017_p2;
-reg   [63:0] add_ln228_reg_1529;
-reg   [30:0] hf_3_reg_1547;
+wire   [0:0] icmp_ln233_fu_983_p2;
+wire   [63:0] add_ln233_fu_993_p2;
+reg   [63:0] add_ln233_reg_1505;
+reg   [30:0] hf_3_reg_1523;
 wire    ap_CS_fsm_state45;
-reg   [11:0] trunc_ln228_4_reg_1552;
-wire   [10:0] trunc_ln228_2_fu_1070_p1;
-reg   [10:0] trunc_ln228_2_reg_1557;
-wire  signed [63:0] sext_ln228_1_fu_1074_p1;
-reg  signed [63:0] sext_ln228_1_reg_1562;
-wire   [11:0] trunc_ln228_3_fu_1093_p1;
-reg   [11:0] trunc_ln228_3_reg_1570;
+reg   [11:0] trunc_ln233_4_reg_1528;
+wire   [10:0] trunc_ln233_2_fu_1046_p1;
+reg   [10:0] trunc_ln233_2_reg_1533;
+wire  signed [63:0] sext_ln233_1_fu_1050_p1;
+reg  signed [63:0] sext_ln233_1_reg_1538;
+wire   [11:0] trunc_ln233_3_fu_1069_p1;
+reg   [11:0] trunc_ln233_3_reg_1546;
 wire    ap_CS_fsm_state46;
-wire   [0:0] icmp_ln228_1_fu_1087_p2;
-wire   [63:0] add_ln228_1_fu_1097_p2;
-reg   [63:0] add_ln228_1_reg_1575;
-reg   [30:0] hf_5_reg_1586;
+wire   [0:0] icmp_ln233_1_fu_1063_p2;
+wire   [63:0] add_ln233_1_fu_1073_p2;
+reg   [63:0] add_ln233_1_reg_1551;
+reg   [30:0] hf_5_reg_1562;
 wire    ap_CS_fsm_state67;
-reg   [11:0] trunc_ln228_8_reg_1591;
-wire   [10:0] trunc_ln228_5_fu_1145_p1;
-reg   [10:0] trunc_ln228_5_reg_1596;
-wire  signed [63:0] sext_ln228_2_fu_1149_p1;
-reg  signed [63:0] sext_ln228_2_reg_1601;
-wire   [11:0] trunc_ln228_6_fu_1168_p1;
-reg   [11:0] trunc_ln228_6_reg_1609;
+reg   [11:0] trunc_ln233_8_reg_1567;
+wire   [10:0] trunc_ln233_5_fu_1121_p1;
+reg   [10:0] trunc_ln233_5_reg_1572;
+wire  signed [63:0] sext_ln233_2_fu_1125_p1;
+reg  signed [63:0] sext_ln233_2_reg_1577;
+wire   [11:0] trunc_ln233_6_fu_1144_p1;
+reg   [11:0] trunc_ln233_6_reg_1585;
 wire    ap_CS_fsm_state68;
-wire   [0:0] icmp_ln228_2_fu_1162_p2;
-wire   [63:0] add_ln228_2_fu_1172_p2;
-reg   [63:0] add_ln228_2_reg_1614;
-reg   [30:0] hf_reg_1639;
+wire   [0:0] icmp_ln233_2_fu_1138_p2;
+wire   [63:0] add_ln233_2_fu_1148_p2;
+reg   [63:0] add_ln233_2_reg_1590;
+reg   [30:0] hf_reg_1615;
 wire    ap_CS_fsm_state93;
-reg   [11:0] trunc_ln_reg_1644;
-wire   [10:0] trunc_ln183_fu_1230_p1;
-reg   [10:0] trunc_ln183_reg_1649;
-wire  signed [63:0] sext_ln183_fu_1234_p1;
-reg  signed [63:0] sext_ln183_reg_1654;
-wire   [11:0] trunc_ln183_1_fu_1253_p1;
-reg   [11:0] trunc_ln183_1_reg_1662;
+reg   [11:0] trunc_ln_reg_1620;
+wire   [10:0] trunc_ln188_fu_1206_p1;
+reg   [10:0] trunc_ln188_reg_1625;
+wire  signed [63:0] sext_ln188_fu_1210_p1;
+reg  signed [63:0] sext_ln188_reg_1630;
+wire   [11:0] trunc_ln188_1_fu_1229_p1;
+reg   [11:0] trunc_ln188_1_reg_1638;
 wire    ap_CS_fsm_state94;
-wire   [0:0] icmp_ln183_fu_1247_p2;
-wire   [63:0] add_ln183_fu_1257_p2;
-reg   [63:0] add_ln183_reg_1667;
-reg   [30:0] hf_2_reg_1685;
+wire   [0:0] icmp_ln188_fu_1223_p2;
+wire   [63:0] add_ln188_fu_1233_p2;
+reg   [63:0] add_ln188_reg_1643;
+reg   [30:0] hf_2_reg_1661;
 wire    ap_CS_fsm_state115;
-reg   [11:0] trunc_ln183_4_reg_1690;
-wire   [10:0] trunc_ln183_2_fu_1310_p1;
-reg   [10:0] trunc_ln183_2_reg_1695;
-wire  signed [63:0] sext_ln183_1_fu_1314_p1;
-reg  signed [63:0] sext_ln183_1_reg_1700;
-wire   [11:0] trunc_ln183_3_fu_1333_p1;
-reg   [11:0] trunc_ln183_3_reg_1708;
+reg   [11:0] trunc_ln188_4_reg_1666;
+wire   [10:0] trunc_ln188_2_fu_1286_p1;
+reg   [10:0] trunc_ln188_2_reg_1671;
+wire  signed [63:0] sext_ln188_1_fu_1290_p1;
+reg  signed [63:0] sext_ln188_1_reg_1676;
+wire   [11:0] trunc_ln188_3_fu_1309_p1;
+reg   [11:0] trunc_ln188_3_reg_1684;
 wire    ap_CS_fsm_state116;
-wire   [0:0] icmp_ln183_1_fu_1327_p2;
-wire   [63:0] add_ln183_1_fu_1337_p2;
-reg   [63:0] add_ln183_1_reg_1713;
-reg   [30:0] hf_4_reg_1724;
+wire   [0:0] icmp_ln188_1_fu_1303_p2;
+wire   [63:0] add_ln188_1_fu_1313_p2;
+reg   [63:0] add_ln188_1_reg_1689;
+reg   [30:0] hf_4_reg_1700;
 wire    ap_CS_fsm_state137;
-reg   [11:0] trunc_ln183_8_reg_1729;
-wire   [10:0] trunc_ln183_5_fu_1385_p1;
-reg   [10:0] trunc_ln183_5_reg_1734;
-wire  signed [63:0] sext_ln183_2_fu_1389_p1;
-reg  signed [63:0] sext_ln183_2_reg_1739;
-wire   [11:0] trunc_ln183_6_fu_1408_p1;
-reg   [11:0] trunc_ln183_6_reg_1747;
+reg   [11:0] trunc_ln188_8_reg_1705;
+wire   [10:0] trunc_ln188_5_fu_1361_p1;
+reg   [10:0] trunc_ln188_5_reg_1710;
+wire  signed [63:0] sext_ln188_2_fu_1365_p1;
+reg  signed [63:0] sext_ln188_2_reg_1715;
+wire   [11:0] trunc_ln188_6_fu_1384_p1;
+reg   [11:0] trunc_ln188_6_reg_1723;
 wire    ap_CS_fsm_state138;
-wire   [0:0] icmp_ln183_2_fu_1402_p2;
-wire   [63:0] add_ln183_2_fu_1412_p2;
-reg   [63:0] add_ln183_2_reg_1752;
+wire   [0:0] icmp_ln188_2_fu_1378_p2;
+wire   [63:0] add_ln188_2_fu_1388_p2;
+reg   [63:0] add_ln188_2_reg_1728;
 reg   [11:0] DataRAM_address0;
 reg    DataRAM_ce0;
 reg    DataRAM_we0;
@@ -513,1341 +498,1329 @@ reg    INTTTWiddleRAM_2_we0;
 wire   [31:0] INTTTWiddleRAM_2_q0;
 reg    INTTTWiddleRAM_2_ce1;
 wire   [31:0] INTTTWiddleRAM_2_q1;
-wire    grp_apply_bit_reverse_fu_410_ap_start;
-wire    grp_apply_bit_reverse_fu_410_ap_done;
-wire    grp_apply_bit_reverse_fu_410_ap_idle;
-wire    grp_apply_bit_reverse_fu_410_ap_ready;
-wire   [11:0] grp_apply_bit_reverse_fu_410_x_address0;
-wire    grp_apply_bit_reverse_fu_410_x_ce0;
-reg   [31:0] grp_apply_bit_reverse_fu_410_x_q0;
-wire   [11:0] grp_apply_bit_reverse_fu_410_result_address0;
-wire    grp_apply_bit_reverse_fu_410_result_ce0;
-wire    grp_apply_bit_reverse_fu_410_result_we0;
-wire   [31:0] grp_apply_bit_reverse_fu_410_result_d0;
-wire    grp_apply_bit_reverse_fu_418_ap_start;
-wire    grp_apply_bit_reverse_fu_418_ap_done;
-wire    grp_apply_bit_reverse_fu_418_ap_idle;
-wire    grp_apply_bit_reverse_fu_418_ap_ready;
-wire   [11:0] grp_apply_bit_reverse_fu_418_x_address0;
-wire    grp_apply_bit_reverse_fu_418_x_ce0;
-reg   [31:0] grp_apply_bit_reverse_fu_418_x_q0;
-wire   [11:0] grp_apply_bit_reverse_fu_418_result_address0;
-wire    grp_apply_bit_reverse_fu_418_result_ce0;
-wire    grp_apply_bit_reverse_fu_418_result_we0;
-wire   [31:0] grp_apply_bit_reverse_fu_418_result_d0;
-wire    grp_apply_bit_reverse_fu_426_ap_start;
-wire    grp_apply_bit_reverse_fu_426_ap_done;
-wire    grp_apply_bit_reverse_fu_426_ap_idle;
-wire    grp_apply_bit_reverse_fu_426_ap_ready;
-wire   [11:0] grp_apply_bit_reverse_fu_426_x_address0;
-wire    grp_apply_bit_reverse_fu_426_x_ce0;
-reg   [31:0] grp_apply_bit_reverse_fu_426_x_q0;
-wire   [11:0] grp_apply_bit_reverse_fu_426_result_address0;
-wire    grp_apply_bit_reverse_fu_426_result_ce0;
-wire    grp_apply_bit_reverse_fu_426_result_we0;
-wire   [31:0] grp_apply_bit_reverse_fu_426_result_d0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_start;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_done;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_idle;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_address0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_ce0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_address1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_ce1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_address0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_ce0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_address1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_ce1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_address0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_ce0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_address1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_ce1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_address0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_ce0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_address1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_ce1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_d1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_start;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_done;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_idle;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_address0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_ce0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_address1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_ce1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_address0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_ce0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_address1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_ce1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_address0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_ce0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_address1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_ce1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_address0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_ce0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_address1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_ce1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_d1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_start;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_done;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_idle;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_address0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_ce0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_address1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_ce1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_address0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_ce0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_address1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_ce1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_address0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_ce0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_address1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_ce1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_address0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_ce0;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_address1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_ce1;
-wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_d1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_start;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_done;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_idle;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_address0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_ce0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_address1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_ce1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_address0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_ce0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_address1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_ce1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_address0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_ce0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_address1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_ce1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_address0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_ce0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_address1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_ce1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_d1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_start;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_done;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_idle;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_address0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_ce0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_address1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_ce1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_address0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_ce0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_address1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_ce1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_address0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_ce0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_address1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_ce1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_address0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_ce0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_address1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_ce1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_d1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_start;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_done;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_idle;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_address0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_ce0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_address1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_ce1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_address0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_ce0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_address1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_ce1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_address0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_ce0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_address1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_ce1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_address0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_ce0;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_address1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_ce1;
-wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_d1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_start;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_done;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_idle;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_address0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_ce0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_address1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_ce1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_address0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_ce0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_address1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_ce1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_address0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_ce0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_address1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_ce1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_address0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_ce0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_address1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_ce1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_d1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_start;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_done;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_idle;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_address0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_ce0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_address1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_ce1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_address0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_ce0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_address1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_ce1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_address0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_ce0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_address1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_ce1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_address0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_ce0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_address1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_ce1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_d1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_start;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_done;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_idle;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_address0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_ce0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_address1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_ce1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_address0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_ce0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_address1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_ce1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_address0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_ce0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_address1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_ce1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_address0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_ce0;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_address1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_ce1;
-wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_d1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_start;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_done;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_idle;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_address0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_ce0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_address1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_ce1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_address0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_ce0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_address1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_ce1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_address0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_ce0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_address1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_ce1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_address0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_ce0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_address1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_ce1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_d1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_start;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_done;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_idle;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_address0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_ce0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_address1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_ce1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_address0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_ce0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_address1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_ce1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_address0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_ce0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_address1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_ce1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_address0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_ce0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_address1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_ce1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_d1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_start;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_done;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_idle;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_address0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_ce0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_address1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_ce1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_address0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_ce0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_address1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_ce1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_address0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_ce0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_address1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_ce1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_d1;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_address0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_ce0;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_we0;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_d0;
-wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_address1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_ce1;
-wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_we1;
-wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_d1;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_ready;
-wire   [10:0] grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTWiddleRAM_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTWiddleRAM_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTWiddleRAM_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTWiddleRAM_d0;
-wire   [10:0] grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTWiddleRAM_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTWiddleRAM_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTWiddleRAM_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTWiddleRAM_d0;
-wire   [12:0] grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTwiddleIn_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTwiddleIn_ce0;
-wire   [12:0] grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTwiddleIn_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTwiddleIn_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_ready;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TREADY;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_ce0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_3_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_3_ce0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_6_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_6_ce0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_9_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_9_ce0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TDATA;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TVALID;
-wire   [3:0] grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TKEEP;
-wire   [3:0] grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TSTRB;
-wire   [0:0] grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TLAST;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_9_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_9_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_9_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_9_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_6_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_6_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_6_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_6_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_3_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_3_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_3_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_3_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_BitReverseData_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_BitReverseData_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_10_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_10_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_10_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_10_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_7_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_7_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_7_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_7_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_4_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_4_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_4_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_4_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_1_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_1_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_1_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_1_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_BitReverseData_1_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_BitReverseData_1_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_11_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_11_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_11_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_11_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_8_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_8_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_8_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_8_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_5_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_5_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_5_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_5_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_2_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_2_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_2_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_2_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_BitReverseData_2_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_BitReverseData_2_ce0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_start;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_done;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_idle;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_ce0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_we0;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_d0;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_ce1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_we1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_d1;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_ce0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_we0;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_d0;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_ce1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_we1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_d1;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_ce0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_we0;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_d0;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_ce1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_we1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_d1;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_ce0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_we0;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_d0;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_ce1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_we1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_d1;
-wire   [10:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_INTTTWiddleRAM_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_INTTTWiddleRAM_ce0;
-wire   [10:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_INTTTWiddleRAM_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_INTTTWiddleRAM_ce1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_ADD_MOD_fu_1757_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_ADD_MOD_fu_1757_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_ADD_MOD_fu_1757_p_din3;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_MUL_MOD_fu_1763_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_MUL_MOD_fu_1763_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_MUL_MOD_fu_1763_p_din3;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_MUL_MOD_fu_1763_p_ce;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_SUB_MOD_fu_1769_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_SUB_MOD_fu_1769_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_SUB_MOD_fu_1769_p_din3;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_start;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_done;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_idle;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_ce0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_we0;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_d0;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_ce1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_we1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_d1;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_ce0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_we0;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_d0;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_ce1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_we1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_d1;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_ce0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_we0;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_d0;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_ce1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_we1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_d1;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_ce0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_we0;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_d0;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_ce1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_we1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_d1;
-wire   [10:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_INTTTWiddleRAM_1_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_INTTTWiddleRAM_1_ce0;
-wire   [10:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_INTTTWiddleRAM_1_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_INTTTWiddleRAM_1_ce1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_ADD_MOD_fu_1757_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_ADD_MOD_fu_1757_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_ADD_MOD_fu_1757_p_din3;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_MUL_MOD_fu_1763_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_MUL_MOD_fu_1763_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_MUL_MOD_fu_1763_p_din3;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_MUL_MOD_fu_1763_p_ce;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_SUB_MOD_fu_1769_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_SUB_MOD_fu_1769_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_SUB_MOD_fu_1769_p_din3;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_start;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_done;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_idle;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_address0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_ce0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_we0;
-wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_d0;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_address1;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_ce1;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_address0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_ce0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_we0;
-wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_d0;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_address1;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_ce1;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_address0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_ce0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_we0;
-wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_d0;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_address1;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_ce1;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_address0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_ce0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_we0;
-wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_d0;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_address1;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_ce1;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_start;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_done;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_idle;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_address0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_ce0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_we0;
-wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_d0;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_address1;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_ce1;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_address0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_ce0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_we0;
-wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_d0;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_address1;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_ce1;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_address0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_ce0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_we0;
-wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_d0;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_address1;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_ce1;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_address0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_ce0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_we0;
-wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_d0;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_address1;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_ce1;
-wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_grp_MUL_MOD_fu_1763_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_grp_MUL_MOD_fu_1763_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_grp_MUL_MOD_fu_1763_p_din3;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_grp_MUL_MOD_fu_1763_p_ce;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_start;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_done;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_idle;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_address0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_ce0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_we0;
-wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_d0;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_address1;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_ce1;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_address0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_ce0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_we0;
-wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_d0;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_address1;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_ce1;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_address0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_ce0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_we0;
-wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_d0;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_address1;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_ce1;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_address0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_ce0;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_we0;
-wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_d0;
-wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_address1;
-wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_ce1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_start;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_done;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_idle;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_ce0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_we0;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_d0;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_ce1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_we1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_d1;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_ce0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_we0;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_d0;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_ce1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_we1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_d1;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_ce0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_we0;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_d0;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_ce1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_we1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_d1;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_ce0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_we0;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_d0;
-wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_ce1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_we1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_d1;
-wire   [10:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_INTTTWiddleRAM_2_address0;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_INTTTWiddleRAM_2_ce0;
-wire   [10:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_INTTTWiddleRAM_2_address1;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_INTTTWiddleRAM_2_ce1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_ADD_MOD_fu_1757_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_ADD_MOD_fu_1757_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_ADD_MOD_fu_1757_p_din3;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_MUL_MOD_fu_1763_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_MUL_MOD_fu_1763_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_MUL_MOD_fu_1763_p_din3;
-wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_MUL_MOD_fu_1763_p_ce;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_SUB_MOD_fu_1769_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_SUB_MOD_fu_1769_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_SUB_MOD_fu_1769_p_din3;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_9_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_9_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_9_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_9_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_6_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_6_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_6_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_6_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_3_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_3_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_3_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_3_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_BitReverseData_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_BitReverseData_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_10_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_10_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_10_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_10_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_7_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_7_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_7_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_7_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_4_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_4_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_4_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_4_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_1_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_1_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_1_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_1_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_BitReverseData_1_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_BitReverseData_1_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_11_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_11_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_11_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_11_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_8_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_8_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_8_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_8_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_5_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_5_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_5_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_5_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_2_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_2_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_2_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_2_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_BitReverseData_2_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_BitReverseData_2_ce0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_start;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_done;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_idle;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_ce0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_we0;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_d0;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_ce1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_we1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_d1;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_ce0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_we0;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_d0;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_ce1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_we1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_d1;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_ce0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_we0;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_d0;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_ce1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_we1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_d1;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_ce0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_we0;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_d0;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_ce1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_we1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_d1;
-wire   [10:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_NTTTWiddleRAM_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_NTTTWiddleRAM_ce0;
-wire   [10:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_NTTTWiddleRAM_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_NTTTWiddleRAM_ce1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_ADD_MOD_fu_1757_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_ADD_MOD_fu_1757_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_ADD_MOD_fu_1757_p_din3;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_MUL_MOD_fu_1763_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_MUL_MOD_fu_1763_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_MUL_MOD_fu_1763_p_din3;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_MUL_MOD_fu_1763_p_ce;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_SUB_MOD_fu_1769_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_SUB_MOD_fu_1769_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_SUB_MOD_fu_1769_p_din3;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_start;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_done;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_idle;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_ce0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_we0;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_d0;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_ce1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_we1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_d1;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_ce0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_we0;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_d0;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_ce1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_we1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_d1;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_ce0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_we0;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_d0;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_ce1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_we1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_d1;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_ce0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_we0;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_d0;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_ce1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_we1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_d1;
-wire   [10:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_NTTTWiddleRAM_1_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_NTTTWiddleRAM_1_ce0;
-wire   [10:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_NTTTWiddleRAM_1_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_NTTTWiddleRAM_1_ce1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_ADD_MOD_fu_1757_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_ADD_MOD_fu_1757_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_ADD_MOD_fu_1757_p_din3;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_MUL_MOD_fu_1763_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_MUL_MOD_fu_1763_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_MUL_MOD_fu_1763_p_din3;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_MUL_MOD_fu_1763_p_ce;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_SUB_MOD_fu_1769_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_SUB_MOD_fu_1769_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_SUB_MOD_fu_1769_p_din3;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_start;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_done;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_idle;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_ce0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_we0;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_d0;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_ce1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_we1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_d1;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_ce0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_we0;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_d0;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_ce1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_we1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_d1;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_ce0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_we0;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_d0;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_ce1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_we1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_d1;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_ce0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_we0;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_d0;
-wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_ce1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_we1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_d1;
-wire   [10:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_NTTTWiddleRAM_2_address0;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_NTTTWiddleRAM_2_ce0;
-wire   [10:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_NTTTWiddleRAM_2_address1;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_NTTTWiddleRAM_2_ce1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_ADD_MOD_fu_1757_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_ADD_MOD_fu_1757_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_ADD_MOD_fu_1757_p_din3;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_MUL_MOD_fu_1763_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_MUL_MOD_fu_1763_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_MUL_MOD_fu_1763_p_din3;
-wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_MUL_MOD_fu_1763_p_ce;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_SUB_MOD_fu_1769_p_din1;
-wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_SUB_MOD_fu_1769_p_din2;
-wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_SUB_MOD_fu_1769_p_din3;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_ready;
-wire   [10:0] grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTWiddleRAM_1_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTWiddleRAM_1_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTWiddleRAM_1_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTWiddleRAM_1_d0;
-wire   [10:0] grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTWiddleRAM_1_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTWiddleRAM_1_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTWiddleRAM_1_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTWiddleRAM_1_d0;
-wire   [12:0] grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTwiddleIn_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTwiddleIn_ce0;
-wire   [12:0] grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTwiddleIn_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTwiddleIn_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_ready;
-wire   [10:0] grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTWiddleRAM_2_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTWiddleRAM_2_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTWiddleRAM_2_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTWiddleRAM_2_d0;
-wire   [10:0] grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTWiddleRAM_2_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTWiddleRAM_2_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTWiddleRAM_2_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTWiddleRAM_2_d0;
-wire   [12:0] grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTwiddleIn_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTwiddleIn_ce0;
-wire   [12:0] grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTwiddleIn_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTwiddleIn_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_ready;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TREADY;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_1_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_1_ce0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_4_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_4_ce0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_7_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_7_ce0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_10_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_10_ce0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TDATA;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TVALID;
-wire   [3:0] grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TKEEP;
-wire   [3:0] grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TSTRB;
-wire   [0:0] grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TLAST;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_ready;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TREADY;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_2_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_2_ce0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_5_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_5_ce0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_8_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_8_ce0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_11_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_11_ce0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TDATA;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TVALID;
-wire   [3:0] grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TKEEP;
-wire   [3:0] grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TSTRB;
-wire   [0:0] grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TLAST;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_9_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_9_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_9_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_9_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_6_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_6_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_6_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_6_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_3_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_3_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_3_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_3_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_d0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_dataInStream_TREADY;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_10_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_10_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_10_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_10_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_7_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_7_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_7_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_7_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_4_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_4_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_4_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_4_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_1_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_1_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_1_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_1_d0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_dataInStream_TREADY;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_start;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_done;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_idle;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_ready;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_11_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_11_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_11_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_11_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_8_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_8_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_8_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_8_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_5_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_5_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_5_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_5_d0;
-wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_2_address0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_2_ce0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_2_we0;
-wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_2_d0;
-wire    grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_dataInStream_TREADY;
-wire    grp_ADD_MOD_fu_1757_ap_ready;
-reg   [31:0] grp_ADD_MOD_fu_1757_input1_val;
-reg   [31:0] grp_ADD_MOD_fu_1757_input2_val;
-reg   [1:0] grp_ADD_MOD_fu_1757_MOD_INDEX;
-wire   [31:0] grp_ADD_MOD_fu_1757_ap_return;
-reg   [31:0] grp_MUL_MOD_fu_1763_input1_val;
-reg   [31:0] grp_MUL_MOD_fu_1763_input2_val;
-reg   [1:0] grp_MUL_MOD_fu_1763_MOD_INDEX;
-wire   [31:0] grp_MUL_MOD_fu_1763_ap_return;
-reg    grp_MUL_MOD_fu_1763_ap_ce;
-wire    grp_SUB_MOD_fu_1769_ap_ready;
-reg   [31:0] grp_SUB_MOD_fu_1769_input1_val;
-reg   [31:0] grp_SUB_MOD_fu_1769_input2_val;
-reg   [1:0] grp_SUB_MOD_fu_1769_MOD_INDEX;
-wire   [31:0] grp_SUB_MOD_fu_1769_ap_return;
-reg   [63:0] j_21_reg_344;
+wire    grp_apply_bit_reverse_fu_404_ap_start;
+wire    grp_apply_bit_reverse_fu_404_ap_done;
+wire    grp_apply_bit_reverse_fu_404_ap_idle;
+wire    grp_apply_bit_reverse_fu_404_ap_ready;
+wire   [11:0] grp_apply_bit_reverse_fu_404_x_address0;
+wire    grp_apply_bit_reverse_fu_404_x_ce0;
+reg   [31:0] grp_apply_bit_reverse_fu_404_x_q0;
+wire   [11:0] grp_apply_bit_reverse_fu_404_result_address0;
+wire    grp_apply_bit_reverse_fu_404_result_ce0;
+wire    grp_apply_bit_reverse_fu_404_result_we0;
+wire   [31:0] grp_apply_bit_reverse_fu_404_result_d0;
+wire    grp_apply_bit_reverse_fu_412_ap_start;
+wire    grp_apply_bit_reverse_fu_412_ap_done;
+wire    grp_apply_bit_reverse_fu_412_ap_idle;
+wire    grp_apply_bit_reverse_fu_412_ap_ready;
+wire   [11:0] grp_apply_bit_reverse_fu_412_x_address0;
+wire    grp_apply_bit_reverse_fu_412_x_ce0;
+reg   [31:0] grp_apply_bit_reverse_fu_412_x_q0;
+wire   [11:0] grp_apply_bit_reverse_fu_412_result_address0;
+wire    grp_apply_bit_reverse_fu_412_result_ce0;
+wire    grp_apply_bit_reverse_fu_412_result_we0;
+wire   [31:0] grp_apply_bit_reverse_fu_412_result_d0;
+wire    grp_apply_bit_reverse_fu_420_ap_start;
+wire    grp_apply_bit_reverse_fu_420_ap_done;
+wire    grp_apply_bit_reverse_fu_420_ap_idle;
+wire    grp_apply_bit_reverse_fu_420_ap_ready;
+wire   [11:0] grp_apply_bit_reverse_fu_420_x_address0;
+wire    grp_apply_bit_reverse_fu_420_x_ce0;
+reg   [31:0] grp_apply_bit_reverse_fu_420_x_q0;
+wire   [11:0] grp_apply_bit_reverse_fu_420_result_address0;
+wire    grp_apply_bit_reverse_fu_420_result_ce0;
+wire    grp_apply_bit_reverse_fu_420_result_we0;
+wire   [31:0] grp_apply_bit_reverse_fu_420_result_d0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_start;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_done;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_idle;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_address0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_ce0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_address1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_ce1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_address0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_ce0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_address1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_ce1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_address0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_ce0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_address1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_ce1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_address0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_ce0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_address1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_ce1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_d1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_start;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_done;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_idle;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_address0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_ce0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_address1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_ce1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_address0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_ce0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_address1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_ce1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_address0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_ce0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_address1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_ce1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_address0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_ce0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_address1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_ce1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_d1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_start;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_done;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_idle;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_address0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_ce0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_address1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_ce1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_address0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_ce0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_address1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_ce1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_address0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_ce0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_address1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_ce1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_address0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_ce0;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_address1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_ce1;
+wire    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_d1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_start;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_done;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_idle;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_address0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_ce0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_address1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_ce1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_address0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_ce0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_address1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_ce1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_address0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_ce0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_address1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_ce1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_address0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_ce0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_address1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_ce1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_d1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_start;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_done;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_idle;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_address0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_ce0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_address1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_ce1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_address0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_ce0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_address1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_ce1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_address0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_ce0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_address1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_ce1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_address0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_ce0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_address1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_ce1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_d1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_start;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_done;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_idle;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_address0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_ce0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_address1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_ce1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_address0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_ce0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_address1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_ce1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_address0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_ce0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_address1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_ce1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_address0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_ce0;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_address1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_ce1;
+wire    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_d1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_start;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_done;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_idle;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_address0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_ce0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_address1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_ce1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_address0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_ce0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_address1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_ce1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_address0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_ce0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_address1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_ce1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_address0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_ce0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_address1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_ce1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_d1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_start;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_done;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_idle;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_address0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_ce0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_address1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_ce1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_address0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_ce0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_address1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_ce1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_address0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_ce0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_address1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_ce1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_address0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_ce0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_address1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_ce1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_d1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_start;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_done;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_idle;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_address0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_ce0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_address1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_ce1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_address0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_ce0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_address1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_ce1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_address0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_ce0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_address1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_ce1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_address0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_ce0;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_address1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_ce1;
+wire    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_d1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_start;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_done;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_idle;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_address0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_ce0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_address1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_ce1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_address0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_ce0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_address1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_ce1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_address0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_ce0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_address1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_ce1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_address0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_ce0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_address1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_ce1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_d1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_start;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_done;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_idle;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_address0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_ce0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_address1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_ce1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_address0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_ce0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_address1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_ce1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_address0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_ce0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_address1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_ce1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_address0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_ce0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_address1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_ce1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_d1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_start;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_done;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_idle;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_address0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_ce0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_address1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_ce1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_address0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_ce0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_address1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_ce1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_address0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_ce0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_address1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_ce1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_d1;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_address0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_ce0;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_we0;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_d0;
+wire   [11:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_address1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_ce1;
+wire    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_we1;
+wire   [31:0] grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_d1;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_ready;
+wire   [10:0] grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTWiddleRAM_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTWiddleRAM_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTWiddleRAM_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTWiddleRAM_d0;
+wire   [10:0] grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTWiddleRAM_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTWiddleRAM_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTWiddleRAM_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTWiddleRAM_d0;
+wire   [12:0] grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTwiddleIn_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTwiddleIn_ce0;
+wire   [12:0] grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTwiddleIn_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTwiddleIn_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_ce0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_3_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_3_ce0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_6_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_6_ce0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_9_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_9_ce0;
+wire   [13:0] grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataOutStream_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataOutStream_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataOutStream_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataOutStream_d0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_9_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_9_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_9_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_9_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_6_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_6_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_6_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_6_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_3_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_3_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_3_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_3_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_BitReverseData_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_BitReverseData_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_10_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_10_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_10_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_10_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_7_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_7_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_7_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_7_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_4_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_4_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_4_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_4_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_1_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_1_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_1_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_1_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_BitReverseData_1_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_BitReverseData_1_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_11_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_11_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_11_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_11_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_8_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_8_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_8_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_8_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_5_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_5_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_5_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_5_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_2_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_2_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_2_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_2_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_BitReverseData_2_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_BitReverseData_2_ce0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_start;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_done;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_idle;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_ce0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_we0;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_d0;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_ce1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_we1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_d1;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_ce0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_we0;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_d0;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_ce1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_we1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_d1;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_ce0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_we0;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_d0;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_ce1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_we1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_d1;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_ce0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_we0;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_d0;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_ce1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_we1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_d1;
+wire   [10:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_INTTTWiddleRAM_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_INTTTWiddleRAM_ce0;
+wire   [10:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_INTTTWiddleRAM_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_INTTTWiddleRAM_ce1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_ADD_MOD_fu_1733_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_ADD_MOD_fu_1733_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_ADD_MOD_fu_1733_p_din3;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_MUL_MOD_fu_1739_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_MUL_MOD_fu_1739_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_MUL_MOD_fu_1739_p_din3;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_MUL_MOD_fu_1739_p_ce;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_SUB_MOD_fu_1745_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_SUB_MOD_fu_1745_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_SUB_MOD_fu_1745_p_din3;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_start;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_done;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_idle;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_ce0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_we0;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_d0;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_ce1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_we1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_d1;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_ce0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_we0;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_d0;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_ce1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_we1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_d1;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_ce0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_we0;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_d0;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_ce1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_we1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_d1;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_ce0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_we0;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_d0;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_ce1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_we1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_d1;
+wire   [10:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_INTTTWiddleRAM_1_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_INTTTWiddleRAM_1_ce0;
+wire   [10:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_INTTTWiddleRAM_1_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_INTTTWiddleRAM_1_ce1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_ADD_MOD_fu_1733_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_ADD_MOD_fu_1733_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_ADD_MOD_fu_1733_p_din3;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_MUL_MOD_fu_1739_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_MUL_MOD_fu_1739_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_MUL_MOD_fu_1739_p_din3;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_MUL_MOD_fu_1739_p_ce;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_SUB_MOD_fu_1745_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_SUB_MOD_fu_1745_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_SUB_MOD_fu_1745_p_din3;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_start;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_done;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_idle;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_address0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_ce0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_we0;
+wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_d0;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_address1;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_ce1;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_address0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_ce0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_we0;
+wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_d0;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_address1;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_ce1;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_address0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_ce0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_we0;
+wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_d0;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_address1;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_ce1;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_address0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_ce0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_we0;
+wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_d0;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_address1;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_ce1;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_start;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_done;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_idle;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_address0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_ce0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_we0;
+wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_d0;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_address1;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_ce1;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_address0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_ce0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_we0;
+wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_d0;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_address1;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_ce1;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_address0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_ce0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_we0;
+wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_d0;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_address1;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_ce1;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_address0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_ce0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_we0;
+wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_d0;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_address1;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_ce1;
+wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_grp_MUL_MOD_fu_1739_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_grp_MUL_MOD_fu_1739_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_grp_MUL_MOD_fu_1739_p_din3;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_grp_MUL_MOD_fu_1739_p_ce;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_start;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_done;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_idle;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_address0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_ce0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_we0;
+wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_d0;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_address1;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_ce1;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_address0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_ce0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_we0;
+wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_d0;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_address1;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_ce1;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_address0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_ce0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_we0;
+wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_d0;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_address1;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_ce1;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_address0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_ce0;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_we0;
+wire   [31:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_d0;
+wire   [11:0] grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_address1;
+wire    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_ce1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_start;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_done;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_idle;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_ce0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_we0;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_d0;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_ce1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_we1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_d1;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_ce0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_we0;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_d0;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_ce1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_we1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_d1;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_ce0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_we0;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_d0;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_ce1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_we1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_d1;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_ce0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_we0;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_d0;
+wire   [11:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_ce1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_we1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_d1;
+wire   [10:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_INTTTWiddleRAM_2_address0;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_INTTTWiddleRAM_2_ce0;
+wire   [10:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_INTTTWiddleRAM_2_address1;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_INTTTWiddleRAM_2_ce1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_ADD_MOD_fu_1733_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_ADD_MOD_fu_1733_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_ADD_MOD_fu_1733_p_din3;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_MUL_MOD_fu_1739_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_MUL_MOD_fu_1739_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_MUL_MOD_fu_1739_p_din3;
+wire    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_MUL_MOD_fu_1739_p_ce;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_SUB_MOD_fu_1745_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_SUB_MOD_fu_1745_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_SUB_MOD_fu_1745_p_din3;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_9_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_9_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_9_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_9_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_6_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_6_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_6_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_6_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_3_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_3_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_3_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_3_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_BitReverseData_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_BitReverseData_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_10_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_10_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_10_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_10_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_7_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_7_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_7_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_7_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_4_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_4_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_4_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_4_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_1_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_1_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_1_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_1_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_BitReverseData_1_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_BitReverseData_1_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_11_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_11_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_11_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_11_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_8_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_8_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_8_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_8_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_5_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_5_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_5_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_5_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_2_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_2_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_2_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_2_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_BitReverseData_2_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_BitReverseData_2_ce0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_start;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_done;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_idle;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_ce0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_we0;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_d0;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_ce1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_we1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_d1;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_ce0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_we0;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_d0;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_ce1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_we1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_d1;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_ce0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_we0;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_d0;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_ce1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_we1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_d1;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_ce0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_we0;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_d0;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_ce1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_we1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_d1;
+wire   [10:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_NTTTWiddleRAM_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_NTTTWiddleRAM_ce0;
+wire   [10:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_NTTTWiddleRAM_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_NTTTWiddleRAM_ce1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_ADD_MOD_fu_1733_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_ADD_MOD_fu_1733_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_ADD_MOD_fu_1733_p_din3;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_MUL_MOD_fu_1739_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_MUL_MOD_fu_1739_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_MUL_MOD_fu_1739_p_din3;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_MUL_MOD_fu_1739_p_ce;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_SUB_MOD_fu_1745_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_SUB_MOD_fu_1745_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_SUB_MOD_fu_1745_p_din3;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_start;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_done;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_idle;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_ce0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_we0;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_d0;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_ce1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_we1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_d1;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_ce0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_we0;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_d0;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_ce1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_we1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_d1;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_ce0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_we0;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_d0;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_ce1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_we1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_d1;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_ce0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_we0;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_d0;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_ce1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_we1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_d1;
+wire   [10:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_NTTTWiddleRAM_1_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_NTTTWiddleRAM_1_ce0;
+wire   [10:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_NTTTWiddleRAM_1_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_NTTTWiddleRAM_1_ce1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_ADD_MOD_fu_1733_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_ADD_MOD_fu_1733_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_ADD_MOD_fu_1733_p_din3;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_MUL_MOD_fu_1739_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_MUL_MOD_fu_1739_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_MUL_MOD_fu_1739_p_din3;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_MUL_MOD_fu_1739_p_ce;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_SUB_MOD_fu_1745_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_SUB_MOD_fu_1745_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_SUB_MOD_fu_1745_p_din3;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_start;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_done;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_idle;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_ce0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_we0;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_d0;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_ce1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_we1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_d1;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_ce0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_we0;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_d0;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_ce1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_we1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_d1;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_ce0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_we0;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_d0;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_ce1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_we1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_d1;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_ce0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_we0;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_d0;
+wire   [11:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_ce1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_we1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_d1;
+wire   [10:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_NTTTWiddleRAM_2_address0;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_NTTTWiddleRAM_2_ce0;
+wire   [10:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_NTTTWiddleRAM_2_address1;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_NTTTWiddleRAM_2_ce1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_ADD_MOD_fu_1733_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_ADD_MOD_fu_1733_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_ADD_MOD_fu_1733_p_din3;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_MUL_MOD_fu_1739_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_MUL_MOD_fu_1739_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_MUL_MOD_fu_1739_p_din3;
+wire    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_MUL_MOD_fu_1739_p_ce;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_SUB_MOD_fu_1745_p_din1;
+wire   [31:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_SUB_MOD_fu_1745_p_din2;
+wire   [1:0] grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_SUB_MOD_fu_1745_p_din3;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_ready;
+wire   [10:0] grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTWiddleRAM_1_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTWiddleRAM_1_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTWiddleRAM_1_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTWiddleRAM_1_d0;
+wire   [10:0] grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTWiddleRAM_1_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTWiddleRAM_1_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTWiddleRAM_1_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTWiddleRAM_1_d0;
+wire   [12:0] grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTwiddleIn_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTwiddleIn_ce0;
+wire   [12:0] grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTwiddleIn_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTwiddleIn_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_1_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_1_ce0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_4_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_4_ce0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_7_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_7_ce0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_10_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_10_ce0;
+wire   [13:0] grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataOutStream_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataOutStream_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataOutStream_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataOutStream_d0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_ready;
+wire   [10:0] grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTWiddleRAM_2_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTWiddleRAM_2_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTWiddleRAM_2_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTWiddleRAM_2_d0;
+wire   [10:0] grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTWiddleRAM_2_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTWiddleRAM_2_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTWiddleRAM_2_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTWiddleRAM_2_d0;
+wire   [12:0] grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTwiddleIn_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTwiddleIn_ce0;
+wire   [12:0] grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTwiddleIn_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTwiddleIn_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_ready;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_2_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_2_ce0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_5_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_5_ce0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_8_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_8_ce0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_11_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_11_ce0;
+wire   [13:0] grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataOutStream_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataOutStream_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataOutStream_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataOutStream_d0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_ready;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataInStream_TREADY;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_3_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_3_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_3_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_3_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_6_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_6_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_6_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_6_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_9_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_9_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_9_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_9_d0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_ready;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataInStream_TREADY;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_1_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_1_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_1_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_1_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_4_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_4_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_4_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_4_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_7_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_7_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_7_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_7_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_10_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_10_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_10_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_10_d0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_start;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_done;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_idle;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_ready;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataInStream_TREADY;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_2_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_2_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_2_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_2_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_5_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_5_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_5_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_5_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_8_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_8_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_8_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_8_d0;
+wire   [11:0] grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_11_address0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_11_ce0;
+wire    grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_11_we0;
+wire   [31:0] grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_11_d0;
+wire    grp_ADD_MOD_fu_1733_ap_ready;
+reg   [31:0] grp_ADD_MOD_fu_1733_input1_val;
+reg   [31:0] grp_ADD_MOD_fu_1733_input2_val;
+reg   [1:0] grp_ADD_MOD_fu_1733_MOD_INDEX;
+wire   [31:0] grp_ADD_MOD_fu_1733_ap_return;
+reg   [31:0] grp_MUL_MOD_fu_1739_input1_val;
+reg   [31:0] grp_MUL_MOD_fu_1739_input2_val;
+reg   [1:0] grp_MUL_MOD_fu_1739_MOD_INDEX;
+wire   [31:0] grp_MUL_MOD_fu_1739_ap_return;
+reg    grp_MUL_MOD_fu_1739_ap_ce;
+wire    grp_SUB_MOD_fu_1745_ap_ready;
+reg   [31:0] grp_SUB_MOD_fu_1745_input1_val;
+reg   [31:0] grp_SUB_MOD_fu_1745_input2_val;
+reg   [1:0] grp_SUB_MOD_fu_1745_MOD_INDEX;
+wire   [31:0] grp_SUB_MOD_fu_1745_ap_return;
+reg   [63:0] j_21_reg_338;
 wire    ap_CS_fsm_state26;
-reg   [63:0] j_23_reg_355;
+reg   [63:0] j_23_reg_349;
 wire    ap_CS_fsm_state48;
-reg   [63:0] j_25_reg_366;
+reg   [63:0] j_25_reg_360;
 wire    ap_CS_fsm_state70;
-reg   [63:0] j_reg_377;
+reg   [63:0] j_reg_371;
 wire    ap_CS_fsm_state96;
-reg   [63:0] j_22_reg_388;
+reg   [63:0] j_22_reg_382;
 wire    ap_CS_fsm_state118;
-reg   [63:0] j_24_reg_399;
+reg   [63:0] j_24_reg_393;
 wire    ap_CS_fsm_state140;
-reg    grp_apply_bit_reverse_fu_410_ap_start_reg;
+reg    grp_apply_bit_reverse_fu_404_ap_start_reg;
 wire    ap_CS_fsm_state2;
 wire    ap_CS_fsm_state72;
-reg    grp_apply_bit_reverse_fu_418_ap_start_reg;
-reg    grp_apply_bit_reverse_fu_426_ap_start_reg;
-reg    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_start_reg;
+reg    grp_apply_bit_reverse_fu_412_ap_start_reg;
+reg    grp_apply_bit_reverse_fu_420_ap_start_reg;
+reg    grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_start_reg;
 wire    ap_CS_fsm_state141;
-reg    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_start_reg;
-reg    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_start_reg;
-reg    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_start_reg;
-reg    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_start_reg;
-reg    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_start_reg;
-reg    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_start_reg;
-reg    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_start_reg;
-reg    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_start_reg;
-reg    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_start_reg;
-reg    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_start_reg;
-reg    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_start_reg;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_start_reg;
+reg    grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_start_reg;
+reg    grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_start_reg;
+reg    grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_start_reg;
+reg    grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_start_reg;
+reg    grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_start_reg;
+reg    grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_start_reg;
+reg    grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_start_reg;
+reg    grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_start_reg;
+reg    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_start_reg;
+reg    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_start_reg;
+reg    grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_start_reg;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_start_reg;
 wire    ap_CS_fsm_state142;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_start_reg;
-wire    ap_CS_fsm_state147;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_start_reg;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_start_reg;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_start_reg;
 wire    ap_CS_fsm_state3;
 wire    ap_CS_fsm_state4;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_start_reg;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_start_reg;
-reg    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_start_reg;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_start_reg;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_start_reg;
+reg    grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_start_reg;
 wire    ap_CS_fsm_state25;
-reg    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_start_reg;
+reg    grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_start_reg;
 wire    ap_CS_fsm_state47;
-reg    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_start_reg;
+reg    grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_start_reg;
 wire    ap_CS_fsm_state49;
-wire   [0:0] icmp_ln224_2_fu_1115_p2;
+wire   [0:0] icmp_ln229_2_fu_1091_p2;
 wire    ap_CS_fsm_state71;
-reg    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_start_reg;
-reg    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_start_reg;
-reg    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_start_reg;
+reg    grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_start_reg;
+reg    grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_start_reg;
+reg    grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_start_reg;
 wire    ap_CS_fsm_state69;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_start_reg;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_start_reg;
 wire    ap_CS_fsm_state73;
 wire    ap_CS_fsm_state74;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_start_reg;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_start_reg;
-reg    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_start_reg;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_start_reg;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_start_reg;
+reg    grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_start_reg;
 wire    ap_CS_fsm_state95;
-reg    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_start_reg;
+reg    grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_start_reg;
 wire    ap_CS_fsm_state117;
-reg    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_start_reg;
+reg    grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_start_reg;
 wire    ap_CS_fsm_state139;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_start_reg;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_start_reg;
 wire    ap_CS_fsm_state143;
 wire    ap_CS_fsm_state144;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_start_reg;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_start_reg;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_start_reg;
 wire    ap_CS_fsm_state145;
 wire    ap_CS_fsm_state146;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_start_reg;
-wire    ap_CS_fsm_state149;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_start_reg;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_start_reg;
+wire    ap_CS_fsm_state147;
+wire    ap_CS_fsm_state148;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_start_reg;
 wire    ap_CS_fsm_state150;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_start_reg;
-wire    ap_CS_fsm_state152;
+wire    ap_CS_fsm_state151;
+reg    grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_start_reg;
 wire    ap_CS_fsm_state153;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_start_reg;
 wire    ap_CS_fsm_state154;
-wire    ap_CS_fsm_state155;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_start_reg;
-wire    ap_CS_fsm_state157;
-wire    ap_CS_fsm_state158;
-reg    grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_start_reg;
-wire    ap_CS_fsm_state160;
-wire    ap_CS_fsm_state161;
-reg  signed [31:0] h_1_fu_302;
-wire   [31:0] h_10_fu_1022_p2;
+reg  signed [31:0] h_1_fu_296;
+wire   [31:0] h_10_fu_998_p2;
 reg    ap_block_state2_on_subcall_done;
 wire    ap_CS_fsm_state5;
-reg  signed [31:0] h_3_fu_306;
-wire   [31:0] h_14_fu_1102_p2;
-wire   [0:0] icmp_ln224_fu_955_p2;
+reg  signed [31:0] h_3_fu_300;
+wire   [31:0] h_14_fu_1078_p2;
+wire   [0:0] icmp_ln229_fu_931_p2;
 wire    ap_CS_fsm_state27;
-reg  signed [31:0] h_7_fu_310;
-wire   [31:0] h_17_fu_1177_p2;
-wire   [0:0] icmp_ln224_1_fu_1035_p2;
-reg  signed [31:0] h_fu_314;
-wire   [31:0] h_8_fu_1262_p2;
+reg  signed [31:0] h_7_fu_304;
+wire   [31:0] h_17_fu_1153_p2;
+wire   [0:0] icmp_ln229_1_fu_1011_p2;
+reg  signed [31:0] h_fu_308;
+wire   [31:0] h_8_fu_1238_p2;
 reg    ap_block_state72_on_subcall_done;
 wire    ap_CS_fsm_state75;
-reg  signed [31:0] h_2_fu_318;
-wire   [31:0] h_12_fu_1342_p2;
-wire   [0:0] icmp_ln179_fu_1195_p2;
+reg  signed [31:0] h_2_fu_312;
+wire   [31:0] h_12_fu_1318_p2;
+wire   [0:0] icmp_ln184_fu_1171_p2;
 wire    ap_CS_fsm_state97;
-reg  signed [31:0] h_6_fu_322;
-wire   [31:0] h_16_fu_1417_p2;
-wire   [0:0] icmp_ln179_1_fu_1275_p2;
+reg  signed [31:0] h_6_fu_316;
+wire   [31:0] h_16_fu_1393_p2;
+wire   [0:0] icmp_ln184_1_fu_1251_p2;
 wire    ap_CS_fsm_state119;
-wire  signed [31:0] icmp_ln224_fu_955_p0;
-wire   [14:0] grp_fu_961_p0;
-wire  signed [31:0] hf_1_fu_972_p1;
-wire  signed [31:0] trunc_ln1_fu_981_p1;
-wire   [10:0] grp_fu_961_p2;
-wire  signed [31:0] sext_ln228_fu_994_p0;
-wire   [51:0] tmp_18_fu_997_p4;
-wire  signed [31:0] h_10_fu_1022_p0;
-wire  signed [31:0] icmp_ln224_1_fu_1035_p0;
-wire   [14:0] grp_fu_1041_p0;
-wire  signed [31:0] hf_3_fu_1052_p1;
-wire  signed [31:0] trunc_ln228_4_fu_1061_p1;
-wire   [10:0] grp_fu_1041_p2;
-wire  signed [31:0] sext_ln228_1_fu_1074_p0;
-wire   [51:0] tmp_20_fu_1077_p4;
-wire  signed [31:0] h_14_fu_1102_p0;
-wire  signed [31:0] icmp_ln224_2_fu_1115_p0;
-wire   [14:0] grp_fu_1121_p0;
-wire  signed [31:0] hf_5_fu_1127_p1;
-wire  signed [31:0] trunc_ln228_8_fu_1136_p1;
-wire   [10:0] grp_fu_1121_p2;
-wire  signed [31:0] sext_ln228_2_fu_1149_p0;
-wire   [51:0] tmp_22_fu_1152_p4;
-wire  signed [31:0] h_17_fu_1177_p0;
-wire  signed [31:0] icmp_ln179_fu_1195_p0;
-wire   [14:0] grp_fu_1201_p0;
-wire  signed [31:0] hf_fu_1212_p1;
-wire  signed [31:0] trunc_ln_fu_1221_p1;
-wire   [10:0] grp_fu_1201_p2;
-wire  signed [31:0] sext_ln183_fu_1234_p0;
-wire   [51:0] tmp_fu_1237_p4;
-wire  signed [31:0] h_8_fu_1262_p0;
-wire  signed [31:0] icmp_ln179_1_fu_1275_p0;
-wire   [14:0] grp_fu_1281_p0;
-wire  signed [31:0] hf_2_fu_1292_p1;
-wire  signed [31:0] trunc_ln183_4_fu_1301_p1;
-wire   [10:0] grp_fu_1281_p2;
-wire  signed [31:0] sext_ln183_1_fu_1314_p0;
-wire   [51:0] tmp_19_fu_1317_p4;
-wire  signed [31:0] h_12_fu_1342_p0;
-wire  signed [31:0] icmp_ln179_2_fu_1355_p0;
-wire   [14:0] grp_fu_1361_p0;
-wire  signed [31:0] hf_4_fu_1367_p1;
-wire  signed [31:0] trunc_ln183_8_fu_1376_p1;
-wire   [10:0] grp_fu_1361_p2;
-wire  signed [31:0] sext_ln183_2_fu_1389_p0;
-wire   [51:0] tmp_21_fu_1392_p4;
-wire  signed [31:0] h_16_fu_1417_p0;
-reg    grp_fu_961_ap_start;
-wire    grp_fu_961_ap_done;
-reg    grp_fu_1041_ap_start;
-wire    grp_fu_1041_ap_done;
-reg    grp_fu_1121_ap_start;
-wire    grp_fu_1121_ap_done;
-reg    grp_fu_1201_ap_start;
-wire    grp_fu_1201_ap_done;
-reg    grp_fu_1281_ap_start;
-wire    grp_fu_1281_ap_done;
-wire   [0:0] icmp_ln179_2_fu_1355_p2;
-reg    grp_fu_1361_ap_start;
-wire    grp_fu_1361_ap_done;
-wire    ap_CS_fsm_state162;
-wire    regslice_both_dataOutStream_V_data_V_U_apdone_blk;
-reg   [161:0] ap_NS_fsm;
+wire  signed [31:0] icmp_ln229_fu_931_p0;
+wire   [14:0] grp_fu_937_p0;
+wire  signed [31:0] hf_1_fu_948_p1;
+wire  signed [31:0] trunc_ln1_fu_957_p1;
+wire   [10:0] grp_fu_937_p2;
+wire  signed [31:0] sext_ln233_fu_970_p0;
+wire   [51:0] tmp_18_fu_973_p4;
+wire  signed [31:0] h_10_fu_998_p0;
+wire  signed [31:0] icmp_ln229_1_fu_1011_p0;
+wire   [14:0] grp_fu_1017_p0;
+wire  signed [31:0] hf_3_fu_1028_p1;
+wire  signed [31:0] trunc_ln233_4_fu_1037_p1;
+wire   [10:0] grp_fu_1017_p2;
+wire  signed [31:0] sext_ln233_1_fu_1050_p0;
+wire   [51:0] tmp_20_fu_1053_p4;
+wire  signed [31:0] h_14_fu_1078_p0;
+wire  signed [31:0] icmp_ln229_2_fu_1091_p0;
+wire   [14:0] grp_fu_1097_p0;
+wire  signed [31:0] hf_5_fu_1103_p1;
+wire  signed [31:0] trunc_ln233_8_fu_1112_p1;
+wire   [10:0] grp_fu_1097_p2;
+wire  signed [31:0] sext_ln233_2_fu_1125_p0;
+wire   [51:0] tmp_22_fu_1128_p4;
+wire  signed [31:0] h_17_fu_1153_p0;
+wire  signed [31:0] icmp_ln184_fu_1171_p0;
+wire   [14:0] grp_fu_1177_p0;
+wire  signed [31:0] hf_fu_1188_p1;
+wire  signed [31:0] trunc_ln_fu_1197_p1;
+wire   [10:0] grp_fu_1177_p2;
+wire  signed [31:0] sext_ln188_fu_1210_p0;
+wire   [51:0] tmp_fu_1213_p4;
+wire  signed [31:0] h_8_fu_1238_p0;
+wire  signed [31:0] icmp_ln184_1_fu_1251_p0;
+wire   [14:0] grp_fu_1257_p0;
+wire  signed [31:0] hf_2_fu_1268_p1;
+wire  signed [31:0] trunc_ln188_4_fu_1277_p1;
+wire   [10:0] grp_fu_1257_p2;
+wire  signed [31:0] sext_ln188_1_fu_1290_p0;
+wire   [51:0] tmp_19_fu_1293_p4;
+wire  signed [31:0] h_12_fu_1318_p0;
+wire  signed [31:0] icmp_ln184_2_fu_1331_p0;
+wire   [14:0] grp_fu_1337_p0;
+wire  signed [31:0] hf_4_fu_1343_p1;
+wire  signed [31:0] trunc_ln188_8_fu_1352_p1;
+wire   [10:0] grp_fu_1337_p2;
+wire  signed [31:0] sext_ln188_2_fu_1365_p0;
+wire   [51:0] tmp_21_fu_1368_p4;
+wire  signed [31:0] h_16_fu_1393_p0;
+reg    grp_fu_937_ap_start;
+wire    grp_fu_937_ap_done;
+reg    grp_fu_1017_ap_start;
+wire    grp_fu_1017_ap_done;
+reg    grp_fu_1097_ap_start;
+wire    grp_fu_1097_ap_done;
+reg    grp_fu_1177_ap_start;
+wire    grp_fu_1177_ap_done;
+reg    grp_fu_1257_ap_start;
+wire    grp_fu_1257_ap_done;
+wire   [0:0] icmp_ln184_2_fu_1331_p2;
+reg    grp_fu_1337_ap_start;
+wire    grp_fu_1337_ap_done;
+wire    ap_CS_fsm_state155;
+reg   [154:0] ap_NS_fsm;
 reg    ap_ST_fsm_state1_blk;
 reg    ap_ST_fsm_state2_blk;
 wire    ap_ST_fsm_state3_blk;
@@ -1993,104 +1966,84 @@ wire    ap_ST_fsm_state139_blk;
 reg    ap_ST_fsm_state140_blk;
 reg    ap_block_state141_on_subcall_done;
 reg    ap_ST_fsm_state141_blk;
+reg    ap_block_state142_on_subcall_done;
 reg    ap_ST_fsm_state142_blk;
 wire    ap_ST_fsm_state143_blk;
+reg    ap_block_state144_on_subcall_done;
 reg    ap_ST_fsm_state144_blk;
 wire    ap_ST_fsm_state145_blk;
+reg    ap_block_state146_on_subcall_done;
 reg    ap_ST_fsm_state146_blk;
-reg    ap_ST_fsm_state147_blk;
-wire    ap_ST_fsm_state148_blk;
+wire    ap_ST_fsm_state147_blk;
+reg    ap_ST_fsm_state148_blk;
 wire    ap_ST_fsm_state149_blk;
-reg    ap_ST_fsm_state150_blk;
-wire    ap_ST_fsm_state151_blk;
+wire    ap_ST_fsm_state150_blk;
+reg    ap_ST_fsm_state151_blk;
 wire    ap_ST_fsm_state152_blk;
-reg    ap_ST_fsm_state153_blk;
-wire    ap_ST_fsm_state154_blk;
-reg    ap_ST_fsm_state155_blk;
-wire    ap_ST_fsm_state156_blk;
-wire    ap_ST_fsm_state157_blk;
-reg    ap_ST_fsm_state158_blk;
-wire    ap_ST_fsm_state159_blk;
-wire    ap_ST_fsm_state160_blk;
-reg    ap_ST_fsm_state161_blk;
-reg    ap_ST_fsm_state162_blk;
-wire    regslice_both_dataInStream_V_data_V_U_apdone_blk;
-wire   [31:0] dataInStream_TDATA_int_regslice;
-wire    dataInStream_TVALID_int_regslice;
-reg    dataInStream_TREADY_int_regslice;
-wire    regslice_both_dataInStream_V_data_V_U_ack_in;
-wire    regslice_both_dataInStream_V_keep_V_U_apdone_blk;
-wire   [3:0] dataInStream_TKEEP_int_regslice;
-wire    regslice_both_dataInStream_V_keep_V_U_vld_out;
-wire    regslice_both_dataInStream_V_keep_V_U_ack_in;
-wire    regslice_both_dataInStream_V_strb_V_U_apdone_blk;
-wire   [3:0] dataInStream_TSTRB_int_regslice;
-wire    regslice_both_dataInStream_V_strb_V_U_vld_out;
-wire    regslice_both_dataInStream_V_strb_V_U_ack_in;
-wire    regslice_both_dataInStream_V_last_V_U_apdone_blk;
-wire   [0:0] dataInStream_TLAST_int_regslice;
-wire    regslice_both_dataInStream_V_last_V_U_vld_out;
-wire    regslice_both_dataInStream_V_last_V_U_ack_in;
-reg   [31:0] dataOutStream_TDATA_int_regslice;
-reg    dataOutStream_TVALID_int_regslice;
-wire    dataOutStream_TREADY_int_regslice;
-wire    regslice_both_dataOutStream_V_data_V_U_vld_out;
-wire    regslice_both_dataOutStream_V_keep_V_U_apdone_blk;
-reg   [3:0] dataOutStream_TKEEP_int_regslice;
-wire    regslice_both_dataOutStream_V_keep_V_U_ack_in_dummy;
-wire    regslice_both_dataOutStream_V_keep_V_U_vld_out;
-wire    regslice_both_dataOutStream_V_strb_V_U_apdone_blk;
-reg   [3:0] dataOutStream_TSTRB_int_regslice;
-wire    regslice_both_dataOutStream_V_strb_V_U_ack_in_dummy;
-wire    regslice_both_dataOutStream_V_strb_V_U_vld_out;
-wire    regslice_both_dataOutStream_V_last_V_U_apdone_blk;
-reg   [0:0] dataOutStream_TLAST_int_regslice;
-wire    regslice_both_dataOutStream_V_last_V_U_ack_in_dummy;
-wire    regslice_both_dataOutStream_V_last_V_U_vld_out;
+wire    ap_ST_fsm_state153_blk;
+reg    ap_ST_fsm_state154_blk;
+wire    ap_ST_fsm_state155_blk;
+wire    regslice_both_DataInStream_V_data_V_U_apdone_blk;
+wire   [31:0] DataInStream_TDATA_int_regslice;
+wire    DataInStream_TVALID_int_regslice;
+reg    DataInStream_TREADY_int_regslice;
+wire    regslice_both_DataInStream_V_data_V_U_ack_in;
+wire    regslice_both_DataInStream_V_keep_V_U_apdone_blk;
+wire   [3:0] DataInStream_TKEEP_int_regslice;
+wire    regslice_both_DataInStream_V_keep_V_U_vld_out;
+wire    regslice_both_DataInStream_V_keep_V_U_ack_in;
+wire    regslice_both_DataInStream_V_strb_V_U_apdone_blk;
+wire   [3:0] DataInStream_TSTRB_int_regslice;
+wire    regslice_both_DataInStream_V_strb_V_U_vld_out;
+wire    regslice_both_DataInStream_V_strb_V_U_ack_in;
+wire    regslice_both_DataInStream_V_last_V_U_apdone_blk;
+wire   [0:0] DataInStream_TLAST_int_regslice;
+wire    regslice_both_DataInStream_V_last_V_U_vld_out;
+wire    regslice_both_DataInStream_V_last_V_U_ack_in;
 wire    ap_ce_reg;
 
 // power-on initialization
 initial begin
-#0 ap_CS_fsm = 162'd1;
-#0 grp_apply_bit_reverse_fu_410_ap_start_reg = 1'b0;
-#0 grp_apply_bit_reverse_fu_418_ap_start_reg = 1'b0;
-#0 grp_apply_bit_reverse_fu_426_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_start_reg = 1'b0;
-#0 grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_start_reg = 1'b0;
+#0 ap_CS_fsm = 155'd1;
+#0 grp_apply_bit_reverse_fu_404_ap_start_reg = 1'b0;
+#0 grp_apply_bit_reverse_fu_412_ap_start_reg = 1'b0;
+#0 grp_apply_bit_reverse_fu_420_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_start_reg = 1'b0;
+#0 grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_start_reg = 1'b0;
 end
 
 Crypto_DataRAM_RAM_AUTO_1R1W #(
@@ -2331,7 +2284,7 @@ BitReverseData_U(
     .address0(BitReverseData_address0),
     .ce0(BitReverseData_ce0),
     .we0(BitReverseData_we0),
-    .d0(grp_apply_bit_reverse_fu_410_result_d0),
+    .d0(grp_apply_bit_reverse_fu_404_result_d0),
     .q0(BitReverseData_q0)
 );
 
@@ -2345,7 +2298,7 @@ BitReverseData_1_U(
     .address0(BitReverseData_1_address0),
     .ce0(BitReverseData_1_ce0),
     .we0(BitReverseData_1_we0),
-    .d0(grp_apply_bit_reverse_fu_418_result_d0),
+    .d0(grp_apply_bit_reverse_fu_412_result_d0),
     .q0(BitReverseData_1_q0)
 );
 
@@ -2359,7 +2312,7 @@ BitReverseData_2_U(
     .address0(BitReverseData_2_address0),
     .ce0(BitReverseData_2_ce0),
     .we0(BitReverseData_2_we0),
-    .d0(grp_apply_bit_reverse_fu_426_result_d0),
+    .d0(grp_apply_bit_reverse_fu_420_result_d0),
     .q0(BitReverseData_2_q0)
 );
 
@@ -2373,9 +2326,9 @@ NTTTWiddleRAM_U(
     .address0(NTTTWiddleRAM_address0),
     .ce0(NTTTWiddleRAM_ce0),
     .we0(NTTTWiddleRAM_we0),
-    .d0(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTWiddleRAM_d0),
+    .d0(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTWiddleRAM_d0),
     .q0(NTTTWiddleRAM_q0),
-    .address1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_NTTTWiddleRAM_address1),
+    .address1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_NTTTWiddleRAM_address1),
     .ce1(NTTTWiddleRAM_ce1),
     .q1(NTTTWiddleRAM_q1)
 );
@@ -2390,9 +2343,9 @@ NTTTWiddleRAM_1_U(
     .address0(NTTTWiddleRAM_1_address0),
     .ce0(NTTTWiddleRAM_1_ce0),
     .we0(NTTTWiddleRAM_1_we0),
-    .d0(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTWiddleRAM_1_d0),
+    .d0(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTWiddleRAM_1_d0),
     .q0(NTTTWiddleRAM_1_q0),
-    .address1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_NTTTWiddleRAM_1_address1),
+    .address1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_NTTTWiddleRAM_1_address1),
     .ce1(NTTTWiddleRAM_1_ce1),
     .q1(NTTTWiddleRAM_1_q1)
 );
@@ -2407,9 +2360,9 @@ NTTTWiddleRAM_2_U(
     .address0(NTTTWiddleRAM_2_address0),
     .ce0(NTTTWiddleRAM_2_ce0),
     .we0(NTTTWiddleRAM_2_we0),
-    .d0(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTWiddleRAM_2_d0),
+    .d0(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTWiddleRAM_2_d0),
     .q0(NTTTWiddleRAM_2_q0),
-    .address1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_NTTTWiddleRAM_2_address1),
+    .address1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_NTTTWiddleRAM_2_address1),
     .ce1(NTTTWiddleRAM_2_ce1),
     .q1(NTTTWiddleRAM_2_q1)
 );
@@ -2424,9 +2377,9 @@ INTTTWiddleRAM_U(
     .address0(INTTTWiddleRAM_address0),
     .ce0(INTTTWiddleRAM_ce0),
     .we0(INTTTWiddleRAM_we0),
-    .d0(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTWiddleRAM_d0),
+    .d0(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTWiddleRAM_d0),
     .q0(INTTTWiddleRAM_q0),
-    .address1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_INTTTWiddleRAM_address1),
+    .address1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_INTTTWiddleRAM_address1),
     .ce1(INTTTWiddleRAM_ce1),
     .q1(INTTTWiddleRAM_q1)
 );
@@ -2441,9 +2394,9 @@ INTTTWiddleRAM_1_U(
     .address0(INTTTWiddleRAM_1_address0),
     .ce0(INTTTWiddleRAM_1_ce0),
     .we0(INTTTWiddleRAM_1_we0),
-    .d0(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTWiddleRAM_1_d0),
+    .d0(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTWiddleRAM_1_d0),
     .q0(INTTTWiddleRAM_1_q0),
-    .address1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_INTTTWiddleRAM_1_address1),
+    .address1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_INTTTWiddleRAM_1_address1),
     .ce1(INTTTWiddleRAM_1_ce1),
     .q1(INTTTWiddleRAM_1_q1)
 );
@@ -2458,1686 +2411,1680 @@ INTTTWiddleRAM_2_U(
     .address0(INTTTWiddleRAM_2_address0),
     .ce0(INTTTWiddleRAM_2_ce0),
     .we0(INTTTWiddleRAM_2_we0),
-    .d0(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTWiddleRAM_2_d0),
+    .d0(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTWiddleRAM_2_d0),
     .q0(INTTTWiddleRAM_2_q0),
-    .address1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_INTTTWiddleRAM_2_address1),
+    .address1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_INTTTWiddleRAM_2_address1),
     .ce1(INTTTWiddleRAM_2_ce1),
     .q1(INTTTWiddleRAM_2_q1)
 );
 
-Crypto_apply_bit_reverse grp_apply_bit_reverse_fu_410(
+Crypto_apply_bit_reverse grp_apply_bit_reverse_fu_404(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_apply_bit_reverse_fu_410_ap_start),
-    .ap_done(grp_apply_bit_reverse_fu_410_ap_done),
-    .ap_idle(grp_apply_bit_reverse_fu_410_ap_idle),
-    .ap_ready(grp_apply_bit_reverse_fu_410_ap_ready),
-    .x_address0(grp_apply_bit_reverse_fu_410_x_address0),
-    .x_ce0(grp_apply_bit_reverse_fu_410_x_ce0),
-    .x_q0(grp_apply_bit_reverse_fu_410_x_q0),
-    .result_address0(grp_apply_bit_reverse_fu_410_result_address0),
-    .result_ce0(grp_apply_bit_reverse_fu_410_result_ce0),
-    .result_we0(grp_apply_bit_reverse_fu_410_result_we0),
-    .result_d0(grp_apply_bit_reverse_fu_410_result_d0)
+    .ap_start(grp_apply_bit_reverse_fu_404_ap_start),
+    .ap_done(grp_apply_bit_reverse_fu_404_ap_done),
+    .ap_idle(grp_apply_bit_reverse_fu_404_ap_idle),
+    .ap_ready(grp_apply_bit_reverse_fu_404_ap_ready),
+    .x_address0(grp_apply_bit_reverse_fu_404_x_address0),
+    .x_ce0(grp_apply_bit_reverse_fu_404_x_ce0),
+    .x_q0(grp_apply_bit_reverse_fu_404_x_q0),
+    .result_address0(grp_apply_bit_reverse_fu_404_result_address0),
+    .result_ce0(grp_apply_bit_reverse_fu_404_result_ce0),
+    .result_we0(grp_apply_bit_reverse_fu_404_result_we0),
+    .result_d0(grp_apply_bit_reverse_fu_404_result_d0)
 );
 
-Crypto_apply_bit_reverse grp_apply_bit_reverse_fu_418(
+Crypto_apply_bit_reverse grp_apply_bit_reverse_fu_412(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_apply_bit_reverse_fu_418_ap_start),
-    .ap_done(grp_apply_bit_reverse_fu_418_ap_done),
-    .ap_idle(grp_apply_bit_reverse_fu_418_ap_idle),
-    .ap_ready(grp_apply_bit_reverse_fu_418_ap_ready),
-    .x_address0(grp_apply_bit_reverse_fu_418_x_address0),
-    .x_ce0(grp_apply_bit_reverse_fu_418_x_ce0),
-    .x_q0(grp_apply_bit_reverse_fu_418_x_q0),
-    .result_address0(grp_apply_bit_reverse_fu_418_result_address0),
-    .result_ce0(grp_apply_bit_reverse_fu_418_result_ce0),
-    .result_we0(grp_apply_bit_reverse_fu_418_result_we0),
-    .result_d0(grp_apply_bit_reverse_fu_418_result_d0)
+    .ap_start(grp_apply_bit_reverse_fu_412_ap_start),
+    .ap_done(grp_apply_bit_reverse_fu_412_ap_done),
+    .ap_idle(grp_apply_bit_reverse_fu_412_ap_idle),
+    .ap_ready(grp_apply_bit_reverse_fu_412_ap_ready),
+    .x_address0(grp_apply_bit_reverse_fu_412_x_address0),
+    .x_ce0(grp_apply_bit_reverse_fu_412_x_ce0),
+    .x_q0(grp_apply_bit_reverse_fu_412_x_q0),
+    .result_address0(grp_apply_bit_reverse_fu_412_result_address0),
+    .result_ce0(grp_apply_bit_reverse_fu_412_result_ce0),
+    .result_we0(grp_apply_bit_reverse_fu_412_result_we0),
+    .result_d0(grp_apply_bit_reverse_fu_412_result_d0)
 );
 
-Crypto_apply_bit_reverse grp_apply_bit_reverse_fu_426(
+Crypto_apply_bit_reverse grp_apply_bit_reverse_fu_420(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_apply_bit_reverse_fu_426_ap_start),
-    .ap_done(grp_apply_bit_reverse_fu_426_ap_done),
-    .ap_idle(grp_apply_bit_reverse_fu_426_ap_idle),
-    .ap_ready(grp_apply_bit_reverse_fu_426_ap_ready),
-    .x_address0(grp_apply_bit_reverse_fu_426_x_address0),
-    .x_ce0(grp_apply_bit_reverse_fu_426_x_ce0),
-    .x_q0(grp_apply_bit_reverse_fu_426_x_q0),
-    .result_address0(grp_apply_bit_reverse_fu_426_result_address0),
-    .result_ce0(grp_apply_bit_reverse_fu_426_result_ce0),
-    .result_we0(grp_apply_bit_reverse_fu_426_result_we0),
-    .result_d0(grp_apply_bit_reverse_fu_426_result_d0)
+    .ap_start(grp_apply_bit_reverse_fu_420_ap_start),
+    .ap_done(grp_apply_bit_reverse_fu_420_ap_done),
+    .ap_idle(grp_apply_bit_reverse_fu_420_ap_idle),
+    .ap_ready(grp_apply_bit_reverse_fu_420_ap_ready),
+    .x_address0(grp_apply_bit_reverse_fu_420_x_address0),
+    .x_ce0(grp_apply_bit_reverse_fu_420_x_ce0),
+    .x_q0(grp_apply_bit_reverse_fu_420_x_q0),
+    .result_address0(grp_apply_bit_reverse_fu_420_result_address0),
+    .result_ce0(grp_apply_bit_reverse_fu_420_result_ce0),
+    .result_we0(grp_apply_bit_reverse_fu_420_result_we0),
+    .result_d0(grp_apply_bit_reverse_fu_420_result_d0)
 );
 
-Crypto_Crypto_Pipeline_POLY_MUL_LOOP grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443(
+Crypto_Crypto_Pipeline_POLY_MUL_LOOP grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_start),
-    .ap_done(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_ready),
-    .DataRAM_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_address0),
-    .DataRAM_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_ce0),
-    .DataRAM_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_we0),
-    .DataRAM_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_d0),
+    .ap_start(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_start),
+    .ap_done(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_ready),
+    .DataRAM_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_address0),
+    .DataRAM_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_ce0),
+    .DataRAM_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_we0),
+    .DataRAM_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_d0),
     .DataRAM_q0(DataRAM_q0),
-    .DataRAM_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_address1),
-    .DataRAM_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_ce1),
-    .DataRAM_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_we1),
-    .DataRAM_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_d1),
+    .DataRAM_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_address1),
+    .DataRAM_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_ce1),
+    .DataRAM_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_we1),
+    .DataRAM_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_d1),
     .DataRAM_q1(DataRAM_q1),
-    .DataRAM_3_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_address0),
-    .DataRAM_3_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_ce0),
-    .DataRAM_3_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_we0),
-    .DataRAM_3_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_d0),
+    .DataRAM_3_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_address0),
+    .DataRAM_3_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_ce0),
+    .DataRAM_3_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_we0),
+    .DataRAM_3_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_d0),
     .DataRAM_3_q0(DataRAM_3_q0),
-    .DataRAM_3_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_address1),
-    .DataRAM_3_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_ce1),
-    .DataRAM_3_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_we1),
-    .DataRAM_3_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_d1),
+    .DataRAM_3_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_address1),
+    .DataRAM_3_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_ce1),
+    .DataRAM_3_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_we1),
+    .DataRAM_3_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_d1),
     .DataRAM_3_q1(DataRAM_3_q1),
-    .DataRAM_6_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_address0),
-    .DataRAM_6_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_ce0),
-    .DataRAM_6_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_we0),
-    .DataRAM_6_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_d0),
+    .DataRAM_6_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_address0),
+    .DataRAM_6_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_ce0),
+    .DataRAM_6_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_we0),
+    .DataRAM_6_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_d0),
     .DataRAM_6_q0(DataRAM_6_q0),
-    .DataRAM_6_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_address1),
-    .DataRAM_6_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_ce1),
-    .DataRAM_6_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_we1),
-    .DataRAM_6_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_d1),
+    .DataRAM_6_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_address1),
+    .DataRAM_6_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_ce1),
+    .DataRAM_6_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_we1),
+    .DataRAM_6_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_d1),
     .DataRAM_6_q1(DataRAM_6_q1),
-    .DataRAM_9_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_address0),
-    .DataRAM_9_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_ce0),
-    .DataRAM_9_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_we0),
-    .DataRAM_9_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_d0),
+    .DataRAM_9_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_address0),
+    .DataRAM_9_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_ce0),
+    .DataRAM_9_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_we0),
+    .DataRAM_9_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_d0),
     .DataRAM_9_q0(DataRAM_9_q0),
-    .DataRAM_9_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_address1),
-    .DataRAM_9_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_ce1),
-    .DataRAM_9_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_we1),
-    .DataRAM_9_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_d1),
+    .DataRAM_9_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_address1),
+    .DataRAM_9_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_ce1),
+    .DataRAM_9_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_we1),
+    .DataRAM_9_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_d1),
     .DataRAM_9_q1(DataRAM_9_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .RAMSel1_cast(empty_133_reg_1468)
+    .RAMSel_cast(empty_reg_1407),
+    .RAMSel1_cast(empty_139_reg_1444)
 );
 
-Crypto_Crypto_Pipeline_POLY_MUL_LOOP23 grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457(
+Crypto_Crypto_Pipeline_POLY_MUL_LOOP23 grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_start),
-    .ap_done(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_ready),
-    .DataRAM_1_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_address0),
-    .DataRAM_1_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_ce0),
-    .DataRAM_1_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_we0),
-    .DataRAM_1_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_d0),
+    .ap_start(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_start),
+    .ap_done(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_ready),
+    .DataRAM_1_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_address0),
+    .DataRAM_1_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_ce0),
+    .DataRAM_1_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_we0),
+    .DataRAM_1_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_d0),
     .DataRAM_1_q0(DataRAM_1_q0),
-    .DataRAM_1_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_address1),
-    .DataRAM_1_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_ce1),
-    .DataRAM_1_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_we1),
-    .DataRAM_1_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_d1),
+    .DataRAM_1_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_address1),
+    .DataRAM_1_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_ce1),
+    .DataRAM_1_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_we1),
+    .DataRAM_1_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_d1),
     .DataRAM_1_q1(DataRAM_1_q1),
-    .DataRAM_4_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_address0),
-    .DataRAM_4_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_ce0),
-    .DataRAM_4_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_we0),
-    .DataRAM_4_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_d0),
+    .DataRAM_4_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_address0),
+    .DataRAM_4_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_ce0),
+    .DataRAM_4_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_we0),
+    .DataRAM_4_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_d0),
     .DataRAM_4_q0(DataRAM_4_q0),
-    .DataRAM_4_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_address1),
-    .DataRAM_4_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_ce1),
-    .DataRAM_4_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_we1),
-    .DataRAM_4_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_d1),
+    .DataRAM_4_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_address1),
+    .DataRAM_4_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_ce1),
+    .DataRAM_4_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_we1),
+    .DataRAM_4_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_d1),
     .DataRAM_4_q1(DataRAM_4_q1),
-    .DataRAM_7_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_address0),
-    .DataRAM_7_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_ce0),
-    .DataRAM_7_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_we0),
-    .DataRAM_7_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_d0),
+    .DataRAM_7_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_address0),
+    .DataRAM_7_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_ce0),
+    .DataRAM_7_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_we0),
+    .DataRAM_7_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_d0),
     .DataRAM_7_q0(DataRAM_7_q0),
-    .DataRAM_7_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_address1),
-    .DataRAM_7_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_ce1),
-    .DataRAM_7_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_we1),
-    .DataRAM_7_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_d1),
+    .DataRAM_7_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_address1),
+    .DataRAM_7_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_ce1),
+    .DataRAM_7_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_we1),
+    .DataRAM_7_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_d1),
     .DataRAM_7_q1(DataRAM_7_q1),
-    .DataRAM_10_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_address0),
-    .DataRAM_10_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_ce0),
-    .DataRAM_10_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_we0),
-    .DataRAM_10_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_d0),
+    .DataRAM_10_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_address0),
+    .DataRAM_10_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_ce0),
+    .DataRAM_10_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_we0),
+    .DataRAM_10_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_d0),
     .DataRAM_10_q0(DataRAM_10_q0),
-    .DataRAM_10_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_address1),
-    .DataRAM_10_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_ce1),
-    .DataRAM_10_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_we1),
-    .DataRAM_10_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_d1),
+    .DataRAM_10_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_address1),
+    .DataRAM_10_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_ce1),
+    .DataRAM_10_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_we1),
+    .DataRAM_10_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_d1),
     .DataRAM_10_q1(DataRAM_10_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .RAMSel1_cast(empty_133_reg_1468)
+    .RAMSel_cast(empty_reg_1407),
+    .RAMSel1_cast(empty_139_reg_1444)
 );
 
-Crypto_Crypto_Pipeline_POLY_MUL_LOOP24 grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471(
+Crypto_Crypto_Pipeline_POLY_MUL_LOOP24 grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_start),
-    .ap_done(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_ready),
-    .DataRAM_2_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_address0),
-    .DataRAM_2_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_ce0),
-    .DataRAM_2_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_we0),
-    .DataRAM_2_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_d0),
+    .ap_start(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_start),
+    .ap_done(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_ready),
+    .DataRAM_2_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_address0),
+    .DataRAM_2_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_ce0),
+    .DataRAM_2_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_we0),
+    .DataRAM_2_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_d0),
     .DataRAM_2_q0(DataRAM_2_q0),
-    .DataRAM_2_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_address1),
-    .DataRAM_2_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_ce1),
-    .DataRAM_2_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_we1),
-    .DataRAM_2_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_d1),
+    .DataRAM_2_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_address1),
+    .DataRAM_2_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_ce1),
+    .DataRAM_2_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_we1),
+    .DataRAM_2_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_d1),
     .DataRAM_2_q1(DataRAM_2_q1),
-    .DataRAM_5_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_address0),
-    .DataRAM_5_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_ce0),
-    .DataRAM_5_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_we0),
-    .DataRAM_5_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_d0),
+    .DataRAM_5_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_address0),
+    .DataRAM_5_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_ce0),
+    .DataRAM_5_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_we0),
+    .DataRAM_5_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_d0),
     .DataRAM_5_q0(DataRAM_5_q0),
-    .DataRAM_5_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_address1),
-    .DataRAM_5_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_ce1),
-    .DataRAM_5_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_we1),
-    .DataRAM_5_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_d1),
+    .DataRAM_5_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_address1),
+    .DataRAM_5_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_ce1),
+    .DataRAM_5_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_we1),
+    .DataRAM_5_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_d1),
     .DataRAM_5_q1(DataRAM_5_q1),
-    .DataRAM_8_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_address0),
-    .DataRAM_8_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_ce0),
-    .DataRAM_8_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_we0),
-    .DataRAM_8_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_d0),
+    .DataRAM_8_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_address0),
+    .DataRAM_8_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_ce0),
+    .DataRAM_8_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_we0),
+    .DataRAM_8_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_d0),
     .DataRAM_8_q0(DataRAM_8_q0),
-    .DataRAM_8_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_address1),
-    .DataRAM_8_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_ce1),
-    .DataRAM_8_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_we1),
-    .DataRAM_8_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_d1),
+    .DataRAM_8_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_address1),
+    .DataRAM_8_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_ce1),
+    .DataRAM_8_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_we1),
+    .DataRAM_8_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_d1),
     .DataRAM_8_q1(DataRAM_8_q1),
-    .DataRAM_11_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_address0),
-    .DataRAM_11_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_ce0),
-    .DataRAM_11_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_we0),
-    .DataRAM_11_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_d0),
+    .DataRAM_11_address0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_address0),
+    .DataRAM_11_ce0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_ce0),
+    .DataRAM_11_we0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_we0),
+    .DataRAM_11_d0(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_d0),
     .DataRAM_11_q0(DataRAM_11_q0),
-    .DataRAM_11_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_address1),
-    .DataRAM_11_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_ce1),
-    .DataRAM_11_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_we1),
-    .DataRAM_11_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_d1),
+    .DataRAM_11_address1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_address1),
+    .DataRAM_11_ce1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_ce1),
+    .DataRAM_11_we1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_we1),
+    .DataRAM_11_d1(grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_d1),
     .DataRAM_11_q1(DataRAM_11_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .RAMSel1_cast(empty_133_reg_1468)
+    .RAMSel_cast(empty_reg_1407),
+    .RAMSel1_cast(empty_139_reg_1444)
 );
 
-Crypto_Crypto_Pipeline_POLY_SUB_LOOP grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485(
+Crypto_Crypto_Pipeline_POLY_SUB_LOOP grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_start),
-    .ap_done(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_ready),
-    .DataRAM_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_address0),
-    .DataRAM_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_ce0),
-    .DataRAM_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_we0),
-    .DataRAM_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_d0),
+    .ap_start(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_start),
+    .ap_done(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_ready),
+    .DataRAM_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_address0),
+    .DataRAM_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_ce0),
+    .DataRAM_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_we0),
+    .DataRAM_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_d0),
     .DataRAM_q0(DataRAM_q0),
-    .DataRAM_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_address1),
-    .DataRAM_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_ce1),
-    .DataRAM_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_we1),
-    .DataRAM_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_d1),
+    .DataRAM_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_address1),
+    .DataRAM_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_ce1),
+    .DataRAM_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_we1),
+    .DataRAM_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_d1),
     .DataRAM_q1(DataRAM_q1),
-    .DataRAM_3_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_address0),
-    .DataRAM_3_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_ce0),
-    .DataRAM_3_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_we0),
-    .DataRAM_3_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_d0),
+    .DataRAM_3_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_address0),
+    .DataRAM_3_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_ce0),
+    .DataRAM_3_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_we0),
+    .DataRAM_3_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_d0),
     .DataRAM_3_q0(DataRAM_3_q0),
-    .DataRAM_3_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_address1),
-    .DataRAM_3_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_ce1),
-    .DataRAM_3_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_we1),
-    .DataRAM_3_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_d1),
+    .DataRAM_3_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_address1),
+    .DataRAM_3_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_ce1),
+    .DataRAM_3_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_we1),
+    .DataRAM_3_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_d1),
     .DataRAM_3_q1(DataRAM_3_q1),
-    .DataRAM_6_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_address0),
-    .DataRAM_6_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_ce0),
-    .DataRAM_6_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_we0),
-    .DataRAM_6_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_d0),
+    .DataRAM_6_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_address0),
+    .DataRAM_6_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_ce0),
+    .DataRAM_6_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_we0),
+    .DataRAM_6_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_d0),
     .DataRAM_6_q0(DataRAM_6_q0),
-    .DataRAM_6_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_address1),
-    .DataRAM_6_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_ce1),
-    .DataRAM_6_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_we1),
-    .DataRAM_6_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_d1),
+    .DataRAM_6_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_address1),
+    .DataRAM_6_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_ce1),
+    .DataRAM_6_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_we1),
+    .DataRAM_6_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_d1),
     .DataRAM_6_q1(DataRAM_6_q1),
-    .DataRAM_9_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_address0),
-    .DataRAM_9_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_ce0),
-    .DataRAM_9_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_we0),
-    .DataRAM_9_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_d0),
+    .DataRAM_9_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_address0),
+    .DataRAM_9_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_ce0),
+    .DataRAM_9_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_we0),
+    .DataRAM_9_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_d0),
     .DataRAM_9_q0(DataRAM_9_q0),
-    .DataRAM_9_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_address1),
-    .DataRAM_9_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_ce1),
-    .DataRAM_9_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_we1),
-    .DataRAM_9_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_d1),
+    .DataRAM_9_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_address1),
+    .DataRAM_9_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_ce1),
+    .DataRAM_9_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_we1),
+    .DataRAM_9_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_d1),
     .DataRAM_9_q1(DataRAM_9_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .RAMSel1_cast(empty_133_reg_1468)
+    .RAMSel_cast(empty_reg_1407),
+    .RAMSel1_cast(empty_139_reg_1444)
 );
 
-Crypto_Crypto_Pipeline_POLY_SUB_LOOP17 grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499(
+Crypto_Crypto_Pipeline_POLY_SUB_LOOP17 grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_start),
-    .ap_done(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_ready),
-    .DataRAM_1_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_address0),
-    .DataRAM_1_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_ce0),
-    .DataRAM_1_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_we0),
-    .DataRAM_1_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_d0),
+    .ap_start(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_start),
+    .ap_done(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_ready),
+    .DataRAM_1_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_address0),
+    .DataRAM_1_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_ce0),
+    .DataRAM_1_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_we0),
+    .DataRAM_1_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_d0),
     .DataRAM_1_q0(DataRAM_1_q0),
-    .DataRAM_1_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_address1),
-    .DataRAM_1_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_ce1),
-    .DataRAM_1_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_we1),
-    .DataRAM_1_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_d1),
+    .DataRAM_1_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_address1),
+    .DataRAM_1_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_ce1),
+    .DataRAM_1_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_we1),
+    .DataRAM_1_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_d1),
     .DataRAM_1_q1(DataRAM_1_q1),
-    .DataRAM_4_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_address0),
-    .DataRAM_4_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_ce0),
-    .DataRAM_4_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_we0),
-    .DataRAM_4_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_d0),
+    .DataRAM_4_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_address0),
+    .DataRAM_4_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_ce0),
+    .DataRAM_4_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_we0),
+    .DataRAM_4_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_d0),
     .DataRAM_4_q0(DataRAM_4_q0),
-    .DataRAM_4_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_address1),
-    .DataRAM_4_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_ce1),
-    .DataRAM_4_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_we1),
-    .DataRAM_4_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_d1),
+    .DataRAM_4_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_address1),
+    .DataRAM_4_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_ce1),
+    .DataRAM_4_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_we1),
+    .DataRAM_4_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_d1),
     .DataRAM_4_q1(DataRAM_4_q1),
-    .DataRAM_7_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_address0),
-    .DataRAM_7_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_ce0),
-    .DataRAM_7_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_we0),
-    .DataRAM_7_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_d0),
+    .DataRAM_7_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_address0),
+    .DataRAM_7_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_ce0),
+    .DataRAM_7_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_we0),
+    .DataRAM_7_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_d0),
     .DataRAM_7_q0(DataRAM_7_q0),
-    .DataRAM_7_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_address1),
-    .DataRAM_7_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_ce1),
-    .DataRAM_7_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_we1),
-    .DataRAM_7_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_d1),
+    .DataRAM_7_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_address1),
+    .DataRAM_7_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_ce1),
+    .DataRAM_7_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_we1),
+    .DataRAM_7_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_d1),
     .DataRAM_7_q1(DataRAM_7_q1),
-    .DataRAM_10_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_address0),
-    .DataRAM_10_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_ce0),
-    .DataRAM_10_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_we0),
-    .DataRAM_10_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_d0),
+    .DataRAM_10_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_address0),
+    .DataRAM_10_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_ce0),
+    .DataRAM_10_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_we0),
+    .DataRAM_10_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_d0),
     .DataRAM_10_q0(DataRAM_10_q0),
-    .DataRAM_10_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_address1),
-    .DataRAM_10_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_ce1),
-    .DataRAM_10_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_we1),
-    .DataRAM_10_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_d1),
+    .DataRAM_10_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_address1),
+    .DataRAM_10_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_ce1),
+    .DataRAM_10_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_we1),
+    .DataRAM_10_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_d1),
     .DataRAM_10_q1(DataRAM_10_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .RAMSel1_cast(empty_133_reg_1468)
+    .RAMSel_cast(empty_reg_1407),
+    .RAMSel1_cast(empty_139_reg_1444)
 );
 
-Crypto_Crypto_Pipeline_POLY_SUB_LOOP18 grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513(
+Crypto_Crypto_Pipeline_POLY_SUB_LOOP18 grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_start),
-    .ap_done(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_ready),
-    .DataRAM_2_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_address0),
-    .DataRAM_2_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_ce0),
-    .DataRAM_2_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_we0),
-    .DataRAM_2_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_d0),
+    .ap_start(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_start),
+    .ap_done(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_ready),
+    .DataRAM_2_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_address0),
+    .DataRAM_2_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_ce0),
+    .DataRAM_2_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_we0),
+    .DataRAM_2_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_d0),
     .DataRAM_2_q0(DataRAM_2_q0),
-    .DataRAM_2_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_address1),
-    .DataRAM_2_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_ce1),
-    .DataRAM_2_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_we1),
-    .DataRAM_2_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_d1),
+    .DataRAM_2_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_address1),
+    .DataRAM_2_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_ce1),
+    .DataRAM_2_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_we1),
+    .DataRAM_2_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_d1),
     .DataRAM_2_q1(DataRAM_2_q1),
-    .DataRAM_5_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_address0),
-    .DataRAM_5_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_ce0),
-    .DataRAM_5_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_we0),
-    .DataRAM_5_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_d0),
+    .DataRAM_5_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_address0),
+    .DataRAM_5_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_ce0),
+    .DataRAM_5_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_we0),
+    .DataRAM_5_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_d0),
     .DataRAM_5_q0(DataRAM_5_q0),
-    .DataRAM_5_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_address1),
-    .DataRAM_5_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_ce1),
-    .DataRAM_5_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_we1),
-    .DataRAM_5_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_d1),
+    .DataRAM_5_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_address1),
+    .DataRAM_5_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_ce1),
+    .DataRAM_5_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_we1),
+    .DataRAM_5_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_d1),
     .DataRAM_5_q1(DataRAM_5_q1),
-    .DataRAM_8_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_address0),
-    .DataRAM_8_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_ce0),
-    .DataRAM_8_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_we0),
-    .DataRAM_8_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_d0),
+    .DataRAM_8_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_address0),
+    .DataRAM_8_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_ce0),
+    .DataRAM_8_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_we0),
+    .DataRAM_8_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_d0),
     .DataRAM_8_q0(DataRAM_8_q0),
-    .DataRAM_8_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_address1),
-    .DataRAM_8_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_ce1),
-    .DataRAM_8_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_we1),
-    .DataRAM_8_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_d1),
+    .DataRAM_8_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_address1),
+    .DataRAM_8_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_ce1),
+    .DataRAM_8_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_we1),
+    .DataRAM_8_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_d1),
     .DataRAM_8_q1(DataRAM_8_q1),
-    .DataRAM_11_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_address0),
-    .DataRAM_11_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_ce0),
-    .DataRAM_11_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_we0),
-    .DataRAM_11_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_d0),
+    .DataRAM_11_address0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_address0),
+    .DataRAM_11_ce0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_ce0),
+    .DataRAM_11_we0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_we0),
+    .DataRAM_11_d0(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_d0),
     .DataRAM_11_q0(DataRAM_11_q0),
-    .DataRAM_11_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_address1),
-    .DataRAM_11_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_ce1),
-    .DataRAM_11_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_we1),
-    .DataRAM_11_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_d1),
+    .DataRAM_11_address1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_address1),
+    .DataRAM_11_ce1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_ce1),
+    .DataRAM_11_we1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_we1),
+    .DataRAM_11_d1(grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_d1),
     .DataRAM_11_q1(DataRAM_11_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .RAMSel1_cast(empty_133_reg_1468)
+    .RAMSel_cast(empty_reg_1407),
+    .RAMSel1_cast(empty_139_reg_1444)
 );
 
-Crypto_Crypto_Pipeline_POLY_ADD_LOOP grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527(
+Crypto_Crypto_Pipeline_POLY_ADD_LOOP grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_start),
-    .ap_done(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_ready),
-    .DataRAM_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_address0),
-    .DataRAM_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_ce0),
-    .DataRAM_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_we0),
-    .DataRAM_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_d0),
+    .ap_start(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_start),
+    .ap_done(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_ready),
+    .DataRAM_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_address0),
+    .DataRAM_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_ce0),
+    .DataRAM_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_we0),
+    .DataRAM_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_d0),
     .DataRAM_q0(DataRAM_q0),
-    .DataRAM_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_address1),
-    .DataRAM_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_ce1),
-    .DataRAM_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_we1),
-    .DataRAM_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_d1),
+    .DataRAM_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_address1),
+    .DataRAM_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_ce1),
+    .DataRAM_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_we1),
+    .DataRAM_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_d1),
     .DataRAM_q1(DataRAM_q1),
-    .DataRAM_3_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_address0),
-    .DataRAM_3_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_ce0),
-    .DataRAM_3_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_we0),
-    .DataRAM_3_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_d0),
+    .DataRAM_3_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_address0),
+    .DataRAM_3_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_ce0),
+    .DataRAM_3_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_we0),
+    .DataRAM_3_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_d0),
     .DataRAM_3_q0(DataRAM_3_q0),
-    .DataRAM_3_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_address1),
-    .DataRAM_3_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_ce1),
-    .DataRAM_3_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_we1),
-    .DataRAM_3_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_d1),
+    .DataRAM_3_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_address1),
+    .DataRAM_3_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_ce1),
+    .DataRAM_3_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_we1),
+    .DataRAM_3_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_d1),
     .DataRAM_3_q1(DataRAM_3_q1),
-    .DataRAM_6_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_address0),
-    .DataRAM_6_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_ce0),
-    .DataRAM_6_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_we0),
-    .DataRAM_6_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_d0),
+    .DataRAM_6_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_address0),
+    .DataRAM_6_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_ce0),
+    .DataRAM_6_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_we0),
+    .DataRAM_6_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_d0),
     .DataRAM_6_q0(DataRAM_6_q0),
-    .DataRAM_6_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_address1),
-    .DataRAM_6_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_ce1),
-    .DataRAM_6_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_we1),
-    .DataRAM_6_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_d1),
+    .DataRAM_6_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_address1),
+    .DataRAM_6_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_ce1),
+    .DataRAM_6_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_we1),
+    .DataRAM_6_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_d1),
     .DataRAM_6_q1(DataRAM_6_q1),
-    .DataRAM_9_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_address0),
-    .DataRAM_9_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_ce0),
-    .DataRAM_9_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_we0),
-    .DataRAM_9_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_d0),
+    .DataRAM_9_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_address0),
+    .DataRAM_9_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_ce0),
+    .DataRAM_9_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_we0),
+    .DataRAM_9_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_d0),
     .DataRAM_9_q0(DataRAM_9_q0),
-    .DataRAM_9_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_address1),
-    .DataRAM_9_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_ce1),
-    .DataRAM_9_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_we1),
-    .DataRAM_9_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_d1),
+    .DataRAM_9_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_address1),
+    .DataRAM_9_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_ce1),
+    .DataRAM_9_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_we1),
+    .DataRAM_9_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_d1),
     .DataRAM_9_q1(DataRAM_9_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .RAMSel1_cast(empty_133_reg_1468)
+    .RAMSel_cast(empty_reg_1407),
+    .RAMSel1_cast(empty_139_reg_1444)
 );
 
-Crypto_Crypto_Pipeline_POLY_ADD_LOOP15 grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541(
+Crypto_Crypto_Pipeline_POLY_ADD_LOOP15 grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_start),
-    .ap_done(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_ready),
-    .DataRAM_1_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_address0),
-    .DataRAM_1_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_ce0),
-    .DataRAM_1_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_we0),
-    .DataRAM_1_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_d0),
+    .ap_start(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_start),
+    .ap_done(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_ready),
+    .DataRAM_1_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_address0),
+    .DataRAM_1_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_ce0),
+    .DataRAM_1_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_we0),
+    .DataRAM_1_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_d0),
     .DataRAM_1_q0(DataRAM_1_q0),
-    .DataRAM_1_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_address1),
-    .DataRAM_1_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_ce1),
-    .DataRAM_1_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_we1),
-    .DataRAM_1_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_d1),
+    .DataRAM_1_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_address1),
+    .DataRAM_1_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_ce1),
+    .DataRAM_1_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_we1),
+    .DataRAM_1_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_d1),
     .DataRAM_1_q1(DataRAM_1_q1),
-    .DataRAM_4_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_address0),
-    .DataRAM_4_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_ce0),
-    .DataRAM_4_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_we0),
-    .DataRAM_4_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_d0),
+    .DataRAM_4_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_address0),
+    .DataRAM_4_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_ce0),
+    .DataRAM_4_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_we0),
+    .DataRAM_4_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_d0),
     .DataRAM_4_q0(DataRAM_4_q0),
-    .DataRAM_4_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_address1),
-    .DataRAM_4_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_ce1),
-    .DataRAM_4_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_we1),
-    .DataRAM_4_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_d1),
+    .DataRAM_4_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_address1),
+    .DataRAM_4_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_ce1),
+    .DataRAM_4_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_we1),
+    .DataRAM_4_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_d1),
     .DataRAM_4_q1(DataRAM_4_q1),
-    .DataRAM_7_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_address0),
-    .DataRAM_7_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_ce0),
-    .DataRAM_7_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_we0),
-    .DataRAM_7_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_d0),
+    .DataRAM_7_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_address0),
+    .DataRAM_7_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_ce0),
+    .DataRAM_7_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_we0),
+    .DataRAM_7_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_d0),
     .DataRAM_7_q0(DataRAM_7_q0),
-    .DataRAM_7_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_address1),
-    .DataRAM_7_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_ce1),
-    .DataRAM_7_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_we1),
-    .DataRAM_7_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_d1),
+    .DataRAM_7_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_address1),
+    .DataRAM_7_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_ce1),
+    .DataRAM_7_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_we1),
+    .DataRAM_7_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_d1),
     .DataRAM_7_q1(DataRAM_7_q1),
-    .DataRAM_10_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_address0),
-    .DataRAM_10_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_ce0),
-    .DataRAM_10_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_we0),
-    .DataRAM_10_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_d0),
+    .DataRAM_10_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_address0),
+    .DataRAM_10_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_ce0),
+    .DataRAM_10_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_we0),
+    .DataRAM_10_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_d0),
     .DataRAM_10_q0(DataRAM_10_q0),
-    .DataRAM_10_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_address1),
-    .DataRAM_10_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_ce1),
-    .DataRAM_10_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_we1),
-    .DataRAM_10_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_d1),
+    .DataRAM_10_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_address1),
+    .DataRAM_10_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_ce1),
+    .DataRAM_10_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_we1),
+    .DataRAM_10_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_d1),
     .DataRAM_10_q1(DataRAM_10_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .RAMSel1_cast(empty_133_reg_1468)
+    .RAMSel_cast(empty_reg_1407),
+    .RAMSel1_cast(empty_139_reg_1444)
 );
 
-Crypto_Crypto_Pipeline_POLY_ADD_LOOP16 grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555(
+Crypto_Crypto_Pipeline_POLY_ADD_LOOP16 grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_start),
-    .ap_done(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_ready),
-    .DataRAM_2_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_address0),
-    .DataRAM_2_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_ce0),
-    .DataRAM_2_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_we0),
-    .DataRAM_2_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_d0),
+    .ap_start(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_start),
+    .ap_done(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_ready),
+    .DataRAM_2_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_address0),
+    .DataRAM_2_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_ce0),
+    .DataRAM_2_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_we0),
+    .DataRAM_2_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_d0),
     .DataRAM_2_q0(DataRAM_2_q0),
-    .DataRAM_2_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_address1),
-    .DataRAM_2_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_ce1),
-    .DataRAM_2_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_we1),
-    .DataRAM_2_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_d1),
+    .DataRAM_2_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_address1),
+    .DataRAM_2_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_ce1),
+    .DataRAM_2_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_we1),
+    .DataRAM_2_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_d1),
     .DataRAM_2_q1(DataRAM_2_q1),
-    .DataRAM_5_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_address0),
-    .DataRAM_5_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_ce0),
-    .DataRAM_5_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_we0),
-    .DataRAM_5_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_d0),
+    .DataRAM_5_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_address0),
+    .DataRAM_5_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_ce0),
+    .DataRAM_5_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_we0),
+    .DataRAM_5_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_d0),
     .DataRAM_5_q0(DataRAM_5_q0),
-    .DataRAM_5_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_address1),
-    .DataRAM_5_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_ce1),
-    .DataRAM_5_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_we1),
-    .DataRAM_5_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_d1),
+    .DataRAM_5_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_address1),
+    .DataRAM_5_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_ce1),
+    .DataRAM_5_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_we1),
+    .DataRAM_5_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_d1),
     .DataRAM_5_q1(DataRAM_5_q1),
-    .DataRAM_8_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_address0),
-    .DataRAM_8_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_ce0),
-    .DataRAM_8_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_we0),
-    .DataRAM_8_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_d0),
+    .DataRAM_8_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_address0),
+    .DataRAM_8_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_ce0),
+    .DataRAM_8_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_we0),
+    .DataRAM_8_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_d0),
     .DataRAM_8_q0(DataRAM_8_q0),
-    .DataRAM_8_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_address1),
-    .DataRAM_8_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_ce1),
-    .DataRAM_8_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_we1),
-    .DataRAM_8_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_d1),
+    .DataRAM_8_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_address1),
+    .DataRAM_8_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_ce1),
+    .DataRAM_8_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_we1),
+    .DataRAM_8_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_d1),
     .DataRAM_8_q1(DataRAM_8_q1),
-    .DataRAM_11_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_address0),
-    .DataRAM_11_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_ce0),
-    .DataRAM_11_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_we0),
-    .DataRAM_11_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_d0),
+    .DataRAM_11_address0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_address0),
+    .DataRAM_11_ce0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_ce0),
+    .DataRAM_11_we0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_we0),
+    .DataRAM_11_d0(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_d0),
     .DataRAM_11_q0(DataRAM_11_q0),
-    .DataRAM_11_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_address1),
-    .DataRAM_11_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_ce1),
-    .DataRAM_11_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_we1),
-    .DataRAM_11_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_d1),
+    .DataRAM_11_address1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_address1),
+    .DataRAM_11_ce1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_ce1),
+    .DataRAM_11_we1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_we1),
+    .DataRAM_11_d1(grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_d1),
     .DataRAM_11_q1(DataRAM_11_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .RAMSel1_cast(empty_133_reg_1468)
+    .RAMSel_cast(empty_reg_1407),
+    .RAMSel1_cast(empty_139_reg_1444)
 );
 
-Crypto_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1 grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569(
+Crypto_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1 grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_start),
-    .ap_done(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_ready),
-    .DataRAM_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_address0),
-    .DataRAM_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_ce0),
-    .DataRAM_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_we0),
-    .DataRAM_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_d0),
+    .ap_start(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_start),
+    .ap_done(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_ready),
+    .DataRAM_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_address0),
+    .DataRAM_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_ce0),
+    .DataRAM_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_we0),
+    .DataRAM_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_d0),
     .DataRAM_q0(DataRAM_q0),
-    .DataRAM_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_address1),
-    .DataRAM_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_ce1),
-    .DataRAM_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_we1),
-    .DataRAM_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_d1),
+    .DataRAM_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_address1),
+    .DataRAM_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_ce1),
+    .DataRAM_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_we1),
+    .DataRAM_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_d1),
     .DataRAM_q1(DataRAM_q1),
-    .DataRAM_3_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_address0),
-    .DataRAM_3_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_ce0),
-    .DataRAM_3_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_we0),
-    .DataRAM_3_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_d0),
+    .DataRAM_3_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_address0),
+    .DataRAM_3_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_ce0),
+    .DataRAM_3_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_we0),
+    .DataRAM_3_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_d0),
     .DataRAM_3_q0(DataRAM_3_q0),
-    .DataRAM_3_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_address1),
-    .DataRAM_3_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_ce1),
-    .DataRAM_3_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_we1),
-    .DataRAM_3_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_d1),
+    .DataRAM_3_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_address1),
+    .DataRAM_3_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_ce1),
+    .DataRAM_3_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_we1),
+    .DataRAM_3_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_d1),
     .DataRAM_3_q1(DataRAM_3_q1),
-    .DataRAM_6_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_address0),
-    .DataRAM_6_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_ce0),
-    .DataRAM_6_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_we0),
-    .DataRAM_6_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_d0),
+    .DataRAM_6_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_address0),
+    .DataRAM_6_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_ce0),
+    .DataRAM_6_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_we0),
+    .DataRAM_6_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_d0),
     .DataRAM_6_q0(DataRAM_6_q0),
-    .DataRAM_6_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_address1),
-    .DataRAM_6_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_ce1),
-    .DataRAM_6_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_we1),
-    .DataRAM_6_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_d1),
+    .DataRAM_6_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_address1),
+    .DataRAM_6_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_ce1),
+    .DataRAM_6_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_we1),
+    .DataRAM_6_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_d1),
     .DataRAM_6_q1(DataRAM_6_q1),
-    .DataRAM_9_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_address0),
-    .DataRAM_9_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_ce0),
-    .DataRAM_9_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_we0),
-    .DataRAM_9_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_d0),
+    .DataRAM_9_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_address0),
+    .DataRAM_9_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_ce0),
+    .DataRAM_9_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_we0),
+    .DataRAM_9_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_d0),
     .DataRAM_9_q0(DataRAM_9_q0),
-    .DataRAM_9_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_address1),
-    .DataRAM_9_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_ce1),
-    .DataRAM_9_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_we1),
-    .DataRAM_9_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_d1),
+    .DataRAM_9_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_address1),
+    .DataRAM_9_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_ce1),
+    .DataRAM_9_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_we1),
+    .DataRAM_9_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_d1),
     .DataRAM_9_q1(DataRAM_9_q1),
-    .RAMSel_cast(empty_reg_1431)
+    .RAMSel_cast(empty_reg_1407)
 );
 
-Crypto_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113 grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582(
+Crypto_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113 grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_start),
-    .ap_done(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_ready),
-    .DataRAM_1_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_address0),
-    .DataRAM_1_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_ce0),
-    .DataRAM_1_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_we0),
-    .DataRAM_1_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_d0),
+    .ap_start(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_start),
+    .ap_done(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_ready),
+    .DataRAM_1_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_address0),
+    .DataRAM_1_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_ce0),
+    .DataRAM_1_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_we0),
+    .DataRAM_1_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_d0),
     .DataRAM_1_q0(DataRAM_1_q0),
-    .DataRAM_1_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_address1),
-    .DataRAM_1_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_ce1),
-    .DataRAM_1_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_we1),
-    .DataRAM_1_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_d1),
+    .DataRAM_1_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_address1),
+    .DataRAM_1_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_ce1),
+    .DataRAM_1_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_we1),
+    .DataRAM_1_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_d1),
     .DataRAM_1_q1(DataRAM_1_q1),
-    .DataRAM_4_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_address0),
-    .DataRAM_4_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_ce0),
-    .DataRAM_4_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_we0),
-    .DataRAM_4_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_d0),
+    .DataRAM_4_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_address0),
+    .DataRAM_4_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_ce0),
+    .DataRAM_4_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_we0),
+    .DataRAM_4_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_d0),
     .DataRAM_4_q0(DataRAM_4_q0),
-    .DataRAM_4_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_address1),
-    .DataRAM_4_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_ce1),
-    .DataRAM_4_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_we1),
-    .DataRAM_4_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_d1),
+    .DataRAM_4_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_address1),
+    .DataRAM_4_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_ce1),
+    .DataRAM_4_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_we1),
+    .DataRAM_4_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_d1),
     .DataRAM_4_q1(DataRAM_4_q1),
-    .DataRAM_7_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_address0),
-    .DataRAM_7_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_ce0),
-    .DataRAM_7_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_we0),
-    .DataRAM_7_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_d0),
+    .DataRAM_7_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_address0),
+    .DataRAM_7_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_ce0),
+    .DataRAM_7_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_we0),
+    .DataRAM_7_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_d0),
     .DataRAM_7_q0(DataRAM_7_q0),
-    .DataRAM_7_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_address1),
-    .DataRAM_7_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_ce1),
-    .DataRAM_7_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_we1),
-    .DataRAM_7_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_d1),
+    .DataRAM_7_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_address1),
+    .DataRAM_7_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_ce1),
+    .DataRAM_7_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_we1),
+    .DataRAM_7_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_d1),
     .DataRAM_7_q1(DataRAM_7_q1),
-    .DataRAM_10_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_address0),
-    .DataRAM_10_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_ce0),
-    .DataRAM_10_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_we0),
-    .DataRAM_10_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_d0),
+    .DataRAM_10_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_address0),
+    .DataRAM_10_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_ce0),
+    .DataRAM_10_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_we0),
+    .DataRAM_10_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_d0),
     .DataRAM_10_q0(DataRAM_10_q0),
-    .DataRAM_10_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_address1),
-    .DataRAM_10_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_ce1),
-    .DataRAM_10_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_we1),
-    .DataRAM_10_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_d1),
+    .DataRAM_10_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_address1),
+    .DataRAM_10_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_ce1),
+    .DataRAM_10_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_we1),
+    .DataRAM_10_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_d1),
     .DataRAM_10_q1(DataRAM_10_q1),
-    .RAMSel_cast(empty_reg_1431)
+    .RAMSel_cast(empty_reg_1407)
 );
 
-Crypto_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114 grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595(
+Crypto_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114 grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_start),
-    .ap_done(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_ready),
-    .DataRAM_2_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_address0),
-    .DataRAM_2_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_ce0),
-    .DataRAM_2_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_we0),
-    .DataRAM_2_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_d0),
+    .ap_start(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_start),
+    .ap_done(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_ready),
+    .DataRAM_2_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_address0),
+    .DataRAM_2_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_ce0),
+    .DataRAM_2_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_we0),
+    .DataRAM_2_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_d0),
     .DataRAM_2_q0(DataRAM_2_q0),
-    .DataRAM_2_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_address1),
-    .DataRAM_2_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_ce1),
-    .DataRAM_2_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_we1),
-    .DataRAM_2_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_d1),
+    .DataRAM_2_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_address1),
+    .DataRAM_2_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_ce1),
+    .DataRAM_2_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_we1),
+    .DataRAM_2_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_d1),
     .DataRAM_2_q1(DataRAM_2_q1),
-    .DataRAM_5_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_address0),
-    .DataRAM_5_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_ce0),
-    .DataRAM_5_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_we0),
-    .DataRAM_5_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_d0),
+    .DataRAM_5_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_address0),
+    .DataRAM_5_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_ce0),
+    .DataRAM_5_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_we0),
+    .DataRAM_5_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_d0),
     .DataRAM_5_q0(DataRAM_5_q0),
-    .DataRAM_5_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_address1),
-    .DataRAM_5_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_ce1),
-    .DataRAM_5_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_we1),
-    .DataRAM_5_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_d1),
+    .DataRAM_5_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_address1),
+    .DataRAM_5_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_ce1),
+    .DataRAM_5_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_we1),
+    .DataRAM_5_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_d1),
     .DataRAM_5_q1(DataRAM_5_q1),
-    .DataRAM_8_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_address0),
-    .DataRAM_8_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_ce0),
-    .DataRAM_8_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_we0),
-    .DataRAM_8_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_d0),
+    .DataRAM_8_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_address0),
+    .DataRAM_8_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_ce0),
+    .DataRAM_8_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_we0),
+    .DataRAM_8_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_d0),
     .DataRAM_8_q0(DataRAM_8_q0),
-    .DataRAM_8_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_address1),
-    .DataRAM_8_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_ce1),
-    .DataRAM_8_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_we1),
-    .DataRAM_8_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_d1),
+    .DataRAM_8_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_address1),
+    .DataRAM_8_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_ce1),
+    .DataRAM_8_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_we1),
+    .DataRAM_8_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_d1),
     .DataRAM_8_q1(DataRAM_8_q1),
-    .DataRAM_11_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_address0),
-    .DataRAM_11_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_ce0),
-    .DataRAM_11_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_we0),
-    .DataRAM_11_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_d0),
+    .DataRAM_11_address0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_address0),
+    .DataRAM_11_ce0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_ce0),
+    .DataRAM_11_we0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_we0),
+    .DataRAM_11_d0(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_d0),
     .DataRAM_11_q0(DataRAM_11_q0),
-    .DataRAM_11_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_address1),
-    .DataRAM_11_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_ce1),
-    .DataRAM_11_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_we1),
-    .DataRAM_11_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_d1),
+    .DataRAM_11_address1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_address1),
+    .DataRAM_11_ce1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_ce1),
+    .DataRAM_11_we1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_we1),
+    .DataRAM_11_d1(grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_d1),
     .DataRAM_11_q1(DataRAM_11_q1),
-    .RAMSel_cast(empty_reg_1431)
+    .RAMSel_cast(empty_reg_1407)
 );
 
-Crypto_Crypto_Pipeline_VITIS_LOOP_88_5 grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608(
+Crypto_Crypto_Pipeline_VITIS_LOOP_93_3 grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_ready),
-    .INTTTWiddleRAM_address0(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTWiddleRAM_address0),
-    .INTTTWiddleRAM_ce0(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTWiddleRAM_ce0),
-    .INTTTWiddleRAM_we0(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTWiddleRAM_we0),
-    .INTTTWiddleRAM_d0(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTWiddleRAM_d0),
-    .NTTTWiddleRAM_address0(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTWiddleRAM_address0),
-    .NTTTWiddleRAM_ce0(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTWiddleRAM_ce0),
-    .NTTTWiddleRAM_we0(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTWiddleRAM_we0),
-    .NTTTWiddleRAM_d0(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTWiddleRAM_d0),
-    .NTTTwiddleIn_address0(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTwiddleIn_address0),
-    .NTTTwiddleIn_ce0(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTwiddleIn_ce0),
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_ready),
+    .INTTTWiddleRAM_address0(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTWiddleRAM_address0),
+    .INTTTWiddleRAM_ce0(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTWiddleRAM_ce0),
+    .INTTTWiddleRAM_we0(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTWiddleRAM_we0),
+    .INTTTWiddleRAM_d0(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTWiddleRAM_d0),
+    .NTTTWiddleRAM_address0(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTWiddleRAM_address0),
+    .NTTTWiddleRAM_ce0(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTWiddleRAM_ce0),
+    .NTTTWiddleRAM_we0(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTWiddleRAM_we0),
+    .NTTTWiddleRAM_d0(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTWiddleRAM_d0),
+    .NTTTwiddleIn_address0(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTwiddleIn_address0),
+    .NTTTwiddleIn_ce0(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTwiddleIn_ce0),
     .NTTTwiddleIn_q0(NTTTwiddleIn_q0),
-    .INTTTwiddleIn_address0(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTwiddleIn_address0),
-    .INTTTwiddleIn_ce0(grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTwiddleIn_ce0),
+    .INTTTwiddleIn_address0(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTwiddleIn_address0),
+    .INTTTwiddleIn_ce0(grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTwiddleIn_ce0),
     .INTTTwiddleIn_q0(INTTTwiddleIn_q0)
 );
 
-Crypto_Crypto_Pipeline_VITIS_LOOP_74_4 grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620(
+Crypto_Crypto_Pipeline_VITIS_LOOP_82_2 grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_ready),
-    .dataOutStream_TREADY(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TREADY),
-    .DataRAM_address0(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_address0),
-    .DataRAM_ce0(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_ce0),
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_ready),
+    .DataRAM_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_address0),
+    .DataRAM_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_ce0),
     .DataRAM_q0(DataRAM_q0),
-    .DataRAM_3_address0(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_3_address0),
-    .DataRAM_3_ce0(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_3_ce0),
+    .DataRAM_3_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_3_address0),
+    .DataRAM_3_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_3_ce0),
     .DataRAM_3_q0(DataRAM_3_q0),
-    .DataRAM_6_address0(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_6_address0),
-    .DataRAM_6_ce0(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_6_ce0),
+    .DataRAM_6_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_6_address0),
+    .DataRAM_6_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_6_ce0),
     .DataRAM_6_q0(DataRAM_6_q0),
-    .DataRAM_9_address0(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_9_address0),
-    .DataRAM_9_ce0(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_9_ce0),
+    .DataRAM_9_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_9_address0),
+    .DataRAM_9_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_9_ce0),
     .DataRAM_9_q0(DataRAM_9_q0),
-    .RAMSel_cast(empty_reg_1431),
-    .dataOutStream_TDATA(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TDATA),
-    .dataOutStream_TVALID(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TVALID),
-    .dataOutStream_TKEEP(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TKEEP),
-    .dataOutStream_TSTRB(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TSTRB),
-    .dataOutStream_TLAST(grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TLAST)
+    .RAMSel_cast(empty_reg_1407),
+    .DataOutStream_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataOutStream_address0),
+    .DataOutStream_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataOutStream_ce0),
+    .DataOutStream_we0(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataOutStream_we0),
+    .DataOutStream_d0(grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataOutStream_d0)
 );
 
-Crypto_Crypto_Pipeline_VITIS_LOOP_215_10 grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641(
+Crypto_Crypto_Pipeline_VITIS_LOOP_220_8 grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_ready),
-    .DataRAM_9_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_9_address0),
-    .DataRAM_9_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_9_ce0),
-    .DataRAM_9_we0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_9_we0),
-    .DataRAM_9_d0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_9_d0),
-    .DataRAM_6_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_6_address0),
-    .DataRAM_6_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_6_ce0),
-    .DataRAM_6_we0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_6_we0),
-    .DataRAM_6_d0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_6_d0),
-    .DataRAM_3_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_3_address0),
-    .DataRAM_3_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_3_ce0),
-    .DataRAM_3_we0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_3_we0),
-    .DataRAM_3_d0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_3_d0),
-    .DataRAM_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_address0),
-    .DataRAM_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_ce0),
-    .DataRAM_we0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_we0),
-    .DataRAM_d0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_d0),
-    .BitReverseData_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_BitReverseData_address0),
-    .BitReverseData_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_BitReverseData_ce0),
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_ready),
+    .DataRAM_9_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_9_address0),
+    .DataRAM_9_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_9_ce0),
+    .DataRAM_9_we0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_9_we0),
+    .DataRAM_9_d0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_9_d0),
+    .DataRAM_6_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_6_address0),
+    .DataRAM_6_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_6_ce0),
+    .DataRAM_6_we0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_6_we0),
+    .DataRAM_6_d0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_6_d0),
+    .DataRAM_3_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_3_address0),
+    .DataRAM_3_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_3_ce0),
+    .DataRAM_3_we0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_3_we0),
+    .DataRAM_3_d0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_3_d0),
+    .DataRAM_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_address0),
+    .DataRAM_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_ce0),
+    .DataRAM_we0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_we0),
+    .DataRAM_d0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_d0),
+    .BitReverseData_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_BitReverseData_address0),
+    .BitReverseData_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_BitReverseData_ce0),
     .BitReverseData_q0(BitReverseData_q0),
-    .RAMSel_cast(empty_reg_1431)
+    .RAMSel_cast(empty_reg_1407)
 );
 
-Crypto_Crypto_Pipeline_VITIS_LOOP_215_103 grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651(
+Crypto_Crypto_Pipeline_VITIS_LOOP_220_83 grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_ready),
-    .DataRAM_10_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_10_address0),
-    .DataRAM_10_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_10_ce0),
-    .DataRAM_10_we0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_10_we0),
-    .DataRAM_10_d0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_10_d0),
-    .DataRAM_7_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_7_address0),
-    .DataRAM_7_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_7_ce0),
-    .DataRAM_7_we0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_7_we0),
-    .DataRAM_7_d0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_7_d0),
-    .DataRAM_4_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_4_address0),
-    .DataRAM_4_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_4_ce0),
-    .DataRAM_4_we0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_4_we0),
-    .DataRAM_4_d0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_4_d0),
-    .DataRAM_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_1_address0),
-    .DataRAM_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_1_ce0),
-    .DataRAM_1_we0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_1_we0),
-    .DataRAM_1_d0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_1_d0),
-    .BitReverseData_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_BitReverseData_1_address0),
-    .BitReverseData_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_BitReverseData_1_ce0),
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_ready),
+    .DataRAM_10_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_10_address0),
+    .DataRAM_10_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_10_ce0),
+    .DataRAM_10_we0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_10_we0),
+    .DataRAM_10_d0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_10_d0),
+    .DataRAM_7_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_7_address0),
+    .DataRAM_7_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_7_ce0),
+    .DataRAM_7_we0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_7_we0),
+    .DataRAM_7_d0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_7_d0),
+    .DataRAM_4_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_4_address0),
+    .DataRAM_4_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_4_ce0),
+    .DataRAM_4_we0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_4_we0),
+    .DataRAM_4_d0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_4_d0),
+    .DataRAM_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_1_address0),
+    .DataRAM_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_1_ce0),
+    .DataRAM_1_we0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_1_we0),
+    .DataRAM_1_d0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_1_d0),
+    .BitReverseData_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_BitReverseData_1_address0),
+    .BitReverseData_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_BitReverseData_1_ce0),
     .BitReverseData_1_q0(BitReverseData_1_q0),
-    .RAMSel_cast(empty_reg_1431)
+    .RAMSel_cast(empty_reg_1407)
 );
 
-Crypto_Crypto_Pipeline_VITIS_LOOP_215_104 grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661(
+Crypto_Crypto_Pipeline_VITIS_LOOP_220_84 grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_ready),
-    .DataRAM_11_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_11_address0),
-    .DataRAM_11_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_11_ce0),
-    .DataRAM_11_we0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_11_we0),
-    .DataRAM_11_d0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_11_d0),
-    .DataRAM_8_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_8_address0),
-    .DataRAM_8_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_8_ce0),
-    .DataRAM_8_we0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_8_we0),
-    .DataRAM_8_d0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_8_d0),
-    .DataRAM_5_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_5_address0),
-    .DataRAM_5_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_5_ce0),
-    .DataRAM_5_we0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_5_we0),
-    .DataRAM_5_d0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_5_d0),
-    .DataRAM_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_2_address0),
-    .DataRAM_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_2_ce0),
-    .DataRAM_2_we0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_2_we0),
-    .DataRAM_2_d0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_2_d0),
-    .BitReverseData_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_BitReverseData_2_address0),
-    .BitReverseData_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_BitReverseData_2_ce0),
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_ready),
+    .DataRAM_11_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_11_address0),
+    .DataRAM_11_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_11_ce0),
+    .DataRAM_11_we0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_11_we0),
+    .DataRAM_11_d0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_11_d0),
+    .DataRAM_8_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_8_address0),
+    .DataRAM_8_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_8_ce0),
+    .DataRAM_8_we0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_8_we0),
+    .DataRAM_8_d0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_8_d0),
+    .DataRAM_5_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_5_address0),
+    .DataRAM_5_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_5_ce0),
+    .DataRAM_5_we0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_5_we0),
+    .DataRAM_5_d0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_5_d0),
+    .DataRAM_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_2_address0),
+    .DataRAM_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_2_ce0),
+    .DataRAM_2_we0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_2_we0),
+    .DataRAM_2_d0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_2_d0),
+    .BitReverseData_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_BitReverseData_2_address0),
+    .BitReverseData_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_BitReverseData_2_ce0),
     .BitReverseData_2_q0(BitReverseData_2_q0),
-    .RAMSel_cast(empty_reg_1431)
+    .RAMSel_cast(empty_reg_1407)
 );
 
-Crypto_Crypto_Pipeline_INTT_PE_LOOP grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671(
+Crypto_Crypto_Pipeline_INTT_PE_LOOP grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_start),
-    .ap_done(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_ready),
-    .hf_7(hf_1_reg_1501),
-    .trunc_ln228_3(trunc_ln228_1_reg_1524),
-    .DataRAM_address0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_address0),
-    .DataRAM_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_ce0),
-    .DataRAM_we0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_we0),
-    .DataRAM_d0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_d0),
+    .ap_start(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_start),
+    .ap_done(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_ready),
+    .hf_7(hf_1_reg_1477),
+    .trunc_ln233_3(trunc_ln233_1_reg_1500),
+    .DataRAM_address0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_address0),
+    .DataRAM_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_ce0),
+    .DataRAM_we0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_we0),
+    .DataRAM_d0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_d0),
     .DataRAM_q0(DataRAM_q0),
-    .DataRAM_address1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_address1),
-    .DataRAM_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_ce1),
-    .DataRAM_we1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_we1),
-    .DataRAM_d1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_d1),
+    .DataRAM_address1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_address1),
+    .DataRAM_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_ce1),
+    .DataRAM_we1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_we1),
+    .DataRAM_d1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_d1),
     .DataRAM_q1(DataRAM_q1),
-    .DataRAM_3_address0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_address0),
-    .DataRAM_3_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_ce0),
-    .DataRAM_3_we0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_we0),
-    .DataRAM_3_d0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_d0),
+    .DataRAM_3_address0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_address0),
+    .DataRAM_3_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_ce0),
+    .DataRAM_3_we0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_we0),
+    .DataRAM_3_d0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_d0),
     .DataRAM_3_q0(DataRAM_3_q0),
-    .DataRAM_3_address1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_address1),
-    .DataRAM_3_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_ce1),
-    .DataRAM_3_we1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_we1),
-    .DataRAM_3_d1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_d1),
+    .DataRAM_3_address1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_address1),
+    .DataRAM_3_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_ce1),
+    .DataRAM_3_we1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_we1),
+    .DataRAM_3_d1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_d1),
     .DataRAM_3_q1(DataRAM_3_q1),
-    .DataRAM_6_address0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_address0),
-    .DataRAM_6_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_ce0),
-    .DataRAM_6_we0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_we0),
-    .DataRAM_6_d0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_d0),
+    .DataRAM_6_address0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_address0),
+    .DataRAM_6_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_ce0),
+    .DataRAM_6_we0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_we0),
+    .DataRAM_6_d0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_d0),
     .DataRAM_6_q0(DataRAM_6_q0),
-    .DataRAM_6_address1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_address1),
-    .DataRAM_6_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_ce1),
-    .DataRAM_6_we1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_we1),
-    .DataRAM_6_d1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_d1),
+    .DataRAM_6_address1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_address1),
+    .DataRAM_6_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_ce1),
+    .DataRAM_6_we1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_we1),
+    .DataRAM_6_d1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_d1),
     .DataRAM_6_q1(DataRAM_6_q1),
-    .DataRAM_9_address0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_address0),
-    .DataRAM_9_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_ce0),
-    .DataRAM_9_we0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_we0),
-    .DataRAM_9_d0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_d0),
+    .DataRAM_9_address0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_address0),
+    .DataRAM_9_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_ce0),
+    .DataRAM_9_we0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_we0),
+    .DataRAM_9_d0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_d0),
     .DataRAM_9_q0(DataRAM_9_q0),
-    .DataRAM_9_address1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_address1),
-    .DataRAM_9_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_ce1),
-    .DataRAM_9_we1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_we1),
-    .DataRAM_9_d1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_d1),
+    .DataRAM_9_address1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_address1),
+    .DataRAM_9_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_ce1),
+    .DataRAM_9_we1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_we1),
+    .DataRAM_9_d1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_d1),
     .DataRAM_9_q1(DataRAM_9_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .trunc_ln11(trunc_ln1_reg_1506),
-    .trunc_ln228_1(trunc_ln228_reg_1511),
-    .INTTTWiddleRAM_address0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_INTTTWiddleRAM_address0),
-    .INTTTWiddleRAM_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_INTTTWiddleRAM_ce0),
+    .RAMSel_cast(empty_reg_1407),
+    .trunc_ln13(trunc_ln1_reg_1482),
+    .trunc_ln233_1(trunc_ln233_reg_1487),
+    .INTTTWiddleRAM_address0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_INTTTWiddleRAM_address0),
+    .INTTTWiddleRAM_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_INTTTWiddleRAM_ce0),
     .INTTTWiddleRAM_q0(INTTTWiddleRAM_q0),
-    .INTTTWiddleRAM_address1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_INTTTWiddleRAM_address1),
-    .INTTTWiddleRAM_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_INTTTWiddleRAM_ce1),
+    .INTTTWiddleRAM_address1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_INTTTWiddleRAM_address1),
+    .INTTTWiddleRAM_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_INTTTWiddleRAM_ce1),
     .INTTTWiddleRAM_q1(INTTTWiddleRAM_q1),
-    .grp_ADD_MOD_fu_1757_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_ADD_MOD_fu_1757_p_din1),
-    .grp_ADD_MOD_fu_1757_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_ADD_MOD_fu_1757_p_din2),
-    .grp_ADD_MOD_fu_1757_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_ADD_MOD_fu_1757_p_din3),
-    .grp_ADD_MOD_fu_1757_p_dout0(grp_ADD_MOD_fu_1757_ap_return),
-    .grp_ADD_MOD_fu_1757_p_ready(grp_ADD_MOD_fu_1757_ap_ready),
-    .grp_MUL_MOD_fu_1763_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_MUL_MOD_fu_1763_p_din1),
-    .grp_MUL_MOD_fu_1763_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_MUL_MOD_fu_1763_p_din2),
-    .grp_MUL_MOD_fu_1763_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_MUL_MOD_fu_1763_p_din3),
-    .grp_MUL_MOD_fu_1763_p_dout0(grp_MUL_MOD_fu_1763_ap_return),
-    .grp_MUL_MOD_fu_1763_p_ce(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_MUL_MOD_fu_1763_p_ce),
-    .grp_SUB_MOD_fu_1769_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_SUB_MOD_fu_1769_p_din1),
-    .grp_SUB_MOD_fu_1769_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_SUB_MOD_fu_1769_p_din2),
-    .grp_SUB_MOD_fu_1769_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_SUB_MOD_fu_1769_p_din3),
-    .grp_SUB_MOD_fu_1769_p_dout0(grp_SUB_MOD_fu_1769_ap_return),
-    .grp_SUB_MOD_fu_1769_p_ready(grp_SUB_MOD_fu_1769_ap_ready)
+    .grp_ADD_MOD_fu_1733_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_ADD_MOD_fu_1733_p_din1),
+    .grp_ADD_MOD_fu_1733_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_ADD_MOD_fu_1733_p_din2),
+    .grp_ADD_MOD_fu_1733_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_ADD_MOD_fu_1733_p_din3),
+    .grp_ADD_MOD_fu_1733_p_dout0(grp_ADD_MOD_fu_1733_ap_return),
+    .grp_ADD_MOD_fu_1733_p_ready(grp_ADD_MOD_fu_1733_ap_ready),
+    .grp_MUL_MOD_fu_1739_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_MUL_MOD_fu_1739_p_din1),
+    .grp_MUL_MOD_fu_1739_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_MUL_MOD_fu_1739_p_din2),
+    .grp_MUL_MOD_fu_1739_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_MUL_MOD_fu_1739_p_din3),
+    .grp_MUL_MOD_fu_1739_p_dout0(grp_MUL_MOD_fu_1739_ap_return),
+    .grp_MUL_MOD_fu_1739_p_ce(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_MUL_MOD_fu_1739_p_ce),
+    .grp_SUB_MOD_fu_1745_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_SUB_MOD_fu_1745_p_din1),
+    .grp_SUB_MOD_fu_1745_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_SUB_MOD_fu_1745_p_din2),
+    .grp_SUB_MOD_fu_1745_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_SUB_MOD_fu_1745_p_din3),
+    .grp_SUB_MOD_fu_1745_p_dout0(grp_SUB_MOD_fu_1745_ap_return),
+    .grp_SUB_MOD_fu_1745_p_ready(grp_SUB_MOD_fu_1745_ap_ready)
 );
 
-Crypto_Crypto_Pipeline_INTT_PE_LOOP5 grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685(
+Crypto_Crypto_Pipeline_INTT_PE_LOOP5 grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_start),
-    .ap_done(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_ready),
-    .hf_9(hf_3_reg_1547),
-    .trunc_ln228_7(trunc_ln228_3_reg_1570),
-    .DataRAM_1_address0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_address0),
-    .DataRAM_1_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_ce0),
-    .DataRAM_1_we0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_we0),
-    .DataRAM_1_d0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_d0),
+    .ap_start(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_start),
+    .ap_done(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_ready),
+    .hf_9(hf_3_reg_1523),
+    .trunc_ln233_7(trunc_ln233_3_reg_1546),
+    .DataRAM_1_address0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_address0),
+    .DataRAM_1_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_ce0),
+    .DataRAM_1_we0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_we0),
+    .DataRAM_1_d0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_d0),
     .DataRAM_1_q0(DataRAM_1_q0),
-    .DataRAM_1_address1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_address1),
-    .DataRAM_1_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_ce1),
-    .DataRAM_1_we1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_we1),
-    .DataRAM_1_d1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_d1),
+    .DataRAM_1_address1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_address1),
+    .DataRAM_1_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_ce1),
+    .DataRAM_1_we1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_we1),
+    .DataRAM_1_d1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_d1),
     .DataRAM_1_q1(DataRAM_1_q1),
-    .DataRAM_4_address0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_address0),
-    .DataRAM_4_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_ce0),
-    .DataRAM_4_we0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_we0),
-    .DataRAM_4_d0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_d0),
+    .DataRAM_4_address0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_address0),
+    .DataRAM_4_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_ce0),
+    .DataRAM_4_we0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_we0),
+    .DataRAM_4_d0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_d0),
     .DataRAM_4_q0(DataRAM_4_q0),
-    .DataRAM_4_address1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_address1),
-    .DataRAM_4_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_ce1),
-    .DataRAM_4_we1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_we1),
-    .DataRAM_4_d1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_d1),
+    .DataRAM_4_address1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_address1),
+    .DataRAM_4_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_ce1),
+    .DataRAM_4_we1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_we1),
+    .DataRAM_4_d1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_d1),
     .DataRAM_4_q1(DataRAM_4_q1),
-    .DataRAM_7_address0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_address0),
-    .DataRAM_7_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_ce0),
-    .DataRAM_7_we0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_we0),
-    .DataRAM_7_d0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_d0),
+    .DataRAM_7_address0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_address0),
+    .DataRAM_7_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_ce0),
+    .DataRAM_7_we0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_we0),
+    .DataRAM_7_d0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_d0),
     .DataRAM_7_q0(DataRAM_7_q0),
-    .DataRAM_7_address1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_address1),
-    .DataRAM_7_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_ce1),
-    .DataRAM_7_we1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_we1),
-    .DataRAM_7_d1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_d1),
+    .DataRAM_7_address1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_address1),
+    .DataRAM_7_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_ce1),
+    .DataRAM_7_we1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_we1),
+    .DataRAM_7_d1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_d1),
     .DataRAM_7_q1(DataRAM_7_q1),
-    .DataRAM_10_address0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_address0),
-    .DataRAM_10_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_ce0),
-    .DataRAM_10_we0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_we0),
-    .DataRAM_10_d0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_d0),
+    .DataRAM_10_address0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_address0),
+    .DataRAM_10_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_ce0),
+    .DataRAM_10_we0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_we0),
+    .DataRAM_10_d0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_d0),
     .DataRAM_10_q0(DataRAM_10_q0),
-    .DataRAM_10_address1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_address1),
-    .DataRAM_10_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_ce1),
-    .DataRAM_10_we1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_we1),
-    .DataRAM_10_d1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_d1),
+    .DataRAM_10_address1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_address1),
+    .DataRAM_10_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_ce1),
+    .DataRAM_10_we1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_we1),
+    .DataRAM_10_d1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_d1),
     .DataRAM_10_q1(DataRAM_10_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .trunc_ln228_4(trunc_ln228_4_reg_1552),
-    .trunc_ln228_5(trunc_ln228_2_reg_1557),
-    .INTTTWiddleRAM_1_address0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_INTTTWiddleRAM_1_address0),
-    .INTTTWiddleRAM_1_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_INTTTWiddleRAM_1_ce0),
+    .RAMSel_cast(empty_reg_1407),
+    .trunc_ln233_4(trunc_ln233_4_reg_1528),
+    .trunc_ln233_5(trunc_ln233_2_reg_1533),
+    .INTTTWiddleRAM_1_address0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_INTTTWiddleRAM_1_address0),
+    .INTTTWiddleRAM_1_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_INTTTWiddleRAM_1_ce0),
     .INTTTWiddleRAM_1_q0(INTTTWiddleRAM_1_q0),
-    .INTTTWiddleRAM_1_address1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_INTTTWiddleRAM_1_address1),
-    .INTTTWiddleRAM_1_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_INTTTWiddleRAM_1_ce1),
+    .INTTTWiddleRAM_1_address1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_INTTTWiddleRAM_1_address1),
+    .INTTTWiddleRAM_1_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_INTTTWiddleRAM_1_ce1),
     .INTTTWiddleRAM_1_q1(INTTTWiddleRAM_1_q1),
-    .grp_ADD_MOD_fu_1757_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_ADD_MOD_fu_1757_p_din1),
-    .grp_ADD_MOD_fu_1757_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_ADD_MOD_fu_1757_p_din2),
-    .grp_ADD_MOD_fu_1757_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_ADD_MOD_fu_1757_p_din3),
-    .grp_ADD_MOD_fu_1757_p_dout0(grp_ADD_MOD_fu_1757_ap_return),
-    .grp_ADD_MOD_fu_1757_p_ready(grp_ADD_MOD_fu_1757_ap_ready),
-    .grp_MUL_MOD_fu_1763_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_MUL_MOD_fu_1763_p_din1),
-    .grp_MUL_MOD_fu_1763_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_MUL_MOD_fu_1763_p_din2),
-    .grp_MUL_MOD_fu_1763_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_MUL_MOD_fu_1763_p_din3),
-    .grp_MUL_MOD_fu_1763_p_dout0(grp_MUL_MOD_fu_1763_ap_return),
-    .grp_MUL_MOD_fu_1763_p_ce(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_MUL_MOD_fu_1763_p_ce),
-    .grp_SUB_MOD_fu_1769_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_SUB_MOD_fu_1769_p_din1),
-    .grp_SUB_MOD_fu_1769_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_SUB_MOD_fu_1769_p_din2),
-    .grp_SUB_MOD_fu_1769_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_SUB_MOD_fu_1769_p_din3),
-    .grp_SUB_MOD_fu_1769_p_dout0(grp_SUB_MOD_fu_1769_ap_return),
-    .grp_SUB_MOD_fu_1769_p_ready(grp_SUB_MOD_fu_1769_ap_ready)
+    .grp_ADD_MOD_fu_1733_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_ADD_MOD_fu_1733_p_din1),
+    .grp_ADD_MOD_fu_1733_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_ADD_MOD_fu_1733_p_din2),
+    .grp_ADD_MOD_fu_1733_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_ADD_MOD_fu_1733_p_din3),
+    .grp_ADD_MOD_fu_1733_p_dout0(grp_ADD_MOD_fu_1733_ap_return),
+    .grp_ADD_MOD_fu_1733_p_ready(grp_ADD_MOD_fu_1733_ap_ready),
+    .grp_MUL_MOD_fu_1739_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_MUL_MOD_fu_1739_p_din1),
+    .grp_MUL_MOD_fu_1739_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_MUL_MOD_fu_1739_p_din2),
+    .grp_MUL_MOD_fu_1739_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_MUL_MOD_fu_1739_p_din3),
+    .grp_MUL_MOD_fu_1739_p_dout0(grp_MUL_MOD_fu_1739_ap_return),
+    .grp_MUL_MOD_fu_1739_p_ce(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_MUL_MOD_fu_1739_p_ce),
+    .grp_SUB_MOD_fu_1745_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_SUB_MOD_fu_1745_p_din1),
+    .grp_SUB_MOD_fu_1745_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_SUB_MOD_fu_1745_p_din2),
+    .grp_SUB_MOD_fu_1745_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_SUB_MOD_fu_1745_p_din3),
+    .grp_SUB_MOD_fu_1745_p_dout0(grp_SUB_MOD_fu_1745_ap_return),
+    .grp_SUB_MOD_fu_1745_p_ready(grp_SUB_MOD_fu_1745_ap_ready)
 );
 
-Crypto_Crypto_Pipeline_MUL_INV_LOOP grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699(
+Crypto_Crypto_Pipeline_MUL_INV_LOOP grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_start),
-    .ap_done(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_ready),
-    .DataRAM_9_address0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_address0),
-    .DataRAM_9_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_ce0),
-    .DataRAM_9_we0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_we0),
-    .DataRAM_9_d0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_d0),
-    .DataRAM_9_address1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_address1),
-    .DataRAM_9_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_ce1),
+    .ap_start(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_start),
+    .ap_done(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_ready),
+    .DataRAM_9_address0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_address0),
+    .DataRAM_9_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_ce0),
+    .DataRAM_9_we0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_we0),
+    .DataRAM_9_d0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_d0),
+    .DataRAM_9_address1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_address1),
+    .DataRAM_9_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_ce1),
     .DataRAM_9_q1(DataRAM_9_q1),
-    .DataRAM_6_address0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_address0),
-    .DataRAM_6_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_ce0),
-    .DataRAM_6_we0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_we0),
-    .DataRAM_6_d0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_d0),
-    .DataRAM_6_address1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_address1),
-    .DataRAM_6_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_ce1),
+    .DataRAM_6_address0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_address0),
+    .DataRAM_6_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_ce0),
+    .DataRAM_6_we0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_we0),
+    .DataRAM_6_d0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_d0),
+    .DataRAM_6_address1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_address1),
+    .DataRAM_6_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_ce1),
     .DataRAM_6_q1(DataRAM_6_q1),
-    .DataRAM_3_address0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_address0),
-    .DataRAM_3_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_ce0),
-    .DataRAM_3_we0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_we0),
-    .DataRAM_3_d0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_d0),
-    .DataRAM_3_address1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_address1),
-    .DataRAM_3_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_ce1),
+    .DataRAM_3_address0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_address0),
+    .DataRAM_3_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_ce0),
+    .DataRAM_3_we0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_we0),
+    .DataRAM_3_d0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_d0),
+    .DataRAM_3_address1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_address1),
+    .DataRAM_3_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_ce1),
     .DataRAM_3_q1(DataRAM_3_q1),
-    .DataRAM_address0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_address0),
-    .DataRAM_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_ce0),
-    .DataRAM_we0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_we0),
-    .DataRAM_d0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_d0),
-    .DataRAM_address1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_address1),
-    .DataRAM_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_ce1),
+    .DataRAM_address0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_address0),
+    .DataRAM_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_ce0),
+    .DataRAM_we0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_we0),
+    .DataRAM_d0(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_d0),
+    .DataRAM_address1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_address1),
+    .DataRAM_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_ce1),
     .DataRAM_q1(DataRAM_q1),
-    .RAMSel_cast(empty_reg_1431)
+    .RAMSel_cast(empty_reg_1407)
 );
 
-Crypto_Crypto_Pipeline_MUL_INV_LOOP21 grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708(
+Crypto_Crypto_Pipeline_MUL_INV_LOOP21 grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_start),
-    .ap_done(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_ready),
-    .DataRAM_10_address0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_address0),
-    .DataRAM_10_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_ce0),
-    .DataRAM_10_we0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_we0),
-    .DataRAM_10_d0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_d0),
-    .DataRAM_10_address1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_address1),
-    .DataRAM_10_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_ce1),
+    .ap_start(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_start),
+    .ap_done(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_ready),
+    .DataRAM_10_address0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_address0),
+    .DataRAM_10_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_ce0),
+    .DataRAM_10_we0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_we0),
+    .DataRAM_10_d0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_d0),
+    .DataRAM_10_address1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_address1),
+    .DataRAM_10_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_ce1),
     .DataRAM_10_q1(DataRAM_10_q1),
-    .DataRAM_7_address0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_address0),
-    .DataRAM_7_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_ce0),
-    .DataRAM_7_we0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_we0),
-    .DataRAM_7_d0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_d0),
-    .DataRAM_7_address1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_address1),
-    .DataRAM_7_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_ce1),
+    .DataRAM_7_address0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_address0),
+    .DataRAM_7_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_ce0),
+    .DataRAM_7_we0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_we0),
+    .DataRAM_7_d0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_d0),
+    .DataRAM_7_address1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_address1),
+    .DataRAM_7_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_ce1),
     .DataRAM_7_q1(DataRAM_7_q1),
-    .DataRAM_4_address0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_address0),
-    .DataRAM_4_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_ce0),
-    .DataRAM_4_we0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_we0),
-    .DataRAM_4_d0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_d0),
-    .DataRAM_4_address1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_address1),
-    .DataRAM_4_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_ce1),
+    .DataRAM_4_address0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_address0),
+    .DataRAM_4_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_ce0),
+    .DataRAM_4_we0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_we0),
+    .DataRAM_4_d0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_d0),
+    .DataRAM_4_address1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_address1),
+    .DataRAM_4_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_ce1),
     .DataRAM_4_q1(DataRAM_4_q1),
-    .DataRAM_1_address0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_address0),
-    .DataRAM_1_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_ce0),
-    .DataRAM_1_we0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_we0),
-    .DataRAM_1_d0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_d0),
-    .DataRAM_1_address1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_address1),
-    .DataRAM_1_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_ce1),
+    .DataRAM_1_address0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_address0),
+    .DataRAM_1_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_ce0),
+    .DataRAM_1_we0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_we0),
+    .DataRAM_1_d0(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_d0),
+    .DataRAM_1_address1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_address1),
+    .DataRAM_1_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_ce1),
     .DataRAM_1_q1(DataRAM_1_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .grp_MUL_MOD_fu_1763_p_din1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_grp_MUL_MOD_fu_1763_p_din1),
-    .grp_MUL_MOD_fu_1763_p_din2(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_grp_MUL_MOD_fu_1763_p_din2),
-    .grp_MUL_MOD_fu_1763_p_din3(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_grp_MUL_MOD_fu_1763_p_din3),
-    .grp_MUL_MOD_fu_1763_p_dout0(grp_MUL_MOD_fu_1763_ap_return),
-    .grp_MUL_MOD_fu_1763_p_ce(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_grp_MUL_MOD_fu_1763_p_ce)
+    .RAMSel_cast(empty_reg_1407),
+    .grp_MUL_MOD_fu_1739_p_din1(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_grp_MUL_MOD_fu_1739_p_din1),
+    .grp_MUL_MOD_fu_1739_p_din2(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_grp_MUL_MOD_fu_1739_p_din2),
+    .grp_MUL_MOD_fu_1739_p_din3(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_grp_MUL_MOD_fu_1739_p_din3),
+    .grp_MUL_MOD_fu_1739_p_dout0(grp_MUL_MOD_fu_1739_ap_return),
+    .grp_MUL_MOD_fu_1739_p_ce(grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_grp_MUL_MOD_fu_1739_p_ce)
 );
 
-Crypto_Crypto_Pipeline_MUL_INV_LOOP22 grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717(
+Crypto_Crypto_Pipeline_MUL_INV_LOOP22 grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_start),
-    .ap_done(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_ready),
-    .DataRAM_11_address0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_address0),
-    .DataRAM_11_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_ce0),
-    .DataRAM_11_we0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_we0),
-    .DataRAM_11_d0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_d0),
-    .DataRAM_11_address1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_address1),
-    .DataRAM_11_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_ce1),
+    .ap_start(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_start),
+    .ap_done(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_ready),
+    .DataRAM_11_address0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_address0),
+    .DataRAM_11_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_ce0),
+    .DataRAM_11_we0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_we0),
+    .DataRAM_11_d0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_d0),
+    .DataRAM_11_address1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_address1),
+    .DataRAM_11_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_ce1),
     .DataRAM_11_q1(DataRAM_11_q1),
-    .DataRAM_8_address0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_address0),
-    .DataRAM_8_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_ce0),
-    .DataRAM_8_we0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_we0),
-    .DataRAM_8_d0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_d0),
-    .DataRAM_8_address1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_address1),
-    .DataRAM_8_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_ce1),
+    .DataRAM_8_address0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_address0),
+    .DataRAM_8_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_ce0),
+    .DataRAM_8_we0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_we0),
+    .DataRAM_8_d0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_d0),
+    .DataRAM_8_address1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_address1),
+    .DataRAM_8_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_ce1),
     .DataRAM_8_q1(DataRAM_8_q1),
-    .DataRAM_5_address0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_address0),
-    .DataRAM_5_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_ce0),
-    .DataRAM_5_we0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_we0),
-    .DataRAM_5_d0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_d0),
-    .DataRAM_5_address1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_address1),
-    .DataRAM_5_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_ce1),
+    .DataRAM_5_address0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_address0),
+    .DataRAM_5_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_ce0),
+    .DataRAM_5_we0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_we0),
+    .DataRAM_5_d0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_d0),
+    .DataRAM_5_address1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_address1),
+    .DataRAM_5_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_ce1),
     .DataRAM_5_q1(DataRAM_5_q1),
-    .DataRAM_2_address0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_address0),
-    .DataRAM_2_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_ce0),
-    .DataRAM_2_we0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_we0),
-    .DataRAM_2_d0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_d0),
-    .DataRAM_2_address1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_address1),
-    .DataRAM_2_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_ce1),
+    .DataRAM_2_address0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_address0),
+    .DataRAM_2_ce0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_ce0),
+    .DataRAM_2_we0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_we0),
+    .DataRAM_2_d0(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_d0),
+    .DataRAM_2_address1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_address1),
+    .DataRAM_2_ce1(grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_ce1),
     .DataRAM_2_q1(DataRAM_2_q1),
-    .RAMSel_cast(empty_reg_1431)
+    .RAMSel_cast(empty_reg_1407)
 );
 
-Crypto_Crypto_Pipeline_INTT_PE_LOOP6 grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726(
+Crypto_Crypto_Pipeline_INTT_PE_LOOP6 grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_start),
-    .ap_done(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_ready),
-    .hf_11(hf_5_reg_1586),
-    .trunc_ln228_s(trunc_ln228_6_reg_1609),
-    .DataRAM_2_address0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_address0),
-    .DataRAM_2_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_ce0),
-    .DataRAM_2_we0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_we0),
-    .DataRAM_2_d0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_d0),
+    .ap_start(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_start),
+    .ap_done(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_ready),
+    .hf_11(hf_5_reg_1562),
+    .trunc_ln233_s(trunc_ln233_6_reg_1585),
+    .DataRAM_2_address0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_address0),
+    .DataRAM_2_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_ce0),
+    .DataRAM_2_we0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_we0),
+    .DataRAM_2_d0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_d0),
     .DataRAM_2_q0(DataRAM_2_q0),
-    .DataRAM_2_address1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_address1),
-    .DataRAM_2_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_ce1),
-    .DataRAM_2_we1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_we1),
-    .DataRAM_2_d1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_d1),
+    .DataRAM_2_address1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_address1),
+    .DataRAM_2_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_ce1),
+    .DataRAM_2_we1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_we1),
+    .DataRAM_2_d1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_d1),
     .DataRAM_2_q1(DataRAM_2_q1),
-    .DataRAM_5_address0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_address0),
-    .DataRAM_5_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_ce0),
-    .DataRAM_5_we0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_we0),
-    .DataRAM_5_d0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_d0),
+    .DataRAM_5_address0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_address0),
+    .DataRAM_5_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_ce0),
+    .DataRAM_5_we0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_we0),
+    .DataRAM_5_d0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_d0),
     .DataRAM_5_q0(DataRAM_5_q0),
-    .DataRAM_5_address1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_address1),
-    .DataRAM_5_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_ce1),
-    .DataRAM_5_we1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_we1),
-    .DataRAM_5_d1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_d1),
+    .DataRAM_5_address1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_address1),
+    .DataRAM_5_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_ce1),
+    .DataRAM_5_we1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_we1),
+    .DataRAM_5_d1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_d1),
     .DataRAM_5_q1(DataRAM_5_q1),
-    .DataRAM_8_address0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_address0),
-    .DataRAM_8_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_ce0),
-    .DataRAM_8_we0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_we0),
-    .DataRAM_8_d0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_d0),
+    .DataRAM_8_address0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_address0),
+    .DataRAM_8_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_ce0),
+    .DataRAM_8_we0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_we0),
+    .DataRAM_8_d0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_d0),
     .DataRAM_8_q0(DataRAM_8_q0),
-    .DataRAM_8_address1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_address1),
-    .DataRAM_8_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_ce1),
-    .DataRAM_8_we1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_we1),
-    .DataRAM_8_d1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_d1),
+    .DataRAM_8_address1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_address1),
+    .DataRAM_8_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_ce1),
+    .DataRAM_8_we1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_we1),
+    .DataRAM_8_d1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_d1),
     .DataRAM_8_q1(DataRAM_8_q1),
-    .DataRAM_11_address0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_address0),
-    .DataRAM_11_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_ce0),
-    .DataRAM_11_we0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_we0),
-    .DataRAM_11_d0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_d0),
+    .DataRAM_11_address0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_address0),
+    .DataRAM_11_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_ce0),
+    .DataRAM_11_we0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_we0),
+    .DataRAM_11_d0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_d0),
     .DataRAM_11_q0(DataRAM_11_q0),
-    .DataRAM_11_address1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_address1),
-    .DataRAM_11_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_ce1),
-    .DataRAM_11_we1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_we1),
-    .DataRAM_11_d1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_d1),
+    .DataRAM_11_address1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_address1),
+    .DataRAM_11_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_ce1),
+    .DataRAM_11_we1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_we1),
+    .DataRAM_11_d1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_d1),
     .DataRAM_11_q1(DataRAM_11_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .trunc_ln228_8(trunc_ln228_8_reg_1591),
-    .trunc_ln228_9(trunc_ln228_5_reg_1596),
-    .INTTTWiddleRAM_2_address0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_INTTTWiddleRAM_2_address0),
-    .INTTTWiddleRAM_2_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_INTTTWiddleRAM_2_ce0),
+    .RAMSel_cast(empty_reg_1407),
+    .trunc_ln233_8(trunc_ln233_8_reg_1567),
+    .trunc_ln233_9(trunc_ln233_5_reg_1572),
+    .INTTTWiddleRAM_2_address0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_INTTTWiddleRAM_2_address0),
+    .INTTTWiddleRAM_2_ce0(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_INTTTWiddleRAM_2_ce0),
     .INTTTWiddleRAM_2_q0(INTTTWiddleRAM_2_q0),
-    .INTTTWiddleRAM_2_address1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_INTTTWiddleRAM_2_address1),
-    .INTTTWiddleRAM_2_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_INTTTWiddleRAM_2_ce1),
+    .INTTTWiddleRAM_2_address1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_INTTTWiddleRAM_2_address1),
+    .INTTTWiddleRAM_2_ce1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_INTTTWiddleRAM_2_ce1),
     .INTTTWiddleRAM_2_q1(INTTTWiddleRAM_2_q1),
-    .grp_ADD_MOD_fu_1757_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_ADD_MOD_fu_1757_p_din1),
-    .grp_ADD_MOD_fu_1757_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_ADD_MOD_fu_1757_p_din2),
-    .grp_ADD_MOD_fu_1757_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_ADD_MOD_fu_1757_p_din3),
-    .grp_ADD_MOD_fu_1757_p_dout0(grp_ADD_MOD_fu_1757_ap_return),
-    .grp_ADD_MOD_fu_1757_p_ready(grp_ADD_MOD_fu_1757_ap_ready),
-    .grp_MUL_MOD_fu_1763_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_MUL_MOD_fu_1763_p_din1),
-    .grp_MUL_MOD_fu_1763_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_MUL_MOD_fu_1763_p_din2),
-    .grp_MUL_MOD_fu_1763_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_MUL_MOD_fu_1763_p_din3),
-    .grp_MUL_MOD_fu_1763_p_dout0(grp_MUL_MOD_fu_1763_ap_return),
-    .grp_MUL_MOD_fu_1763_p_ce(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_MUL_MOD_fu_1763_p_ce),
-    .grp_SUB_MOD_fu_1769_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_SUB_MOD_fu_1769_p_din1),
-    .grp_SUB_MOD_fu_1769_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_SUB_MOD_fu_1769_p_din2),
-    .grp_SUB_MOD_fu_1769_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_SUB_MOD_fu_1769_p_din3),
-    .grp_SUB_MOD_fu_1769_p_dout0(grp_SUB_MOD_fu_1769_ap_return),
-    .grp_SUB_MOD_fu_1769_p_ready(grp_SUB_MOD_fu_1769_ap_ready)
+    .grp_ADD_MOD_fu_1733_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_ADD_MOD_fu_1733_p_din1),
+    .grp_ADD_MOD_fu_1733_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_ADD_MOD_fu_1733_p_din2),
+    .grp_ADD_MOD_fu_1733_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_ADD_MOD_fu_1733_p_din3),
+    .grp_ADD_MOD_fu_1733_p_dout0(grp_ADD_MOD_fu_1733_ap_return),
+    .grp_ADD_MOD_fu_1733_p_ready(grp_ADD_MOD_fu_1733_ap_ready),
+    .grp_MUL_MOD_fu_1739_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_MUL_MOD_fu_1739_p_din1),
+    .grp_MUL_MOD_fu_1739_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_MUL_MOD_fu_1739_p_din2),
+    .grp_MUL_MOD_fu_1739_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_MUL_MOD_fu_1739_p_din3),
+    .grp_MUL_MOD_fu_1739_p_dout0(grp_MUL_MOD_fu_1739_ap_return),
+    .grp_MUL_MOD_fu_1739_p_ce(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_MUL_MOD_fu_1739_p_ce),
+    .grp_SUB_MOD_fu_1745_p_din1(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_SUB_MOD_fu_1745_p_din1),
+    .grp_SUB_MOD_fu_1745_p_din2(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_SUB_MOD_fu_1745_p_din2),
+    .grp_SUB_MOD_fu_1745_p_din3(grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_SUB_MOD_fu_1745_p_din3),
+    .grp_SUB_MOD_fu_1745_p_dout0(grp_SUB_MOD_fu_1745_ap_return),
+    .grp_SUB_MOD_fu_1745_p_ready(grp_SUB_MOD_fu_1745_ap_ready)
 );
 
-Crypto_Crypto_Pipeline_VITIS_LOOP_170_7 grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740(
+Crypto_Crypto_Pipeline_VITIS_LOOP_175_5 grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_ready),
-    .DataRAM_9_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_9_address0),
-    .DataRAM_9_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_9_ce0),
-    .DataRAM_9_we0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_9_we0),
-    .DataRAM_9_d0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_9_d0),
-    .DataRAM_6_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_6_address0),
-    .DataRAM_6_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_6_ce0),
-    .DataRAM_6_we0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_6_we0),
-    .DataRAM_6_d0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_6_d0),
-    .DataRAM_3_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_3_address0),
-    .DataRAM_3_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_3_ce0),
-    .DataRAM_3_we0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_3_we0),
-    .DataRAM_3_d0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_3_d0),
-    .DataRAM_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_address0),
-    .DataRAM_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_ce0),
-    .DataRAM_we0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_we0),
-    .DataRAM_d0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_d0),
-    .BitReverseData_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_BitReverseData_address0),
-    .BitReverseData_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_BitReverseData_ce0),
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_ready),
+    .DataRAM_9_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_9_address0),
+    .DataRAM_9_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_9_ce0),
+    .DataRAM_9_we0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_9_we0),
+    .DataRAM_9_d0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_9_d0),
+    .DataRAM_6_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_6_address0),
+    .DataRAM_6_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_6_ce0),
+    .DataRAM_6_we0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_6_we0),
+    .DataRAM_6_d0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_6_d0),
+    .DataRAM_3_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_3_address0),
+    .DataRAM_3_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_3_ce0),
+    .DataRAM_3_we0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_3_we0),
+    .DataRAM_3_d0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_3_d0),
+    .DataRAM_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_address0),
+    .DataRAM_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_ce0),
+    .DataRAM_we0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_we0),
+    .DataRAM_d0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_d0),
+    .BitReverseData_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_BitReverseData_address0),
+    .BitReverseData_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_BitReverseData_ce0),
     .BitReverseData_q0(BitReverseData_q0),
-    .RAMSel_cast(empty_reg_1431)
+    .RAMSel_cast(empty_reg_1407)
 );
 
-Crypto_Crypto_Pipeline_VITIS_LOOP_170_71 grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750(
+Crypto_Crypto_Pipeline_VITIS_LOOP_175_51 grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_ready),
-    .DataRAM_10_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_10_address0),
-    .DataRAM_10_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_10_ce0),
-    .DataRAM_10_we0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_10_we0),
-    .DataRAM_10_d0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_10_d0),
-    .DataRAM_7_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_7_address0),
-    .DataRAM_7_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_7_ce0),
-    .DataRAM_7_we0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_7_we0),
-    .DataRAM_7_d0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_7_d0),
-    .DataRAM_4_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_4_address0),
-    .DataRAM_4_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_4_ce0),
-    .DataRAM_4_we0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_4_we0),
-    .DataRAM_4_d0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_4_d0),
-    .DataRAM_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_1_address0),
-    .DataRAM_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_1_ce0),
-    .DataRAM_1_we0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_1_we0),
-    .DataRAM_1_d0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_1_d0),
-    .BitReverseData_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_BitReverseData_1_address0),
-    .BitReverseData_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_BitReverseData_1_ce0),
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_ready),
+    .DataRAM_10_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_10_address0),
+    .DataRAM_10_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_10_ce0),
+    .DataRAM_10_we0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_10_we0),
+    .DataRAM_10_d0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_10_d0),
+    .DataRAM_7_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_7_address0),
+    .DataRAM_7_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_7_ce0),
+    .DataRAM_7_we0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_7_we0),
+    .DataRAM_7_d0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_7_d0),
+    .DataRAM_4_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_4_address0),
+    .DataRAM_4_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_4_ce0),
+    .DataRAM_4_we0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_4_we0),
+    .DataRAM_4_d0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_4_d0),
+    .DataRAM_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_1_address0),
+    .DataRAM_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_1_ce0),
+    .DataRAM_1_we0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_1_we0),
+    .DataRAM_1_d0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_1_d0),
+    .BitReverseData_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_BitReverseData_1_address0),
+    .BitReverseData_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_BitReverseData_1_ce0),
     .BitReverseData_1_q0(BitReverseData_1_q0),
-    .RAMSel_cast(empty_reg_1431)
+    .RAMSel_cast(empty_reg_1407)
 );
 
-Crypto_Crypto_Pipeline_VITIS_LOOP_170_72 grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760(
+Crypto_Crypto_Pipeline_VITIS_LOOP_175_52 grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_ready),
-    .DataRAM_11_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_11_address0),
-    .DataRAM_11_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_11_ce0),
-    .DataRAM_11_we0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_11_we0),
-    .DataRAM_11_d0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_11_d0),
-    .DataRAM_8_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_8_address0),
-    .DataRAM_8_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_8_ce0),
-    .DataRAM_8_we0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_8_we0),
-    .DataRAM_8_d0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_8_d0),
-    .DataRAM_5_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_5_address0),
-    .DataRAM_5_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_5_ce0),
-    .DataRAM_5_we0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_5_we0),
-    .DataRAM_5_d0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_5_d0),
-    .DataRAM_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_2_address0),
-    .DataRAM_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_2_ce0),
-    .DataRAM_2_we0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_2_we0),
-    .DataRAM_2_d0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_2_d0),
-    .BitReverseData_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_BitReverseData_2_address0),
-    .BitReverseData_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_BitReverseData_2_ce0),
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_ready),
+    .DataRAM_11_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_11_address0),
+    .DataRAM_11_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_11_ce0),
+    .DataRAM_11_we0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_11_we0),
+    .DataRAM_11_d0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_11_d0),
+    .DataRAM_8_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_8_address0),
+    .DataRAM_8_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_8_ce0),
+    .DataRAM_8_we0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_8_we0),
+    .DataRAM_8_d0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_8_d0),
+    .DataRAM_5_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_5_address0),
+    .DataRAM_5_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_5_ce0),
+    .DataRAM_5_we0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_5_we0),
+    .DataRAM_5_d0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_5_d0),
+    .DataRAM_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_2_address0),
+    .DataRAM_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_2_ce0),
+    .DataRAM_2_we0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_2_we0),
+    .DataRAM_2_d0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_2_d0),
+    .BitReverseData_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_BitReverseData_2_address0),
+    .BitReverseData_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_BitReverseData_2_ce0),
     .BitReverseData_2_q0(BitReverseData_2_q0),
-    .RAMSel_cast(empty_reg_1431)
+    .RAMSel_cast(empty_reg_1407)
 );
 
-Crypto_Crypto_Pipeline_NTT_PE_LOOP grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770(
+Crypto_Crypto_Pipeline_NTT_PE_LOOP grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_start),
-    .ap_done(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_ready),
-    .hf_6(hf_reg_1639),
-    .trunc_ln183_3(trunc_ln183_1_reg_1662),
-    .DataRAM_address0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_address0),
-    .DataRAM_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_ce0),
-    .DataRAM_we0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_we0),
-    .DataRAM_d0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_d0),
+    .ap_start(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_start),
+    .ap_done(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_ready),
+    .hf_6(hf_reg_1615),
+    .trunc_ln188_3(trunc_ln188_1_reg_1638),
+    .DataRAM_address0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_address0),
+    .DataRAM_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_ce0),
+    .DataRAM_we0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_we0),
+    .DataRAM_d0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_d0),
     .DataRAM_q0(DataRAM_q0),
-    .DataRAM_address1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_address1),
-    .DataRAM_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_ce1),
-    .DataRAM_we1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_we1),
-    .DataRAM_d1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_d1),
+    .DataRAM_address1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_address1),
+    .DataRAM_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_ce1),
+    .DataRAM_we1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_we1),
+    .DataRAM_d1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_d1),
     .DataRAM_q1(DataRAM_q1),
-    .DataRAM_3_address0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_address0),
-    .DataRAM_3_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_ce0),
-    .DataRAM_3_we0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_we0),
-    .DataRAM_3_d0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_d0),
+    .DataRAM_3_address0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_address0),
+    .DataRAM_3_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_ce0),
+    .DataRAM_3_we0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_we0),
+    .DataRAM_3_d0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_d0),
     .DataRAM_3_q0(DataRAM_3_q0),
-    .DataRAM_3_address1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_address1),
-    .DataRAM_3_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_ce1),
-    .DataRAM_3_we1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_we1),
-    .DataRAM_3_d1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_d1),
+    .DataRAM_3_address1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_address1),
+    .DataRAM_3_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_ce1),
+    .DataRAM_3_we1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_we1),
+    .DataRAM_3_d1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_d1),
     .DataRAM_3_q1(DataRAM_3_q1),
-    .DataRAM_6_address0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_address0),
-    .DataRAM_6_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_ce0),
-    .DataRAM_6_we0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_we0),
-    .DataRAM_6_d0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_d0),
+    .DataRAM_6_address0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_address0),
+    .DataRAM_6_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_ce0),
+    .DataRAM_6_we0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_we0),
+    .DataRAM_6_d0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_d0),
     .DataRAM_6_q0(DataRAM_6_q0),
-    .DataRAM_6_address1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_address1),
-    .DataRAM_6_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_ce1),
-    .DataRAM_6_we1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_we1),
-    .DataRAM_6_d1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_d1),
+    .DataRAM_6_address1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_address1),
+    .DataRAM_6_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_ce1),
+    .DataRAM_6_we1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_we1),
+    .DataRAM_6_d1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_d1),
     .DataRAM_6_q1(DataRAM_6_q1),
-    .DataRAM_9_address0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_address0),
-    .DataRAM_9_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_ce0),
-    .DataRAM_9_we0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_we0),
-    .DataRAM_9_d0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_d0),
+    .DataRAM_9_address0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_address0),
+    .DataRAM_9_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_ce0),
+    .DataRAM_9_we0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_we0),
+    .DataRAM_9_d0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_d0),
     .DataRAM_9_q0(DataRAM_9_q0),
-    .DataRAM_9_address1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_address1),
-    .DataRAM_9_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_ce1),
-    .DataRAM_9_we1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_we1),
-    .DataRAM_9_d1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_d1),
+    .DataRAM_9_address1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_address1),
+    .DataRAM_9_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_ce1),
+    .DataRAM_9_we1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_we1),
+    .DataRAM_9_d1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_d1),
     .DataRAM_9_q1(DataRAM_9_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .trunc_ln10(trunc_ln_reg_1644),
-    .trunc_ln183_1(trunc_ln183_reg_1649),
-    .NTTTWiddleRAM_address0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_NTTTWiddleRAM_address0),
-    .NTTTWiddleRAM_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_NTTTWiddleRAM_ce0),
+    .RAMSel_cast(empty_reg_1407),
+    .trunc_ln12(trunc_ln_reg_1620),
+    .trunc_ln188_1(trunc_ln188_reg_1625),
+    .NTTTWiddleRAM_address0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_NTTTWiddleRAM_address0),
+    .NTTTWiddleRAM_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_NTTTWiddleRAM_ce0),
     .NTTTWiddleRAM_q0(NTTTWiddleRAM_q0),
-    .NTTTWiddleRAM_address1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_NTTTWiddleRAM_address1),
-    .NTTTWiddleRAM_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_NTTTWiddleRAM_ce1),
+    .NTTTWiddleRAM_address1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_NTTTWiddleRAM_address1),
+    .NTTTWiddleRAM_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_NTTTWiddleRAM_ce1),
     .NTTTWiddleRAM_q1(NTTTWiddleRAM_q1),
-    .grp_ADD_MOD_fu_1757_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_ADD_MOD_fu_1757_p_din1),
-    .grp_ADD_MOD_fu_1757_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_ADD_MOD_fu_1757_p_din2),
-    .grp_ADD_MOD_fu_1757_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_ADD_MOD_fu_1757_p_din3),
-    .grp_ADD_MOD_fu_1757_p_dout0(grp_ADD_MOD_fu_1757_ap_return),
-    .grp_ADD_MOD_fu_1757_p_ready(grp_ADD_MOD_fu_1757_ap_ready),
-    .grp_MUL_MOD_fu_1763_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_MUL_MOD_fu_1763_p_din1),
-    .grp_MUL_MOD_fu_1763_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_MUL_MOD_fu_1763_p_din2),
-    .grp_MUL_MOD_fu_1763_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_MUL_MOD_fu_1763_p_din3),
-    .grp_MUL_MOD_fu_1763_p_dout0(grp_MUL_MOD_fu_1763_ap_return),
-    .grp_MUL_MOD_fu_1763_p_ce(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_MUL_MOD_fu_1763_p_ce),
-    .grp_SUB_MOD_fu_1769_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_SUB_MOD_fu_1769_p_din1),
-    .grp_SUB_MOD_fu_1769_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_SUB_MOD_fu_1769_p_din2),
-    .grp_SUB_MOD_fu_1769_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_SUB_MOD_fu_1769_p_din3),
-    .grp_SUB_MOD_fu_1769_p_dout0(grp_SUB_MOD_fu_1769_ap_return),
-    .grp_SUB_MOD_fu_1769_p_ready(grp_SUB_MOD_fu_1769_ap_ready)
+    .grp_ADD_MOD_fu_1733_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_ADD_MOD_fu_1733_p_din1),
+    .grp_ADD_MOD_fu_1733_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_ADD_MOD_fu_1733_p_din2),
+    .grp_ADD_MOD_fu_1733_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_ADD_MOD_fu_1733_p_din3),
+    .grp_ADD_MOD_fu_1733_p_dout0(grp_ADD_MOD_fu_1733_ap_return),
+    .grp_ADD_MOD_fu_1733_p_ready(grp_ADD_MOD_fu_1733_ap_ready),
+    .grp_MUL_MOD_fu_1739_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_MUL_MOD_fu_1739_p_din1),
+    .grp_MUL_MOD_fu_1739_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_MUL_MOD_fu_1739_p_din2),
+    .grp_MUL_MOD_fu_1739_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_MUL_MOD_fu_1739_p_din3),
+    .grp_MUL_MOD_fu_1739_p_dout0(grp_MUL_MOD_fu_1739_ap_return),
+    .grp_MUL_MOD_fu_1739_p_ce(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_MUL_MOD_fu_1739_p_ce),
+    .grp_SUB_MOD_fu_1745_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_SUB_MOD_fu_1745_p_din1),
+    .grp_SUB_MOD_fu_1745_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_SUB_MOD_fu_1745_p_din2),
+    .grp_SUB_MOD_fu_1745_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_SUB_MOD_fu_1745_p_din3),
+    .grp_SUB_MOD_fu_1745_p_dout0(grp_SUB_MOD_fu_1745_ap_return),
+    .grp_SUB_MOD_fu_1745_p_ready(grp_SUB_MOD_fu_1745_ap_ready)
 );
 
-Crypto_Crypto_Pipeline_NTT_PE_LOOP19 grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784(
+Crypto_Crypto_Pipeline_NTT_PE_LOOP19 grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_start),
-    .ap_done(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_ready),
-    .hf_8(hf_2_reg_1685),
-    .trunc_ln183_7(trunc_ln183_3_reg_1708),
-    .DataRAM_1_address0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_address0),
-    .DataRAM_1_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_ce0),
-    .DataRAM_1_we0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_we0),
-    .DataRAM_1_d0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_d0),
+    .ap_start(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_start),
+    .ap_done(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_ready),
+    .hf_8(hf_2_reg_1661),
+    .trunc_ln188_7(trunc_ln188_3_reg_1684),
+    .DataRAM_1_address0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_address0),
+    .DataRAM_1_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_ce0),
+    .DataRAM_1_we0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_we0),
+    .DataRAM_1_d0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_d0),
     .DataRAM_1_q0(DataRAM_1_q0),
-    .DataRAM_1_address1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_address1),
-    .DataRAM_1_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_ce1),
-    .DataRAM_1_we1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_we1),
-    .DataRAM_1_d1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_d1),
+    .DataRAM_1_address1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_address1),
+    .DataRAM_1_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_ce1),
+    .DataRAM_1_we1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_we1),
+    .DataRAM_1_d1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_d1),
     .DataRAM_1_q1(DataRAM_1_q1),
-    .DataRAM_4_address0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_address0),
-    .DataRAM_4_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_ce0),
-    .DataRAM_4_we0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_we0),
-    .DataRAM_4_d0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_d0),
+    .DataRAM_4_address0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_address0),
+    .DataRAM_4_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_ce0),
+    .DataRAM_4_we0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_we0),
+    .DataRAM_4_d0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_d0),
     .DataRAM_4_q0(DataRAM_4_q0),
-    .DataRAM_4_address1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_address1),
-    .DataRAM_4_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_ce1),
-    .DataRAM_4_we1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_we1),
-    .DataRAM_4_d1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_d1),
+    .DataRAM_4_address1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_address1),
+    .DataRAM_4_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_ce1),
+    .DataRAM_4_we1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_we1),
+    .DataRAM_4_d1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_d1),
     .DataRAM_4_q1(DataRAM_4_q1),
-    .DataRAM_7_address0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_address0),
-    .DataRAM_7_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_ce0),
-    .DataRAM_7_we0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_we0),
-    .DataRAM_7_d0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_d0),
+    .DataRAM_7_address0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_address0),
+    .DataRAM_7_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_ce0),
+    .DataRAM_7_we0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_we0),
+    .DataRAM_7_d0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_d0),
     .DataRAM_7_q0(DataRAM_7_q0),
-    .DataRAM_7_address1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_address1),
-    .DataRAM_7_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_ce1),
-    .DataRAM_7_we1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_we1),
-    .DataRAM_7_d1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_d1),
+    .DataRAM_7_address1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_address1),
+    .DataRAM_7_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_ce1),
+    .DataRAM_7_we1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_we1),
+    .DataRAM_7_d1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_d1),
     .DataRAM_7_q1(DataRAM_7_q1),
-    .DataRAM_10_address0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_address0),
-    .DataRAM_10_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_ce0),
-    .DataRAM_10_we0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_we0),
-    .DataRAM_10_d0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_d0),
+    .DataRAM_10_address0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_address0),
+    .DataRAM_10_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_ce0),
+    .DataRAM_10_we0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_we0),
+    .DataRAM_10_d0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_d0),
     .DataRAM_10_q0(DataRAM_10_q0),
-    .DataRAM_10_address1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_address1),
-    .DataRAM_10_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_ce1),
-    .DataRAM_10_we1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_we1),
-    .DataRAM_10_d1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_d1),
+    .DataRAM_10_address1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_address1),
+    .DataRAM_10_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_ce1),
+    .DataRAM_10_we1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_we1),
+    .DataRAM_10_d1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_d1),
     .DataRAM_10_q1(DataRAM_10_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .trunc_ln183_4(trunc_ln183_4_reg_1690),
-    .trunc_ln183_5(trunc_ln183_2_reg_1695),
-    .NTTTWiddleRAM_1_address0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_NTTTWiddleRAM_1_address0),
-    .NTTTWiddleRAM_1_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_NTTTWiddleRAM_1_ce0),
+    .RAMSel_cast(empty_reg_1407),
+    .trunc_ln188_4(trunc_ln188_4_reg_1666),
+    .trunc_ln188_5(trunc_ln188_2_reg_1671),
+    .NTTTWiddleRAM_1_address0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_NTTTWiddleRAM_1_address0),
+    .NTTTWiddleRAM_1_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_NTTTWiddleRAM_1_ce0),
     .NTTTWiddleRAM_1_q0(NTTTWiddleRAM_1_q0),
-    .NTTTWiddleRAM_1_address1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_NTTTWiddleRAM_1_address1),
-    .NTTTWiddleRAM_1_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_NTTTWiddleRAM_1_ce1),
+    .NTTTWiddleRAM_1_address1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_NTTTWiddleRAM_1_address1),
+    .NTTTWiddleRAM_1_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_NTTTWiddleRAM_1_ce1),
     .NTTTWiddleRAM_1_q1(NTTTWiddleRAM_1_q1),
-    .grp_ADD_MOD_fu_1757_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_ADD_MOD_fu_1757_p_din1),
-    .grp_ADD_MOD_fu_1757_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_ADD_MOD_fu_1757_p_din2),
-    .grp_ADD_MOD_fu_1757_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_ADD_MOD_fu_1757_p_din3),
-    .grp_ADD_MOD_fu_1757_p_dout0(grp_ADD_MOD_fu_1757_ap_return),
-    .grp_ADD_MOD_fu_1757_p_ready(grp_ADD_MOD_fu_1757_ap_ready),
-    .grp_MUL_MOD_fu_1763_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_MUL_MOD_fu_1763_p_din1),
-    .grp_MUL_MOD_fu_1763_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_MUL_MOD_fu_1763_p_din2),
-    .grp_MUL_MOD_fu_1763_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_MUL_MOD_fu_1763_p_din3),
-    .grp_MUL_MOD_fu_1763_p_dout0(grp_MUL_MOD_fu_1763_ap_return),
-    .grp_MUL_MOD_fu_1763_p_ce(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_MUL_MOD_fu_1763_p_ce),
-    .grp_SUB_MOD_fu_1769_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_SUB_MOD_fu_1769_p_din1),
-    .grp_SUB_MOD_fu_1769_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_SUB_MOD_fu_1769_p_din2),
-    .grp_SUB_MOD_fu_1769_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_SUB_MOD_fu_1769_p_din3),
-    .grp_SUB_MOD_fu_1769_p_dout0(grp_SUB_MOD_fu_1769_ap_return),
-    .grp_SUB_MOD_fu_1769_p_ready(grp_SUB_MOD_fu_1769_ap_ready)
+    .grp_ADD_MOD_fu_1733_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_ADD_MOD_fu_1733_p_din1),
+    .grp_ADD_MOD_fu_1733_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_ADD_MOD_fu_1733_p_din2),
+    .grp_ADD_MOD_fu_1733_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_ADD_MOD_fu_1733_p_din3),
+    .grp_ADD_MOD_fu_1733_p_dout0(grp_ADD_MOD_fu_1733_ap_return),
+    .grp_ADD_MOD_fu_1733_p_ready(grp_ADD_MOD_fu_1733_ap_ready),
+    .grp_MUL_MOD_fu_1739_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_MUL_MOD_fu_1739_p_din1),
+    .grp_MUL_MOD_fu_1739_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_MUL_MOD_fu_1739_p_din2),
+    .grp_MUL_MOD_fu_1739_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_MUL_MOD_fu_1739_p_din3),
+    .grp_MUL_MOD_fu_1739_p_dout0(grp_MUL_MOD_fu_1739_ap_return),
+    .grp_MUL_MOD_fu_1739_p_ce(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_MUL_MOD_fu_1739_p_ce),
+    .grp_SUB_MOD_fu_1745_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_SUB_MOD_fu_1745_p_din1),
+    .grp_SUB_MOD_fu_1745_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_SUB_MOD_fu_1745_p_din2),
+    .grp_SUB_MOD_fu_1745_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_SUB_MOD_fu_1745_p_din3),
+    .grp_SUB_MOD_fu_1745_p_dout0(grp_SUB_MOD_fu_1745_ap_return),
+    .grp_SUB_MOD_fu_1745_p_ready(grp_SUB_MOD_fu_1745_ap_ready)
 );
 
-Crypto_Crypto_Pipeline_NTT_PE_LOOP20 grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798(
+Crypto_Crypto_Pipeline_NTT_PE_LOOP20 grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_start),
-    .ap_done(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_ready),
-    .hf_10(hf_4_reg_1724),
-    .trunc_ln183_s(trunc_ln183_6_reg_1747),
-    .DataRAM_2_address0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_address0),
-    .DataRAM_2_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_ce0),
-    .DataRAM_2_we0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_we0),
-    .DataRAM_2_d0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_d0),
+    .ap_start(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_start),
+    .ap_done(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_ready),
+    .hf_10(hf_4_reg_1700),
+    .trunc_ln188_s(trunc_ln188_6_reg_1723),
+    .DataRAM_2_address0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_address0),
+    .DataRAM_2_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_ce0),
+    .DataRAM_2_we0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_we0),
+    .DataRAM_2_d0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_d0),
     .DataRAM_2_q0(DataRAM_2_q0),
-    .DataRAM_2_address1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_address1),
-    .DataRAM_2_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_ce1),
-    .DataRAM_2_we1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_we1),
-    .DataRAM_2_d1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_d1),
+    .DataRAM_2_address1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_address1),
+    .DataRAM_2_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_ce1),
+    .DataRAM_2_we1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_we1),
+    .DataRAM_2_d1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_d1),
     .DataRAM_2_q1(DataRAM_2_q1),
-    .DataRAM_5_address0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_address0),
-    .DataRAM_5_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_ce0),
-    .DataRAM_5_we0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_we0),
-    .DataRAM_5_d0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_d0),
+    .DataRAM_5_address0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_address0),
+    .DataRAM_5_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_ce0),
+    .DataRAM_5_we0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_we0),
+    .DataRAM_5_d0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_d0),
     .DataRAM_5_q0(DataRAM_5_q0),
-    .DataRAM_5_address1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_address1),
-    .DataRAM_5_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_ce1),
-    .DataRAM_5_we1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_we1),
-    .DataRAM_5_d1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_d1),
+    .DataRAM_5_address1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_address1),
+    .DataRAM_5_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_ce1),
+    .DataRAM_5_we1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_we1),
+    .DataRAM_5_d1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_d1),
     .DataRAM_5_q1(DataRAM_5_q1),
-    .DataRAM_8_address0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_address0),
-    .DataRAM_8_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_ce0),
-    .DataRAM_8_we0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_we0),
-    .DataRAM_8_d0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_d0),
+    .DataRAM_8_address0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_address0),
+    .DataRAM_8_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_ce0),
+    .DataRAM_8_we0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_we0),
+    .DataRAM_8_d0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_d0),
     .DataRAM_8_q0(DataRAM_8_q0),
-    .DataRAM_8_address1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_address1),
-    .DataRAM_8_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_ce1),
-    .DataRAM_8_we1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_we1),
-    .DataRAM_8_d1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_d1),
+    .DataRAM_8_address1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_address1),
+    .DataRAM_8_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_ce1),
+    .DataRAM_8_we1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_we1),
+    .DataRAM_8_d1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_d1),
     .DataRAM_8_q1(DataRAM_8_q1),
-    .DataRAM_11_address0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_address0),
-    .DataRAM_11_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_ce0),
-    .DataRAM_11_we0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_we0),
-    .DataRAM_11_d0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_d0),
+    .DataRAM_11_address0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_address0),
+    .DataRAM_11_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_ce0),
+    .DataRAM_11_we0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_we0),
+    .DataRAM_11_d0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_d0),
     .DataRAM_11_q0(DataRAM_11_q0),
-    .DataRAM_11_address1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_address1),
-    .DataRAM_11_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_ce1),
-    .DataRAM_11_we1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_we1),
-    .DataRAM_11_d1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_d1),
+    .DataRAM_11_address1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_address1),
+    .DataRAM_11_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_ce1),
+    .DataRAM_11_we1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_we1),
+    .DataRAM_11_d1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_d1),
     .DataRAM_11_q1(DataRAM_11_q1),
-    .RAMSel_cast(empty_reg_1431),
-    .trunc_ln183_8(trunc_ln183_8_reg_1729),
-    .trunc_ln183_9(trunc_ln183_5_reg_1734),
-    .NTTTWiddleRAM_2_address0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_NTTTWiddleRAM_2_address0),
-    .NTTTWiddleRAM_2_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_NTTTWiddleRAM_2_ce0),
+    .RAMSel_cast(empty_reg_1407),
+    .trunc_ln188_8(trunc_ln188_8_reg_1705),
+    .trunc_ln188_9(trunc_ln188_5_reg_1710),
+    .NTTTWiddleRAM_2_address0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_NTTTWiddleRAM_2_address0),
+    .NTTTWiddleRAM_2_ce0(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_NTTTWiddleRAM_2_ce0),
     .NTTTWiddleRAM_2_q0(NTTTWiddleRAM_2_q0),
-    .NTTTWiddleRAM_2_address1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_NTTTWiddleRAM_2_address1),
-    .NTTTWiddleRAM_2_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_NTTTWiddleRAM_2_ce1),
+    .NTTTWiddleRAM_2_address1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_NTTTWiddleRAM_2_address1),
+    .NTTTWiddleRAM_2_ce1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_NTTTWiddleRAM_2_ce1),
     .NTTTWiddleRAM_2_q1(NTTTWiddleRAM_2_q1),
-    .grp_ADD_MOD_fu_1757_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_ADD_MOD_fu_1757_p_din1),
-    .grp_ADD_MOD_fu_1757_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_ADD_MOD_fu_1757_p_din2),
-    .grp_ADD_MOD_fu_1757_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_ADD_MOD_fu_1757_p_din3),
-    .grp_ADD_MOD_fu_1757_p_dout0(grp_ADD_MOD_fu_1757_ap_return),
-    .grp_ADD_MOD_fu_1757_p_ready(grp_ADD_MOD_fu_1757_ap_ready),
-    .grp_MUL_MOD_fu_1763_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_MUL_MOD_fu_1763_p_din1),
-    .grp_MUL_MOD_fu_1763_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_MUL_MOD_fu_1763_p_din2),
-    .grp_MUL_MOD_fu_1763_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_MUL_MOD_fu_1763_p_din3),
-    .grp_MUL_MOD_fu_1763_p_dout0(grp_MUL_MOD_fu_1763_ap_return),
-    .grp_MUL_MOD_fu_1763_p_ce(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_MUL_MOD_fu_1763_p_ce),
-    .grp_SUB_MOD_fu_1769_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_SUB_MOD_fu_1769_p_din1),
-    .grp_SUB_MOD_fu_1769_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_SUB_MOD_fu_1769_p_din2),
-    .grp_SUB_MOD_fu_1769_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_SUB_MOD_fu_1769_p_din3),
-    .grp_SUB_MOD_fu_1769_p_dout0(grp_SUB_MOD_fu_1769_ap_return),
-    .grp_SUB_MOD_fu_1769_p_ready(grp_SUB_MOD_fu_1769_ap_ready)
+    .grp_ADD_MOD_fu_1733_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_ADD_MOD_fu_1733_p_din1),
+    .grp_ADD_MOD_fu_1733_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_ADD_MOD_fu_1733_p_din2),
+    .grp_ADD_MOD_fu_1733_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_ADD_MOD_fu_1733_p_din3),
+    .grp_ADD_MOD_fu_1733_p_dout0(grp_ADD_MOD_fu_1733_ap_return),
+    .grp_ADD_MOD_fu_1733_p_ready(grp_ADD_MOD_fu_1733_ap_ready),
+    .grp_MUL_MOD_fu_1739_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_MUL_MOD_fu_1739_p_din1),
+    .grp_MUL_MOD_fu_1739_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_MUL_MOD_fu_1739_p_din2),
+    .grp_MUL_MOD_fu_1739_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_MUL_MOD_fu_1739_p_din3),
+    .grp_MUL_MOD_fu_1739_p_dout0(grp_MUL_MOD_fu_1739_ap_return),
+    .grp_MUL_MOD_fu_1739_p_ce(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_MUL_MOD_fu_1739_p_ce),
+    .grp_SUB_MOD_fu_1745_p_din1(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_SUB_MOD_fu_1745_p_din1),
+    .grp_SUB_MOD_fu_1745_p_din2(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_SUB_MOD_fu_1745_p_din2),
+    .grp_SUB_MOD_fu_1745_p_din3(grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_SUB_MOD_fu_1745_p_din3),
+    .grp_SUB_MOD_fu_1745_p_dout0(grp_SUB_MOD_fu_1745_ap_return),
+    .grp_SUB_MOD_fu_1745_p_ready(grp_SUB_MOD_fu_1745_ap_ready)
 );
 
-Crypto_Crypto_Pipeline_VITIS_LOOP_88_511 grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812(
+Crypto_Crypto_Pipeline_VITIS_LOOP_93_311 grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_ready),
-    .INTTTWiddleRAM_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTWiddleRAM_1_address0),
-    .INTTTWiddleRAM_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTWiddleRAM_1_ce0),
-    .INTTTWiddleRAM_1_we0(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTWiddleRAM_1_we0),
-    .INTTTWiddleRAM_1_d0(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTWiddleRAM_1_d0),
-    .NTTTWiddleRAM_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTWiddleRAM_1_address0),
-    .NTTTWiddleRAM_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTWiddleRAM_1_ce0),
-    .NTTTWiddleRAM_1_we0(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTWiddleRAM_1_we0),
-    .NTTTWiddleRAM_1_d0(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTWiddleRAM_1_d0),
-    .NTTTwiddleIn_address0(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTwiddleIn_address0),
-    .NTTTwiddleIn_ce0(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTwiddleIn_ce0),
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_ready),
+    .INTTTWiddleRAM_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTWiddleRAM_1_address0),
+    .INTTTWiddleRAM_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTWiddleRAM_1_ce0),
+    .INTTTWiddleRAM_1_we0(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTWiddleRAM_1_we0),
+    .INTTTWiddleRAM_1_d0(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTWiddleRAM_1_d0),
+    .NTTTWiddleRAM_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTWiddleRAM_1_address0),
+    .NTTTWiddleRAM_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTWiddleRAM_1_ce0),
+    .NTTTWiddleRAM_1_we0(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTWiddleRAM_1_we0),
+    .NTTTWiddleRAM_1_d0(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTWiddleRAM_1_d0),
+    .NTTTwiddleIn_address0(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTwiddleIn_address0),
+    .NTTTwiddleIn_ce0(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTwiddleIn_ce0),
     .NTTTwiddleIn_q0(NTTTwiddleIn_q0),
-    .INTTTwiddleIn_address0(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTwiddleIn_address0),
-    .INTTTwiddleIn_ce0(grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTwiddleIn_ce0),
+    .INTTTwiddleIn_address0(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTwiddleIn_address0),
+    .INTTTwiddleIn_ce0(grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTwiddleIn_ce0),
     .INTTTwiddleIn_q0(INTTTwiddleIn_q0)
 );
 
-Crypto_Crypto_Pipeline_VITIS_LOOP_88_512 grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822(
+Crypto_Crypto_Pipeline_VITIS_LOOP_82_29 grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_ready),
-    .INTTTWiddleRAM_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTWiddleRAM_2_address0),
-    .INTTTWiddleRAM_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTWiddleRAM_2_ce0),
-    .INTTTWiddleRAM_2_we0(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTWiddleRAM_2_we0),
-    .INTTTWiddleRAM_2_d0(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTWiddleRAM_2_d0),
-    .NTTTWiddleRAM_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTWiddleRAM_2_address0),
-    .NTTTWiddleRAM_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTWiddleRAM_2_ce0),
-    .NTTTWiddleRAM_2_we0(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTWiddleRAM_2_we0),
-    .NTTTWiddleRAM_2_d0(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTWiddleRAM_2_d0),
-    .NTTTwiddleIn_address0(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTwiddleIn_address0),
-    .NTTTwiddleIn_ce0(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTwiddleIn_ce0),
-    .NTTTwiddleIn_q0(NTTTwiddleIn_q0),
-    .INTTTwiddleIn_address0(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTwiddleIn_address0),
-    .INTTTwiddleIn_ce0(grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTwiddleIn_ce0),
-    .INTTTwiddleIn_q0(INTTTwiddleIn_q0)
-);
-
-Crypto_Crypto_Pipeline_VITIS_LOOP_74_49 grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_ready),
-    .dataOutStream_TREADY(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TREADY),
-    .DataRAM_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_1_address0),
-    .DataRAM_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_1_ce0),
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_ready),
+    .DataRAM_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_1_address0),
+    .DataRAM_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_1_ce0),
     .DataRAM_1_q0(DataRAM_1_q0),
-    .DataRAM_4_address0(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_4_address0),
-    .DataRAM_4_ce0(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_4_ce0),
+    .DataRAM_4_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_4_address0),
+    .DataRAM_4_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_4_ce0),
     .DataRAM_4_q0(DataRAM_4_q0),
-    .DataRAM_7_address0(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_7_address0),
-    .DataRAM_7_ce0(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_7_ce0),
+    .DataRAM_7_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_7_address0),
+    .DataRAM_7_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_7_ce0),
     .DataRAM_7_q0(DataRAM_7_q0),
-    .DataRAM_10_address0(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_10_address0),
-    .DataRAM_10_ce0(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_10_ce0),
+    .DataRAM_10_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_10_address0),
+    .DataRAM_10_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_10_ce0),
     .DataRAM_10_q0(DataRAM_10_q0),
-    .RAMSel_cast(empty_reg_1431),
-    .dataOutStream_TDATA(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TDATA),
-    .dataOutStream_TVALID(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TVALID),
-    .dataOutStream_TKEEP(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TKEEP),
-    .dataOutStream_TSTRB(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TSTRB),
-    .dataOutStream_TLAST(grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TLAST)
+    .RAMSel_cast(empty_reg_1407),
+    .DataOutStream_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataOutStream_address0),
+    .DataOutStream_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataOutStream_ce0),
+    .DataOutStream_we0(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataOutStream_we0),
+    .DataOutStream_d0(grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataOutStream_d0)
 );
 
-Crypto_Crypto_Pipeline_VITIS_LOOP_74_410 grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849(
+Crypto_Crypto_Pipeline_VITIS_LOOP_93_312 grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_ready),
-    .dataOutStream_TREADY(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TREADY),
-    .DataRAM_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_2_address0),
-    .DataRAM_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_2_ce0),
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_ready),
+    .INTTTWiddleRAM_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTWiddleRAM_2_address0),
+    .INTTTWiddleRAM_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTWiddleRAM_2_ce0),
+    .INTTTWiddleRAM_2_we0(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTWiddleRAM_2_we0),
+    .INTTTWiddleRAM_2_d0(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTWiddleRAM_2_d0),
+    .NTTTWiddleRAM_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTWiddleRAM_2_address0),
+    .NTTTWiddleRAM_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTWiddleRAM_2_ce0),
+    .NTTTWiddleRAM_2_we0(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTWiddleRAM_2_we0),
+    .NTTTWiddleRAM_2_d0(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTWiddleRAM_2_d0),
+    .NTTTwiddleIn_address0(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTwiddleIn_address0),
+    .NTTTwiddleIn_ce0(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTwiddleIn_ce0),
+    .NTTTwiddleIn_q0(NTTTwiddleIn_q0),
+    .INTTTwiddleIn_address0(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTwiddleIn_address0),
+    .INTTTwiddleIn_ce0(grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTwiddleIn_ce0),
+    .INTTTwiddleIn_q0(INTTTwiddleIn_q0)
+);
+
+Crypto_Crypto_Pipeline_VITIS_LOOP_82_210 grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst_n_inv),
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_ready),
+    .DataRAM_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_2_address0),
+    .DataRAM_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_2_ce0),
     .DataRAM_2_q0(DataRAM_2_q0),
-    .DataRAM_5_address0(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_5_address0),
-    .DataRAM_5_ce0(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_5_ce0),
+    .DataRAM_5_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_5_address0),
+    .DataRAM_5_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_5_ce0),
     .DataRAM_5_q0(DataRAM_5_q0),
-    .DataRAM_8_address0(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_8_address0),
-    .DataRAM_8_ce0(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_8_ce0),
+    .DataRAM_8_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_8_address0),
+    .DataRAM_8_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_8_ce0),
     .DataRAM_8_q0(DataRAM_8_q0),
-    .DataRAM_11_address0(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_11_address0),
-    .DataRAM_11_ce0(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_11_ce0),
+    .DataRAM_11_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_11_address0),
+    .DataRAM_11_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_11_ce0),
     .DataRAM_11_q0(DataRAM_11_q0),
-    .RAMSel_cast(empty_reg_1431),
-    .dataOutStream_TDATA(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TDATA),
-    .dataOutStream_TVALID(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TVALID),
-    .dataOutStream_TKEEP(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TKEEP),
-    .dataOutStream_TSTRB(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TSTRB),
-    .dataOutStream_TLAST(grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TLAST)
+    .RAMSel_cast(empty_reg_1407),
+    .DataOutStream_address0(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataOutStream_address0),
+    .DataOutStream_ce0(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataOutStream_ce0),
+    .DataOutStream_we0(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataOutStream_we0),
+    .DataOutStream_d0(grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataOutStream_d0)
 );
 
-Crypto_Crypto_Pipeline_VITIS_LOOP_63_2 grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866(
+Crypto_Crypto_Pipeline_VITIS_LOOP_71_1 grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_ready),
-    .dataInStream_TVALID(dataInStream_TVALID_int_regslice),
-    .DataRAM_9_address0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_9_address0),
-    .DataRAM_9_ce0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_9_ce0),
-    .DataRAM_9_we0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_9_we0),
-    .DataRAM_9_d0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_9_d0),
-    .DataRAM_6_address0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_6_address0),
-    .DataRAM_6_ce0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_6_ce0),
-    .DataRAM_6_we0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_6_we0),
-    .DataRAM_6_d0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_6_d0),
-    .DataRAM_3_address0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_3_address0),
-    .DataRAM_3_ce0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_3_ce0),
-    .DataRAM_3_we0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_3_we0),
-    .DataRAM_3_d0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_3_d0),
-    .DataRAM_address0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_address0),
-    .DataRAM_ce0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_ce0),
-    .DataRAM_we0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_we0),
-    .DataRAM_d0(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_d0),
-    .dataInStream_TDATA(dataInStream_TDATA_int_regslice),
-    .dataInStream_TREADY(grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_dataInStream_TREADY),
-    .dataInStream_TKEEP(dataInStream_TKEEP_int_regslice),
-    .dataInStream_TSTRB(dataInStream_TSTRB_int_regslice),
-    .dataInStream_TLAST(dataInStream_TLAST_int_regslice),
-    .RAMSel_cast(empty_reg_1431)
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_ready),
+    .DataInStream_TVALID(DataInStream_TVALID_int_regslice),
+    .DataInStream_TDATA(DataInStream_TDATA_int_regslice),
+    .DataInStream_TREADY(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataInStream_TREADY),
+    .DataInStream_TKEEP(DataInStream_TKEEP_int_regslice),
+    .DataInStream_TSTRB(DataInStream_TSTRB_int_regslice),
+    .DataInStream_TLAST(DataInStream_TLAST_int_regslice),
+    .DataRAM_address0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_address0),
+    .DataRAM_ce0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_ce0),
+    .DataRAM_we0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_we0),
+    .DataRAM_d0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_d0),
+    .DataRAM_3_address0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_3_address0),
+    .DataRAM_3_ce0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_3_ce0),
+    .DataRAM_3_we0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_3_we0),
+    .DataRAM_3_d0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_3_d0),
+    .DataRAM_6_address0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_6_address0),
+    .DataRAM_6_ce0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_6_ce0),
+    .DataRAM_6_we0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_6_we0),
+    .DataRAM_6_d0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_6_d0),
+    .DataRAM_9_address0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_9_address0),
+    .DataRAM_9_ce0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_9_ce0),
+    .DataRAM_9_we0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_9_we0),
+    .DataRAM_9_d0(grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_9_d0),
+    .RAMSel_cast(empty_reg_1407)
 );
 
-Crypto_Crypto_Pipeline_VITIS_LOOP_63_27 grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883(
+Crypto_Crypto_Pipeline_VITIS_LOOP_71_17 grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_ready),
-    .dataInStream_TVALID(dataInStream_TVALID_int_regslice),
-    .DataRAM_10_address0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_10_address0),
-    .DataRAM_10_ce0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_10_ce0),
-    .DataRAM_10_we0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_10_we0),
-    .DataRAM_10_d0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_10_d0),
-    .DataRAM_7_address0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_7_address0),
-    .DataRAM_7_ce0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_7_ce0),
-    .DataRAM_7_we0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_7_we0),
-    .DataRAM_7_d0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_7_d0),
-    .DataRAM_4_address0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_4_address0),
-    .DataRAM_4_ce0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_4_ce0),
-    .DataRAM_4_we0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_4_we0),
-    .DataRAM_4_d0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_4_d0),
-    .DataRAM_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_1_address0),
-    .DataRAM_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_1_ce0),
-    .DataRAM_1_we0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_1_we0),
-    .DataRAM_1_d0(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_1_d0),
-    .dataInStream_TDATA(dataInStream_TDATA_int_regslice),
-    .dataInStream_TREADY(grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_dataInStream_TREADY),
-    .dataInStream_TKEEP(dataInStream_TKEEP_int_regslice),
-    .dataInStream_TSTRB(dataInStream_TSTRB_int_regslice),
-    .dataInStream_TLAST(dataInStream_TLAST_int_regslice),
-    .RAMSel_cast(empty_reg_1431)
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_ready),
+    .DataInStream_TVALID(DataInStream_TVALID_int_regslice),
+    .DataInStream_TDATA(DataInStream_TDATA_int_regslice),
+    .DataInStream_TREADY(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataInStream_TREADY),
+    .DataInStream_TKEEP(DataInStream_TKEEP_int_regslice),
+    .DataInStream_TSTRB(DataInStream_TSTRB_int_regslice),
+    .DataInStream_TLAST(DataInStream_TLAST_int_regslice),
+    .DataRAM_1_address0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_1_address0),
+    .DataRAM_1_ce0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_1_ce0),
+    .DataRAM_1_we0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_1_we0),
+    .DataRAM_1_d0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_1_d0),
+    .DataRAM_4_address0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_4_address0),
+    .DataRAM_4_ce0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_4_ce0),
+    .DataRAM_4_we0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_4_we0),
+    .DataRAM_4_d0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_4_d0),
+    .DataRAM_7_address0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_7_address0),
+    .DataRAM_7_ce0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_7_ce0),
+    .DataRAM_7_we0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_7_we0),
+    .DataRAM_7_d0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_7_d0),
+    .DataRAM_10_address0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_10_address0),
+    .DataRAM_10_ce0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_10_ce0),
+    .DataRAM_10_we0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_10_we0),
+    .DataRAM_10_d0(grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_10_d0),
+    .RAMSel_cast(empty_reg_1407)
 );
 
-Crypto_Crypto_Pipeline_VITIS_LOOP_63_28 grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900(
+Crypto_Crypto_Pipeline_VITIS_LOOP_71_18 grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_start),
-    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_done),
-    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_idle),
-    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_ready),
-    .dataInStream_TVALID(dataInStream_TVALID_int_regslice),
-    .DataRAM_11_address0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_11_address0),
-    .DataRAM_11_ce0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_11_ce0),
-    .DataRAM_11_we0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_11_we0),
-    .DataRAM_11_d0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_11_d0),
-    .DataRAM_8_address0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_8_address0),
-    .DataRAM_8_ce0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_8_ce0),
-    .DataRAM_8_we0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_8_we0),
-    .DataRAM_8_d0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_8_d0),
-    .DataRAM_5_address0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_5_address0),
-    .DataRAM_5_ce0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_5_ce0),
-    .DataRAM_5_we0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_5_we0),
-    .DataRAM_5_d0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_5_d0),
-    .DataRAM_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_2_address0),
-    .DataRAM_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_2_ce0),
-    .DataRAM_2_we0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_2_we0),
-    .DataRAM_2_d0(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_2_d0),
-    .dataInStream_TDATA(dataInStream_TDATA_int_regslice),
-    .dataInStream_TREADY(grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_dataInStream_TREADY),
-    .dataInStream_TKEEP(dataInStream_TKEEP_int_regslice),
-    .dataInStream_TSTRB(dataInStream_TSTRB_int_regslice),
-    .dataInStream_TLAST(dataInStream_TLAST_int_regslice),
-    .RAMSel_cast(empty_reg_1431)
+    .ap_start(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_start),
+    .ap_done(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_done),
+    .ap_idle(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_idle),
+    .ap_ready(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_ready),
+    .DataInStream_TVALID(DataInStream_TVALID_int_regslice),
+    .DataInStream_TDATA(DataInStream_TDATA_int_regslice),
+    .DataInStream_TREADY(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataInStream_TREADY),
+    .DataInStream_TKEEP(DataInStream_TKEEP_int_regslice),
+    .DataInStream_TSTRB(DataInStream_TSTRB_int_regslice),
+    .DataInStream_TLAST(DataInStream_TLAST_int_regslice),
+    .DataRAM_2_address0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_2_address0),
+    .DataRAM_2_ce0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_2_ce0),
+    .DataRAM_2_we0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_2_we0),
+    .DataRAM_2_d0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_2_d0),
+    .DataRAM_5_address0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_5_address0),
+    .DataRAM_5_ce0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_5_ce0),
+    .DataRAM_5_we0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_5_we0),
+    .DataRAM_5_d0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_5_d0),
+    .DataRAM_8_address0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_8_address0),
+    .DataRAM_8_ce0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_8_ce0),
+    .DataRAM_8_we0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_8_we0),
+    .DataRAM_8_d0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_8_d0),
+    .DataRAM_11_address0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_11_address0),
+    .DataRAM_11_ce0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_11_ce0),
+    .DataRAM_11_we0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_11_we0),
+    .DataRAM_11_d0(grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_11_d0),
+    .RAMSel_cast(empty_reg_1407)
 );
 
-Crypto_ADD_MOD grp_ADD_MOD_fu_1757(
-    .ap_ready(grp_ADD_MOD_fu_1757_ap_ready),
-    .input1_val(grp_ADD_MOD_fu_1757_input1_val),
-    .input2_val(grp_ADD_MOD_fu_1757_input2_val),
-    .MOD_INDEX(grp_ADD_MOD_fu_1757_MOD_INDEX),
-    .ap_return(grp_ADD_MOD_fu_1757_ap_return)
+Crypto_ADD_MOD grp_ADD_MOD_fu_1733(
+    .ap_ready(grp_ADD_MOD_fu_1733_ap_ready),
+    .input1_val(grp_ADD_MOD_fu_1733_input1_val),
+    .input2_val(grp_ADD_MOD_fu_1733_input2_val),
+    .MOD_INDEX(grp_ADD_MOD_fu_1733_MOD_INDEX),
+    .ap_return(grp_ADD_MOD_fu_1733_ap_return)
 );
 
-Crypto_MUL_MOD grp_MUL_MOD_fu_1763(
+Crypto_MUL_MOD grp_MUL_MOD_fu_1739(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .input1_val(grp_MUL_MOD_fu_1763_input1_val),
-    .input2_val(grp_MUL_MOD_fu_1763_input2_val),
-    .MOD_INDEX(grp_MUL_MOD_fu_1763_MOD_INDEX),
-    .ap_return(grp_MUL_MOD_fu_1763_ap_return),
-    .ap_ce(grp_MUL_MOD_fu_1763_ap_ce)
+    .input1_val(grp_MUL_MOD_fu_1739_input1_val),
+    .input2_val(grp_MUL_MOD_fu_1739_input2_val),
+    .MOD_INDEX(grp_MUL_MOD_fu_1739_MOD_INDEX),
+    .ap_return(grp_MUL_MOD_fu_1739_ap_return),
+    .ap_ce(grp_MUL_MOD_fu_1739_ap_ce)
 );
 
-Crypto_SUB_MOD grp_SUB_MOD_fu_1769(
-    .ap_ready(grp_SUB_MOD_fu_1769_ap_ready),
-    .input1_val(grp_SUB_MOD_fu_1769_input1_val),
-    .input2_val(grp_SUB_MOD_fu_1769_input2_val),
-    .MOD_INDEX(grp_SUB_MOD_fu_1769_MOD_INDEX),
-    .ap_return(grp_SUB_MOD_fu_1769_ap_return)
+Crypto_SUB_MOD grp_SUB_MOD_fu_1745(
+    .ap_ready(grp_SUB_MOD_fu_1745_ap_ready),
+    .input1_val(grp_SUB_MOD_fu_1745_input1_val),
+    .input2_val(grp_SUB_MOD_fu_1745_input2_val),
+    .MOD_INDEX(grp_SUB_MOD_fu_1745_MOD_INDEX),
+    .ap_return(grp_SUB_MOD_fu_1745_ap_return)
 );
 
 Crypto_control_s_axi #(
@@ -4170,6 +4117,10 @@ control_s_axi_U(
     .NTTTwiddleIn_address0(NTTTwiddleIn_address0),
     .NTTTwiddleIn_ce0(NTTTwiddleIn_ce0),
     .NTTTwiddleIn_q0(NTTTwiddleIn_q0),
+    .DataOutStream_address0(DataOutStream_address0),
+    .DataOutStream_ce0(DataOutStream_ce0),
+    .DataOutStream_we0(DataOutStream_we0),
+    .DataOutStream_d0(DataOutStream_d0),
     .INTTTwiddleIn_address0(INTTTwiddleIn_address0),
     .INTTTwiddleIn_ce0(INTTTwiddleIn_ce0),
     .INTTTwiddleIn_q0(INTTTwiddleIn_q0),
@@ -4186,15 +4137,15 @@ Crypto_sdiv_15ns_32s_11_19_seq_1 #(
     .din0_WIDTH( 15 ),
     .din1_WIDTH( 32 ),
     .dout_WIDTH( 11 ))
-sdiv_15ns_32s_11_19_seq_1_U366(
+sdiv_15ns_32s_11_19_seq_1_U357(
     .clk(ap_clk),
     .reset(ap_rst_n_inv),
-    .start(grp_fu_961_ap_start),
-    .done(grp_fu_961_ap_done),
-    .din0(grp_fu_961_p0),
-    .din1(h_1_fu_302),
+    .start(grp_fu_937_ap_start),
+    .done(grp_fu_937_ap_done),
+    .din0(grp_fu_937_p0),
+    .din1(h_1_fu_296),
     .ce(1'b1),
-    .dout(grp_fu_961_p2)
+    .dout(grp_fu_937_p2)
 );
 
 Crypto_sdiv_15ns_32s_11_19_seq_1 #(
@@ -4203,15 +4154,15 @@ Crypto_sdiv_15ns_32s_11_19_seq_1 #(
     .din0_WIDTH( 15 ),
     .din1_WIDTH( 32 ),
     .dout_WIDTH( 11 ))
-sdiv_15ns_32s_11_19_seq_1_U367(
+sdiv_15ns_32s_11_19_seq_1_U358(
     .clk(ap_clk),
     .reset(ap_rst_n_inv),
-    .start(grp_fu_1041_ap_start),
-    .done(grp_fu_1041_ap_done),
-    .din0(grp_fu_1041_p0),
-    .din1(h_3_fu_306),
+    .start(grp_fu_1017_ap_start),
+    .done(grp_fu_1017_ap_done),
+    .din0(grp_fu_1017_p0),
+    .din1(h_3_fu_300),
     .ce(1'b1),
-    .dout(grp_fu_1041_p2)
+    .dout(grp_fu_1017_p2)
 );
 
 Crypto_sdiv_15ns_32s_11_19_seq_1 #(
@@ -4220,15 +4171,15 @@ Crypto_sdiv_15ns_32s_11_19_seq_1 #(
     .din0_WIDTH( 15 ),
     .din1_WIDTH( 32 ),
     .dout_WIDTH( 11 ))
-sdiv_15ns_32s_11_19_seq_1_U368(
+sdiv_15ns_32s_11_19_seq_1_U359(
     .clk(ap_clk),
     .reset(ap_rst_n_inv),
-    .start(grp_fu_1121_ap_start),
-    .done(grp_fu_1121_ap_done),
-    .din0(grp_fu_1121_p0),
-    .din1(h_7_fu_310),
+    .start(grp_fu_1097_ap_start),
+    .done(grp_fu_1097_ap_done),
+    .din0(grp_fu_1097_p0),
+    .din1(h_7_fu_304),
     .ce(1'b1),
-    .dout(grp_fu_1121_p2)
+    .dout(grp_fu_1097_p2)
 );
 
 Crypto_sdiv_15ns_32s_11_19_seq_1 #(
@@ -4237,15 +4188,15 @@ Crypto_sdiv_15ns_32s_11_19_seq_1 #(
     .din0_WIDTH( 15 ),
     .din1_WIDTH( 32 ),
     .dout_WIDTH( 11 ))
-sdiv_15ns_32s_11_19_seq_1_U369(
+sdiv_15ns_32s_11_19_seq_1_U360(
     .clk(ap_clk),
     .reset(ap_rst_n_inv),
-    .start(grp_fu_1201_ap_start),
-    .done(grp_fu_1201_ap_done),
-    .din0(grp_fu_1201_p0),
-    .din1(h_fu_314),
+    .start(grp_fu_1177_ap_start),
+    .done(grp_fu_1177_ap_done),
+    .din0(grp_fu_1177_p0),
+    .din1(h_fu_308),
     .ce(1'b1),
-    .dout(grp_fu_1201_p2)
+    .dout(grp_fu_1177_p2)
 );
 
 Crypto_sdiv_15ns_32s_11_19_seq_1 #(
@@ -4254,15 +4205,15 @@ Crypto_sdiv_15ns_32s_11_19_seq_1 #(
     .din0_WIDTH( 15 ),
     .din1_WIDTH( 32 ),
     .dout_WIDTH( 11 ))
-sdiv_15ns_32s_11_19_seq_1_U370(
+sdiv_15ns_32s_11_19_seq_1_U361(
     .clk(ap_clk),
     .reset(ap_rst_n_inv),
-    .start(grp_fu_1281_ap_start),
-    .done(grp_fu_1281_ap_done),
-    .din0(grp_fu_1281_p0),
-    .din1(h_2_fu_318),
+    .start(grp_fu_1257_ap_start),
+    .done(grp_fu_1257_ap_done),
+    .din0(grp_fu_1257_p0),
+    .din1(h_2_fu_312),
     .ce(1'b1),
-    .dout(grp_fu_1281_p2)
+    .dout(grp_fu_1257_p2)
 );
 
 Crypto_sdiv_15ns_32s_11_19_seq_1 #(
@@ -4271,127 +4222,71 @@ Crypto_sdiv_15ns_32s_11_19_seq_1 #(
     .din0_WIDTH( 15 ),
     .din1_WIDTH( 32 ),
     .dout_WIDTH( 11 ))
-sdiv_15ns_32s_11_19_seq_1_U371(
+sdiv_15ns_32s_11_19_seq_1_U362(
     .clk(ap_clk),
     .reset(ap_rst_n_inv),
-    .start(grp_fu_1361_ap_start),
-    .done(grp_fu_1361_ap_done),
-    .din0(grp_fu_1361_p0),
-    .din1(h_6_fu_322),
+    .start(grp_fu_1337_ap_start),
+    .done(grp_fu_1337_ap_done),
+    .din0(grp_fu_1337_p0),
+    .din1(h_6_fu_316),
     .ce(1'b1),
-    .dout(grp_fu_1361_p2)
+    .dout(grp_fu_1337_p2)
 );
 
 Crypto_regslice_both #(
     .DataWidth( 32 ))
-regslice_both_dataInStream_V_data_V_U(
+regslice_both_DataInStream_V_data_V_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .data_in(dataInStream_TDATA),
-    .vld_in(dataInStream_TVALID),
-    .ack_in(regslice_both_dataInStream_V_data_V_U_ack_in),
-    .data_out(dataInStream_TDATA_int_regslice),
-    .vld_out(dataInStream_TVALID_int_regslice),
-    .ack_out(dataInStream_TREADY_int_regslice),
-    .apdone_blk(regslice_both_dataInStream_V_data_V_U_apdone_blk)
+    .data_in(DataInStream_TDATA),
+    .vld_in(DataInStream_TVALID),
+    .ack_in(regslice_both_DataInStream_V_data_V_U_ack_in),
+    .data_out(DataInStream_TDATA_int_regslice),
+    .vld_out(DataInStream_TVALID_int_regslice),
+    .ack_out(DataInStream_TREADY_int_regslice),
+    .apdone_blk(regslice_both_DataInStream_V_data_V_U_apdone_blk)
 );
 
 Crypto_regslice_both #(
     .DataWidth( 4 ))
-regslice_both_dataInStream_V_keep_V_U(
+regslice_both_DataInStream_V_keep_V_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .data_in(dataInStream_TKEEP),
-    .vld_in(dataInStream_TVALID),
-    .ack_in(regslice_both_dataInStream_V_keep_V_U_ack_in),
-    .data_out(dataInStream_TKEEP_int_regslice),
-    .vld_out(regslice_both_dataInStream_V_keep_V_U_vld_out),
-    .ack_out(dataInStream_TREADY_int_regslice),
-    .apdone_blk(regslice_both_dataInStream_V_keep_V_U_apdone_blk)
+    .data_in(DataInStream_TKEEP),
+    .vld_in(DataInStream_TVALID),
+    .ack_in(regslice_both_DataInStream_V_keep_V_U_ack_in),
+    .data_out(DataInStream_TKEEP_int_regslice),
+    .vld_out(regslice_both_DataInStream_V_keep_V_U_vld_out),
+    .ack_out(DataInStream_TREADY_int_regslice),
+    .apdone_blk(regslice_both_DataInStream_V_keep_V_U_apdone_blk)
 );
 
 Crypto_regslice_both #(
     .DataWidth( 4 ))
-regslice_both_dataInStream_V_strb_V_U(
+regslice_both_DataInStream_V_strb_V_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .data_in(dataInStream_TSTRB),
-    .vld_in(dataInStream_TVALID),
-    .ack_in(regslice_both_dataInStream_V_strb_V_U_ack_in),
-    .data_out(dataInStream_TSTRB_int_regslice),
-    .vld_out(regslice_both_dataInStream_V_strb_V_U_vld_out),
-    .ack_out(dataInStream_TREADY_int_regslice),
-    .apdone_blk(regslice_both_dataInStream_V_strb_V_U_apdone_blk)
+    .data_in(DataInStream_TSTRB),
+    .vld_in(DataInStream_TVALID),
+    .ack_in(regslice_both_DataInStream_V_strb_V_U_ack_in),
+    .data_out(DataInStream_TSTRB_int_regslice),
+    .vld_out(regslice_both_DataInStream_V_strb_V_U_vld_out),
+    .ack_out(DataInStream_TREADY_int_regslice),
+    .apdone_blk(regslice_both_DataInStream_V_strb_V_U_apdone_blk)
 );
 
 Crypto_regslice_both #(
     .DataWidth( 1 ))
-regslice_both_dataInStream_V_last_V_U(
+regslice_both_DataInStream_V_last_V_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst_n_inv),
-    .data_in(dataInStream_TLAST),
-    .vld_in(dataInStream_TVALID),
-    .ack_in(regslice_both_dataInStream_V_last_V_U_ack_in),
-    .data_out(dataInStream_TLAST_int_regslice),
-    .vld_out(regslice_both_dataInStream_V_last_V_U_vld_out),
-    .ack_out(dataInStream_TREADY_int_regslice),
-    .apdone_blk(regslice_both_dataInStream_V_last_V_U_apdone_blk)
-);
-
-Crypto_regslice_both #(
-    .DataWidth( 32 ))
-regslice_both_dataOutStream_V_data_V_U(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .data_in(dataOutStream_TDATA_int_regslice),
-    .vld_in(dataOutStream_TVALID_int_regslice),
-    .ack_in(dataOutStream_TREADY_int_regslice),
-    .data_out(dataOutStream_TDATA),
-    .vld_out(regslice_both_dataOutStream_V_data_V_U_vld_out),
-    .ack_out(dataOutStream_TREADY),
-    .apdone_blk(regslice_both_dataOutStream_V_data_V_U_apdone_blk)
-);
-
-Crypto_regslice_both #(
-    .DataWidth( 4 ))
-regslice_both_dataOutStream_V_keep_V_U(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .data_in(dataOutStream_TKEEP_int_regslice),
-    .vld_in(dataOutStream_TVALID_int_regslice),
-    .ack_in(regslice_both_dataOutStream_V_keep_V_U_ack_in_dummy),
-    .data_out(dataOutStream_TKEEP),
-    .vld_out(regslice_both_dataOutStream_V_keep_V_U_vld_out),
-    .ack_out(dataOutStream_TREADY),
-    .apdone_blk(regslice_both_dataOutStream_V_keep_V_U_apdone_blk)
-);
-
-Crypto_regslice_both #(
-    .DataWidth( 4 ))
-regslice_both_dataOutStream_V_strb_V_U(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .data_in(dataOutStream_TSTRB_int_regslice),
-    .vld_in(dataOutStream_TVALID_int_regslice),
-    .ack_in(regslice_both_dataOutStream_V_strb_V_U_ack_in_dummy),
-    .data_out(dataOutStream_TSTRB),
-    .vld_out(regslice_both_dataOutStream_V_strb_V_U_vld_out),
-    .ack_out(dataOutStream_TREADY),
-    .apdone_blk(regslice_both_dataOutStream_V_strb_V_U_apdone_blk)
-);
-
-Crypto_regslice_both #(
-    .DataWidth( 1 ))
-regslice_both_dataOutStream_V_last_V_U(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .data_in(dataOutStream_TLAST_int_regslice),
-    .vld_in(dataOutStream_TVALID_int_regslice),
-    .ack_in(regslice_both_dataOutStream_V_last_V_U_ack_in_dummy),
-    .data_out(dataOutStream_TLAST),
-    .vld_out(regslice_both_dataOutStream_V_last_V_U_vld_out),
-    .ack_out(dataOutStream_TREADY),
-    .apdone_blk(regslice_both_dataOutStream_V_last_V_U_apdone_blk)
+    .data_in(DataInStream_TLAST),
+    .vld_in(DataInStream_TVALID),
+    .ack_in(regslice_both_DataInStream_V_last_V_U_ack_in),
+    .data_out(DataInStream_TLAST_int_regslice),
+    .vld_out(regslice_both_DataInStream_V_last_V_U_vld_out),
+    .ack_out(DataInStream_TREADY_int_regslice),
+    .apdone_blk(regslice_both_DataInStream_V_last_V_U_apdone_blk)
 );
 
 always @ (posedge ap_clk) begin
@@ -4404,859 +4299,859 @@ end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state47)) begin
-            grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_start_reg <= 1'b0;
+            grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state69)) begin
-            grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_start_reg <= 1'b0;
+            grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state25)) begin
-            grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_start_reg <= 1'b0;
+            grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_start_reg <= 1'b0;
     end else begin
-        if (((icmp_ln224_2_fu_1115_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state49))) begin
-            grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_start_reg <= 1'b0;
+        if (((icmp_ln229_2_fu_1091_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state49))) begin
+            grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_start_reg <= 1'b0;
     end else begin
-        if (((icmp_ln224_2_fu_1115_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state49))) begin
-            grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_start_reg <= 1'b0;
+        if (((icmp_ln229_2_fu_1091_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state49))) begin
+            grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_start_reg <= 1'b0;
     end else begin
-        if (((icmp_ln224_2_fu_1115_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state49))) begin
-            grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_start_reg <= 1'b0;
+        if (((icmp_ln229_2_fu_1091_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state49))) begin
+            grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state117)) begin
-            grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_start_reg <= 1'b0;
+            grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state139)) begin
-            grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_start_reg <= 1'b0;
+            grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state95)) begin
-            grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_start_reg <= 1'b0;
+            grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_start_reg <= 1'b0;
     end else begin
-        if (((1'b1 == ap_CS_fsm_state1) & (32'd0 == OP_read_read_fu_326_p2) & (ap_start == 1'b1))) begin
-            grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_start_reg <= 1'b0;
+        if (((1'b1 == ap_CS_fsm_state1) & (32'd0 == OP_read_read_fu_320_p2) & (ap_start == 1'b1))) begin
+            grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_start_reg <= 1'b0;
     end else begin
-        if (((1'b1 == ap_CS_fsm_state1) & (32'd0 == OP_read_read_fu_326_p2) & (ap_start == 1'b1))) begin
-            grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_start_reg <= 1'b0;
+        if (((1'b1 == ap_CS_fsm_state1) & (32'd0 == OP_read_read_fu_320_p2) & (ap_start == 1'b1))) begin
+            grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_start_reg <= 1'b0;
     end else begin
-        if (((1'b1 == ap_CS_fsm_state1) & (32'd0 == OP_read_read_fu_326_p2) & (ap_start == 1'b1))) begin
-            grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_start_reg <= 1'b0;
+        if (((1'b1 == ap_CS_fsm_state1) & (32'd0 == OP_read_read_fu_320_p2) & (ap_start == 1'b1))) begin
+            grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_start_reg <= 1'b0;
     end else begin
-        if (((32'd8 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_start_reg <= 1'b0;
+        if (((32'd8 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_start_reg <= 1'b0;
     end else begin
-        if (((32'd8 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_start_reg <= 1'b0;
+        if (((32'd8 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_start_reg <= 1'b0;
     end else begin
-        if (((32'd8 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_start_reg <= 1'b0;
+        if (((32'd8 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_start_reg <= 1'b0;
     end else begin
-        if (((32'd2 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_start_reg <= 1'b0;
+        if (((32'd2 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_start_reg <= 1'b0;
     end else begin
-        if (((32'd2 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_start_reg <= 1'b0;
+        if (((32'd2 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_start_reg <= 1'b0;
     end else begin
-        if (((32'd2 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_start_reg <= 1'b0;
+        if (((32'd2 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_start_reg <= 1'b0;
     end else begin
-        if (((32'd1 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_start_reg <= 1'b0;
+        if (((32'd1 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_start_reg <= 1'b0;
     end else begin
-        if (((32'd1 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_start_reg <= 1'b0;
+        if (((32'd1 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_start_reg <= 1'b0;
     end else begin
-        if (((32'd1 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_start_reg <= 1'b0;
+        if (((32'd1 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_start_reg <= 1'b0;
-    end else begin
-        if ((1'b1 == ap_CS_fsm_state73)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_start_reg <= 1'b0;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state73)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_start_reg <= 1'b0;
+            grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state73)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_start_reg <= 1'b0;
+            grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_start_reg <= 1'b0;
+    end else begin
+        if ((1'b1 == ap_CS_fsm_state73)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_start_reg <= 1'b0;
+        end
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (ap_rst_n_inv == 1'b1) begin
+        grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state3)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_start_reg <= 1'b0;
+            grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state3)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_start_reg <= 1'b0;
+            grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_start_reg <= 1'b0;
     end else begin
         if ((1'b1 == ap_CS_fsm_state3)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_start_reg <= 1'b0;
+            grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state157)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_start_reg <= 1'b0;
+        if ((1'b1 == ap_CS_fsm_state150)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state160)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_start_reg <= 1'b0;
+        if ((1'b1 == ap_CS_fsm_state153)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state154)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_start_reg <= 1'b0;
+        if ((1'b1 == ap_CS_fsm_state147)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state152)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_start_reg <= 1'b0;
+        if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state145))) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state149)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_start_reg <= 1'b0;
+        if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state143))) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_start_reg <= 1'b0;
     end else begin
-        if (((32'd6 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_start_reg <= 1'b0;
+        if (((32'd6 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state143)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_start_reg <= 1'b0;
+        if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state143))) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_start_reg <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state145)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_start_reg <= 1'b0;
+        if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state145))) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_start_reg <= 1'b0;
+        grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_start_reg <= 1'b0;
     end else begin
-        if (((32'd7 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_start_reg <= 1'b1;
-        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_ready == 1'b1)) begin
-            grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_start_reg <= 1'b0;
+        if (((32'd7 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_start_reg <= 1'b1;
+        end else if ((grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_ready == 1'b1)) begin
+            grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_apply_bit_reverse_fu_410_ap_start_reg <= 1'b0;
+        grp_apply_bit_reverse_fu_404_ap_start_reg <= 1'b0;
     end else begin
-        if ((((32'd3 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd1) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd1) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)))) begin
-            grp_apply_bit_reverse_fu_410_ap_start_reg <= 1'b1;
-        end else if ((grp_apply_bit_reverse_fu_410_ap_ready == 1'b1)) begin
-            grp_apply_bit_reverse_fu_410_ap_start_reg <= 1'b0;
+        if ((((32'd3 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd1) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd1) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)))) begin
+            grp_apply_bit_reverse_fu_404_ap_start_reg <= 1'b1;
+        end else if ((grp_apply_bit_reverse_fu_404_ap_ready == 1'b1)) begin
+            grp_apply_bit_reverse_fu_404_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_apply_bit_reverse_fu_418_ap_start_reg <= 1'b0;
+        grp_apply_bit_reverse_fu_412_ap_start_reg <= 1'b0;
     end else begin
-        if ((((32'd3 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd1) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd1) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)))) begin
-            grp_apply_bit_reverse_fu_418_ap_start_reg <= 1'b1;
-        end else if ((grp_apply_bit_reverse_fu_418_ap_ready == 1'b1)) begin
-            grp_apply_bit_reverse_fu_418_ap_start_reg <= 1'b0;
+        if ((((32'd3 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd1) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd1) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)))) begin
+            grp_apply_bit_reverse_fu_412_ap_start_reg <= 1'b1;
+        end else if ((grp_apply_bit_reverse_fu_412_ap_ready == 1'b1)) begin
+            grp_apply_bit_reverse_fu_412_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst_n_inv == 1'b1) begin
-        grp_apply_bit_reverse_fu_426_ap_start_reg <= 1'b0;
+        grp_apply_bit_reverse_fu_420_ap_start_reg <= 1'b0;
     end else begin
-        if ((((32'd3 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd1) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd1) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_326_p2) & (empty_fu_917_p1 == 2'd2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)))) begin
-            grp_apply_bit_reverse_fu_426_ap_start_reg <= 1'b1;
-        end else if ((grp_apply_bit_reverse_fu_426_ap_ready == 1'b1)) begin
-            grp_apply_bit_reverse_fu_426_ap_start_reg <= 1'b0;
+        if ((((32'd3 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd1) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd3 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd3) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd0) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd1) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)) | ((32'd4 == OP_read_read_fu_320_p2) & (empty_fu_893_p1 == 2'd2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1)))) begin
+            grp_apply_bit_reverse_fu_420_ap_start_reg <= 1'b1;
+        end else if ((grp_apply_bit_reverse_fu_420_ap_ready == 1'b1)) begin
+            grp_apply_bit_reverse_fu_420_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_state2_on_subcall_done) & (1'b1 == ap_CS_fsm_state2))) begin
-                h_1_fu_302[1] <= 1'b1;
-        h_1_fu_302[2] <= 1'b0;
-        h_1_fu_302[3] <= 1'b0;
-        h_1_fu_302[4] <= 1'b0;
-        h_1_fu_302[5] <= 1'b0;
-        h_1_fu_302[6] <= 1'b0;
-        h_1_fu_302[7] <= 1'b0;
-        h_1_fu_302[8] <= 1'b0;
-        h_1_fu_302[9] <= 1'b0;
-        h_1_fu_302[10] <= 1'b0;
-        h_1_fu_302[11] <= 1'b0;
-        h_1_fu_302[12] <= 1'b0;
-        h_1_fu_302[13] <= 1'b0;
-        h_1_fu_302[14] <= 1'b0;
-        h_1_fu_302[15] <= 1'b0;
-        h_1_fu_302[16] <= 1'b0;
-        h_1_fu_302[17] <= 1'b0;
-        h_1_fu_302[18] <= 1'b0;
-        h_1_fu_302[19] <= 1'b0;
-        h_1_fu_302[20] <= 1'b0;
-        h_1_fu_302[21] <= 1'b0;
-        h_1_fu_302[22] <= 1'b0;
-        h_1_fu_302[23] <= 1'b0;
-        h_1_fu_302[24] <= 1'b0;
-        h_1_fu_302[25] <= 1'b0;
-        h_1_fu_302[26] <= 1'b0;
-        h_1_fu_302[27] <= 1'b0;
-        h_1_fu_302[28] <= 1'b0;
-        h_1_fu_302[29] <= 1'b0;
-        h_1_fu_302[30] <= 1'b0;
-        h_1_fu_302[31] <= 1'b0;
-    end else if (((icmp_ln228_fu_1007_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state24))) begin
-                h_1_fu_302[31 : 1] <= h_10_fu_1022_p2[31 : 1];
+                h_1_fu_296[1] <= 1'b1;
+        h_1_fu_296[2] <= 1'b0;
+        h_1_fu_296[3] <= 1'b0;
+        h_1_fu_296[4] <= 1'b0;
+        h_1_fu_296[5] <= 1'b0;
+        h_1_fu_296[6] <= 1'b0;
+        h_1_fu_296[7] <= 1'b0;
+        h_1_fu_296[8] <= 1'b0;
+        h_1_fu_296[9] <= 1'b0;
+        h_1_fu_296[10] <= 1'b0;
+        h_1_fu_296[11] <= 1'b0;
+        h_1_fu_296[12] <= 1'b0;
+        h_1_fu_296[13] <= 1'b0;
+        h_1_fu_296[14] <= 1'b0;
+        h_1_fu_296[15] <= 1'b0;
+        h_1_fu_296[16] <= 1'b0;
+        h_1_fu_296[17] <= 1'b0;
+        h_1_fu_296[18] <= 1'b0;
+        h_1_fu_296[19] <= 1'b0;
+        h_1_fu_296[20] <= 1'b0;
+        h_1_fu_296[21] <= 1'b0;
+        h_1_fu_296[22] <= 1'b0;
+        h_1_fu_296[23] <= 1'b0;
+        h_1_fu_296[24] <= 1'b0;
+        h_1_fu_296[25] <= 1'b0;
+        h_1_fu_296[26] <= 1'b0;
+        h_1_fu_296[27] <= 1'b0;
+        h_1_fu_296[28] <= 1'b0;
+        h_1_fu_296[29] <= 1'b0;
+        h_1_fu_296[30] <= 1'b0;
+        h_1_fu_296[31] <= 1'b0;
+    end else if (((icmp_ln233_fu_983_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state24))) begin
+                h_1_fu_296[31 : 1] <= h_10_fu_998_p2[31 : 1];
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((icmp_ln179_fu_1195_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state75))) begin
-                h_2_fu_318[1] <= 1'b1;
-        h_2_fu_318[2] <= 1'b0;
-        h_2_fu_318[3] <= 1'b0;
-        h_2_fu_318[4] <= 1'b0;
-        h_2_fu_318[5] <= 1'b0;
-        h_2_fu_318[6] <= 1'b0;
-        h_2_fu_318[7] <= 1'b0;
-        h_2_fu_318[8] <= 1'b0;
-        h_2_fu_318[9] <= 1'b0;
-        h_2_fu_318[10] <= 1'b0;
-        h_2_fu_318[11] <= 1'b0;
-        h_2_fu_318[12] <= 1'b0;
-        h_2_fu_318[13] <= 1'b0;
-        h_2_fu_318[14] <= 1'b0;
-        h_2_fu_318[15] <= 1'b0;
-        h_2_fu_318[16] <= 1'b0;
-        h_2_fu_318[17] <= 1'b0;
-        h_2_fu_318[18] <= 1'b0;
-        h_2_fu_318[19] <= 1'b0;
-        h_2_fu_318[20] <= 1'b0;
-        h_2_fu_318[21] <= 1'b0;
-        h_2_fu_318[22] <= 1'b0;
-        h_2_fu_318[23] <= 1'b0;
-        h_2_fu_318[24] <= 1'b0;
-        h_2_fu_318[25] <= 1'b0;
-        h_2_fu_318[26] <= 1'b0;
-        h_2_fu_318[27] <= 1'b0;
-        h_2_fu_318[28] <= 1'b0;
-        h_2_fu_318[29] <= 1'b0;
-        h_2_fu_318[30] <= 1'b0;
-        h_2_fu_318[31] <= 1'b0;
-    end else if (((icmp_ln183_1_fu_1327_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state116))) begin
-                h_2_fu_318[31 : 1] <= h_12_fu_1342_p2[31 : 1];
+    if (((icmp_ln184_fu_1171_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state75))) begin
+                h_2_fu_312[1] <= 1'b1;
+        h_2_fu_312[2] <= 1'b0;
+        h_2_fu_312[3] <= 1'b0;
+        h_2_fu_312[4] <= 1'b0;
+        h_2_fu_312[5] <= 1'b0;
+        h_2_fu_312[6] <= 1'b0;
+        h_2_fu_312[7] <= 1'b0;
+        h_2_fu_312[8] <= 1'b0;
+        h_2_fu_312[9] <= 1'b0;
+        h_2_fu_312[10] <= 1'b0;
+        h_2_fu_312[11] <= 1'b0;
+        h_2_fu_312[12] <= 1'b0;
+        h_2_fu_312[13] <= 1'b0;
+        h_2_fu_312[14] <= 1'b0;
+        h_2_fu_312[15] <= 1'b0;
+        h_2_fu_312[16] <= 1'b0;
+        h_2_fu_312[17] <= 1'b0;
+        h_2_fu_312[18] <= 1'b0;
+        h_2_fu_312[19] <= 1'b0;
+        h_2_fu_312[20] <= 1'b0;
+        h_2_fu_312[21] <= 1'b0;
+        h_2_fu_312[22] <= 1'b0;
+        h_2_fu_312[23] <= 1'b0;
+        h_2_fu_312[24] <= 1'b0;
+        h_2_fu_312[25] <= 1'b0;
+        h_2_fu_312[26] <= 1'b0;
+        h_2_fu_312[27] <= 1'b0;
+        h_2_fu_312[28] <= 1'b0;
+        h_2_fu_312[29] <= 1'b0;
+        h_2_fu_312[30] <= 1'b0;
+        h_2_fu_312[31] <= 1'b0;
+    end else if (((icmp_ln188_1_fu_1303_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state116))) begin
+                h_2_fu_312[31 : 1] <= h_12_fu_1318_p2[31 : 1];
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((icmp_ln224_fu_955_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state5))) begin
-                h_3_fu_306[1] <= 1'b1;
-        h_3_fu_306[2] <= 1'b0;
-        h_3_fu_306[3] <= 1'b0;
-        h_3_fu_306[4] <= 1'b0;
-        h_3_fu_306[5] <= 1'b0;
-        h_3_fu_306[6] <= 1'b0;
-        h_3_fu_306[7] <= 1'b0;
-        h_3_fu_306[8] <= 1'b0;
-        h_3_fu_306[9] <= 1'b0;
-        h_3_fu_306[10] <= 1'b0;
-        h_3_fu_306[11] <= 1'b0;
-        h_3_fu_306[12] <= 1'b0;
-        h_3_fu_306[13] <= 1'b0;
-        h_3_fu_306[14] <= 1'b0;
-        h_3_fu_306[15] <= 1'b0;
-        h_3_fu_306[16] <= 1'b0;
-        h_3_fu_306[17] <= 1'b0;
-        h_3_fu_306[18] <= 1'b0;
-        h_3_fu_306[19] <= 1'b0;
-        h_3_fu_306[20] <= 1'b0;
-        h_3_fu_306[21] <= 1'b0;
-        h_3_fu_306[22] <= 1'b0;
-        h_3_fu_306[23] <= 1'b0;
-        h_3_fu_306[24] <= 1'b0;
-        h_3_fu_306[25] <= 1'b0;
-        h_3_fu_306[26] <= 1'b0;
-        h_3_fu_306[27] <= 1'b0;
-        h_3_fu_306[28] <= 1'b0;
-        h_3_fu_306[29] <= 1'b0;
-        h_3_fu_306[30] <= 1'b0;
-        h_3_fu_306[31] <= 1'b0;
-    end else if (((icmp_ln228_1_fu_1087_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state46))) begin
-                h_3_fu_306[31 : 1] <= h_14_fu_1102_p2[31 : 1];
+    if (((icmp_ln229_fu_931_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state5))) begin
+                h_3_fu_300[1] <= 1'b1;
+        h_3_fu_300[2] <= 1'b0;
+        h_3_fu_300[3] <= 1'b0;
+        h_3_fu_300[4] <= 1'b0;
+        h_3_fu_300[5] <= 1'b0;
+        h_3_fu_300[6] <= 1'b0;
+        h_3_fu_300[7] <= 1'b0;
+        h_3_fu_300[8] <= 1'b0;
+        h_3_fu_300[9] <= 1'b0;
+        h_3_fu_300[10] <= 1'b0;
+        h_3_fu_300[11] <= 1'b0;
+        h_3_fu_300[12] <= 1'b0;
+        h_3_fu_300[13] <= 1'b0;
+        h_3_fu_300[14] <= 1'b0;
+        h_3_fu_300[15] <= 1'b0;
+        h_3_fu_300[16] <= 1'b0;
+        h_3_fu_300[17] <= 1'b0;
+        h_3_fu_300[18] <= 1'b0;
+        h_3_fu_300[19] <= 1'b0;
+        h_3_fu_300[20] <= 1'b0;
+        h_3_fu_300[21] <= 1'b0;
+        h_3_fu_300[22] <= 1'b0;
+        h_3_fu_300[23] <= 1'b0;
+        h_3_fu_300[24] <= 1'b0;
+        h_3_fu_300[25] <= 1'b0;
+        h_3_fu_300[26] <= 1'b0;
+        h_3_fu_300[27] <= 1'b0;
+        h_3_fu_300[28] <= 1'b0;
+        h_3_fu_300[29] <= 1'b0;
+        h_3_fu_300[30] <= 1'b0;
+        h_3_fu_300[31] <= 1'b0;
+    end else if (((icmp_ln233_1_fu_1063_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state46))) begin
+                h_3_fu_300[31 : 1] <= h_14_fu_1078_p2[31 : 1];
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((icmp_ln179_1_fu_1275_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state97))) begin
-                h_6_fu_322[1] <= 1'b1;
-        h_6_fu_322[2] <= 1'b0;
-        h_6_fu_322[3] <= 1'b0;
-        h_6_fu_322[4] <= 1'b0;
-        h_6_fu_322[5] <= 1'b0;
-        h_6_fu_322[6] <= 1'b0;
-        h_6_fu_322[7] <= 1'b0;
-        h_6_fu_322[8] <= 1'b0;
-        h_6_fu_322[9] <= 1'b0;
-        h_6_fu_322[10] <= 1'b0;
-        h_6_fu_322[11] <= 1'b0;
-        h_6_fu_322[12] <= 1'b0;
-        h_6_fu_322[13] <= 1'b0;
-        h_6_fu_322[14] <= 1'b0;
-        h_6_fu_322[15] <= 1'b0;
-        h_6_fu_322[16] <= 1'b0;
-        h_6_fu_322[17] <= 1'b0;
-        h_6_fu_322[18] <= 1'b0;
-        h_6_fu_322[19] <= 1'b0;
-        h_6_fu_322[20] <= 1'b0;
-        h_6_fu_322[21] <= 1'b0;
-        h_6_fu_322[22] <= 1'b0;
-        h_6_fu_322[23] <= 1'b0;
-        h_6_fu_322[24] <= 1'b0;
-        h_6_fu_322[25] <= 1'b0;
-        h_6_fu_322[26] <= 1'b0;
-        h_6_fu_322[27] <= 1'b0;
-        h_6_fu_322[28] <= 1'b0;
-        h_6_fu_322[29] <= 1'b0;
-        h_6_fu_322[30] <= 1'b0;
-        h_6_fu_322[31] <= 1'b0;
-    end else if (((icmp_ln183_2_fu_1402_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state138))) begin
-                h_6_fu_322[31 : 1] <= h_16_fu_1417_p2[31 : 1];
+    if (((icmp_ln184_1_fu_1251_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state97))) begin
+                h_6_fu_316[1] <= 1'b1;
+        h_6_fu_316[2] <= 1'b0;
+        h_6_fu_316[3] <= 1'b0;
+        h_6_fu_316[4] <= 1'b0;
+        h_6_fu_316[5] <= 1'b0;
+        h_6_fu_316[6] <= 1'b0;
+        h_6_fu_316[7] <= 1'b0;
+        h_6_fu_316[8] <= 1'b0;
+        h_6_fu_316[9] <= 1'b0;
+        h_6_fu_316[10] <= 1'b0;
+        h_6_fu_316[11] <= 1'b0;
+        h_6_fu_316[12] <= 1'b0;
+        h_6_fu_316[13] <= 1'b0;
+        h_6_fu_316[14] <= 1'b0;
+        h_6_fu_316[15] <= 1'b0;
+        h_6_fu_316[16] <= 1'b0;
+        h_6_fu_316[17] <= 1'b0;
+        h_6_fu_316[18] <= 1'b0;
+        h_6_fu_316[19] <= 1'b0;
+        h_6_fu_316[20] <= 1'b0;
+        h_6_fu_316[21] <= 1'b0;
+        h_6_fu_316[22] <= 1'b0;
+        h_6_fu_316[23] <= 1'b0;
+        h_6_fu_316[24] <= 1'b0;
+        h_6_fu_316[25] <= 1'b0;
+        h_6_fu_316[26] <= 1'b0;
+        h_6_fu_316[27] <= 1'b0;
+        h_6_fu_316[28] <= 1'b0;
+        h_6_fu_316[29] <= 1'b0;
+        h_6_fu_316[30] <= 1'b0;
+        h_6_fu_316[31] <= 1'b0;
+    end else if (((icmp_ln188_2_fu_1378_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state138))) begin
+                h_6_fu_316[31 : 1] <= h_16_fu_1393_p2[31 : 1];
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((icmp_ln224_1_fu_1035_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state27))) begin
-                h_7_fu_310[1] <= 1'b1;
-        h_7_fu_310[2] <= 1'b0;
-        h_7_fu_310[3] <= 1'b0;
-        h_7_fu_310[4] <= 1'b0;
-        h_7_fu_310[5] <= 1'b0;
-        h_7_fu_310[6] <= 1'b0;
-        h_7_fu_310[7] <= 1'b0;
-        h_7_fu_310[8] <= 1'b0;
-        h_7_fu_310[9] <= 1'b0;
-        h_7_fu_310[10] <= 1'b0;
-        h_7_fu_310[11] <= 1'b0;
-        h_7_fu_310[12] <= 1'b0;
-        h_7_fu_310[13] <= 1'b0;
-        h_7_fu_310[14] <= 1'b0;
-        h_7_fu_310[15] <= 1'b0;
-        h_7_fu_310[16] <= 1'b0;
-        h_7_fu_310[17] <= 1'b0;
-        h_7_fu_310[18] <= 1'b0;
-        h_7_fu_310[19] <= 1'b0;
-        h_7_fu_310[20] <= 1'b0;
-        h_7_fu_310[21] <= 1'b0;
-        h_7_fu_310[22] <= 1'b0;
-        h_7_fu_310[23] <= 1'b0;
-        h_7_fu_310[24] <= 1'b0;
-        h_7_fu_310[25] <= 1'b0;
-        h_7_fu_310[26] <= 1'b0;
-        h_7_fu_310[27] <= 1'b0;
-        h_7_fu_310[28] <= 1'b0;
-        h_7_fu_310[29] <= 1'b0;
-        h_7_fu_310[30] <= 1'b0;
-        h_7_fu_310[31] <= 1'b0;
-    end else if (((icmp_ln228_2_fu_1162_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state68))) begin
-                h_7_fu_310[31 : 1] <= h_17_fu_1177_p2[31 : 1];
+    if (((icmp_ln229_1_fu_1011_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state27))) begin
+                h_7_fu_304[1] <= 1'b1;
+        h_7_fu_304[2] <= 1'b0;
+        h_7_fu_304[3] <= 1'b0;
+        h_7_fu_304[4] <= 1'b0;
+        h_7_fu_304[5] <= 1'b0;
+        h_7_fu_304[6] <= 1'b0;
+        h_7_fu_304[7] <= 1'b0;
+        h_7_fu_304[8] <= 1'b0;
+        h_7_fu_304[9] <= 1'b0;
+        h_7_fu_304[10] <= 1'b0;
+        h_7_fu_304[11] <= 1'b0;
+        h_7_fu_304[12] <= 1'b0;
+        h_7_fu_304[13] <= 1'b0;
+        h_7_fu_304[14] <= 1'b0;
+        h_7_fu_304[15] <= 1'b0;
+        h_7_fu_304[16] <= 1'b0;
+        h_7_fu_304[17] <= 1'b0;
+        h_7_fu_304[18] <= 1'b0;
+        h_7_fu_304[19] <= 1'b0;
+        h_7_fu_304[20] <= 1'b0;
+        h_7_fu_304[21] <= 1'b0;
+        h_7_fu_304[22] <= 1'b0;
+        h_7_fu_304[23] <= 1'b0;
+        h_7_fu_304[24] <= 1'b0;
+        h_7_fu_304[25] <= 1'b0;
+        h_7_fu_304[26] <= 1'b0;
+        h_7_fu_304[27] <= 1'b0;
+        h_7_fu_304[28] <= 1'b0;
+        h_7_fu_304[29] <= 1'b0;
+        h_7_fu_304[30] <= 1'b0;
+        h_7_fu_304[31] <= 1'b0;
+    end else if (((icmp_ln233_2_fu_1138_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state68))) begin
+                h_7_fu_304[31 : 1] <= h_17_fu_1153_p2[31 : 1];
     end
 end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_state72_on_subcall_done) & (1'b1 == ap_CS_fsm_state72))) begin
-                h_fu_314[1] <= 1'b1;
-        h_fu_314[2] <= 1'b0;
-        h_fu_314[3] <= 1'b0;
-        h_fu_314[4] <= 1'b0;
-        h_fu_314[5] <= 1'b0;
-        h_fu_314[6] <= 1'b0;
-        h_fu_314[7] <= 1'b0;
-        h_fu_314[8] <= 1'b0;
-        h_fu_314[9] <= 1'b0;
-        h_fu_314[10] <= 1'b0;
-        h_fu_314[11] <= 1'b0;
-        h_fu_314[12] <= 1'b0;
-        h_fu_314[13] <= 1'b0;
-        h_fu_314[14] <= 1'b0;
-        h_fu_314[15] <= 1'b0;
-        h_fu_314[16] <= 1'b0;
-        h_fu_314[17] <= 1'b0;
-        h_fu_314[18] <= 1'b0;
-        h_fu_314[19] <= 1'b0;
-        h_fu_314[20] <= 1'b0;
-        h_fu_314[21] <= 1'b0;
-        h_fu_314[22] <= 1'b0;
-        h_fu_314[23] <= 1'b0;
-        h_fu_314[24] <= 1'b0;
-        h_fu_314[25] <= 1'b0;
-        h_fu_314[26] <= 1'b0;
-        h_fu_314[27] <= 1'b0;
-        h_fu_314[28] <= 1'b0;
-        h_fu_314[29] <= 1'b0;
-        h_fu_314[30] <= 1'b0;
-        h_fu_314[31] <= 1'b0;
-    end else if (((icmp_ln183_fu_1247_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state94))) begin
-                h_fu_314[31 : 1] <= h_8_fu_1262_p2[31 : 1];
+                h_fu_308[1] <= 1'b1;
+        h_fu_308[2] <= 1'b0;
+        h_fu_308[3] <= 1'b0;
+        h_fu_308[4] <= 1'b0;
+        h_fu_308[5] <= 1'b0;
+        h_fu_308[6] <= 1'b0;
+        h_fu_308[7] <= 1'b0;
+        h_fu_308[8] <= 1'b0;
+        h_fu_308[9] <= 1'b0;
+        h_fu_308[10] <= 1'b0;
+        h_fu_308[11] <= 1'b0;
+        h_fu_308[12] <= 1'b0;
+        h_fu_308[13] <= 1'b0;
+        h_fu_308[14] <= 1'b0;
+        h_fu_308[15] <= 1'b0;
+        h_fu_308[16] <= 1'b0;
+        h_fu_308[17] <= 1'b0;
+        h_fu_308[18] <= 1'b0;
+        h_fu_308[19] <= 1'b0;
+        h_fu_308[20] <= 1'b0;
+        h_fu_308[21] <= 1'b0;
+        h_fu_308[22] <= 1'b0;
+        h_fu_308[23] <= 1'b0;
+        h_fu_308[24] <= 1'b0;
+        h_fu_308[25] <= 1'b0;
+        h_fu_308[26] <= 1'b0;
+        h_fu_308[27] <= 1'b0;
+        h_fu_308[28] <= 1'b0;
+        h_fu_308[29] <= 1'b0;
+        h_fu_308[30] <= 1'b0;
+        h_fu_308[31] <= 1'b0;
+    end else if (((icmp_ln188_fu_1223_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state94))) begin
+                h_fu_308[31 : 1] <= h_8_fu_1238_p2[31 : 1];
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state26) & (grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_done == 1'b1))) begin
-        j_21_reg_344 <= add_ln228_reg_1529;
+    if (((1'b1 == ap_CS_fsm_state26) & (grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_done == 1'b1))) begin
+        j_21_reg_338 <= add_ln233_reg_1505;
     end else if ((1'b1 == ap_CS_fsm_state23)) begin
-        j_21_reg_344 <= 64'd0;
+        j_21_reg_338 <= 64'd0;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state118) & (grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_done == 1'b1))) begin
-        j_22_reg_388 <= add_ln183_1_reg_1713;
+    if (((1'b1 == ap_CS_fsm_state118) & (grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_done == 1'b1))) begin
+        j_22_reg_382 <= add_ln188_1_reg_1689;
     end else if ((1'b1 == ap_CS_fsm_state115)) begin
-        j_22_reg_388 <= 64'd0;
+        j_22_reg_382 <= 64'd0;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state48) & (grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_done == 1'b1))) begin
-        j_23_reg_355 <= add_ln228_1_reg_1575;
+    if (((1'b1 == ap_CS_fsm_state48) & (grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_done == 1'b1))) begin
+        j_23_reg_349 <= add_ln233_1_reg_1551;
     end else if ((1'b1 == ap_CS_fsm_state45)) begin
-        j_23_reg_355 <= 64'd0;
+        j_23_reg_349 <= 64'd0;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state140))) begin
-        j_24_reg_399 <= add_ln183_2_reg_1752;
+    if (((grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state140))) begin
+        j_24_reg_393 <= add_ln188_2_reg_1728;
     end else if ((1'b1 == ap_CS_fsm_state137)) begin
-        j_24_reg_399 <= 64'd0;
+        j_24_reg_393 <= 64'd0;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state70) & (grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_done == 1'b1))) begin
-        j_25_reg_366 <= add_ln228_2_reg_1614;
+    if (((1'b1 == ap_CS_fsm_state70) & (grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_done == 1'b1))) begin
+        j_25_reg_360 <= add_ln233_2_reg_1590;
     end else if ((1'b1 == ap_CS_fsm_state67)) begin
-        j_25_reg_366 <= 64'd0;
+        j_25_reg_360 <= 64'd0;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state96) & (grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_done == 1'b1))) begin
-        j_reg_377 <= add_ln183_reg_1667;
+    if (((1'b1 == ap_CS_fsm_state96) & (grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_done == 1'b1))) begin
+        j_reg_371 <= add_ln188_reg_1643;
     end else if ((1'b1 == ap_CS_fsm_state93)) begin
-        j_reg_377 <= 64'd0;
+        j_reg_371 <= 64'd0;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state1)) begin
-        OP_read_reg_1427 <= OP;
-        empty_133_reg_1468 <= empty_133_fu_934_p1;
-        empty_reg_1431 <= empty_fu_917_p1;
+        OP_read_reg_1403 <= OP;
+        empty_139_reg_1444 <= empty_139_fu_910_p1;
+        empty_reg_1407 <= empty_fu_893_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((icmp_ln183_1_fu_1327_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state116))) begin
-        add_ln183_1_reg_1713 <= add_ln183_1_fu_1337_p2;
-        trunc_ln183_3_reg_1708 <= trunc_ln183_3_fu_1333_p1;
+    if (((icmp_ln188_1_fu_1303_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state116))) begin
+        add_ln188_1_reg_1689 <= add_ln188_1_fu_1313_p2;
+        trunc_ln188_3_reg_1684 <= trunc_ln188_3_fu_1309_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((icmp_ln183_2_fu_1402_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state138))) begin
-        add_ln183_2_reg_1752 <= add_ln183_2_fu_1412_p2;
-        trunc_ln183_6_reg_1747 <= trunc_ln183_6_fu_1408_p1;
+    if (((icmp_ln188_2_fu_1378_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state138))) begin
+        add_ln188_2_reg_1728 <= add_ln188_2_fu_1388_p2;
+        trunc_ln188_6_reg_1723 <= trunc_ln188_6_fu_1384_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((icmp_ln183_fu_1247_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state94))) begin
-        add_ln183_reg_1667 <= add_ln183_fu_1257_p2;
-        trunc_ln183_1_reg_1662 <= trunc_ln183_1_fu_1253_p1;
+    if (((icmp_ln188_fu_1223_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state94))) begin
+        add_ln188_reg_1643 <= add_ln188_fu_1233_p2;
+        trunc_ln188_1_reg_1638 <= trunc_ln188_1_fu_1229_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((icmp_ln228_1_fu_1087_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state46))) begin
-        add_ln228_1_reg_1575 <= add_ln228_1_fu_1097_p2;
-        trunc_ln228_3_reg_1570 <= trunc_ln228_3_fu_1093_p1;
+    if (((icmp_ln233_1_fu_1063_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state46))) begin
+        add_ln233_1_reg_1551 <= add_ln233_1_fu_1073_p2;
+        trunc_ln233_3_reg_1546 <= trunc_ln233_3_fu_1069_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((icmp_ln228_2_fu_1162_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state68))) begin
-        add_ln228_2_reg_1614 <= add_ln228_2_fu_1172_p2;
-        trunc_ln228_6_reg_1609 <= trunc_ln228_6_fu_1168_p1;
+    if (((icmp_ln233_2_fu_1138_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state68))) begin
+        add_ln233_2_reg_1590 <= add_ln233_2_fu_1148_p2;
+        trunc_ln233_6_reg_1585 <= trunc_ln233_6_fu_1144_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((icmp_ln228_fu_1007_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state24))) begin
-        add_ln228_reg_1529 <= add_ln228_fu_1017_p2;
-        trunc_ln228_1_reg_1524 <= trunc_ln228_1_fu_1013_p1;
+    if (((icmp_ln233_fu_983_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state24))) begin
+        add_ln233_reg_1505 <= add_ln233_fu_993_p2;
+        trunc_ln233_1_reg_1500 <= trunc_ln233_1_fu_989_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state23)) begin
-        hf_1_reg_1501 <= {{hf_1_fu_972_p1[31:1]}};
-        sext_ln228_reg_1516[63 : 1] <= sext_ln228_fu_994_p1[63 : 1];
-        trunc_ln1_reg_1506 <= {{trunc_ln1_fu_981_p1[12:1]}};
-        trunc_ln228_reg_1511 <= trunc_ln228_fu_990_p1;
+        hf_1_reg_1477 <= {{hf_1_fu_948_p1[31:1]}};
+        sext_ln233_reg_1492[63 : 1] <= sext_ln233_fu_970_p1[63 : 1];
+        trunc_ln1_reg_1482 <= {{trunc_ln1_fu_957_p1[12:1]}};
+        trunc_ln233_reg_1487 <= trunc_ln233_fu_966_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state115)) begin
-        hf_2_reg_1685 <= {{hf_2_fu_1292_p1[31:1]}};
-        sext_ln183_1_reg_1700[63 : 1] <= sext_ln183_1_fu_1314_p1[63 : 1];
-        trunc_ln183_2_reg_1695 <= trunc_ln183_2_fu_1310_p1;
-        trunc_ln183_4_reg_1690 <= {{trunc_ln183_4_fu_1301_p1[12:1]}};
+        hf_2_reg_1661 <= {{hf_2_fu_1268_p1[31:1]}};
+        sext_ln188_1_reg_1676[63 : 1] <= sext_ln188_1_fu_1290_p1[63 : 1];
+        trunc_ln188_2_reg_1671 <= trunc_ln188_2_fu_1286_p1;
+        trunc_ln188_4_reg_1666 <= {{trunc_ln188_4_fu_1277_p1[12:1]}};
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state45)) begin
-        hf_3_reg_1547 <= {{hf_3_fu_1052_p1[31:1]}};
-        sext_ln228_1_reg_1562[63 : 1] <= sext_ln228_1_fu_1074_p1[63 : 1];
-        trunc_ln228_2_reg_1557 <= trunc_ln228_2_fu_1070_p1;
-        trunc_ln228_4_reg_1552 <= {{trunc_ln228_4_fu_1061_p1[12:1]}};
+        hf_3_reg_1523 <= {{hf_3_fu_1028_p1[31:1]}};
+        sext_ln233_1_reg_1538[63 : 1] <= sext_ln233_1_fu_1050_p1[63 : 1];
+        trunc_ln233_2_reg_1533 <= trunc_ln233_2_fu_1046_p1;
+        trunc_ln233_4_reg_1528 <= {{trunc_ln233_4_fu_1037_p1[12:1]}};
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state137)) begin
-        hf_4_reg_1724 <= {{hf_4_fu_1367_p1[31:1]}};
-        sext_ln183_2_reg_1739[63 : 1] <= sext_ln183_2_fu_1389_p1[63 : 1];
-        trunc_ln183_5_reg_1734 <= trunc_ln183_5_fu_1385_p1;
-        trunc_ln183_8_reg_1729 <= {{trunc_ln183_8_fu_1376_p1[12:1]}};
+        hf_4_reg_1700 <= {{hf_4_fu_1343_p1[31:1]}};
+        sext_ln188_2_reg_1715[63 : 1] <= sext_ln188_2_fu_1365_p1[63 : 1];
+        trunc_ln188_5_reg_1710 <= trunc_ln188_5_fu_1361_p1;
+        trunc_ln188_8_reg_1705 <= {{trunc_ln188_8_fu_1352_p1[12:1]}};
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state67)) begin
-        hf_5_reg_1586 <= {{hf_5_fu_1127_p1[31:1]}};
-        sext_ln228_2_reg_1601[63 : 1] <= sext_ln228_2_fu_1149_p1[63 : 1];
-        trunc_ln228_5_reg_1596 <= trunc_ln228_5_fu_1145_p1;
-        trunc_ln228_8_reg_1591 <= {{trunc_ln228_8_fu_1136_p1[12:1]}};
+        hf_5_reg_1562 <= {{hf_5_fu_1103_p1[31:1]}};
+        sext_ln233_2_reg_1577[63 : 1] <= sext_ln233_2_fu_1125_p1[63 : 1];
+        trunc_ln233_5_reg_1572 <= trunc_ln233_5_fu_1121_p1;
+        trunc_ln233_8_reg_1567 <= {{trunc_ln233_8_fu_1112_p1[12:1]}};
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state93)) begin
-        hf_reg_1639 <= {{hf_fu_1212_p1[31:1]}};
-        sext_ln183_reg_1654[63 : 1] <= sext_ln183_fu_1234_p1[63 : 1];
-        trunc_ln183_reg_1649 <= trunc_ln183_fu_1230_p1;
-        trunc_ln_reg_1644 <= {{trunc_ln_fu_1221_p1[12:1]}};
+        hf_reg_1615 <= {{hf_fu_1188_p1[31:1]}};
+        sext_ln188_reg_1630[63 : 1] <= sext_ln188_fu_1210_p1[63 : 1];
+        trunc_ln188_reg_1625 <= trunc_ln188_fu_1206_p1;
+        trunc_ln_reg_1620 <= {{trunc_ln_fu_1197_p1[12:1]}};
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state74)) begin
-        BitReverseData_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_BitReverseData_1_address0;
+        BitReverseData_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_BitReverseData_1_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        BitReverseData_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_BitReverseData_1_address0;
-    end else if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        BitReverseData_1_address0 = grp_apply_bit_reverse_fu_418_result_address0;
+        BitReverseData_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_BitReverseData_1_address0;
+    end else if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        BitReverseData_1_address0 = grp_apply_bit_reverse_fu_412_result_address0;
     end else begin
         BitReverseData_1_address0 = 'bx;
     end
@@ -5264,19 +5159,19 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state74)) begin
-        BitReverseData_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_BitReverseData_1_ce0;
+        BitReverseData_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_BitReverseData_1_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        BitReverseData_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_BitReverseData_1_ce0;
-    end else if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        BitReverseData_1_ce0 = grp_apply_bit_reverse_fu_418_result_ce0;
+        BitReverseData_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_BitReverseData_1_ce0;
+    end else if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        BitReverseData_1_ce0 = grp_apply_bit_reverse_fu_412_result_ce0;
     end else begin
         BitReverseData_1_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        BitReverseData_1_we0 = grp_apply_bit_reverse_fu_418_result_we0;
+    if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        BitReverseData_1_we0 = grp_apply_bit_reverse_fu_412_result_we0;
     end else begin
         BitReverseData_1_we0 = 1'b0;
     end
@@ -5284,11 +5179,11 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state74)) begin
-        BitReverseData_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_BitReverseData_2_address0;
+        BitReverseData_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_BitReverseData_2_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        BitReverseData_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_BitReverseData_2_address0;
-    end else if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        BitReverseData_2_address0 = grp_apply_bit_reverse_fu_426_result_address0;
+        BitReverseData_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_BitReverseData_2_address0;
+    end else if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        BitReverseData_2_address0 = grp_apply_bit_reverse_fu_420_result_address0;
     end else begin
         BitReverseData_2_address0 = 'bx;
     end
@@ -5296,19 +5191,19 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state74)) begin
-        BitReverseData_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_BitReverseData_2_ce0;
+        BitReverseData_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_BitReverseData_2_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        BitReverseData_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_BitReverseData_2_ce0;
-    end else if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        BitReverseData_2_ce0 = grp_apply_bit_reverse_fu_426_result_ce0;
+        BitReverseData_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_BitReverseData_2_ce0;
+    end else if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        BitReverseData_2_ce0 = grp_apply_bit_reverse_fu_420_result_ce0;
     end else begin
         BitReverseData_2_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        BitReverseData_2_we0 = grp_apply_bit_reverse_fu_426_result_we0;
+    if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        BitReverseData_2_we0 = grp_apply_bit_reverse_fu_420_result_we0;
     end else begin
         BitReverseData_2_we0 = 1'b0;
     end
@@ -5316,11 +5211,11 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state74)) begin
-        BitReverseData_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_BitReverseData_address0;
+        BitReverseData_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_BitReverseData_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        BitReverseData_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_BitReverseData_address0;
-    end else if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        BitReverseData_address0 = grp_apply_bit_reverse_fu_410_result_address0;
+        BitReverseData_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_BitReverseData_address0;
+    end else if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        BitReverseData_address0 = grp_apply_bit_reverse_fu_404_result_address0;
     end else begin
         BitReverseData_address0 = 'bx;
     end
@@ -5328,49 +5223,125 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state74)) begin
-        BitReverseData_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_BitReverseData_ce0;
+        BitReverseData_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_BitReverseData_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        BitReverseData_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_BitReverseData_ce0;
-    end else if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        BitReverseData_ce0 = grp_apply_bit_reverse_fu_410_result_ce0;
+        BitReverseData_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_BitReverseData_ce0;
+    end else if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        BitReverseData_ce0 = grp_apply_bit_reverse_fu_404_result_ce0;
     end else begin
         BitReverseData_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        BitReverseData_we0 = grp_apply_bit_reverse_fu_410_result_we0;
+    if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        BitReverseData_we0 = grp_apply_bit_reverse_fu_404_result_we0;
     end else begin
         BitReverseData_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_10_address0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_10_address0;
-    end else if ((1'b1 == ap_CS_fsm_state150)) begin
-        DataRAM_10_address0 = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_10_address0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataInStream_TREADY_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataInStream_TREADY;
+    end else if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataInStream_TREADY_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataInStream_TREADY;
+    end else if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataInStream_TREADY_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataInStream_TREADY;
+    end else begin
+        DataInStream_TREADY_int_regslice = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((32'd6 == OP_read_reg_1403)) begin
+        if ((1'b1 == ap_CS_fsm_state146)) begin
+            DataOutStream_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataOutStream_address0;
+        end else if ((1'b1 == ap_CS_fsm_state144)) begin
+            DataOutStream_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataOutStream_address0;
+        end else if ((1'b1 == ap_CS_fsm_state142)) begin
+            DataOutStream_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataOutStream_address0;
+        end else begin
+            DataOutStream_address0 = 'bx;
+        end
+    end else begin
+        DataOutStream_address0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((32'd6 == OP_read_reg_1403)) begin
+        if ((1'b1 == ap_CS_fsm_state146)) begin
+            DataOutStream_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataOutStream_ce0;
+        end else if ((1'b1 == ap_CS_fsm_state144)) begin
+            DataOutStream_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataOutStream_ce0;
+        end else if ((1'b1 == ap_CS_fsm_state142)) begin
+            DataOutStream_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataOutStream_ce0;
+        end else begin
+            DataOutStream_ce0 = 1'b0;
+        end
+    end else begin
+        DataOutStream_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((32'd6 == OP_read_reg_1403)) begin
+        if ((1'b1 == ap_CS_fsm_state146)) begin
+            DataOutStream_d0 = grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataOutStream_d0;
+        end else if ((1'b1 == ap_CS_fsm_state144)) begin
+            DataOutStream_d0 = grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataOutStream_d0;
+        end else if ((1'b1 == ap_CS_fsm_state142)) begin
+            DataOutStream_d0 = grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataOutStream_d0;
+        end else begin
+            DataOutStream_d0 = 'bx;
+        end
+    end else begin
+        DataOutStream_d0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((32'd6 == OP_read_reg_1403)) begin
+        if ((1'b1 == ap_CS_fsm_state146)) begin
+            DataOutStream_we0 = grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataOutStream_we0;
+        end else if ((1'b1 == ap_CS_fsm_state144)) begin
+            DataOutStream_we0 = grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataOutStream_we0;
+        end else if ((1'b1 == ap_CS_fsm_state142)) begin
+            DataOutStream_we0 = grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataOutStream_we0;
+        end else begin
+            DataOutStream_we0 = 1'b0;
+        end
+    end else begin
+        DataOutStream_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_10_address0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_10_address0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state144))) begin
+        DataRAM_10_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_10_address0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_10_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_address0;
+        DataRAM_10_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_address0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_10_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_10_address0;
+        DataRAM_10_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_10_address0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_10_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_address0;
+        DataRAM_10_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_address0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_10_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_address0;
+        DataRAM_10_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_10_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_10_address0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_address0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_10_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_address0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_address0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_address0;
-    end else if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_10_address0 = grp_apply_bit_reverse_fu_418_x_address0;
+        DataRAM_10_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_10_address0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_address0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_10_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_address0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_address0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_address0;
+    end else if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_10_address0 = grp_apply_bit_reverse_fu_412_x_address0;
     end else begin
         DataRAM_10_address0 = 'bx;
     end
@@ -5378,49 +5349,49 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_10_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_address1;
+        DataRAM_10_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_address1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_10_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_address1;
+        DataRAM_10_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_address1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_10_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_address1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_address1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_10_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_address1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_address1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_address1;
+        DataRAM_10_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_address1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_address1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_10_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_address1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_address1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_address1;
     end else begin
         DataRAM_10_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_10_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_10_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state150)) begin
-        DataRAM_10_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_10_ce0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_10_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_10_ce0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state144))) begin
+        DataRAM_10_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_10_ce0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_10_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_ce0;
+        DataRAM_10_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_ce0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_10_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_10_ce0;
+        DataRAM_10_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_10_ce0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_10_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_ce0;
+        DataRAM_10_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_ce0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_10_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_ce0;
+        DataRAM_10_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_10_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_10_ce0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_ce0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_10_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_ce0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_ce0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_ce0;
-    end else if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_10_ce0 = grp_apply_bit_reverse_fu_418_x_ce0;
+        DataRAM_10_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_10_ce0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_ce0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_10_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_ce0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_ce0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_ce0;
+    end else if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_10_ce0 = grp_apply_bit_reverse_fu_412_x_ce0;
     end else begin
         DataRAM_10_ce0 = 1'b0;
     end
@@ -5428,45 +5399,45 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_10_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_ce1;
+        DataRAM_10_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_ce1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_10_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_ce1;
+        DataRAM_10_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_ce1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_10_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_ce1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_ce1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_10_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_ce1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_ce1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_ce1;
+        DataRAM_10_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_ce1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_ce1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_10_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_ce1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_ce1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_ce1;
     end else begin
         DataRAM_10_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_10_d0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_10_d0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_10_d0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_10_d0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_10_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_d0;
+        DataRAM_10_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_d0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_10_d0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_10_d0;
+        DataRAM_10_d0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_10_d0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_10_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_d0;
+        DataRAM_10_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_d0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_10_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_d0;
+        DataRAM_10_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_d0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_10_d0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_10_d0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_d0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_10_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_d0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_d0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_d0;
+        DataRAM_10_d0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_10_d0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_d0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_10_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_d0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_d0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_d0;
     end else begin
         DataRAM_10_d0 = 'bx;
     end
@@ -5474,43 +5445,43 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_10_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_d1;
+        DataRAM_10_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_d1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_10_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_d1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_d1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_10_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_d1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_d1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_d1;
+        DataRAM_10_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_d1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_d1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_10_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_d1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_d1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_d1;
     end else begin
         DataRAM_10_d1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_10_we0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_10_we0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_10_we0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_10_we0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_10_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_we0;
+        DataRAM_10_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_we0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_10_we0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_10_we0;
+        DataRAM_10_we0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_10_we0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_10_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_10_we0;
+        DataRAM_10_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_10_we0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_10_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_we0;
+        DataRAM_10_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_we0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_10_we0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_10_we0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_we0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_10_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_we0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_we0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_we0;
+        DataRAM_10_we0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_10_we0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_we0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_10_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_we0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_we0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_we0;
     end else begin
         DataRAM_10_we0 = 1'b0;
     end
@@ -5518,47 +5489,47 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_10_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_10_we1;
+        DataRAM_10_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_10_we1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_10_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_10_we1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_10_we1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_10_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_10_we1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_10_we1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_10_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_10_we1;
+        DataRAM_10_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_10_we1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_10_we1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_10_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_10_we1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_10_we1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_10_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_10_we1;
     end else begin
         DataRAM_10_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_11_address0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_11_address0;
-    end else if ((1'b1 == ap_CS_fsm_state153)) begin
-        DataRAM_11_address0 = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_11_address0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_11_address0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_11_address0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state146))) begin
+        DataRAM_11_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_11_address0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_11_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_address0;
+        DataRAM_11_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_address0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_11_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_11_address0;
+        DataRAM_11_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_11_address0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_11_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_address0;
+        DataRAM_11_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_address0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_11_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_address0;
+        DataRAM_11_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_11_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_11_address0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_address0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_11_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_address0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_address0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_address0;
-    end else if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_11_address0 = grp_apply_bit_reverse_fu_426_x_address0;
+        DataRAM_11_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_11_address0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_address0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_11_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_address0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_address0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_address0;
+    end else if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_11_address0 = grp_apply_bit_reverse_fu_420_x_address0;
     end else begin
         DataRAM_11_address0 = 'bx;
     end
@@ -5566,49 +5537,49 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_11_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_address1;
+        DataRAM_11_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_address1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_11_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_address1;
+        DataRAM_11_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_address1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_11_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_address1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_address1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_11_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_address1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_address1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_address1;
+        DataRAM_11_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_address1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_address1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_11_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_address1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_address1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_address1;
     end else begin
         DataRAM_11_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_11_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_11_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state153)) begin
-        DataRAM_11_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_11_ce0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_11_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_11_ce0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state146))) begin
+        DataRAM_11_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_11_ce0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_11_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_ce0;
+        DataRAM_11_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_ce0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_11_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_11_ce0;
+        DataRAM_11_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_11_ce0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_11_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_ce0;
+        DataRAM_11_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_ce0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_11_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_ce0;
+        DataRAM_11_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_11_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_11_ce0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_ce0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_11_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_ce0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_ce0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_ce0;
-    end else if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_11_ce0 = grp_apply_bit_reverse_fu_426_x_ce0;
+        DataRAM_11_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_11_ce0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_ce0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_11_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_ce0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_ce0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_ce0;
+    end else if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_11_ce0 = grp_apply_bit_reverse_fu_420_x_ce0;
     end else begin
         DataRAM_11_ce0 = 1'b0;
     end
@@ -5616,45 +5587,45 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_11_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_ce1;
+        DataRAM_11_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_ce1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_11_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_ce1;
+        DataRAM_11_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_ce1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_11_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_ce1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_ce1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_11_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_ce1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_ce1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_ce1;
+        DataRAM_11_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_ce1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_ce1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_11_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_ce1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_ce1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_ce1;
     end else begin
         DataRAM_11_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_11_d0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_11_d0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_11_d0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_11_d0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_11_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_d0;
+        DataRAM_11_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_d0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_11_d0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_11_d0;
+        DataRAM_11_d0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_11_d0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_11_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_d0;
+        DataRAM_11_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_d0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_11_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_d0;
+        DataRAM_11_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_d0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_11_d0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_11_d0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_d0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_11_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_d0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_d0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_d0;
+        DataRAM_11_d0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_11_d0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_d0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_11_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_d0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_d0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_d0;
     end else begin
         DataRAM_11_d0 = 'bx;
     end
@@ -5662,43 +5633,43 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_11_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_d1;
+        DataRAM_11_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_d1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_11_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_d1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_d1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_11_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_d1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_d1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_d1;
+        DataRAM_11_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_d1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_d1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_11_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_d1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_d1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_d1;
     end else begin
         DataRAM_11_d1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_11_we0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_11_we0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_11_we0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_11_we0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_11_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_we0;
+        DataRAM_11_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_we0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_11_we0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_11_we0;
+        DataRAM_11_we0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_11_we0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_11_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_we0;
+        DataRAM_11_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_we0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_11_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_11_we0;
+        DataRAM_11_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_11_we0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_11_we0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_11_we0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_we0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_11_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_we0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_we0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_we0;
+        DataRAM_11_we0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_11_we0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_we0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_11_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_we0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_we0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_we0;
     end else begin
         DataRAM_11_we0 = 1'b0;
     end
@@ -5706,47 +5677,47 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_11_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_11_we1;
+        DataRAM_11_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_11_we1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_11_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_11_we1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_11_we1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_11_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_11_we1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_11_we1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_11_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_11_we1;
+        DataRAM_11_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_11_we1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_11_we1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_11_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_11_we1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_11_we1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_11_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_11_we1;
     end else begin
         DataRAM_11_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_1_address0;
-    end else if ((1'b1 == ap_CS_fsm_state150)) begin
-        DataRAM_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_1_address0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_1_address0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state144))) begin
+        DataRAM_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_1_address0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_1_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_address0;
+        DataRAM_1_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_address0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_1_address0;
+        DataRAM_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_1_address0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_1_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_address0;
+        DataRAM_1_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_address0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_1_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_address0;
+        DataRAM_1_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_1_address0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_address0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_1_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_address0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_address0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_address0;
-    end else if ((((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_1_address0 = grp_apply_bit_reverse_fu_418_x_address0;
+        DataRAM_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_1_address0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_address0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_1_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_address0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_address0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_address0;
+    end else if ((((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_1_address0 = grp_apply_bit_reverse_fu_412_x_address0;
     end else begin
         DataRAM_1_address0 = 'bx;
     end
@@ -5754,49 +5725,49 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_1_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_address1;
+        DataRAM_1_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_address1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_1_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_address1;
+        DataRAM_1_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_address1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_1_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_address1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_address1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_1_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_address1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_address1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_address1;
+        DataRAM_1_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_address1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_address1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_1_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_address1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_address1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_address1;
     end else begin
         DataRAM_1_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_1_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state150)) begin
-        DataRAM_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_1_ce0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_1_ce0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state144))) begin
+        DataRAM_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_1_ce0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_1_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_ce0;
+        DataRAM_1_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_ce0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_1_ce0;
+        DataRAM_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_1_ce0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_1_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_ce0;
+        DataRAM_1_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_ce0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_1_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_ce0;
+        DataRAM_1_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_1_ce0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_ce0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_1_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_ce0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_ce0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_ce0;
-    end else if ((((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_1_ce0 = grp_apply_bit_reverse_fu_418_x_ce0;
+        DataRAM_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_1_ce0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_ce0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_1_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_ce0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_ce0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_ce0;
+    end else if ((((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_1_ce0 = grp_apply_bit_reverse_fu_412_x_ce0;
     end else begin
         DataRAM_1_ce0 = 1'b0;
     end
@@ -5804,45 +5775,45 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_1_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_ce1;
+        DataRAM_1_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_ce1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_1_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_ce1;
+        DataRAM_1_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_ce1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_1_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_ce1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_ce1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_1_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_ce1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_ce1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_ce1;
+        DataRAM_1_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_ce1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_ce1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_1_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_ce1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_ce1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_ce1;
     end else begin
         DataRAM_1_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_1_d0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_1_d0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_1_d0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_1_d0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_1_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_d0;
+        DataRAM_1_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_d0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_1_d0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_1_d0;
+        DataRAM_1_d0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_1_d0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_1_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_d0;
+        DataRAM_1_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_d0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_1_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_d0;
+        DataRAM_1_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_d0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_1_d0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_1_d0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_d0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_1_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_d0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_d0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_d0;
+        DataRAM_1_d0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_1_d0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_d0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_1_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_d0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_d0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_d0;
     end else begin
         DataRAM_1_d0 = 'bx;
     end
@@ -5850,43 +5821,43 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_1_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_d1;
+        DataRAM_1_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_d1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_1_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_d1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_d1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_1_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_d1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_d1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_d1;
+        DataRAM_1_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_d1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_d1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_1_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_d1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_d1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_d1;
     end else begin
         DataRAM_1_d1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_1_we0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_1_we0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_1_we0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_1_we0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_1_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_we0;
+        DataRAM_1_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_we0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_1_we0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_1_we0;
+        DataRAM_1_we0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_1_we0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_1_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_1_we0;
+        DataRAM_1_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_1_we0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_1_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_we0;
+        DataRAM_1_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_we0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_1_we0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_1_we0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_we0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_1_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_we0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_we0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_we0;
+        DataRAM_1_we0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_1_we0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_we0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_1_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_we0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_we0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_we0;
     end else begin
         DataRAM_1_we0 = 1'b0;
     end
@@ -5894,47 +5865,47 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_1_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_1_we1;
+        DataRAM_1_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_1_we1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_1_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_1_we1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_1_we1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_1_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_1_we1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_1_we1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_1_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_1_we1;
+        DataRAM_1_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_1_we1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_1_we1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_1_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_1_we1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_1_we1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_1_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_1_we1;
     end else begin
         DataRAM_1_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_2_address0;
-    end else if ((1'b1 == ap_CS_fsm_state153)) begin
-        DataRAM_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_2_address0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_2_address0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state146))) begin
+        DataRAM_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_2_address0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_2_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_address0;
+        DataRAM_2_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_address0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_2_address0;
+        DataRAM_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_2_address0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_2_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_address0;
+        DataRAM_2_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_address0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_2_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_address0;
+        DataRAM_2_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_2_address0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_address0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_2_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_address0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_address0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_address0;
-    end else if ((((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_2_address0 = grp_apply_bit_reverse_fu_426_x_address0;
+        DataRAM_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_2_address0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_address0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_2_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_address0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_address0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_address0;
+    end else if ((((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_2_address0 = grp_apply_bit_reverse_fu_420_x_address0;
     end else begin
         DataRAM_2_address0 = 'bx;
     end
@@ -5942,49 +5913,49 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_2_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_address1;
+        DataRAM_2_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_address1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_2_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_address1;
+        DataRAM_2_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_address1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_2_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_address1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_address1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_2_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_address1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_address1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_address1;
+        DataRAM_2_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_address1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_address1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_2_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_address1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_address1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_address1;
     end else begin
         DataRAM_2_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_2_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state153)) begin
-        DataRAM_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_2_ce0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_2_ce0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state146))) begin
+        DataRAM_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_2_ce0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_2_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_ce0;
+        DataRAM_2_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_ce0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_2_ce0;
+        DataRAM_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_2_ce0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_2_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_ce0;
+        DataRAM_2_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_ce0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_2_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_ce0;
+        DataRAM_2_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_2_ce0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_ce0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_2_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_ce0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_ce0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_ce0;
-    end else if ((((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_2_ce0 = grp_apply_bit_reverse_fu_426_x_ce0;
+        DataRAM_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_2_ce0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_ce0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_2_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_ce0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_ce0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_ce0;
+    end else if ((((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_2_ce0 = grp_apply_bit_reverse_fu_420_x_ce0;
     end else begin
         DataRAM_2_ce0 = 1'b0;
     end
@@ -5992,45 +5963,45 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_2_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_ce1;
+        DataRAM_2_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_ce1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_2_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_ce1;
+        DataRAM_2_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_ce1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_2_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_ce1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_ce1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_2_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_ce1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_ce1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_ce1;
+        DataRAM_2_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_ce1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_ce1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_2_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_ce1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_ce1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_ce1;
     end else begin
         DataRAM_2_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_2_d0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_2_d0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_2_d0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_2_d0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_2_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_d0;
+        DataRAM_2_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_d0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_2_d0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_2_d0;
+        DataRAM_2_d0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_2_d0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_2_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_d0;
+        DataRAM_2_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_d0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_2_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_d0;
+        DataRAM_2_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_d0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_2_d0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_2_d0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_d0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_2_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_d0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_d0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_d0;
+        DataRAM_2_d0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_2_d0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_d0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_2_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_d0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_d0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_d0;
     end else begin
         DataRAM_2_d0 = 'bx;
     end
@@ -6038,43 +6009,43 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_2_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_d1;
+        DataRAM_2_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_d1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_2_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_d1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_d1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_2_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_d1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_d1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_d1;
+        DataRAM_2_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_d1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_d1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_2_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_d1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_d1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_d1;
     end else begin
         DataRAM_2_d1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_2_we0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_2_we0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_2_we0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_2_we0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_2_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_we0;
+        DataRAM_2_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_we0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_2_we0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_2_we0;
+        DataRAM_2_we0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_2_we0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_2_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_we0;
+        DataRAM_2_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_we0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_2_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_2_we0;
+        DataRAM_2_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_2_we0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_2_we0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_2_we0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_we0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_2_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_we0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_we0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_we0;
+        DataRAM_2_we0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_2_we0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_we0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_2_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_we0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_we0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_we0;
     end else begin
         DataRAM_2_we0 = 1'b0;
     end
@@ -6082,47 +6053,47 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_2_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_2_we1;
+        DataRAM_2_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_2_we1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_2_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_2_we1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_2_we1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_2_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_2_we1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_2_we1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_2_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_2_we1;
+        DataRAM_2_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_2_we1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_2_we1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_2_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_2_we1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_2_we1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_2_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_2_we1;
     end else begin
         DataRAM_2_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_3_address0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_3_address0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_3_address0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_3_address0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_3_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_address0;
+        DataRAM_3_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_address0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_3_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_3_address0;
+        DataRAM_3_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_3_address0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_3_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_address0;
+        DataRAM_3_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_address0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_3_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_address0;
+        DataRAM_3_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_3_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_3_address0;
-    end else if ((1'b1 == ap_CS_fsm_state147)) begin
-        DataRAM_3_address0 = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_3_address0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_address0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_3_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_address0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_address0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_address0;
-    end else if ((((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_3_address0 = grp_apply_bit_reverse_fu_410_x_address0;
+        DataRAM_3_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_3_address0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state142))) begin
+        DataRAM_3_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_3_address0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_address0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_3_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_address0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_address0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_address0;
+    end else if ((((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_3_address0 = grp_apply_bit_reverse_fu_404_x_address0;
     end else begin
         DataRAM_3_address0 = 'bx;
     end
@@ -6130,49 +6101,49 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_3_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_address1;
+        DataRAM_3_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_address1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_3_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_address1;
+        DataRAM_3_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_address1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_3_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_address1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_address1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_3_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_address1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_address1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_address1;
+        DataRAM_3_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_address1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_address1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_3_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_address1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_address1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_address1;
     end else begin
         DataRAM_3_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_3_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_3_ce0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_3_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_3_ce0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_3_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_ce0;
+        DataRAM_3_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_ce0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_3_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_3_ce0;
+        DataRAM_3_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_3_ce0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_3_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_ce0;
+        DataRAM_3_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_ce0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_3_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_ce0;
+        DataRAM_3_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_3_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_3_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state147)) begin
-        DataRAM_3_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_3_ce0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_ce0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_3_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_ce0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_ce0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_ce0;
-    end else if ((((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_3_ce0 = grp_apply_bit_reverse_fu_410_x_ce0;
+        DataRAM_3_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_3_ce0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state142))) begin
+        DataRAM_3_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_3_ce0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_ce0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_3_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_ce0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_ce0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_ce0;
+    end else if ((((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_3_ce0 = grp_apply_bit_reverse_fu_404_x_ce0;
     end else begin
         DataRAM_3_ce0 = 1'b0;
     end
@@ -6180,45 +6151,45 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_3_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_ce1;
+        DataRAM_3_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_ce1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_3_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_ce1;
+        DataRAM_3_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_ce1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_3_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_ce1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_ce1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_3_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_ce1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_ce1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_ce1;
+        DataRAM_3_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_ce1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_ce1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_3_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_ce1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_ce1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_ce1;
     end else begin
         DataRAM_3_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_3_d0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_3_d0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_3_d0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_3_d0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_3_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_d0;
+        DataRAM_3_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_d0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_3_d0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_3_d0;
+        DataRAM_3_d0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_3_d0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_3_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_d0;
+        DataRAM_3_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_d0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_3_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_d0;
+        DataRAM_3_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_d0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_3_d0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_3_d0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_d0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_3_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_d0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_d0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_d0;
+        DataRAM_3_d0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_3_d0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_d0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_3_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_d0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_d0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_d0;
     end else begin
         DataRAM_3_d0 = 'bx;
     end
@@ -6226,43 +6197,43 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_3_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_d1;
+        DataRAM_3_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_d1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_3_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_d1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_d1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_3_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_d1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_d1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_d1;
+        DataRAM_3_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_d1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_d1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_3_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_d1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_d1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_d1;
     end else begin
         DataRAM_3_d1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_3_we0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_3_we0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_3_we0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_3_we0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_3_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_we0;
+        DataRAM_3_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_we0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_3_we0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_3_we0;
+        DataRAM_3_we0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_3_we0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_3_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_3_we0;
+        DataRAM_3_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_3_we0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_3_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_we0;
+        DataRAM_3_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_we0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_3_we0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_3_we0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_we0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_3_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_we0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_we0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_we0;
+        DataRAM_3_we0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_3_we0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_we0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_3_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_we0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_we0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_we0;
     end else begin
         DataRAM_3_we0 = 1'b0;
     end
@@ -6270,47 +6241,47 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_3_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_3_we1;
+        DataRAM_3_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_3_we1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_3_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_3_we1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_3_we1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_3_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_3_we1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_3_we1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_3_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_3_we1;
+        DataRAM_3_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_3_we1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_3_we1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_3_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_3_we1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_3_we1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_3_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_3_we1;
     end else begin
         DataRAM_3_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_4_address0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_4_address0;
-    end else if ((1'b1 == ap_CS_fsm_state150)) begin
-        DataRAM_4_address0 = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_4_address0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_4_address0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_4_address0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state144))) begin
+        DataRAM_4_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_4_address0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_4_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_address0;
+        DataRAM_4_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_address0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_4_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_4_address0;
+        DataRAM_4_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_4_address0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_4_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_address0;
+        DataRAM_4_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_address0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_4_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_address0;
+        DataRAM_4_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_4_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_4_address0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_address0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_4_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_address0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_address0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_address0;
-    end else if ((((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_4_address0 = grp_apply_bit_reverse_fu_418_x_address0;
+        DataRAM_4_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_4_address0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_address0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_4_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_address0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_address0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_address0;
+    end else if ((((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_4_address0 = grp_apply_bit_reverse_fu_412_x_address0;
     end else begin
         DataRAM_4_address0 = 'bx;
     end
@@ -6318,49 +6289,49 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_4_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_address1;
+        DataRAM_4_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_address1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_4_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_address1;
+        DataRAM_4_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_address1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_4_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_address1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_address1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_4_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_address1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_address1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_address1;
+        DataRAM_4_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_address1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_address1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_4_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_address1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_address1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_address1;
     end else begin
         DataRAM_4_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_4_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_4_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state150)) begin
-        DataRAM_4_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_4_ce0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_4_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_4_ce0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state144))) begin
+        DataRAM_4_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_4_ce0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_4_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_ce0;
+        DataRAM_4_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_ce0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_4_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_4_ce0;
+        DataRAM_4_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_4_ce0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_4_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_ce0;
+        DataRAM_4_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_ce0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_4_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_ce0;
+        DataRAM_4_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_4_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_4_ce0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_ce0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_4_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_ce0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_ce0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_ce0;
-    end else if ((((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_4_ce0 = grp_apply_bit_reverse_fu_418_x_ce0;
+        DataRAM_4_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_4_ce0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_ce0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_4_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_ce0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_ce0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_ce0;
+    end else if ((((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_4_ce0 = grp_apply_bit_reverse_fu_412_x_ce0;
     end else begin
         DataRAM_4_ce0 = 1'b0;
     end
@@ -6368,45 +6339,45 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_4_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_ce1;
+        DataRAM_4_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_ce1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_4_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_ce1;
+        DataRAM_4_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_ce1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_4_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_ce1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_ce1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_4_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_ce1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_ce1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_ce1;
+        DataRAM_4_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_ce1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_ce1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_4_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_ce1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_ce1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_ce1;
     end else begin
         DataRAM_4_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_4_d0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_4_d0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_4_d0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_4_d0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_4_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_d0;
+        DataRAM_4_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_d0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_4_d0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_4_d0;
+        DataRAM_4_d0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_4_d0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_4_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_d0;
+        DataRAM_4_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_d0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_4_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_d0;
+        DataRAM_4_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_d0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_4_d0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_4_d0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_d0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_4_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_d0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_d0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_d0;
+        DataRAM_4_d0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_4_d0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_d0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_4_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_d0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_d0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_d0;
     end else begin
         DataRAM_4_d0 = 'bx;
     end
@@ -6414,43 +6385,43 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_4_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_d1;
+        DataRAM_4_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_d1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_4_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_d1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_d1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_4_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_d1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_d1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_d1;
+        DataRAM_4_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_d1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_d1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_4_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_d1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_d1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_d1;
     end else begin
         DataRAM_4_d1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_4_we0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_4_we0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_4_we0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_4_we0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_4_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_we0;
+        DataRAM_4_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_we0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_4_we0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_4_we0;
+        DataRAM_4_we0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_4_we0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_4_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_4_we0;
+        DataRAM_4_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_4_we0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_4_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_we0;
+        DataRAM_4_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_we0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_4_we0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_4_we0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_we0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_4_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_we0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_we0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_we0;
+        DataRAM_4_we0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_4_we0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_we0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_4_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_we0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_we0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_we0;
     end else begin
         DataRAM_4_we0 = 1'b0;
     end
@@ -6458,47 +6429,47 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_4_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_4_we1;
+        DataRAM_4_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_4_we1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_4_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_4_we1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_4_we1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_4_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_4_we1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_4_we1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_4_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_4_we1;
+        DataRAM_4_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_4_we1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_4_we1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_4_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_4_we1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_4_we1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_4_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_4_we1;
     end else begin
         DataRAM_4_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_5_address0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_5_address0;
-    end else if ((1'b1 == ap_CS_fsm_state153)) begin
-        DataRAM_5_address0 = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_5_address0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_5_address0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_5_address0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state146))) begin
+        DataRAM_5_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_5_address0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_5_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_address0;
+        DataRAM_5_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_address0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_5_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_5_address0;
+        DataRAM_5_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_5_address0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_5_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_address0;
+        DataRAM_5_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_address0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_5_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_address0;
+        DataRAM_5_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_5_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_5_address0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_address0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_5_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_address0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_address0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_address0;
-    end else if ((((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_5_address0 = grp_apply_bit_reverse_fu_426_x_address0;
+        DataRAM_5_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_5_address0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_address0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_5_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_address0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_address0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_address0;
+    end else if ((((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_5_address0 = grp_apply_bit_reverse_fu_420_x_address0;
     end else begin
         DataRAM_5_address0 = 'bx;
     end
@@ -6506,49 +6477,49 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_5_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_address1;
+        DataRAM_5_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_address1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_5_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_address1;
+        DataRAM_5_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_address1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_5_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_address1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_address1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_5_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_address1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_address1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_address1;
+        DataRAM_5_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_address1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_address1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_5_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_address1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_address1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_address1;
     end else begin
         DataRAM_5_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_5_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_5_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state153)) begin
-        DataRAM_5_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_5_ce0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_5_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_5_ce0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state146))) begin
+        DataRAM_5_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_5_ce0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_5_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_ce0;
+        DataRAM_5_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_ce0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_5_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_5_ce0;
+        DataRAM_5_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_5_ce0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_5_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_ce0;
+        DataRAM_5_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_ce0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_5_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_ce0;
+        DataRAM_5_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_5_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_5_ce0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_ce0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_5_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_ce0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_ce0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_ce0;
-    end else if ((((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_5_ce0 = grp_apply_bit_reverse_fu_426_x_ce0;
+        DataRAM_5_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_5_ce0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_ce0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_5_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_ce0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_ce0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_ce0;
+    end else if ((((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_5_ce0 = grp_apply_bit_reverse_fu_420_x_ce0;
     end else begin
         DataRAM_5_ce0 = 1'b0;
     end
@@ -6556,45 +6527,45 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_5_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_ce1;
+        DataRAM_5_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_ce1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_5_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_ce1;
+        DataRAM_5_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_ce1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_5_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_ce1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_ce1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_5_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_ce1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_ce1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_ce1;
+        DataRAM_5_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_ce1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_ce1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_5_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_ce1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_ce1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_ce1;
     end else begin
         DataRAM_5_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_5_d0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_5_d0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_5_d0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_5_d0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_5_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_d0;
+        DataRAM_5_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_d0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_5_d0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_5_d0;
+        DataRAM_5_d0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_5_d0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_5_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_d0;
+        DataRAM_5_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_d0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_5_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_d0;
+        DataRAM_5_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_d0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_5_d0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_5_d0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_d0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_5_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_d0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_d0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_d0;
+        DataRAM_5_d0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_5_d0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_d0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_5_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_d0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_d0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_d0;
     end else begin
         DataRAM_5_d0 = 'bx;
     end
@@ -6602,43 +6573,43 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_5_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_d1;
+        DataRAM_5_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_d1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_5_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_d1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_d1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_5_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_d1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_d1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_d1;
+        DataRAM_5_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_d1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_d1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_5_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_d1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_d1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_d1;
     end else begin
         DataRAM_5_d1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_5_we0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_5_we0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_5_we0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_5_we0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_5_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_we0;
+        DataRAM_5_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_we0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_5_we0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_5_we0;
+        DataRAM_5_we0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_5_we0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_5_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_we0;
+        DataRAM_5_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_we0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_5_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_5_we0;
+        DataRAM_5_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_5_we0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_5_we0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_5_we0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_we0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_5_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_we0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_we0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_we0;
+        DataRAM_5_we0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_5_we0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_we0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_5_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_we0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_we0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_we0;
     end else begin
         DataRAM_5_we0 = 1'b0;
     end
@@ -6646,47 +6617,47 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_5_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_5_we1;
+        DataRAM_5_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_5_we1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_5_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_5_we1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_5_we1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_5_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_5_we1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_5_we1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_5_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_5_we1;
+        DataRAM_5_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_5_we1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_5_we1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_5_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_5_we1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_5_we1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_5_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_5_we1;
     end else begin
         DataRAM_5_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_6_address0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_6_address0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_6_address0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_6_address0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_6_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_address0;
+        DataRAM_6_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_address0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_6_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_6_address0;
+        DataRAM_6_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_6_address0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_6_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_address0;
+        DataRAM_6_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_address0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_6_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_address0;
+        DataRAM_6_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_6_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_6_address0;
-    end else if ((1'b1 == ap_CS_fsm_state147)) begin
-        DataRAM_6_address0 = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_6_address0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_address0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_6_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_address0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_address0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_address0;
-    end else if ((((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_6_address0 = grp_apply_bit_reverse_fu_410_x_address0;
+        DataRAM_6_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_6_address0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state142))) begin
+        DataRAM_6_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_6_address0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_address0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_6_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_address0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_address0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_address0;
+    end else if ((((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_6_address0 = grp_apply_bit_reverse_fu_404_x_address0;
     end else begin
         DataRAM_6_address0 = 'bx;
     end
@@ -6694,49 +6665,49 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_6_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_address1;
+        DataRAM_6_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_address1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_6_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_address1;
+        DataRAM_6_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_address1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_6_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_address1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_address1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_6_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_address1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_address1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_address1;
+        DataRAM_6_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_address1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_address1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_6_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_address1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_address1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_address1;
     end else begin
         DataRAM_6_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_6_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_6_ce0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_6_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_6_ce0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_6_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_ce0;
+        DataRAM_6_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_ce0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_6_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_6_ce0;
+        DataRAM_6_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_6_ce0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_6_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_ce0;
+        DataRAM_6_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_ce0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_6_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_ce0;
+        DataRAM_6_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_6_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_6_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state147)) begin
-        DataRAM_6_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_6_ce0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_ce0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_6_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_ce0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_ce0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_ce0;
-    end else if ((((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_6_ce0 = grp_apply_bit_reverse_fu_410_x_ce0;
+        DataRAM_6_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_6_ce0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state142))) begin
+        DataRAM_6_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_6_ce0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_ce0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_6_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_ce0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_ce0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_ce0;
+    end else if ((((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_6_ce0 = grp_apply_bit_reverse_fu_404_x_ce0;
     end else begin
         DataRAM_6_ce0 = 1'b0;
     end
@@ -6744,45 +6715,45 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_6_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_ce1;
+        DataRAM_6_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_ce1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_6_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_ce1;
+        DataRAM_6_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_ce1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_6_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_ce1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_ce1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_6_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_ce1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_ce1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_ce1;
+        DataRAM_6_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_ce1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_ce1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_6_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_ce1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_ce1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_ce1;
     end else begin
         DataRAM_6_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_6_d0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_6_d0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_6_d0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_6_d0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_6_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_d0;
+        DataRAM_6_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_d0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_6_d0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_6_d0;
+        DataRAM_6_d0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_6_d0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_6_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_d0;
+        DataRAM_6_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_d0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_6_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_d0;
+        DataRAM_6_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_d0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_6_d0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_6_d0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_d0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_6_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_d0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_d0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_d0;
+        DataRAM_6_d0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_6_d0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_d0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_6_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_d0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_d0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_d0;
     end else begin
         DataRAM_6_d0 = 'bx;
     end
@@ -6790,43 +6761,43 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_6_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_d1;
+        DataRAM_6_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_d1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_6_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_d1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_d1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_6_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_d1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_d1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_d1;
+        DataRAM_6_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_d1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_d1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_6_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_d1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_d1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_d1;
     end else begin
         DataRAM_6_d1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_6_we0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_6_we0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_6_we0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_6_we0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_6_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_we0;
+        DataRAM_6_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_we0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_6_we0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_6_we0;
+        DataRAM_6_we0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_6_we0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_6_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_6_we0;
+        DataRAM_6_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_6_we0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_6_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_we0;
+        DataRAM_6_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_we0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_6_we0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_6_we0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_we0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_6_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_we0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_we0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_we0;
+        DataRAM_6_we0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_6_we0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_we0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_6_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_we0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_we0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_we0;
     end else begin
         DataRAM_6_we0 = 1'b0;
     end
@@ -6834,47 +6805,47 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_6_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_6_we1;
+        DataRAM_6_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_6_we1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_6_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_6_we1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_6_we1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_6_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_6_we1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_6_we1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_6_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_6_we1;
+        DataRAM_6_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_6_we1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_6_we1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_6_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_6_we1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_6_we1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_6_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_6_we1;
     end else begin
         DataRAM_6_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_7_address0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_7_address0;
-    end else if ((1'b1 == ap_CS_fsm_state150)) begin
-        DataRAM_7_address0 = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_7_address0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_7_address0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_7_address0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state144))) begin
+        DataRAM_7_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_7_address0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_7_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_address0;
+        DataRAM_7_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_address0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_7_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_7_address0;
+        DataRAM_7_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_7_address0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_7_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_address0;
+        DataRAM_7_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_address0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_7_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_address0;
+        DataRAM_7_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_7_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_7_address0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_address0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_7_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_address0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_address0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_address0;
-    end else if ((((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_7_address0 = grp_apply_bit_reverse_fu_418_x_address0;
+        DataRAM_7_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_7_address0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_address0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_7_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_address0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_address0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_address0;
+    end else if ((((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_7_address0 = grp_apply_bit_reverse_fu_412_x_address0;
     end else begin
         DataRAM_7_address0 = 'bx;
     end
@@ -6882,49 +6853,49 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_7_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_address1;
+        DataRAM_7_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_address1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_7_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_address1;
+        DataRAM_7_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_address1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_7_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_address1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_address1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_7_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_address1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_address1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_address1;
+        DataRAM_7_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_address1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_address1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_7_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_address1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_address1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_address1;
     end else begin
         DataRAM_7_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_7_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_7_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state150)) begin
-        DataRAM_7_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_DataRAM_7_ce0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_7_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_7_ce0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state144))) begin
+        DataRAM_7_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_DataRAM_7_ce0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_7_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_ce0;
+        DataRAM_7_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_ce0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_7_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_7_ce0;
+        DataRAM_7_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_7_ce0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_7_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_ce0;
+        DataRAM_7_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_ce0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_7_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_ce0;
+        DataRAM_7_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_7_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_7_ce0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_ce0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_7_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_ce0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_ce0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_ce0;
-    end else if ((((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_7_ce0 = grp_apply_bit_reverse_fu_418_x_ce0;
+        DataRAM_7_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_7_ce0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_ce0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_7_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_ce0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_ce0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_ce0;
+    end else if ((((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_7_ce0 = grp_apply_bit_reverse_fu_412_x_ce0;
     end else begin
         DataRAM_7_ce0 = 1'b0;
     end
@@ -6932,45 +6903,45 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_7_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_ce1;
+        DataRAM_7_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_ce1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_7_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_ce1;
+        DataRAM_7_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_ce1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_7_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_ce1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_ce1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_7_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_ce1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_ce1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_ce1;
+        DataRAM_7_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_ce1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_ce1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_7_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_ce1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_ce1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_ce1;
     end else begin
         DataRAM_7_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_7_d0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_7_d0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_7_d0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_7_d0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_7_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_d0;
+        DataRAM_7_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_d0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_7_d0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_7_d0;
+        DataRAM_7_d0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_7_d0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_7_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_d0;
+        DataRAM_7_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_d0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_7_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_d0;
+        DataRAM_7_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_d0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_7_d0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_7_d0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_d0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_7_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_d0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_d0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_d0;
+        DataRAM_7_d0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_7_d0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_d0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_7_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_d0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_d0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_d0;
     end else begin
         DataRAM_7_d0 = 'bx;
     end
@@ -6978,43 +6949,43 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_7_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_d1;
+        DataRAM_7_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_d1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_7_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_d1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_d1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_7_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_d1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_d1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_d1;
+        DataRAM_7_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_d1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_d1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_7_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_d1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_d1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_d1;
     end else begin
         DataRAM_7_d1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state158)) begin
-        DataRAM_7_we0 = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_DataRAM_7_we0;
+    if ((1'b1 == ap_CS_fsm_state151)) begin
+        DataRAM_7_we0 = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_DataRAM_7_we0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_7_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_we0;
+        DataRAM_7_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_we0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_7_we0 = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_DataRAM_7_we0;
+        DataRAM_7_we0 = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_DataRAM_7_we0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_7_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_DataRAM_7_we0;
+        DataRAM_7_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_DataRAM_7_we0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_7_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_we0;
+        DataRAM_7_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_we0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_7_we0 = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_DataRAM_7_we0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_we0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_7_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_we0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_we0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_we0;
+        DataRAM_7_we0 = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_DataRAM_7_we0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_we0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_7_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_we0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_we0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_we0;
     end else begin
         DataRAM_7_we0 = 1'b0;
     end
@@ -7022,47 +6993,47 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        DataRAM_7_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_DataRAM_7_we1;
+        DataRAM_7_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_DataRAM_7_we1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        DataRAM_7_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_DataRAM_7_we1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_DataRAM_7_we1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_7_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_DataRAM_7_we1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_DataRAM_7_we1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_7_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_DataRAM_7_we1;
+        DataRAM_7_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_DataRAM_7_we1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_DataRAM_7_we1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_7_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_DataRAM_7_we1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_DataRAM_7_we1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_7_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_DataRAM_7_we1;
     end else begin
         DataRAM_7_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_8_address0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_8_address0;
-    end else if ((1'b1 == ap_CS_fsm_state153)) begin
-        DataRAM_8_address0 = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_8_address0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_8_address0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_8_address0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state146))) begin
+        DataRAM_8_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_8_address0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_8_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_address0;
+        DataRAM_8_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_address0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_8_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_8_address0;
+        DataRAM_8_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_8_address0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_8_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_address0;
+        DataRAM_8_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_address0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_8_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_address0;
+        DataRAM_8_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_8_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_8_address0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_address0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_8_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_address0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_address0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_address0;
-    end else if ((((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_8_address0 = grp_apply_bit_reverse_fu_426_x_address0;
+        DataRAM_8_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_8_address0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_address0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_8_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_address0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_address0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_address0;
+    end else if ((((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_8_address0 = grp_apply_bit_reverse_fu_420_x_address0;
     end else begin
         DataRAM_8_address0 = 'bx;
     end
@@ -7070,49 +7041,49 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_8_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_address1;
+        DataRAM_8_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_address1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_8_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_address1;
+        DataRAM_8_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_address1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_8_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_address1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_address1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_8_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_address1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_address1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_address1;
+        DataRAM_8_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_address1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_address1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_8_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_address1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_address1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_address1;
     end else begin
         DataRAM_8_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_8_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_8_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state153)) begin
-        DataRAM_8_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_DataRAM_8_ce0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_8_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_8_ce0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state146))) begin
+        DataRAM_8_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_DataRAM_8_ce0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_8_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_ce0;
+        DataRAM_8_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_ce0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_8_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_8_ce0;
+        DataRAM_8_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_8_ce0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_8_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_ce0;
+        DataRAM_8_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_ce0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_8_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_ce0;
+        DataRAM_8_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_8_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_8_ce0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_ce0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_8_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_ce0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_ce0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_ce0;
-    end else if ((((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_8_ce0 = grp_apply_bit_reverse_fu_426_x_ce0;
+        DataRAM_8_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_8_ce0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_ce0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_8_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_ce0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_ce0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_ce0;
+    end else if ((((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_8_ce0 = grp_apply_bit_reverse_fu_420_x_ce0;
     end else begin
         DataRAM_8_ce0 = 1'b0;
     end
@@ -7120,45 +7091,45 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_8_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_ce1;
+        DataRAM_8_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_ce1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_8_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_ce1;
+        DataRAM_8_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_ce1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_8_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_ce1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_ce1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_8_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_ce1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_ce1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_ce1;
+        DataRAM_8_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_ce1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_ce1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_8_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_ce1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_ce1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_ce1;
     end else begin
         DataRAM_8_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_8_d0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_8_d0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_8_d0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_8_d0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_8_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_d0;
+        DataRAM_8_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_d0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_8_d0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_8_d0;
+        DataRAM_8_d0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_8_d0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_8_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_d0;
+        DataRAM_8_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_d0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_8_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_d0;
+        DataRAM_8_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_d0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_8_d0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_8_d0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_d0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_8_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_d0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_d0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_d0;
+        DataRAM_8_d0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_8_d0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_d0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_8_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_d0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_d0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_d0;
     end else begin
         DataRAM_8_d0 = 'bx;
     end
@@ -7166,43 +7137,43 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_8_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_d1;
+        DataRAM_8_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_d1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_8_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_d1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_d1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_8_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_d1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_d1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_d1;
+        DataRAM_8_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_d1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_d1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_8_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_d1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_d1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_d1;
     end else begin
         DataRAM_8_d1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        DataRAM_8_we0 = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_DataRAM_8_we0;
+    if ((1'b1 == ap_CS_fsm_state154)) begin
+        DataRAM_8_we0 = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_DataRAM_8_we0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_8_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_we0;
+        DataRAM_8_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_we0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_8_we0 = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_DataRAM_8_we0;
+        DataRAM_8_we0 = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_DataRAM_8_we0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_8_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_we0;
+        DataRAM_8_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_we0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_8_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_DataRAM_8_we0;
+        DataRAM_8_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_DataRAM_8_we0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_8_we0 = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_DataRAM_8_we0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_we0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_8_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_we0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_we0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_we0;
+        DataRAM_8_we0 = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_DataRAM_8_we0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_we0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_8_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_we0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_we0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_we0;
     end else begin
         DataRAM_8_we0 = 1'b0;
     end
@@ -7210,47 +7181,47 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        DataRAM_8_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_DataRAM_8_we1;
+        DataRAM_8_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_DataRAM_8_we1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        DataRAM_8_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_DataRAM_8_we1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_DataRAM_8_we1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_8_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_DataRAM_8_we1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_DataRAM_8_we1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_8_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_DataRAM_8_we1;
+        DataRAM_8_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_DataRAM_8_we1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_DataRAM_8_we1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_8_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_DataRAM_8_we1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_DataRAM_8_we1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_8_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_DataRAM_8_we1;
     end else begin
         DataRAM_8_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_9_address0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_9_address0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_9_address0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_9_address0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_9_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_address0;
+        DataRAM_9_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_address0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_9_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_9_address0;
+        DataRAM_9_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_9_address0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_9_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_address0;
+        DataRAM_9_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_address0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_9_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_address0;
+        DataRAM_9_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_9_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_9_address0;
-    end else if ((1'b1 == ap_CS_fsm_state147)) begin
-        DataRAM_9_address0 = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_9_address0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_address0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_9_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_address0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_address0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_address0;
-    end else if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_9_address0 = grp_apply_bit_reverse_fu_410_x_address0;
+        DataRAM_9_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_9_address0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state142))) begin
+        DataRAM_9_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_9_address0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_address0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_9_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_address0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_address0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_address0;
+    end else if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_9_address0 = grp_apply_bit_reverse_fu_404_x_address0;
     end else begin
         DataRAM_9_address0 = 'bx;
     end
@@ -7258,49 +7229,49 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_9_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_address1;
+        DataRAM_9_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_address1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_9_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_address1;
+        DataRAM_9_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_address1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_9_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_address1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_address1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_9_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_address1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_address1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_address1;
+        DataRAM_9_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_address1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_address1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_9_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_address1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_address1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_address1;
     end else begin
         DataRAM_9_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_9_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_9_ce0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_9_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_9_ce0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_9_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_ce0;
+        DataRAM_9_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_ce0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_9_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_9_ce0;
+        DataRAM_9_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_9_ce0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_9_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_ce0;
+        DataRAM_9_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_ce0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_9_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_ce0;
+        DataRAM_9_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_9_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_9_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state147)) begin
-        DataRAM_9_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_9_ce0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_ce0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_9_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_ce0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_ce0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_ce0;
-    end else if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_9_ce0 = grp_apply_bit_reverse_fu_410_x_ce0;
+        DataRAM_9_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_9_ce0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state142))) begin
+        DataRAM_9_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_9_ce0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_ce0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_9_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_ce0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_ce0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_ce0;
+    end else if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_9_ce0 = grp_apply_bit_reverse_fu_404_x_ce0;
     end else begin
         DataRAM_9_ce0 = 1'b0;
     end
@@ -7308,45 +7279,45 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_9_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_ce1;
+        DataRAM_9_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_ce1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_9_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_ce1;
+        DataRAM_9_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_ce1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_9_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_ce1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_ce1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_9_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_ce1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_ce1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_ce1;
+        DataRAM_9_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_ce1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_ce1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_9_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_ce1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_ce1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_ce1;
     end else begin
         DataRAM_9_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_9_d0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_9_d0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_9_d0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_9_d0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_9_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_d0;
+        DataRAM_9_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_d0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_9_d0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_9_d0;
+        DataRAM_9_d0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_9_d0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_9_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_d0;
+        DataRAM_9_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_d0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_9_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_d0;
+        DataRAM_9_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_d0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_9_d0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_9_d0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_d0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_9_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_d0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_d0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_d0;
+        DataRAM_9_d0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_9_d0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_d0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_9_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_d0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_d0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_d0;
     end else begin
         DataRAM_9_d0 = 'bx;
     end
@@ -7354,43 +7325,43 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_9_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_d1;
+        DataRAM_9_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_d1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_9_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_d1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_d1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_9_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_d1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_d1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_d1;
+        DataRAM_9_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_d1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_d1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_9_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_d1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_d1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_d1;
     end else begin
         DataRAM_9_d1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_9_we0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_9_we0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_9_we0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_9_we0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_9_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_we0;
+        DataRAM_9_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_we0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_9_we0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_9_we0;
+        DataRAM_9_we0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_9_we0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_9_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_9_we0;
+        DataRAM_9_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_9_we0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_9_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_we0;
+        DataRAM_9_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_we0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_9_we0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_9_we0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_we0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_9_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_we0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_we0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_we0;
+        DataRAM_9_we0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_9_we0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_we0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_9_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_we0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_we0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_we0;
     end else begin
         DataRAM_9_we0 = 1'b0;
     end
@@ -7398,47 +7369,47 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_9_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_9_we1;
+        DataRAM_9_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_9_we1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_9_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_9_we1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_9_we1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_9_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_9_we1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_9_we1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_9_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_9_we1;
+        DataRAM_9_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_9_we1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_9_we1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_9_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_9_we1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_9_we1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_9_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_9_we1;
     end else begin
         DataRAM_9_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_address0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_address0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_address0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_address0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_address0;
+        DataRAM_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_address0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_address0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_address0;
+        DataRAM_address0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_address0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_address0;
+        DataRAM_address0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_address0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_address0;
+        DataRAM_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_address0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_address0;
-    end else if ((1'b1 == ap_CS_fsm_state147)) begin
-        DataRAM_address0 = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_address0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_address0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_address0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_address0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_address0;
-    end else if ((((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_address0 = grp_apply_bit_reverse_fu_410_x_address0;
+        DataRAM_address0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_address0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state142))) begin
+        DataRAM_address0 = grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_address0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_address0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_address0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_address0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_address0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_address0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_address0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_address0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_address0;
+    end else if ((((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_address0 = grp_apply_bit_reverse_fu_404_x_address0;
     end else begin
         DataRAM_address0 = 'bx;
     end
@@ -7446,49 +7417,49 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_address1;
+        DataRAM_address1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_address1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_address1;
+        DataRAM_address1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_address1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_address1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_address1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_address1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_address1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_address1;
+        DataRAM_address1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_address1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_address1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_address1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_address1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_address1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_address1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_address1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_address1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_address1;
     end else begin
         DataRAM_address1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_ce0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_ce0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_ce0;
+        DataRAM_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_ce0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_ce0;
+        DataRAM_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_ce0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_ce0;
+        DataRAM_ce0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_ce0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_ce0;
+        DataRAM_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state147)) begin
-        DataRAM_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_DataRAM_ce0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_ce0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_ce0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_ce0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_ce0;
-    end else if ((((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
-        DataRAM_ce0 = grp_apply_bit_reverse_fu_410_x_ce0;
+        DataRAM_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_ce0;
+    end else if (((32'd6 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state142))) begin
+        DataRAM_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_DataRAM_ce0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_ce0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_ce0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_ce0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_ce0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_ce0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_ce0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_ce0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_ce0;
+    end else if ((((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
+        DataRAM_ce0 = grp_apply_bit_reverse_fu_404_x_ce0;
     end else begin
         DataRAM_ce0 = 1'b0;
     end
@@ -7496,45 +7467,45 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_ce1;
+        DataRAM_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_ce1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_ce1;
+        DataRAM_ce1 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_ce1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_ce1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_ce1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_ce1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_ce1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_ce1;
+        DataRAM_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_ce1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_ce1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_ce1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_ce1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_ce1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_ce1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_ce1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_ce1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_ce1;
     end else begin
         DataRAM_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_d0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_d0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_d0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_d0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_d0;
+        DataRAM_d0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_d0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_d0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_d0;
+        DataRAM_d0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_d0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_d0;
+        DataRAM_d0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_d0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_d0;
+        DataRAM_d0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_d0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_d0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_d0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_d0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_d0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_d0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_d0;
+        DataRAM_d0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_d0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_d0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_d0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_d0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_d0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_d0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_d0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_d0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_d0;
     end else begin
         DataRAM_d0 = 'bx;
     end
@@ -7542,43 +7513,43 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_d1;
+        DataRAM_d1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_d1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_d1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_d1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_d1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_d1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_d1;
+        DataRAM_d1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_d1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_d1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_d1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_d1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_d1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_d1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_d1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_d1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_d1;
     end else begin
         DataRAM_d1 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state155)) begin
-        DataRAM_we0 = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_DataRAM_we0;
+    if ((1'b1 == ap_CS_fsm_state148)) begin
+        DataRAM_we0 = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_DataRAM_we0;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_we0;
+        DataRAM_we0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_we0;
     end else if ((1'b1 == ap_CS_fsm_state74)) begin
-        DataRAM_we0 = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_DataRAM_we0;
+        DataRAM_we0 = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_DataRAM_we0;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        DataRAM_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_DataRAM_we0;
+        DataRAM_we0 = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_DataRAM_we0;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_we0;
+        DataRAM_we0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_we0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        DataRAM_we0 = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_DataRAM_we0;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_we0;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_we0;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_we0;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_we0;
+        DataRAM_we0 = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_DataRAM_we0;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_we0 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_we0;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_we0 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_we0;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_we0 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_we0;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_we0 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_we0;
     end else begin
         DataRAM_we0 = 1'b0;
     end
@@ -7586,37 +7557,37 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        DataRAM_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_DataRAM_we1;
+        DataRAM_we1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_DataRAM_we1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        DataRAM_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_DataRAM_we1;
-    end else if (((32'd8 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_DataRAM_we1;
-    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1427))) begin
-        DataRAM_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_DataRAM_we1;
-    end else if (((32'd1 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_DataRAM_we1;
-    end else if (((32'd2 == OP_read_reg_1427) & (1'b1 == ap_CS_fsm_state141))) begin
-        DataRAM_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_DataRAM_we1;
+        DataRAM_we1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_DataRAM_we1;
+    end else if (((32'd8 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_we1 = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_DataRAM_we1;
+    end else if (((1'b1 == ap_CS_fsm_state141) & (32'd0 == OP_read_reg_1403))) begin
+        DataRAM_we1 = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_DataRAM_we1;
+    end else if (((32'd1 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_we1 = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_DataRAM_we1;
+    end else if (((32'd2 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state141))) begin
+        DataRAM_we1 = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_DataRAM_we1;
     end else begin
         DataRAM_we1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state144)) begin
-        INTTTWiddleRAM_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTWiddleRAM_1_address0;
+    if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state144))) begin
+        INTTTWiddleRAM_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTWiddleRAM_1_address0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        INTTTWiddleRAM_1_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_INTTTWiddleRAM_1_address0;
+        INTTTWiddleRAM_1_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_INTTTWiddleRAM_1_address0;
     end else begin
         INTTTWiddleRAM_1_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state144)) begin
-        INTTTWiddleRAM_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTWiddleRAM_1_ce0;
+    if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state144))) begin
+        INTTTWiddleRAM_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTWiddleRAM_1_ce0;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        INTTTWiddleRAM_1_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_INTTTWiddleRAM_1_ce0;
+        INTTTWiddleRAM_1_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_INTTTWiddleRAM_1_ce0;
     end else begin
         INTTTWiddleRAM_1_ce0 = 1'b0;
     end
@@ -7624,35 +7595,35 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state48)) begin
-        INTTTWiddleRAM_1_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_INTTTWiddleRAM_1_ce1;
+        INTTTWiddleRAM_1_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_INTTTWiddleRAM_1_ce1;
     end else begin
         INTTTWiddleRAM_1_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state144)) begin
-        INTTTWiddleRAM_1_we0 = grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTWiddleRAM_1_we0;
+    if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state144))) begin
+        INTTTWiddleRAM_1_we0 = grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTWiddleRAM_1_we0;
     end else begin
         INTTTWiddleRAM_1_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state146)) begin
-        INTTTWiddleRAM_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTWiddleRAM_2_address0;
+    if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state146))) begin
+        INTTTWiddleRAM_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTWiddleRAM_2_address0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        INTTTWiddleRAM_2_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_INTTTWiddleRAM_2_address0;
+        INTTTWiddleRAM_2_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_INTTTWiddleRAM_2_address0;
     end else begin
         INTTTWiddleRAM_2_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state146)) begin
-        INTTTWiddleRAM_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTWiddleRAM_2_ce0;
+    if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state146))) begin
+        INTTTWiddleRAM_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTWiddleRAM_2_ce0;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        INTTTWiddleRAM_2_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_INTTTWiddleRAM_2_ce0;
+        INTTTWiddleRAM_2_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_INTTTWiddleRAM_2_ce0;
     end else begin
         INTTTWiddleRAM_2_ce0 = 1'b0;
     end
@@ -7660,15 +7631,15 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state70)) begin
-        INTTTWiddleRAM_2_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_INTTTWiddleRAM_2_ce1;
+        INTTTWiddleRAM_2_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_INTTTWiddleRAM_2_ce1;
     end else begin
         INTTTWiddleRAM_2_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state146)) begin
-        INTTTWiddleRAM_2_we0 = grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTWiddleRAM_2_we0;
+    if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state146))) begin
+        INTTTWiddleRAM_2_we0 = grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTWiddleRAM_2_we0;
     end else begin
         INTTTWiddleRAM_2_we0 = 1'b0;
     end
@@ -7676,9 +7647,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state26)) begin
-        INTTTWiddleRAM_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_INTTTWiddleRAM_address0;
-    end else if ((1'b1 == ap_CS_fsm_state142)) begin
-        INTTTWiddleRAM_address0 = grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTWiddleRAM_address0;
+        INTTTWiddleRAM_address0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_INTTTWiddleRAM_address0;
+    end else if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state142))) begin
+        INTTTWiddleRAM_address0 = grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTWiddleRAM_address0;
     end else begin
         INTTTWiddleRAM_address0 = 'bx;
     end
@@ -7686,9 +7657,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state26)) begin
-        INTTTWiddleRAM_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_INTTTWiddleRAM_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state142)) begin
-        INTTTWiddleRAM_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTWiddleRAM_ce0;
+        INTTTWiddleRAM_ce0 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_INTTTWiddleRAM_ce0;
+    end else if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state142))) begin
+        INTTTWiddleRAM_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTWiddleRAM_ce0;
     end else begin
         INTTTWiddleRAM_ce0 = 1'b0;
     end
@@ -7696,59 +7667,67 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state26)) begin
-        INTTTWiddleRAM_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_INTTTWiddleRAM_ce1;
+        INTTTWiddleRAM_ce1 = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_INTTTWiddleRAM_ce1;
     end else begin
         INTTTWiddleRAM_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state142)) begin
-        INTTTWiddleRAM_we0 = grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTWiddleRAM_we0;
+    if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state142))) begin
+        INTTTWiddleRAM_we0 = grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTWiddleRAM_we0;
     end else begin
         INTTTWiddleRAM_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state146)) begin
-        INTTTwiddleIn_address0 = grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTwiddleIn_address0;
-    end else if ((1'b1 == ap_CS_fsm_state144)) begin
-        INTTTwiddleIn_address0 = grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTwiddleIn_address0;
-    end else if ((1'b1 == ap_CS_fsm_state142)) begin
-        INTTTwiddleIn_address0 = grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTwiddleIn_address0;
+    if ((32'd7 == OP_read_reg_1403)) begin
+        if ((1'b1 == ap_CS_fsm_state146)) begin
+            INTTTwiddleIn_address0 = grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTwiddleIn_address0;
+        end else if ((1'b1 == ap_CS_fsm_state144)) begin
+            INTTTwiddleIn_address0 = grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTwiddleIn_address0;
+        end else if ((1'b1 == ap_CS_fsm_state142)) begin
+            INTTTwiddleIn_address0 = grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTwiddleIn_address0;
+        end else begin
+            INTTTwiddleIn_address0 = 'bx;
+        end
     end else begin
         INTTTwiddleIn_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state146)) begin
-        INTTTwiddleIn_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_INTTTwiddleIn_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state144)) begin
-        INTTTwiddleIn_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_INTTTwiddleIn_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state142)) begin
-        INTTTwiddleIn_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_INTTTwiddleIn_ce0;
+    if ((32'd7 == OP_read_reg_1403)) begin
+        if ((1'b1 == ap_CS_fsm_state146)) begin
+            INTTTwiddleIn_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_INTTTwiddleIn_ce0;
+        end else if ((1'b1 == ap_CS_fsm_state144)) begin
+            INTTTwiddleIn_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_INTTTwiddleIn_ce0;
+        end else if ((1'b1 == ap_CS_fsm_state142)) begin
+            INTTTwiddleIn_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_INTTTwiddleIn_ce0;
+        end else begin
+            INTTTwiddleIn_ce0 = 1'b0;
+        end
     end else begin
         INTTTwiddleIn_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state144)) begin
-        NTTTWiddleRAM_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTWiddleRAM_1_address0;
+    if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state144))) begin
+        NTTTWiddleRAM_1_address0 = grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTWiddleRAM_1_address0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        NTTTWiddleRAM_1_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_NTTTWiddleRAM_1_address0;
+        NTTTWiddleRAM_1_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_NTTTWiddleRAM_1_address0;
     end else begin
         NTTTWiddleRAM_1_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state144)) begin
-        NTTTWiddleRAM_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTWiddleRAM_1_ce0;
+    if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state144))) begin
+        NTTTWiddleRAM_1_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTWiddleRAM_1_ce0;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        NTTTWiddleRAM_1_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_NTTTWiddleRAM_1_ce0;
+        NTTTWiddleRAM_1_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_NTTTWiddleRAM_1_ce0;
     end else begin
         NTTTWiddleRAM_1_ce0 = 1'b0;
     end
@@ -7756,35 +7735,35 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state118)) begin
-        NTTTWiddleRAM_1_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_NTTTWiddleRAM_1_ce1;
+        NTTTWiddleRAM_1_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_NTTTWiddleRAM_1_ce1;
     end else begin
         NTTTWiddleRAM_1_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state144)) begin
-        NTTTWiddleRAM_1_we0 = grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTWiddleRAM_1_we0;
+    if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state144))) begin
+        NTTTWiddleRAM_1_we0 = grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTWiddleRAM_1_we0;
     end else begin
         NTTTWiddleRAM_1_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state146)) begin
-        NTTTWiddleRAM_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTWiddleRAM_2_address0;
+    if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state146))) begin
+        NTTTWiddleRAM_2_address0 = grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTWiddleRAM_2_address0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        NTTTWiddleRAM_2_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_NTTTWiddleRAM_2_address0;
+        NTTTWiddleRAM_2_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_NTTTWiddleRAM_2_address0;
     end else begin
         NTTTWiddleRAM_2_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state146)) begin
-        NTTTWiddleRAM_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTWiddleRAM_2_ce0;
+    if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state146))) begin
+        NTTTWiddleRAM_2_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTWiddleRAM_2_ce0;
     end else if ((1'b1 == ap_CS_fsm_state140)) begin
-        NTTTWiddleRAM_2_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_NTTTWiddleRAM_2_ce0;
+        NTTTWiddleRAM_2_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_NTTTWiddleRAM_2_ce0;
     end else begin
         NTTTWiddleRAM_2_ce0 = 1'b0;
     end
@@ -7792,15 +7771,15 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        NTTTWiddleRAM_2_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_NTTTWiddleRAM_2_ce1;
+        NTTTWiddleRAM_2_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_NTTTWiddleRAM_2_ce1;
     end else begin
         NTTTWiddleRAM_2_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state146)) begin
-        NTTTWiddleRAM_2_we0 = grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTWiddleRAM_2_we0;
+    if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state146))) begin
+        NTTTWiddleRAM_2_we0 = grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTWiddleRAM_2_we0;
     end else begin
         NTTTWiddleRAM_2_we0 = 1'b0;
     end
@@ -7808,9 +7787,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        NTTTWiddleRAM_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_NTTTWiddleRAM_address0;
-    end else if ((1'b1 == ap_CS_fsm_state142)) begin
-        NTTTWiddleRAM_address0 = grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTWiddleRAM_address0;
+        NTTTWiddleRAM_address0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_NTTTWiddleRAM_address0;
+    end else if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state142))) begin
+        NTTTWiddleRAM_address0 = grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTWiddleRAM_address0;
     end else begin
         NTTTWiddleRAM_address0 = 'bx;
     end
@@ -7818,9 +7797,9 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        NTTTWiddleRAM_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_NTTTWiddleRAM_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state142)) begin
-        NTTTWiddleRAM_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTWiddleRAM_ce0;
+        NTTTWiddleRAM_ce0 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_NTTTWiddleRAM_ce0;
+    end else if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state142))) begin
+        NTTTWiddleRAM_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTWiddleRAM_ce0;
     end else begin
         NTTTWiddleRAM_ce0 = 1'b0;
     end
@@ -7828,39 +7807,47 @@ end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state96)) begin
-        NTTTWiddleRAM_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_NTTTWiddleRAM_ce1;
+        NTTTWiddleRAM_ce1 = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_NTTTWiddleRAM_ce1;
     end else begin
         NTTTWiddleRAM_ce1 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state142)) begin
-        NTTTWiddleRAM_we0 = grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTWiddleRAM_we0;
+    if (((32'd7 == OP_read_reg_1403) & (1'b1 == ap_CS_fsm_state142))) begin
+        NTTTWiddleRAM_we0 = grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTWiddleRAM_we0;
     end else begin
         NTTTWiddleRAM_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state146)) begin
-        NTTTwiddleIn_address0 = grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTwiddleIn_address0;
-    end else if ((1'b1 == ap_CS_fsm_state144)) begin
-        NTTTwiddleIn_address0 = grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTwiddleIn_address0;
-    end else if ((1'b1 == ap_CS_fsm_state142)) begin
-        NTTTwiddleIn_address0 = grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTwiddleIn_address0;
+    if ((32'd7 == OP_read_reg_1403)) begin
+        if ((1'b1 == ap_CS_fsm_state146)) begin
+            NTTTwiddleIn_address0 = grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTwiddleIn_address0;
+        end else if ((1'b1 == ap_CS_fsm_state144)) begin
+            NTTTwiddleIn_address0 = grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTwiddleIn_address0;
+        end else if ((1'b1 == ap_CS_fsm_state142)) begin
+            NTTTwiddleIn_address0 = grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTwiddleIn_address0;
+        end else begin
+            NTTTwiddleIn_address0 = 'bx;
+        end
     end else begin
         NTTTwiddleIn_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state146)) begin
-        NTTTwiddleIn_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_NTTTwiddleIn_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state144)) begin
-        NTTTwiddleIn_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_NTTTwiddleIn_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state142)) begin
-        NTTTwiddleIn_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_NTTTwiddleIn_ce0;
+    if ((32'd7 == OP_read_reg_1403)) begin
+        if ((1'b1 == ap_CS_fsm_state146)) begin
+            NTTTwiddleIn_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_NTTTwiddleIn_ce0;
+        end else if ((1'b1 == ap_CS_fsm_state144)) begin
+            NTTTwiddleIn_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_NTTTwiddleIn_ce0;
+        end else if ((1'b1 == ap_CS_fsm_state142)) begin
+            NTTTwiddleIn_ce0 = grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_NTTTwiddleIn_ce0;
+        end else begin
+            NTTTwiddleIn_ce0 = 1'b0;
+        end
     end else begin
         NTTTwiddleIn_ce0 = 1'b0;
     end
@@ -7905,7 +7892,7 @@ assign ap_ST_fsm_state116_blk = 1'b0;
 assign ap_ST_fsm_state117_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_done == 1'b0)) begin
+    if ((grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_done == 1'b0)) begin
         ap_ST_fsm_state118_blk = 1'b1;
     end else begin
         ap_ST_fsm_state118_blk = 1'b0;
@@ -7961,7 +7948,7 @@ assign ap_ST_fsm_state139_blk = 1'b0;
 assign ap_ST_fsm_state13_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_done == 1'b0)) begin
+    if ((grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_done == 1'b0)) begin
         ap_ST_fsm_state140_blk = 1'b1;
     end else begin
         ap_ST_fsm_state140_blk = 1'b0;
@@ -7977,7 +7964,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_done == 1'b0)) begin
+    if ((1'b1 == ap_block_state142_on_subcall_done)) begin
         ap_ST_fsm_state142_blk = 1'b1;
     end else begin
         ap_ST_fsm_state142_blk = 1'b0;
@@ -7987,7 +7974,7 @@ end
 assign ap_ST_fsm_state143_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_done == 1'b0)) begin
+    if ((1'b1 == ap_block_state144_on_subcall_done)) begin
         ap_ST_fsm_state144_blk = 1'b1;
     end else begin
         ap_ST_fsm_state144_blk = 1'b0;
@@ -7997,90 +7984,52 @@ end
 assign ap_ST_fsm_state145_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_done == 1'b0)) begin
+    if ((1'b1 == ap_block_state146_on_subcall_done)) begin
         ap_ST_fsm_state146_blk = 1'b1;
     end else begin
         ap_ST_fsm_state146_blk = 1'b0;
     end
 end
 
+assign ap_ST_fsm_state147_blk = 1'b0;
+
 always @ (*) begin
-    if ((grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_done == 1'b0)) begin
-        ap_ST_fsm_state147_blk = 1'b1;
+    if ((grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_done == 1'b0)) begin
+        ap_ST_fsm_state148_blk = 1'b1;
     end else begin
-        ap_ST_fsm_state147_blk = 1'b0;
+        ap_ST_fsm_state148_blk = 1'b0;
     end
 end
-
-assign ap_ST_fsm_state148_blk = 1'b0;
 
 assign ap_ST_fsm_state149_blk = 1'b0;
 
 assign ap_ST_fsm_state14_blk = 1'b0;
 
+assign ap_ST_fsm_state150_blk = 1'b0;
+
 always @ (*) begin
-    if ((grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_done == 1'b0)) begin
-        ap_ST_fsm_state150_blk = 1'b1;
+    if ((grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_done == 1'b0)) begin
+        ap_ST_fsm_state151_blk = 1'b1;
     end else begin
-        ap_ST_fsm_state150_blk = 1'b0;
+        ap_ST_fsm_state151_blk = 1'b0;
     end
 end
-
-assign ap_ST_fsm_state151_blk = 1'b0;
 
 assign ap_ST_fsm_state152_blk = 1'b0;
 
+assign ap_ST_fsm_state153_blk = 1'b0;
+
 always @ (*) begin
-    if ((grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_done == 1'b0)) begin
-        ap_ST_fsm_state153_blk = 1'b1;
+    if ((grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_done == 1'b0)) begin
+        ap_ST_fsm_state154_blk = 1'b1;
     end else begin
-        ap_ST_fsm_state153_blk = 1'b0;
+        ap_ST_fsm_state154_blk = 1'b0;
     end
 end
 
-assign ap_ST_fsm_state154_blk = 1'b0;
-
-always @ (*) begin
-    if ((grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_done == 1'b0)) begin
-        ap_ST_fsm_state155_blk = 1'b1;
-    end else begin
-        ap_ST_fsm_state155_blk = 1'b0;
-    end
-end
-
-assign ap_ST_fsm_state156_blk = 1'b0;
-
-assign ap_ST_fsm_state157_blk = 1'b0;
-
-always @ (*) begin
-    if ((grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_done == 1'b0)) begin
-        ap_ST_fsm_state158_blk = 1'b1;
-    end else begin
-        ap_ST_fsm_state158_blk = 1'b0;
-    end
-end
-
-assign ap_ST_fsm_state159_blk = 1'b0;
+assign ap_ST_fsm_state155_blk = 1'b0;
 
 assign ap_ST_fsm_state15_blk = 1'b0;
-
-assign ap_ST_fsm_state160_blk = 1'b0;
-
-always @ (*) begin
-    if ((grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_done == 1'b0)) begin
-        ap_ST_fsm_state161_blk = 1'b1;
-    end else begin
-        ap_ST_fsm_state161_blk = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if ((regslice_both_dataOutStream_V_data_V_U_apdone_blk == 1'b1)) begin
-        ap_ST_fsm_state162_blk = 1'b1;
-    end else begin
-        ap_ST_fsm_state162_blk = 1'b0;
-    end
-end
 
 assign ap_ST_fsm_state16_blk = 1'b0;
 
@@ -8111,7 +8060,7 @@ assign ap_ST_fsm_state24_blk = 1'b0;
 assign ap_ST_fsm_state25_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_done == 1'b0)) begin
+    if ((grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_done == 1'b0)) begin
         ap_ST_fsm_state26_blk = 1'b1;
     end else begin
         ap_ST_fsm_state26_blk = 1'b0;
@@ -8171,7 +8120,7 @@ assign ap_ST_fsm_state46_blk = 1'b0;
 assign ap_ST_fsm_state47_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_done == 1'b0)) begin
+    if ((grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_done == 1'b0)) begin
         ap_ST_fsm_state48_blk = 1'b1;
     end else begin
         ap_ST_fsm_state48_blk = 1'b0;
@@ -8233,7 +8182,7 @@ assign ap_ST_fsm_state69_blk = 1'b0;
 assign ap_ST_fsm_state6_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_done == 1'b0)) begin
+    if ((grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_done == 1'b0)) begin
         ap_ST_fsm_state70_blk = 1'b1;
     end else begin
         ap_ST_fsm_state70_blk = 1'b0;
@@ -8313,7 +8262,7 @@ assign ap_ST_fsm_state94_blk = 1'b0;
 assign ap_ST_fsm_state95_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_done == 1'b0)) begin
+    if ((grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_done == 1'b0)) begin
         ap_ST_fsm_state96_blk = 1'b1;
     end else begin
         ap_ST_fsm_state96_blk = 1'b0;
@@ -8329,7 +8278,7 @@ assign ap_ST_fsm_state99_blk = 1'b0;
 assign ap_ST_fsm_state9_blk = 1'b0;
 
 always @ (*) begin
-    if (((regslice_both_dataOutStream_V_data_V_U_apdone_blk == 1'b0) & (1'b1 == ap_CS_fsm_state162))) begin
+    if ((1'b1 == ap_CS_fsm_state155)) begin
         ap_done = 1'b1;
     end else begin
         ap_done = 1'b0;
@@ -8345,7 +8294,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((regslice_both_dataOutStream_V_data_V_U_apdone_blk == 1'b0) & (1'b1 == ap_CS_fsm_state162))) begin
+    if ((1'b1 == ap_CS_fsm_state155)) begin
         ap_ready = 1'b1;
     end else begin
         ap_ready = 1'b0;
@@ -8353,373 +8302,299 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state161)) begin
-        dataInStream_TREADY_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_dataInStream_TREADY;
-    end else if ((1'b1 == ap_CS_fsm_state158)) begin
-        dataInStream_TREADY_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_dataInStream_TREADY;
-    end else if ((1'b1 == ap_CS_fsm_state155)) begin
-        dataInStream_TREADY_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_dataInStream_TREADY;
-    end else begin
-        dataInStream_TREADY_int_regslice = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state153))) begin
-        dataOutStream_TDATA_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TDATA;
-    end else if (((grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state150))) begin
-        dataOutStream_TDATA_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TDATA;
-    end else if (((1'b1 == ap_CS_fsm_state147) & (grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TVALID == 1'b1))) begin
-        dataOutStream_TDATA_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TDATA;
-    end else begin
-        dataOutStream_TDATA_int_regslice = 'bx;
-    end
-end
-
-always @ (*) begin
-    if (((grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state153))) begin
-        dataOutStream_TKEEP_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TKEEP;
-    end else if (((grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state150))) begin
-        dataOutStream_TKEEP_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TKEEP;
-    end else if (((1'b1 == ap_CS_fsm_state147) & (grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TVALID == 1'b1))) begin
-        dataOutStream_TKEEP_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TKEEP;
-    end else begin
-        dataOutStream_TKEEP_int_regslice = 'bx;
-    end
-end
-
-always @ (*) begin
-    if (((grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state153))) begin
-        dataOutStream_TLAST_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TLAST;
-    end else if (((grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state150))) begin
-        dataOutStream_TLAST_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TLAST;
-    end else if (((1'b1 == ap_CS_fsm_state147) & (grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TVALID == 1'b1))) begin
-        dataOutStream_TLAST_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TLAST;
-    end else begin
-        dataOutStream_TLAST_int_regslice = 'bx;
-    end
-end
-
-always @ (*) begin
-    if (((grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state153))) begin
-        dataOutStream_TSTRB_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TSTRB;
-    end else if (((grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TVALID == 1'b1) & (1'b1 == ap_CS_fsm_state150))) begin
-        dataOutStream_TSTRB_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TSTRB;
-    end else if (((1'b1 == ap_CS_fsm_state147) & (grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TVALID == 1'b1))) begin
-        dataOutStream_TSTRB_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TSTRB;
-    end else begin
-        dataOutStream_TSTRB_int_regslice = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state153)) begin
-        dataOutStream_TVALID_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TVALID;
-    end else if ((1'b1 == ap_CS_fsm_state150)) begin
-        dataOutStream_TVALID_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TVALID;
-    end else if ((1'b1 == ap_CS_fsm_state147)) begin
-        dataOutStream_TVALID_int_regslice = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TVALID;
-    end else begin
-        dataOutStream_TVALID_int_regslice = 1'b0;
-    end
-end
-
-always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        grp_ADD_MOD_fu_1757_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_ADD_MOD_fu_1757_p_din3;
+        grp_ADD_MOD_fu_1733_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_ADD_MOD_fu_1733_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        grp_ADD_MOD_fu_1757_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_ADD_MOD_fu_1757_p_din3;
+        grp_ADD_MOD_fu_1733_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_ADD_MOD_fu_1733_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        grp_ADD_MOD_fu_1757_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_ADD_MOD_fu_1757_p_din3;
+        grp_ADD_MOD_fu_1733_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_ADD_MOD_fu_1733_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        grp_ADD_MOD_fu_1757_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_ADD_MOD_fu_1757_p_din3;
+        grp_ADD_MOD_fu_1733_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_ADD_MOD_fu_1733_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        grp_ADD_MOD_fu_1757_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_ADD_MOD_fu_1757_p_din3;
+        grp_ADD_MOD_fu_1733_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_ADD_MOD_fu_1733_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_ADD_MOD_fu_1757_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_ADD_MOD_fu_1757_p_din3;
+        grp_ADD_MOD_fu_1733_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_ADD_MOD_fu_1733_p_din3;
     end else begin
-        grp_ADD_MOD_fu_1757_MOD_INDEX = 'bx;
+        grp_ADD_MOD_fu_1733_MOD_INDEX = 'bx;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        grp_ADD_MOD_fu_1757_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_ADD_MOD_fu_1757_p_din1;
+        grp_ADD_MOD_fu_1733_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_ADD_MOD_fu_1733_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        grp_ADD_MOD_fu_1757_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_ADD_MOD_fu_1757_p_din1;
+        grp_ADD_MOD_fu_1733_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_ADD_MOD_fu_1733_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        grp_ADD_MOD_fu_1757_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_ADD_MOD_fu_1757_p_din1;
+        grp_ADD_MOD_fu_1733_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_ADD_MOD_fu_1733_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        grp_ADD_MOD_fu_1757_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_ADD_MOD_fu_1757_p_din1;
+        grp_ADD_MOD_fu_1733_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_ADD_MOD_fu_1733_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        grp_ADD_MOD_fu_1757_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_ADD_MOD_fu_1757_p_din1;
+        grp_ADD_MOD_fu_1733_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_ADD_MOD_fu_1733_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_ADD_MOD_fu_1757_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_ADD_MOD_fu_1757_p_din1;
+        grp_ADD_MOD_fu_1733_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_ADD_MOD_fu_1733_p_din1;
     end else begin
-        grp_ADD_MOD_fu_1757_input1_val = 'bx;
+        grp_ADD_MOD_fu_1733_input1_val = 'bx;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        grp_ADD_MOD_fu_1757_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_ADD_MOD_fu_1757_p_din2;
+        grp_ADD_MOD_fu_1733_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_ADD_MOD_fu_1733_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        grp_ADD_MOD_fu_1757_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_ADD_MOD_fu_1757_p_din2;
+        grp_ADD_MOD_fu_1733_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_ADD_MOD_fu_1733_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        grp_ADD_MOD_fu_1757_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_ADD_MOD_fu_1757_p_din2;
+        grp_ADD_MOD_fu_1733_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_ADD_MOD_fu_1733_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        grp_ADD_MOD_fu_1757_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_ADD_MOD_fu_1757_p_din2;
+        grp_ADD_MOD_fu_1733_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_ADD_MOD_fu_1733_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        grp_ADD_MOD_fu_1757_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_ADD_MOD_fu_1757_p_din2;
+        grp_ADD_MOD_fu_1733_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_ADD_MOD_fu_1733_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_ADD_MOD_fu_1757_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_ADD_MOD_fu_1757_p_din2;
+        grp_ADD_MOD_fu_1733_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_ADD_MOD_fu_1733_p_din2;
     end else begin
-        grp_ADD_MOD_fu_1757_input2_val = 'bx;
+        grp_ADD_MOD_fu_1733_input2_val = 'bx;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        grp_MUL_MOD_fu_1763_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_MUL_MOD_fu_1763_p_din3;
+        grp_MUL_MOD_fu_1739_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_MUL_MOD_fu_1739_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        grp_MUL_MOD_fu_1763_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_MUL_MOD_fu_1763_p_din3;
+        grp_MUL_MOD_fu_1739_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_MUL_MOD_fu_1739_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        grp_MUL_MOD_fu_1763_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_MUL_MOD_fu_1763_p_din3;
+        grp_MUL_MOD_fu_1739_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_MUL_MOD_fu_1739_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        grp_MUL_MOD_fu_1763_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_MUL_MOD_fu_1763_p_din3;
+        grp_MUL_MOD_fu_1739_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_MUL_MOD_fu_1739_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        grp_MUL_MOD_fu_1763_MOD_INDEX = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_grp_MUL_MOD_fu_1763_p_din3;
+        grp_MUL_MOD_fu_1739_MOD_INDEX = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_grp_MUL_MOD_fu_1739_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        grp_MUL_MOD_fu_1763_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_MUL_MOD_fu_1763_p_din3;
+        grp_MUL_MOD_fu_1739_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_MUL_MOD_fu_1739_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_MUL_MOD_fu_1763_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_MUL_MOD_fu_1763_p_din3;
+        grp_MUL_MOD_fu_1739_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_MUL_MOD_fu_1739_p_din3;
     end else begin
-        grp_MUL_MOD_fu_1763_MOD_INDEX = 'bx;
+        grp_MUL_MOD_fu_1739_MOD_INDEX = 'bx;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        grp_MUL_MOD_fu_1763_ap_ce = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_MUL_MOD_fu_1763_p_ce;
+        grp_MUL_MOD_fu_1739_ap_ce = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_MUL_MOD_fu_1739_p_ce;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        grp_MUL_MOD_fu_1763_ap_ce = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_MUL_MOD_fu_1763_p_ce;
+        grp_MUL_MOD_fu_1739_ap_ce = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_MUL_MOD_fu_1739_p_ce;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        grp_MUL_MOD_fu_1763_ap_ce = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_MUL_MOD_fu_1763_p_ce;
+        grp_MUL_MOD_fu_1739_ap_ce = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_MUL_MOD_fu_1739_p_ce;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        grp_MUL_MOD_fu_1763_ap_ce = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_MUL_MOD_fu_1763_p_ce;
+        grp_MUL_MOD_fu_1739_ap_ce = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_MUL_MOD_fu_1739_p_ce;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        grp_MUL_MOD_fu_1763_ap_ce = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_grp_MUL_MOD_fu_1763_p_ce;
+        grp_MUL_MOD_fu_1739_ap_ce = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_grp_MUL_MOD_fu_1739_p_ce;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        grp_MUL_MOD_fu_1763_ap_ce = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_MUL_MOD_fu_1763_p_ce;
+        grp_MUL_MOD_fu_1739_ap_ce = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_MUL_MOD_fu_1739_p_ce;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_MUL_MOD_fu_1763_ap_ce = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_MUL_MOD_fu_1763_p_ce;
+        grp_MUL_MOD_fu_1739_ap_ce = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_MUL_MOD_fu_1739_p_ce;
     end else if (~(1'b1 == 1'b1)) begin
-        grp_MUL_MOD_fu_1763_ap_ce = 1'b0;
+        grp_MUL_MOD_fu_1739_ap_ce = 1'b0;
     end else begin
-        grp_MUL_MOD_fu_1763_ap_ce = 1'b1;
+        grp_MUL_MOD_fu_1739_ap_ce = 1'b1;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        grp_MUL_MOD_fu_1763_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_MUL_MOD_fu_1763_p_din1;
+        grp_MUL_MOD_fu_1739_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_MUL_MOD_fu_1739_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        grp_MUL_MOD_fu_1763_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_MUL_MOD_fu_1763_p_din1;
+        grp_MUL_MOD_fu_1739_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_MUL_MOD_fu_1739_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        grp_MUL_MOD_fu_1763_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_MUL_MOD_fu_1763_p_din1;
+        grp_MUL_MOD_fu_1739_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_MUL_MOD_fu_1739_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        grp_MUL_MOD_fu_1763_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_MUL_MOD_fu_1763_p_din1;
+        grp_MUL_MOD_fu_1739_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_MUL_MOD_fu_1739_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        grp_MUL_MOD_fu_1763_input1_val = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_grp_MUL_MOD_fu_1763_p_din1;
+        grp_MUL_MOD_fu_1739_input1_val = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_grp_MUL_MOD_fu_1739_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        grp_MUL_MOD_fu_1763_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_MUL_MOD_fu_1763_p_din1;
+        grp_MUL_MOD_fu_1739_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_MUL_MOD_fu_1739_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_MUL_MOD_fu_1763_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_MUL_MOD_fu_1763_p_din1;
+        grp_MUL_MOD_fu_1739_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_MUL_MOD_fu_1739_p_din1;
     end else begin
-        grp_MUL_MOD_fu_1763_input1_val = 'bx;
+        grp_MUL_MOD_fu_1739_input1_val = 'bx;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        grp_MUL_MOD_fu_1763_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_MUL_MOD_fu_1763_p_din2;
+        grp_MUL_MOD_fu_1739_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_MUL_MOD_fu_1739_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        grp_MUL_MOD_fu_1763_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_MUL_MOD_fu_1763_p_din2;
+        grp_MUL_MOD_fu_1739_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_MUL_MOD_fu_1739_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        grp_MUL_MOD_fu_1763_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_MUL_MOD_fu_1763_p_din2;
+        grp_MUL_MOD_fu_1739_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_MUL_MOD_fu_1739_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        grp_MUL_MOD_fu_1763_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_MUL_MOD_fu_1763_p_din2;
+        grp_MUL_MOD_fu_1739_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_MUL_MOD_fu_1739_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state71)) begin
-        grp_MUL_MOD_fu_1763_input2_val = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_grp_MUL_MOD_fu_1763_p_din2;
+        grp_MUL_MOD_fu_1739_input2_val = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_grp_MUL_MOD_fu_1739_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        grp_MUL_MOD_fu_1763_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_MUL_MOD_fu_1763_p_din2;
+        grp_MUL_MOD_fu_1739_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_MUL_MOD_fu_1739_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_MUL_MOD_fu_1763_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_MUL_MOD_fu_1763_p_din2;
+        grp_MUL_MOD_fu_1739_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_MUL_MOD_fu_1739_p_din2;
     end else begin
-        grp_MUL_MOD_fu_1763_input2_val = 'bx;
+        grp_MUL_MOD_fu_1739_input2_val = 'bx;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        grp_SUB_MOD_fu_1769_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_SUB_MOD_fu_1769_p_din3;
+        grp_SUB_MOD_fu_1745_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_SUB_MOD_fu_1745_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        grp_SUB_MOD_fu_1769_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_SUB_MOD_fu_1769_p_din3;
+        grp_SUB_MOD_fu_1745_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_SUB_MOD_fu_1745_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        grp_SUB_MOD_fu_1769_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_SUB_MOD_fu_1769_p_din3;
+        grp_SUB_MOD_fu_1745_MOD_INDEX = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_SUB_MOD_fu_1745_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        grp_SUB_MOD_fu_1769_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_SUB_MOD_fu_1769_p_din3;
+        grp_SUB_MOD_fu_1745_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_SUB_MOD_fu_1745_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        grp_SUB_MOD_fu_1769_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_SUB_MOD_fu_1769_p_din3;
+        grp_SUB_MOD_fu_1745_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_SUB_MOD_fu_1745_p_din3;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_SUB_MOD_fu_1769_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_SUB_MOD_fu_1769_p_din3;
+        grp_SUB_MOD_fu_1745_MOD_INDEX = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_SUB_MOD_fu_1745_p_din3;
     end else begin
-        grp_SUB_MOD_fu_1769_MOD_INDEX = 'bx;
+        grp_SUB_MOD_fu_1745_MOD_INDEX = 'bx;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        grp_SUB_MOD_fu_1769_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_SUB_MOD_fu_1769_p_din1;
+        grp_SUB_MOD_fu_1745_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_SUB_MOD_fu_1745_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        grp_SUB_MOD_fu_1769_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_SUB_MOD_fu_1769_p_din1;
+        grp_SUB_MOD_fu_1745_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_SUB_MOD_fu_1745_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        grp_SUB_MOD_fu_1769_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_SUB_MOD_fu_1769_p_din1;
+        grp_SUB_MOD_fu_1745_input1_val = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_SUB_MOD_fu_1745_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        grp_SUB_MOD_fu_1769_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_SUB_MOD_fu_1769_p_din1;
+        grp_SUB_MOD_fu_1745_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_SUB_MOD_fu_1745_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        grp_SUB_MOD_fu_1769_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_SUB_MOD_fu_1769_p_din1;
+        grp_SUB_MOD_fu_1745_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_SUB_MOD_fu_1745_p_din1;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_SUB_MOD_fu_1769_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_SUB_MOD_fu_1769_p_din1;
+        grp_SUB_MOD_fu_1745_input1_val = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_SUB_MOD_fu_1745_p_din1;
     end else begin
-        grp_SUB_MOD_fu_1769_input1_val = 'bx;
+        grp_SUB_MOD_fu_1745_input1_val = 'bx;
     end
 end
 
 always @ (*) begin
     if ((1'b1 == ap_CS_fsm_state140)) begin
-        grp_SUB_MOD_fu_1769_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_grp_SUB_MOD_fu_1769_p_din2;
+        grp_SUB_MOD_fu_1745_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_grp_SUB_MOD_fu_1745_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state118)) begin
-        grp_SUB_MOD_fu_1769_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_grp_SUB_MOD_fu_1769_p_din2;
+        grp_SUB_MOD_fu_1745_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_grp_SUB_MOD_fu_1745_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state96)) begin
-        grp_SUB_MOD_fu_1769_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_grp_SUB_MOD_fu_1769_p_din2;
+        grp_SUB_MOD_fu_1745_input2_val = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_grp_SUB_MOD_fu_1745_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state70)) begin
-        grp_SUB_MOD_fu_1769_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_grp_SUB_MOD_fu_1769_p_din2;
+        grp_SUB_MOD_fu_1745_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_grp_SUB_MOD_fu_1745_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state48)) begin
-        grp_SUB_MOD_fu_1769_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_grp_SUB_MOD_fu_1769_p_din2;
+        grp_SUB_MOD_fu_1745_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_grp_SUB_MOD_fu_1745_p_din2;
     end else if ((1'b1 == ap_CS_fsm_state26)) begin
-        grp_SUB_MOD_fu_1769_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_grp_SUB_MOD_fu_1769_p_din2;
+        grp_SUB_MOD_fu_1745_input2_val = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_grp_SUB_MOD_fu_1745_p_din2;
     end else begin
-        grp_SUB_MOD_fu_1769_input2_val = 'bx;
+        grp_SUB_MOD_fu_1745_input2_val = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
-        grp_apply_bit_reverse_fu_410_x_q0 = DataRAM_9_q0;
-    end else if ((((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
-        grp_apply_bit_reverse_fu_410_x_q0 = DataRAM_q0;
-    end else if ((((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
-        grp_apply_bit_reverse_fu_410_x_q0 = DataRAM_3_q0;
-    end else if ((((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        grp_apply_bit_reverse_fu_410_x_q0 = DataRAM_6_q0;
+    if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
+        grp_apply_bit_reverse_fu_404_x_q0 = DataRAM_9_q0;
+    end else if ((((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
+        grp_apply_bit_reverse_fu_404_x_q0 = DataRAM_q0;
+    end else if ((((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
+        grp_apply_bit_reverse_fu_404_x_q0 = DataRAM_3_q0;
+    end else if ((((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        grp_apply_bit_reverse_fu_404_x_q0 = DataRAM_6_q0;
     end else begin
-        grp_apply_bit_reverse_fu_410_x_q0 = 'bx;
+        grp_apply_bit_reverse_fu_404_x_q0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
-        grp_apply_bit_reverse_fu_418_x_q0 = DataRAM_10_q0;
-    end else if ((((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
-        grp_apply_bit_reverse_fu_418_x_q0 = DataRAM_1_q0;
-    end else if ((((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
-        grp_apply_bit_reverse_fu_418_x_q0 = DataRAM_4_q0;
-    end else if ((((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        grp_apply_bit_reverse_fu_418_x_q0 = DataRAM_7_q0;
+    if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
+        grp_apply_bit_reverse_fu_412_x_q0 = DataRAM_10_q0;
+    end else if ((((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
+        grp_apply_bit_reverse_fu_412_x_q0 = DataRAM_1_q0;
+    end else if ((((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
+        grp_apply_bit_reverse_fu_412_x_q0 = DataRAM_4_q0;
+    end else if ((((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        grp_apply_bit_reverse_fu_412_x_q0 = DataRAM_7_q0;
     end else begin
-        grp_apply_bit_reverse_fu_418_x_q0 = 'bx;
+        grp_apply_bit_reverse_fu_412_x_q0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
-        grp_apply_bit_reverse_fu_426_x_q0 = DataRAM_11_q0;
-    end else if ((((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
-        grp_apply_bit_reverse_fu_426_x_q0 = DataRAM_2_q0;
-    end else if ((((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
-        grp_apply_bit_reverse_fu_426_x_q0 = DataRAM_5_q0;
-    end else if ((((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1431 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
-        grp_apply_bit_reverse_fu_426_x_q0 = DataRAM_8_q0;
+    if ((((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd3) & (1'b1 == ap_CS_fsm_state2)))) begin
+        grp_apply_bit_reverse_fu_420_x_q0 = DataRAM_11_q0;
+    end else if ((((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd0) & (1'b1 == ap_CS_fsm_state2)))) begin
+        grp_apply_bit_reverse_fu_420_x_q0 = DataRAM_2_q0;
+    end else if ((((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd1) & (1'b1 == ap_CS_fsm_state2)))) begin
+        grp_apply_bit_reverse_fu_420_x_q0 = DataRAM_5_q0;
+    end else if ((((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state72)) | ((empty_reg_1407 == 2'd2) & (1'b1 == ap_CS_fsm_state2)))) begin
+        grp_apply_bit_reverse_fu_420_x_q0 = DataRAM_8_q0;
     end else begin
-        grp_apply_bit_reverse_fu_426_x_q0 = 'bx;
+        grp_apply_bit_reverse_fu_420_x_q0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if (((icmp_ln224_1_fu_1035_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state27))) begin
-        grp_fu_1041_ap_start = 1'b1;
+    if (((icmp_ln229_1_fu_1011_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state27))) begin
+        grp_fu_1017_ap_start = 1'b1;
     end else begin
-        grp_fu_1041_ap_start = 1'b0;
+        grp_fu_1017_ap_start = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (((icmp_ln224_2_fu_1115_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state49))) begin
-        grp_fu_1121_ap_start = 1'b1;
+    if (((icmp_ln229_2_fu_1091_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state49))) begin
+        grp_fu_1097_ap_start = 1'b1;
     end else begin
-        grp_fu_1121_ap_start = 1'b0;
+        grp_fu_1097_ap_start = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (((icmp_ln179_fu_1195_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state75))) begin
-        grp_fu_1201_ap_start = 1'b1;
+    if (((icmp_ln184_fu_1171_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state75))) begin
+        grp_fu_1177_ap_start = 1'b1;
     end else begin
-        grp_fu_1201_ap_start = 1'b0;
+        grp_fu_1177_ap_start = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (((icmp_ln179_1_fu_1275_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state97))) begin
-        grp_fu_1281_ap_start = 1'b1;
+    if (((icmp_ln184_1_fu_1251_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state97))) begin
+        grp_fu_1257_ap_start = 1'b1;
     end else begin
-        grp_fu_1281_ap_start = 1'b0;
+        grp_fu_1257_ap_start = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (((icmp_ln179_2_fu_1355_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state119))) begin
-        grp_fu_1361_ap_start = 1'b1;
+    if (((icmp_ln184_2_fu_1331_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state119))) begin
+        grp_fu_1337_ap_start = 1'b1;
     end else begin
-        grp_fu_1361_ap_start = 1'b0;
+        grp_fu_1337_ap_start = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (((icmp_ln224_fu_955_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state5))) begin
-        grp_fu_961_ap_start = 1'b1;
+    if (((icmp_ln229_fu_931_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state5))) begin
+        grp_fu_937_ap_start = 1'b1;
     end else begin
-        grp_fu_961_ap_start = 1'b0;
+        grp_fu_937_ap_start = 1'b0;
     end
 end
 
 always @ (*) begin
     case (ap_CS_fsm)
         ap_ST_fsm_state1 : begin
-            if (((32'd3 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            if (((32'd3 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
                 ap_NS_fsm = ap_ST_fsm_state72;
-            end else if (((32'd4 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            end else if (((32'd4 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
                 ap_NS_fsm = ap_ST_fsm_state2;
-            end else if ((~(32'd5 == OP_read_read_fu_326_p2) & ~(32'd6 == OP_read_read_fu_326_p2) & ~(32'd7 == OP_read_read_fu_326_p2) & ~(32'd8 == OP_read_read_fu_326_p2) & ~(32'd0 == OP_read_read_fu_326_p2) & ~(32'd1 == OP_read_read_fu_326_p2) & ~(32'd2 == OP_read_read_fu_326_p2) & ~(32'd3 == OP_read_read_fu_326_p2) & ~(32'd4 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-                ap_NS_fsm = ap_ST_fsm_state162;
-            end else if (((32'd5 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
-                ap_NS_fsm = ap_ST_fsm_state154;
-            end else if (((32'd6 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            end else if ((~(32'd5 == OP_read_read_fu_320_p2) & ~(32'd6 == OP_read_read_fu_320_p2) & ~(32'd7 == OP_read_read_fu_320_p2) & ~(32'd8 == OP_read_read_fu_320_p2) & ~(32'd0 == OP_read_read_fu_320_p2) & ~(32'd1 == OP_read_read_fu_320_p2) & ~(32'd2 == OP_read_read_fu_320_p2) & ~(32'd3 == OP_read_read_fu_320_p2) & ~(32'd4 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state155;
+            end else if (((32'd5 == OP_read_read_fu_320_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
                 ap_NS_fsm = ap_ST_fsm_state147;
-            end else if (((32'd7 == OP_read_read_fu_326_p2) & (1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+            end else if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1) & ((32'd6 == OP_read_read_fu_320_p2) | (32'd7 == OP_read_read_fu_320_p2)))) begin
                 ap_NS_fsm = ap_ST_fsm_state142;
-            end else if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1) & ((32'd8 == OP_read_read_fu_326_p2) | ((32'd0 == OP_read_read_fu_326_p2) | ((32'd2 == OP_read_read_fu_326_p2) | (32'd1 == OP_read_read_fu_326_p2)))))) begin
+            end else if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1) & ((32'd8 == OP_read_read_fu_320_p2) | ((32'd0 == OP_read_read_fu_320_p2) | ((32'd2 == OP_read_read_fu_320_p2) | (32'd1 == OP_read_read_fu_320_p2)))))) begin
                 ap_NS_fsm = ap_ST_fsm_state141;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state1;
@@ -8743,7 +8618,7 @@ always @ (*) begin
             end
         end
         ap_ST_fsm_state5 : begin
-            if (((icmp_ln224_fu_955_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state5))) begin
+            if (((icmp_ln229_fu_931_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state5))) begin
                 ap_NS_fsm = ap_ST_fsm_state27;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state6;
@@ -8804,7 +8679,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state24;
         end
         ap_ST_fsm_state24 : begin
-            if (((icmp_ln228_fu_1007_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state24))) begin
+            if (((icmp_ln233_fu_983_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state24))) begin
                 ap_NS_fsm = ap_ST_fsm_state5;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state25;
@@ -8814,14 +8689,14 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state26;
         end
         ap_ST_fsm_state26 : begin
-            if (((1'b1 == ap_CS_fsm_state26) & (grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_done == 1'b1))) begin
+            if (((1'b1 == ap_CS_fsm_state26) & (grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_done == 1'b1))) begin
                 ap_NS_fsm = ap_ST_fsm_state24;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state26;
             end
         end
         ap_ST_fsm_state27 : begin
-            if (((icmp_ln224_1_fu_1035_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state27))) begin
+            if (((icmp_ln229_1_fu_1011_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state27))) begin
                 ap_NS_fsm = ap_ST_fsm_state49;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state28;
@@ -8882,7 +8757,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state46;
         end
         ap_ST_fsm_state46 : begin
-            if (((icmp_ln228_1_fu_1087_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state46))) begin
+            if (((icmp_ln233_1_fu_1063_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state46))) begin
                 ap_NS_fsm = ap_ST_fsm_state27;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state47;
@@ -8892,14 +8767,14 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state48;
         end
         ap_ST_fsm_state48 : begin
-            if (((1'b1 == ap_CS_fsm_state48) & (grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_done == 1'b1))) begin
+            if (((1'b1 == ap_CS_fsm_state48) & (grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_done == 1'b1))) begin
                 ap_NS_fsm = ap_ST_fsm_state46;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state48;
             end
         end
         ap_ST_fsm_state49 : begin
-            if (((icmp_ln224_2_fu_1115_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state49))) begin
+            if (((icmp_ln229_2_fu_1091_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state49))) begin
                 ap_NS_fsm = ap_ST_fsm_state71;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state50;
@@ -8960,7 +8835,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state68;
         end
         ap_ST_fsm_state68 : begin
-            if (((icmp_ln228_2_fu_1162_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state68))) begin
+            if (((icmp_ln233_2_fu_1138_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state68))) begin
                 ap_NS_fsm = ap_ST_fsm_state49;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state69;
@@ -8970,7 +8845,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state70;
         end
         ap_ST_fsm_state70 : begin
-            if (((1'b1 == ap_CS_fsm_state70) & (grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_done == 1'b1))) begin
+            if (((1'b1 == ap_CS_fsm_state70) & (grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_done == 1'b1))) begin
                 ap_NS_fsm = ap_ST_fsm_state68;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state70;
@@ -8978,7 +8853,7 @@ always @ (*) begin
         end
         ap_ST_fsm_state71 : begin
             if (((1'b0 == ap_block_state71_on_subcall_done) & (1'b1 == ap_CS_fsm_state71))) begin
-                ap_NS_fsm = ap_ST_fsm_state162;
+                ap_NS_fsm = ap_ST_fsm_state155;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state71;
             end
@@ -9001,7 +8876,7 @@ always @ (*) begin
             end
         end
         ap_ST_fsm_state75 : begin
-            if (((icmp_ln179_fu_1195_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state75))) begin
+            if (((icmp_ln184_fu_1171_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state75))) begin
                 ap_NS_fsm = ap_ST_fsm_state97;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state76;
@@ -9062,7 +8937,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state94;
         end
         ap_ST_fsm_state94 : begin
-            if (((icmp_ln183_fu_1247_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state94))) begin
+            if (((icmp_ln188_fu_1223_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state94))) begin
                 ap_NS_fsm = ap_ST_fsm_state75;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state95;
@@ -9072,14 +8947,14 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state96;
         end
         ap_ST_fsm_state96 : begin
-            if (((1'b1 == ap_CS_fsm_state96) & (grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_done == 1'b1))) begin
+            if (((1'b1 == ap_CS_fsm_state96) & (grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_done == 1'b1))) begin
                 ap_NS_fsm = ap_ST_fsm_state94;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state96;
             end
         end
         ap_ST_fsm_state97 : begin
-            if (((icmp_ln179_1_fu_1275_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state97))) begin
+            if (((icmp_ln184_1_fu_1251_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state97))) begin
                 ap_NS_fsm = ap_ST_fsm_state119;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state98;
@@ -9140,7 +9015,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state116;
         end
         ap_ST_fsm_state116 : begin
-            if (((icmp_ln183_1_fu_1327_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state116))) begin
+            if (((icmp_ln188_1_fu_1303_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state116))) begin
                 ap_NS_fsm = ap_ST_fsm_state97;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state117;
@@ -9150,15 +9025,15 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state118;
         end
         ap_ST_fsm_state118 : begin
-            if (((1'b1 == ap_CS_fsm_state118) & (grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_done == 1'b1))) begin
+            if (((1'b1 == ap_CS_fsm_state118) & (grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_done == 1'b1))) begin
                 ap_NS_fsm = ap_ST_fsm_state116;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state118;
             end
         end
         ap_ST_fsm_state119 : begin
-            if (((icmp_ln179_2_fu_1355_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state119))) begin
-                ap_NS_fsm = ap_ST_fsm_state162;
+            if (((icmp_ln184_2_fu_1331_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state119))) begin
+                ap_NS_fsm = ap_ST_fsm_state155;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state120;
             end
@@ -9218,7 +9093,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state138;
         end
         ap_ST_fsm_state138 : begin
-            if (((icmp_ln183_2_fu_1402_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state138))) begin
+            if (((icmp_ln188_2_fu_1378_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state138))) begin
                 ap_NS_fsm = ap_ST_fsm_state119;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state139;
@@ -9228,21 +9103,21 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state140;
         end
         ap_ST_fsm_state140 : begin
-            if (((grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state140))) begin
+            if (((grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state140))) begin
                 ap_NS_fsm = ap_ST_fsm_state138;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state140;
             end
         end
         ap_ST_fsm_state141 : begin
-            if (((1'b0 == ap_block_state141_on_subcall_done) & (1'b1 == ap_CS_fsm_state141) & ((32'd8 == OP_read_reg_1427) | ((32'd0 == OP_read_reg_1427) | ((32'd2 == OP_read_reg_1427) | (32'd1 == OP_read_reg_1427)))))) begin
-                ap_NS_fsm = ap_ST_fsm_state162;
+            if (((1'b0 == ap_block_state141_on_subcall_done) & (1'b1 == ap_CS_fsm_state141) & ((32'd8 == OP_read_reg_1403) | ((32'd0 == OP_read_reg_1403) | ((32'd2 == OP_read_reg_1403) | (32'd1 == OP_read_reg_1403)))))) begin
+                ap_NS_fsm = ap_ST_fsm_state155;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state141;
             end
         end
         ap_ST_fsm_state142 : begin
-            if (((1'b1 == ap_CS_fsm_state142) & (grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_done == 1'b1))) begin
+            if (((1'b0 == ap_block_state142_on_subcall_done) & (1'b1 == ap_CS_fsm_state142) & ((32'd6 == OP_read_reg_1403) | (32'd7 == OP_read_reg_1403)))) begin
                 ap_NS_fsm = ap_ST_fsm_state143;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state142;
@@ -9252,7 +9127,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state144;
         end
         ap_ST_fsm_state144 : begin
-            if (((grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state144))) begin
+            if (((1'b0 == ap_block_state144_on_subcall_done) & (1'b1 == ap_CS_fsm_state144) & ((32'd6 == OP_read_reg_1403) | (32'd7 == OP_read_reg_1403)))) begin
                 ap_NS_fsm = ap_ST_fsm_state145;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state144;
@@ -9262,87 +9137,50 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state146;
         end
         ap_ST_fsm_state146 : begin
-            if (((grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state146))) begin
-                ap_NS_fsm = ap_ST_fsm_state162;
+            if (((1'b0 == ap_block_state146_on_subcall_done) & (1'b1 == ap_CS_fsm_state146) & ((32'd6 == OP_read_reg_1403) | (32'd7 == OP_read_reg_1403)))) begin
+                ap_NS_fsm = ap_ST_fsm_state155;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state146;
             end
         end
         ap_ST_fsm_state147 : begin
-            if (((1'b1 == ap_CS_fsm_state147) & (grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_done == 1'b1))) begin
-                ap_NS_fsm = ap_ST_fsm_state148;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state147;
-            end
+            ap_NS_fsm = ap_ST_fsm_state148;
         end
         ap_ST_fsm_state148 : begin
-            ap_NS_fsm = ap_ST_fsm_state149;
+            if (((grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state148))) begin
+                ap_NS_fsm = ap_ST_fsm_state149;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state148;
+            end
         end
         ap_ST_fsm_state149 : begin
             ap_NS_fsm = ap_ST_fsm_state150;
         end
         ap_ST_fsm_state150 : begin
-            if (((grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state150))) begin
-                ap_NS_fsm = ap_ST_fsm_state151;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state150;
-            end
+            ap_NS_fsm = ap_ST_fsm_state151;
         end
         ap_ST_fsm_state151 : begin
-            ap_NS_fsm = ap_ST_fsm_state152;
+            if (((grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state151))) begin
+                ap_NS_fsm = ap_ST_fsm_state152;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state151;
+            end
         end
         ap_ST_fsm_state152 : begin
             ap_NS_fsm = ap_ST_fsm_state153;
         end
         ap_ST_fsm_state153 : begin
-            if (((grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state153))) begin
-                ap_NS_fsm = ap_ST_fsm_state162;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state153;
-            end
+            ap_NS_fsm = ap_ST_fsm_state154;
         end
         ap_ST_fsm_state154 : begin
-            ap_NS_fsm = ap_ST_fsm_state155;
+            if (((grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state154))) begin
+                ap_NS_fsm = ap_ST_fsm_state155;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state154;
+            end
         end
         ap_ST_fsm_state155 : begin
-            if (((grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state155))) begin
-                ap_NS_fsm = ap_ST_fsm_state156;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state155;
-            end
-        end
-        ap_ST_fsm_state156 : begin
-            ap_NS_fsm = ap_ST_fsm_state157;
-        end
-        ap_ST_fsm_state157 : begin
-            ap_NS_fsm = ap_ST_fsm_state158;
-        end
-        ap_ST_fsm_state158 : begin
-            if (((grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state158))) begin
-                ap_NS_fsm = ap_ST_fsm_state159;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state158;
-            end
-        end
-        ap_ST_fsm_state159 : begin
-            ap_NS_fsm = ap_ST_fsm_state160;
-        end
-        ap_ST_fsm_state160 : begin
-            ap_NS_fsm = ap_ST_fsm_state161;
-        end
-        ap_ST_fsm_state161 : begin
-            if (((grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state161))) begin
-                ap_NS_fsm = ap_ST_fsm_state162;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state161;
-            end
-        end
-        ap_ST_fsm_state162 : begin
-            if (((regslice_both_dataOutStream_V_data_V_U_apdone_blk == 1'b0) & (1'b1 == ap_CS_fsm_state162))) begin
-                ap_NS_fsm = ap_ST_fsm_state1;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state162;
-            end
+            ap_NS_fsm = ap_ST_fsm_state1;
         end
         default : begin
             ap_NS_fsm = 'bx;
@@ -9350,19 +9188,21 @@ always @ (*) begin
     endcase
 end
 
-assign OP_read_read_fu_326_p2 = OP;
+assign DataInStream_TREADY = regslice_both_DataInStream_V_data_V_U_ack_in;
 
-assign add_ln183_1_fu_1337_p2 = ($signed(sext_ln183_1_reg_1700) + $signed(j_22_reg_388));
+assign OP_read_read_fu_320_p2 = OP;
 
-assign add_ln183_2_fu_1412_p2 = ($signed(sext_ln183_2_reg_1739) + $signed(j_24_reg_399));
+assign add_ln188_1_fu_1313_p2 = ($signed(sext_ln188_1_reg_1676) + $signed(j_22_reg_382));
 
-assign add_ln183_fu_1257_p2 = ($signed(sext_ln183_reg_1654) + $signed(j_reg_377));
+assign add_ln188_2_fu_1388_p2 = ($signed(sext_ln188_2_reg_1715) + $signed(j_24_reg_393));
 
-assign add_ln228_1_fu_1097_p2 = ($signed(sext_ln228_1_reg_1562) + $signed(j_23_reg_355));
+assign add_ln188_fu_1233_p2 = ($signed(sext_ln188_reg_1630) + $signed(j_reg_371));
 
-assign add_ln228_2_fu_1172_p2 = ($signed(sext_ln228_2_reg_1601) + $signed(j_25_reg_366));
+assign add_ln233_1_fu_1073_p2 = ($signed(sext_ln233_1_reg_1538) + $signed(j_23_reg_349));
 
-assign add_ln228_fu_1017_p2 = ($signed(sext_ln228_reg_1516) + $signed(j_21_reg_344));
+assign add_ln233_2_fu_1148_p2 = ($signed(sext_ln233_2_reg_1577) + $signed(j_25_reg_360));
+
+assign add_ln233_fu_993_p2 = ($signed(sext_ln233_reg_1492) + $signed(j_21_reg_338));
 
 assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
@@ -9398,27 +9238,17 @@ assign ap_CS_fsm_state146 = ap_CS_fsm[32'd145];
 
 assign ap_CS_fsm_state147 = ap_CS_fsm[32'd146];
 
-assign ap_CS_fsm_state149 = ap_CS_fsm[32'd148];
+assign ap_CS_fsm_state148 = ap_CS_fsm[32'd147];
 
 assign ap_CS_fsm_state150 = ap_CS_fsm[32'd149];
 
-assign ap_CS_fsm_state152 = ap_CS_fsm[32'd151];
+assign ap_CS_fsm_state151 = ap_CS_fsm[32'd150];
 
 assign ap_CS_fsm_state153 = ap_CS_fsm[32'd152];
 
 assign ap_CS_fsm_state154 = ap_CS_fsm[32'd153];
 
 assign ap_CS_fsm_state155 = ap_CS_fsm[32'd154];
-
-assign ap_CS_fsm_state157 = ap_CS_fsm[32'd156];
-
-assign ap_CS_fsm_state158 = ap_CS_fsm[32'd157];
-
-assign ap_CS_fsm_state160 = ap_CS_fsm[32'd159];
-
-assign ap_CS_fsm_state161 = ap_CS_fsm[32'd160];
-
-assign ap_CS_fsm_state162 = ap_CS_fsm[32'd161];
 
 assign ap_CS_fsm_state2 = ap_CS_fsm[32'd1];
 
@@ -9477,295 +9307,297 @@ assign ap_CS_fsm_state96 = ap_CS_fsm[32'd95];
 assign ap_CS_fsm_state97 = ap_CS_fsm[32'd96];
 
 always @ (*) begin
-    ap_block_state141_on_subcall_done = (((grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_done == 1'b0) & (32'd1 == OP_read_reg_1427)) | ((grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_done == 1'b0) & (32'd1 == OP_read_reg_1427)) | ((grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_done == 1'b0) & (32'd2 == OP_read_reg_1427)) | ((grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_done == 1'b0) & (32'd2 == OP_read_reg_1427)) | ((grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_done == 1'b0) & (32'd2 == OP_read_reg_1427)) | ((32'd8 == OP_read_reg_1427) & (grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_done == 1'b0)) | ((32'd8 == OP_read_reg_1427) & (grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_done == 1'b0)) | ((32'd8 == OP_read_reg_1427) & (grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_done == 1'b0)) | ((32'd0 == OP_read_reg_1427) & (grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_done == 1'b0)) | ((32'd0 == OP_read_reg_1427) & (grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_done == 1'b0)) | ((32'd0 == OP_read_reg_1427) & (grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_done 
-    == 1'b0)) | ((32'd1 == OP_read_reg_1427) & (grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_done == 1'b0)));
+    ap_block_state141_on_subcall_done = (((grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_done == 1'b0) & (32'd1 == OP_read_reg_1403)) | ((grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_done == 1'b0) & (32'd1 == OP_read_reg_1403)) | ((grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_done == 1'b0) & (32'd1 == OP_read_reg_1403)) | ((grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_done == 1'b0) & (32'd2 == OP_read_reg_1403)) | ((grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_done == 1'b0) & (32'd2 == OP_read_reg_1403)) | ((grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_done == 1'b0) & (32'd2 == OP_read_reg_1403)) | ((32'd8 == OP_read_reg_1403) & (grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_done == 1'b0)) | ((32'd8 == OP_read_reg_1403) & (grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_done == 1'b0)) | ((32'd8 == OP_read_reg_1403) & (grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_done == 1'b0)) | ((32'd0 == OP_read_reg_1403) & (grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_done == 1'b0)) | ((32'd0 == OP_read_reg_1403) & (grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_done 
+    == 1'b0)) | ((32'd0 == OP_read_reg_1403) & (grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_done == 1'b0)));
 end
 
 always @ (*) begin
-    ap_block_state2_on_subcall_done = (((grp_apply_bit_reverse_fu_426_ap_done == 1'b0) & (empty_reg_1431 == 2'd3)) | ((grp_apply_bit_reverse_fu_426_ap_done == 1'b0) & (empty_reg_1431 == 2'd0)) | ((grp_apply_bit_reverse_fu_426_ap_done == 1'b0) & (empty_reg_1431 == 2'd1)) | ((grp_apply_bit_reverse_fu_426_ap_done == 1'b0) & (empty_reg_1431 == 2'd2)) | ((grp_apply_bit_reverse_fu_418_ap_done == 1'b0) & (empty_reg_1431 == 2'd3)) | ((grp_apply_bit_reverse_fu_418_ap_done == 1'b0) & (empty_reg_1431 == 2'd0)) | ((grp_apply_bit_reverse_fu_418_ap_done == 1'b0) & (empty_reg_1431 == 2'd1)) | ((grp_apply_bit_reverse_fu_418_ap_done == 1'b0) & (empty_reg_1431 == 2'd2)) | ((grp_apply_bit_reverse_fu_410_ap_done == 1'b0) & (empty_reg_1431 == 2'd3)) | ((grp_apply_bit_reverse_fu_410_ap_done == 1'b0) & (empty_reg_1431 == 2'd0)) | ((grp_apply_bit_reverse_fu_410_ap_done == 1'b0) & (empty_reg_1431 == 2'd1)) | ((grp_apply_bit_reverse_fu_410_ap_done == 1'b0) & (empty_reg_1431 == 2'd2)));
+    ap_block_state142_on_subcall_done = (((32'd6 == OP_read_reg_1403) & (grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_done == 1'b0)) | ((32'd7 == OP_read_reg_1403) & (grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_done == 1'b0)));
 end
 
 always @ (*) begin
-    ap_block_state4_on_subcall_done = ((grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_done == 1'b0) | (grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_done == 1'b0) | (grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_done == 1'b0));
+    ap_block_state144_on_subcall_done = (((32'd6 == OP_read_reg_1403) & (grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_done == 1'b0)) | ((32'd7 == OP_read_reg_1403) & (grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_done == 1'b0)));
 end
 
 always @ (*) begin
-    ap_block_state71_on_subcall_done = ((grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_done == 1'b0) | (grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_done == 1'b0) | (grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_done == 1'b0));
+    ap_block_state146_on_subcall_done = (((32'd6 == OP_read_reg_1403) & (grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_done == 1'b0)) | ((32'd7 == OP_read_reg_1403) & (grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_done == 1'b0)));
 end
 
 always @ (*) begin
-    ap_block_state72_on_subcall_done = (((grp_apply_bit_reverse_fu_426_ap_done == 1'b0) & (empty_reg_1431 == 2'd3)) | ((grp_apply_bit_reverse_fu_426_ap_done == 1'b0) & (empty_reg_1431 == 2'd0)) | ((grp_apply_bit_reverse_fu_426_ap_done == 1'b0) & (empty_reg_1431 == 2'd1)) | ((grp_apply_bit_reverse_fu_426_ap_done == 1'b0) & (empty_reg_1431 == 2'd2)) | ((grp_apply_bit_reverse_fu_418_ap_done == 1'b0) & (empty_reg_1431 == 2'd3)) | ((grp_apply_bit_reverse_fu_418_ap_done == 1'b0) & (empty_reg_1431 == 2'd0)) | ((grp_apply_bit_reverse_fu_418_ap_done == 1'b0) & (empty_reg_1431 == 2'd1)) | ((grp_apply_bit_reverse_fu_418_ap_done == 1'b0) & (empty_reg_1431 == 2'd2)) | ((grp_apply_bit_reverse_fu_410_ap_done == 1'b0) & (empty_reg_1431 == 2'd3)) | ((grp_apply_bit_reverse_fu_410_ap_done == 1'b0) & (empty_reg_1431 == 2'd0)) | ((grp_apply_bit_reverse_fu_410_ap_done == 1'b0) & (empty_reg_1431 == 2'd1)) | ((grp_apply_bit_reverse_fu_410_ap_done == 1'b0) & (empty_reg_1431 == 2'd2)));
+    ap_block_state2_on_subcall_done = (((grp_apply_bit_reverse_fu_420_ap_done == 1'b0) & (empty_reg_1407 == 2'd3)) | ((grp_apply_bit_reverse_fu_420_ap_done == 1'b0) & (empty_reg_1407 == 2'd0)) | ((grp_apply_bit_reverse_fu_420_ap_done == 1'b0) & (empty_reg_1407 == 2'd1)) | ((grp_apply_bit_reverse_fu_420_ap_done == 1'b0) & (empty_reg_1407 == 2'd2)) | ((grp_apply_bit_reverse_fu_412_ap_done == 1'b0) & (empty_reg_1407 == 2'd3)) | ((grp_apply_bit_reverse_fu_412_ap_done == 1'b0) & (empty_reg_1407 == 2'd0)) | ((grp_apply_bit_reverse_fu_412_ap_done == 1'b0) & (empty_reg_1407 == 2'd1)) | ((grp_apply_bit_reverse_fu_412_ap_done == 1'b0) & (empty_reg_1407 == 2'd2)) | ((grp_apply_bit_reverse_fu_404_ap_done == 1'b0) & (empty_reg_1407 == 2'd3)) | ((grp_apply_bit_reverse_fu_404_ap_done == 1'b0) & (empty_reg_1407 == 2'd0)) | ((grp_apply_bit_reverse_fu_404_ap_done == 1'b0) & (empty_reg_1407 == 2'd1)) | ((grp_apply_bit_reverse_fu_404_ap_done == 1'b0) & (empty_reg_1407 == 2'd2)));
 end
 
 always @ (*) begin
-    ap_block_state74_on_subcall_done = ((grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_done == 1'b0) | (grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_done == 1'b0) | (grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_done == 1'b0));
+    ap_block_state4_on_subcall_done = ((grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_done == 1'b0) | (grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_done == 1'b0) | (grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_done == 1'b0));
+end
+
+always @ (*) begin
+    ap_block_state71_on_subcall_done = ((grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_done == 1'b0) | (grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_done == 1'b0) | (grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_done == 1'b0));
+end
+
+always @ (*) begin
+    ap_block_state72_on_subcall_done = (((grp_apply_bit_reverse_fu_420_ap_done == 1'b0) & (empty_reg_1407 == 2'd3)) | ((grp_apply_bit_reverse_fu_420_ap_done == 1'b0) & (empty_reg_1407 == 2'd0)) | ((grp_apply_bit_reverse_fu_420_ap_done == 1'b0) & (empty_reg_1407 == 2'd1)) | ((grp_apply_bit_reverse_fu_420_ap_done == 1'b0) & (empty_reg_1407 == 2'd2)) | ((grp_apply_bit_reverse_fu_412_ap_done == 1'b0) & (empty_reg_1407 == 2'd3)) | ((grp_apply_bit_reverse_fu_412_ap_done == 1'b0) & (empty_reg_1407 == 2'd0)) | ((grp_apply_bit_reverse_fu_412_ap_done == 1'b0) & (empty_reg_1407 == 2'd1)) | ((grp_apply_bit_reverse_fu_412_ap_done == 1'b0) & (empty_reg_1407 == 2'd2)) | ((grp_apply_bit_reverse_fu_404_ap_done == 1'b0) & (empty_reg_1407 == 2'd3)) | ((grp_apply_bit_reverse_fu_404_ap_done == 1'b0) & (empty_reg_1407 == 2'd0)) | ((grp_apply_bit_reverse_fu_404_ap_done == 1'b0) & (empty_reg_1407 == 2'd1)) | ((grp_apply_bit_reverse_fu_404_ap_done == 1'b0) & (empty_reg_1407 == 2'd2)));
+end
+
+always @ (*) begin
+    ap_block_state74_on_subcall_done = ((grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_done == 1'b0) | (grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_done == 1'b0) | (grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_done == 1'b0));
 end
 
 always @ (*) begin
     ap_rst_n_inv = ~ap_rst_n;
 end
 
-assign dataInStream_TREADY = regslice_both_dataInStream_V_data_V_U_ack_in;
+assign empty_139_fu_910_p1 = RAMSel1[1:0];
 
-assign dataOutStream_TVALID = regslice_both_dataOutStream_V_data_V_U_vld_out;
+assign empty_fu_893_p1 = RAMSel[1:0];
 
-assign empty_133_fu_934_p1 = RAMSel1[1:0];
+assign grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_start = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_673_ap_start_reg;
 
-assign empty_fu_917_p1 = RAMSel[1:0];
+assign grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_start = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_714_ap_start_reg;
 
-assign grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_start = grp_Crypto_Pipeline_INTT_PE_LOOP5_fu_685_ap_start_reg;
+assign grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_start = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_659_ap_start_reg;
 
-assign grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_start = grp_Crypto_Pipeline_INTT_PE_LOOP6_fu_726_ap_start_reg;
+assign grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_start = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_696_ap_start_reg;
 
-assign grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_start = grp_Crypto_Pipeline_INTT_PE_LOOP_fu_671_ap_start_reg;
+assign grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_start = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_705_ap_start_reg;
 
-assign grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_start = grp_Crypto_Pipeline_MUL_INV_LOOP21_fu_708_ap_start_reg;
+assign grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_start = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_687_ap_start_reg;
 
-assign grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_start = grp_Crypto_Pipeline_MUL_INV_LOOP22_fu_717_ap_start_reg;
+assign grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_start = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_772_ap_start_reg;
 
-assign grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_start = grp_Crypto_Pipeline_MUL_INV_LOOP_fu_699_ap_start_reg;
+assign grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_start = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_786_ap_start_reg;
 
-assign grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_start = grp_Crypto_Pipeline_NTT_PE_LOOP19_fu_784_ap_start_reg;
+assign grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_start = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_758_ap_start_reg;
 
-assign grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_start = grp_Crypto_Pipeline_NTT_PE_LOOP20_fu_798_ap_start_reg;
+assign grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_start = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_535_ap_start_reg;
 
-assign grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_start = grp_Crypto_Pipeline_NTT_PE_LOOP_fu_770_ap_start_reg;
+assign grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_start = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_549_ap_start_reg;
 
-assign grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_start = grp_Crypto_Pipeline_POLY_ADD_LOOP15_fu_541_ap_start_reg;
+assign grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_start = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_521_ap_start_reg;
 
-assign grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_start = grp_Crypto_Pipeline_POLY_ADD_LOOP16_fu_555_ap_start_reg;
+assign grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_start = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_576_ap_start_reg;
 
-assign grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_start = grp_Crypto_Pipeline_POLY_ADD_LOOP_fu_527_ap_start_reg;
+assign grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_start = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_589_ap_start_reg;
 
-assign grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_start = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP113_fu_582_ap_start_reg;
+assign grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_start = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_563_ap_start_reg;
 
-assign grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_start = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP114_fu_595_ap_start_reg;
+assign grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_start = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_451_ap_start_reg;
 
-assign grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_start = grp_Crypto_Pipeline_POLY_MOD_MODULUS_LOOP1_fu_569_ap_start_reg;
+assign grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_start = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_465_ap_start_reg;
 
-assign grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_start = grp_Crypto_Pipeline_POLY_MUL_LOOP23_fu_457_ap_start_reg;
+assign grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_start = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_437_ap_start_reg;
 
-assign grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_start = grp_Crypto_Pipeline_POLY_MUL_LOOP24_fu_471_ap_start_reg;
+assign grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_start = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_493_ap_start_reg;
 
-assign grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_start = grp_Crypto_Pipeline_POLY_MUL_LOOP_fu_443_ap_start_reg;
+assign grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_start = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_507_ap_start_reg;
 
-assign grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_start = grp_Crypto_Pipeline_POLY_SUB_LOOP17_fu_499_ap_start_reg;
+assign grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_start = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_479_ap_start_reg;
 
-assign grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_start = grp_Crypto_Pipeline_POLY_SUB_LOOP18_fu_513_ap_start_reg;
+assign grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_175_51_fu_738_ap_start_reg;
 
-assign grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_start = grp_Crypto_Pipeline_POLY_SUB_LOOP_fu_485_ap_start_reg;
+assign grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_175_52_fu_748_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_170_71_fu_750_ap_start_reg;
+assign grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_175_5_fu_728_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_170_72_fu_760_ap_start_reg;
+assign grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_220_83_fu_639_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_170_7_fu_740_ap_start_reg;
+assign grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_220_84_fu_649_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_215_103_fu_651_ap_start_reg;
+assign grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_220_8_fu_629_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_215_104_fu_661_ap_start_reg;
+assign grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_71_17_fu_859_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_215_10_fu_641_ap_start_reg;
+assign grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_71_18_fu_876_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_63_27_fu_883_ap_start_reg;
+assign grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_71_1_fu_842_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_63_28_fu_900_ap_start_reg;
+assign grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_82_210_fu_831_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_63_2_fu_866_ap_start_reg;
+assign grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_82_29_fu_810_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_ap_start_reg;
+assign grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_82_2_fu_614_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_74_410_fu_849_dataOutStream_TREADY = (dataOutStream_TREADY_int_regslice & ap_CS_fsm_state153);
+assign grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_93_311_fu_800_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_ap_start_reg;
+assign grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_93_312_fu_821_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_74_49_fu_832_dataOutStream_TREADY = (dataOutStream_TREADY_int_regslice & ap_CS_fsm_state150);
+assign grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_93_3_fu_602_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_ap_start_reg;
+assign grp_apply_bit_reverse_fu_404_ap_start = grp_apply_bit_reverse_fu_404_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_74_4_fu_620_dataOutStream_TREADY = (dataOutStream_TREADY_int_regslice & ap_CS_fsm_state147);
+assign grp_apply_bit_reverse_fu_412_ap_start = grp_apply_bit_reverse_fu_412_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_88_511_fu_812_ap_start_reg;
+assign grp_apply_bit_reverse_fu_420_ap_start = grp_apply_bit_reverse_fu_420_ap_start_reg;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_88_512_fu_822_ap_start_reg;
+assign grp_fu_1017_p0 = 32'd4096;
 
-assign grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_start = grp_Crypto_Pipeline_VITIS_LOOP_88_5_fu_608_ap_start_reg;
+assign grp_fu_1097_p0 = 32'd4096;
 
-assign grp_apply_bit_reverse_fu_410_ap_start = grp_apply_bit_reverse_fu_410_ap_start_reg;
+assign grp_fu_1177_p0 = 32'd4096;
 
-assign grp_apply_bit_reverse_fu_418_ap_start = grp_apply_bit_reverse_fu_418_ap_start_reg;
+assign grp_fu_1257_p0 = 32'd4096;
 
-assign grp_apply_bit_reverse_fu_426_ap_start = grp_apply_bit_reverse_fu_426_ap_start_reg;
+assign grp_fu_1337_p0 = 32'd4096;
 
-assign grp_fu_1041_p0 = 32'd4096;
+assign grp_fu_937_p0 = 32'd4096;
 
-assign grp_fu_1121_p0 = 32'd4096;
+assign h_10_fu_998_p0 = h_1_fu_296;
 
-assign grp_fu_1201_p0 = 32'd4096;
+assign h_10_fu_998_p2 = h_10_fu_998_p0 << 32'd1;
 
-assign grp_fu_1281_p0 = 32'd4096;
+assign h_12_fu_1318_p0 = h_2_fu_312;
 
-assign grp_fu_1361_p0 = 32'd4096;
+assign h_12_fu_1318_p2 = h_12_fu_1318_p0 << 32'd1;
 
-assign grp_fu_961_p0 = 32'd4096;
+assign h_14_fu_1078_p0 = h_3_fu_300;
 
-assign h_10_fu_1022_p0 = h_1_fu_302;
+assign h_14_fu_1078_p2 = h_14_fu_1078_p0 << 32'd1;
 
-assign h_10_fu_1022_p2 = h_10_fu_1022_p0 << 32'd1;
+assign h_16_fu_1393_p0 = h_6_fu_316;
 
-assign h_12_fu_1342_p0 = h_2_fu_318;
+assign h_16_fu_1393_p2 = h_16_fu_1393_p0 << 32'd1;
 
-assign h_12_fu_1342_p2 = h_12_fu_1342_p0 << 32'd1;
+assign h_17_fu_1153_p0 = h_7_fu_304;
 
-assign h_14_fu_1102_p0 = h_3_fu_306;
+assign h_17_fu_1153_p2 = h_17_fu_1153_p0 << 32'd1;
 
-assign h_14_fu_1102_p2 = h_14_fu_1102_p0 << 32'd1;
+assign h_8_fu_1238_p0 = h_fu_308;
 
-assign h_16_fu_1417_p0 = h_6_fu_322;
+assign h_8_fu_1238_p2 = h_8_fu_1238_p0 << 32'd1;
 
-assign h_16_fu_1417_p2 = h_16_fu_1417_p0 << 32'd1;
+assign hf_1_fu_948_p1 = h_1_fu_296;
 
-assign h_17_fu_1177_p0 = h_7_fu_310;
+assign hf_2_fu_1268_p1 = h_2_fu_312;
 
-assign h_17_fu_1177_p2 = h_17_fu_1177_p0 << 32'd1;
+assign hf_3_fu_1028_p1 = h_3_fu_300;
 
-assign h_8_fu_1262_p0 = h_fu_314;
+assign hf_4_fu_1343_p1 = h_6_fu_316;
 
-assign h_8_fu_1262_p2 = h_8_fu_1262_p0 << 32'd1;
+assign hf_5_fu_1103_p1 = h_7_fu_304;
 
-assign hf_1_fu_972_p1 = h_1_fu_302;
+assign hf_fu_1188_p1 = h_fu_308;
 
-assign hf_2_fu_1292_p1 = h_2_fu_318;
+assign icmp_ln184_1_fu_1251_p0 = h_2_fu_312;
 
-assign hf_3_fu_1052_p1 = h_3_fu_306;
+assign icmp_ln184_1_fu_1251_p2 = (($signed(icmp_ln184_1_fu_1251_p0) < $signed(32'd4097)) ? 1'b1 : 1'b0);
 
-assign hf_4_fu_1367_p1 = h_6_fu_322;
+assign icmp_ln184_2_fu_1331_p0 = h_6_fu_316;
 
-assign hf_5_fu_1127_p1 = h_7_fu_310;
+assign icmp_ln184_2_fu_1331_p2 = (($signed(icmp_ln184_2_fu_1331_p0) < $signed(32'd4097)) ? 1'b1 : 1'b0);
 
-assign hf_fu_1212_p1 = h_fu_314;
+assign icmp_ln184_fu_1171_p0 = h_fu_308;
 
-assign icmp_ln179_1_fu_1275_p0 = h_2_fu_318;
+assign icmp_ln184_fu_1171_p2 = (($signed(icmp_ln184_fu_1171_p0) < $signed(32'd4097)) ? 1'b1 : 1'b0);
 
-assign icmp_ln179_1_fu_1275_p2 = (($signed(icmp_ln179_1_fu_1275_p0) < $signed(32'd4097)) ? 1'b1 : 1'b0);
+assign icmp_ln188_1_fu_1303_p2 = (($signed(tmp_19_fu_1293_p4) < $signed(52'd1)) ? 1'b1 : 1'b0);
 
-assign icmp_ln179_2_fu_1355_p0 = h_6_fu_322;
+assign icmp_ln188_2_fu_1378_p2 = (($signed(tmp_21_fu_1368_p4) < $signed(52'd1)) ? 1'b1 : 1'b0);
 
-assign icmp_ln179_2_fu_1355_p2 = (($signed(icmp_ln179_2_fu_1355_p0) < $signed(32'd4097)) ? 1'b1 : 1'b0);
+assign icmp_ln188_fu_1223_p2 = (($signed(tmp_fu_1213_p4) < $signed(52'd1)) ? 1'b1 : 1'b0);
 
-assign icmp_ln179_fu_1195_p0 = h_fu_314;
+assign icmp_ln229_1_fu_1011_p0 = h_3_fu_300;
 
-assign icmp_ln179_fu_1195_p2 = (($signed(icmp_ln179_fu_1195_p0) < $signed(32'd4097)) ? 1'b1 : 1'b0);
+assign icmp_ln229_1_fu_1011_p2 = (($signed(icmp_ln229_1_fu_1011_p0) < $signed(32'd4097)) ? 1'b1 : 1'b0);
 
-assign icmp_ln183_1_fu_1327_p2 = (($signed(tmp_19_fu_1317_p4) < $signed(52'd1)) ? 1'b1 : 1'b0);
+assign icmp_ln229_2_fu_1091_p0 = h_7_fu_304;
 
-assign icmp_ln183_2_fu_1402_p2 = (($signed(tmp_21_fu_1392_p4) < $signed(52'd1)) ? 1'b1 : 1'b0);
+assign icmp_ln229_2_fu_1091_p2 = (($signed(icmp_ln229_2_fu_1091_p0) < $signed(32'd4097)) ? 1'b1 : 1'b0);
 
-assign icmp_ln183_fu_1247_p2 = (($signed(tmp_fu_1237_p4) < $signed(52'd1)) ? 1'b1 : 1'b0);
+assign icmp_ln229_fu_931_p0 = h_1_fu_296;
 
-assign icmp_ln224_1_fu_1035_p0 = h_3_fu_306;
+assign icmp_ln229_fu_931_p2 = (($signed(icmp_ln229_fu_931_p0) < $signed(32'd4097)) ? 1'b1 : 1'b0);
 
-assign icmp_ln224_1_fu_1035_p2 = (($signed(icmp_ln224_1_fu_1035_p0) < $signed(32'd4097)) ? 1'b1 : 1'b0);
+assign icmp_ln233_1_fu_1063_p2 = (($signed(tmp_20_fu_1053_p4) < $signed(52'd1)) ? 1'b1 : 1'b0);
 
-assign icmp_ln224_2_fu_1115_p0 = h_7_fu_310;
+assign icmp_ln233_2_fu_1138_p2 = (($signed(tmp_22_fu_1128_p4) < $signed(52'd1)) ? 1'b1 : 1'b0);
 
-assign icmp_ln224_2_fu_1115_p2 = (($signed(icmp_ln224_2_fu_1115_p0) < $signed(32'd4097)) ? 1'b1 : 1'b0);
+assign icmp_ln233_fu_983_p2 = (($signed(tmp_18_fu_973_p4) < $signed(52'd1)) ? 1'b1 : 1'b0);
 
-assign icmp_ln224_fu_955_p0 = h_1_fu_302;
+assign sext_ln188_1_fu_1290_p0 = h_2_fu_312;
 
-assign icmp_ln224_fu_955_p2 = (($signed(icmp_ln224_fu_955_p0) < $signed(32'd4097)) ? 1'b1 : 1'b0);
+assign sext_ln188_1_fu_1290_p1 = sext_ln188_1_fu_1290_p0;
 
-assign icmp_ln228_1_fu_1087_p2 = (($signed(tmp_20_fu_1077_p4) < $signed(52'd1)) ? 1'b1 : 1'b0);
+assign sext_ln188_2_fu_1365_p0 = h_6_fu_316;
 
-assign icmp_ln228_2_fu_1162_p2 = (($signed(tmp_22_fu_1152_p4) < $signed(52'd1)) ? 1'b1 : 1'b0);
+assign sext_ln188_2_fu_1365_p1 = sext_ln188_2_fu_1365_p0;
 
-assign icmp_ln228_fu_1007_p2 = (($signed(tmp_18_fu_997_p4) < $signed(52'd1)) ? 1'b1 : 1'b0);
+assign sext_ln188_fu_1210_p0 = h_fu_308;
 
-assign sext_ln183_1_fu_1314_p0 = h_2_fu_318;
+assign sext_ln188_fu_1210_p1 = sext_ln188_fu_1210_p0;
 
-assign sext_ln183_1_fu_1314_p1 = sext_ln183_1_fu_1314_p0;
+assign sext_ln233_1_fu_1050_p0 = h_3_fu_300;
 
-assign sext_ln183_2_fu_1389_p0 = h_6_fu_322;
+assign sext_ln233_1_fu_1050_p1 = sext_ln233_1_fu_1050_p0;
 
-assign sext_ln183_2_fu_1389_p1 = sext_ln183_2_fu_1389_p0;
+assign sext_ln233_2_fu_1125_p0 = h_7_fu_304;
 
-assign sext_ln183_fu_1234_p0 = h_fu_314;
+assign sext_ln233_2_fu_1125_p1 = sext_ln233_2_fu_1125_p0;
 
-assign sext_ln183_fu_1234_p1 = sext_ln183_fu_1234_p0;
+assign sext_ln233_fu_970_p0 = h_1_fu_296;
 
-assign sext_ln228_1_fu_1074_p0 = h_3_fu_306;
+assign sext_ln233_fu_970_p1 = sext_ln233_fu_970_p0;
 
-assign sext_ln228_1_fu_1074_p1 = sext_ln228_1_fu_1074_p0;
+assign tmp_18_fu_973_p4 = {{j_21_reg_338[63:12]}};
 
-assign sext_ln228_2_fu_1149_p0 = h_7_fu_310;
+assign tmp_19_fu_1293_p4 = {{j_22_reg_382[63:12]}};
 
-assign sext_ln228_2_fu_1149_p1 = sext_ln228_2_fu_1149_p0;
+assign tmp_20_fu_1053_p4 = {{j_23_reg_349[63:12]}};
 
-assign sext_ln228_fu_994_p0 = h_1_fu_302;
+assign tmp_21_fu_1368_p4 = {{j_24_reg_393[63:12]}};
 
-assign sext_ln228_fu_994_p1 = sext_ln228_fu_994_p0;
+assign tmp_22_fu_1128_p4 = {{j_25_reg_360[63:12]}};
 
-assign tmp_18_fu_997_p4 = {{j_21_reg_344[63:12]}};
+assign tmp_fu_1213_p4 = {{j_reg_371[63:12]}};
 
-assign tmp_19_fu_1317_p4 = {{j_22_reg_388[63:12]}};
+assign trunc_ln188_1_fu_1229_p1 = j_reg_371[11:0];
 
-assign tmp_20_fu_1077_p4 = {{j_23_reg_355[63:12]}};
+assign trunc_ln188_2_fu_1286_p1 = grp_fu_1257_p2[10:0];
 
-assign tmp_21_fu_1392_p4 = {{j_24_reg_399[63:12]}};
+assign trunc_ln188_3_fu_1309_p1 = j_22_reg_382[11:0];
 
-assign tmp_22_fu_1152_p4 = {{j_25_reg_366[63:12]}};
+assign trunc_ln188_4_fu_1277_p1 = h_2_fu_312;
 
-assign tmp_fu_1237_p4 = {{j_reg_377[63:12]}};
+assign trunc_ln188_5_fu_1361_p1 = grp_fu_1337_p2[10:0];
 
-assign trunc_ln183_1_fu_1253_p1 = j_reg_377[11:0];
+assign trunc_ln188_6_fu_1384_p1 = j_24_reg_393[11:0];
 
-assign trunc_ln183_2_fu_1310_p1 = grp_fu_1281_p2[10:0];
+assign trunc_ln188_8_fu_1352_p1 = h_6_fu_316;
 
-assign trunc_ln183_3_fu_1333_p1 = j_22_reg_388[11:0];
+assign trunc_ln188_fu_1206_p1 = grp_fu_1177_p2[10:0];
 
-assign trunc_ln183_4_fu_1301_p1 = h_2_fu_318;
+assign trunc_ln1_fu_957_p1 = h_1_fu_296;
 
-assign trunc_ln183_5_fu_1385_p1 = grp_fu_1361_p2[10:0];
+assign trunc_ln233_1_fu_989_p1 = j_21_reg_338[11:0];
 
-assign trunc_ln183_6_fu_1408_p1 = j_24_reg_399[11:0];
+assign trunc_ln233_2_fu_1046_p1 = grp_fu_1017_p2[10:0];
 
-assign trunc_ln183_8_fu_1376_p1 = h_6_fu_322;
+assign trunc_ln233_3_fu_1069_p1 = j_23_reg_349[11:0];
 
-assign trunc_ln183_fu_1230_p1 = grp_fu_1201_p2[10:0];
+assign trunc_ln233_4_fu_1037_p1 = h_3_fu_300;
 
-assign trunc_ln1_fu_981_p1 = h_1_fu_302;
+assign trunc_ln233_5_fu_1121_p1 = grp_fu_1097_p2[10:0];
 
-assign trunc_ln228_1_fu_1013_p1 = j_21_reg_344[11:0];
+assign trunc_ln233_6_fu_1144_p1 = j_25_reg_360[11:0];
 
-assign trunc_ln228_2_fu_1070_p1 = grp_fu_1041_p2[10:0];
+assign trunc_ln233_8_fu_1112_p1 = h_7_fu_304;
 
-assign trunc_ln228_3_fu_1093_p1 = j_23_reg_355[11:0];
+assign trunc_ln233_fu_966_p1 = grp_fu_937_p2[10:0];
 
-assign trunc_ln228_4_fu_1061_p1 = h_3_fu_306;
-
-assign trunc_ln228_5_fu_1145_p1 = grp_fu_1121_p2[10:0];
-
-assign trunc_ln228_6_fu_1168_p1 = j_25_reg_366[11:0];
-
-assign trunc_ln228_8_fu_1136_p1 = h_7_fu_310;
-
-assign trunc_ln228_fu_990_p1 = grp_fu_961_p2[10:0];
-
-assign trunc_ln_fu_1221_p1 = h_fu_314;
+assign trunc_ln_fu_1197_p1 = h_fu_308;
 
 always @ (posedge ap_clk) begin
-    sext_ln228_reg_1516[0] <= 1'b0;
-    sext_ln228_1_reg_1562[0] <= 1'b0;
-    sext_ln228_2_reg_1601[0] <= 1'b0;
-    sext_ln183_reg_1654[0] <= 1'b0;
-    sext_ln183_1_reg_1700[0] <= 1'b0;
-    sext_ln183_2_reg_1739[0] <= 1'b0;
-    h_1_fu_302[0] <= 1'b0;
-    h_3_fu_306[0] <= 1'b0;
-    h_7_fu_310[0] <= 1'b0;
-    h_fu_314[0] <= 1'b0;
-    h_2_fu_318[0] <= 1'b0;
-    h_6_fu_322[0] <= 1'b0;
+    sext_ln233_reg_1492[0] <= 1'b0;
+    sext_ln233_1_reg_1538[0] <= 1'b0;
+    sext_ln233_2_reg_1577[0] <= 1'b0;
+    sext_ln188_reg_1630[0] <= 1'b0;
+    sext_ln188_1_reg_1676[0] <= 1'b0;
+    sext_ln188_2_reg_1715[0] <= 1'b0;
+    h_1_fu_296[0] <= 1'b0;
+    h_3_fu_300[0] <= 1'b0;
+    h_7_fu_304[0] <= 1'b0;
+    h_fu_308[0] <= 1'b0;
+    h_2_fu_312[0] <= 1'b0;
+    h_6_fu_316[0] <= 1'b0;
 end
 
 endmodule //Crypto

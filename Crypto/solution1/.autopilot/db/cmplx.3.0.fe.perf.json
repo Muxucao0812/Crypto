@@ -1,48 +1,22 @@
 {
   "0": {
     "basicblocks": 391,
-    "calls": "1 1 1 1 4 4 4 4 6 6 6 6 8 8 8 8 3 3 3 3 3 3 3 3 3 3 3 3 2 5 7 5 7 5 7 5 7 3 3 3 3 3 3 3 3 3 3 3 3 2 5 7 5 7 5 7 5 7 2 1 1 1 1 1 1 1 1 4 4 4 4 4 4 4 4 6 6 6 6 6 6 6 6 8 8 8 8 8 8 8 8 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 2 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7 2 5 7 5 7 5 7 5 7",
+    "calls": "5 5 5 5 4 4 4 4 7 7 7 7 3 3 3 3 1 1 1 1 1 1 1 1 1 1 1 1 8 6 2 6 2 6 2 6 2 1 1 1 1 1 1 1 1 1 1 1 1 8 6 2 6 2 6 2 6 2 8 5 5 5 5 5 5 5 5 4 4 4 4 4 4 4 4 7 7 7 7 7 7 7 7 3 3 3 3 3 3 3 3 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 8 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2 8 6 2 6 2 6 2 6 2",
     "file": "Crypto.cpp",
-    "fileloc": 16,
-    "instructions": 3977,
+    "fileloc": 15,
+    "instructions": 3744,
     "loads": {
       "L": 516,
       "T": 6
     },
     "name": "Crypto",
     "stores": {
-      "L": 267
+      "L": 246,
+      "T": 3
     },
-    "total_instructions": 13514
+    "total_instructions": 13281
   },
   "1": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "Arithmetic.cpp",
-    "fileloc": 61,
-    "instructions": 69,
-    "name": "MOD_PLAINTEXTMODULUS",
-    "stores": {
-      "L": 1
-    },
-    "total_instructions": 69
-  },
-  "2": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "Arithmetic.cpp",
-    "fileloc": 85,
-    "instructions": 115,
-    "loads": {
-      "G": 2
-    },
-    "name": "MUL_MOD",
-    "stores": {
-      "L": 1
-    },
-    "total_instructions": 115
-  },
-  "3": {
     "basicblocks": 5,
     "calls": "",
     "file": "Utils.cpp",
@@ -56,6 +30,36 @@
       "L": 1
     },
     "total_instructions": 23
+  },
+  "2": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 51,
+    "instructions": 17,
+    "loads": {
+      "G": 1
+    },
+    "name": "SUB_MOD",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 17
+  },
+  "3": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 85,
+    "instructions": 115,
+    "loads": {
+      "G": 2
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 115
   },
   "4": {
     "basicblocks": 3,
@@ -73,6 +77,18 @@
     "total_instructions": 17
   },
   "5": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 61,
+    "instructions": 69,
+    "name": "MOD_PLAINTEXTMODULUS",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 69
+  },
+  "6": {
     "basicblocks": 3,
     "calls": "",
     "file": "Arithmetic.cpp",
@@ -82,21 +98,6 @@
       "G": 1
     },
     "name": "ADD_MOD",
-    "stores": {
-      "L": 2
-    },
-    "total_instructions": 17
-  },
-  "6": {
-    "basicblocks": 3,
-    "calls": "",
-    "file": "Arithmetic.cpp",
-    "fileloc": 51,
-    "instructions": 17,
-    "loads": {
-      "G": 1
-    },
-    "name": "SUB_MOD",
     "stores": {
       "L": 2
     },

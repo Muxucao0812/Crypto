@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'MUL_MOD_1'
 ================================================================
-* Date:           Tue Mar  4 14:33:20 2025
+* Date:           Tue Mar  4 21:31:36 2025
 
 * Version:        2023.1 (Build 3854077 on May  4 2023)
 * Project:        Crypto
@@ -270,6 +270,7 @@ The critical path consists of the following:
  <State 13>: 4.218ns
 The critical path consists of the following:
 	'sub' operation ('sub_ln113', Arithmetic.cpp:113) [78]  (3.520 ns)
+	'select' operation ('select_ln116', Arithmetic.cpp:116) [87]  (0.000 ns)
 	'select' operation ('select_ln116_1', Arithmetic.cpp:116) [88]  (0.698 ns)
 
 

@@ -74,127 +74,127 @@
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/meng/HLS/Crypto/Crypto/solution1/directives.tcl:7:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=Crypto" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:31:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:30:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=DataRAM complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:32:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:31:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=DataRAM cyclic factor=BANKNum dim=2" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:35:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:34:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=BitReverseData cyclic factor=BANKNum" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:39:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:38:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=NTTTWiddleRAM cyclic factor=BANKNum" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:40:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:39:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=INTTTWiddleRAM cyclic factor=BANKNum" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:47:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port=dataInStream" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:46:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="depth=4096 variable=DataInStream" ARG_PragmaType="stream" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:48:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port=dataOutStream" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:47:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port=DataInStream" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:49:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=DataOutStream" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:50:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=NTTTwiddleIn bundle=control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=NTTTwiddleIn" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:51:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=INTTTwiddleIn bundle=control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:52:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=return bundle=control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=INTTTwiddleIn" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:53:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=RAMSel bundle=control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=return" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:54:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=RAMSel1 bundle=control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=RAMSel" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:55:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=OP bundle=control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=RAMSel1" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:62:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:56:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=OP" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:64:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:70:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:81:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:83:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:73:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:92:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:75:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:94:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:87:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:104:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:89:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:107:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:119:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:122:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:135:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:138:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:152:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:156:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:168:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:174:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:176:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:99:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:183:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:102:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:114:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:117:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:130:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:133:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:147:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:151:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:163:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:169:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:171:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:178:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:185:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:190:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=10 max=20" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:188:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:193:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:208:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:213:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:214:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:219:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:216:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:221:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:223:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:228:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:229:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:234:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="min=10 max=20" ARG_PragmaType="loop_tripcount" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:233:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:238:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:250:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:255:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:254:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:259:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="Arithmetic.cpp:76:5" msg_body="Inlining function 'STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)' into 'MOD_PLAINTEXTMODULUS(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*)'">
@@ -215,124 +215,133 @@
     <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="Arithmetic.cpp:93:5" msg_body="Inlining function 'STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)' into 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)'">
         <args Callee="STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)" Callee-DebugLoc="File Arithmetic.cpp Line 8 Column 0" Caller="MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)" Caller-DebugLoc="File Arithmetic.cpp Line 85 Column 0"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'VITIS_LOOP_61_1' (Crypto.cpp:61:30) in function 'Crypto' completely with a factor of 3">
-        <args Factor="3" LoopLoc="Crypto.cpp:61:30" LoopName="VITIS_LOOP_61_1"/>
+    <msg msg_groups="PRAGMA_STREAM" msg_id="214-191" msg_severity="WARNING" msg_loc="Crypto.cpp:46:9" msg_body="The stream pragma on function argument, in 'call' is unsupported">
+        <args Pragma="call" Pragma-DebugLoc="File Crypto.cpp Line 46 Column 9"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'VITIS_LOOP_72_3' (Crypto.cpp:72:30) in function 'Crypto' completely with a factor of 3">
-        <args Factor="3" LoopLoc="Crypto.cpp:72:30" LoopName="VITIS_LOOP_72_3"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'WRITE_DATA_LOOP' (Crypto.cpp:69:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto.cpp:69:13" LoopName="WRITE_DATA_LOOP" TripCount="3"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'WRITE_TWIDDLE_LOOP' (Crypto.cpp:86:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
-        <args Factor="3" LoopLoc="Crypto.cpp:86:13" LoopName="WRITE_TWIDDLE_LOOP" TripCount="3"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'WRITE_DATA_LOOP' (Crypto.cpp:69:13) in function 'Crypto' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto.cpp:69:13" LoopName="WRITE_DATA_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'WRITE_TWIDDLE_LOOP' (Crypto.cpp:86:13) in function 'Crypto' completely with a factor of 3">
-        <args Factor="3" LoopLoc="Crypto.cpp:86:13" LoopName="WRITE_TWIDDLE_LOOP"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'READ_DATA_LOOP' (Crypto.cpp:80:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto.cpp:80:13" LoopName="READ_DATA_LOOP" TripCount="3"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'POLY_MOD_MODULUS_LOOP' (Crypto.cpp:98:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
-        <args Factor="3" LoopLoc="Crypto.cpp:98:13" LoopName="POLY_MOD_MODULUS_LOOP" TripCount="3"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'READ_DATA_LOOP' (Crypto.cpp:80:13) in function 'Crypto' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto.cpp:80:13" LoopName="READ_DATA_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'POLY_MOD_MODULUS_LOOP' (Crypto.cpp:98:13) in function 'Crypto' completely with a factor of 3">
-        <args Factor="3" LoopLoc="Crypto.cpp:98:13" LoopName="POLY_MOD_MODULUS_LOOP"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'WRITE_TWIDDLE_LOOP' (Crypto.cpp:91:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto.cpp:91:13" LoopName="WRITE_TWIDDLE_LOOP" TripCount="3"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-188" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'POLY_MOD_MODULUS_LOOP1' (Crypto.cpp:101:17) in function 'Crypto' partially with a factor of 4">
-        <args Factor="4" LoopLoc="Crypto.cpp:101:17" LoopName="POLY_MOD_MODULUS_LOOP1"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'WRITE_TWIDDLE_LOOP' (Crypto.cpp:91:13) in function 'Crypto' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto.cpp:91:13" LoopName="WRITE_TWIDDLE_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'POLY_ADD_MOD_LOOP' (Crypto.cpp:113:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
-        <args Factor="3" LoopLoc="Crypto.cpp:113:13" LoopName="POLY_ADD_MOD_LOOP" TripCount="3"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'POLY_MOD_MODULUS_LOOP' (Crypto.cpp:103:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto.cpp:103:13" LoopName="POLY_MOD_MODULUS_LOOP" TripCount="3"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'POLY_ADD_MOD_LOOP' (Crypto.cpp:113:13) in function 'Crypto' completely with a factor of 3">
-        <args Factor="3" LoopLoc="Crypto.cpp:113:13" LoopName="POLY_ADD_MOD_LOOP"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'POLY_MOD_MODULUS_LOOP' (Crypto.cpp:103:13) in function 'Crypto' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto.cpp:103:13" LoopName="POLY_MOD_MODULUS_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-188" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'POLY_ADD_LOOP' (Crypto.cpp:116:17) in function 'Crypto' partially with a factor of 4">
-        <args Factor="4" LoopLoc="Crypto.cpp:116:17" LoopName="POLY_ADD_LOOP"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-188" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'POLY_MOD_MODULUS_LOOP1' (Crypto.cpp:106:17) in function 'Crypto' partially with a factor of 4">
+        <args Factor="4" LoopLoc="Crypto.cpp:106:17" LoopName="POLY_MOD_MODULUS_LOOP1"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'POLY_SUB_MOD_LOOP' (Crypto.cpp:129:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
-        <args Factor="3" LoopLoc="Crypto.cpp:129:13" LoopName="POLY_SUB_MOD_LOOP" TripCount="3"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'POLY_ADD_MOD_LOOP' (Crypto.cpp:118:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto.cpp:118:13" LoopName="POLY_ADD_MOD_LOOP" TripCount="3"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'POLY_SUB_MOD_LOOP' (Crypto.cpp:129:13) in function 'Crypto' completely with a factor of 3">
-        <args Factor="3" LoopLoc="Crypto.cpp:129:13" LoopName="POLY_SUB_MOD_LOOP"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'POLY_ADD_MOD_LOOP' (Crypto.cpp:118:13) in function 'Crypto' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto.cpp:118:13" LoopName="POLY_ADD_MOD_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-188" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'POLY_SUB_LOOP' (Crypto.cpp:132:17) in function 'Crypto' partially with a factor of 4">
-        <args Factor="4" LoopLoc="Crypto.cpp:132:17" LoopName="POLY_SUB_LOOP"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-188" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'POLY_ADD_LOOP' (Crypto.cpp:121:17) in function 'Crypto' partially with a factor of 4">
+        <args Factor="4" LoopLoc="Crypto.cpp:121:17" LoopName="POLY_ADD_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'POLY_MUL_MOD_LOOP' (Crypto.cpp:146:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
-        <args Factor="3" LoopLoc="Crypto.cpp:146:13" LoopName="POLY_MUL_MOD_LOOP" TripCount="3"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'POLY_SUB_MOD_LOOP' (Crypto.cpp:134:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto.cpp:134:13" LoopName="POLY_SUB_MOD_LOOP" TripCount="3"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'POLY_MUL_MOD_LOOP' (Crypto.cpp:146:13) in function 'Crypto' completely with a factor of 3">
-        <args Factor="3" LoopLoc="Crypto.cpp:146:13" LoopName="POLY_MUL_MOD_LOOP"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'POLY_SUB_MOD_LOOP' (Crypto.cpp:134:13) in function 'Crypto' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto.cpp:134:13" LoopName="POLY_SUB_MOD_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-188" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'POLY_MUL_LOOP' (Crypto.cpp:150:17) in function 'Crypto' partially with a factor of 4">
-        <args Factor="4" LoopLoc="Crypto.cpp:150:17" LoopName="POLY_MUL_LOOP"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-188" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'POLY_SUB_LOOP' (Crypto.cpp:137:17) in function 'Crypto' partially with a factor of 4">
+        <args Factor="4" LoopLoc="Crypto.cpp:137:17" LoopName="POLY_SUB_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'NTT_STAGE_LOOP' (Crypto.cpp:177:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
-        <args Factor="3" LoopLoc="Crypto.cpp:177:13" LoopName="NTT_STAGE_LOOP" TripCount="3"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'POLY_MUL_MOD_LOOP' (Crypto.cpp:151:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto.cpp:151:13" LoopName="POLY_MUL_MOD_LOOP" TripCount="3"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'NTT_STAGE_LOOP' (Crypto.cpp:177:13) in function 'Crypto' completely with a factor of 3">
-        <args Factor="3" LoopLoc="Crypto.cpp:177:13" LoopName="NTT_STAGE_LOOP"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'POLY_MUL_MOD_LOOP' (Crypto.cpp:151:13) in function 'Crypto' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto.cpp:151:13" LoopName="POLY_MUL_MOD_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-188" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'NTT_PE_LOOP' (Crypto.cpp:187:25) in function 'Crypto' partially with a factor of 4">
-        <args Factor="4" LoopLoc="Crypto.cpp:187:25" LoopName="NTT_PE_LOOP"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-188" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'POLY_MUL_LOOP' (Crypto.cpp:155:17) in function 'Crypto' partially with a factor of 4">
+        <args Factor="4" LoopLoc="Crypto.cpp:155:17" LoopName="POLY_MUL_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'NTT_PERMUTE_LOOP' (Crypto.cpp:168:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
-        <args Factor="3" LoopLoc="Crypto.cpp:168:13" LoopName="NTT_PERMUTE_LOOP" TripCount="3"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'NTT_STAGE_LOOP' (Crypto.cpp:182:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto.cpp:182:13" LoopName="NTT_STAGE_LOOP" TripCount="3"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'NTT_PERMUTE_LOOP' (Crypto.cpp:168:13) in function 'Crypto' completely with a factor of 3">
-        <args Factor="3" LoopLoc="Crypto.cpp:168:13" LoopName="NTT_PERMUTE_LOOP"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'NTT_STAGE_LOOP' (Crypto.cpp:182:13) in function 'Crypto' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto.cpp:182:13" LoopName="NTT_STAGE_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'VITIS_LOOP_162_6' (Crypto.cpp:162:31) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
-        <args Factor="3" LoopLoc="Crypto.cpp:162:31" LoopName="VITIS_LOOP_162_6" TripCount="3"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-188" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'NTT_PE_LOOP' (Crypto.cpp:192:25) in function 'Crypto' partially with a factor of 4">
+        <args Factor="4" LoopLoc="Crypto.cpp:192:25" LoopName="NTT_PE_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'VITIS_LOOP_162_6' (Crypto.cpp:162:31) in function 'Crypto' completely with a factor of 3">
-        <args Factor="3" LoopLoc="Crypto.cpp:162:31" LoopName="VITIS_LOOP_162_6"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'NTT_PERMUTE_LOOP' (Crypto.cpp:173:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto.cpp:173:13" LoopName="NTT_PERMUTE_LOOP" TripCount="3"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'VITIS_LOOP_249_12' (Crypto.cpp:249:32) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
-        <args Factor="3" LoopLoc="Crypto.cpp:249:32" LoopName="VITIS_LOOP_249_12" TripCount="3"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'NTT_PERMUTE_LOOP' (Crypto.cpp:173:13) in function 'Crypto' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto.cpp:173:13" LoopName="NTT_PERMUTE_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'VITIS_LOOP_249_12' (Crypto.cpp:249:32) in function 'Crypto' completely with a factor of 3">
-        <args Factor="3" LoopLoc="Crypto.cpp:249:32" LoopName="VITIS_LOOP_249_12"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'VITIS_LOOP_167_4' (Crypto.cpp:167:31) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto.cpp:167:31" LoopName="VITIS_LOOP_167_4" TripCount="3"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'INTT_STAGE_LOOP' (Crypto.cpp:222:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
-        <args Factor="3" LoopLoc="Crypto.cpp:222:13" LoopName="INTT_STAGE_LOOP" TripCount="3"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'VITIS_LOOP_167_4' (Crypto.cpp:167:31) in function 'Crypto' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto.cpp:167:31" LoopName="VITIS_LOOP_167_4"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'INTT_STAGE_LOOP' (Crypto.cpp:222:13) in function 'Crypto' completely with a factor of 3">
-        <args Factor="3" LoopLoc="Crypto.cpp:222:13" LoopName="INTT_STAGE_LOOP"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'VITIS_LOOP_254_10' (Crypto.cpp:254:32) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto.cpp:254:32" LoopName="VITIS_LOOP_254_10" TripCount="3"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-188" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'INTT_PE_LOOP' (Crypto.cpp:232:25) in function 'Crypto' partially with a factor of 4">
-        <args Factor="4" LoopLoc="Crypto.cpp:232:25" LoopName="INTT_PE_LOOP"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'VITIS_LOOP_254_10' (Crypto.cpp:254:32) in function 'Crypto' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto.cpp:254:32" LoopName="VITIS_LOOP_254_10"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'INTT_PERMUTE_LOOP' (Crypto.cpp:213:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
-        <args Factor="3" LoopLoc="Crypto.cpp:213:13" LoopName="INTT_PERMUTE_LOOP" TripCount="3"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'INTT_STAGE_LOOP' (Crypto.cpp:227:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto.cpp:227:13" LoopName="INTT_STAGE_LOOP" TripCount="3"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'INTT_PERMUTE_LOOP' (Crypto.cpp:213:13) in function 'Crypto' completely with a factor of 3">
-        <args Factor="3" LoopLoc="Crypto.cpp:213:13" LoopName="INTT_PERMUTE_LOOP"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'INTT_STAGE_LOOP' (Crypto.cpp:227:13) in function 'Crypto' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto.cpp:227:13" LoopName="INTT_STAGE_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'VITIS_LOOP_207_9' (Crypto.cpp:207:31) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
-        <args Factor="3" LoopLoc="Crypto.cpp:207:31" LoopName="VITIS_LOOP_207_9" TripCount="3"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-188" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'INTT_PE_LOOP' (Crypto.cpp:237:25) in function 'Crypto' partially with a factor of 4">
+        <args Factor="4" LoopLoc="Crypto.cpp:237:25" LoopName="INTT_PE_LOOP"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:24:0" msg_body="Unrolling loop 'VITIS_LOOP_207_9' (Crypto.cpp:207:31) in function 'Crypto' completely with a factor of 3">
-        <args Factor="3" LoopLoc="Crypto.cpp:207:31" LoopName="VITIS_LOOP_207_9"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'INTT_PERMUTE_LOOP' (Crypto.cpp:218:13) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto.cpp:218:13" LoopName="INTT_PERMUTE_LOOP" TripCount="3"/>
     </msg>
-    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Crypto.cpp:155:21" msg_body="Duplicating function 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'INTT_PERMUTE_LOOP' (Crypto.cpp:218:13) in function 'Crypto' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto.cpp:218:13" LoopName="INTT_PERMUTE_LOOP"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'VITIS_LOOP_212_7' (Crypto.cpp:212:31) in function 'Crypto': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto.cpp:212:31" LoopName="VITIS_LOOP_212_7" TripCount="3"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto.cpp:23:0" msg_body="Unrolling loop 'VITIS_LOOP_212_7' (Crypto.cpp:212:31) in function 'Crypto' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto.cpp:212:31" LoopName="VITIS_LOOP_212_7"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Crypto.cpp:160:21" msg_body="Duplicating function 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
         <args Name="MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)"/>
     </msg>
-    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Crypto.cpp:137:21" msg_body="Duplicating function 'SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.12.21)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Crypto.cpp:142:21" msg_body="Duplicating function 'SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.12.21)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
         <args Name="SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.12.21)"/>
     </msg>
-    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Crypto.cpp:121:21" msg_body="Duplicating function 'ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.15.18)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Crypto.cpp:126:21" msg_body="Duplicating function 'ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.15.18)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
         <args Name="ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.15.18)"/>
     </msg>
     <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="Utils.cpp:19:0" msg_body="Inlining function 'bit_reverse(int, int)' into 'apply_bit_reverse(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*)'">
         <args Callee="bit_reverse(int, int)" Callee-DebugLoc="File Utils.cpp Line 9 Column 0" Caller="apply_bit_reverse(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*)" Caller-DebugLoc="File Utils.cpp Line 19 Column 0"/>
     </msg>
-    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto.cpp:30:14" msg_body="Applying array_partition to 'DataRAM': Complete partitioning on dimension 1. Cyclic partitioning with factor 16 on dimension 2.">
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto.cpp:29:14" msg_body="Applying array_partition to 'DataRAM': Complete partitioning on dimension 1. Cyclic partitioning with factor 16 on dimension 2.">
         <args Dim="islist 1 2" Factor="16" Mode="islist Complete Cyclic" UOName="DataRAM"/>
     </msg>
-    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto.cpp:34:11" msg_body="Applying array_partition to 'BitReverseData': Cyclic partitioning with factor 16 on dimension 1.">
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto.cpp:33:11" msg_body="Applying array_partition to 'BitReverseData': Cyclic partitioning with factor 16 on dimension 1.">
         <args Dim="1" Factor="16" Mode="Cyclic" UOName="BitReverseData"/>
     </msg>
-    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto.cpp:37:11" msg_body="Applying array_partition to 'NTTTWiddleRAM': Cyclic partitioning with factor 16 on dimension 1.">
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto.cpp:36:11" msg_body="Applying array_partition to 'NTTTWiddleRAM': Cyclic partitioning with factor 16 on dimension 1.">
         <args Dim="1" Factor="16" Mode="Cyclic" UOName="NTTTWiddleRAM"/>
     </msg>
-    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto.cpp:38:14" msg_body="Applying array_partition to 'INTTTWiddleRAM': Cyclic partitioning with factor 16 on dimension 1.">
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto.cpp:37:14" msg_body="Applying array_partition to 'INTTTWiddleRAM': Cyclic partitioning with factor 16 on dimension 1.">
         <args Dim="1" Factor="16" Mode="Cyclic" UOName="INTTTWiddleRAM"/>
     </msg>
 </xilinx:hls_fe_msgs>

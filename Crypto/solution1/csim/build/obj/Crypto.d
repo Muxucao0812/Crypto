@@ -20,6 +20,9 @@ obj/Crypto.o: ../../../../Crypto.cpp ../../../../define.h \
  /home/meng/Software/VIvado/Vitis_HLS/2023.1/include/etc/ap_fixed_ref.h \
  /home/meng/Software/VIvado/Vitis_HLS/2023.1/include/etc/ap_fixed_special.h \
  ../../../../AddressGen.hpp ../../../../Crypto.hpp \
+ /home/meng/Software/VIvado/Vitis_HLS/2023.1/include/hls_stream.h \
+ /home/meng/Software/VIvado/Vitis_HLS/2023.1/include/ap_axi_sdata.h \
+ /home/meng/Software/VIvado/Vitis_HLS/2023.1/include/ap_int.h \
  ../../../../Arithmetic.hpp ../../../../PE_UNIT.hpp \
  ../../../../PE_ARRAY.hpp ../../../../DATAMemory.hpp \
  ../../../../Utils.hpp ../../../../TwiddleMemory.hpp

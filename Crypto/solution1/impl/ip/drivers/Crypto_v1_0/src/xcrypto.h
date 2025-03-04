@@ -105,6 +105,15 @@ u32 XCrypto_Write_NTTTwiddleIn_Words(XCrypto *InstancePtr, int offset, word_type
 u32 XCrypto_Read_NTTTwiddleIn_Words(XCrypto *InstancePtr, int offset, word_type *data, int length);
 u32 XCrypto_Write_NTTTwiddleIn_Bytes(XCrypto *InstancePtr, int offset, char *data, int length);
 u32 XCrypto_Read_NTTTwiddleIn_Bytes(XCrypto *InstancePtr, int offset, char *data, int length);
+u32 XCrypto_Get_DataOutStream_BaseAddress(XCrypto *InstancePtr);
+u32 XCrypto_Get_DataOutStream_HighAddress(XCrypto *InstancePtr);
+u32 XCrypto_Get_DataOutStream_TotalBytes(XCrypto *InstancePtr);
+u32 XCrypto_Get_DataOutStream_BitWidth(XCrypto *InstancePtr);
+u32 XCrypto_Get_DataOutStream_Depth(XCrypto *InstancePtr);
+u32 XCrypto_Write_DataOutStream_Words(XCrypto *InstancePtr, int offset, word_type *data, int length);
+u32 XCrypto_Read_DataOutStream_Words(XCrypto *InstancePtr, int offset, word_type *data, int length);
+u32 XCrypto_Write_DataOutStream_Bytes(XCrypto *InstancePtr, int offset, char *data, int length);
+u32 XCrypto_Read_DataOutStream_Bytes(XCrypto *InstancePtr, int offset, char *data, int length);
 u32 XCrypto_Get_INTTTwiddleIn_BaseAddress(XCrypto *InstancePtr);
 u32 XCrypto_Get_INTTTwiddleIn_HighAddress(XCrypto *InstancePtr);
 u32 XCrypto_Get_INTTTwiddleIn_TotalBytes(XCrypto *InstancePtr);

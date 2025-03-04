@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Crypto_Pipeline_MUL_INV_LOOP'" level="0">
-<item name = "Date">Tue Mar  4 14:33:27 2025
+<item name = "Date">Tue Mar  4 21:31:43 2025
 </item>
 <item name = "Version">2023.1 (Build 3854077 on May  4 2023)</item>
 <item name = "Project">Crypto</item>
@@ -81,8 +81,8 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln253_fu_151_p2">+, 0, 0, 14, 13, 1</column>
-<column name="icmp_ln253_fu_145_p2">icmp, 0, 0, 17, 13, 14</column>
+<column name="add_ln258_fu_151_p2">+, 0, 0, 14, 13, 1</column>
+<column name="icmp_ln258_fu_145_p2">icmp, 0, 0, 17, 13, 14</column>
 <column name="ap_enable_pp0">xor, 0, 0, 2, 1, 2</column>
 </table>
 </item>
@@ -135,13 +135,13 @@
 <column name="ap_loop_exit_ready_pp0_iter7_reg">1, 0, 1, 0</column>
 <column name="ap_loop_exit_ready_pp0_iter8_reg">1, 0, 1, 0</column>
 <column name="ap_loop_exit_ready_pp0_iter9_reg">1, 0, 1, 0</column>
-<column name="icmp_ln253_reg_195">1, 0, 1, 0</column>
+<column name="icmp_ln258_reg_195">1, 0, 1, 0</column>
 <column name="j_fu_50">13, 0, 13, 0</column>
 <column name="DataRAM_3_addr_reg_205">64, 32, 12, 0</column>
 <column name="DataRAM_6_addr_reg_211">64, 32, 12, 0</column>
 <column name="DataRAM_9_addr_reg_217">64, 32, 12, 0</column>
 <column name="DataRAM_addr_reg_199">64, 32, 12, 0</column>
-<column name="icmp_ln253_reg_195">64, 32, 1, 0</column>
+<column name="icmp_ln258_reg_195">64, 32, 1, 0</column>
 </table>
 </item>
 </section>

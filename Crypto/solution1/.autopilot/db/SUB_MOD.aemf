@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1741070006123">
-  <ports id="1" name="input1_val" type="PortType" coreId="10" bitwidth="32">
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1741095102142">
+  <ports id="1" name="input1_val" type="PortType" coreId="825897273" bitwidth="32">
     <dataOutputObjs>read</dataOutputObjs>
   </ports>
-  <ports id="2" name="input2_val" type="PortType" coreId="859992672" bitwidth="32">
+  <ports id="2" name="input2_val" type="PortType" coreId="10" bitwidth="32">
     <dataOutputObjs>read</dataOutputObjs>
   </ports>
-  <ports id="3" name="MOD_INDEX" type="PortType" coreId="1599294464" bitwidth="2">
+  <ports id="3" name="MOD_INDEX" type="PortType" coreId="2977811712" bitwidth="2">
     <dataOutputObjs>read</dataOutputObjs>
   </ports>
   <ports id="13" name="ap_return" direction="DirOut">
@@ -29,15 +29,15 @@
   <edges source_obj="//@regions.0/@basic_blocks.0/@node_objs.9" sink_obj="//@ports.3"/>
   <regions anchor_node="-1" region_type="8" interval="1" typeName="Pipeline" iiViolation="" id="51" pipe_depth="1" RegionName="SUB_MOD">
     <basic_blocks id="14" name="SUB_MOD" type="BlockType">
-      <node_objs xsi:type="cdfg:CdfgNode" id="4" name="MOD_INDEX_read" coreId="860134144" bitwidth="2" opcode="read" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="4" name="MOD_INDEX_read" coreId="1908080896" bitwidth="2" opcode="read" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
         <dataInputObjs>MOD_INDEX</dataInputObjs>
         <dataOutputObjs>mux</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="5" name="input2_val_read" coreId="860606816" bitwidth="32" opcode="read" m_display="0" m_topoIndex="2" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="5" name="input2_val_read" coreId="3803832912" bitwidth="32" opcode="read" m_display="0" m_topoIndex="2" m_clusterGroupNumber="-1">
         <dataInputObjs>input2_val</dataInputObjs>
         <dataOutputObjs>sub</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="6" name="input1_val_read" coreId="3721887920" bitwidth="32" opcode="read" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="6" name="input1_val_read" coreId="1902169185" bitwidth="32" opcode="read" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
         <dataInputObjs>input1_val</dataInputObjs>
         <dataOutputObjs>sub</dataOutputObjs>
       </node_objs>
@@ -49,7 +49,7 @@
         <dataOutputObjs>add</dataOutputObjs>
         <dataOutputObjs>select</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="8" name="tmp" lineNumber="55" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="tmp_fu_46_p3" coreId="860391376" contextFuncName="SUB_MOD" bitwidth="1" opcode="bitselect" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="8" name="tmp" lineNumber="55" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="tmp_fu_46_p3" coreId="1900230178" contextFuncName="SUB_MOD" bitwidth="1" opcode="bitselect" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="55" fileDirectory="/home/meng/HLS/Crypto" functionName="SUB_MOD"/>
         <dataInputObjs>sub</dataInputObjs>
         <dataOutputObjs>select</dataOutputObjs>
@@ -61,7 +61,7 @@
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="10" name="zext_ln56" lineNumber="56" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln56_fu_66_p1" coreId="860508752" contextFuncName="SUB_MOD" bitwidth="32" opcode="zext" m_display="0" m_topoIndex="7" m_clusterGroupNumber="1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="10" name="zext_ln56" lineNumber="56" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln56_fu_66_p1" coreId="1900631833" contextFuncName="SUB_MOD" bitwidth="32" opcode="zext" m_display="0" m_topoIndex="7" m_clusterGroupNumber="1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="56" fileDirectory="/home/meng/HLS/Crypto" functionName="SUB_MOD"/>
         <dataInputObjs>mux</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
@@ -79,7 +79,7 @@
         <dataInputObjs>sub</dataInputObjs>
         <dataOutputObjs>ret</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="13" name="_ln58" lineNumber="58" fileName="Arithmetic.cpp" fileDirectory="../." coreId="3722114628" contextFuncName="SUB_MOD" opcode="ret" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="13" name="_ln58" lineNumber="58" fileName="Arithmetic.cpp" fileDirectory="../." coreId="1902761100" contextFuncName="SUB_MOD" opcode="ret" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="58" fileDirectory="/home/meng/HLS/Crypto" functionName="SUB_MOD"/>
         <dataInputObjs>select</dataInputObjs>
         <dataOutputObjs>ap_return</dataOutputObjs>

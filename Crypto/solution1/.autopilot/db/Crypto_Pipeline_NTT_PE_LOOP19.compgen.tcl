@@ -121,14 +121,14 @@ eval "cg_default_interface_gen_dc { \
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
     id 146 \
-    name trunc_ln183_7 \
+    name trunc_ln188_7 \
     type other \
     dir I \
     reset_level 1 \
     sync_rst true \
-    corename dc_trunc_ln183_7 \
+    corename dc_trunc_ln188_7 \
     op interface \
-    ports { trunc_ln183_7 { I 12 vector } } \
+    ports { trunc_ln188_7 { I 12 vector } } \
 } "
 }
 
@@ -151,14 +151,14 @@ eval "cg_default_interface_gen_dc { \
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
     id 152 \
-    name trunc_ln183_4 \
+    name trunc_ln188_4 \
     type other \
     dir I \
     reset_level 1 \
     sync_rst true \
-    corename dc_trunc_ln183_4 \
+    corename dc_trunc_ln188_4 \
     op interface \
-    ports { trunc_ln183_4 { I 12 vector } } \
+    ports { trunc_ln188_4 { I 12 vector } } \
 } "
 }
 
@@ -166,14 +166,14 @@ eval "cg_default_interface_gen_dc { \
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
     id 153 \
-    name trunc_ln183_5 \
+    name trunc_ln188_5 \
     type other \
     dir I \
     reset_level 1 \
     sync_rst true \
-    corename dc_trunc_ln183_5 \
+    corename dc_trunc_ln188_5 \
     op interface \
-    ports { trunc_ln183_5 { I 11 vector } } \
+    ports { trunc_ln188_5 { I 11 vector } } \
 } "
 }
 

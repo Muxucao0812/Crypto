@@ -6,7 +6,7 @@
 +-------------------------+-------------------+-------------------+-------------------+----------------------+--------------------+
 | Function                | Location          | Compile/Link      | Unroll/Inline     | Performance/Pipeline | Optimizations      |
 +-------------------------+-------------------+-------------------+-------------------+----------------------+--------------------+
-| + Crypto                | Crypto.cpp:16     | 29,268            | 12,459            | 13,514               | 12,646             |
+| + Crypto                | Crypto.cpp:15     | 29,130            | 12,408            | 13,281               | 12,567             |
 |  + MOD_PLAINTEXTMODULUS | Arithmetic.cpp:61 |  5,197            |  1,476 (12 calls) |    828 (12 calls)    |    840 (12 calls)  |
 |     STEPMUL             | Arithmetic.cpp:8  |  4,380 (3 calls)  |                   |                      |                    |
 |    ADD_MOD              | Arithmetic.cpp:38 |    858 (3 calls)  |    864 (36 calls) |  1,836 (108 calls)   |  1,836 (108 calls) |

@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'Crypto_Pipeline_INTT_PE_LOOP'
 ================================================================
-* Date:           Tue Mar  4 14:33:26 2025
+* Date:           Tue Mar  4 21:31:42 2025
 
 * Version:        2023.1 (Build 3854077 on May  4 2023)
 * Project:        Crypto
@@ -100,18 +100,18 @@
     +---------------------------------+----------+----+---+----+------------+------------+
     |          Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
     +---------------------------------+----------+----+---+----+------------+------------+
-    |add_ln232_fu_641_p2              |         +|   0|  0|  39|          32|           3|
-    |add_ln235_2_fu_707_p2            |         +|   0|  0|  12|          12|          12|
-    |add_ln235_5_fu_717_p2            |         +|   0|  0|  12|          12|          12|
-    |add_ln235_6_fu_727_p2            |         +|   0|  0|  12|          12|          12|
-    |add_ln235_fu_593_p2              |         +|   0|  0|  12|          12|          12|
-    |add_ln236_2_fu_739_p2            |         +|   0|  0|  12|          12|          12|
-    |add_ln236_5_fu_758_p2            |         +|   0|  0|  12|          12|          12|
-    |add_ln236_6_fu_777_p2            |         +|   0|  0|  12|          12|          12|
-    |add_ln236_fu_659_p2              |         +|   0|  0|  12|          12|          12|
-    |add_ln237_2_fu_684_p2            |         +|   0|  0|  12|          11|          11|
-    |add_ln237_4_fu_693_p2            |         +|   0|  0|  12|          11|          11|
-    |add_ln237_fu_675_p2              |         +|   0|  0|  12|          11|          11|
+    |add_ln237_fu_641_p2              |         +|   0|  0|  39|          32|           3|
+    |add_ln240_2_fu_707_p2            |         +|   0|  0|  12|          12|          12|
+    |add_ln240_5_fu_717_p2            |         +|   0|  0|  12|          12|          12|
+    |add_ln240_6_fu_727_p2            |         +|   0|  0|  12|          12|          12|
+    |add_ln240_fu_593_p2              |         +|   0|  0|  12|          12|          12|
+    |add_ln241_2_fu_739_p2            |         +|   0|  0|  12|          12|          12|
+    |add_ln241_5_fu_758_p2            |         +|   0|  0|  12|          12|          12|
+    |add_ln241_6_fu_777_p2            |         +|   0|  0|  12|          12|          12|
+    |add_ln241_fu_659_p2              |         +|   0|  0|  12|          12|          12|
+    |add_ln242_2_fu_684_p2            |         +|   0|  0|  12|          11|          11|
+    |add_ln242_4_fu_693_p2            |         +|   0|  0|  12|          11|          11|
+    |add_ln242_fu_675_p2              |         +|   0|  0|  12|          11|          11|
     |ap_condition_2232                |       and|   0|  0|   2|           1|           1|
     |ap_condition_2236                |       and|   0|  0|   2|           1|           1|
     |ap_condition_2240                |       and|   0|  0|   2|           1|           1|
@@ -120,16 +120,16 @@
     |ap_predicate_op231_call_state23  |       and|   0|  0|   2|           1|           1|
     |ap_predicate_op294_call_state42  |       and|   0|  0|   2|           1|           1|
     |ap_predicate_op357_call_state61  |       and|   0|  0|   2|           1|           1|
-    |icmp_ln232_2_fu_611_p2           |      icmp|   0|  0|  39|          32|          32|
-    |icmp_ln232_5_fu_623_p2           |      icmp|   0|  0|  39|          32|          32|
-    |icmp_ln232_6_fu_635_p2           |      icmp|   0|  0|  39|          32|          32|
-    |icmp_ln232_fu_579_p2             |      icmp|   0|  0|  39|          32|          32|
-    |or_ln232_10_fu_712_p2            |        or|   0|  0|  12|          12|           2|
-    |or_ln232_11_fu_722_p2            |        or|   0|  0|  12|          12|           2|
-    |or_ln232_2_fu_617_p2             |        or|   0|  0|  32|          32|           2|
-    |or_ln232_5_fu_629_p2             |        or|   0|  0|  32|          32|           2|
-    |or_ln232_9_fu_702_p2             |        or|   0|  0|  12|          12|           1|
-    |or_ln232_fu_605_p2               |        or|   0|  0|  32|          32|           1|
+    |icmp_ln237_2_fu_611_p2           |      icmp|   0|  0|  39|          32|          32|
+    |icmp_ln237_5_fu_623_p2           |      icmp|   0|  0|  39|          32|          32|
+    |icmp_ln237_6_fu_635_p2           |      icmp|   0|  0|  39|          32|          32|
+    |icmp_ln237_fu_579_p2             |      icmp|   0|  0|  39|          32|          32|
+    |or_ln237_10_fu_712_p2            |        or|   0|  0|  12|          12|           2|
+    |or_ln237_11_fu_722_p2            |        or|   0|  0|  12|          12|           2|
+    |or_ln237_2_fu_617_p2             |        or|   0|  0|  32|          32|           2|
+    |or_ln237_5_fu_629_p2             |        or|   0|  0|  32|          32|           2|
+    |or_ln237_9_fu_702_p2             |        or|   0|  0|  12|          12|           1|
+    |or_ln237_fu_605_p2               |        or|   0|  0|  32|          32|           1|
     |ap_enable_pp0                    |       xor|   0|  0|   2|           1|           2|
     +---------------------------------+----------+----+---+----+------------+------------+
     |Total                            |          |   0|  0| 477|         430|         280|
@@ -205,22 +205,22 @@
     |DataRAM_addr_21_reg_1059     |  12|   0|   12|          0|
     |DataRAM_addr_22_reg_1083     |  12|   0|   12|          0|
     |DataRAM_addr_reg_859         |  12|   0|   12|          0|
-    |add_ln235_2_reg_945          |  12|   0|   12|          0|
-    |add_ln235_5_reg_951          |  12|   0|   12|          0|
-    |add_ln235_6_reg_957          |  12|   0|   12|          0|
-    |add_ln235_reg_835            |  12|   0|   12|          0|
-    |add_ln237_2_reg_909          |  11|   0|   11|          0|
+    |add_ln240_2_reg_945          |  12|   0|   12|          0|
+    |add_ln240_5_reg_951          |  12|   0|   12|          0|
+    |add_ln240_6_reg_957          |  12|   0|   12|          0|
+    |add_ln240_reg_835            |  12|   0|   12|          0|
+    |add_ln242_2_reg_909          |  11|   0|   11|          0|
     |ap_CS_fsm                    |  76|   0|   76|          0|
     |ap_done_reg                  |   1|   0|    1|          0|
     |ap_enable_reg_pp0_iter0_reg  |   1|   0|    1|          0|
     |ap_enable_reg_pp0_iter1      |   1|   0|    1|          0|
-    |empty_132_reg_828            |  12|   0|   12|          0|
-    |icmp_ln232_2_reg_847         |   1|   0|    1|          0|
-    |icmp_ln232_5_reg_851         |   1|   0|    1|          0|
-    |icmp_ln232_6_reg_855         |   1|   0|    1|          0|
-    |icmp_ln232_reg_824           |   1|   0|    1|          0|
+    |empty_138_reg_828            |  12|   0|   12|          0|
+    |icmp_ln237_2_reg_847         |   1|   0|    1|          0|
+    |icmp_ln237_5_reg_851         |   1|   0|    1|          0|
+    |icmp_ln237_6_reg_855         |   1|   0|    1|          0|
+    |icmp_ln237_reg_824           |   1|   0|    1|          0|
     |k_1_fu_76                    |  32|   0|   32|          0|
-    |mul_ln237_reg_841            |  11|   0|   11|          0|
+    |mul_ln242_reg_841            |  11|   0|   11|          0|
     |reg_467                      |  32|   0|   32|          0|
     |reg_472                      |  32|   0|   32|          0|
     |reg_477                      |  32|   0|   32|          0|
@@ -256,23 +256,23 @@
 |ap_done                      |  out|    1|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
 |ap_idle                      |  out|    1|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
 |ap_ready                     |  out|    1|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_ADD_MOD_fu_1757_p_din1   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_ADD_MOD_fu_1757_p_din2   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_ADD_MOD_fu_1757_p_din3   |  out|    2|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_ADD_MOD_fu_1757_p_dout0  |   in|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_ADD_MOD_fu_1757_p_ready  |   in|    1|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_MUL_MOD_fu_1763_p_din1   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_MUL_MOD_fu_1763_p_din2   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_MUL_MOD_fu_1763_p_din3   |  out|    2|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_MUL_MOD_fu_1763_p_dout0  |   in|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_MUL_MOD_fu_1763_p_ce     |  out|    1|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_SUB_MOD_fu_1769_p_din1   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_SUB_MOD_fu_1769_p_din2   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_SUB_MOD_fu_1769_p_din3   |  out|    2|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_SUB_MOD_fu_1769_p_dout0  |   in|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
-|grp_SUB_MOD_fu_1769_p_ready  |   in|    1|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_ADD_MOD_fu_1733_p_din1   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_ADD_MOD_fu_1733_p_din2   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_ADD_MOD_fu_1733_p_din3   |  out|    2|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_ADD_MOD_fu_1733_p_dout0  |   in|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_ADD_MOD_fu_1733_p_ready  |   in|    1|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_MUL_MOD_fu_1739_p_din1   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_MUL_MOD_fu_1739_p_din2   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_MUL_MOD_fu_1739_p_din3   |  out|    2|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_MUL_MOD_fu_1739_p_dout0  |   in|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_MUL_MOD_fu_1739_p_ce     |  out|    1|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_SUB_MOD_fu_1745_p_din1   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_SUB_MOD_fu_1745_p_din2   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_SUB_MOD_fu_1745_p_din3   |  out|    2|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_SUB_MOD_fu_1745_p_dout0  |   in|   32|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
+|grp_SUB_MOD_fu_1745_p_ready  |   in|    1|  ap_ctrl_hs|  Crypto_Pipeline_INTT_PE_LOOP|  return value|
 |hf_7                         |   in|   31|     ap_none|                          hf_7|        scalar|
-|trunc_ln228_3                |   in|   12|     ap_none|                 trunc_ln228_3|        scalar|
+|trunc_ln233_3                |   in|   12|     ap_none|                 trunc_ln233_3|        scalar|
 |DataRAM_address0             |  out|   12|   ap_memory|                       DataRAM|         array|
 |DataRAM_ce0                  |  out|    1|   ap_memory|                       DataRAM|         array|
 |DataRAM_we0                  |  out|    1|   ap_memory|                       DataRAM|         array|
@@ -314,8 +314,8 @@
 |DataRAM_9_d1                 |  out|   32|   ap_memory|                     DataRAM_9|         array|
 |DataRAM_9_q1                 |   in|   32|   ap_memory|                     DataRAM_9|         array|
 |RAMSel_cast                  |   in|    2|     ap_none|                   RAMSel_cast|        scalar|
-|trunc_ln11                   |   in|   12|     ap_none|                    trunc_ln11|        scalar|
-|trunc_ln228_1                |   in|   11|     ap_none|                 trunc_ln228_1|        scalar|
+|trunc_ln13                   |   in|   12|     ap_none|                    trunc_ln13|        scalar|
+|trunc_ln233_1                |   in|   11|     ap_none|                 trunc_ln233_1|        scalar|
 |INTTTWiddleRAM_address0      |  out|   11|   ap_memory|                INTTTWiddleRAM|         array|
 |INTTTWiddleRAM_ce0           |  out|    1|   ap_memory|                INTTTWiddleRAM|         array|
 |INTTTWiddleRAM_q0            |   in|   32|   ap_memory|                INTTTWiddleRAM|         array|

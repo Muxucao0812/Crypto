@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1741095101849">
+  <ports id="1" name="DataRAM_10" type="PortType" coreName="RAM" coreId="0" bitwidth="32" direction="DirOut" iftype="IfTypeRegister" arraysize="4096">
+    <dataInputObjs>getelementptr</dataInputObjs>
+  </ports>
+  <ports id="2" name="DataRAM_7" type="PortType" coreName="RAM" coreId="0" bitwidth="32" direction="DirOut" iftype="IfTypeRegister" arraysize="4096">
+    <dataInputObjs>getelementptr</dataInputObjs>
+  </ports>
+  <ports id="3" name="DataRAM_4" type="PortType" coreName="RAM" coreId="1601662828" bitwidth="32" direction="DirOut" iftype="IfTypeRegister" arraysize="4096">
+    <dataInputObjs>getelementptr</dataInputObjs>
+  </ports>
+  <ports id="4" name="DataRAM_1" type="PortType" coreName="RAM" coreId="30" bitwidth="32" direction="DirOut" iftype="IfTypeRegister" arraysize="4096">
+    <dataInputObjs>getelementptr</dataInputObjs>
+  </ports>
+  <ports id="5" name="BitReverseData_1" type="PortType" coreName="RAM" coreId="1397508187" bitwidth="32" iftype="IfTypeRegister" arraysize="4096">
+    <dataOutputObjs>getelementptr</dataOutputObjs>
+  </ports>
+  <ports id="6" name="RAMSel_cast" type="PortType" coreId="544106784" bitwidth="2">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <edges id="50" source_obj="//@ports.5" sink_obj="//@blocks.0/@node_objs.1"/>
+  <edges id="53" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.0/@node_objs.2"/>
+  <edges id="54" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@blocks.0/@node_objs.3"/>
+  <edges id="55" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.0"/>
+  <edges id="56" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.1"/>
+  <edges id="59" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="62" source_obj="//@regions.0/@basic_blocks.0/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.3"/>
+  <edges id="63" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.3"/>
+  <edges id="64" edge_type="CtrlEdge" source_obj="//@blocks.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.3"/>
+  <edges id="65" source_obj="//@regions.0/@basic_blocks.0/@node_objs.2" sink_obj="//@regions.0/@basic_blocks.6/@node_objs.0"/>
+  <edges id="66" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.6/@node_objs.0"/>
+  <edges id="67" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@regions.0/@basic_blocks.6/@node_objs.1"/>
+  <edges id="68" source_obj="//@regions.0/@basic_blocks.1/@node_objs.6" sink_obj="//@regions.0/@basic_blocks.4/@node_objs.0"/>
+  <edges id="69" source_obj="//@regions.0/@basic_blocks.1/@node_objs.2" sink_obj="//@regions.0/@basic_blocks.4/@node_objs.0"/>
+  <edges id="70" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.6" sink_obj="//@regions.0/@basic_blocks.4/@node_objs.1"/>
+  <edges id="71" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.0"/>
+  <edges id="72" source_obj="//@ports.4" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.1"/>
+  <edges id="75" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.1"/>
+  <edges id="76" source_obj="//@regions.0/@basic_blocks.1/@node_objs.2" sink_obj="//@ports.3"/>
+  <edges id="78" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.2"/>
+  <edges id="79" source_obj="//@regions.0/@basic_blocks.1/@node_objs.3" sink_obj="//@ports.2"/>
+  <edges id="81" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.3"/>
+  <edges id="82" source_obj="//@regions.0/@basic_blocks.1/@node_objs.4" sink_obj="//@ports.1"/>
+  <edges id="84" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.4"/>
+  <edges id="85" source_obj="//@regions.0/@basic_blocks.1/@node_objs.5" sink_obj="//@ports.0"/>
+  <edges id="87" source_obj="//@regions.0/@basic_blocks.1/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.5"/>
+  <edges id="88" source_obj="//@regions.0/@basic_blocks.1/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.6"/>
+  <edges id="89" source_obj="//@blocks.0/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.7"/>
+  <edges id="90" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.5" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.7"/>
+  <edges id="93" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.4" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.7"/>
+  <edges id="96" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.3" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.7"/>
+  <edges id="99" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.2" sink_obj="//@regions.0/@basic_blocks.1/@node_objs.7"/>
+  <edges id="100" source_obj="//@regions.0/@basic_blocks.1/@node_objs.6" sink_obj="//@regions.0/@basic_blocks.3/@node_objs.0"/>
+  <edges id="101" source_obj="//@regions.0/@basic_blocks.1/@node_objs.3" sink_obj="//@regions.0/@basic_blocks.3/@node_objs.0"/>
+  <edges id="102" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.6" sink_obj="//@regions.0/@basic_blocks.3/@node_objs.1"/>
+  <edges id="103" source_obj="//@regions.0/@basic_blocks.1/@node_objs.6" sink_obj="//@regions.0/@basic_blocks.2/@node_objs.0"/>
+  <edges id="104" source_obj="//@regions.0/@basic_blocks.1/@node_objs.4" sink_obj="//@regions.0/@basic_blocks.2/@node_objs.0"/>
+  <edges id="105" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.6" sink_obj="//@regions.0/@basic_blocks.2/@node_objs.1"/>
+  <edges id="106" source_obj="//@regions.0/@basic_blocks.1/@node_objs.6" sink_obj="//@regions.0/@basic_blocks.5/@node_objs.0"/>
+  <edges id="107" source_obj="//@regions.0/@basic_blocks.1/@node_objs.5" sink_obj="//@regions.0/@basic_blocks.5/@node_objs.0"/>
+  <edges id="108" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.6" sink_obj="//@regions.0/@basic_blocks.5/@node_objs.1"/>
+  <edges id="129" edge_type="CtrlEdge" source_obj="//@blocks.0" sink_obj="//@regions.0/@basic_blocks.0"/>
+  <edges id="130" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@blocks.1"/>
+  <edges id="131" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.0" sink_obj="//@regions.0/@basic_blocks.1"/>
+  <edges id="132" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.1" sink_obj="//@regions.0/@basic_blocks.5"/>
+  <edges id="133" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.1" sink_obj="//@regions.0/@basic_blocks.4"/>
+  <edges id="134" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.1" sink_obj="//@regions.0/@basic_blocks.3"/>
+  <edges id="135" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.1" sink_obj="//@regions.0/@basic_blocks.2"/>
+  <edges id="136" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.2" sink_obj="//@regions.0/@basic_blocks.6"/>
+  <edges id="137" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.3" sink_obj="//@regions.0/@basic_blocks.6"/>
+  <edges id="138" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.4" sink_obj="//@regions.0/@basic_blocks.6"/>
+  <edges id="139" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.5" sink_obj="//@regions.0/@basic_blocks.6"/>
+  <edges id="140" edge_type="CtrlEdge" source_obj="//@regions.0/@basic_blocks.6" sink_obj="//@regions.0/@basic_blocks.0" is_back_edge="1"/>
+  <edges id="141" edge_type="VirtEdge" source_obj="//@blocks.0/@node_objs.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.0"/>
+  <edges id="142" edge_type="VirtEdge" source_obj="//@blocks.0/@node_objs.2" sink_obj="//@regions.0/@basic_blocks.6/@node_objs.0"/>
+  <edges id="143" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.6/@node_objs.0"/>
+  <blocks id="11" name="newFuncRoot" type="BlockType">
+    <controlOutputObjs>for.inc434.1</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="7" name="j" originalName="j" coreId="152" bitwidth="13" opcode="alloca" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
+      <dataOutputObjs>store</dataOutputObjs>
+      <dataOutputObjs>load</dataOutputObjs>
+      <dataOutputObjs>store</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="8" name="RAMSel_cast_read" coreId="14" bitwidth="2" opcode="read" m_display="0" m_topoIndex="2" m_clusterGroupNumber="-1">
+      <dataInputObjs>RAMSel_cast</dataInputObjs>
+      <dataOutputObjs>switch</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="9" name="j_write_ln0" coreId="2975048016" opcode="store" m_display="0" m_delay="1.58" m_topoIndex="3" m_clusterGroupNumber="-1">
+      <dataInputObjs>alloca</dataInputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="10" name="br_ln0" coreId="2975496240" opcode="br" m_display="0" m_topoIndex="4" m_clusterGroupNumber="-1">
+      <controlInputObjs>for.inc434.1</controlInputObjs>
+    </node_objs>
+  </blocks>
+  <blocks id="45" name="for.inc434.2.preheader.exitStub" type="BlockType">
+    <controlInputObjs>for.inc434.1</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="44" name="_ln0" coreId="1901707034" opcode="ret" nodeLabel="1.0" m_display="0" m_topoIndex="19" m_clusterGroupNumber="-1"/>
+  </blocks>
+  <regions anchor_node="-1" region_type="8" interval="1" typeName="Pipeline" iiViolation="" id="161" pipe_depth="3" RegionName="VITIS_LOOP_220_8">
+    <basic_blocks id="16" name="for.inc434.1" type="BlockType">
+      <controlInputObjs>newFuncRoot</controlInputObjs>
+      <controlInputObjs>arrayidx43317.1.exit</controlInputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>for.inc434.2.preheader.exitStub</controlOutputObjs>
+      <controlOutputObjs>for.inc434.1.split</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="12" name="j_9" lineNumber="220" originalName="j" fileName="Crypto.cpp" fileDirectory="../." coreId="1147499378" bitwidth="13" opcode="load" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="220" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataOutputObjs>icmp</dataOutputObjs>
+        <dataOutputObjs>add</dataOutputObjs>
+        <dataOutputObjs>zext</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="13" name="icmp_ln220" lineNumber="220" fileName="Crypto.cpp" fileDirectory="../." rtlName="icmp_ln220_fu_125_p2" coreName="Cmp" implIndex="auto" control="no" opType="icmp" coreId="9" bitwidth="1" opcode="icmp" m_display="0" m_delay="1.67" m_topoIndex="6" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="220" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataOutputObjs>br</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="14" name="add_ln220" lineNumber="220" fileName="Crypto.cpp" fileDirectory="../." rtlName="add_ln220_fu_131_p2" coreName="Adder" implIndex="fabric" control="no" opType="add" coreId="1" bitwidth="13" opcode="add" m_display="0" m_delay="1.67" m_topoIndex="7" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="220" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="15" name="br_ln220" lineNumber="220" fileName="Crypto.cpp" fileDirectory="../." coreId="2975592512" opcode="br" m_display="0" m_topoIndex="8" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="220" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>icmp</dataInputObjs>
+        <controlInputObjs>for.inc434.1.split</controlInputObjs>
+        <controlInputObjs>for.inc434.2.preheader.exitStub</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="Crypto.cpp">
+        <validLinenumbers>220</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+    <basic_blocks id="28" name="for.inc434.1.split" type="BlockType">
+      <controlInputObjs>for.inc434.1</controlInputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>arrayidx43317.1.case.3</controlOutputObjs>
+      <controlOutputObjs>arrayidx43317.1.case.0</controlOutputObjs>
+      <controlOutputObjs>arrayidx43317.1.case.1</controlOutputObjs>
+      <controlOutputObjs>arrayidx43317.1.case.2</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="17" name="zext_ln220" lineNumber="220" fileName="Crypto.cpp" fileDirectory="../." rtlName="zext_ln220_fu_137_p1" coreId="2975994128" bitwidth="64" opcode="zext" m_display="0" m_topoIndex="9" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="220" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+        <dataOutputObjs>getelementptr</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="21" name="BitReverseData_1_addr" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreId="336" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>BitReverseData_1</dataInputObjs>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>load</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="22" name="DataRAM_1_addr" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreId="44" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="11" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>DataRAM_1</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="23" name="DataRAM_4_addr" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreId="0" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="12" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>DataRAM_4</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="24" name="DataRAM_7_addr" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreId="2975882880" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="13" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>DataRAM_7</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="25" name="DataRAM_10_addr" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreId="1953394531" bitwidth="12" opcode="getelementptr" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>zext</dataInputObjs>
+        <dataOutputObjs>DataRAM_10</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="26" name="BitReverseData_1_load" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" bitwidth="32" opcode="load" nodeLatency="1" m_display="0" m_delay="3.25" m_topoIndex="15" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>getelementptr</dataInputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+        <dataOutputObjs>store</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="27" name="_ln222" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreId="2975403672" opcode="switch" m_display="0" m_delay="1.86" m_topoIndex="16" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>read</dataInputObjs>
+        <controlInputObjs>arrayidx43317.1.case.3</controlInputObjs>
+        <controlInputObjs>arrayidx43317.1.case.0</controlInputObjs>
+        <controlInputObjs>arrayidx43317.1.case.1</controlInputObjs>
+        <controlInputObjs>arrayidx43317.1.case.2</controlInputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <fileValidLineNumbers fileName="Crypto.cpp">
+        <validLinenumbers>220</validLinenumbers>
+        <validLinenumbers>222</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+    <basic_blocks id="31" name="arrayidx43317.1.case.2" type="BlockType">
+      <controlInputObjs>for.inc434.1.split</controlInputObjs>
+      <controlOutputObjs>switch</controlOutputObjs>
+      <controlOutputObjs>arrayidx43317.1.exit</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="29" name="DataRAM_7_addr_write_ln222" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="2.0" m_display="0" m_delay="3.25" m_topoIndex="20" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>getelementptr</dataInputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="30" name="br_ln222" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreId="2976066992" opcode="br" nodeLabel="2.0" m_display="0" m_topoIndex="21" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <controlInputObjs>arrayidx43317.1.exit</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="Crypto.cpp">
+        <validLinenumbers>222</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+    <basic_blocks id="34" name="arrayidx43317.1.case.1" type="BlockType">
+      <controlInputObjs>for.inc434.1.split</controlInputObjs>
+      <controlOutputObjs>switch</controlOutputObjs>
+      <controlOutputObjs>arrayidx43317.1.exit</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="32" name="DataRAM_4_addr_write_ln222" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="2.0" m_display="0" m_delay="3.25" m_topoIndex="22" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>getelementptr</dataInputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="33" name="br_ln222" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreId="0" opcode="br" nodeLabel="2.0" m_display="0" m_topoIndex="23" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <controlInputObjs>arrayidx43317.1.exit</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="Crypto.cpp">
+        <validLinenumbers>222</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+    <basic_blocks id="37" name="arrayidx43317.1.case.0" type="BlockType">
+      <controlInputObjs>for.inc434.1.split</controlInputObjs>
+      <controlOutputObjs>switch</controlOutputObjs>
+      <controlOutputObjs>arrayidx43317.1.exit</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="35" name="DataRAM_1_addr_write_ln222" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="2.0" m_display="0" m_delay="3.25" m_topoIndex="24" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>getelementptr</dataInputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="36" name="br_ln222" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreId="2975883008" opcode="br" nodeLabel="2.0" m_display="0" m_topoIndex="25" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <controlInputObjs>arrayidx43317.1.exit</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="Crypto.cpp">
+        <validLinenumbers>222</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+    <basic_blocks id="40" name="arrayidx43317.1.case.3" type="BlockType">
+      <controlInputObjs>for.inc434.1.split</controlInputObjs>
+      <controlOutputObjs>switch</controlOutputObjs>
+      <controlOutputObjs>arrayidx43317.1.exit</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="38" name="DataRAM_10_addr_write_ln222" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreName="RAM" implIndex="auto" control="no" opType="ram" coreId="82" opcode="store" nodeLabel="2.0" m_display="0" m_delay="3.25" m_topoIndex="26" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>load</dataInputObjs>
+        <dataInputObjs>getelementptr</dataInputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="39" name="br_ln222" lineNumber="222" fileName="Crypto.cpp" fileDirectory="../." coreId="304" opcode="br" nodeLabel="2.0" m_display="0" m_topoIndex="27" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="222" fileDirectory="/home/meng/HLS/Crypto"/>
+        <controlInputObjs>arrayidx43317.1.exit</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="Crypto.cpp">
+        <validLinenumbers>222</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+    <basic_blocks id="43" name="arrayidx43317.1.exit" type="BlockType">
+      <controlInputObjs>arrayidx43317.1.case.2</controlInputObjs>
+      <controlInputObjs>arrayidx43317.1.case.1</controlInputObjs>
+      <controlInputObjs>arrayidx43317.1.case.0</controlInputObjs>
+      <controlInputObjs>arrayidx43317.1.case.3</controlInputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>br</controlOutputObjs>
+      <controlOutputObjs>for.inc434.1</controlOutputObjs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="41" name="j_write_ln220" lineNumber="220" fileName="Crypto.cpp" fileDirectory="../." coreId="2975523712" opcode="store" m_display="0" m_delay="1.58" m_topoIndex="17" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="220" fileDirectory="/home/meng/HLS/Crypto"/>
+        <dataInputObjs>add</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="42" name="br_ln220" lineNumber="220" fileName="Crypto.cpp" fileDirectory="../." coreId="1903125527" opcode="br" m_display="0" m_topoIndex="18" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="Crypto.cpp" linenumber="220" fileDirectory="/home/meng/HLS/Crypto"/>
+        <controlInputObjs>for.inc434.1</controlInputObjs>
+      </node_objs>
+      <fileValidLineNumbers fileName="Crypto.cpp">
+        <validLinenumbers>220</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+  </regions>
+  <ScheduleInfo time="0"/>
+  <ScheduleInfo time="1"/>
+  <ScheduleInfo time="2"/>
+  <regnodes realName="DataRAM_10_addr_reg_186">
+    <nodeIds>25</nodeIds>
+  </regnodes>
+  <regnodes realName="j_reg_151">
+    <nodeIds>7</nodeIds>
+  </regnodes>
+  <regnodes realName="DataRAM_1_addr_reg_171">
+    <nodeIds>22</nodeIds>
+  </regnodes>
+  <regnodes realName="DataRAM_4_addr_reg_176">
+    <nodeIds>23</nodeIds>
+  </regnodes>
+  <regnodes realName="DataRAM_7_addr_reg_181">
+    <nodeIds>24</nodeIds>
+  </regnodes>
+  <regnodes realName="icmp_ln220_reg_162">
+    <nodeIds>13</nodeIds>
+  </regnodes>
+  <regnodes realName="RAMSel_cast_read_reg_158">
+    <nodeIds>8</nodeIds>
+  </regnodes>
+  <regnodes realName="BitReverseData_1_addr_reg_166">
+    <nodeIds>21</nodeIds>
+  </regnodes>
+  <regnodes realName="BitReverseData_1_load_reg_191">
+    <nodeIds>26</nodeIds>
+  </regnodes>
+  <expressionNodes realName="DataRAM_7_addr_gep_fu_77">
+    <nodeIds>24</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="add_ln220_fu_131">
+    <nodeIds>14</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="DataRAM_1_addr_gep_fu_63">
+    <nodeIds>22</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="DataRAM_4_addr_gep_fu_70">
+    <nodeIds>23</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="zext_ln220_fu_137">
+    <nodeIds>17</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="DataRAM_10_addr_gep_fu_84">
+    <nodeIds>25</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="j_fu_46">
+    <nodeIds>7</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="BitReverseData_1_addr_gep_fu_56">
+    <nodeIds>21</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="icmp_ln220_fu_125">
+    <nodeIds>13</nodeIds>
+  </expressionNodes>
+  <ioNodes realName="store_ln220_store_fu_146">
+    <nodeIds>41</nodeIds>
+  </ioNodes>
+  <ioNodes realName="RAMSel_cast_read_read_fu_50">
+    <nodeIds>8</nodeIds>
+  </ioNodes>
+  <ioNodes realName="store_ln0_store_fu_117">
+    <nodeIds>9</nodeIds>
+  </ioNodes>
+  <ioNodes realName="j_9_load_fu_122">
+    <nodeIds>12</nodeIds>
+  </ioNodes>
+  <memoryPorts dataString="BitReverseData_1">
+    <nodeIds>26</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="DataRAM_1">
+    <nodeIds>35</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="DataRAM_10">
+    <nodeIds>38</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="DataRAM_4">
+    <nodeIds>32</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="DataRAM_7">
+    <nodeIds>29</nodeIds>
+  </memoryPorts>
+  <ioPorts name="BitReverseData_1(p0)">
+    <contents name="load">
+      <nodeIds>26</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="DataRAM_1(p0)">
+    <contents name="store">
+      <nodeIds>35</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="DataRAM_10(p0)">
+    <contents name="store">
+      <nodeIds>38</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="DataRAM_4(p0)">
+    <contents name="store">
+      <nodeIds>32</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="DataRAM_7(p0)">
+    <contents name="store">
+      <nodeIds>29</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="RAMSel_cast">
+    <contents name="read">
+      <nodeIds>8</nodeIds>
+    </contents>
+  </ioPorts>
+  <fsm>
+    <states id="1">
+      <operations id="7" stage="1" latency="1"/>
+      <operations id="8" stage="1" latency="1"/>
+      <operations id="9" stage="1" latency="1"/>
+      <operations id="10" stage="1" latency="1"/>
+      <operations id="12" stage="1" latency="1"/>
+      <operations id="13" stage="1" latency="1"/>
+      <operations id="14" stage="1" latency="1"/>
+      <operations id="15" stage="1" latency="1"/>
+      <operations id="17" stage="1" latency="1"/>
+      <operations id="21" stage="1" latency="1"/>
+      <operations id="22" stage="1" latency="1"/>
+      <operations id="23" stage="1" latency="1"/>
+      <operations id="24" stage="1" latency="1"/>
+      <operations id="25" stage="1" latency="1"/>
+      <operations id="26" stage="2" latency="2"/>
+      <operations id="27" stage="1" latency="1"/>
+      <operations id="41" stage="1" latency="1"/>
+      <operations id="42" stage="1" latency="1"/>
+    </states>
+    <states id="2">
+      <operations id="18" stage="1" latency="1"/>
+      <operations id="19" stage="1" latency="1"/>
+      <operations id="20" stage="1" latency="1"/>
+      <operations id="26" stage="1" latency="2"/>
+      <operations id="44" stage="1" latency="1"/>
+    </states>
+    <states id="3">
+      <operations id="29" stage="1" latency="1"/>
+      <operations id="30" stage="1" latency="1"/>
+      <operations id="32" stage="1" latency="1"/>
+      <operations id="33" stage="1" latency="1"/>
+      <operations id="35" stage="1" latency="1"/>
+      <operations id="36" stage="1" latency="1"/>
+      <operations id="38" stage="1" latency="1"/>
+      <operations id="39" stage="1" latency="1"/>
+    </states>
+    <transitions inState="2" outState="3">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="1" outState="2">
+      <condition id="-1"/>
+    </transitions>
+  </fsm>
+  <CFGRegionsRoot>
+    <cfgRegions mId="1" mTag="Crypto_Pipeline_VITIS_LOOP_220_83" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMinLatency="4099" mMaxLatency="4099">
+      <subRegions>2</subRegions>
+      <subRegions>3</subRegions>
+      <subRegions>4</subRegions>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="2" mTag="Entry" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1">
+      <basicBlocks>11</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="3" mTag="VITIS_LOOP_220_8" mII="1" mDepth="3" mMinTripCount="4096" mMaxTripCount="4096" mMinLatency="4097" mMaxLatency="4097" mType="1">
+      <basicBlocks>16</basicBlocks>
+      <basicBlocks>28</basicBlocks>
+      <basicBlocks>31</basicBlocks>
+      <basicBlocks>34</basicBlocks>
+      <basicBlocks>37</basicBlocks>
+      <basicBlocks>40</basicBlocks>
+      <basicBlocks>43</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="4" mTag="Return" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1">
+      <basicBlocks>45</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+  </CFGRegionsRoot>
+</cdfg:DBCdfg>

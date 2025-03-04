@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1741070010198">
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1741095106101">
   <ports id="1" name="input_val" type="PortType" originalName="input1_u" coreId="1852727619" bitwidth="32">
     <dataOutputObjs>read</dataOutputObjs>
   </ports>
@@ -64,26 +64,26 @@
   <edges source_obj="//@regions.0/@basic_blocks.0/@node_objs.43" sink_obj="//@ports.1"/>
   <regions anchor_node="-1" region_type="8" interval="1" typeName="Pipeline" iiViolation="" id="193" pipe_depth="5" RegionName="MOD_PLAINTEXTMODULUS">
     <basic_blocks id="47" name="MOD_PLAINTEXTMODULUS" type="BlockType">
-      <node_objs xsi:type="cdfg:CdfgNode" id="3" name="input_val_read" lineNumber="10" fileName="Arithmetic.cpp" fileDirectory="../." coreId="751740160" contextFuncName="STEPMUL" bitwidth="32" opcode="read" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="3" name="input_val_read" lineNumber="10" fileName="Arithmetic.cpp" fileDirectory="../." coreId="0" contextFuncName="STEPMUL" bitwidth="32" opcode="read" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="70" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="10" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>input_val</dataInputObjs>
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
         <dataOutputObjs>partselect</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="4" name="res_mult" lineNumber="32" originalName="res_mult" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="res_mult_fu_204_p3" coreId="752735232" contextFuncName="STEPMUL" bitwidth="33" opcode="bitconcatenate" nodeLabel="1.0" m_display="0" m_topoIndex="23" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="4" name="res_mult" lineNumber="32" originalName="res_mult" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="res_mult_fu_204_p3" coreId="1932573720" contextFuncName="STEPMUL" bitwidth="33" opcode="bitconcatenate" nodeLabel="1.0" m_display="0" m_topoIndex="23" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="70" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="32" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>read</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="5" name="zext_ln69" lineNumber="69" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln69_fu_211_p1" coreId="753656576" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="48" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="24" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="5" name="zext_ln69" lineNumber="69" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln69_fu_211_p1" coreId="3003384128" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="48" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="24" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="69" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <dataInputObjs>bitconcatenate</dataInputObjs>
         <dataOutputObjs>sub</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="6" name="tmp_1" lineNumber="71" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="tmp_1_fu_68_p4" coreId="751722064" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="16" opcode="partselect" m_display="0" m_topoIndex="2" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="6" name="tmp_1" lineNumber="71" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="tmp_1_fu_68_p4" coreId="3003878560" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="16" opcode="partselect" m_display="0" m_topoIndex="2" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="71" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <dataInputObjs>read</dataInputObjs>
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
@@ -91,25 +91,25 @@
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="7" name="res_mult_high" lineNumber="71" originalName="res_mult_high" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="res_mult_high_fu_78_p3" coreId="3254834961" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="17" opcode="bitconcatenate" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="7" name="res_mult_high" lineNumber="71" originalName="res_mult_high" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="res_mult_high_fu_78_p3" coreId="3003961344" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="17" opcode="bitconcatenate" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="71" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <dataInputObjs>partselect</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="8" name="zext_ln71" lineNumber="71" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln71_fu_86_p1" coreId="751722064" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="20" opcode="zext" m_display="0" m_topoIndex="4" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="8" name="zext_ln71" lineNumber="71" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln71_fu_86_p1" coreId="1932193277" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="20" opcode="zext" m_display="0" m_topoIndex="4" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="71" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <dataInputObjs>bitconcatenate</dataInputObjs>
         <dataOutputObjs>sub</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="9" name="shl_ln" lineNumber="22" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="shl_ln_fu_90_p3" coreId="37" contextFuncName="STEPMUL" bitwidth="32" opcode="bitconcatenate" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="9" name="shl_ln" lineNumber="22" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="shl_ln_fu_90_p3" coreId="1931766645" contextFuncName="STEPMUL" bitwidth="32" opcode="bitconcatenate" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="73" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="22" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>partselect</dataInputObjs>
         <dataOutputObjs>sub</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="10" name="shl_ln22_1" lineNumber="22" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="shl_ln22_1_fu_98_p4" coreId="3255342693" contextFuncName="STEPMUL" bitwidth="19" opcode="bitconcatenate" m_display="0" m_topoIndex="6" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="10" name="shl_ln22_1" lineNumber="22" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="shl_ln22_1_fu_98_p4" coreId="3002996208" contextFuncName="STEPMUL" bitwidth="19" opcode="bitconcatenate" m_display="0" m_topoIndex="6" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="73" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="22" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>partselect</dataInputObjs>
@@ -117,13 +117,13 @@
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="11" name="zext_ln22" lineNumber="22" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln22_fu_108_p1" coreId="3257896868" contextFuncName="STEPMUL" bitwidth="32" opcode="zext" m_display="0" m_topoIndex="7" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="11" name="zext_ln22" lineNumber="22" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln22_fu_108_p1" coreId="1933042176" contextFuncName="STEPMUL" bitwidth="32" opcode="zext" m_display="0" m_topoIndex="7" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="73" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="22" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>bitconcatenate</dataInputObjs>
         <dataOutputObjs>sub</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="12" name="zext_ln22_1" lineNumber="22" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln22_1_fu_112_p1" coreId="755080912" contextFuncName="STEPMUL" bitwidth="20" opcode="zext" m_display="0" m_topoIndex="8" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="12" name="zext_ln22_1" lineNumber="22" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln22_1_fu_112_p1" coreId="1926042412" contextFuncName="STEPMUL" bitwidth="20" opcode="zext" m_display="0" m_topoIndex="8" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="73" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="22" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>bitconcatenate</dataInputObjs>
@@ -144,7 +144,7 @@
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
         <dataOutputObjs>trunc</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="15" name="sum1" lineNumber="29" originalName="sum1" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="sum1_fu_128_p3" coreId="746441456" contextFuncName="STEPMUL" bitwidth="33" opcode="bitconcatenate" m_display="0" m_topoIndex="11" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="15" name="sum1" lineNumber="29" originalName="sum1" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="sum1_fu_128_p3" coreId="1397508187" contextFuncName="STEPMUL" bitwidth="33" opcode="bitconcatenate" m_display="0" m_topoIndex="11" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="73" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="29" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>sub</dataInputObjs>
@@ -152,44 +152,44 @@
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="16" name="zext_ln28" lineNumber="28" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln28_fu_136_p1" coreId="746366240" contextFuncName="STEPMUL" bitwidth="49" opcode="zext" m_display="0" m_topoIndex="12" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="16" name="zext_ln28" lineNumber="28" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln28_fu_136_p1" coreId="1926042131" contextFuncName="STEPMUL" bitwidth="49" opcode="zext" m_display="0" m_topoIndex="12" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="73" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="28" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>bitconcatenate</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="17" name="sum2" lineNumber="30" originalName="sum2" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="sum2_fu_140_p3" coreId="1314013527" contextFuncName="STEPMUL" bitwidth="36" opcode="bitconcatenate" m_display="0" m_topoIndex="13" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="17" name="sum2" lineNumber="30" originalName="sum2" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="sum2_fu_140_p3" coreId="3002481472" contextFuncName="STEPMUL" bitwidth="36" opcode="bitconcatenate" m_display="0" m_topoIndex="13" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="73" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="30" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>sub</dataInputObjs>
         <dataOutputObjs>sext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="18" name="sext_ln28" lineNumber="28" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="sext_ln28_fu_148_p1" coreId="3260483340" contextFuncName="STEPMUL" bitwidth="48" opcode="sext" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="18" name="sext_ln28" lineNumber="28" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="sext_ln28_fu_148_p1" coreId="3002996208" contextFuncName="STEPMUL" bitwidth="48" opcode="sext" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="73" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="28" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>bitconcatenate</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="19" name="zext_ln28_7" lineNumber="28" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln28_7_fu_152_p1" coreId="750111824" contextFuncName="STEPMUL" bitwidth="49" opcode="zext" m_display="0" m_topoIndex="15" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="19" name="zext_ln28_7" lineNumber="28" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln28_7_fu_152_p1" coreId="2995418448" contextFuncName="STEPMUL" bitwidth="49" opcode="zext" m_display="0" m_topoIndex="15" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="73" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="28" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>sext</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="20" name="zext_ln32" lineNumber="32" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln32_fu_156_p1" coreId="746366240" contextFuncName="STEPMUL" bitwidth="34" opcode="zext" m_display="0" m_topoIndex="16" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="20" name="zext_ln32" lineNumber="32" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln32_fu_156_p1" coreId="2995421776" contextFuncName="STEPMUL" bitwidth="34" opcode="zext" m_display="0" m_topoIndex="16" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="73" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="32" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>bitconcatenate</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="21" name="trunc_ln32" lineNumber="32" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="trunc_ln32_fu_160_p1" coreId="748936056" contextFuncName="STEPMUL" bitwidth="18" opcode="trunc" m_display="0" m_topoIndex="17" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="21" name="trunc_ln32" lineNumber="32" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="trunc_ln32_fu_160_p1" coreId="3003384128" contextFuncName="STEPMUL" bitwidth="18" opcode="trunc" m_display="0" m_topoIndex="17" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="73" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="32" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>sub</dataInputObjs>
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="22" name="trunc_ln" lineNumber="32" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="trunc_ln_fu_164_p3" coreId="750951952" contextFuncName="STEPMUL" bitwidth="34" opcode="bitconcatenate" m_display="0" m_topoIndex="18" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="22" name="trunc_ln" lineNumber="32" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="trunc_ln_fu_164_p3" coreId="3940710816" contextFuncName="STEPMUL" bitwidth="34" opcode="bitconcatenate" m_display="0" m_topoIndex="18" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="73" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="32" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>trunc</dataInputObjs>
@@ -209,20 +209,20 @@
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>partselect</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="25" name="res_mult_shift_part" lineNumber="75" originalName="res_mult_shift_part" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="res_mult_shift_part_reg_320" coreId="753114176" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="16" opcode="partselect" m_display="0" m_topoIndex="21" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="25" name="res_mult_shift_part" lineNumber="75" originalName="res_mult_shift_part" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="res_mult_shift_part_reg_320" coreId="3002453040" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="16" opcode="partselect" m_display="0" m_topoIndex="21" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="75" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="26" name="zext_ln17" lineNumber="17" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln17_fu_215_p1" coreId="750951952" contextFuncName="STEPMUL" bitwidth="32" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="25" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="26" name="zext_ln17" lineNumber="17" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln17_fu_215_p1" coreId="3003384128" contextFuncName="STEPMUL" bitwidth="32" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="25" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="76" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="17" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>partselect</dataInputObjs>
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="27" name="trunc_ln7" lineNumber="18" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="trunc_ln7_reg_326" coreId="3257898752" contextFuncName="STEPMUL" bitwidth="15" opcode="partselect" m_display="0" m_topoIndex="22" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="27" name="trunc_ln7" lineNumber="18" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="trunc_ln7_reg_326" coreId="3003720480" contextFuncName="STEPMUL" bitwidth="15" opcode="partselect" m_display="0" m_topoIndex="22" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="76" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="18" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>add</dataInputObjs>
@@ -230,26 +230,26 @@
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="28" name="sum1_5" lineNumber="29" originalName="sum1" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="sum1_5_fu_218_p3" coreId="3262055900" contextFuncName="STEPMUL" bitwidth="47" opcode="bitconcatenate" nodeLabel="1.0" m_display="0" m_topoIndex="26" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="28" name="sum1_5" lineNumber="29" originalName="sum1" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="sum1_5_fu_218_p3" coreId="2977021952" contextFuncName="STEPMUL" bitwidth="47" opcode="bitconcatenate" nodeLabel="1.0" m_display="0" m_topoIndex="26" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="76" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="29" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>partselect</dataInputObjs>
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="29" name="zext_ln28_8" lineNumber="28" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln28_8_fu_225_p1" coreId="750951952" contextFuncName="STEPMUL" bitwidth="48" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="27" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="29" name="zext_ln28_8" lineNumber="28" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln28_8_fu_225_p1" coreId="3003384128" contextFuncName="STEPMUL" bitwidth="48" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="27" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="76" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="28" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>bitconcatenate</dataInputObjs>
         <dataOutputObjs>sub</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="30" name="zext_ln30" lineNumber="30" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln30_fu_229_p1" coreId="747490560" contextFuncName="STEPMUL" bitwidth="17" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="28" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="30" name="zext_ln30" lineNumber="30" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln30_fu_229_p1" coreId="3004175200" contextFuncName="STEPMUL" bitwidth="17" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="28" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="76" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="30" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>partselect</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="31" name="zext_ln30_11" lineNumber="30" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln30_11_fu_232_p1" coreId="752586752" contextFuncName="STEPMUL" bitwidth="17" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="29" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="31" name="zext_ln30_11" lineNumber="30" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln30_11_fu_232_p1" coreId="3003050240" contextFuncName="STEPMUL" bitwidth="17" opcode="zext" nodeLabel="1.0" m_display="0" m_topoIndex="29" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="76" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="30" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>partselect</dataInputObjs>
@@ -262,14 +262,14 @@
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>bitconcatenate</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="33" name="sum2_5" lineNumber="30" originalName="sum2" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="sum2_5_fu_247_p3" coreId="3258539849" contextFuncName="STEPMUL" bitwidth="33" opcode="bitconcatenate" nodeLabel="2.0" m_display="0" m_topoIndex="32" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="33" name="sum2_5" lineNumber="30" originalName="sum2" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="sum2_5_fu_247_p3" coreId="3003384128" contextFuncName="STEPMUL" bitwidth="33" opcode="bitconcatenate" nodeLabel="2.0" m_display="0" m_topoIndex="32" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="76" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="30" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>zext</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="34" name="zext_ln28_9" lineNumber="28" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln28_9_fu_254_p1" coreId="750951952" contextFuncName="STEPMUL" bitwidth="49" opcode="zext" nodeLabel="2.0" m_display="0" m_topoIndex="33" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="34" name="zext_ln28_9" lineNumber="28" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="zext_ln28_9_fu_254_p1" coreId="3002996208" contextFuncName="STEPMUL" bitwidth="49" opcode="zext" nodeLabel="2.0" m_display="0" m_topoIndex="33" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="76" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="28" fileDirectory="/home/meng/HLS/Crypto" functionName="STEPMUL"/>
         <dataInputObjs>bitconcatenate</dataInputObjs>
@@ -282,7 +282,7 @@
         <dataInputObjs>zext</dataInputObjs>
         <dataOutputObjs>sext</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="36" name="sext_ln78" lineNumber="78" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="sext_ln78_fu_258_p1" coreId="3262003209" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="49" opcode="sext" nodeLabel="2.0" m_display="0" m_topoIndex="34" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="36" name="sext_ln78" lineNumber="78" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="sext_ln78_fu_258_p1" coreId="3000957760" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="49" opcode="sext" nodeLabel="2.0" m_display="0" m_topoIndex="34" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="78" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <dataInputObjs>sub</dataInputObjs>
         <dataOutputObjs>sub</dataOutputObjs>
@@ -301,7 +301,7 @@
         <dataOutputObjs>bitselect</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="39" name="trunc_ln80" lineNumber="80" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="trunc_ln80_fu_267_p1" coreId="750951952" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="32" opcode="trunc" nodeLabel="2.0" m_display="0" m_topoIndex="36" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="39" name="trunc_ln80" lineNumber="80" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="trunc_ln80_fu_267_p1" coreId="176" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="32" opcode="trunc" nodeLabel="2.0" m_display="0" m_topoIndex="36" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="80" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <dataInputObjs>sub</dataInputObjs>
         <dataOutputObjs>add</dataOutputObjs>
@@ -313,13 +313,13 @@
         <dataOutputObjs>bitselect</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="41" name="tmp" lineNumber="81" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="tmp_reg_354" coreId="3257383175" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="1" opcode="bitselect" nodeLabel="3.0" m_display="0" m_topoIndex="39" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="41" name="tmp" lineNumber="81" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="tmp_reg_354" coreId="3004510112" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="1" opcode="bitselect" nodeLabel="3.0" m_display="0" m_topoIndex="39" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="81" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>select</dataOutputObjs>
         <constName>empty</constName>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="42" name="tmp_5" lineNumber="81" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="tmp_5_fu_289_p3" coreId="752682272" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="1" opcode="bitselect" nodeLabel="3.0" m_display="0" m_topoIndex="40" m_clusterGroupNumber="1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="42" name="tmp_5" lineNumber="81" fileName="Arithmetic.cpp" fileDirectory="../." rtlName="tmp_5_fu_289_p3" coreId="3002795136" contextFuncName="MOD_PLAINTEXTMODULUS" bitwidth="1" opcode="bitselect" nodeLabel="3.0" m_display="0" m_topoIndex="40" m_clusterGroupNumber="1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="81" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>select</dataOutputObjs>
@@ -344,7 +344,7 @@
         <dataInputObjs>add</dataInputObjs>
         <dataOutputObjs>ret</dataOutputObjs>
       </node_objs>
-      <node_objs xsi:type="cdfg:CdfgNode" id="46" name="_ln82" lineNumber="82" fileName="Arithmetic.cpp" fileDirectory="../." coreId="1647363888" contextFuncName="MOD_PLAINTEXTMODULUS" opcode="ret" nodeLabel="4.0" m_display="0" m_topoIndex="44" m_clusterGroupNumber="-1">
+      <node_objs xsi:type="cdfg:CdfgNode" id="46" name="_ln82" lineNumber="82" fileName="Arithmetic.cpp" fileDirectory="../." coreId="3004273152" contextFuncName="MOD_PLAINTEXTMODULUS" opcode="ret" nodeLabel="4.0" m_display="0" m_topoIndex="44" m_clusterGroupNumber="-1">
         <inlineStackInfo fileName="Arithmetic.cpp" linenumber="82" fileDirectory="/home/meng/HLS/Crypto" functionName="MOD_PLAINTEXTMODULUS"/>
         <dataInputObjs>select</dataInputObjs>
         <dataOutputObjs>ap_return</dataOutputObjs>

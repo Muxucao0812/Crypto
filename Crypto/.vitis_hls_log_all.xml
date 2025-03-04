@@ -8,9 +8,14 @@
   <warningLogs>
     <logs>
       <packageLog>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'poly.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-04T14:33:42.469+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'basis.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-04T14:33:42.469+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'ret.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-04T14:33:42.468+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'poly.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.318+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'basis.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.317+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'ret.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.315+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file '#'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.314+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'Add'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.313+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'all'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.311+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'necessary'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.310+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'source'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.310+0800" type="Warning"/>
       </packageLog>
     </logs>
   </warningLogs>

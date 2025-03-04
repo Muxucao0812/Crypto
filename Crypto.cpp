@@ -13,12 +13,13 @@
 
 
 void Crypto(
-    long_int        DataIn[MOD_NUM][N],
-    int             RAMSel,
-    int             RAMSel1,
-    long_int        NTTTwiddleIn[MOD_NUM][N/2],
-    long_int        INTTTwiddleIn[MOD_NUM][N/2],
-    CryptoOperation OP
+    hls::stream <axi_stream_t>&             DataInStream,
+    hls::stream <axi_stream_t>&             DataOutStream,
+    int                                     RAMSel,
+    int                                     RAMSel1,    
+    long_int                                NTTTwiddleIn[MOD_NUM][N/2],
+    long_int                                INTTTwiddleIn[MOD_NUM][N/2],
+    CryptoOperation                         OP
 ){  
 
     // ------------------------------------------------------------------
@@ -42,7 +43,12 @@ void Crypto(
     // Port
     // ------------------------------------------------------------------
 
-    #pragma HLS INTERFACE s_axilite port=DataIn
+    #pragma HLS STREAM depth=4096 variable=DataInStream
+	#pragma HLS STREAM depth=4096 variable=DataOutStream
+
+    #pragma HLS INTERFACE axis port=DataInStream
+    #pragma HLS INTERFACE axis port=DataOutStream
+
     #pragma HLS INTERFACE s_axilite port=NTTTwiddleIn
     #pragma HLS INTERFACE s_axilite port=INTTTwiddleIn
 
@@ -52,6 +58,12 @@ void Crypto(
     #pragma HLS INTERFACE s_axilite port=OP
 
 
+    // ------------------------------------------------------------------
+    // Register
+    // ------------------------------------------------------------------
+    axi_stream_t DataStreamReg;
+
+
     switch (OP)
     {
         case POLY_WRITE:
@@ -59,8 +71,9 @@ void Crypto(
             for(int i = 0; i < MOD_NUM; i++){
                 #pragma HLS UNROLL factor=MOD_NUM
                 for (int j = 0; j < N; j++){
-                    #pragma HLS PIPELINE
-                    DataRAM[RAMSel][i][j] = DataIn[i][j];
+                    DataStreamReg = DataInStream.read();
+                    DataRAM[RAMSel][i][j] = DataStreamReg.data;
+//                    std::cout << "POLY_WRITE: RAMSel=" << RAMSel << " i=" << i << " j=" << j << " Data=" << DataRAM[RAMSel][i][j] << " DataInStream=" << DataStreamReg.data << std::endl;
                 }
             }
             break;
@@ -71,7 +84,17 @@ void Crypto(
                 #pragma HLS UNROLL factor=MOD_NUM
                 for (int j = 0; j < N; j++){
                     #pragma HLS PIPELINE
-                    DataIn[i][j] = DataRAM[RAMSel][i][j];
+                    DataStreamReg.data = DataRAM[RAMSel][i][j];
+                    // std::cout << "POLY_READ: RAMSel=" << RAMSel << " i=" << i << " j=" << j 
+                    //   << " Data=" << DataStreamReg.data << std::endl;
+      
+                    DataOutStream.write(DataStreamReg);
+                    if (j == N - 1){
+                        DataStreamReg.last = 1;
+                    }
+                    else{
+                        DataStreamReg.last = 0;
+                    }
                 }
             }
             break;

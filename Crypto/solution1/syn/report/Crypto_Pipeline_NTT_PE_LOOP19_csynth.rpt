@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'Crypto_Pipeline_NTT_PE_LOOP19'
 ================================================================
-* Date:           Tue Mar  4 14:33:27 2025
+* Date:           Tue Mar  4 21:31:43 2025
 
 * Version:        2023.1 (Build 3854077 on May  4 2023)
 * Project:        Crypto
@@ -100,18 +100,18 @@
     +---------------------------------+----------+----+---+----+------------+------------+
     |          Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
     +---------------------------------+----------+----+---+----+------------+------------+
-    |add_ln187_fu_641_p2              |         +|   0|  0|  39|          32|           3|
-    |add_ln190_1_fu_593_p2            |         +|   0|  0|  12|          12|          12|
-    |add_ln190_4_fu_717_p2            |         +|   0|  0|  12|          12|          12|
-    |add_ln190_5_fu_727_p2            |         +|   0|  0|  12|          12|          12|
-    |add_ln190_fu_707_p2              |         +|   0|  0|  12|          12|          12|
-    |add_ln191_1_fu_659_p2            |         +|   0|  0|  12|          12|          12|
-    |add_ln191_4_fu_758_p2            |         +|   0|  0|  12|          12|          12|
-    |add_ln191_5_fu_777_p2            |         +|   0|  0|  12|          12|          12|
-    |add_ln191_fu_739_p2              |         +|   0|  0|  12|          12|          12|
-    |add_ln192_1_fu_675_p2            |         +|   0|  0|  12|          11|          11|
-    |add_ln192_3_fu_693_p2            |         +|   0|  0|  12|          11|          11|
-    |add_ln192_fu_684_p2              |         +|   0|  0|  12|          11|          11|
+    |add_ln192_fu_641_p2              |         +|   0|  0|  39|          32|           3|
+    |add_ln195_1_fu_593_p2            |         +|   0|  0|  12|          12|          12|
+    |add_ln195_4_fu_717_p2            |         +|   0|  0|  12|          12|          12|
+    |add_ln195_5_fu_727_p2            |         +|   0|  0|  12|          12|          12|
+    |add_ln195_fu_707_p2              |         +|   0|  0|  12|          12|          12|
+    |add_ln196_1_fu_659_p2            |         +|   0|  0|  12|          12|          12|
+    |add_ln196_4_fu_758_p2            |         +|   0|  0|  12|          12|          12|
+    |add_ln196_5_fu_777_p2            |         +|   0|  0|  12|          12|          12|
+    |add_ln196_fu_739_p2              |         +|   0|  0|  12|          12|          12|
+    |add_ln197_1_fu_675_p2            |         +|   0|  0|  12|          11|          11|
+    |add_ln197_3_fu_693_p2            |         +|   0|  0|  12|          11|          11|
+    |add_ln197_fu_684_p2              |         +|   0|  0|  12|          11|          11|
     |ap_condition_2232                |       and|   0|  0|   2|           1|           1|
     |ap_condition_2236                |       and|   0|  0|   2|           1|           1|
     |ap_condition_2240                |       and|   0|  0|   2|           1|           1|
@@ -120,16 +120,16 @@
     |ap_predicate_op231_call_state23  |       and|   0|  0|   2|           1|           1|
     |ap_predicate_op294_call_state42  |       and|   0|  0|   2|           1|           1|
     |ap_predicate_op357_call_state61  |       and|   0|  0|   2|           1|           1|
-    |icmp_ln187_1_fu_579_p2           |      icmp|   0|  0|  39|          32|          32|
-    |icmp_ln187_4_fu_623_p2           |      icmp|   0|  0|  39|          32|          32|
-    |icmp_ln187_5_fu_635_p2           |      icmp|   0|  0|  39|          32|          32|
-    |icmp_ln187_fu_611_p2             |      icmp|   0|  0|  39|          32|          32|
-    |or_ln187_1_fu_605_p2             |        or|   0|  0|  32|          32|           1|
-    |or_ln187_4_fu_617_p2             |        or|   0|  0|  32|          32|           2|
-    |or_ln187_6_fu_712_p2             |        or|   0|  0|  12|          12|           2|
-    |or_ln187_7_fu_629_p2             |        or|   0|  0|  32|          32|           2|
-    |or_ln187_8_fu_722_p2             |        or|   0|  0|  12|          12|           2|
-    |or_ln187_fu_702_p2               |        or|   0|  0|  12|          12|           1|
+    |icmp_ln192_1_fu_579_p2           |      icmp|   0|  0|  39|          32|          32|
+    |icmp_ln192_4_fu_623_p2           |      icmp|   0|  0|  39|          32|          32|
+    |icmp_ln192_5_fu_635_p2           |      icmp|   0|  0|  39|          32|          32|
+    |icmp_ln192_fu_611_p2             |      icmp|   0|  0|  39|          32|          32|
+    |or_ln192_1_fu_605_p2             |        or|   0|  0|  32|          32|           1|
+    |or_ln192_4_fu_617_p2             |        or|   0|  0|  32|          32|           2|
+    |or_ln192_6_fu_712_p2             |        or|   0|  0|  12|          12|           2|
+    |or_ln192_7_fu_629_p2             |        or|   0|  0|  32|          32|           2|
+    |or_ln192_8_fu_722_p2             |        or|   0|  0|  12|          12|           2|
+    |or_ln192_fu_702_p2               |        or|   0|  0|  12|          12|           1|
     |ap_enable_pp0                    |       xor|   0|  0|   2|           1|           2|
     +---------------------------------+----------+----+---+----+------------+------------+
     |Total                            |          |   0|  0| 477|         430|         280|
@@ -205,22 +205,22 @@
     |DataRAM_7_addr_15_reg_1095   |  12|   0|   12|          0|
     |DataRAM_7_addr_9_reg_889     |  12|   0|   12|          0|
     |DataRAM_7_addr_reg_869       |  12|   0|   12|          0|
-    |add_ln190_1_reg_835          |  12|   0|   12|          0|
-    |add_ln190_4_reg_951          |  12|   0|   12|          0|
-    |add_ln190_5_reg_957          |  12|   0|   12|          0|
-    |add_ln190_reg_945            |  12|   0|   12|          0|
-    |add_ln192_reg_909            |  11|   0|   11|          0|
+    |add_ln195_1_reg_835          |  12|   0|   12|          0|
+    |add_ln195_4_reg_951          |  12|   0|   12|          0|
+    |add_ln195_5_reg_957          |  12|   0|   12|          0|
+    |add_ln195_reg_945            |  12|   0|   12|          0|
+    |add_ln197_reg_909            |  11|   0|   11|          0|
     |ap_CS_fsm                    |  76|   0|   76|          0|
     |ap_done_reg                  |   1|   0|    1|          0|
     |ap_enable_reg_pp0_iter0_reg  |   1|   0|    1|          0|
     |ap_enable_reg_pp0_iter1      |   1|   0|    1|          0|
-    |empty_128_reg_828            |  12|   0|   12|          0|
-    |icmp_ln187_1_reg_824         |   1|   0|    1|          0|
-    |icmp_ln187_4_reg_851         |   1|   0|    1|          0|
-    |icmp_ln187_5_reg_855         |   1|   0|    1|          0|
-    |icmp_ln187_reg_847           |   1|   0|    1|          0|
+    |empty_134_reg_828            |  12|   0|   12|          0|
+    |icmp_ln192_1_reg_824         |   1|   0|    1|          0|
+    |icmp_ln192_4_reg_851         |   1|   0|    1|          0|
+    |icmp_ln192_5_reg_855         |   1|   0|    1|          0|
+    |icmp_ln192_reg_847           |   1|   0|    1|          0|
     |k_fu_76                      |  32|   0|   32|          0|
-    |mul_ln192_reg_841            |  11|   0|   11|          0|
+    |mul_ln197_reg_841            |  11|   0|   11|          0|
     |reg_467                      |  32|   0|   32|          0|
     |reg_472                      |  32|   0|   32|          0|
     |reg_477                      |  32|   0|   32|          0|
@@ -256,23 +256,23 @@
 |ap_done                      |  out|    1|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
 |ap_idle                      |  out|    1|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
 |ap_ready                     |  out|    1|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_ADD_MOD_fu_1757_p_din1   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_ADD_MOD_fu_1757_p_din2   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_ADD_MOD_fu_1757_p_din3   |  out|    2|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_ADD_MOD_fu_1757_p_dout0  |   in|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_ADD_MOD_fu_1757_p_ready  |   in|    1|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_MUL_MOD_fu_1763_p_din1   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_MUL_MOD_fu_1763_p_din2   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_MUL_MOD_fu_1763_p_din3   |  out|    2|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_MUL_MOD_fu_1763_p_dout0  |   in|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_MUL_MOD_fu_1763_p_ce     |  out|    1|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_SUB_MOD_fu_1769_p_din1   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_SUB_MOD_fu_1769_p_din2   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_SUB_MOD_fu_1769_p_din3   |  out|    2|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_SUB_MOD_fu_1769_p_dout0  |   in|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
-|grp_SUB_MOD_fu_1769_p_ready  |   in|    1|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_ADD_MOD_fu_1733_p_din1   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_ADD_MOD_fu_1733_p_din2   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_ADD_MOD_fu_1733_p_din3   |  out|    2|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_ADD_MOD_fu_1733_p_dout0  |   in|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_ADD_MOD_fu_1733_p_ready  |   in|    1|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_MUL_MOD_fu_1739_p_din1   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_MUL_MOD_fu_1739_p_din2   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_MUL_MOD_fu_1739_p_din3   |  out|    2|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_MUL_MOD_fu_1739_p_dout0  |   in|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_MUL_MOD_fu_1739_p_ce     |  out|    1|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_SUB_MOD_fu_1745_p_din1   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_SUB_MOD_fu_1745_p_din2   |  out|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_SUB_MOD_fu_1745_p_din3   |  out|    2|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_SUB_MOD_fu_1745_p_dout0  |   in|   32|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
+|grp_SUB_MOD_fu_1745_p_ready  |   in|    1|  ap_ctrl_hs|  Crypto_Pipeline_NTT_PE_LOOP19|  return value|
 |hf_8                         |   in|   31|     ap_none|                           hf_8|        scalar|
-|trunc_ln183_7                |   in|   12|     ap_none|                  trunc_ln183_7|        scalar|
+|trunc_ln188_7                |   in|   12|     ap_none|                  trunc_ln188_7|        scalar|
 |DataRAM_1_address0           |  out|   12|   ap_memory|                      DataRAM_1|         array|
 |DataRAM_1_ce0                |  out|    1|   ap_memory|                      DataRAM_1|         array|
 |DataRAM_1_we0                |  out|    1|   ap_memory|                      DataRAM_1|         array|
@@ -314,8 +314,8 @@
 |DataRAM_10_d1                |  out|   32|   ap_memory|                     DataRAM_10|         array|
 |DataRAM_10_q1                |   in|   32|   ap_memory|                     DataRAM_10|         array|
 |RAMSel_cast                  |   in|    2|     ap_none|                    RAMSel_cast|        scalar|
-|trunc_ln183_4                |   in|   12|     ap_none|                  trunc_ln183_4|        scalar|
-|trunc_ln183_5                |   in|   11|     ap_none|                  trunc_ln183_5|        scalar|
+|trunc_ln188_4                |   in|   12|     ap_none|                  trunc_ln188_4|        scalar|
+|trunc_ln188_5                |   in|   11|     ap_none|                  trunc_ln188_5|        scalar|
 |NTTTWiddleRAM_1_address0     |  out|   11|   ap_memory|                NTTTWiddleRAM_1|         array|
 |NTTTWiddleRAM_1_ce0          |  out|    1|   ap_memory|                NTTTWiddleRAM_1|         array|
 |NTTTWiddleRAM_1_q0           |   in|   32|   ap_memory|                NTTTWiddleRAM_1|         array|

@@ -8,7 +8,7 @@
 `timescale 1ns/1ps
 module Crypto_control_s_axi
 #(parameter
-    C_S_AXI_ADDR_WIDTH = 17,
+    C_S_AXI_ADDR_WIDTH = 18,
     C_S_AXI_DATA_WIDTH = 32
 )(
     input  wire                          ACLK,
@@ -38,6 +38,10 @@ module Crypto_control_s_axi
     input  wire [12:0]                   NTTTwiddleIn_address0,
     input  wire                          NTTTwiddleIn_ce0,
     output wire [31:0]                   NTTTwiddleIn_q0,
+    input  wire [13:0]                   DataOutStream_address0,
+    input  wire                          DataOutStream_ce0,
+    input  wire                          DataOutStream_we0,
+    input  wire [31:0]                   DataOutStream_d0,
     input  wire [12:0]                   INTTTwiddleIn_address0,
     input  wire                          INTTTwiddleIn_ce0,
     output wire [31:0]                   INTTTwiddleIn_q0,
@@ -79,26 +83,31 @@ module Crypto_control_s_axi
 // 0x0ffff : Memory 'NTTTwiddleIn' (6144 * 32b)
 //           Word n : bit [31:0] - NTTTwiddleIn[n]
 // 0x10000 ~
-// 0x17fff : Memory 'INTTTwiddleIn' (6144 * 32b)
+// 0x1ffff : Memory 'DataOutStream' (12288 * 32b)
+//           Word n : bit [31:0] - DataOutStream[n]
+// 0x20000 ~
+// 0x27fff : Memory 'INTTTwiddleIn' (6144 * 32b)
 //           Word n : bit [31:0] - INTTTwiddleIn[n]
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 //------------------------Parameter----------------------
 localparam
-    ADDR_AP_CTRL            = 17'h00000,
-    ADDR_GIE                = 17'h00004,
-    ADDR_IER                = 17'h00008,
-    ADDR_ISR                = 17'h0000c,
-    ADDR_RAMSEL_DATA_0      = 17'h00010,
-    ADDR_RAMSEL_CTRL        = 17'h00014,
-    ADDR_RAMSEL1_DATA_0     = 17'h00018,
-    ADDR_RAMSEL1_CTRL       = 17'h0001c,
-    ADDR_OP_DATA_0          = 17'h00020,
-    ADDR_OP_CTRL            = 17'h00024,
-    ADDR_NTTTWIDDLEIN_BASE  = 17'h08000,
-    ADDR_NTTTWIDDLEIN_HIGH  = 17'h0ffff,
-    ADDR_INTTTWIDDLEIN_BASE = 17'h10000,
-    ADDR_INTTTWIDDLEIN_HIGH = 17'h17fff,
+    ADDR_AP_CTRL            = 18'h00000,
+    ADDR_GIE                = 18'h00004,
+    ADDR_IER                = 18'h00008,
+    ADDR_ISR                = 18'h0000c,
+    ADDR_RAMSEL_DATA_0      = 18'h00010,
+    ADDR_RAMSEL_CTRL        = 18'h00014,
+    ADDR_RAMSEL1_DATA_0     = 18'h00018,
+    ADDR_RAMSEL1_CTRL       = 18'h0001c,
+    ADDR_OP_DATA_0          = 18'h00020,
+    ADDR_OP_CTRL            = 18'h00024,
+    ADDR_NTTTWIDDLEIN_BASE  = 18'h08000,
+    ADDR_NTTTWIDDLEIN_HIGH  = 18'h0ffff,
+    ADDR_DATAOUTSTREAM_BASE = 18'h10000,
+    ADDR_DATAOUTSTREAM_HIGH = 18'h1ffff,
+    ADDR_INTTTWIDDLEIN_BASE = 18'h20000,
+    ADDR_INTTTWIDDLEIN_HIGH = 18'h27fff,
     WRIDLE                  = 2'd0,
     WRDATA                  = 2'd1,
     WRRESP                  = 2'd2,
@@ -106,7 +115,7 @@ localparam
     RDIDLE                  = 2'd0,
     RDDATA                  = 2'd1,
     RDRESET                 = 2'd2,
-    ADDR_BITS                = 17;
+    ADDR_BITS                = 18;
 
 //------------------------Local signal-------------------
     reg  [1:0]                    wstate = WRRESET;
@@ -150,6 +159,15 @@ localparam
     wire [31:0]                   int_NTTTwiddleIn_q1;
     reg                           int_NTTTwiddleIn_read;
     reg                           int_NTTTwiddleIn_write;
+    wire [13:0]                   int_DataOutStream_address0;
+    wire                          int_DataOutStream_ce0;
+    wire [3:0]                    int_DataOutStream_be0;
+    wire [31:0]                   int_DataOutStream_d0;
+    wire [13:0]                   int_DataOutStream_address1;
+    wire                          int_DataOutStream_ce1;
+    wire [31:0]                   int_DataOutStream_q1;
+    reg                           int_DataOutStream_read;
+    reg                           int_DataOutStream_write;
     wire [12:0]                   int_INTTTwiddleIn_address0;
     wire                          int_INTTTwiddleIn_ce0;
     wire [31:0]                   int_INTTTwiddleIn_q0;
@@ -182,6 +200,26 @@ Crypto_control_s_axi_ram #(
     .we1       ( int_NTTTwiddleIn_be1 ),
     .d1        ( int_NTTTwiddleIn_d1 ),
     .q1        ( int_NTTTwiddleIn_q1 )
+);
+// int_DataOutStream
+Crypto_control_s_axi_ram #(
+    .MEM_STYLE ( "auto" ),
+    .MEM_TYPE  ( "S2P" ),
+    .BYTES     ( 4 ),
+    .DEPTH     ( 12288 )
+) int_DataOutStream (
+    .clk0      ( ACLK ),
+    .address0  ( int_DataOutStream_address0 ),
+    .ce0       ( int_DataOutStream_ce0 ),
+    .we0       ( int_DataOutStream_be0 ),
+    .d0        ( int_DataOutStream_d0 ),
+    .q0        (  ),
+    .clk1      ( ACLK ),
+    .address1  ( int_DataOutStream_address1 ),
+    .ce1       ( int_DataOutStream_ce1 ),
+    .we1       ( {4{1'b0}} ),
+    .d1        ( {32{1'b0}} ),
+    .q1        ( int_DataOutStream_q1 )
 );
 // int_INTTTwiddleIn
 Crypto_control_s_axi_ram #(
@@ -257,7 +295,7 @@ end
 assign ARREADY = (rstate == RDIDLE);
 assign RDATA   = rdata;
 assign RRESP   = 2'b00;  // OKAY
-assign RVALID  = (rstate == RDDATA) & !int_NTTTwiddleIn_read & !int_INTTTwiddleIn_read;
+assign RVALID  = (rstate == RDDATA) & !int_NTTTwiddleIn_read & !int_DataOutStream_read & !int_INTTTwiddleIn_read;
 assign ar_hs   = ARVALID & ARREADY;
 assign raddr   = ARADDR[ADDR_BITS-1:0];
 
@@ -323,6 +361,9 @@ always @(posedge ACLK) begin
         end
         else if (int_NTTTwiddleIn_read) begin
             rdata <= int_NTTTwiddleIn_q1;
+        end
+        else if (int_DataOutStream_read) begin
+            rdata <= int_DataOutStream_q1;
         end
         else if (int_INTTTwiddleIn_read) begin
             rdata <= int_INTTTwiddleIn_q1;
@@ -523,6 +564,13 @@ assign int_NTTTwiddleIn_ce1       = ar_hs | (int_NTTTwiddleIn_write & WVALID);
 assign int_NTTTwiddleIn_we1       = int_NTTTwiddleIn_write & w_hs;
 assign int_NTTTwiddleIn_be1       = int_NTTTwiddleIn_we1 ? WSTRB : 'b0;
 assign int_NTTTwiddleIn_d1        = WDATA;
+// DataOutStream
+assign int_DataOutStream_address0 = DataOutStream_address0;
+assign int_DataOutStream_ce0      = DataOutStream_ce0;
+assign int_DataOutStream_be0      = {4{DataOutStream_we0}};
+assign int_DataOutStream_d0       = DataOutStream_d0;
+assign int_DataOutStream_address1 = ar_hs? raddr[15:2] : waddr[15:2];
+assign int_DataOutStream_ce1      = ar_hs | (int_DataOutStream_write & WVALID);
 // INTTTwiddleIn
 assign int_INTTTwiddleIn_address0 = INTTTwiddleIn_address0;
 assign int_INTTTwiddleIn_ce0      = INTTTwiddleIn_ce0;
@@ -553,6 +601,18 @@ always @(posedge ACLK) begin
             int_NTTTwiddleIn_write <= 1'b1;
         else if (w_hs)
             int_NTTTwiddleIn_write <= 1'b0;
+    end
+end
+
+// int_DataOutStream_read
+always @(posedge ACLK) begin
+    if (ARESET)
+        int_DataOutStream_read <= 1'b0;
+    else if (ACLK_EN) begin
+        if (ar_hs && raddr >= ADDR_DATAOUTSTREAM_BASE && raddr <= ADDR_DATAOUTSTREAM_HIGH)
+            int_DataOutStream_read <= 1'b1;
+        else
+            int_DataOutStream_read <= 1'b0;
     end
 end
 

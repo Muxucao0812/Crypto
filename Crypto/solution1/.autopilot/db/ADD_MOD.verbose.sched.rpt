@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'ADD_MOD'
 ================================================================
-* Date:           Tue Mar  4 14:33:14 2025
+* Date:           Tue Mar  4 21:31:30 2025
 
 * Version:        2023.1 (Build 3854077 on May  4 2023)
 * Project:        Crypto
@@ -100,7 +100,7 @@ Target clock period: 8.000ns, clock uncertainty: 2.160ns.
 The critical path consists of the following:
 	wire read operation ('input2_val_read') on port 'input2_val' [5]  (0.000 ns)
 	'add' operation ('add_ln40', Arithmetic.cpp:40) [7]  (2.552 ns)
-	'icmp' operation ('icmp_ln43', Arithmetic.cpp:43) [10]  (2.552 ns)
+	'sub' operation ('sub_ln44', Arithmetic.cpp:44) [11]  (2.552 ns)
 	'select' operation ('select_ln43', Arithmetic.cpp:43) [12]  (0.698 ns)
 
 

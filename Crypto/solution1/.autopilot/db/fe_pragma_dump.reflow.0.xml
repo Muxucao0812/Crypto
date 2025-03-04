@@ -1,78 +1,70 @@
 <pragmas>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::operator long long() const" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<4>::ap_uint()" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<1>::ap_uint()" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<1, false>::ap_int_base()" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::ap_int_base(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<64>::ap_int<64, true>(ap_int_base<64, true> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::RType<($_0)32, true>::mult operator*<32, true>(int, ap_int_base<32, true> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::RType<32, true>::mult operator*<32, true, 32, true>(ap_int_base<32, true> const&, ap_int_base<32, true> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::ap_int_base<32, true>(ap_int_base<32, true> const&)" off="0" region="0" recursive="0"/>
-<pragma file="Crypto.cpp" line="62" pragmaType="unroll" parentfunction="Crypto" factor="-1" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="64" pragmaType="pipeline" parentfunction="Crypto" off="0" ii="-1" rewind="0" style=""/>
-<pragma file="Crypto.cpp" line="73" pragmaType="unroll" parentfunction="Crypto" factor="-1" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="75" pragmaType="pipeline" parentfunction="Crypto" off="0" ii="-1" rewind="0" style=""/>
-<pragma file="Crypto.cpp" line="87" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="89" pragmaType="pipeline" parentfunction="Crypto" off="0" ii="-1" rewind="0" style=""/>
-<pragma file="Crypto.cpp" line="99" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="102" pragmaType="unroll" parentfunction="Crypto" factor="4" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="114" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="117" pragmaType="unroll" parentfunction="Crypto" factor="4" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="130" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="133" pragmaType="unroll" parentfunction="Crypto" factor="4" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="147" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="151" pragmaType="unroll" parentfunction="Crypto" factor="4" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="178" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="185" pragmaType="loop_tripcount" parentfunction="Crypto" min="10" max="20" avg="15"/>
-<pragma file="Crypto.cpp" line="188" pragmaType="unroll" parentfunction="Crypto" factor="4" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="169" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="171" pragmaType="pipeline" parentfunction="Crypto" off="0" ii="-1" rewind="0" style=""/>
-<pragma file="Crypto.cpp" line="163" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="250" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="254" pragmaType="pipeline" parentfunction="Crypto" off="0" ii="-1" rewind="0" style=""/>
-<pragma file="Crypto.cpp" line="223" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="229" pragmaType="loop_tripcount" parentfunction="Crypto" min="10" max="20" avg="15"/>
-<pragma file="Crypto.cpp" line="233" pragmaType="unroll" parentfunction="Crypto" factor="4" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="214" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="216" pragmaType="pipeline" parentfunction="Crypto" off="0" ii="-1" rewind="0" style=""/>
-<pragma file="Crypto.cpp" line="208" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
-<pragma file="Crypto.cpp" line="31" pragmaType="array_partition" parentfunction="Crypto" dim="1" factor="0" mode="complete" dynamic="0" variable="DataRAM"/>
-<pragma file="Crypto.cpp" line="32" pragmaType="array_partition" parentfunction="Crypto" dim="2" factor="16" mode="cyclic" dynamic="0" variable="DataRAM"/>
-<pragma file="Crypto.cpp" line="35" pragmaType="array_partition" parentfunction="Crypto" dim="1" factor="16" mode="cyclic" dynamic="0" variable="BitReverseData"/>
-<pragma file="Crypto.cpp" line="39" pragmaType="array_partition" parentfunction="Crypto" dim="1" factor="16" mode="cyclic" dynamic="0" variable="NTTTWiddleRAM"/>
-<pragma file="Crypto.cpp" line="40" pragmaType="array_partition" parentfunction="Crypto" dim="1" factor="16" mode="cyclic" dynamic="0" variable="INTTTWiddleRAM"/>
-<pragma file="Crypto.cpp" line="47" pragmaType="interface" parentfunction="Crypto" mode="axis" port="dataInStream" register="0" register_mode="both" name="" depth="-1"/>
-<pragma file="Crypto.cpp" line="48" pragmaType="interface" parentfunction="Crypto" mode="axis" port="dataOutStream" register="0" register_mode="both" name="" depth="-1"/>
-<pragma file="Crypto.cpp" line="50" pragmaType="interface" parentfunction="Crypto" mode="s_axilite" port="NTTTwiddleIn" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
-<pragma file="Crypto.cpp" line="51" pragmaType="interface" parentfunction="Crypto" mode="s_axilite" port="INTTTwiddleIn" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
-<pragma file="Crypto.cpp" line="52" pragmaType="interface" parentfunction="Crypto" mode="s_axilite" port="" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
-<pragma file="Crypto.cpp" line="53" pragmaType="interface" parentfunction="Crypto" mode="s_axilite" port="RAMSel" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
-<pragma file="Crypto.cpp" line="54" pragmaType="interface" parentfunction="Crypto" mode="s_axilite" port="RAMSel1" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
-<pragma file="Crypto.cpp" line="55" pragmaType="interface" parentfunction="Crypto" mode="s_axilite" port="OP" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
-<pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="0" pragmaType="inline" parentfunction="ssdm_int<64, true>::ssdm_int()" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::ap_int_base()" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::ap_int_base<64, true>(ap_int_base<64, true> const&)" off="0" region="0" recursive="0"/>
-<pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="0" pragmaType="inline" parentfunction="ssdm_int<32, true>::ssdm_int()" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::ap_int_base<64, true>(ap_range_ref<64, true> const&)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="get" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, false>::ap_int_base()" off="0" region="0" recursive="0"/>
+<pragma file="Crypto.cpp" line="70" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="81" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="83" pragmaType="pipeline" parentfunction="Crypto" off="0" ii="-1" rewind="0" style=""/>
+<pragma file="Crypto.cpp" line="92" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="94" pragmaType="pipeline" parentfunction="Crypto" off="0" ii="-1" rewind="0" style=""/>
+<pragma file="Crypto.cpp" line="104" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="107" pragmaType="unroll" parentfunction="Crypto" factor="4" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="119" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="122" pragmaType="unroll" parentfunction="Crypto" factor="4" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="135" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="138" pragmaType="unroll" parentfunction="Crypto" factor="4" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="152" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="156" pragmaType="unroll" parentfunction="Crypto" factor="4" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="183" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="190" pragmaType="loop_tripcount" parentfunction="Crypto" min="10" max="20" avg="15"/>
+<pragma file="Crypto.cpp" line="193" pragmaType="unroll" parentfunction="Crypto" factor="4" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="174" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="176" pragmaType="pipeline" parentfunction="Crypto" off="0" ii="-1" rewind="0" style=""/>
+<pragma file="Crypto.cpp" line="168" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="255" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="259" pragmaType="pipeline" parentfunction="Crypto" off="0" ii="-1" rewind="0" style=""/>
+<pragma file="Crypto.cpp" line="228" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="234" pragmaType="loop_tripcount" parentfunction="Crypto" min="10" max="20" avg="15"/>
+<pragma file="Crypto.cpp" line="238" pragmaType="unroll" parentfunction="Crypto" factor="4" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="219" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="221" pragmaType="pipeline" parentfunction="Crypto" off="0" ii="-1" rewind="0" style=""/>
+<pragma file="Crypto.cpp" line="213" pragmaType="unroll" parentfunction="Crypto" factor="3" skip_exit_check="0"/>
+<pragma file="Crypto.cpp" line="30" pragmaType="array_partition" parentfunction="Crypto" dim="1" factor="0" mode="complete" dynamic="0" variable="DataRAM"/>
+<pragma file="Crypto.cpp" line="31" pragmaType="array_partition" parentfunction="Crypto" dim="2" factor="16" mode="cyclic" dynamic="0" variable="DataRAM"/>
+<pragma file="Crypto.cpp" line="34" pragmaType="array_partition" parentfunction="Crypto" dim="1" factor="16" mode="cyclic" dynamic="0" variable="BitReverseData"/>
+<pragma file="Crypto.cpp" line="38" pragmaType="array_partition" parentfunction="Crypto" dim="1" factor="16" mode="cyclic" dynamic="0" variable="NTTTWiddleRAM"/>
+<pragma file="Crypto.cpp" line="39" pragmaType="array_partition" parentfunction="Crypto" dim="1" factor="16" mode="cyclic" dynamic="0" variable="INTTTWiddleRAM"/>
+<pragma file="Crypto.cpp" line="46" pragmaType="stream" parentfunction="Crypto" depth="4096" type="fifo" variable="DataInStream"/>
+<pragma file="Crypto.cpp" line="47" pragmaType="interface" parentfunction="Crypto" mode="axis" port="DataInStream" register="0" register_mode="both" name="" depth="-1"/>
+<pragma file="Crypto.cpp" line="49" pragmaType="interface" parentfunction="Crypto" mode="s_axilite" port="DataOutStream" bundle="" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="Crypto.cpp" line="50" pragmaType="interface" parentfunction="Crypto" mode="s_axilite" port="NTTTwiddleIn" bundle="" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="Crypto.cpp" line="51" pragmaType="interface" parentfunction="Crypto" mode="s_axilite" port="INTTTwiddleIn" bundle="" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="Crypto.cpp" line="53" pragmaType="interface" parentfunction="Crypto" mode="s_axilite" port="" bundle="" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="Crypto.cpp" line="54" pragmaType="interface" parentfunction="Crypto" mode="s_axilite" port="RAMSel" bundle="" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="Crypto.cpp" line="55" pragmaType="interface" parentfunction="Crypto" mode="s_axilite" port="RAMSel1" bundle="" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="Crypto.cpp" line="56" pragmaType="interface" parentfunction="Crypto" mode="s_axilite" port="OP" bundle="" offset="-1" name="" clock="" impl="" register="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<32>::ap_int()" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="read" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<32>::ap_int<32>(ap_uint<32> const&)" off="0" region="0" recursive="0"/>
-<pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="515" pragmaType="inline" parentfunction="_ZN8ssdm_intILi33ELb1EEC2EDq33_i" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::ap_int_base<33, true>(ap_int_base<33, true> const&)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowCsim" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="bool operator<<32, true>(ap_int_base<32, true> const&, int)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="bool ap_int_base<32, true>::operator<<32, true>(ap_int_base<32, true> const&) const" off="0" region="0" recursive="0"/>
-<pragma file="Arithmetic.cpp" line="66" pragmaType="pipeline" parentfunction="MOD_PLAINTEXTMODULUS" off="0" ii="-1" style=""/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::operator()(int, int)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<32>::ap_int<64, true>(ap_range_ref<64, true> const&)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::RType<64, true>::arg1 operator>><64, true>(ap_int_base<64, true> const&, int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<4, false>::ap_int_base()" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::ap_int_base()" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::RType<($_0)32, true>::minus operator-<64, true>(ap_int_base<64, true> const&, int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="bool operator<<64, true>(ap_int_base<64, true> const&, int)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="bool ap_int_base<64, true>::operator<<32, true>(ap_int_base<32, true> const&) const" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::RType<32, true>::minus operator-<64, true, 32, true>(ap_int_base<64, true> const&, ap_int_base<32, true> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<65, true>::ap_int_base<32, true>(ap_int_base<32, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::ap_int_base<64, true>(ap_int_base<64, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::ap_int_base<64, true>(ap_range_ref<64, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="get" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="range" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_range_ref<64, true>::ap_range_ref(ap_int_base<64, true>*, int, int)" off="0" region="0" recursive="0"/>
 <pragma file="Arithmetic.cpp" line="90" pragmaType="pipeline" parentfunction="MUL_MOD" off="0" ii="-1" style=""/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<32>::ap_int<64>(ap_int<64> const&)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::RType<64, true>::minus operator-<64, true, 64, true>(ap_int_base<64, true> const&, ap_int_base<64, true> const&)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::RType<($_0)32, true>::minus operator-<64, true>(ap_int_base<64, true> const&, int)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="bool operator<<64, true>(ap_int_base<64, true> const&, int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::operator long long() const" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="read" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, false>::ap_int_base()" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<32>::ap_int(int)" off="0" region="0" recursive="0"/>
 <pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="515" pragmaType="inline" parentfunction="ssdm_int<32, true>::ssdm_int(int)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::ap_int_base(int)" off="0" region="0" recursive="0"/>
@@ -107,8 +99,8 @@
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<33>::ap_uint<33, false>(ap_int_base<33, false> const&)" off="0" region="0" recursive="0"/>
 <pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="523" pragmaType="inline" parentfunction="_ZN8ssdm_intILi33ELb0EEC2EDq33_j" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::ap_int_base<32, false>(ap_int_base<32, false> const&)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::ap_int_base(int)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<64>::ap_int<64, true>(ap_int_base<64, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="0" pragmaType="inline" parentfunction="ssdm_int<64, true>::ssdm_int()" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::ap_int_base()" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, false>::ap_int_base<64, false>(ap_int_base<64, false> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
 <pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="523" pragmaType="inline" parentfunction="ssdm_int<32, false>::ssdm_int(unsigned int)" off="0" region="0" recursive="0"/>
@@ -129,24 +121,25 @@
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<33, true>::ap_int_base<32, true>(ap_int_base<32, true> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<33, true>::ap_int_base(int)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<33>::ap_int<33, true>(ap_int_base<33, true> const&)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<1>::ap_uint(bool)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="write" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<1, false>::ap_int_base(bool)" off="0" region="0" recursive="0"/>
-<pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="0" pragmaType="inline" parentfunction="ssdm_int<1, false>::ssdm_int()" off="0" region="0" recursive="0"/>
-<pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="523" pragmaType="inline" parentfunction="_ZN8ssdm_intILi1ELb0EEC2EDq1_j" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<4>::ap_uint()" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_uint<1>::ap_uint()" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<1, false>::ap_int_base()" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<4, false>::ap_int_base()" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::ap_int_base<32, false>(ap_int_base<32, false> const&)" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::ap_int_base()" off="0" region="0" recursive="0"/>
+<pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="515" pragmaType="inline" parentfunction="_ZN8ssdm_intILi33ELb1EEC2EDq33_i" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<32, true>::ap_int_base<33, true>(ap_int_base<33, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowCsim" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="bool operator<<32, true>(ap_int_base<32, true> const&, int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="bool ap_int_base<32, true>::operator<<32, true>(ap_int_base<32, true> const&) const" off="0" region="0" recursive="0"/>
+<pragma file="Arithmetic.cpp" line="66" pragmaType="pipeline" parentfunction="MOD_PLAINTEXTMODULUS" off="0" ii="-1" style=""/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::operator()(int, int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<32>::ap_int<64, true>(ap_range_ref<64, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::RType<64, true>::arg1 operator>><64, true>(ap_int_base<64, true> const&, int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<32>::ap_int<64>(ap_int<64> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<64, true>::RType<64, true>::minus operator-<64, true, 64, true>(ap_int_base<64, true> const&, ap_int_base<64, true> const&)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowCsim" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowCsim" off="0" region="0" recursive="0"/>
+<pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="0" pragmaType="inline" parentfunction="ssdm_int<64, false>::ssdm_int()" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="get_user_ptr" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="get_id_ptr" off="0" region="0" recursive="0"/>
-<pragma file="" line="0" pragmaType="inline" parentfunction="get_dest_ptr" off="0" region="0" recursive="0"/>
+<pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="0" pragmaType="inline" parentfunction="ssdm_int<32, true>::ssdm_int()" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
 <pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="0" pragmaType="inline" parentfunction="ssdm_int<4, false>::ssdm_int()" off="0" region="0" recursive="0"/>
-<pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="0" pragmaType="inline" parentfunction="ssdm_int<64, false>::ssdm_int()" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="get_id_ptr" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="get_dest_ptr" off="0" region="0" recursive="0"/>
+<pragma file="/home/meng/Software/VIvado/Vitis_HLS/2023.1/common/technology/autopilot/etc/ap_common.h" line="0" pragmaType="inline" parentfunction="ssdm_int<1, false>::ssdm_int()" off="0" region="0" recursive="0"/>
 </pragmas>

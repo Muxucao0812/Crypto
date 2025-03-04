@@ -19,4 +19,8 @@ obj/main_TB.o: ../../../../main_TB.cpp ../../../../define.h \
  /home/meng/Software/VIvado/Vitis_HLS/2023.1/include/etc/ap_fixed_base.h \
  /home/meng/Software/VIvado/Vitis_HLS/2023.1/include/etc/ap_fixed_ref.h \
  /home/meng/Software/VIvado/Vitis_HLS/2023.1/include/etc/ap_fixed_special.h \
- ../../../../Crypto_TB.hpp ../../../../Crypto.hpp ../../../../Utils.hpp
+ ../../../../Crypto_TB.hpp ../../../../Crypto.hpp \
+ /home/meng/Software/VIvado/Vitis_HLS/2023.1/include/hls_stream.h \
+ /home/meng/Software/VIvado/Vitis_HLS/2023.1/include/ap_axi_sdata.h \
+ /home/meng/Software/VIvado/Vitis_HLS/2023.1/include/ap_int.h \
+ ../../../../Utils.hpp

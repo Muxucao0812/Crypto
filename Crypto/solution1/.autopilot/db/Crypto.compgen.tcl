@@ -66,13 +66,25 @@ NTTTwiddleIn {
 	core_latency 1
 	byte_write 0
 }
+DataOutStream { 
+	dir O
+	width 32
+	depth 12288
+	mode ap_memory
+	offset 65536
+	offset_end 131071
+	core_op ram_1p
+	core_impl auto
+	core_latency 1
+	byte_write 0
+}
 INTTTwiddleIn { 
 	dir I
 	width 32
 	depth 6144
 	mode ap_memory
-	offset 65536
-	offset_end 98303
+	offset 131072
+	offset_end 163839
 	core_op ram_1p
 	core_impl auto
 	core_latency 1
@@ -92,7 +104,7 @@ dict set axilite_register_dict control $port_control
 if {${::AESL::PGuard_simmodel_gen}} {
 	if {[info proc ::AESL_LIB_XILADAPTER::s_axilite_gen] == "::AESL_LIB_XILADAPTER::s_axilite_gen"} {
 		eval "::AESL_LIB_XILADAPTER::s_axilite_gen { \
-			id 376 \
+			id 367 \
 			corename Crypto_control_axilite \
 			name Crypto_control_s_axi \
 			ports {$port_control} \
@@ -116,17 +128,17 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::native_axis_add] == "::AESL_LIB_XILADAPTER::native_axis_add"} {
 eval "::AESL_LIB_XILADAPTER::native_axis_add { \
-    id 377 \
-    name dataInStream_V_data_V \
+    id 368 \
+    name DataInStream_V_data_V \
     reset_level 0 \
     sync_rst true \
-    corename {dataInStream} \
+    corename {DataInStream} \
     metadata {  } \
     op interface \
-    ports { dataInStream_TDATA { I 32 vector } } \
+    ports { DataInStream_TDATA { I 32 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'dataInStream_V_data_V'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataInStream_V_data_V'"
 }
 }
 
@@ -135,17 +147,17 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::native_axis_add] == "::AESL_LIB_XILADAPTER::native_axis_add"} {
 eval "::AESL_LIB_XILADAPTER::native_axis_add { \
-    id 378 \
-    name dataInStream_V_keep_V \
+    id 369 \
+    name DataInStream_V_keep_V \
     reset_level 0 \
     sync_rst true \
-    corename {dataInStream} \
+    corename {DataInStream} \
     metadata {  } \
     op interface \
-    ports { dataInStream_TKEEP { I 4 vector } } \
+    ports { DataInStream_TKEEP { I 4 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'dataInStream_V_keep_V'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataInStream_V_keep_V'"
 }
 }
 
@@ -154,17 +166,17 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::native_axis_add] == "::AESL_LIB_XILADAPTER::native_axis_add"} {
 eval "::AESL_LIB_XILADAPTER::native_axis_add { \
-    id 379 \
-    name dataInStream_V_strb_V \
+    id 370 \
+    name DataInStream_V_strb_V \
     reset_level 0 \
     sync_rst true \
-    corename {dataInStream} \
+    corename {DataInStream} \
     metadata {  } \
     op interface \
-    ports { dataInStream_TSTRB { I 4 vector } } \
+    ports { DataInStream_TSTRB { I 4 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'dataInStream_V_strb_V'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataInStream_V_strb_V'"
 }
 }
 
@@ -173,93 +185,17 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::native_axis_add] == "::AESL_LIB_XILADAPTER::native_axis_add"} {
 eval "::AESL_LIB_XILADAPTER::native_axis_add { \
-    id 380 \
-    name dataInStream_V_last_V \
+    id 371 \
+    name DataInStream_V_last_V \
     reset_level 0 \
     sync_rst true \
-    corename {dataInStream} \
+    corename {DataInStream} \
     metadata {  } \
     op interface \
-    ports { dataInStream_TVALID { I 1 bit } dataInStream_TREADY { O 1 bit } dataInStream_TLAST { I 1 vector } } \
+    ports { DataInStream_TVALID { I 1 bit } DataInStream_TREADY { O 1 bit } DataInStream_TLAST { I 1 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'dataInStream_V_last_V'"
-}
-}
-
-
-# Native AXIS:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::native_axis_add] == "::AESL_LIB_XILADAPTER::native_axis_add"} {
-eval "::AESL_LIB_XILADAPTER::native_axis_add { \
-    id 381 \
-    name dataOutStream_V_data_V \
-    reset_level 0 \
-    sync_rst true \
-    corename {dataOutStream} \
-    metadata {  } \
-    op interface \
-    ports { dataOutStream_TDATA { O 32 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'dataOutStream_V_data_V'"
-}
-}
-
-
-# Native AXIS:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::native_axis_add] == "::AESL_LIB_XILADAPTER::native_axis_add"} {
-eval "::AESL_LIB_XILADAPTER::native_axis_add { \
-    id 382 \
-    name dataOutStream_V_keep_V \
-    reset_level 0 \
-    sync_rst true \
-    corename {dataOutStream} \
-    metadata {  } \
-    op interface \
-    ports { dataOutStream_TKEEP { O 4 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'dataOutStream_V_keep_V'"
-}
-}
-
-
-# Native AXIS:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::native_axis_add] == "::AESL_LIB_XILADAPTER::native_axis_add"} {
-eval "::AESL_LIB_XILADAPTER::native_axis_add { \
-    id 383 \
-    name dataOutStream_V_strb_V \
-    reset_level 0 \
-    sync_rst true \
-    corename {dataOutStream} \
-    metadata {  } \
-    op interface \
-    ports { dataOutStream_TSTRB { O 4 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'dataOutStream_V_strb_V'"
-}
-}
-
-
-# Native AXIS:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::native_axis_add] == "::AESL_LIB_XILADAPTER::native_axis_add"} {
-eval "::AESL_LIB_XILADAPTER::native_axis_add { \
-    id 384 \
-    name dataOutStream_V_last_V \
-    reset_level 0 \
-    sync_rst true \
-    corename {dataOutStream} \
-    metadata {  } \
-    op interface \
-    ports { dataOutStream_TVALID { O 1 bit } dataOutStream_TREADY { I 1 bit } dataOutStream_TLAST { O 1 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'dataOutStream_V_last_V'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'DataInStream_V_last_V'"
 }
 }
 
@@ -315,7 +251,7 @@ if {${::AESL::PGuard_autoexp_gen}} {
 
 
 # RegSlice definition:
-set ID 385
+set ID 372
 set RegSliceName Crypto_regslice_both
 set RegSliceInstName Crypto_regslice_both_U
 set CoreName ap_simcore_Crypto_regslice_both
@@ -338,7 +274,7 @@ puts "@W \[IMPL-107\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_regSlice, check you
 
 
 # RegSlice definition:
-set ID 386
+set ID 373
 set RegSliceName Crypto_regslice_both
 set RegSliceInstName Crypto_regslice_both_U
 set CoreName ap_simcore_Crypto_regslice_both
@@ -361,7 +297,7 @@ puts "@W \[IMPL-107\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_regSlice, check you
 
 
 # RegSlice definition:
-set ID 387
+set ID 374
 set RegSliceName Crypto_regslice_both
 set RegSliceInstName Crypto_regslice_both_U
 set CoreName ap_simcore_Crypto_regslice_both
@@ -384,99 +320,7 @@ puts "@W \[IMPL-107\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_regSlice, check you
 
 
 # RegSlice definition:
-set ID 388
-set RegSliceName Crypto_regslice_both
-set RegSliceInstName Crypto_regslice_both_U
-set CoreName ap_simcore_Crypto_regslice_both
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $RegSliceName BINDTYPE interface TYPE interface_regslice INSTNAME $RegSliceInstName
-}
-
-
-if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
-if {[info proc ::AESL_LIB_VIRTEX::xil_gen_regSlice] == "::AESL_LIB_VIRTEX::xil_gen_regSlice"} {
-eval "::AESL_LIB_VIRTEX::xil_gen_regSlice { \
-    name ${RegSliceName} \
-    prefix Crypto_ \
-    sliceTypeList 0\
-}"
-} else {
-puts "@W \[IMPL-107\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_regSlice, check your platform lib"
-}
-}
-
-
-# RegSlice definition:
-set ID 389
-set RegSliceName Crypto_regslice_both
-set RegSliceInstName Crypto_regslice_both_U
-set CoreName ap_simcore_Crypto_regslice_both
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $RegSliceName BINDTYPE interface TYPE interface_regslice INSTNAME $RegSliceInstName
-}
-
-
-if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
-if {[info proc ::AESL_LIB_VIRTEX::xil_gen_regSlice] == "::AESL_LIB_VIRTEX::xil_gen_regSlice"} {
-eval "::AESL_LIB_VIRTEX::xil_gen_regSlice { \
-    name ${RegSliceName} \
-    prefix Crypto_ \
-    sliceTypeList 0\
-}"
-} else {
-puts "@W \[IMPL-107\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_regSlice, check your platform lib"
-}
-}
-
-
-# RegSlice definition:
-set ID 390
-set RegSliceName Crypto_regslice_both
-set RegSliceInstName Crypto_regslice_both_U
-set CoreName ap_simcore_Crypto_regslice_both
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $RegSliceName BINDTYPE interface TYPE interface_regslice INSTNAME $RegSliceInstName
-}
-
-
-if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
-if {[info proc ::AESL_LIB_VIRTEX::xil_gen_regSlice] == "::AESL_LIB_VIRTEX::xil_gen_regSlice"} {
-eval "::AESL_LIB_VIRTEX::xil_gen_regSlice { \
-    name ${RegSliceName} \
-    prefix Crypto_ \
-    sliceTypeList 0\
-}"
-} else {
-puts "@W \[IMPL-107\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_regSlice, check your platform lib"
-}
-}
-
-
-# RegSlice definition:
-set ID 391
-set RegSliceName Crypto_regslice_both
-set RegSliceInstName Crypto_regslice_both_U
-set CoreName ap_simcore_Crypto_regslice_both
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler $RegSliceName BINDTYPE interface TYPE interface_regslice INSTNAME $RegSliceInstName
-}
-
-
-if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
-if {[info proc ::AESL_LIB_VIRTEX::xil_gen_regSlice] == "::AESL_LIB_VIRTEX::xil_gen_regSlice"} {
-eval "::AESL_LIB_VIRTEX::xil_gen_regSlice { \
-    name ${RegSliceName} \
-    prefix Crypto_ \
-    sliceTypeList 0\
-}"
-} else {
-puts "@W \[IMPL-107\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_regSlice, check your platform lib"
-}
-}
-
-
-# RegSlice definition:
-set ID 392
+set ID 375
 set RegSliceName Crypto_regslice_both
 set RegSliceInstName Crypto_regslice_both_U
 set CoreName ap_simcore_Crypto_regslice_both

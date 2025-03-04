@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Crypto_Pipeline_POLY_SUB_LOOP'" level="0">
-<item name = "Date">Tue Mar  4 14:33:29 2025
+<item name = "Date">Tue Mar  4 21:31:45 2025
 </item>
 <item name = "Version">2023.1 (Build 3854077 on May  4 2023)</item>
 <item name = "Project">Crypto</item>
@@ -82,14 +82,14 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln132_fu_424_p2">+, 0, 0, 14, 13, 3</column>
+<column name="add_ln137_fu_424_p2">+, 0, 0, 14, 13, 3</column>
 <column name="grp_fu_324_p2">+, 0, 0, 39, 32, 31</column>
 <column name="grp_fu_352_p2">+, 0, 0, 39, 32, 31</column>
 <column name="grp_fu_310_p2">-, 0, 0, 39, 32, 32</column>
 <column name="grp_fu_338_p2">-, 0, 0, 39, 32, 32</column>
-<column name="or_ln132_1_fu_435_p2">or, 0, 0, 12, 12, 2</column>
-<column name="or_ln132_2_fu_448_p2">or, 0, 0, 12, 12, 2</column>
-<column name="or_ln132_fu_410_p2">or, 0, 0, 12, 12, 1</column>
+<column name="or_ln137_1_fu_435_p2">or, 0, 0, 12, 12, 2</column>
+<column name="or_ln137_2_fu_448_p2">or, 0, 0, 12, 12, 2</column>
+<column name="or_ln137_fu_410_p2">or, 0, 0, 12, 12, 1</column>
 <column name="grp_fu_330_p3">select, 0, 0, 32, 1, 32</column>
 <column name="grp_fu_358_p3">select, 0, 0, 32, 1, 32</column>
 <column name="ap_enable_pp0">xor, 0, 0, 2, 1, 2</column>
