@@ -47,93 +47,102 @@ Diagnostics:
         Length:          0
         ReplacementText: 'VITIS_LOOP_1247_1: '
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_71_1:  '
-    FileOffset:      71
+    Message:         'Added loop label VITIS_LOOP_73_1:  '
+    FileOffset:      73
     FilePath:        Crypto.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
-        Offset:          1977259
+        Offset:          1976985
         Length:          0
-        ReplacementText: 'VITIS_LOOP_71_1: '
+        ReplacementText: 'VITIS_LOOP_73_1: '
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_82_2:  '
-    FileOffset:      82
+    Message:         'Added loop label VITIS_LOOP_83_2:  '
+    FileOffset:      83
     FilePath:        Crypto.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
-        Offset:          1977594
+        Offset:          1977287
         Length:          0
-        ReplacementText: 'VITIS_LOOP_82_2: '
+        ReplacementText: 'VITIS_LOOP_83_2: '
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_93_3:  '
-    FileOffset:      93
+    Message:         'Added loop label VITIS_LOOP_85_3:  '
+    FileOffset:      85
     FilePath:        Crypto.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
-        Offset:          1977884
+        Offset:          1977356
         Length:          0
-        ReplacementText: 'VITIS_LOOP_93_3: '
+        ReplacementText: 'VITIS_LOOP_85_3: '
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_167_4:  '
-    FileOffset:      167
+    Message:         'Added loop label VITIS_LOOP_117_4:  '
+    FileOffset:      117
     FilePath:        Crypto.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
-        Offset:          1980318
+        Offset:          1978346
         Length:          0
-        ReplacementText: 'VITIS_LOOP_167_4: '
+        ReplacementText: 'VITIS_LOOP_117_4: '
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_175_5:  '
-    FileOffset:      175
+    Message:         'Added loop label VITIS_LOOP_191_5:  '
+    FileOffset:      191
     FilePath:        Crypto.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
-        Offset:          1980571
+        Offset:          1980780
         Length:          0
-        ReplacementText: 'VITIS_LOOP_175_5: '
+        ReplacementText: 'VITIS_LOOP_191_5: '
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_184_6:  '
-    FileOffset:      184
+    Message:         'Added loop label VITIS_LOOP_199_6:  '
+    FileOffset:      199
     FilePath:        Crypto.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
-        Offset:          1980812
+        Offset:          1981033
         Length:          0
-        ReplacementText: 'VITIS_LOOP_184_6: '
+        ReplacementText: 'VITIS_LOOP_199_6: '
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_212_7:  '
-    FileOffset:      212
+    Message:         'Added loop label VITIS_LOOP_208_7:  '
+    FileOffset:      208
     FilePath:        Crypto.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
-        Offset:          1981767
+        Offset:          1981274
         Length:          0
-        ReplacementText: 'VITIS_LOOP_212_7: '
+        ReplacementText: 'VITIS_LOOP_208_7: '
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_220_8:  '
-    FileOffset:      220
+    Message:         'Added loop label VITIS_LOOP_236_8:  '
+    FileOffset:      236
     FilePath:        Crypto.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
-        Offset:          1982021
+        Offset:          1982229
         Length:          0
-        ReplacementText: 'VITIS_LOOP_220_8: '
+        ReplacementText: 'VITIS_LOOP_236_8: '
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_229_9:  '
-    FileOffset:      229
+    Message:         'Added loop label VITIS_LOOP_244_9:  '
+    FileOffset:      244
     FilePath:        Crypto.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
-        Offset:          1982262
+        Offset:          1982483
         Length:          0
-        ReplacementText: 'VITIS_LOOP_229_9: '
+        ReplacementText: 'VITIS_LOOP_244_9: '
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_254_10:  '
-    FileOffset:      254
+    Message:         'Added loop label VITIS_LOOP_253_10:  '
+    FileOffset:      253
     FilePath:        Crypto.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
-        Offset:          1983176
+        Offset:          1982724
         Length:          0
-        ReplacementText: 'VITIS_LOOP_254_10: '
+        ReplacementText: 'VITIS_LOOP_253_10: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_278_11:  '
+    FileOffset:      278
+    FilePath:        Crypto.cpp
+    Replacements:    
+      - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Crypto.pp.0.cpp
+        Offset:          1983638
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_278_11: '
 ...

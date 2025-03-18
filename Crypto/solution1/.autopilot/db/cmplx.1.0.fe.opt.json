@@ -1,174 +1,17 @@
 {
   "0": {
-    "basicblocks": 227,
-    "calls": "4 7 13 10 6 10 7 13 6 10 7 13 10",
-    "file": "Crypto.cpp",
-    "fileloc": 15,
-    "instructions": 850,
-    "loads": {
-      "G": 1,
-      "L": 24,
-      "T": 2
-    },
-    "name": "Crypto",
-    "stores": {
-      "L": 26,
-      "T": 1
-    },
-    "total_instructions": 29130
-  },
-  "1": {
-    "basicblocks": 1,
-    "calls": "3 9 8",
-    "file": "Arithmetic.pp.0.cpp",
-    "fileloc": 0,
-    "instructions": 4,
-    "name": "",
-    "total_instructions": 119
-  },
-  "10": {
-    "basicblocks": 7,
-    "calls": "12 12 12",
-    "file": "Arithmetic.cpp",
-    "fileloc": 85,
-    "instructions": 153,
-    "loads": {
-      "G": 2,
-      "L": 2
-    },
-    "name": "MUL_MOD",
-    "stores": {
-      "L": 4
-    },
-    "total_instructions": 5238
-  },
-  "11": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "define.h",
-    "fileloc": 36,
-    "instructions": 4,
-    "name": "__cxx_global_var_init.4",
-    "total_instructions": 49
-  },
-  "12": {
     "basicblocks": 1,
     "calls": "",
     "file": "Arithmetic.cpp",
-    "fileloc": 8,
-    "instructions": 227,
+    "fileloc": 35,
+    "instructions": 150,
     "loads": {
-      "L": 7
+      "L": 1
     },
     "name": "STEPMUL",
     "stores": {
-      "L": 7
+      "T": 1
     },
-    "total_instructions": 1460
-  },
-  "13": {
-    "basicblocks": 3,
-    "calls": "",
-    "file": "Arithmetic.cpp",
-    "fileloc": 51,
-    "instructions": 39,
-    "loads": {
-      "L": 2
-    },
-    "name": "SUB_MOD",
-    "stores": {
-      "L": 2
-    },
-    "total_instructions": 300
-  },
-  "2": {
-    "basicblocks": 1,
-    "calls": "11",
-    "file": "Crypto.pp.0.cpp",
-    "fileloc": 0,
-    "instructions": 2,
-    "name": "",
-    "total_instructions": 51
-  },
-  "3": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "define.h",
-    "fileloc": 33,
-    "instructions": 4,
-    "name": "__cxx_global_var_init.1",
-    "total_instructions": 49
-  },
-  "4": {
-    "basicblocks": 7,
-    "calls": "12 12 12",
-    "file": "Arithmetic.cpp",
-    "fileloc": 61,
-    "instructions": 134,
-    "loads": {
-      "L": 2
-    },
-    "name": "MOD_PLAINTEXTMODULUS",
-    "stores": {
-      "L": 2
-    },
-    "total_instructions": 5197
-  },
-  "5": {
-    "basicblocks": 7,
-    "calls": "",
-    "file": "Utils.cpp",
-    "fileloc": 9,
-    "instructions": 16,
-    "name": "bit_reverse",
-    "total_instructions": 16
-  },
-  "6": {
-    "basicblocks": 11,
-    "calls": "5",
-    "file": "Utils.cpp",
-    "fileloc": 19,
-    "instructions": 25,
-    "loads": {
-      "L": 1
-    },
-    "name": "apply_bit_reverse",
-    "stores": {
-      "L": 1
-    },
-    "total_instructions": 41
-  },
-  "7": {
-    "basicblocks": 3,
-    "calls": "",
-    "file": "Arithmetic.cpp",
-    "fileloc": 38,
-    "instructions": 42,
-    "loads": {
-      "L": 2
-    },
-    "name": "ADD_MOD",
-    "stores": {
-      "L": 2
-    },
-    "total_instructions": 286
-  },
-  "8": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "define.h",
-    "fileloc": 38,
-    "instructions": 4,
-    "name": "__cxx_global_var_init.6",
-    "total_instructions": 49
-  },
-  "9": {
-    "basicblocks": 1,
-    "calls": "",
-    "file": "define.h",
-    "fileloc": 37,
-    "instructions": 2,
-    "name": "__cxx_global_var_init.5",
-    "total_instructions": 17
+    "total_instructions": 1060
   }
 }

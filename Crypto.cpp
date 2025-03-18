@@ -73,28 +73,33 @@ void Crypto(
                 for (int j = 0; j < N; j++){
                     DataStreamReg = DataInStream.read();
                     DataRAM[RAMSel][i][j] = DataStreamReg.data;
-//                    std::cout << "POLY_WRITE: RAMSel=" << RAMSel << " i=" << i << " j=" << j << " Data=" << DataRAM[RAMSel][i][j] << " DataInStream=" << DataStreamReg.data << std::endl;
                 }
             }
             break;
 
         case POLY_READ:
             READ_DATA_LOOP:
+            DataStreamReg.last = 0;
             for(int i = 0; i < MOD_NUM; i++){
                 #pragma HLS UNROLL factor=MOD_NUM
                 for (int j = 0; j < N; j++){
                     #pragma HLS PIPELINE
+                    // Wait until downstream is ready to accept data
+           
                     DataStreamReg.data = DataRAM[RAMSel][i][j];
-                    // std::cout << "POLY_READ: RAMSel=" << RAMSel << " i=" << i << " j=" << j 
-                    //   << " Data=" << DataStreamReg.data << std::endl;
-      
+                    
+                    // Set tkeep and tstrb assuming all bytes are valid
+                    // If long_int is, say, 64 bits (8 bytes), set all bits to 1
+                    DataStreamReg.keep = 0xFF;  // All 8 bytes valid (adjust based on long_int size)
+                    DataStreamReg.strb = 0xFF;  // All 8 bytes valid (adjust based on long_int size)
+                    
+                    // Set last signal
+                    DataStreamReg.last = (i == (MOD_NUM - 1)) && (j == (N - 1));
+                    
+                    // Write to output stream
                     DataOutStream.write(DataStreamReg);
-                    if (j == N - 1){
-                        DataStreamReg.last = 1;
-                    }
-                    else{
-                        DataStreamReg.last = 0;
-                    }
+                    
+                
                 }
             }
             break;

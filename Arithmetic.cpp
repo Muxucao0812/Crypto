@@ -4,34 +4,67 @@
 #include <cmath>
 #include <iostream>
 
-// res = input1 * input2
+//// res = input1 * input2
+//void STEPMUL(long_int *input1, long_int *input2, long_long_int *res){
+//    #pragma HLS inline
+//    long_uint input1_u = static_cast<long_uint>(*input1);
+//    long_uint input2_u = static_cast<long_uint>(*input2);
+//
+//    long_uint temp1, temp2, temp3, temp4;
+//
+//    // extract high and low part of input1 and input2
+//    long_uint mask = (1 << (BASE_WIDTH / 2)) - 1;
+//    long_uint input1_low = input1_u & mask;
+//    long_uint input1_high = (input1_u>> (BASE_WIDTH / 2)) & mask;
+//    long_uint input2_low = input2_u & mask;
+//    long_uint input2_high = (input2_u >> (BASE_WIDTH / 2)) & mask;
+//
+//    temp1 = input1_low * input2_low;
+//    temp2 = input1_low * input2_high;
+//    temp3 = input1_high * input2_low;
+//    temp4 = input1_high * input2_high;
+//
+//    // 定义 sum1 和 sum2
+//    long_long_int sum1, sum2;
+//    sum1 = (static_cast<long_long_int>(temp4) << BASE_WIDTH) | temp1;
+//    sum2 = static_cast<long_long_int>(temp2 + temp3) << (BASE_WIDTH / 2);
+//
+//    *res = sum1 + sum2;
+//}
+
 void STEPMUL(long_int *input1, long_int *input2, long_long_int *res){
-    #pragma HLS inline
-    long_uint input1_u = static_cast<long_uint>(*input1);
-    long_uint input2_u = static_cast<long_uint>(*input2);
-    
-    long_uint temp1, temp2, temp3, temp4;
+	#pragma HLS inline
+	 long_uint input1_u = static_cast<long_uint>(*input1);
+	 long_uint input2_u = static_cast<long_uint>(*input2);
 
-    // extract high and low part of input1 and input2
-    long_uint mask = (1 << (BASE_WIDTH / 2)) - 1;
-    long_uint input1_low = input1_u & mask;
-    long_uint input1_high = (input1_u>> (BASE_WIDTH / 2)) & mask;
-    long_uint input2_low = input2_u & mask;
-    long_uint input2_high = (input2_u >> (BASE_WIDTH / 2)) & mask;
+	 const int HALF_WIDTH = BASE_WIDTH / 2;
+	 long_uint mask = (1 << HALF_WIDTH) - 1;
 
-    temp1 = input1_low * input2_low;
-    temp2 = input1_low * input2_high;
-    temp3 = input1_high * input2_low;
-    temp4 = input1_high * input2_high;
+	 // Split inputs into high and low halves
+	 long_uint input1_low = input1_u & mask;
+	 long_uint input1_high = (input1_u >> HALF_WIDTH) & mask;
+	 long_uint input2_low = input2_u & mask;
+	 long_uint input2_high = (input2_u >> HALF_WIDTH) & mask;
 
-    // 定义 sum1 和 sum2
-    long_long_int sum1, sum2;
-    sum1 = (static_cast<long_long_int>(temp4) << BASE_WIDTH) | temp1;
-    sum2 = static_cast<long_long_int>(temp2 + temp3) << (BASE_WIDTH / 2);
+	 // Compute a + b and c + d
+	 long_uint a_plus_b = input1_high + input1_low;
+	 long_uint c_plus_d = input2_high + input2_low;
 
-    *res = sum1 + sum2;
+	 // Calculate the three necessary products using 64-bit to prevent overflow
+	 long_uint ac = input1_high * input2_high;
+	 long_uint bd = input1_low * input2_low;
+	 unsigned long long product_mid = (unsigned long long)a_plus_b * (unsigned long long)c_plus_d;
+
+	 // Compute (a+b)(c+d) - ac - bd to get ad + bc
+	 unsigned long long ad_plus_bc = product_mid - (unsigned long long)ac - (unsigned long long)bd;
+
+	 // Combine the results using shifts and additions
+	 unsigned long long sum1 = ((unsigned long long)ac << BASE_WIDTH) + bd;
+	 unsigned long long sum2 = ad_plus_bc << HALF_WIDTH;
+
+	 *res = sum1 + sum2;
+
 }
-
 
 
 // res = (input1 + input2) % Mod

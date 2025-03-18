@@ -1,5 +1,5 @@
 
-set TopModule "Crypto"
+set TopModule "STEPMUL"
 set ClockPeriod 8
 set ClockList ap_clk
 set HasVivadoClockPeriod 0
@@ -14,7 +14,7 @@ set NbRWValue 0
 set intNbAccess 0
 set NewDSPMapping 1
 set HasDSPModule 1
-set ResetLevelFlag 0
+set ResetLevelFlag 1
 set ResetStyle control
 set ResetSyncFlag 1
 set ResetRegisterFlag 0
@@ -23,7 +23,7 @@ set ResetRegisterNum 0
 set FsmEncStyle onehot
 set MaxFanout 0
 set RtlPrefix {}
-set RtlSubPrefix Crypto_
+set RtlSubPrefix STEPMUL_
 set ExtraCCFlags {}
 set ExtraCLdFlags {}
 set SynCheckOptions {}

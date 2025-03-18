@@ -1,9 +1,9 @@
 INFO: [HLS 200-10] Running '/home/meng/Software/VIvado/Vitis_HLS/2023.1/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'meng' on host 'meng-OptiPlex-5000' (Linux_x86_64 version 6.8.0-52-generic) on Tue Mar 04 21:31:59 HKT 2025
+INFO: [HLS 200-10] For user 'meng' on host 'meng-OptiPlex-5000' (Linux_x86_64 version 6.8.0-52-generic) on Tue Mar 18 15:43:45 HKT 2025
 INFO: [HLS 200-10] On os Ubuntu 22.04.4 LTS
 INFO: [HLS 200-10] In directory '/home/meng/HLS/Crypto'
-Sourcing Tcl script '/home/meng/HLS/Crypto/Crypto/solution1/export.tcl'
-INFO: [HLS 200-1510] Running: source /home/meng/HLS/Crypto/Crypto/solution1/export.tcl
+Sourcing Tcl script '/home/meng/HLS/Crypto/Crypto/solution1/csim.tcl'
+INFO: [HLS 200-1510] Running: source /home/meng/HLS/Crypto/Crypto/solution1/csim.tcl
 INFO: [HLS 200-1510] Running: open_project Crypto 
 INFO: [HLS 200-10] Opening project '/home/meng/HLS/Crypto/Crypto'.
 INFO: [HLS 200-1510] Running: set_top Crypto 
@@ -86,23 +86,67 @@ INFO: [HLS 200-1464] Running solution command: config_export -rtl=verilog
 INFO: [HLS 200-1510] Running: set_part xc7z020-clg400-1 
 INFO: [HLS 200-1510] Running: create_clock -period 8 -name default 
 INFO: [HLS 200-1510] Running: config_export -format ip_catalog -rtl verilog 
-INFO: [HLS 200-1510] Running: source ./Crypto/solution1/directives.tcl
-INFO: [HLS 200-1510] Running: set_directive_top -name Crypto Crypto 
-INFO: [HLS 200-1510] Running: export_design -rtl verilog -format ip_catalog 
-INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+INFO: [HLS 200-1510] Running: csim_design -quiet 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [HLS 200-2036] Building debug C Simulation binaries
+   Compiling ../../../../Crypto.cpp in debug mode
+   Generating csim.exe
+======================
+POLYNOMIAL DEGREE: 4096
+RAM BANK NUM: 16
+RAM DEPTH: 256
+======================
 
-****** Vivado v2023.1 (64-bit)
-  **** SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
-  **** IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
-  **** SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+======================
+Crypto Test
+======================
 
-source run_ippack.tcl -notrace
-INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1704] No user IP repositories specified
-INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/meng/Software/VIvado/Vivado/2023.1/data/ip'.
-INFO: [Common 17-206] Exiting Vivado at Tue Mar  4 21:32:10 2025...
-INFO: [HLS 200-802] Generated output file Crypto/solution1/impl/export.zip
-INFO: [HLS 200-111] Finished Command export_design CPU user time: 8.94 seconds. CPU system time: 0.6 seconds. Elapsed time: 11.98 seconds; current allocated memory: 12.055 MB.
-INFO: [HLS 200-112] Total CPU user time: 11.07 seconds. Total CPU system time: 1.1 seconds. Total elapsed time: 14.52 seconds; peak allocated memory: 1.466 GB.
+======================
+Write data to RAM and Read data from RAM
+======================
+
+======================
+Write and Read Test Passed
+======================
+
+======================
+Test ADD MOD
+======================
+
+======================
+ADD MOD Test Passed
+======================
+
+======================
+Test MUL MOD
+======================
+
+======================
+ADD MUL Test Passed
+======================
+
+======================
+Test SUB MOD
+======================
+
+======================
+SUB MOD Test Passed
+======================
+
+======================
+Test NTT and INTT
+======================
+
+======================
+NTT and INTT Test Passed
+======================
+
+======================
+Crypto Test Done
+======================
+INFO [HLS SIM]: The maximum depth reached by any hls::stream() instance in the design is 12288
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 1.47 seconds. CPU system time: 0.24 seconds. Elapsed time: 1.72 seconds; current allocated memory: 0.000 MB.
+INFO: [HLS 200-112] Total CPU user time: 3.56 seconds. Total CPU system time: 0.74 seconds. Total elapsed time: 4.19 seconds; peak allocated memory: 1.454 GB.

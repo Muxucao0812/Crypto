@@ -3,19 +3,7 @@
         <hiertable>
             <header size="6" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Performance/Pipeline" col5="Optimizations"/>
             <rows>
-                <row id="0" col0="Crypto" col1="Crypto.cpp:15" col2="29130" col3="12408" col4="13281" col5="12567">
-                    <row id="5" col0="MOD_PLAINTEXTMODULUS" col1="Arithmetic.cpp:61" col2="5197" col3="1476" col3_disp=" 1,476 (12 calls)" col4="828" col4_disp="   828 (12 calls)" col5="840" col5_disp="   840 (12 calls)">
-                        <row id="7" col0="STEPMUL" col1="Arithmetic.cpp:8" col2="4380" col2_disp=" 4,380 (3 calls)" col3="" col4="" col5=""/>
-                    </row>
-                    <row id="4" col0="ADD_MOD" col1="Arithmetic.cpp:38" col2="858" col2_disp="   858 (3 calls)" col3="864" col3_disp="   864 (36 calls)" col4="1836" col4_disp=" 1,836 (108 calls)" col5="1836" col5_disp=" 1,836 (108 calls)"/>
-                    <row id="3" col0="SUB_MOD" col1="Arithmetic.cpp:51" col2="900" col2_disp="   900 (3 calls)" col3="756" col3_disp="   756 (36 calls)" col4="1836" col4_disp=" 1,836 (108 calls)" col5="1836" col5_disp=" 1,836 (108 calls)"/>
-                    <row id="1" col0="MUL_MOD" col1="Arithmetic.cpp:85" col2="20952" col2_disp="20,952 (4 calls)" col3="6630" col3_disp=" 6,630 (39 calls)" col4="4485" col4_disp=" 4,485 (39 calls)" col5="4524" col5_disp=" 4,524 (39 calls)">
-                        <row id="7" col0="STEPMUL" col1="Arithmetic.cpp:8" col2="17520" col2_disp="17,520 (12 calls)" col3="" col4="" col5=""/>
-                    </row>
-                    <row id="2" col0="apply_bit_reverse" col1="Utils.cpp:19" col2="82" col2_disp="    82 (2 calls)" col3="270" col3_disp="   270 (6 calls)" col4="552" col4_disp="   552 (24 calls)" col5="672" col5_disp="   672 (24 calls)">
-                        <row id="9" col0="bit_reverse" col1="Utils.cpp:9" col2="32" col2_disp="    32 (2 calls)" col3="126" col3_disp="   126 (6 calls)" col4="" col5=""/>
-                    </row>
-                </row>
+                <row id="0" col0="STEPMUL" col1="Arithmetic.cpp:35" col2="1060" col3="39" col4="38" col5="45"/>
             </rows>
             <notes/>
         </hiertable>

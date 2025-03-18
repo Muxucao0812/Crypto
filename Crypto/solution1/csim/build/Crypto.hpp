@@ -17,4 +17,5 @@ void Crypto(
     long_int                                            INTTTwiddleIn[MOD_NUM][N/2],
     CryptoOperation                                     OP
 );
+
 #endif

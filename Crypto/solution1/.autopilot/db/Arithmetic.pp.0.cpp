@@ -38350,7 +38350,7 @@ void ADD_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX);
 void SUB_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX);
 void MUL_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX);
 void MOD_PLAINTEXTMODULUS(long_int *input, long_int *res);
-void STEPMUL(long_int *input1, long_int *input2, long_long_int *res);
+__attribute__((sdx_kernel("STEPMUL", 0))) void STEPMUL(long_int *input1, long_int *input2, long_long_int *res);
 void NTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX);
 void INTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX);
 # 3 "Arithmetic.cpp" 2
@@ -38358,36 +38358,44 @@ void INTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_
 # 1 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cmath" 1 3
 # 40 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cmath" 3
 # 5 "Arithmetic.cpp" 2
+# 35 "Arithmetic.cpp"
+__attribute__((sdx_kernel("STEPMUL", 0))) void STEPMUL(long_int *input1, long_int *input2, long_long_int *res){
+#line 48 "/home/meng/HLS/Crypto/Crypto/solution1/csynth.tcl"
+#pragma HLSDIRECTIVE TOP name=STEPMUL
+# 35 "Arithmetic.cpp"
 
-
-
-void STEPMUL(long_int *input1, long_int *input2, long_long_int *res){
 #pragma HLS inline
  long_uint input1_u = static_cast<long_uint>(*input1);
-    long_uint input2_u = static_cast<long_uint>(*input2);
+  long_uint input2_u = static_cast<long_uint>(*input2);
 
-    long_uint temp1, temp2, temp3, temp4;
-
-
-    long_uint mask = (1 << (BASE_WIDTH / 2)) - 1;
-    long_uint input1_low = input1_u & mask;
-    long_uint input1_high = (input1_u>> (BASE_WIDTH / 2)) & mask;
-    long_uint input2_low = input2_u & mask;
-    long_uint input2_high = (input2_u >> (BASE_WIDTH / 2)) & mask;
-
-    temp1 = input1_low * input2_low;
-    temp2 = input1_low * input2_high;
-    temp3 = input1_high * input2_low;
-    temp4 = input1_high * input2_high;
+  const int HALF_WIDTH = BASE_WIDTH / 2;
+  long_uint mask = (1 << HALF_WIDTH) - 1;
 
 
-    long_long_int sum1, sum2;
-    sum1 = (static_cast<long_long_int>(temp4) << BASE_WIDTH) | temp1;
-    sum2 = static_cast<long_long_int>(temp2 + temp3) << (BASE_WIDTH / 2);
+  long_uint input1_low = input1_u & mask;
+  long_uint input1_high = (input1_u >> HALF_WIDTH) & mask;
+  long_uint input2_low = input2_u & mask;
+  long_uint input2_high = (input2_u >> HALF_WIDTH) & mask;
 
-    *res = sum1 + sum2;
+
+  long_uint a_plus_b = input1_high + input1_low;
+  long_uint c_plus_d = input2_high + input2_low;
+
+
+  long_uint ac = input1_high * input2_high;
+  long_uint bd = input1_low * input2_low;
+  unsigned long long product_mid = (unsigned long long)a_plus_b * (unsigned long long)c_plus_d;
+
+
+  unsigned long long ad_plus_bc = product_mid - (unsigned long long)ac - (unsigned long long)bd;
+
+
+  unsigned long long sum1 = ((unsigned long long)ac << BASE_WIDTH) + bd;
+  unsigned long long sum2 = ad_plus_bc << HALF_WIDTH;
+
+  *res = sum1 + sum2;
+
 }
-
 
 
 
@@ -38472,7 +38480,7 @@ void MUL_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
     *res = static_cast<long_int>((temp1 < 0) ? res_mod : (temp2 < 0) ? temp1 : temp2);
 
 }
-# 130 "Arithmetic.cpp"
+# 163 "Arithmetic.cpp"
 void NTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX) {
     long_int temp;
     MUL_MOD(input2, twiddle_factor, &temp, MOD_INDEX);

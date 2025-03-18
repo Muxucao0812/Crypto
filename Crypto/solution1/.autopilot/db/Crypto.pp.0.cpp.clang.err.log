@@ -1,9 +1,3 @@
-/home/meng/HLS/Crypto/Crypto/solution1/csynth.tcl:48:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=top_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=name=Crypto_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE TOP name=Crypto
-        ^
-/home/meng/HLS/Crypto/Crypto/solution1/directives.tcl:7:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=top_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=name=Crypto_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLSDIRECTIVE TOP name=Crypto
-        ^
 Crypto.cpp:30:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=variable=DataRAM complete dim=1_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS ARRAY_PARTITION variable=DataRAM complete dim=1
         ^
@@ -22,109 +16,112 @@ Crypto.cpp:39:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ Pra
 Crypto.cpp:46:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=stream_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=depth=4096 variable=DataInStream_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS STREAM depth=4096 variable=DataInStream
         ^
-Crypto.cpp:47:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=axis port=DataInStream_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:47:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=stream_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=depth=4096 variable=DataOutStream_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLS STREAM depth=4096 variable=DataOutStream
+        ^
+Crypto.cpp:49:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=axis port=DataInStream_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS INTERFACE axis port=DataInStream
         ^
-Crypto.cpp:49:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=DataOutStream_XLX_SEP_ [-Wdump-hls-pragmas]
-#pragma HLS INTERFACE s_axilite port=DataOutStream
+Crypto.cpp:50:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=axis port=DataOutStream_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLS INTERFACE axis port=DataOutStream
         ^
-Crypto.cpp:50:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=NTTTwiddleIn_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:52:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=NTTTwiddleIn_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS INTERFACE s_axilite port=NTTTwiddleIn
         ^
-Crypto.cpp:51:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=INTTTwiddleIn_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:53:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=INTTTwiddleIn_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS INTERFACE s_axilite port=INTTTwiddleIn
         ^
-Crypto.cpp:53:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=return_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:55:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=return_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS INTERFACE s_axilite port=return
         ^
-Crypto.cpp:54:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=RAMSel_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:56:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=RAMSel_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS INTERFACE s_axilite port=RAMSel
         ^
-Crypto.cpp:55:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=RAMSel1_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:57:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=RAMSel1_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS INTERFACE s_axilite port=RAMSel1
         ^
-Crypto.cpp:56:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=OP_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:58:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=interface_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=s_axilite port=OP_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS INTERFACE s_axilite port=OP
         ^
-Crypto.cpp:70:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:72:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=MOD_NUM
         ^
-Crypto.cpp:81:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:84:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=MOD_NUM
         ^
-Crypto.cpp:83:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:86:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS PIPELINE
         ^
-Crypto.cpp:92:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:116:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=MOD_NUM
         ^
-Crypto.cpp:94:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:118:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS PIPELINE
         ^
-Crypto.cpp:104:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:128:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=MOD_NUM
         ^
-Crypto.cpp:107:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=PE_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:131:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=PE_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=PE_NUM
         ^
-Crypto.cpp:119:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:143:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=MOD_NUM
         ^
-Crypto.cpp:122:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=PE_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:146:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=PE_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=PE_NUM
         ^
-Crypto.cpp:135:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:159:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=MOD_NUM
         ^
-Crypto.cpp:138:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=PE_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:162:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=PE_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=PE_NUM
         ^
-Crypto.cpp:152:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:176:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=MOD_NUM
         ^
-Crypto.cpp:156:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=PE_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:180:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=PE_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=PE_NUM
         ^
-Crypto.cpp:168:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:192:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=MOD_NUM
         ^
-Crypto.cpp:174:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:198:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=MOD_NUM
         ^
-Crypto.cpp:176:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:200:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS PIPELINE
         ^
-Crypto.cpp:183:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:207:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=MOD_NUM
         ^
-Crypto.cpp:190:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=min=10 max=20_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:214:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=min=10 max=20_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=10 max=20
         ^
-Crypto.cpp:193:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=PE_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:217:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=PE_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=PE_NUM
         ^
-Crypto.cpp:213:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:237:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=MOD_NUM
         ^
-Crypto.cpp:219:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:243:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=MOD_NUM
         ^
-Crypto.cpp:221:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:245:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS PIPELINE
         ^
-Crypto.cpp:228:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:252:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=MOD_NUM
         ^
-Crypto.cpp:234:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=min=10 max=20_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:258:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=min=10 max=20_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS LOOP_TRIPCOUNT min=10 max=20
         ^
-Crypto.cpp:238:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=PE_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:262:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=PE_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=PE_NUM
         ^
-Crypto.cpp:255:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:279:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=factor=MOD_NUM_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS UNROLL factor=MOD_NUM
         ^
-Crypto.cpp:259:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=_XLX_SEP_ [-Wdump-hls-pragmas]
+Crypto.cpp:283:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=pipeline_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=Crypto_XLX_SEP_ PragmaOptions=_XLX_SEP_ [-Wdump-hls-pragmas]
 #pragma HLS PIPELINE
         ^
-43 warnings generated.
+42 warnings generated.

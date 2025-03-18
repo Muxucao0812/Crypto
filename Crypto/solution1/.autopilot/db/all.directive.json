@@ -1,7 +1,7 @@
 [
   {
     "functionLabel": "",
-    "functionName": "Crypto",
+    "functionName": "STEPMUL",
     "id": 0,
     "ifcond": "",
     "insert_position": "",
@@ -11,28 +11,7 @@
       "option": [
         {
           "name": "name",
-          "value": "Crypto"
-        }
-      ]
-    },
-    "slx": false,
-    "sourceFile": "/home/meng/HLS/Crypto/Crypto/solution1/directives.tcl",
-    "sourceLine": 7,
-    "success": true
-  },
-  {
-    "functionLabel": "",
-    "functionName": "Crypto",
-    "id": 1,
-    "ifcond": "",
-    "insert_position": "",
-    "label": "",
-    "pragma": {
-      "name": "TOP",
-      "option": [
-        {
-          "name": "name",
-          "value": "Crypto"
+          "value": "STEPMUL"
         }
       ]
     },

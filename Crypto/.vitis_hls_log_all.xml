@@ -2,21 +2,50 @@
 <vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
   <errorLogs>
     <logs>
-      <packageLog/>
+      <synLog/>
+      <csimLog/>
     </logs>
   </errorLogs>
   <warningLogs>
     <logs>
-      <packageLog>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'poly.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.318+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'basis.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.317+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'ret.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.315+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file '#'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.314+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'Add'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.313+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'all'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.311+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'necessary'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.310+0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Cannot find design file 'source'" projectName="Crypto" solutionName="solution1" date="2025-03-04T21:31:59.310+0800" type="Warning"/>
-      </packageLog>
+      <synLog>
+        <logs message="WARNING: [HLS 207-4591] operator '>>' has lower precedence than '-'; '-' will be evaluated first (AddressGen.cpp:91:88)" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:42:02.554+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 207-4591] operator '>>' has lower precedence than '-'; '-' will be evaluated first (AddressGen.cpp:87:88)" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:42:02.553+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 207-5168] shifting a negative signed value is undefined (AddressGen.cpp:72:21)" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:42:02.551+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 207-5533] 'factor' in '#pragma HLS array_partition' is ignored (pow_mod.cpp:80:49)" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:41:59.492+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 207-5533] 'factor' in '#pragma HLS array_partition' is ignored (pow_mod.cpp:79:51)" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:41:57.777+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 207-5533] 'factor' in '#pragma HLS array_partition' is ignored (pow_mod.cpp:78:50)" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:41:57.775+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find source file poly.txt; skipping it." projectName="Crypto" solutionName="solution1" date="2025-03-18T15:41:57.328+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find source file basis.txt; skipping it." projectName="Crypto" solutionName="solution1" date="2025-03-18T15:41:57.326+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find source file ret.txt; skipping it." projectName="Crypto" solutionName="solution1" date="2025-03-18T15:41:57.325+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find source file #; skipping it." projectName="Crypto" solutionName="solution1" date="2025-03-18T15:41:57.324+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find source file Add; skipping it." projectName="Crypto" solutionName="solution1" date="2025-03-18T15:41:57.323+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find source file all; skipping it." projectName="Crypto" solutionName="solution1" date="2025-03-18T15:41:57.322+0800" type="Warning"/>
+      </synLog>
+      <csimLog>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'poly.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:43:45.918+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'basis.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:43:45.916+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'ret.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:43:45.915+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file '#'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:43:45.913+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'Add'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:43:45.912+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'all'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:43:45.910+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'necessary'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:43:45.909+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'source'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:43:45.907+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'files'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:43:45.905+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'pow_mod.h'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:43:45.891+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'header'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:43:45.889+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'poly.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:42:51.944+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'basis.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:42:51.942+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'ret.txt'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:42:51.941+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file '#'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:42:51.939+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'Add'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:42:51.938+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'all'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:42:51.936+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'necessary'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:42:51.934+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'source'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:42:51.932+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'files'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:42:51.931+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'pow_mod.h'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:42:51.917+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find design file 'header'" projectName="Crypto" solutionName="solution1" date="2025-03-18T15:42:51.915+0800" type="Warning"/>
+      </csimLog>
     </logs>
   </warningLogs>
 </vivadoHLSLog:LogRoot>

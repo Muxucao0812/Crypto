@@ -44,7 +44,7 @@ open_solution "solution1" -flow_target vivado
 set_part {xc7z020-clg400-1}
 create_clock -period 8 -name default
 config_export -format ip_catalog -rtl verilog
-source "./Crypto/solution1/directives.tcl"
+#source "./Crypto/solution1/directives.tcl"
 csim_design
 csynth_design
 cosim_design

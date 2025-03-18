@@ -1,6 +1,6 @@
 INFO: [SIM 2] *************** CSIM start ***************
 INFO: [SIM 4] CSIM will launch GCC as the compiler.
-   Compiling ../../../../Crypto_TB.cpp in debug mode
+   Compiling ../../../../Crypto.cpp in debug mode
    Generating csim.exe
 ======================
 POLYNOMIAL DEGREE: 4096

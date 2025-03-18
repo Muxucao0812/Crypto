@@ -1,39 +1,19 @@
 <root versionMajor = "1" versionMinor = "5">
-  <kernel src_name="Crypto" language="c" hwCtrl="ap_ctrl_hs" mem_layout="fpga64-xilinx-none">
+  <kernel src_name="STEPMUL" language="c" hwCtrl="ap_ctrl_hs" mem_layout="fpga64-xilinx-none">
     <args>
-      <arg id="0" access_type="r" src_name="DataInStream" src_type="stream&lt;hls::axis&lt;ap_int&lt;32&gt;, 0, 0, 0&gt;, 0&gt;&amp;" src_isptr="1" src_bitwidth="96" src_size_or_depth="1">
-        <hw hw_usage="data" hw_interface="AXI-Stream" hw_name="DataInStream" hw_bitwidth="32" hw_size_or_depth="1" hw_kernel_support="true">
-          <constraint constraint_type="pragma interface" mode="axis" register_option="0" register_mode="both"/>
+      <arg id="0" access_type="r" src_name="input1" src_type="ap_int&lt;32&gt;*" src_isptr="1" src_bitwidth="32" src_size_or_depth="1">
+        <hw hw_usage="data" hw_interface="Register" hw_name="input1" hw_bitwidth="32" hw_size_or_depth="1" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_none" register_option="0"/>
         </hw>
       </arg>
-      <arg id="1" access_type="w" src_name="DataOutStream" src_type="ap_int&lt;32&gt;*" src_isptr="1" src_bitwidth="32" src_size_or_depth="12288">
-        <hw hw_usage="data" hw_interface="S_AXILite" hw_name="control" hw_bitwidth="32" hw_size_or_depth="12288" hw_kernel_support="true">
-          <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="65536"/>
+      <arg id="1" access_type="r" src_name="input2" src_type="ap_int&lt;32&gt;*" src_isptr="1" src_bitwidth="32" src_size_or_depth="1">
+        <hw hw_usage="data" hw_interface="Register" hw_name="input2" hw_bitwidth="32" hw_size_or_depth="1" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_none" register_option="0"/>
         </hw>
       </arg>
-      <arg id="2" access_type="r" src_name="RAMSel" src_type="int" src_isptr="0" src_bitwidth="32" src_size_or_depth="1">
-        <hw hw_usage="data" hw_interface="S_AXILite" hw_name="control" hw_bitwidth="32" hw_size_or_depth="1" hw_kernel_support="true">
-          <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="16"/>
-        </hw>
-      </arg>
-      <arg id="3" access_type="r" src_name="RAMSel1" src_type="int" src_isptr="0" src_bitwidth="32" src_size_or_depth="1">
-        <hw hw_usage="data" hw_interface="S_AXILite" hw_name="control" hw_bitwidth="32" hw_size_or_depth="1" hw_kernel_support="true">
-          <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="24"/>
-        </hw>
-      </arg>
-      <arg id="4" access_type="r" src_name="NTTTwiddleIn" src_type="ap_int&lt;32&gt;*" src_isptr="1" src_bitwidth="32" src_size_or_depth="6144">
-        <hw hw_usage="data" hw_interface="S_AXILite" hw_name="control" hw_bitwidth="32" hw_size_or_depth="6144" hw_kernel_support="true">
-          <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="32768"/>
-        </hw>
-      </arg>
-      <arg id="5" access_type="r" src_name="INTTTwiddleIn" src_type="ap_int&lt;32&gt;*" src_isptr="1" src_bitwidth="32" src_size_or_depth="6144">
-        <hw hw_usage="data" hw_interface="S_AXILite" hw_name="control" hw_bitwidth="32" hw_size_or_depth="6144" hw_kernel_support="true">
-          <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="131072"/>
-        </hw>
-      </arg>
-      <arg id="6" access_type="r" src_name="OP" src_type="CryptoOperation" src_isptr="0" src_bitwidth="32" src_size_or_depth="1">
-        <hw hw_usage="data" hw_interface="S_AXILite" hw_name="control" hw_bitwidth="32" hw_size_or_depth="1" hw_kernel_support="true">
-          <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="32"/>
+      <arg id="2" access_type="w" src_name="res" src_type="ap_int&lt;64&gt;*" src_isptr="1" src_bitwidth="64" src_size_or_depth="1">
+        <hw hw_usage="data" hw_interface="Register" hw_name="res" hw_bitwidth="64" hw_size_or_depth="1" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_none" register_option="0"/>
         </hw>
       </arg>
     </args>

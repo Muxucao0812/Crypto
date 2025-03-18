@@ -38888,10 +38888,11 @@ private:
 # 7 "./Crypto.hpp" 2
 
 typedef hls::axis<long_int, 0, 0, 0> axi_stream_t;
-# 21 "./Crypto.hpp"
-__attribute__((sdx_kernel("Crypto", 0))) void Crypto(
+
+
+void Crypto(
     hls::stream <axi_stream_t>& DataInStream,
-    long_int DataOutStream[MOD_NUM][N],
+    hls::stream <axi_stream_t>& DataOutStream,
     int RAMSel,
     int RAMSel1,
     long_int NTTTwiddleIn[MOD_NUM][N/2],
@@ -42978,23 +42979,15 @@ void read_twiddle_factor(int address[PE_NUM], long_int data[PE_NUM], Operation o
 
 
 
-__attribute__((sdx_kernel("Crypto", 0))) void Crypto(
+void Crypto(
     hls::stream <axi_stream_t>& DataInStream,
-    long_int DataOutStream[MOD_NUM][N],
+    hls::stream <axi_stream_t>& DataOutStream,
     int RAMSel,
     int RAMSel1,
     long_int NTTTwiddleIn[MOD_NUM][N/2],
     long_int INTTTwiddleIn[MOD_NUM][N/2],
     CryptoOperation OP
 ){
-#line 48 "/home/meng/HLS/Crypto/Crypto/solution1/csynth.tcl"
-#pragma HLSDIRECTIVE TOP name=Crypto
-# 23 "Crypto.cpp"
-
-#line 7 "/home/meng/HLS/Crypto/Crypto/solution1/directives.tcl"
-#pragma HLSDIRECTIVE TOP name=Crypto
-# 23 "Crypto.cpp"
-
 
 
 
@@ -43018,9 +43011,11 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
 
 
 #pragma HLS STREAM depth=4096 variable=DataInStream
-#pragma HLS INTERFACE axis port=DataInStream
+#pragma HLS STREAM depth=4096 variable=DataOutStream
 
-#pragma HLS INTERFACE s_axilite port=DataOutStream
+#pragma HLS INTERFACE axis port=DataInStream
+#pragma HLS INTERFACE axis port=DataOutStream
+
 #pragma HLS INTERFACE s_axilite port=NTTTwiddleIn
 #pragma HLS INTERFACE s_axilite port=INTTTwiddleIn
 
@@ -43042,7 +43037,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
             WRITE_DATA_LOOP:
             for(int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_71_1: for (int j = 0; j < N; j++){
+ VITIS_LOOP_73_1: for (int j = 0; j < N; j++){
                     DataStreamReg = DataInStream.read();
                     DataRAM[RAMSel][i][j] = DataStreamReg.data;
                 }
@@ -43051,11 +43046,33 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
 
         case POLY_READ:
             READ_DATA_LOOP:
-            for(int i = 0; i < MOD_NUM; i++){
+            DataStreamReg.last = 0;
+            VITIS_LOOP_83_2: for(int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_82_2: for (int j = 0; j < N; j++){
+ VITIS_LOOP_85_3: for (int j = 0; j < N; j++){
 #pragma HLS PIPELINE
- DataOutStream[i][j] = DataRAM[RAMSel][i][j];
+
+
+ DataStreamReg.data = DataRAM[RAMSel][i][j];
+
+
+
+                    DataStreamReg.keep = 0xFF;
+                    DataStreamReg.strb = 0xFF;
+
+
+                    DataStreamReg.last = (i == (MOD_NUM - 1)) && (j == (N - 1));
+
+
+                    DataOutStream.write(DataStreamReg);
+
+
+                    std::cout << "OP: " << OP << " i: " << i << " j: " << j << std::endl;
+                    std::cout << "DataStreamReg.data: " << DataStreamReg.data << std::endl;
+                    std::cout << "DataStreamReg.keep: " << DataStreamReg.keep << std::endl;
+                    std::cout << "DataStreamReg.strb: " << DataStreamReg.strb << std::endl;
+                    std::cout << "DataStreamReg.last: " << DataStreamReg.last << std::endl;
+
                 }
             }
             break;
@@ -43064,7 +43081,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
             WRITE_TWIDDLE_LOOP:
             for (int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_93_3: for (int j = 0; j < N/2; j++){
+ VITIS_LOOP_117_4: for (int j = 0; j < N/2; j++){
 #pragma HLS PIPELINE
  NTTTWiddleRAM[i][j] = NTTTwiddleIn[i][j];
                     INTTTWiddleRAM[i][j] = INTTTwiddleIn[i][j];
@@ -43138,7 +43155,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
             break;
 
         case POLY_NTT:
-            VITIS_LOOP_167_4: for(int i = 0; i < MOD_NUM; i++){
+            VITIS_LOOP_191_5: for(int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
  apply_bit_reverse(DataRAM[RAMSel][i], BitReverseData[i]);
             }
@@ -43146,7 +43163,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
             NTT_PERMUTE_LOOP:
             for(int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_175_5: for (int j = 0; j < N; j++){
+ VITIS_LOOP_199_6: for (int j = 0; j < N; j++){
 #pragma HLS PIPELINE
  DataRAM[RAMSel][i][j] = BitReverseData[i][j];
                 }
@@ -43155,7 +43172,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
             NTT_STAGE_LOOP:
             for (int i = 0 ; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_184_6: for(int h = 2; h <= N; h *= 2){
+ VITIS_LOOP_208_7: for(int h = 2; h <= N; h *= 2){
                     int hf = h >> 1;
                     int ut = N / h;
                     NTT_GROUP_LOOP:
@@ -43183,7 +43200,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
 
 
         case POLY_INTT:
-            VITIS_LOOP_212_7: for(int i = 0; i < MOD_NUM; i++){
+            VITIS_LOOP_236_8: for(int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
  apply_bit_reverse(DataRAM[RAMSel][i], BitReverseData[i]);
             }
@@ -43191,7 +43208,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
             INTT_PERMUTE_LOOP:
             for(int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_220_8: for (int j = 0; j < N; j++){
+ VITIS_LOOP_244_9: for (int j = 0; j < N; j++){
 #pragma HLS PIPELINE
  DataRAM[RAMSel][i][j] = BitReverseData[i][j];
                 }
@@ -43200,7 +43217,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
             INTT_STAGE_LOOP:
             for (int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_229_9: for(int h = 2; h <= N; h *= 2){
+ VITIS_LOOP_253_10: for(int h = 2; h <= N; h *= 2){
                     int hf = h >> 1;
                     int ut = N / h;
                     INTT_GROUP_LOOP:
@@ -43225,7 +43242,7 @@ __attribute__((sdx_kernel("Crypto", 0))) void Crypto(
                 }
             }
 
-            VITIS_LOOP_254_10: for (int i = 0; i < MOD_NUM; i++){
+            VITIS_LOOP_278_11: for (int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
  long_int n_inv = static_cast<long_int>(N_INV[i]);
                 MUL_INV_LOOP:
