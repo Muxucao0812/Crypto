@@ -35,9 +35,9 @@ void Crypto_Test(){
            }
        }
 
-       Crypto(data_in_stream, data_out_stream, RAMSel, 0, nullptr, nullptr, POLY_WRITE);
+       Crypto1(data_in_stream, data_out_stream, RAMSel, 0, nullptr, nullptr, POLY_WRITE);
 
-       Crypto(data_in_stream, data_out_stream, RAMSel, 0, nullptr, nullptr, POLY_READ);
+       Crypto1(data_in_stream, data_out_stream, RAMSel, 0, nullptr, nullptr, POLY_READ);
 
        for (int j = 0; j < MOD_NUM; j++){
            for (int k = 0; k < N; k++){
@@ -85,10 +85,10 @@ void Crypto_Test(){
                 data_in_stream1 << temp_stream;
             }
         }
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
-        Crypto(data_in_stream1, data_out_stream, 1, 0, nullptr, nullptr, POLY_WRITE);
-        Crypto(data_in_stream, data_out_stream, 0, 1, nullptr, nullptr, POLY_ADD);
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto1(data_in_stream1, data_out_stream, 1, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto1(data_in_stream, data_out_stream, 0, 1, nullptr, nullptr, POLY_ADD);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
 
         for (int j = 0; j < MOD_NUM; j++){
             for (int k = 0; k < N; k++){
@@ -135,10 +135,10 @@ void Crypto_Test(){
                 data_in_stream1 << temp_stream;
             }
         }
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
-        Crypto(data_in_stream1, data_out_stream, 1, 0, nullptr, nullptr, POLY_WRITE);
-        Crypto(data_in_stream, data_out_stream, 0, 1, nullptr, nullptr, POLY_MUL);
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto1(data_in_stream1, data_out_stream, 1, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto1(data_in_stream, data_out_stream, 0, 1, nullptr, nullptr, POLY_MUL);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
 
         for (int j = 0; j < MOD_NUM; j++){
             for (int k = 0; k < N; k++){
@@ -186,10 +186,10 @@ void Crypto_Test(){
                 data_in_stream1 << temp_stream;
             }
         }
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
-        Crypto(data_in_stream1, data_out_stream, 1, 0, nullptr, nullptr, POLY_WRITE);
-        Crypto(data_in_stream, data_out_stream, 0, 1, nullptr, nullptr, POLY_SUB);
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto1(data_in_stream1, data_out_stream, 1, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto1(data_in_stream, data_out_stream, 0, 1, nullptr, nullptr, POLY_SUB);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
 
         for (int j = 0; j < MOD_NUM; j++){
             for (int k = 0; k < N; k++){
@@ -218,9 +218,16 @@ void Crypto_Test(){
 
    TestIteration_Loop:
    for (int i = 0; i < TestIter; i++){
+        int sqrt_N = (int)sqrt(N);
         for (int j = 0; j < MOD_NUM; j++){
-            for (int k = 0; k < N; k++){
-                DataIn[j][k] = (long_int)(k % MOD[j]);
+            for (int r = 0; r < sqrt_N; r++){  // row
+                for (int c = 0; c < sqrt_N; c++){  // column
+                    // Apply right shift of r positions to row r
+                    int shifted_c = (c + r) % sqrt_N;
+                    int orig_idx = r * sqrt_N + c;
+                    int shifted_idx = r * sqrt_N + shifted_c;
+                    DataIn[j][shifted_idx] = (long_int)(orig_idx % MOD[j]);
+                }
             }
         }
 
@@ -232,16 +239,31 @@ void Crypto_Test(){
             }
         }
 
-        long_int TwiddleInTemp    [MOD_NUM][N/2];
-        long_int INVTwiddleInTemp [MOD_NUM][N/2];
+        long_int TwiddleInTemp    [MOD_NUM][N];
+        long_int INVTwiddleInTemp [MOD_NUM][N];
 
         precompute_weights(TwiddleInTemp, INVTwiddleInTemp);
 
-        Crypto(data_in_stream, data_out_stream, 0, 0, TwiddleInTemp, INVTwiddleInTemp, TWIDDLE_WRITE);
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_NTT);
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_INTT);
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
+                
+        Crypto1(data_in_stream, data_out_stream, 0, 0, TwiddleInTemp, INVTwiddleInTemp, TWIDDLE_WRITE);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_NTT);
+        // Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
+        // for (int j = 0; j < MOD_NUM; j++){
+        //     for (int k = 0; k < N; k++){
+        //         temp_stream = data_out_stream.read();
+        //         DataOut[j][k] = temp_stream.data;
+        //         std::cout << "DataOut: " << DataOut[j][k] << std::endl;
+        //         // if (DataIn[j][k] != DataOut[j][k]){
+        //         //     std::cout << "DataIn: " << DataIn[j][k] << " DataOut: " << DataOut[j][k] << std::endl;
+        //         //     std::cout << "Test Failed" << std::endl;
+        //         //     return;
+        //         // }
+        //     }
+        // }
+
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_INTT);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
         for (int j = 0; j < MOD_NUM; j++){
             for (int k = 0; k < N; k++){
                 temp_stream = data_out_stream.read();

@@ -23,88 +23,103 @@
       ^~~
       VITIS_LOOP_1247_1: 
 /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:16432:7: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42375:5: warning: Added loop label VITIS_LOOP_21_1:   [xilinx-label-all-loops]
-    while ((1 << n) < N) n++;
-    ^~~~~
-    VITIS_LOOP_21_1: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42375:5: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42389:5: warning: Added loop label VITIS_LOOP_35_1:   [xilinx-label-all-loops]
-    for(int MOD_INDEX = 0; MOD_INDEX < MOD_NUM; MOD_INDEX++){
-    ^~~
-    VITIS_LOOP_35_1: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42389:5: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42396:9: warning: Added loop label VITIS_LOOP_42_2:   [xilinx-label-all-loops]
-        for (int i = 0; i < N / 2; i++) {
-        ^~~
-        VITIS_LOOP_42_2: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42396:9: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42408:5: warning: Added loop label VITIS_LOOP_54_1:   [xilinx-label-all-loops]
-    while (b != 0) {
-    ^~~~~
-    VITIS_LOOP_54_1: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42408:5: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42421:5: warning: Added loop label VITIS_LOOP_67_1:   [xilinx-label-all-loops]
-    while (exp_val > 0) {
-    ^~~~~
-    VITIS_LOOP_67_1: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42421:5: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42440:5: warning: Added loop label VITIS_LOOP_86_1:   [xilinx-label-all-loops]
-    for (long_int i = 2; i * i <= n; ++i) {
-    ^~~
-    VITIS_LOOP_86_1: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42440:5: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42443:13: warning: Added loop label VITIS_LOOP_89_2:   [xilinx-label-all-loops]
-            while (n % i == 0)
-            ^~~~~
-            VITIS_LOOP_89_2: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42443:13: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42454:5: warning: Added loop label VITIS_LOOP_100_1:   [xilinx-label-all-loops]
-    for (long_int i = 2; i * i <= n; ++i) {
-    ^~~
-    VITIS_LOOP_100_1: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42454:5: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42457:13: warning: Added loop label VITIS_LOOP_103_2:   [xilinx-label-all-loops]
-            while (n % i == 0)
-            ^~~~~
-            VITIS_LOOP_103_2: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42457:13: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42475:5: warning: Added loop label VITIS_LOOP_121_1:   [xilinx-label-all-loops]
-    for (long_int res = 2; res < mod; ++res) {
-    ^~~
-    VITIS_LOOP_121_1: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42475:5: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42479:9: warning: Added loop label VITIS_LOOP_125_2:   [xilinx-label-all-loops]
-        for (size_t i = 0; i < factors.size() && flag; ++i) {
-        ^~~
-        VITIS_LOOP_125_2: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42479:9: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42505:9: warning: Added loop label VITIS_LOOP_151_1:   [xilinx-label-all-loops]
-        for (int i = 1; i < size ; ++i) {
-        ^~~
-        VITIS_LOOP_151_1: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42505:9: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42512:9: warning: Added loop label VITIS_LOOP_158_2:   [xilinx-label-all-loops]
-        for (int i = 1; i < size ; ++i) {
-        ^~~
-        VITIS_LOOP_158_2: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42512:9: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42524:5: warning: Added loop label VITIS_LOOP_170_1:   [xilinx-label-all-loops]
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42378:5: warning: Added loop label VITIS_LOOP_22_1:   [xilinx-label-all-loops]
     for (int i = 0; i < (stage + 1); ++i) {
     ^~~
-    VITIS_LOOP_170_1: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42524:5: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42527:9: warning: Added loop label VITIS_LOOP_173_2:   [xilinx-label-all-loops]
+    VITIS_LOOP_22_1: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42378:5: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42381:9: warning: Added loop label VITIS_LOOP_25_2:   [xilinx-label-all-loops]
         for (int j : index) {
         ^~~
-        VITIS_LOOP_173_2: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42527:9: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42541:5: warning: Added loop label VITIS_LOOP_187_1:   [xilinx-label-all-loops]
-    for (size_t i = 0; i < index.size(); ++i) {
+        VITIS_LOOP_25_2: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42381:9: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42393:5: warning: Added loop label VITIS_LOOP_37_1:   [xilinx-label-all-loops]
+    while ((1 << n) < N) n++;
+    ^~~~~
+    VITIS_LOOP_37_1: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42393:5: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42404:5: warning: Added loop label VITIS_LOOP_48_1:   [xilinx-label-all-loops]
+    for (int mod_idx = 0; mod_idx < MOD_NUM; mod_idx++) {
+    ^~~
+    VITIS_LOOP_48_1: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42404:5: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42411:9: warning: Added loop label VITIS_LOOP_55_2:   [xilinx-label-all-loops]
+        for (size_t i = 0; i < index.size(); ++i) {
+        ^~~
+        VITIS_LOOP_55_2: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42411:9: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42417:9: warning: Added loop label VITIS_LOOP_61_3:   [xilinx-label-all-loops]
+        for (size_t i = 0; i < index.size(); ++i) {
+        ^~~
+        VITIS_LOOP_61_3: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42417:9: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42427:5: warning: Added loop label VITIS_LOOP_71_1:   [xilinx-label-all-loops]
+    while (b != 0) {
+    ^~~~~
+    VITIS_LOOP_71_1: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42427:5: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42440:5: warning: Added loop label VITIS_LOOP_84_1:   [xilinx-label-all-loops]
+    while (exp_val > 0) {
+    ^~~~~
+    VITIS_LOOP_84_1: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42440:5: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42459:5: warning: Added loop label VITIS_LOOP_103_1:   [xilinx-label-all-loops]
+    for (long_int i = 2; i * i <= n; ++i) {
+    ^~~
+    VITIS_LOOP_103_1: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42459:5: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42462:13: warning: Added loop label VITIS_LOOP_106_2:   [xilinx-label-all-loops]
+            while (n % i == 0)
+            ^~~~~
+            VITIS_LOOP_106_2: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42462:13: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42473:5: warning: Added loop label VITIS_LOOP_117_1:   [xilinx-label-all-loops]
+    for (long_int i = 2; i * i <= n; ++i) {
+    ^~~
+    VITIS_LOOP_117_1: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42473:5: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42476:13: warning: Added loop label VITIS_LOOP_120_2:   [xilinx-label-all-loops]
+            while (n % i == 0)
+            ^~~~~
+            VITIS_LOOP_120_2: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42476:13: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42494:5: warning: Added loop label VITIS_LOOP_138_1:   [xilinx-label-all-loops]
+    for (long_int res = 2; res < mod; ++res) {
+    ^~~
+    VITIS_LOOP_138_1: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42494:5: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42498:9: warning: Added loop label VITIS_LOOP_142_2:   [xilinx-label-all-loops]
+        for (size_t i = 0; i < factors.size() && flag; ++i) {
+        ^~~
+        VITIS_LOOP_142_2: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42498:9: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42524:9: warning: Added loop label VITIS_LOOP_168_1:   [xilinx-label-all-loops]
+        for (int i = 1; i < size ; ++i) {
+        ^~~
+        VITIS_LOOP_168_1: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42524:9: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42531:9: warning: Added loop label VITIS_LOOP_175_2:   [xilinx-label-all-loops]
+        for (int i = 1; i < size ; ++i) {
+        ^~~
+        VITIS_LOOP_175_2: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42531:9: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42543:5: warning: Added loop label VITIS_LOOP_187_1:   [xilinx-label-all-loops]
+    for(int MOD_INDEX = 0; MOD_INDEX < MOD_NUM; MOD_INDEX++){
     ^~~
     VITIS_LOOP_187_1: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42541:5: note: FIX-IT applied suggested code changes
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42545:5: warning: Added loop label VITIS_LOOP_191_2:   [xilinx-label-all-loops]
-    for (size_t i = 0; i < index.size(); ++i) {
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42543:5: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42550:9: warning: Added loop label VITIS_LOOP_194_2:   [xilinx-label-all-loops]
+        for (int i = 0; i < N; i++) {
+        ^~~
+        VITIS_LOOP_194_2: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42550:9: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42571:5: warning: Added loop label VITIS_LOOP_215_1:   [xilinx-label-all-loops]
+    for (int i = 0; i < SQRT_N; i++) {
     ^~~
-    VITIS_LOOP_191_2: 
-/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42545:5: note: FIX-IT applied suggested code changes
+    VITIS_LOOP_215_1: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42571:5: note: FIX-IT applied suggested code changes
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42595:5: warning: Added loop label VITIS_LOOP_239_1:   [xilinx-label-all-loops]
+    for (int i = 0; i < SQRT_N; i++) {
+    ^~~
+    VITIS_LOOP_239_1: 
+/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/Utils.pp.0.cpp:42595:5: note: FIX-IT applied suggested code changes

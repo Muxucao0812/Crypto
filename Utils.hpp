@@ -3,6 +3,7 @@
 
 #include "define.h"
 #include <vector>
+#include <cmath>
 
 void find_primitive_root(long_int mod, long_int &root);
 int custom_gcd(int a, int b);
@@ -14,8 +15,9 @@ long_int compute_phi(long_int n);
 void generate_twiddle_factors(long_int *twiddle_factors, int size, long_int root, long_int mod, Operation op);
 std::vector<int> generate_permutation(int n);
 void permute_twiddle_factors(long_int *twiddle_factors, long_int *inv_twiddle_factors);
-void precompute_weights(long_int twiddle_factor[MOD_NUM][N/2], long_int inv_twiddle_factor[MOD_NUM][N/2]);
+void precompute_weights(long_int twiddle_factor[MOD_NUM][N], long_int inv_twiddle_factor[MOD_NUM][N]);
 int bit_reverse(int x, int n);
 void apply_bit_reverse(long_int x[N], long_int result[N]);
-
+void generate_input_index(int stage, int address, int output_indices[SQRT_N]) ;
+void generate_output_index(int stage, int address, int output_indices[SQRT_N]) ;
 #endif

@@ -1,39 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="header" path="/home/meng/HLS/Crypto/header"/>
-    <originFiles name="pow_mod.h" path="/home/meng/HLS/Crypto/pow_mod.h"/>
-    <originFiles name="Utils.hpp" path="/home/meng/HLS/Crypto/Utils.hpp"/>
-    <originFiles name="AddressGen_TB.hpp" path="/home/meng/HLS/Crypto/AddressGen_TB.hpp"/>
-    <originFiles name="AddressGen.hpp" path="/home/meng/HLS/Crypto/AddressGen.hpp"/>
-    <originFiles name="Crypto_TB.hpp" path="/home/meng/HLS/Crypto/Crypto_TB.hpp"/>
-    <originFiles name="Arithmetic.hpp" path="/home/meng/HLS/Crypto/Arithmetic.hpp"/>
-    <originFiles name="PE_UNIT.hpp" path="/home/meng/HLS/Crypto/PE_UNIT.hpp"/>
-    <originFiles name="PE_ARRAY.hpp" path="/home/meng/HLS/Crypto/PE_ARRAY.hpp"/>
-    <originFiles name="DATAMemory.hpp" path="/home/meng/HLS/Crypto/DATAMemory.hpp"/>
-    <originFiles name="Crypto.hpp" path="/home/meng/HLS/Crypto/Crypto.hpp"/>
-    <originFiles name="define.h" path="/home/meng/HLS/Crypto/define.h"/>
-    <originFiles name="TwiddleMemory.hpp" path="/home/meng/HLS/Crypto/TwiddleMemory.hpp"/>
-    <originFiles name="files" path="/home/meng/HLS/Crypto/files"/>
-    <originFiles name="source" path="/home/meng/HLS/Crypto/source"/>
-    <originFiles name="necessary" path="/home/meng/HLS/Crypto/necessary"/>
-    <originFiles name="all" path="/home/meng/HLS/Crypto/all"/>
-    <originFiles name="Add" path="/home/meng/HLS/Crypto/Add"/>
-    <originFiles name="#" path="/home/meng/HLS/Crypto/#"/>
-    <originFiles name="ret.txt" path="/home/meng/HLS/Crypto/ret.txt"/>
-    <originFiles name="basis.txt" path="/home/meng/HLS/Crypto/basis.txt"/>
-    <originFiles name="poly.txt" path="/home/meng/HLS/Crypto/poly.txt"/>
-    <originFiles name="pow_mod.cpp" path="/home/meng/HLS/Crypto/pow_mod.cpp"/>
-    <originFiles name="Utils.cpp" path="/home/meng/HLS/Crypto/Utils.cpp"/>
-    <originFiles name="AddressGen_TB.cpp" path="/home/meng/HLS/Crypto/AddressGen_TB.cpp"/>
     <originFiles name="AddressGen.cpp" path="/home/meng/HLS/Crypto/AddressGen.cpp"/>
-    <originFiles name="Crypto_TB.cpp" path="/home/meng/HLS/Crypto/Crypto_TB.cpp"/>
+    <originFiles name="AddressGen.hpp" path="/home/meng/HLS/Crypto/AddressGen.hpp"/>
+    <originFiles name="AddressGen_TB.cpp" path="/home/meng/HLS/Crypto/AddressGen_TB.cpp"/>
+    <originFiles name="AddressGen_TB.hpp" path="/home/meng/HLS/Crypto/AddressGen_TB.hpp"/>
     <originFiles name="Arithmetic.cpp" path="/home/meng/HLS/Crypto/Arithmetic.cpp"/>
-    <originFiles name="PE_UNIT.cpp" path="/home/meng/HLS/Crypto/PE_UNIT.cpp"/>
-    <originFiles name="PE_ARRAY.cpp" path="/home/meng/HLS/Crypto/PE_ARRAY.cpp"/>
-    <originFiles name="DATAMemory.cpp" path="/home/meng/HLS/Crypto/DATAMemory.cpp"/>
+    <originFiles name="Arithmetic.hpp" path="/home/meng/HLS/Crypto/Arithmetic.hpp"/>
     <originFiles name="Crypto.cpp" path="/home/meng/HLS/Crypto/Crypto.cpp"/>
+    <originFiles name="Crypto.hpp" path="/home/meng/HLS/Crypto/Crypto.hpp"/>
+    <originFiles name="Crypto1.cpp" path="/home/meng/HLS/Crypto/Crypto1.cpp"/>
+    <originFiles name="Crypto1.hpp" path="/home/meng/HLS/Crypto/Crypto1.hpp"/>
+    <originFiles name="Crypto_TB.cpp" path="/home/meng/HLS/Crypto/Crypto_TB.cpp"/>
+    <originFiles name="Crypto_TB.hpp" path="/home/meng/HLS/Crypto/Crypto_TB.hpp"/>
+    <originFiles name="DATAMemory.cpp" path="/home/meng/HLS/Crypto/DATAMemory.cpp"/>
+    <originFiles name="DATAMemory.hpp" path="/home/meng/HLS/Crypto/DATAMemory.hpp"/>
+    <originFiles name="PE_ARRAY.cpp" path="/home/meng/HLS/Crypto/PE_ARRAY.cpp"/>
+    <originFiles name="PE_ARRAY.hpp" path="/home/meng/HLS/Crypto/PE_ARRAY.hpp"/>
+    <originFiles name="PE_UNIT.cpp" path="/home/meng/HLS/Crypto/PE_UNIT.cpp"/>
+    <originFiles name="PE_UNIT.hpp" path="/home/meng/HLS/Crypto/PE_UNIT.hpp"/>
     <originFiles name="TwiddleMemory.cpp" path="/home/meng/HLS/Crypto/TwiddleMemory.cpp"/>
+    <originFiles name="TwiddleMemory.hpp" path="/home/meng/HLS/Crypto/TwiddleMemory.hpp"/>
+    <originFiles name="Utils.cpp" path="/home/meng/HLS/Crypto/Utils.cpp"/>
+    <originFiles name="Utils.hpp" path="/home/meng/HLS/Crypto/Utils.hpp"/>
+    <originFiles name="define.h" path="/home/meng/HLS/Crypto/define.h"/>
+    <originFiles name="pow_mod.cpp" path="/home/meng/HLS/Crypto/pow_mod.cpp"/>
+    <originFiles name="source" path="/home/meng/HLS/Crypto/source"/>
   </source>
   <testbench>
     <originFiles name="main_TB.cpp" path="/home/meng/HLS/Crypto/main_TB.cpp"/>

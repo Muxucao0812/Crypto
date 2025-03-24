@@ -11,11 +11,11 @@ typedef hls::axis<long_int, 0, 0, 0> axi_stream_t;
 void Crypto(
     hls::stream <axi_stream_t>&              DataInStream,
     hls::stream <axi_stream_t>&              DataOutStream,
-    int                                                 RAMSel,
-    int                                                 RAMSel1,    
-    long_int                                            NTTTwiddleIn[MOD_NUM][N/2],
-    long_int                                            INTTTwiddleIn[MOD_NUM][N/2],
-    CryptoOperation                                     OP
+    int                                      RAMSel,
+    int                                      RAMSel1,    
+    long_int                                 NTTTwiddleIn[MOD_NUM][N],
+    long_int                                 INTTTwiddleIn[MOD_NUM][N],
+    CryptoOperation                          OP
 );
 
 #endif

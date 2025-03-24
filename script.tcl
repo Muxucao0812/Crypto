@@ -7,6 +7,7 @@ open_project -reset Crypto
 set source_files {
     TwiddleMemory.cpp
     Crypto.cpp
+    Crypto1.cpp
     DATAMemory.cpp
     PE_ARRAY.cpp
     PE_UNIT.cpp
@@ -27,6 +28,7 @@ set header_files {
     TwiddleMemory.hpp
     define.h
     Crypto.hpp
+    Crypto1.hpp
     DATAMemory.hpp
     PE_ARRAY.hpp
     PE_UNIT.hpp
@@ -53,14 +55,14 @@ foreach header $header_files {
 add_files -tb main_TB.cpp
 
 # Set the top function
-set_top Crypto
+set_top Crypto1
 
 # Create a solution
 open_solution "solution1" -reset
 
 # Set the target part and create a clock
-set_part {xc7z020clg400-1} 
-create_clock -period 8
+set_part {xc7vx690tffg1761-2} 
+create_clock -period 4
 
 # Run C simulation
 # csim_design

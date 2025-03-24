@@ -1,10 +1,5 @@
-<project xmlns="com.autoesl.autopilot.project" name="Crypto" top="Crypto" projectType="C/C++">
-    <includePaths/>
-    <libraryPaths/>
-    <Simulation>
-        <SimFlow askAgain="false" name="csim" csimMode="0" lastCsimMode="0"/>
-    </Simulation>
-    <files xmlns="">
+<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" top="Crypto1" name="Crypto">
+    <files>
         <file name="../../main_TB.cpp" sc="0" tb="1" cflags="-Wno-unknown-pragmas" csimflags="" blackbox="false"/>
         <file name="header" sc="0" tb="false" cflags="-I." csimflags="" blackbox="false"/>
         <file name="pow_mod.h" sc="0" tb="false" cflags="-I." csimflags="" blackbox="false"/>
@@ -16,6 +11,7 @@
         <file name="PE_UNIT.hpp" sc="0" tb="false" cflags="-I." csimflags="" blackbox="false"/>
         <file name="PE_ARRAY.hpp" sc="0" tb="false" cflags="-I." csimflags="" blackbox="false"/>
         <file name="DATAMemory.hpp" sc="0" tb="false" cflags="-I." csimflags="" blackbox="false"/>
+        <file name="Crypto1.hpp" sc="0" tb="false" cflags="-I." csimflags="" blackbox="false"/>
         <file name="Crypto.hpp" sc="0" tb="false" cflags="-I." csimflags="" blackbox="false"/>
         <file name="define.h" sc="0" tb="false" cflags="-I." csimflags="" blackbox="false"/>
         <file name="TwiddleMemory.hpp" sc="0" tb="false" cflags="-I." csimflags="" blackbox="false"/>
@@ -37,11 +33,12 @@
         <file name="PE_UNIT.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
         <file name="PE_ARRAY.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
         <file name="DATAMemory.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
+        <file name="Crypto1.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
         <file name="Crypto.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
         <file name="TwiddleMemory.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
     </files>
-    <solutions xmlns="">
-        <solution name="solution1" status="active"/>
+    <solutions>
+        <solution name="solution1" status=""/>
     </solutions>
-</project>
+</AutoPilot:project>
 

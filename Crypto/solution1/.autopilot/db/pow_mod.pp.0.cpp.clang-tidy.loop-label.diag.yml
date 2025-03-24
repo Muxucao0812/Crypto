@@ -52,7 +52,7 @@ Diagnostics:
     FilePath:        pow_mod.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/pow_mod.pp.0.cpp
-        Offset:          1849808
+        Offset:          1850003
         Length:          0
         ReplacementText: 'VITIS_LOOP_9_1: '
   - DiagnosticName:  xilinx-label-all-loops
@@ -61,7 +61,7 @@ Diagnostics:
     FilePath:        pow_mod.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/pow_mod.pp.0.cpp
-        Offset:          1850385
+        Offset:          1850580
         Length:          0
         ReplacementText: 'VITIS_LOOP_41_1: '
 ...

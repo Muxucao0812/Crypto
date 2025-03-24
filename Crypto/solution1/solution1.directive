@@ -1,2 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView"/>
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+    <sourceFile name="">
+        <directive functionName="Crypto1" label="" functionLabel="">
+            <pragma name="TOP">
+                <option name="name" value="Crypto1"/>
+            </pragma>
+        </directive>
+    </sourceFile>
+</AutoPilot:ProjectResources>
+

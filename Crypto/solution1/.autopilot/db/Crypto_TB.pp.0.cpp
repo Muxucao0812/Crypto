@@ -38303,20 +38303,22 @@ namespace std __attribute__ ((__visibility__ ("default")))
 # 10 "./define.h" 2
 
 
+
+
 const int BASE_WIDTH = 32;
 const int MOD_NUM = 3;
 const int N = 4096;
+const int SQRT_N = 64;
 const int T = 65537;
 const int ROOT = 6561;
 const int RAMNum = 4;
-
-const int PE_NUM = 4;
-const int BANKNum = 16;
+const int PE_NUM = 32;
+const int BANKNum = 64;
 const int STAGE_NUM = int(log2(N));
 const int RAMDepth = N / BANKNum;
 const int LOG2_N_DIV_2 = int(log2(N) / 2);
 const int LOG2CEIL_BANKNum = int(ceil(log2(BANKNum)));
-
+const int dimension = 8;
 
 typedef ap_uint<BASE_WIDTH> long_uint;
 typedef ap_uint<2 * BASE_WIDTH> long_long_uint;
@@ -38325,8 +38327,8 @@ typedef ap_int<BASE_WIDTH> long_int;
 typedef ap_int<2 * BASE_WIDTH> long_long_int;
 
 const long_int MOD[] = {1073750017, 1073815553, 1073872897};
-const long_int MOD_ROOT[] = {625534531, 646391299, 647613940};
-const long_int MOD_INV[] = {627281114, 777819041, 538279817};
+const long_int MOD_ROOT[] = {996876704, 922410331, 532757939};
+const long_int MOD_INV[] = {611694511, 402912232, 660998041};
 const long_int N_INV[] = {1073487871, 1073553391, 1073610721};
 const long_int K_HALF = 31;
 const long_int M[] = {-32772, -294896, -524229};
@@ -38887,11 +38889,17 @@ void Crypto(
     hls::stream <axi_stream_t>& DataOutStream,
     int RAMSel,
     int RAMSel1,
-    long_int NTTTwiddleIn[MOD_NUM][N/2],
-    long_int INTTTwiddleIn[MOD_NUM][N/2],
+    long_int NTTTwiddleIn[MOD_NUM][N],
+    long_int INTTTwiddleIn[MOD_NUM][N],
     CryptoOperation OP
 );
 # 5 "./Crypto_TB.hpp" 2
+# 1 "./Crypto1.hpp" 1
+
+
+
+
+
 
 # 1 "./Utils.hpp" 1
 
@@ -42886,6 +42894,9 @@ namespace std __attribute__ ((__visibility__ ("default")))
 }
 # 70 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/vector" 2 3
 # 6 "./Utils.hpp" 2
+# 1 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cmath" 1 3
+# 40 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cmath" 3
+# 7 "./Utils.hpp" 2
 
 void find_primitive_root(long_int mod, long_int &root);
 int custom_gcd(int a, int b);
@@ -42897,10 +42908,28 @@ long_int compute_phi(long_int n);
 void generate_twiddle_factors(long_int *twiddle_factors, int size, long_int root, long_int mod, Operation op);
 std::vector<int> generate_permutation(int n);
 void permute_twiddle_factors(long_int *twiddle_factors, long_int *inv_twiddle_factors);
-void precompute_weights(long_int twiddle_factor[MOD_NUM][N/2], long_int inv_twiddle_factor[MOD_NUM][N/2]);
+void precompute_weights(long_int twiddle_factor[MOD_NUM][N], long_int inv_twiddle_factor[MOD_NUM][N]);
 int bit_reverse(int x, int n);
 void apply_bit_reverse(long_int x[N], long_int result[N]);
-# 7 "./Crypto_TB.hpp" 2
+void generate_input_index(int stage, int address, int output_indices[SQRT_N]) ;
+void generate_output_index(int stage, int address, int output_indices[SQRT_N]) ;
+# 8 "./Crypto1.hpp" 2
+
+typedef hls::axis<long_int, 0, 0, 0> axi_stream_t;
+
+
+void Crypto1(
+    hls::stream <axi_stream_t>& DataInStream,
+    hls::stream <axi_stream_t>& DataOutStream,
+    int RAMSel,
+    int RAMSel1,
+    long_int NTTTwiddleIn[MOD_NUM][N],
+    long_int INTTTwiddleIn[MOD_NUM][N],
+    CryptoOperation OP
+);
+# 6 "./Crypto_TB.hpp" 2
+
+
 
 void Crypto_Test();
 # 2 "Crypto_TB.cpp" 2
@@ -42940,9 +42969,9 @@ void Crypto_Test(){
            }
        }
 
-       Crypto(data_in_stream, data_out_stream, RAMSel, 0, nullptr, nullptr, POLY_WRITE);
+       Crypto1(data_in_stream, data_out_stream, RAMSel, 0, nullptr, nullptr, POLY_WRITE);
 
-       Crypto(data_in_stream, data_out_stream, RAMSel, 0, nullptr, nullptr, POLY_READ);
+       Crypto1(data_in_stream, data_out_stream, RAMSel, 0, nullptr, nullptr, POLY_READ);
 
        VITIS_LOOP_42_6: for (int j = 0; j < MOD_NUM; j++){
            VITIS_LOOP_43_7: for (int k = 0; k < N; k++){
@@ -42990,10 +43019,10 @@ void Crypto_Test(){
                 data_in_stream1 << temp_stream;
             }
         }
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
-        Crypto(data_in_stream1, data_out_stream, 1, 0, nullptr, nullptr, POLY_WRITE);
-        Crypto(data_in_stream, data_out_stream, 0, 1, nullptr, nullptr, POLY_ADD);
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto1(data_in_stream1, data_out_stream, 1, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto1(data_in_stream, data_out_stream, 0, 1, nullptr, nullptr, POLY_ADD);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
 
         VITIS_LOOP_93_15: for (int j = 0; j < MOD_NUM; j++){
             VITIS_LOOP_94_16: for (int k = 0; k < N; k++){
@@ -43040,10 +43069,10 @@ void Crypto_Test(){
                 data_in_stream1 << temp_stream;
             }
         }
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
-        Crypto(data_in_stream1, data_out_stream, 1, 0, nullptr, nullptr, POLY_WRITE);
-        Crypto(data_in_stream, data_out_stream, 0, 1, nullptr, nullptr, POLY_MUL);
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto1(data_in_stream1, data_out_stream, 1, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto1(data_in_stream, data_out_stream, 0, 1, nullptr, nullptr, POLY_MUL);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
 
         VITIS_LOOP_143_24: for (int j = 0; j < MOD_NUM; j++){
             VITIS_LOOP_144_25: for (int k = 0; k < N; k++){
@@ -43091,10 +43120,10 @@ void Crypto_Test(){
                 data_in_stream1 << temp_stream;
             }
         }
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
-        Crypto(data_in_stream1, data_out_stream, 1, 0, nullptr, nullptr, POLY_WRITE);
-        Crypto(data_in_stream, data_out_stream, 0, 1, nullptr, nullptr, POLY_SUB);
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto1(data_in_stream1, data_out_stream, 1, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto1(data_in_stream, data_out_stream, 0, 1, nullptr, nullptr, POLY_SUB);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
 
         VITIS_LOOP_194_33: for (int j = 0; j < MOD_NUM; j++){
             VITIS_LOOP_195_34: for (int k = 0; k < N; k++){
@@ -43123,32 +43152,41 @@ void Crypto_Test(){
 
    TestIteration_Loop:
    for (int i = 0; i < TestIter; i++){
-        VITIS_LOOP_221_35: for (int j = 0; j < MOD_NUM; j++){
-            VITIS_LOOP_222_36: for (int k = 0; k < N; k++){
-                DataIn[j][k] = (long_int)(k % MOD[j]);
+        int sqrt_N = (int)sqrt(N);
+        VITIS_LOOP_222_35: for (int j = 0; j < MOD_NUM; j++){
+            VITIS_LOOP_223_36: for (int r = 0; r < sqrt_N; r++){
+                VITIS_LOOP_224_37: for (int c = 0; c < sqrt_N; c++){
+
+                    int shifted_c = (c + r) % sqrt_N;
+                    int orig_idx = r * sqrt_N + c;
+                    int shifted_idx = r * sqrt_N + shifted_c;
+                    DataIn[j][shifted_idx] = (long_int)(orig_idx % MOD[j]);
+                }
             }
         }
 
-        VITIS_LOOP_227_37: for (int j = 0; j < MOD_NUM; j++){
-            VITIS_LOOP_228_38: for (int k = 0; k < N; k++){
+        VITIS_LOOP_234_38: for (int j = 0; j < MOD_NUM; j++){
+            VITIS_LOOP_235_39: for (int k = 0; k < N; k++){
                 temp_stream.data = DataIn[j][k];
                 temp_stream.last = (j == MOD_NUM - 1 && k == N - 1) ? 1 : 0;
                 data_in_stream << temp_stream;
             }
         }
 
-        long_int TwiddleInTemp [MOD_NUM][N/2];
-        long_int INVTwiddleInTemp [MOD_NUM][N/2];
+        long_int TwiddleInTemp [MOD_NUM][N];
+        long_int INVTwiddleInTemp [MOD_NUM][N];
 
         precompute_weights(TwiddleInTemp, INVTwiddleInTemp);
 
-        Crypto(data_in_stream, data_out_stream, 0, 0, TwiddleInTemp, INVTwiddleInTemp, TWIDDLE_WRITE);
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_NTT);
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_INTT);
-        Crypto(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
-        VITIS_LOOP_245_39: for (int j = 0; j < MOD_NUM; j++){
-            VITIS_LOOP_246_40: for (int k = 0; k < N; k++){
+
+        Crypto1(data_in_stream, data_out_stream, 0, 0, TwiddleInTemp, INVTwiddleInTemp, TWIDDLE_WRITE);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_WRITE);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_NTT);
+# 265 "Crypto_TB.cpp"
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_INTT);
+        Crypto1(data_in_stream, data_out_stream, 0, 0, nullptr, nullptr, POLY_READ);
+        VITIS_LOOP_267_40: for (int j = 0; j < MOD_NUM; j++){
+            VITIS_LOOP_268_41: for (int k = 0; k < N; k++){
                 temp_stream = data_out_stream.read();
                 DataOut[j][k] = temp_stream.data;
                 if (DataIn[j][k] != DataOut[j][k]){

@@ -5,7 +5,6 @@
 #include <iostream>
 #include <cmath>
 
-
 int bit_reverse(int index, int n) {
     int reversed = 0;
     BIT_REVERSE_LOOP:
@@ -15,6 +14,23 @@ int bit_reverse(int index, int n) {
     }
     return reversed;
 }
+
+
+std::vector<int> generate_twiddle_indices(int n) {
+    int stage = static_cast<int>(std::log2(n));  // 计算 log2(n)
+    std::vector<int> index = {0};  // 初始索引列表
+    for (int i = 0; i < (stage + 1); ++i) {
+        std::vector<int> index_temp;
+        int offset = n / (1 << (i + 1));  // 计算偏移量
+        for (int j : index) {
+            index_temp.push_back(j + offset);
+        }
+        index.insert(index.end(), index_temp.begin(), index_temp.end());  // 合并 index 和 index_temp
+    }
+    index.erase(index.begin());
+    return index;
+}
+
 
 void apply_bit_reverse(long_int x[N], long_int result[N]) {
     int n = 0;
@@ -28,22 +44,23 @@ void apply_bit_reverse(long_int x[N], long_int result[N]) {
 }
 
 
-
-void precompute_weights(long_int twiddle_factor[MOD_NUM][N/2], long_int inv_twiddle_factor[MOD_NUM][N/2]) {
-
-
-    for(int MOD_INDEX = 0; MOD_INDEX < MOD_NUM; MOD_INDEX++){
-        long_int w = 1;
-        long_int w_inv = 1;
-        long_int TF_ROOT = MOD_ROOT[MOD_INDEX];
-        long_int TF_ROOT_INV = MOD_INV[MOD_INDEX];
-        long_int MODULUS = MOD[MOD_INDEX];
+void permute_twiddle_factors(long_int twiddle_factors[MOD_NUM][N], long_int inv_twiddle_factors[MOD_NUM][N]) {
+    for (int mod_idx = 0; mod_idx < MOD_NUM; mod_idx++) {
+        std::vector<int> index = generate_twiddle_indices(N);
         
-        for (int i = 0; i < N / 2; i++) {
-            twiddle_factor[MOD_INDEX][i] = w;
-            inv_twiddle_factor[MOD_INDEX][i] = w_inv;
-            w = (w * TF_ROOT) % MODULUS;
-            w_inv = (w_inv * TF_ROOT_INV) % MODULUS;
+        std::vector<long_int> twiddle_factors_temp(N);
+        std::vector<long_int> inv_twiddle_factors_temp(N);
+        
+        // 复制到临时数组
+        for (size_t i = 0; i < index.size(); ++i) {
+            twiddle_factors_temp[i] = twiddle_factors[mod_idx][index[i]];
+            inv_twiddle_factors_temp[i] = inv_twiddle_factors[mod_idx][index[i]];
+        }
+        
+        // 复制回原数组
+        for (size_t i = 0; i < index.size(); ++i) {
+            twiddle_factors[mod_idx][i] = twiddle_factors_temp[i];
+            inv_twiddle_factors[mod_idx][i] = inv_twiddle_factors_temp[i];
         }
     }
 }
@@ -164,33 +181,75 @@ void generate_twiddle_factors(long_int *twiddle_factors, int size, long_int root
     }
 }
 
-std::vector<int> generate_twiddle_indices(int n) {
-    int stage = static_cast<int>(std::log2(n));  // 计算 log2(n)
-    std::vector<int> index = {0};  // 初始索引列表
-    for (int i = 0; i < (stage + 1); ++i) {
-        std::vector<int> index_temp;
-        int offset = n / (1 << (i + 1));  // 计算偏移量
-        for (int j : index) {
-            index_temp.push_back(j + offset);
+
+
+void precompute_weights(long_int twiddle_factor[MOD_NUM][N], long_int inv_twiddle_factor[MOD_NUM][N]) {
+    for(int MOD_INDEX = 0; MOD_INDEX < MOD_NUM; MOD_INDEX++){
+        long_int w = 1;
+        long_int w_inv = 1;
+        long_int TF_ROOT = MOD_ROOT[MOD_INDEX];
+        long_int TF_ROOT_INV = MOD_INV[MOD_INDEX];
+        long_int MODULUS = MOD[MOD_INDEX];
+        
+        for (int i = 0; i < N; i++) {
+            twiddle_factor[MOD_INDEX][i] = w;
+            inv_twiddle_factor[MOD_INDEX][i] = w_inv;
+            w = (w * TF_ROOT) % MODULUS;
+            w_inv = (w_inv * TF_ROOT_INV) % MODULUS;
         }
-        index.insert(index.end(), index_temp.begin(), index_temp.end());  // 合并 index 和 index_temp
     }
-    index.erase(index.begin());
-    return index;
+
+    permute_twiddle_factors(twiddle_factor, inv_twiddle_factor);
 }
 
-void permute_twiddle_factors(long_int *twiddle_factors, long_int *inv_twiddle_factors) {
-    std::vector<int> index = generate_twiddle_indices(BANKNum * RAMDepth);
+void generate_input_index(int stage, int address, int output_indices[SQRT_N]) {
+    int stage_cnt = (stage < (int(log2(SQRT_N))+1)) ? stage : stage - (int(log2(SQRT_N))+1);
+    int ramnum_log = int(log2(SQRT_N)) - 1;
+    int dis_log = ramnum_log - stage_cnt;
+    int mask1 = (1 << (dis_log + 1)) - 1;
+    int mask2 = ~((1 << (dis_log + 1)) - 1) & ((1 << (int(log2(SQRT_N))+1)) - 1);
+    // std::cout << "ramlog " << ramnum_log << std::endl;
+    // std::cout << "dislog " << dis_log << std::endl;
+    // std::cout << "mask1 " << mask1 << std::endl;
+    // std::cout << "mask2 " << mask2 << std::endl;
+    for (int i = 0; i < SQRT_N; i++) {
+        #pragma HLS UNROLL
+        int iwire = i;
+        int temp2 = (iwire & 1) << dis_log;
+        int index = ((iwire & mask2) | temp2 | ((iwire & mask1) >> 1)) + address;
+        output_indices[i] = index & (SQRT_N - 1);
+        // std::cout << "iwire : " << iwire << std::endl;
+        // std::cout << "temp2 : " << temp2 << std::endl;
+        // std::cout << "index : " << index << std::endl;
 
-    std::vector<long_int> twiddle_factors_temp(BANKNum * RAMDepth);
-    std::vector<long_int> inv_twiddle_factors_temp(BANKNum * RAMDepth);
-    for (size_t i = 0; i < index.size(); ++i) {
-        twiddle_factors_temp[i] = twiddle_factors[index[i]];
-        inv_twiddle_factors_temp[i] = inv_twiddle_factors[index[i]];
     }
-    for (size_t i = 0; i < index.size(); ++i) {
-        twiddle_factors[i] = twiddle_factors_temp[i];
-        inv_twiddle_factors[i] = inv_twiddle_factors_temp[i];
-    }
-
 }
+
+void generate_output_index(int stage, int address, int output_indices[SQRT_N]) {
+    int stage_cnt = (stage < (int(log2(SQRT_N))+1)) ? stage : stage - (int(log2(SQRT_N))+1);
+    int ramnum_log = int(log2(SQRT_N)) - 1;
+    int dis_log = ramnum_log - stage_cnt;
+    int mask1 = 1 << dis_log;
+    int mask2 = (1 << dis_log) - 1;
+    int mask3 = (~((1 << (dis_log + 1)) - 1)) & ((1 << (int(log2(SQRT_N))+1)) - 1);
+    // std::cout << (~((1 << (dis_log + 1)) - 1)) << std::endl;
+    // std::cout << ((1 << int(log2(SQRT_N))) - 1) << std::endl;
+    // std::cout << mask3 << std::endl;
+    // std::cout << std::endl;
+    for (int i = 0; i < SQRT_N; i++) {
+        #pragma HLS UNROLL
+        int shift_amount = (int(log2(SQRT_N))+1);
+        int mask = (1 << shift_amount) - 1;
+        int iwire = (i - address ) & mask;
+        int temp2 = (iwire & mask2) << 1;
+        int index = (iwire & mask3) | temp2 | ((iwire & mask1) >> dis_log);
+        // std::cout << "iwire : " << iwire << std::endl;
+        // std::cout << "mask3 : " << mask3 << std::endl;
+        // std::cout << "(iwire & mask3) : " << (iwire & mask3)  << std::endl;
+        // std::cout << "temp2 : " << temp2 << std::endl;
+        // std::cout << "(iwire & mask1) >> dis_log : " << ((iwire & mask1) >> dis_log) << std::endl;
+        // std::cout << std::endl;
+        output_indices[i] = index;
+    }
+}
+

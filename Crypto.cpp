@@ -17,8 +17,8 @@ void Crypto(
     hls::stream <axi_stream_t>&             DataOutStream,
     int                                     RAMSel,
     int                                     RAMSel1,    
-    long_int                                NTTTwiddleIn[MOD_NUM][N/2],
-    long_int                                INTTTwiddleIn[MOD_NUM][N/2],
+    long_int                                NTTTwiddleIn[MOD_NUM][N],
+    long_int                                INTTTwiddleIn[MOD_NUM][N],
     CryptoOperation                         OP
 ){  
 
@@ -27,14 +27,14 @@ void Crypto(
     // ------------------------------------------------------------------
 
     long_int DataRAM[RAMNum][MOD_NUM][N];
-    #pragma HLS ARRAY_PARTITION variable=DataRAM complete dim=1
-    #pragma HLS ARRAY_PARTITION variable=DataRAM cyclic factor=BANKNum dim=2
+    #pragma HLS ARRAY_PARTITION variable=DataRAM complete dim=dimension
+    // #pragma HLS ARRAY_PARTITION variable=DataRAM cyclic factor=BANKNum dim=dimension
 
     long_int BitReverseData[MOD_NUM][N];
     #pragma HLS ARRAY_PARTITION variable=BitReverseData cyclic factor=BANKNum
     
-    long_int NTTTWiddleRAM[MOD_NUM][N/2];
-    long_int INTTTWiddleRAM[MOD_NUM][N/2];
+    long_int NTTTWiddleRAM[MOD_NUM][N];
+    long_int INTTTWiddleRAM[MOD_NUM][N];
     #pragma HLS ARRAY_PARTITION variable=NTTTWiddleRAM cyclic factor=BANKNum    
     #pragma HLS ARRAY_PARTITION variable=INTTTWiddleRAM cyclic factor=BANKNum
 
@@ -108,7 +108,7 @@ void Crypto(
             WRITE_TWIDDLE_LOOP:
             for (int i = 0; i < MOD_NUM; i++){
                 #pragma HLS UNROLL factor=MOD_NUM
-                for (int j = 0; j < N/2; j++){
+                for (int j = 0; j < N; j++){
                     #pragma HLS PIPELINE
                     NTTTWiddleRAM[i][j] = NTTTwiddleIn[i][j];
                     INTTTWiddleRAM[i][j] = INTTTwiddleIn[i][j];
@@ -204,7 +204,7 @@ void Crypto(
                     int ut = N / h;
                     NTT_GROUP_LOOP:                
                     for (int j = 0; j < N; j += h){
-                   
+                        #pragma HLS Pipeline II=1
                         #pragma HLS LOOP_TRIPCOUNT min=10 max=20
                         NTT_PE_LOOP:    
                         for (int k = 0; k < hf; k++){
@@ -243,7 +243,7 @@ void Crypto(
          
             INTT_STAGE_LOOP:
             for (int i = 0; i < MOD_NUM; i++){
-                #pragma HLS UNROLL factor=MOD_NUM
+                #pragma HLS UNROLL 
                 for(int h = 2; h <= N; h *= 2){
                     int hf = h >> 1;
                     int ut = N / h;
@@ -253,7 +253,7 @@ void Crypto(
 
                         INTT_PE_LOOP:    
                         for (int k = 0; k < hf; k++){
-                            #pragma HLS UNROLL factor=PE_NUM
+                            #pragma HLS UNROLL 
 
                             long_int a1 = DataRAM[RAMSel][i][j + k];
                             long_int a2 = DataRAM[RAMSel][i][j + k + hf];

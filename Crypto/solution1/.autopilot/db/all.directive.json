@@ -1,7 +1,7 @@
 [
   {
     "functionLabel": "",
-    "functionName": "STEPMUL",
+    "functionName": "Crypto1",
     "id": 0,
     "ifcond": "",
     "insert_position": "",
@@ -11,13 +11,13 @@
       "option": [
         {
           "name": "name",
-          "value": "STEPMUL"
+          "value": "Crypto1"
         }
       ]
     },
     "slx": false,
-    "sourceFile": "/home/meng/HLS/Crypto/Crypto/solution1/csynth.tcl",
-    "sourceLine": 48,
+    "sourceFile": "/home/meng/HLS/Crypto/script.tcl",
+    "sourceLine": 71,
     "success": true
   }
 ]

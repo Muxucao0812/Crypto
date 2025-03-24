@@ -52,7 +52,7 @@ Diagnostics:
     FilePath:        DATAMemory.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/DATAMemory.pp.0.cpp
-        Offset:          1848446
+        Offset:          1848495
         Length:          0
         ReplacementText: 'VITIS_LOOP_7_1: '
   - DiagnosticName:  xilinx-label-all-loops
@@ -61,7 +61,7 @@ Diagnostics:
     FilePath:        DATAMemory.cpp
     Replacements:    
       - FilePath:        /home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/DATAMemory.pp.0.cpp
-        Offset:          1848621
+        Offset:          1848670
         Length:          0
         ReplacementText: 'VITIS_LOOP_13_1: '
 ...

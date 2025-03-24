@@ -38294,20 +38294,22 @@ using std::wctomb;
 
 
 
+
+
 const int BASE_WIDTH = 32;
 const int MOD_NUM = 3;
 const int N = 4096;
+const int SQRT_N = 64;
 const int T = 65537;
 const int ROOT = 6561;
 const int RAMNum = 4;
-
-const int PE_NUM = 4;
-const int BANKNum = 16;
+const int PE_NUM = 32;
+const int BANKNum = 64;
 const int STAGE_NUM = int(log2(N));
 const int RAMDepth = N / BANKNum;
 const int LOG2_N_DIV_2 = int(log2(N) / 2);
 const int LOG2CEIL_BANKNum = int(ceil(log2(BANKNum)));
-
+const int dimension = 8;
 
 typedef ap_uint<BASE_WIDTH> long_uint;
 typedef ap_uint<2 * BASE_WIDTH> long_long_uint;
@@ -38316,8 +38318,8 @@ typedef ap_int<BASE_WIDTH> long_int;
 typedef ap_int<2 * BASE_WIDTH> long_long_int;
 
 const long_int MOD[] = {1073750017, 1073815553, 1073872897};
-const long_int MOD_ROOT[] = {625534531, 646391299, 647613940};
-const long_int MOD_INV[] = {627281114, 777819041, 538279817};
+const long_int MOD_ROOT[] = {996876704, 922410331, 532757939};
+const long_int MOD_INV[] = {611694511, 402912232, 660998041};
 const long_int N_INV[] = {1073487871, 1073553391, 1073610721};
 const long_int K_HALF = 31;
 const long_int M[] = {-32772, -294896, -524229};
@@ -38350,20 +38352,18 @@ void ADD_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX);
 void SUB_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX);
 void MUL_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX);
 void MOD_PLAINTEXTMODULUS(long_int *input, long_int *res);
-__attribute__((sdx_kernel("STEPMUL", 0))) void STEPMUL(long_int *input1, long_int *input2, long_long_int *res);
+void STEPMUL(long_int *input1, long_int *input2, long_long_int *res);
 void NTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX);
 void INTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX);
+
+void Configurable_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX, Operation op);
 # 3 "Arithmetic.cpp" 2
 
 # 1 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cmath" 1 3
 # 40 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cmath" 3
 # 5 "Arithmetic.cpp" 2
 # 35 "Arithmetic.cpp"
-__attribute__((sdx_kernel("STEPMUL", 0))) void STEPMUL(long_int *input1, long_int *input2, long_long_int *res){
-#line 48 "/home/meng/HLS/Crypto/Crypto/solution1/csynth.tcl"
-#pragma HLSDIRECTIVE TOP name=STEPMUL
-# 35 "Arithmetic.cpp"
-
+void STEPMUL(long_int *input1, long_int *input2, long_long_int *res){
 #pragma HLS inline
  long_uint input1_u = static_cast<long_uint>(*input1);
   long_uint input2_u = static_cast<long_uint>(*input2);
@@ -38400,8 +38400,8 @@ __attribute__((sdx_kernel("STEPMUL", 0))) void STEPMUL(long_int *input1, long_in
 
 
 void ADD_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
-
-    *res = *input1 + *input2;
+#pragma HLS INLINE
+ *res = *input1 + *input2;
 
 
     if (*res >= MOD[MOD_INDEX]) {
@@ -38413,8 +38413,8 @@ void ADD_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
 
 
 void SUB_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
-
-    *res = *input1 - *input2;
+#pragma HLS INLINE
+ *res = *input1 - *input2;
 
     if (*res < 0) {
         *res = *res + MOD[MOD_INDEX];
@@ -38482,7 +38482,8 @@ void MUL_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
 }
 # 163 "Arithmetic.cpp"
 void NTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX) {
-    long_int temp;
+#pragma HLS PIPELINE
+ long_int temp;
     MUL_MOD(input2, twiddle_factor, &temp, MOD_INDEX);
     ADD_MOD(input1, &temp, res1, MOD_INDEX);
     SUB_MOD(input1, &temp, res2, MOD_INDEX);
@@ -38497,12 +38498,39 @@ void INTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_
     long_int temp1;
     ADD_MOD(input1, input2, &temp1, MOD_INDEX);
     SUB_MOD(input1, input2, res2, MOD_INDEX);
-
-
     *res1 = (temp1 >> 1) + ((temp1[0] == 1) ? static_cast<long_int>((MOD[MOD_INDEX] + static_cast<long_int>(1)) >> 1) : static_cast<long_int>(0));
-
     MUL_MOD(res2, twiddle_factor, &temp, MOD_INDEX);
     *res2 = (temp >> 1) + ((temp[0] == 1) ? static_cast<long_int>((MOD[MOD_INDEX] + static_cast<long_int>(1)) >> 1) : static_cast<long_int>(0));
+}
 
+void Configurable_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX, Operation op) {
+    long_int temp, temp1;
+    long_int input1_temp = *input1;
+    long_int input2_temp = *input2;
+    long_int res1_temp, res2_temp;
+    if (op == ADD) {
+        ADD_MOD(&input1_temp, &input2_temp, &res1_temp, MOD_INDEX);
+        *res1 = res1_temp;
+    } else if (op == SUB) {
+        SUB_MOD(&input1_temp, &input2_temp, &res1_temp, MOD_INDEX);
+        *res1 = res1_temp;
+    } else if (op == MUL) {
+        MUL_MOD(&input1_temp, &input2_temp, &res1_temp, MOD_INDEX);
+        *res1 = res1_temp;
+    } else if (op == NTT_OP) {
+        MUL_MOD(&input2_temp, twiddle_factor, &temp, MOD_INDEX);
+        ADD_MOD(&input1_temp, &temp, &res1_temp, MOD_INDEX);
+        SUB_MOD(&input1_temp, &temp, &res2_temp, MOD_INDEX);
+        *res1 = res1_temp;
+        *res2 = res2_temp;
+    } else if (op == INTT_OP) {
+        ADD_MOD(&input1_temp, &input2_temp, &temp1, MOD_INDEX);
+        SUB_MOD(&input1_temp, &input2_temp, &res2_temp, MOD_INDEX);
+        *res1 = (temp1 >> 1) + ((temp1[0] == 1) ? static_cast<long_int>((MOD[MOD_INDEX] + static_cast<long_int>(1)) >> 1) : static_cast<long_int>(0));
+        MUL_MOD(&res2_temp, twiddle_factor, &temp, MOD_INDEX);
+        *res2 = (temp >> 1) + ((temp[0] == 1) ? static_cast<long_int>((MOD[MOD_INDEX] + static_cast<long_int>(1)) >> 1) : static_cast<long_int>(0));
+    } else {
+        std::cerr << "Invalid operation" << std::endl;
+    }
 
 }

@@ -38295,20 +38295,22 @@ namespace std __attribute__ ((__visibility__ ("default")))
 # 10 "./define.h" 2
 
 
+
+
 const int BASE_WIDTH = 32;
 const int MOD_NUM = 3;
 const int N = 4096;
+const int SQRT_N = 64;
 const int T = 65537;
 const int ROOT = 6561;
 const int RAMNum = 4;
-
-const int PE_NUM = 4;
-const int BANKNum = 16;
+const int PE_NUM = 32;
+const int BANKNum = 64;
 const int STAGE_NUM = int(log2(N));
 const int RAMDepth = N / BANKNum;
 const int LOG2_N_DIV_2 = int(log2(N) / 2);
 const int LOG2CEIL_BANKNum = int(ceil(log2(BANKNum)));
-
+const int dimension = 8;
 
 typedef ap_uint<BASE_WIDTH> long_uint;
 typedef ap_uint<2 * BASE_WIDTH> long_long_uint;
@@ -38317,8 +38319,8 @@ typedef ap_int<BASE_WIDTH> long_int;
 typedef ap_int<2 * BASE_WIDTH> long_long_int;
 
 const long_int MOD[] = {1073750017, 1073815553, 1073872897};
-const long_int MOD_ROOT[] = {625534531, 646391299, 647613940};
-const long_int MOD_INV[] = {627281114, 777819041, 538279817};
+const long_int MOD_ROOT[] = {996876704, 922410331, 532757939};
+const long_int MOD_INV[] = {611694511, 402912232, 660998041};
 const long_int N_INV[] = {1073487871, 1073553391, 1073610721};
 const long_int K_HALF = 31;
 const long_int M[] = {-32772, -294896, -524229};
@@ -38895,8 +38897,8 @@ void Crypto(
     hls::stream <axi_stream_t>& DataOutStream,
     int RAMSel,
     int RAMSel1,
-    long_int NTTTwiddleIn[MOD_NUM][N/2],
-    long_int INTTTwiddleIn[MOD_NUM][N/2],
+    long_int NTTTwiddleIn[MOD_NUM][N],
+    long_int INTTTwiddleIn[MOD_NUM][N],
     CryptoOperation OP
 );
 # 4 "Crypto.cpp" 2
@@ -38918,6 +38920,8 @@ void MOD_PLAINTEXTMODULUS(long_int *input, long_int *res);
 void STEPMUL(long_int *input1, long_int *input2, long_long_int *res);
 void NTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX);
 void INTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX);
+
+void Configurable_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX, Operation op);
 # 5 "Crypto.cpp" 2
 # 1 "./PE_UNIT.hpp" 1
 
@@ -42946,6 +42950,9 @@ namespace std __attribute__ ((__visibility__ ("default")))
 }
 # 70 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/vector" 2 3
 # 6 "./Utils.hpp" 2
+# 1 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cmath" 1 3
+# 40 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cmath" 3
+# 7 "./Utils.hpp" 2
 
 void find_primitive_root(long_int mod, long_int &root);
 int custom_gcd(int a, int b);
@@ -42957,9 +42964,11 @@ long_int compute_phi(long_int n);
 void generate_twiddle_factors(long_int *twiddle_factors, int size, long_int root, long_int mod, Operation op);
 std::vector<int> generate_permutation(int n);
 void permute_twiddle_factors(long_int *twiddle_factors, long_int *inv_twiddle_factors);
-void precompute_weights(long_int twiddle_factor[MOD_NUM][N/2], long_int inv_twiddle_factor[MOD_NUM][N/2]);
+void precompute_weights(long_int twiddle_factor[MOD_NUM][N], long_int inv_twiddle_factor[MOD_NUM][N]);
 int bit_reverse(int x, int n);
 void apply_bit_reverse(long_int x[N], long_int result[N]);
+void generate_input_index(int stage, int address, int output_indices[SQRT_N]) ;
+void generate_output_index(int stage, int address, int output_indices[SQRT_N]) ;
 # 9 "Crypto.cpp" 2
 # 1 "./TwiddleMemory.hpp" 1
 
@@ -42984,8 +42993,8 @@ void Crypto(
     hls::stream <axi_stream_t>& DataOutStream,
     int RAMSel,
     int RAMSel1,
-    long_int NTTTwiddleIn[MOD_NUM][N/2],
-    long_int INTTTwiddleIn[MOD_NUM][N/2],
+    long_int NTTTwiddleIn[MOD_NUM][N],
+    long_int INTTTwiddleIn[MOD_NUM][N],
     CryptoOperation OP
 ){
 
@@ -42994,14 +43003,14 @@ void Crypto(
 
 
     long_int DataRAM[RAMNum][MOD_NUM][N];
-#pragma HLS ARRAY_PARTITION variable=DataRAM complete dim=1
-#pragma HLS ARRAY_PARTITION variable=DataRAM cyclic factor=BANKNum dim=2
+#pragma HLS ARRAY_PARTITION variable=DataRAM complete dim=dimension
+
 
  long_int BitReverseData[MOD_NUM][N];
 #pragma HLS ARRAY_PARTITION variable=BitReverseData cyclic factor=BANKNum
 
- long_int NTTTWiddleRAM[MOD_NUM][N/2];
-    long_int INTTTWiddleRAM[MOD_NUM][N/2];
+ long_int NTTTWiddleRAM[MOD_NUM][N];
+    long_int INTTTWiddleRAM[MOD_NUM][N];
 #pragma HLS ARRAY_PARTITION variable=NTTTWiddleRAM cyclic factor=BANKNum
 #pragma HLS ARRAY_PARTITION variable=INTTTWiddleRAM cyclic factor=BANKNum
 
@@ -43067,12 +43076,6 @@ void Crypto(
                     DataOutStream.write(DataStreamReg);
 
 
-                    std::cout << "OP: " << OP << " i: " << i << " j: " << j << std::endl;
-                    std::cout << "DataStreamReg.data: " << DataStreamReg.data << std::endl;
-                    std::cout << "DataStreamReg.keep: " << DataStreamReg.keep << std::endl;
-                    std::cout << "DataStreamReg.strb: " << DataStreamReg.strb << std::endl;
-                    std::cout << "DataStreamReg.last: " << DataStreamReg.last << std::endl;
-
                 }
             }
             break;
@@ -43081,7 +43084,7 @@ void Crypto(
             WRITE_TWIDDLE_LOOP:
             for (int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_117_4: for (int j = 0; j < N/2; j++){
+ VITIS_LOOP_111_4: for (int j = 0; j < N; j++){
 #pragma HLS PIPELINE
  NTTTWiddleRAM[i][j] = NTTTwiddleIn[i][j];
                     INTTTWiddleRAM[i][j] = INTTTwiddleIn[i][j];
@@ -43155,7 +43158,7 @@ void Crypto(
             break;
 
         case POLY_NTT:
-            VITIS_LOOP_191_5: for(int i = 0; i < MOD_NUM; i++){
+            VITIS_LOOP_185_5: for(int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
  apply_bit_reverse(DataRAM[RAMSel][i], BitReverseData[i]);
             }
@@ -43163,7 +43166,7 @@ void Crypto(
             NTT_PERMUTE_LOOP:
             for(int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_199_6: for (int j = 0; j < N; j++){
+ VITIS_LOOP_193_6: for (int j = 0; j < N; j++){
 #pragma HLS PIPELINE
  DataRAM[RAMSel][i][j] = BitReverseData[i][j];
                 }
@@ -43172,12 +43175,12 @@ void Crypto(
             NTT_STAGE_LOOP:
             for (int i = 0 ; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_208_7: for(int h = 2; h <= N; h *= 2){
+ VITIS_LOOP_202_7: for(int h = 2; h <= N; h *= 2){
                     int hf = h >> 1;
                     int ut = N / h;
                     NTT_GROUP_LOOP:
                     for (int j = 0; j < N; j += h){
-
+#pragma HLS Pipeline II=1
 #pragma HLS LOOP_TRIPCOUNT min=10 max=20
  NTT_PE_LOOP:
                         for (int k = 0; k < hf; k++){
@@ -43200,7 +43203,7 @@ void Crypto(
 
 
         case POLY_INTT:
-            VITIS_LOOP_236_8: for(int i = 0; i < MOD_NUM; i++){
+            VITIS_LOOP_230_8: for(int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
  apply_bit_reverse(DataRAM[RAMSel][i], BitReverseData[i]);
             }
@@ -43208,7 +43211,7 @@ void Crypto(
             INTT_PERMUTE_LOOP:
             for(int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_244_9: for (int j = 0; j < N; j++){
+ VITIS_LOOP_238_9: for (int j = 0; j < N; j++){
 #pragma HLS PIPELINE
  DataRAM[RAMSel][i][j] = BitReverseData[i][j];
                 }
@@ -43216,8 +43219,8 @@ void Crypto(
 
             INTT_STAGE_LOOP:
             for (int i = 0; i < MOD_NUM; i++){
-#pragma HLS UNROLL factor=MOD_NUM
- VITIS_LOOP_253_10: for(int h = 2; h <= N; h *= 2){
+#pragma HLS UNROLL
+ VITIS_LOOP_247_10: for(int h = 2; h <= N; h *= 2){
                     int hf = h >> 1;
                     int ut = N / h;
                     INTT_GROUP_LOOP:
@@ -43226,7 +43229,7 @@ void Crypto(
 
  INTT_PE_LOOP:
                         for (int k = 0; k < hf; k++){
-#pragma HLS UNROLL factor=PE_NUM
+#pragma HLS UNROLL
 
  long_int a1 = DataRAM[RAMSel][i][j + k];
                             long_int a2 = DataRAM[RAMSel][i][j + k + hf];
@@ -43242,7 +43245,7 @@ void Crypto(
                 }
             }
 
-            VITIS_LOOP_278_11: for (int i = 0; i < MOD_NUM; i++){
+            VITIS_LOOP_272_11: for (int i = 0; i < MOD_NUM; i++){
 #pragma HLS UNROLL factor=MOD_NUM
  long_int n_inv = static_cast<long_int>(N_INV[i]);
                 MUL_INV_LOOP:

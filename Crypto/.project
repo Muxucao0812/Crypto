@@ -82,6 +82,16 @@
 			<location>/home/meng/HLS/Crypto/Crypto.hpp</location>
 		</link>
 		<link>
+			<name>source/Crypto1.cpp</name>
+			<type>1</type>
+			<location>/home/meng/HLS/Crypto/Crypto1.cpp</location>
+		</link>
+		<link>
+			<name>source/Crypto1.hpp</name>
+			<type>1</type>
+			<location>/home/meng/HLS/Crypto/Crypto1.hpp</location>
+		</link>
+		<link>
 			<name>source/Crypto_TB.cpp</name>
 			<type>1</type>
 			<location>/home/meng/HLS/Crypto/Crypto_TB.cpp</location>

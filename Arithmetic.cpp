@@ -69,7 +69,7 @@ void STEPMUL(long_int *input1, long_int *input2, long_long_int *res){
 
 // res = (input1 + input2) % Mod
 void ADD_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
-  
+#pragma HLS INLINE
     *res = *input1 + *input2;
 
 
@@ -82,7 +82,7 @@ void ADD_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
 
 // res = (input1 - input2) % Mod
 void SUB_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
-
+#pragma HLS INLINE
     *res = *input1 - *input2;
 
     if (*res < 0) {
@@ -161,6 +161,7 @@ void MUL_MOD(long_int *input1, long_int *input2, long_int *res, int MOD_INDEX) {
 // res1 = (input1 + input2*twiddle_factor) % Mod
 // res2 = (input1 - input2*twiddle_factor) % Mod
 void NTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX) {
+    #pragma HLS PIPELINE
     long_int temp;
     MUL_MOD(input2, twiddle_factor, &temp, MOD_INDEX);
     ADD_MOD(input1, &temp, res1, MOD_INDEX);
@@ -176,13 +177,40 @@ void INTT_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_
     long_int temp1;
     ADD_MOD(input1, input2, &temp1, MOD_INDEX);
     SUB_MOD(input1, input2, res2, MOD_INDEX);
-
-
     *res1 = (temp1 >> 1) + ((temp1[0] == 1) ? static_cast<long_int>((MOD[MOD_INDEX] + static_cast<long_int>(1)) >> 1) : static_cast<long_int>(0));
-
     MUL_MOD(res2, twiddle_factor, &temp, MOD_INDEX);
     *res2 = (temp >> 1) + ((temp[0] == 1) ? static_cast<long_int>((MOD[MOD_INDEX] + static_cast<long_int>(1)) >> 1) : static_cast<long_int>(0));
-    
+}
+
+void Configurable_PE(long_int *input1, long_int *input2, long_int *twiddle_factor, long_int *res1, long_int *res2, int MOD_INDEX, Operation op) {
+    long_int temp, temp1;
+    long_int input1_temp = *input1;
+    long_int input2_temp = *input2;
+    long_int res1_temp, res2_temp;
+    if (op == ADD) {
+        ADD_MOD(&input1_temp, &input2_temp, &res1_temp, MOD_INDEX);
+        *res1 = res1_temp;
+    } else if (op == SUB) {
+        SUB_MOD(&input1_temp, &input2_temp, &res1_temp, MOD_INDEX);
+        *res1 = res1_temp;
+    } else if (op == MUL) {
+        MUL_MOD(&input1_temp, &input2_temp, &res1_temp, MOD_INDEX);
+        *res1 = res1_temp;
+    } else if (op == NTT_OP) {
+        MUL_MOD(&input2_temp, twiddle_factor, &temp, MOD_INDEX);
+        ADD_MOD(&input1_temp, &temp, &res1_temp, MOD_INDEX);
+        SUB_MOD(&input1_temp, &temp, &res2_temp, MOD_INDEX);
+        *res1 = res1_temp;
+        *res2 = res2_temp;
+    } else if (op == INTT_OP) {
+        ADD_MOD(&input1_temp, &input2_temp, &temp1, MOD_INDEX);
+        SUB_MOD(&input1_temp, &input2_temp, &res2_temp, MOD_INDEX);
+        *res1 = (temp1 >> 1) + ((temp1[0] == 1) ? static_cast<long_int>((MOD[MOD_INDEX] + static_cast<long_int>(1)) >> 1) : static_cast<long_int>(0));
+        MUL_MOD(&res2_temp, twiddle_factor, &temp, MOD_INDEX);
+        *res2 = (temp >> 1) + ((temp[0] == 1) ? static_cast<long_int>((MOD[MOD_INDEX] + static_cast<long_int>(1)) >> 1) : static_cast<long_int>(0));
+    } else {
+        std::cerr << "Invalid operation" << std::endl;
+    }
 
 }
 

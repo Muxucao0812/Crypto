@@ -42300,20 +42300,22 @@ namespace std __attribute__ ((__visibility__ ("default")))
 # 10 "./define.h" 2
 
 
+
+
 const int BASE_WIDTH = 32;
 const int MOD_NUM = 3;
 const int N = 4096;
+const int SQRT_N = 64;
 const int T = 65537;
 const int ROOT = 6561;
 const int RAMNum = 4;
-
-const int PE_NUM = 4;
-const int BANKNum = 16;
+const int PE_NUM = 32;
+const int BANKNum = 64;
 const int STAGE_NUM = int(log2(N));
 const int RAMDepth = N / BANKNum;
 const int LOG2_N_DIV_2 = int(log2(N) / 2);
 const int LOG2CEIL_BANKNum = int(ceil(log2(BANKNum)));
-
+const int dimension = 8;
 
 typedef ap_uint<BASE_WIDTH> long_uint;
 typedef ap_uint<2 * BASE_WIDTH> long_long_uint;
@@ -42322,8 +42324,8 @@ typedef ap_int<BASE_WIDTH> long_int;
 typedef ap_int<2 * BASE_WIDTH> long_long_int;
 
 const long_int MOD[] = {1073750017, 1073815553, 1073872897};
-const long_int MOD_ROOT[] = {625534531, 646391299, 647613940};
-const long_int MOD_INV[] = {627281114, 777819041, 538279817};
+const long_int MOD_ROOT[] = {996876704, 922410331, 532757939};
+const long_int MOD_INV[] = {611694511, 402912232, 660998041};
 const long_int N_INV[] = {1073487871, 1073553391, 1073610721};
 const long_int K_HALF = 31;
 const long_int M[] = {-32772, -294896, -524229};
@@ -42359,7 +42361,6 @@ enum CryptoOperation {
 # 40 "/home/meng/Software/VIvado/Vitis_HLS/2023.1/tps/lnx64/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/cmath" 3
 # 7 "Utils.cpp" 2
 
-
 int bit_reverse(int index, int n) {
     int reversed = 0;
     BIT_REVERSE_LOOP:
@@ -42370,9 +42371,26 @@ int bit_reverse(int index, int n) {
     return reversed;
 }
 
+
+std::vector<int> generate_twiddle_indices(int n) {
+    int stage = static_cast<int>(std::log2(n));
+    std::vector<int> index = {0};
+    VITIS_LOOP_22_1: for (int i = 0; i < (stage + 1); ++i) {
+        std::vector<int> index_temp;
+        int offset = n / (1 << (i + 1));
+        VITIS_LOOP_25_2: for (int j : index) {
+            index_temp.push_back(j + offset);
+        }
+        index.insert(index.end(), index_temp.begin(), index_temp.end());
+    }
+    index.erase(index.begin());
+    return index;
+}
+
+
 void apply_bit_reverse(long_int x[N], long_int result[N]) {
     int n = 0;
-    VITIS_LOOP_21_1: while ((1 << n) < N) n++;
+    VITIS_LOOP_37_1: while ((1 << n) < N) n++;
 
     PERMUTE_LOOP:
     for (int i = 0; i < N; i++) {
@@ -42382,22 +42400,23 @@ void apply_bit_reverse(long_int x[N], long_int result[N]) {
 }
 
 
+void permute_twiddle_factors(long_int twiddle_factors[MOD_NUM][N], long_int inv_twiddle_factors[MOD_NUM][N]) {
+    VITIS_LOOP_48_1: for (int mod_idx = 0; mod_idx < MOD_NUM; mod_idx++) {
+        std::vector<int> index = generate_twiddle_indices(N);
 
-void precompute_weights(long_int twiddle_factor[MOD_NUM][N/2], long_int inv_twiddle_factor[MOD_NUM][N/2]) {
+        std::vector<long_int> twiddle_factors_temp(N);
+        std::vector<long_int> inv_twiddle_factors_temp(N);
 
 
-    VITIS_LOOP_35_1: for(int MOD_INDEX = 0; MOD_INDEX < MOD_NUM; MOD_INDEX++){
-        long_int w = 1;
-        long_int w_inv = 1;
-        long_int TF_ROOT = MOD_ROOT[MOD_INDEX];
-        long_int TF_ROOT_INV = MOD_INV[MOD_INDEX];
-        long_int MODULUS = MOD[MOD_INDEX];
+        VITIS_LOOP_55_2: for (size_t i = 0; i < index.size(); ++i) {
+            twiddle_factors_temp[i] = twiddle_factors[mod_idx][index[i]];
+            inv_twiddle_factors_temp[i] = inv_twiddle_factors[mod_idx][index[i]];
+        }
 
-        VITIS_LOOP_42_2: for (int i = 0; i < N / 2; i++) {
-            twiddle_factor[MOD_INDEX][i] = w;
-            inv_twiddle_factor[MOD_INDEX][i] = w_inv;
-            w = (w * TF_ROOT) % MODULUS;
-            w_inv = (w_inv * TF_ROOT_INV) % MODULUS;
+
+        VITIS_LOOP_61_3: for (size_t i = 0; i < index.size(); ++i) {
+            twiddle_factors[mod_idx][i] = twiddle_factors_temp[i];
+            inv_twiddle_factors[mod_idx][i] = inv_twiddle_factors_temp[i];
         }
     }
 }
@@ -42405,7 +42424,7 @@ void precompute_weights(long_int twiddle_factor[MOD_NUM][N/2], long_int inv_twid
 
 
 int custom_gcd(int a, int b) {
-    VITIS_LOOP_54_1: while (b != 0) {
+    VITIS_LOOP_71_1: while (b != 0) {
         int temp = b;
         b = a % b;
         a = temp;
@@ -42418,7 +42437,7 @@ void mod_exp(long_int base, long_int exp, long_int mod, long_int &result) {
     uint64_t res = 1;
     uint64_t base_mod = static_cast<uint64_t>(base) % static_cast<uint64_t>(mod);
     uint64_t exp_val = static_cast<uint64_t>(exp);
-    VITIS_LOOP_67_1: while (exp_val > 0) {
+    VITIS_LOOP_84_1: while (exp_val > 0) {
         if (exp_val % 2 == 1) {
             res = (res * base_mod) % static_cast<uint64_t>(mod);
         }
@@ -42437,10 +42456,10 @@ void mod_inverse(long_int a, long_int mod, long_int &result) {
 
 void factorize(long_int n, std::vector<long_int> &factors) {
     factors.clear();
-    VITIS_LOOP_86_1: for (long_int i = 2; i * i <= n; ++i) {
+    VITIS_LOOP_103_1: for (long_int i = 2; i * i <= n; ++i) {
         if (n % i == 0) {
             factors.push_back(i);
-            VITIS_LOOP_89_2: while (n % i == 0)
+            VITIS_LOOP_106_2: while (n % i == 0)
                 n /= i;
         }
     }
@@ -42451,10 +42470,10 @@ void factorize(long_int n, std::vector<long_int> &factors) {
 
 long_int compute_phi(long_int n) {
     long_int result = n;
-    VITIS_LOOP_100_1: for (long_int i = 2; i * i <= n; ++i) {
+    VITIS_LOOP_117_1: for (long_int i = 2; i * i <= n; ++i) {
         if (n % i == 0) {
             result -= result / i;
-            VITIS_LOOP_103_2: while (n % i == 0)
+            VITIS_LOOP_120_2: while (n % i == 0)
                 n /= i;
         }
     }
@@ -42472,11 +42491,11 @@ void find_primitive_root(long_int mod, long_int &root) {
     long_int phi = compute_phi(mod);
     std::vector<long_int> factors;
     factorize(phi, factors);
-    VITIS_LOOP_121_1: for (long_int res = 2; res < mod; ++res) {
+    VITIS_LOOP_138_1: for (long_int res = 2; res < mod; ++res) {
         if (custom_gcd(static_cast<int>(res), static_cast<int>(mod)) != 1)
             continue;
         bool flag = true;
-        VITIS_LOOP_125_2: for (size_t i = 0; i < factors.size() && flag; ++i) {
+        VITIS_LOOP_142_2: for (size_t i = 0; i < factors.size() && flag; ++i) {
             long_int exp = phi / factors[i];
             long_int exp_result;
             mod_exp(res, exp, mod, exp_result);
@@ -42502,14 +42521,14 @@ void generate_twiddle_factors(long_int *twiddle_factors, int size, long_int root
     long_int exp_result;
     twiddle_factors[0] = 1;
     if (op == NTT_OP) {
-        VITIS_LOOP_151_1: for (int i = 1; i < size ; ++i) {
+        VITIS_LOOP_168_1: for (int i = 1; i < size ; ++i) {
             uint64_t intermediate = static_cast<uint64_t>(twiddle_factors[i - 1]) * static_cast<uint64_t>(rt);
             twiddle_factors[i] = static_cast<long_int>(intermediate % mod);
         }
     } else if (op == INTT_OP) {
         mod_exp(rt, mod - 2, mod, inv_rt);
         twiddle_factors[0] = 1;
-        VITIS_LOOP_158_2: for (int i = 1; i < size ; ++i) {
+        VITIS_LOOP_175_2: for (int i = 1; i < size ; ++i) {
             uint64_t intermediate = static_cast<uint64_t>(twiddle_factors[i - 1]) * static_cast<uint64_t>(inv_rt);
             twiddle_factors[i] = static_cast<long_int>(intermediate % mod);
         }
@@ -42518,33 +42537,74 @@ void generate_twiddle_factors(long_int *twiddle_factors, int size, long_int root
     }
 }
 
-std::vector<int> generate_twiddle_indices(int n) {
-    int stage = static_cast<int>(std::log2(n));
-    std::vector<int> index = {0};
-    VITIS_LOOP_170_1: for (int i = 0; i < (stage + 1); ++i) {
-        std::vector<int> index_temp;
-        int offset = n / (1 << (i + 1));
-        VITIS_LOOP_173_2: for (int j : index) {
-            index_temp.push_back(j + offset);
+
+
+void precompute_weights(long_int twiddle_factor[MOD_NUM][N], long_int inv_twiddle_factor[MOD_NUM][N]) {
+    VITIS_LOOP_187_1: for(int MOD_INDEX = 0; MOD_INDEX < MOD_NUM; MOD_INDEX++){
+        long_int w = 1;
+        long_int w_inv = 1;
+        long_int TF_ROOT = MOD_ROOT[MOD_INDEX];
+        long_int TF_ROOT_INV = MOD_INV[MOD_INDEX];
+        long_int MODULUS = MOD[MOD_INDEX];
+
+        VITIS_LOOP_194_2: for (int i = 0; i < N; i++) {
+            twiddle_factor[MOD_INDEX][i] = w;
+            inv_twiddle_factor[MOD_INDEX][i] = w_inv;
+            w = (w * TF_ROOT) % MODULUS;
+            w_inv = (w_inv * TF_ROOT_INV) % MODULUS;
         }
-        index.insert(index.end(), index_temp.begin(), index_temp.end());
     }
-    index.erase(index.begin());
-    return index;
+
+    permute_twiddle_factors(twiddle_factor, inv_twiddle_factor);
 }
 
-void permute_twiddle_factors(long_int *twiddle_factors, long_int *inv_twiddle_factors) {
-    std::vector<int> index = generate_twiddle_indices(BANKNum * RAMDepth);
+void generate_input_index(int stage, int address, int output_indices[SQRT_N]) {
+    int stage_cnt = (stage < (int(log2(SQRT_N))+1)) ? stage : stage - (int(log2(SQRT_N))+1);
+    int ramnum_log = int(log2(SQRT_N)) - 1;
+    int dis_log = ramnum_log - stage_cnt;
+    int mask1 = (1 << (dis_log + 1)) - 1;
+    int mask2 = ~((1 << (dis_log + 1)) - 1) & ((1 << (int(log2(SQRT_N))+1)) - 1);
 
-    std::vector<long_int> twiddle_factors_temp(BANKNum * RAMDepth);
-    std::vector<long_int> inv_twiddle_factors_temp(BANKNum * RAMDepth);
-    VITIS_LOOP_187_1: for (size_t i = 0; i < index.size(); ++i) {
-        twiddle_factors_temp[i] = twiddle_factors[index[i]];
-        inv_twiddle_factors_temp[i] = inv_twiddle_factors[index[i]];
-    }
-    VITIS_LOOP_191_2: for (size_t i = 0; i < index.size(); ++i) {
-        twiddle_factors[i] = twiddle_factors_temp[i];
-        inv_twiddle_factors[i] = inv_twiddle_factors_temp[i];
-    }
 
+
+
+    VITIS_LOOP_215_1: for (int i = 0; i < SQRT_N; i++) {
+#pragma HLS UNROLL
+ int iwire = i;
+        int temp2 = (iwire & 1) << dis_log;
+        int index = ((iwire & mask2) | temp2 | ((iwire & mask1) >> 1)) + address;
+        output_indices[i] = index & (SQRT_N - 1);
+
+
+
+
+    }
+}
+
+void generate_output_index(int stage, int address, int output_indices[SQRT_N]) {
+    int stage_cnt = (stage < (int(log2(SQRT_N))+1)) ? stage : stage - (int(log2(SQRT_N))+1);
+    int ramnum_log = int(log2(SQRT_N)) - 1;
+    int dis_log = ramnum_log - stage_cnt;
+    int mask1 = 1 << dis_log;
+    int mask2 = (1 << dis_log) - 1;
+    int mask3 = (~((1 << (dis_log + 1)) - 1)) & ((1 << (int(log2(SQRT_N))+1)) - 1);
+
+
+
+
+    VITIS_LOOP_239_1: for (int i = 0; i < SQRT_N; i++) {
+#pragma HLS UNROLL
+ int shift_amount = (int(log2(SQRT_N))+1);
+        int mask = (1 << shift_amount) - 1;
+        int iwire = (i - address ) & mask;
+        int temp2 = (iwire & mask2) << 1;
+        int index = (iwire & mask3) | temp2 | ((iwire & mask1) >> dis_log);
+
+
+
+
+
+
+        output_indices[i] = index;
+    }
 }
