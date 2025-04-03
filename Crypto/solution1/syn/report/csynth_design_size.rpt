@@ -2,67 +2,65 @@
 == Design Size Report
 ================================================================
 
-* C-Synthesis has not completed, compilation phases remaining:
-    * Performance/Pipeline
-    * Optimizations
-
 * Instructions per Function for each Compilation Phase
-+-----------------------------------------+-----------------------+--------------------+--------------------------+
-| Function                                | Location              | Compile/Link       | Unroll/Inline            |
-+-----------------------------------------+-----------------------+--------------------+--------------------------+
-| + Crypto1                               | Crypto1.cpp:15        | 448,323 *          | 26,045,144 *             |
-|  + MOD_PLAINTEXTMODULUS                 | Arithmetic.cpp:94     |   3,997            |     11,808 (96 calls)    |
-|     STEPMUL                             | Arithmetic.cpp:35     |   3,180 (3 calls)  |                          |
-|  + Configurable_PE                      | Arithmetic.cpp:185    |  74,310 (5 calls)  |  3,319,840 (4384 calls)  |
-|     ADD_MOD                             | Arithmetic.cpp:71     |   4,290 (15 calls) |                          |
-|     SUB_MOD                             | Arithmetic.cpp:84     |   4,500 (15 calls) |                          |
-|   + MUL_MOD                             | Arithmetic.cpp:118    |  60,570 (15 calls) |  2,315,328 (13152 calls) |
-|      STEPMUL                            | Arithmetic.cpp:35     |  47,700 (45 calls) |                          |
-|  + generate_input_index                 | Utils.cpp:205         | 163,630 (2 calls)  |  1,303,680 (128 calls)   |
-|   + log2                                | logdouble.cpp:7       | 146,032 (8 calls)  |  1,139,712 (512 calls)   |
-|    + log2                               | hls_log_double.cpp:12 | 146,016 (8 calls)  |  1,138,688 (512 calls)   |
-|     + log_generic<double>               | hls_log_.h:211        | 145,992 (8 calls)  |  1,137,152 (512 calls)   |
-|        fp_struct                        | x_hls_utils.h:485     |   2,800 (8 calls)  |      7,680 (512 calls)   |
-|        fp_struct                        | x_hls_utils.h:483     |     224 (8 calls)  |                          |
-|        expv                             | x_hls_utils.h:514     |     872 (8 calls)  |      3,072 (512 calls)   |
-|      + generic_isnan<double>            | hls_isnan.h:16        |   3,368 (8 calls)  |     14,848 (512 calls)   |
-|         fp_struct                       | x_hls_utils.h:485     |   2,800 (8 calls)  |      7,680 (512 calls)   |
-|      + generic_isinf<double>            | hls_isinf.h:16        |   3,360 (8 calls)  |     14,336 (512 calls)   |
-|         fp_struct                       | x_hls_utils.h:485     |   2,800 (8 calls)  |      7,680 (512 calls)   |
-|      + to_ieee                          | x_hls_utils.h:538     |  12,640 (40 calls) |     61,440 (2560 calls)  |
-|       + to_double                       | x_hls_utils.h:523     |  12,560 (40 calls) |     56,320 (2560 calls)  |
-|          data                           | x_hls_utils.h:504     |  11,840 (40 calls) |     43,520 (2560 calls)  |
-|      + range_reduction<57>              | hls_log_.h:182        |  84,912 (8 calls)  |    600,576 (512 calls)   |
-|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  10,472 (8 calls)  |     66,560 (512 calls)   |
-|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  10,216 (8 calls)  |     64,512 (512 calls)   |
-|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  10,232 (8 calls)  |     65,024 (512 calls)   |
-|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  10,256 (8 calls)  |     65,024 (512 calls)   |
-|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  10,264 (8 calls)  |     65,024 (512 calls)   |
-|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  10,288 (8 calls)  |     65,024 (512 calls)   |
-|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  10,288 (8 calls)  |     65,024 (512 calls)   |
-|  + generate_output_index                | Utils.cpp:228         | 204,522 (2 calls)  | 20,989,952 (128 calls)   |
-|   + log2                                | logdouble.cpp:7       | 182,540 (10 calls) | 19,375,104 (8704 calls)  |
-|    + log2                               | hls_log_double.cpp:12 | 182,520 (10 calls) | 19,357,696 (8704 calls)  |
-|     + log_generic<double>               | hls_log_.h:211        | 182,490 (10 calls) | 19,331,584 (8704 calls)  |
-|        fp_struct                        | x_hls_utils.h:485     |   3,500 (10 calls) |    130,560 (8704 calls)  |
-|        fp_struct                        | x_hls_utils.h:483     |     280 (10 calls) |                          |
-|        expv                             | x_hls_utils.h:514     |   1,090 (10 calls) |     52,224 (8704 calls)  |
-|      + generic_isnan<double>            | hls_isnan.h:16        |   4,210 (10 calls) |    252,416 (8704 calls)  |
-|         fp_struct                       | x_hls_utils.h:485     |   3,500 (10 calls) |    130,560 (8704 calls)  |
-|      + generic_isinf<double>            | hls_isinf.h:16        |   4,200 (10 calls) |    243,712 (8704 calls)  |
-|         fp_struct                       | x_hls_utils.h:485     |   3,500 (10 calls) |    130,560 (8704 calls)  |
-|      + to_ieee                          | x_hls_utils.h:538     |  15,800 (50 calls) |  1,044,480 (43520 calls) |
-|       + to_double                       | x_hls_utils.h:523     |  15,700 (50 calls) |    957,440 (43520 calls) |
-|          data                           | x_hls_utils.h:504     |  14,800 (50 calls) |    739,840 (43520 calls) |
-|      + range_reduction<57>              | hls_log_.h:182        | 106,140 (10 calls) | 10,209,792 (8704 calls)  |
-|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  13,090 (10 calls) |  1,131,520 (8704 calls)  |
-|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  12,770 (10 calls) |  1,096,704 (8704 calls)  |
-|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  12,790 (10 calls) |  1,105,408 (8704 calls)  |
-|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  12,820 (10 calls) |  1,105,408 (8704 calls)  |
-|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  12,830 (10 calls) |  1,105,408 (8704 calls)  |
-|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  12,860 (10 calls) |  1,105,408 (8704 calls)  |
-|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  12,860 (10 calls) |  1,105,408 (8704 calls)  |
-+-----------------------------------------+-----------------------+--------------------+--------------------------+
++-----------------------------------------+-----------------------+--------------------+------------------------+----------------------+-------------------+
+| Function                                | Location              | Compile/Link       | Unroll/Inline          | Performance/Pipeline | Optimizations     |
++-----------------------------------------+-----------------------+--------------------+------------------------+----------------------+-------------------+
+| + Crypto1                               | Crypto1.cpp:15        | 444,165 *          | 1,058,303 *            | 23,720               | 23,962            |
+|  + Configurable_PE                      | Arithmetic.cpp:185    |  74,310 (5 calls)  |    11,391 (15 calls)   |  8,568 (21 calls)    |  8,613 (21 calls) |
+|     ADD_MOD                             | Arithmetic.cpp:71     |   4,290 (15 calls) |                        |                      |                   |
+|     SUB_MOD                             | Arithmetic.cpp:84     |   4,500 (15 calls) |                        |                      |                   |
+|   + MUL_MOD                             | Arithmetic.cpp:118    |  60,570 (15 calls) |     7,938 (45 calls)   |  6,174 (63 calls)    |  6,237 (63 calls) |
+|      STEPMUL                            | Arithmetic.cpp:35     |  47,700 (45 calls) |                        |                      |                   |
+|  + generate_input_index                 | Utils.cpp:205         | 163,630 (2 calls)  |    61,110 (6 calls)    |  5,520 (6 calls)     |  5,490 (6 calls)  |
+|   + log2                                | logdouble.cpp:7       | 146,032 (8 calls)  |    53,424 (24 calls)   |                      |                   |
+|    + log2                               | hls_log_double.cpp:12 | 146,016 (8 calls)  |    53,376 (24 calls)   |                      |                   |
+|     + log_generic<double>               | hls_log_.h:211        | 145,992 (8 calls)  |    53,304 (24 calls)   |                      |                   |
+|        fp_struct                        | x_hls_utils.h:485     |   2,800 (8 calls)  |       360 (24 calls)   |                      |                   |
+|        fp_struct                        | x_hls_utils.h:483     |     224 (8 calls)  |                        |                      |                   |
+|        expv                             | x_hls_utils.h:514     |     872 (8 calls)  |       144 (24 calls)   |                      |                   |
+|      + generic_isnan<double>            | hls_isnan.h:16        |   3,368 (8 calls)  |       696 (24 calls)   |                      |                   |
+|         fp_struct                       | x_hls_utils.h:485     |   2,800 (8 calls)  |       360 (24 calls)   |                      |                   |
+|      + generic_isinf<double>            | hls_isinf.h:16        |   3,360 (8 calls)  |       672 (24 calls)   |                      |                   |
+|         fp_struct                       | x_hls_utils.h:485     |   2,800 (8 calls)  |       360 (24 calls)   |                      |                   |
+|      + to_ieee                          | x_hls_utils.h:538     |  12,640 (40 calls) |     2,880 (120 calls)  |                      |                   |
+|       + to_double                       | x_hls_utils.h:523     |  12,560 (40 calls) |     2,640 (120 calls)  |                      |                   |
+|          data                           | x_hls_utils.h:504     |  11,840 (40 calls) |     2,040 (120 calls)  |                      |                   |
+|      + range_reduction<57>              | hls_log_.h:182        |  84,912 (8 calls)  |    28,152 (24 calls)   |                      |                   |
+|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  10,472 (8 calls)  |     3,120 (24 calls)   |                      |                   |
+|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  10,216 (8 calls)  |     3,024 (24 calls)   |                      |                   |
+|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  10,232 (8 calls)  |     3,048 (24 calls)   |                      |                   |
+|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  10,256 (8 calls)  |     3,048 (24 calls)   |                      |                   |
+|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  10,264 (8 calls)  |     3,048 (24 calls)   |                      |                   |
+|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  10,288 (8 calls)  |     3,048 (24 calls)   |                      |                   |
+|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  10,288 (8 calls)  |     3,048 (24 calls)   |                      |                   |
+|   + log_generic<double>                 | hls_log_.h:211        |                    |                        |  2,412 (6 calls)     |  2,382 (6 calls)  |
+|      range_reduction<57>                | hls_log_.h:182        |                    |                        |    186 (6 calls)     |    186 (6 calls)  |
+|  + generate_output_index                | Utils.cpp:228         | 204,522 (2 calls)  |   983,904 (6 calls)    |  6,912 (6 calls)     |  6,882 (6 calls)  |
+|   + log2                                | logdouble.cpp:7       | 182,540 (10 calls) |   908,208 (408 calls)  |                      |                   |
+|    + log2                               | hls_log_double.cpp:12 | 182,520 (10 calls) |   907,392 (408 calls)  |                      |                   |
+|     + log_generic<double>               | hls_log_.h:211        | 182,490 (10 calls) |   906,168 (408 calls)  |                      |                   |
+|        fp_struct                        | x_hls_utils.h:485     |   3,500 (10 calls) |     6,120 (408 calls)  |                      |                   |
+|        fp_struct                        | x_hls_utils.h:483     |     280 (10 calls) |                        |                      |                   |
+|        expv                             | x_hls_utils.h:514     |   1,090 (10 calls) |     2,448 (408 calls)  |                      |                   |
+|      + generic_isnan<double>            | hls_isnan.h:16        |   4,210 (10 calls) |    11,832 (408 calls)  |                      |                   |
+|         fp_struct                       | x_hls_utils.h:485     |   3,500 (10 calls) |     6,120 (408 calls)  |                      |                   |
+|      + generic_isinf<double>            | hls_isinf.h:16        |   4,200 (10 calls) |    11,424 (408 calls)  |                      |                   |
+|         fp_struct                       | x_hls_utils.h:485     |   3,500 (10 calls) |     6,120 (408 calls)  |                      |                   |
+|      + to_ieee                          | x_hls_utils.h:538     |  15,800 (50 calls) |    48,960 (2040 calls) |                      |                   |
+|       + to_double                       | x_hls_utils.h:523     |  15,700 (50 calls) |    44,880 (2040 calls) |                      |                   |
+|          data                           | x_hls_utils.h:504     |  14,800 (50 calls) |    34,680 (2040 calls) |                      |                   |
+|      + range_reduction<57>              | hls_log_.h:182        | 106,140 (10 calls) |   478,584 (408 calls)  |                      |                   |
+|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  13,090 (10 calls) |    53,040 (408 calls)  |                      |                   |
+|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  12,770 (10 calls) |    51,408 (408 calls)  |                      |                   |
+|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  12,790 (10 calls) |    51,816 (408 calls)  |                      |                   |
+|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  12,820 (10 calls) |    51,816 (408 calls)  |                      |                   |
+|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  12,830 (10 calls) |    51,816 (408 calls)  |                      |                   |
+|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  12,860 (10 calls) |    51,816 (408 calls)  |                      |                   |
+|         range_reduce<ap_fixed<102, 1... | hls_log_.h:57         |  12,860 (10 calls) |    51,816 (408 calls)  |                      |                   |
+|   + log_generic<double>                 | hls_log_.h:211        |                    |                        |  2,412 (6 calls)     |  2,382 (6 calls)  |
+|      range_reduction<57>                | hls_log_.h:182        |                    |                        |    186 (6 calls)     |    186 (6 calls)  |
++-----------------------------------------+-----------------------+--------------------+------------------------+----------------------+-------------------+
     * - Exceeded design size warning message threshold
 
 * Description of Compilation Phases

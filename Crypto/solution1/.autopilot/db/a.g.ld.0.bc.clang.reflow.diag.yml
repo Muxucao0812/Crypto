@@ -1,0 +1,1409 @@
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: Arithmetic.cpp, Line: 138, Column: 5 }
+Function:        _Z7MUL_MODP6ap_intILi32EES1_S1_i
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'STEPMUL(ap_int<32>*, ap_int<32>*, ap_int<64>*)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 35, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 118, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: Arithmetic.cpp, Line: 132, Column: 5 }
+Function:        _Z7MUL_MODP6ap_intILi32EES1_S1_i
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'STEPMUL(ap_int<32>*, ap_int<32>*, ap_int<64>*)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 35, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 118, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: Arithmetic.cpp, Line: 126, Column: 5 }
+Function:        _Z7MUL_MODP6ap_intILi32EES1_S1_i
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'STEPMUL(ap_int<32>*, ap_int<32>*, ap_int<64>*)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 35, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 118, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: Arithmetic.cpp, Line: 191, Column: 9 }
+Function:        _Z15Configurable_PEP6ap_intILi32EES1_S1_S1_S1_i9Operation
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 71, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'Configurable_PE(ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, int, Operation)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 185, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: Arithmetic.cpp, Line: 194, Column: 9 }
+Function:        _Z15Configurable_PEP6ap_intILi32EES1_S1_S1_S1_i9Operation
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 84, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'Configurable_PE(ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, int, Operation)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 185, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: Arithmetic.cpp, Line: 207, Column: 9 }
+Function:        _Z15Configurable_PEP6ap_intILi32EES1_S1_S1_S1_i9Operation
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 84, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'Configurable_PE(ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, int, Operation)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 185, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: Arithmetic.cpp, Line: 206, Column: 9 }
+Function:        _Z15Configurable_PEP6ap_intILi32EES1_S1_S1_S1_i9Operation
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 71, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'Configurable_PE(ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, int, Operation)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 185, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: Arithmetic.cpp, Line: 202, Column: 9 }
+Function:        _Z15Configurable_PEP6ap_intILi32EES1_S1_S1_S1_i9Operation
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'SUB_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 84, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'Configurable_PE(ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, int, Operation)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 185, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: Arithmetic.cpp, Line: 201, Column: 9 }
+Function:        _Z15Configurable_PEP6ap_intILi32EES1_S1_S1_S1_i9Operation
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'ADD_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 71, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'Configurable_PE(ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, ap_int<32>*, int, Operation)'
+    DebugLoc:        { File: Arithmetic.cpp, Line: 185, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                   Line: 359, Column: 2 }
+Function:        _ZN10log_reduce11log_genericIdEET_S1_
+Args:            
+  - String:          'Loop '''
+  - LoopName:        anonymous
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto1.cpp, Line: 23, Column: 0 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        WRITE_DATA_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto1.cpp:73:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto1
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto1.cpp, Line: 23, Column: 0 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        WRITE_DATA_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto1.cpp:73:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto1
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto1.cpp, Line: 23, Column: 0 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        READ_DATA_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto1.cpp:93:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto1
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto1.cpp, Line: 23, Column: 0 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        READ_DATA_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto1.cpp:93:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto1
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto1.cpp, Line: 23, Column: 0 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_ADD_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto1.cpp:169:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto1
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto1.cpp, Line: 23, Column: 0 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_ADD_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto1.cpp:169:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto1
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto1.cpp, Line: 23, Column: 0 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_SUB_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto1.cpp:217:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto1
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto1.cpp, Line: 23, Column: 0 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_SUB_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto1.cpp:217:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto1
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto1.cpp, Line: 23, Column: 0 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_MUL_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto1.cpp:254:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto1
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto1.cpp, Line: 23, Column: 0 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        POLY_MUL_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto1.cpp:254:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto1
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto1.cpp, Line: 23, Column: 0 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        NTT_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto1.cpp:288:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto1
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto1.cpp, Line: 23, Column: 0 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        NTT_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto1.cpp:288:13'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto1
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartially2FullyUnroll
+DebugLoc:        { File: Crypto1.cpp, Line: 23, Column: 0 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        INTT_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto1.cpp:360:9'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto1
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '3'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '3'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Crypto1.cpp, Line: 23, Column: 0 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        INTT_MOD_LOOP
+  - String:          ''' ('
+  - LoopLoc:         'Crypto1.cpp:360:9'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          Crypto1
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Utils.cpp, Line: 228, Column: 0 }
+Function:        _Z21generate_output_indexiiPi
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_239_1
+  - String:          ''' ('
+  - LoopLoc:         'Utils.cpp:239:23'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          generate_output_index
+  - String:          ''' completely with a factor of '
+  - Factor:          '64'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: Utils.cpp, Line: 205, Column: 0 }
+Function:        _Z20generate_input_indexiiPi
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_215_1
+  - String:          ''' ('
+  - LoopLoc:         'Utils.cpp:215:23'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          generate_input_index
+  - String:          ''' completely with a factor of '
+  - Factor:          '64'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                   Line: 212, Column: 0 }
+Function:        _ZN10log_reduce11log_genericIdEET_S1_
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        anonymous
+  - String:          ''' ('
+  - LoopLoc:         '/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:359:2'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          'log_reduce::log_generic<double>'
+  - String:          ''' completely with a factor of '
+  - Factor:          '99'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Arithmetic.cpp, Line: 197, Column: 9 }
+Function:        _Z15Configurable_PEP6ap_intILi32EES1_S1_S1_S1_i9Operation
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.6)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Failure
+Pass:            reflow-function-uniquification
+Name:            FunctionUniquification
+DebugLoc:        { File: Arithmetic.cpp, Line: 197, Column: 9 }
+Function:        _Z15Configurable_PEP6ap_intILi32EES1_S1_S1_S1_i9Operation.136.139.143
+Args:            
+  - String:          'Duplicating function '''
+  - Name:            'MUL_MOD(ap_int<32>*, ap_int<32>*, ap_int<32>*, int) (.6)'
+  - String:          ''' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.'
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isnan.h, 
+                   Line: 16, Column: 0 }
+Function:        _Z13generic_isnanIdEiT_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'fp_struct<double>::fp_struct(double)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                       Line: 485, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'int generic_isnan<double>(double)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isnan.h, 
+                       Line: 16, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isinf.h, 
+                   Line: 16, Column: 0 }
+Function:        _Z13generic_isinfIdEiT_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'fp_struct<double>::fp_struct(double)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                       Line: 485, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'int generic_isinf<double>(double)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isinf.h, 
+                       Line: 16, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                   Line: 523, Column: 0 }
+Function:        _ZNK9fp_structIdE9to_doubleEv.67.77.102.112
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'fp_struct<double>::data() const (.70.80.105.115)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                       Line: 504, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'fp_struct<double>::to_double() const (.67.77.102.112)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                       Line: 523, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                   Line: 538, Column: 0 }
+Function:        _ZNK9fp_structIdE7to_ieeeEv
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'fp_struct<double>::to_double() const (.67.77.102.112)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                       Line: 523, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'fp_struct<double>::to_ieee() const'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                       Line: 538, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                   Line: 182, Column: 0 }
+Function:        _ZN10log_reduce10log_traitsIdE15range_reductionILi57EEE9ap_ufixedILi53ELin37EL9ap_q_mode5EL9ap_o_mode3ELi0EES3_IXT_ELin4ELS4_5ELS5_3ELi0EER8ap_fixedILi102ELi12ELS4_5ELS5_3ELi0EE
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'void log_reduce::range_reduce<ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 4, 4, 57, 59>(ap_ufixed<57, -(4), (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>&, ap_ufixed<59, -(((4) + (4)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0>&)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 58, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'ap_ufixed<53, -37, (ap_q_mode)5, (ap_o_mode)3, 0> log_reduce::log_traits<double>::range_reduction<57>(ap_ufixed<57, -4, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>&)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 182, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                   Line: 182, Column: 0 }
+Function:        _ZN10log_reduce10log_traitsIdE15range_reductionILi57EEE9ap_ufixedILi53ELin37EL9ap_q_mode5EL9ap_o_mode3ELi0EES3_IXT_ELin4ELS4_5ELS5_3ELi0EER8ap_fixedILi102ELi12ELS4_5ELS5_3ELi0EE
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'void log_reduce::range_reduce<ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 7, 6, 59, 69>(ap_ufixed<59, -(7), (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>&, ap_ufixed<69, -(((7) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0>&)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 58, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'ap_ufixed<53, -37, (ap_q_mode)5, (ap_o_mode)3, 0> log_reduce::log_traits<double>::range_reduction<57>(ap_ufixed<57, -4, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>&)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 182, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                   Line: 182, Column: 0 }
+Function:        _ZN10log_reduce10log_traitsIdE15range_reductionILi57EEE9ap_ufixedILi53ELin37EL9ap_q_mode5EL9ap_o_mode3ELi0EES3_IXT_ELin4ELS4_5ELS5_3ELi0EER8ap_fixedILi102ELi12ELS4_5ELS5_3ELi0EE
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'void log_reduce::range_reduce<ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 12, 6, 69, 73>(ap_ufixed<69, -(12), (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>&, ap_ufixed<73, -(((12) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0>&)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 58, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'ap_ufixed<53, -37, (ap_q_mode)5, (ap_o_mode)3, 0> log_reduce::log_traits<double>::range_reduction<57>(ap_ufixed<57, -4, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>&)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 182, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                   Line: 182, Column: 0 }
+Function:        _ZN10log_reduce10log_traitsIdE15range_reductionILi57EEE9ap_ufixedILi53ELin37EL9ap_q_mode5EL9ap_o_mode3ELi0EES3_IXT_ELin4ELS4_5ELS5_3ELi0EER8ap_fixedILi102ELi12ELS4_5ELS5_3ELi0EE
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'void log_reduce::range_reduce<ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 17, 6, 73, 68>(ap_ufixed<73, -(17), (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>&, ap_ufixed<68, -(((17) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0>&)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 58, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'ap_ufixed<53, -37, (ap_q_mode)5, (ap_o_mode)3, 0> log_reduce::log_traits<double>::range_reduction<57>(ap_ufixed<57, -4, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>&)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 182, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                   Line: 182, Column: 0 }
+Function:        _ZN10log_reduce10log_traitsIdE15range_reductionILi57EEE9ap_ufixedILi53ELin37EL9ap_q_mode5EL9ap_o_mode3ELi0EES3_IXT_ELin4ELS4_5ELS5_3ELi0EER8ap_fixedILi102ELi12ELS4_5ELS5_3ELi0EE
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'void log_reduce::range_reduce<ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 22, 6, 68, 63>(ap_ufixed<68, -(22), (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>&, ap_ufixed<63, -(((22) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0>&)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 58, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'ap_ufixed<53, -37, (ap_q_mode)5, (ap_o_mode)3, 0> log_reduce::log_traits<double>::range_reduction<57>(ap_ufixed<57, -4, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>&)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 182, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                   Line: 182, Column: 0 }
+Function:        _ZN10log_reduce10log_traitsIdE15range_reductionILi57EEE9ap_ufixedILi53ELin37EL9ap_q_mode5EL9ap_o_mode3ELi0EES3_IXT_ELin4ELS4_5ELS5_3ELi0EER8ap_fixedILi102ELi12ELS4_5ELS5_3ELi0EE
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'void log_reduce::range_reduce<ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 27, 6, 63, 58>(ap_ufixed<63, -(27), (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>&, ap_ufixed<58, -(((27) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0>&)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 58, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'ap_ufixed<53, -37, (ap_q_mode)5, (ap_o_mode)3, 0> log_reduce::log_traits<double>::range_reduction<57>(ap_ufixed<57, -4, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>&)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 182, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                   Line: 182, Column: 0 }
+Function:        _ZN10log_reduce10log_traitsIdE15range_reductionILi57EEE9ap_ufixedILi53ELin37EL9ap_q_mode5EL9ap_o_mode3ELi0EES3_IXT_ELin4ELS4_5ELS5_3ELi0EER8ap_fixedILi102ELi12ELS4_5ELS5_3ELi0EE
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'void log_reduce::range_reduce<ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 32, 6, 58, 53>(ap_ufixed<58, -(32), (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>&, ap_ufixed<53, -(((32) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0>&)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 58, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'ap_ufixed<53, -37, (ap_q_mode)5, (ap_o_mode)3, 0> log_reduce::log_traits<double>::range_reduction<57>(ap_ufixed<57, -4, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<102, 12, (ap_q_mode)5, (ap_o_mode)3, 0>&)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 182, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                   Line: 212, Column: 0 }
+Function:        _ZN10log_reduce11log_genericIdEET_S1_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'fp_struct<double>::fp_struct(double)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                       Line: 485, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'double log_reduce::log_generic<double>(double)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 212, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                   Line: 212, Column: 0 }
+Function:        _ZN10log_reduce11log_genericIdEET_S1_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'fp_struct<double>::expv() const'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                       Line: 514, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'double log_reduce::log_generic<double>(double)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 212, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                   Line: 212, Column: 0 }
+Function:        _ZN10log_reduce11log_genericIdEET_S1_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'int generic_isnan<double>(double)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isnan.h, 
+                       Line: 16, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'double log_reduce::log_generic<double>(double)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 212, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                   Line: 212, Column: 0 }
+Function:        _ZN10log_reduce11log_genericIdEET_S1_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'int generic_isinf<double>(double)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isinf.h, 
+                       Line: 16, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'double log_reduce::log_generic<double>(double)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 212, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                   Line: 212, Column: 0 }
+Function:        _ZN10log_reduce11log_genericIdEET_S1_
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'fp_struct<double>::to_ieee() const'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                       Line: 538, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'double log_reduce::log_generic<double>(double)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h, 
+                       Line: 212, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/c/logdouble.cpp, 
+                   Line: 7, Column: 0 }
+Function:        log2
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'log_reduce::log2(double)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/common/hls_log_double.cpp, 
+                       Line: 12, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          log2
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/c/logdouble.cpp, 
+                       Line: 7, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h, 
+                   Line: 12, Column: 0 }
+Function:        _Z20generic_cast_IEEE754IiL9ap_q_mode6EdET_T1_bN3hls9enable_ifIXsr3std14numeric_limitsIS1_EE9is_signedEbE4typeE
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'fp_struct<double>::fp_struct(double)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                       Line: 485, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'int generic_cast_IEEE754<int, (ap_q_mode)6, double>(double, bool, hls::enable_if<std::numeric_limits<int>::is_signed, bool>::type)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h, 
+                       Line: 12, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h, 
+                   Line: 12, Column: 0 }
+Function:        _Z20generic_cast_IEEE754IiL9ap_q_mode6EdET_T1_bN3hls9enable_ifIXsr3std14numeric_limitsIS1_EE9is_signedEbE4typeE
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'fp_struct<double>::mantissa() const'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                       Line: 532, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'int generic_cast_IEEE754<int, (ap_q_mode)6, double>(double, bool, hls::enable_if<std::numeric_limits<int>::is_signed, bool>::type)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h, 
+                       Line: 12, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h, 
+                   Line: 12, Column: 0 }
+Function:        _Z20generic_cast_IEEE754IiL9ap_q_mode6EdET_T1_bN3hls9enable_ifIXsr3std14numeric_limitsIS1_EE9is_signedEbE4typeE
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'fp_struct<double>::expv() const'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                       Line: 514, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'int generic_cast_IEEE754<int, (ap_q_mode)6, double>(double, bool, hls::enable_if<std::numeric_limits<int>::is_signed, bool>::type)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h, 
+                       Line: 12, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h, 
+                   Line: 12, Column: 0 }
+Function:        _Z20generic_cast_IEEE754IiL9ap_q_mode6EdET_T1_bN3hls9enable_ifIXsr3std14numeric_limitsIS1_EE9is_signedEbE4typeE
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'fp_struct<double>::__signbit() const'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h, 
+                       Line: 541, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'int generic_cast_IEEE754<int, (ap_q_mode)6, double>(double, bool, hls::enable_if<std::numeric_limits<int>::is_signed, bool>::type)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h, 
+                       Line: 12, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h, 
+                   Line: 116, Column: 0 }
+Function:        _Z20generic_cast_IEEE754IidET_T0_b
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'int generic_cast_IEEE754<int, (ap_q_mode)6, double>(double, bool, hls::enable_if<std::numeric_limits<int>::is_signed, bool>::type)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h, 
+                       Line: 12, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'int generic_cast_IEEE754<int, double>(double, bool)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h, 
+                       Line: 116, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/lib_floatconversion.cpp, 
+                   Line: 55, Column: 0 }
+Function:        __hls_fptosi_double_i32
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'int generic_cast_IEEE754<int, double>(double, bool)'
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h, 
+                       Line: 116, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          __hls_fptosi_double_i32
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/lib_floatconversion.cpp, 
+                       Line: 55, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: Utils.cpp, Line: 205, Column: 0 }
+Function:        _Z20generate_input_indexiiPi
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          log2
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/c/logdouble.cpp, 
+                       Line: 7, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'generate_input_index(int, int, int*)'
+    DebugLoc:        { File: Utils.cpp, Line: 205, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: Utils.cpp, Line: 205, Column: 0 }
+Function:        _Z20generate_input_indexiiPi
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          __hls_fptosi_double_i32
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/lib_floatconversion.cpp, 
+                       Line: 55, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'generate_input_index(int, int, int*)'
+    DebugLoc:        { File: Utils.cpp, Line: 205, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: Utils.cpp, Line: 228, Column: 0 }
+Function:        _Z21generate_output_indexiiPi
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          log2
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/c/logdouble.cpp, 
+                       Line: 7, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'generate_output_index(int, int, int*)'
+    DebugLoc:        { File: Utils.cpp, Line: 228, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            AutoInline
+DebugLoc:        { File: Utils.cpp, Line: 228, Column: 0 }
+Function:        _Z21generate_output_indexiiPi
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          __hls_fptosi_double_i32
+    DebugLoc:        { File: /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/lib_floatconversion.cpp, 
+                       Line: 55, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'generate_output_index(int, int, int*)'
+    DebugLoc:        { File: Utils.cpp, Line: 228, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: Crypto1.cpp, Line: 28, Column: 14 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          DataRAM
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Block
+  - String:          ' partitioning'
+  - String:          ' with factor '
+  - Factor:          '8'
+  - String:          ' on dimension '
+  - Dim:             '4'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: Crypto1.cpp, Line: 29, Column: 14 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          NTTTWiddleRAM
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Cyclic
+  - String:          ' partitioning'
+  - String:          ' with factor '
+  - Factor:          '4'
+  - String:          ' on dimension '
+  - Dim:             '3'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: Crypto1.cpp, Line: 30, Column: 14 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          INTTTWiddleRAM
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Cyclic
+  - String:          ' partitioning'
+  - String:          ' with factor '
+  - Factor:          '4'
+  - String:          ' on dimension '
+  - Dim:             '3'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: Crypto1.cpp, Line: 49, Column: 14 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          ReadData
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Cyclic
+  - String:          ' partitioning'
+  - String:          ' with factor '
+  - Factor:          '4'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: Crypto1.cpp, Line: 51, Column: 14 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          PermuteData
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Cyclic
+  - String:          ' partitioning'
+  - String:          ' with factor '
+  - Factor:          '4'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: Crypto1.cpp, Line: 52, Column: 14 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          NTTData
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Cyclic
+  - String:          ' partitioning'
+  - String:          ' with factor '
+  - Factor:          '4'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: Crypto1.cpp, Line: 53, Column: 14 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          TwiddleFactor
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          AddInput1_Reg
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          AddInput2_Reg
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          AddRes_Final
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          SubInput1
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          SubInput2
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          SubRes
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          MulInput1
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          MulInput2
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          MulRes
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 333, Column: 20 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        VITIS_LOOP_333_5
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:333:20'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 293, Column: 21 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        NTT_ROW_LOOP
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:293:21'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 291, Column: 17 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        NTT_STAGE_LOOP
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:291:17'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 333, Column: 20 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        VITIS_LOOP_333_5
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:333:20'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 293, Column: 21 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        NTT_ROW_LOOP
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:293:21'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 291, Column: 17 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        NTT_STAGE_LOOP
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:291:17'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 333, Column: 20 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        VITIS_LOOP_333_5
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:333:20'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 293, Column: 21 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        NTT_ROW_LOOP
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:293:21'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 291, Column: 17 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        NTT_STAGE_LOOP
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:291:17'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 411, Column: 21 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        VITIS_LOOP_411_11
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:411:21'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 366, Column: 17 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        INTT_ROW_LOOP
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:366:17'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 363, Column: 13 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        INTT_STAGE_LOOP
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:363:13'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 411, Column: 21 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        VITIS_LOOP_411_11
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:411:21'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 366, Column: 17 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        INTT_ROW_LOOP
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:366:17'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 363, Column: 13 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        INTT_STAGE_LOOP
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:363:13'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 411, Column: 21 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        VITIS_LOOP_411_11
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:411:21'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 366, Column: 17 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        INTT_ROW_LOOP
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:366:17'
+  - String:          ') has been inferred.'
+...
+--- !Passed
+Pass:            reflow-occurrence-inference
+Name:            OccurrenceInference
+DebugLoc:        { File: Crypto1.cpp, Line: 363, Column: 13 }
+Function:        _Z7Crypto1RN3hls6streamINS_4axisI6ap_intILi32EELm0ELm0ELm0EEELi0EEES6_iiPA4096_S3_S8_15CryptoOperation
+Args:            
+  - String:          'Occurrence cycles within '''
+  - LoopName:        INTT_STAGE_LOOP
+  - String:          '''('
+  - LoopLoc:         'Crypto1.cpp:363:13'
+  - String:          ') has been inferred.'
+...

@@ -28,8 +28,9 @@ void Crypto1(
     long_int DataRAM[RAMNum][MOD_NUM][SQRT_N][SQRT_N];
     long_int NTTTWiddleRAM[MOD_NUM][PE_NUM][N];
     long_int INTTTWiddleRAM[MOD_NUM][PE_NUM][N];
-    #pragma HLS ARRAY_PARTITION variable=NTTTWiddleRAM complete dim=1
-    #pragma HLS ARRAY_PARTITION variable=INTTTWiddleRAM complete dim=1
+    #pragma HLS ARRAY_PARTITION variable=NTTTWiddleRAM cyclic factor=4 dim=3
+    #pragma HLS ARRAY_PARTITION variable=INTTTWiddleRAM cyclic factor=4 dim=3
+    #pragma HLS ARRAY_PARTITION variable=DataRAM block factor=8 dim=4
 
 
     // ------------------------------------------------------------------
@@ -56,6 +57,12 @@ void Crypto1(
     data_pairs_total = SQRT_N >> 1;
     pairs_per_pe = data_pairs_total / PE_NUM;
 
+    #pragma HLS ARRAY_PARTITION variable=ReadData cyclic factor=4 dim=1
+    #pragma HLS ARRAY_PARTITION variable=PermuteData cyclic factor=4 dim=1
+    #pragma HLS ARRAY_PARTITION variable=NTTData cyclic factor=4 dim=1
+    #pragma HLS ARRAY_PARTITION variable=TwiddleFactor complete dim=1
+    #pragma HLS ARRAY_PARTITION variable=TwiddleIndex complete dim=1
+
     switch (OP)
     {
         // --------------------------------------------------------------
@@ -67,7 +74,6 @@ void Crypto1(
                 #pragma HLS UNROLL factor=MOD_NUM
                 WRITE_DATA_ROW_LOOP:
                 for (int j = 0; j < SQRT_N; j++) {
-                    #pragma HLS PIPELINE II=1
                     WRITE_DATA_COL_LOOP:
                     for (int k = 0; k < SQRT_N; k++) {
                         DataStreamReg = DataInStream.read();
@@ -88,7 +94,6 @@ void Crypto1(
                 #pragma HLS UNROLL factor=MOD_NUM
                 READ_DATA_ROW_LOOP:
                 for (int j = 0; j < SQRT_N; j++) {
-                    #pragma HLS PIPELINE II=1
                     READ_DATA_COL_LOOP:
                     for (int k = 0; k < SQRT_N; k++) {
                         DataStreamReg.data = DataRAM[RAMSel][i][j][k];
@@ -120,41 +125,41 @@ void Crypto1(
             break;
         }
 
-        // --------------------------------------------------------------
-        // Case 4: Modular Reduction (Fully Unrolled)
-        // --------------------------------------------------------------
-       case POLY_MOD_MODULUS: {
-           POLY_MOD_MODULUS_LOOP:
-           for (int i = 0; i < MOD_NUM; i++) {
-               #pragma HLS UNROLL factor=MOD_NUM
-               POLY_MOD_ROW_LOOP:
-               for (int j = 0; j < SQRT_N; j++) {
-                   long_int ModInput[PE_NUM], ModRes[PE_NUM];
-                   #pragma HLS ARRAY_PARTITION variable=ModInput complete dim=1
-                   #pragma HLS ARRAY_PARTITION variable=ModRes complete dim=1
-                   POLY_MOD_COL_LOOP:
-                   for (int k = 0; k < SQRT_N; k = k + PE_NUM) {
-                       #pragma HLS PIPELINE II=1
-                       POLY_MOD_PE_LOOP_READ:
-                       for (int l = 0; l < PE_NUM; l++) {
-                           #pragma HLS UNROLL
-                           ModInput[l] = DataRAM[RAMSel][i][j][k + l];
-                       }
-                       POLY_MOD_PE_LOOP_PROCESS:
-                       for (int l = 0; l < PE_NUM; l++) {
-                           #pragma HLS UNROLL
-                           MOD_PLAINTEXTMODULUS(&ModInput[l], &ModRes[l]);
-                       }
-                       POLY_MOD_PE_LOOP_WRITE:
-                       for (int l = 0; l < PE_NUM; l++) {
-                           #pragma HLS UNROLL
-                           DataRAM[RAMSel][i][j][k + l] = ModRes[l];
-                       }
-                   }
-               }
-           }
-           break;
-       }
+    //     // --------------------------------------------------------------
+    //     // Case 4: Modular Reduction (Fully Unrolled)
+    //     // --------------------------------------------------------------
+    //    case POLY_MOD_MODULUS: {
+    //        POLY_MOD_MODULUS_LOOP:
+    //        for (int i = 0; i < MOD_NUM; i++) {
+    //            #pragma HLS UNROLL factor=MOD_NUM
+    //            POLY_MOD_ROW_LOOP:
+    //            for (int j = 0; j < SQRT_N; j++) {
+    //                long_int ModInput[PE_NUM], ModRes[PE_NUM];
+    //                #pragma HLS ARRAY_PARTITION variable=ModInput complete dim=1
+    //                #pragma HLS ARRAY_PARTITION variable=ModRes complete dim=1
+    //                POLY_MOD_COL_LOOP:
+    //                for (int k = 0; k < SQRT_N; k = k + PE_NUM) {
+    //                    #pragma HLS PIPELINE II=1
+    //                    POLY_MOD_PE_LOOP_READ:
+    //                    for (int l = 0; l < PE_NUM; l++) {
+    //                        #pragma HLS UNROLL
+    //                        ModInput[l] = DataRAM[RAMSel][i][j][k + l];
+    //                    }
+    //                    POLY_MOD_PE_LOOP_PROCESS:
+    //                    for (int l = 0; l < PE_NUM; l++) {
+    //                        #pragma HLS UNROLL
+    //                        MOD_PLAINTEXTMODULUS(&ModInput[l], &ModRes[l]);
+    //                    }
+    //                    POLY_MOD_PE_LOOP_WRITE:
+    //                    for (int l = 0; l < PE_NUM; l++) {
+    //                        #pragma HLS UNROLL
+    //                        DataRAM[RAMSel][i][j][k + l] = ModRes[l];
+    //                    }
+    //                }
+    //            }
+    //        }
+    //        break;
+    //    }
 
         // --------------------------------------------------------------
         // Case 5: Polynomial Addition (Parallel Subword Ops)
@@ -167,15 +172,15 @@ void Crypto1(
                 for (int j = 0; j < SQRT_N; j++) {
                     // Register arrays for pipelining
                     long_int AddInput1_Reg[PE_NUM], AddInput2_Reg[PE_NUM];
-                    long_int AddRes_Intermediate[PE_NUM];
                     long_int AddRes_Final[PE_NUM];     
+
                     #pragma HLS ARRAY_PARTITION variable=AddInput1_Reg complete dim=1
                     #pragma HLS ARRAY_PARTITION variable=AddInput2_Reg complete dim=1
-                    #pragma HLS ARRAY_PARTITION variable=AddRes_Intermediate complete dim=1
                     #pragma HLS ARRAY_PARTITION variable=AddRes_Final complete dim=1              
                     POLY_ADD_COL_LOOP:
                     for (int k = 0; k < SQRT_N; k = k + PE_NUM) {
-                        #pragma HLS PIPELINE II=1
+                
+
                         // Stage 1: Read data and register
                         POLY_ADD_PE_LOOP_READ:
                         for (int l = 0; l < PE_NUM; l++) {
@@ -188,17 +193,10 @@ void Crypto1(
                         POLY_ADD_PE_LOOP_PROCESS:
                         for (int l = 0; l < PE_NUM; l++) {
                             #pragma HLS UNROLL factor=PE_NUM
-                            Configurable_PE(&AddInput1_Reg[l], &AddInput2_Reg[l], nullptr, &AddRes_Intermediate[l], nullptr, i, ADD);
+                            Configurable_PE(&AddInput1_Reg[l], &AddInput2_Reg[l], nullptr, &AddRes_Final[l], nullptr, i, ADD);
                         }
                         
-                        // Stage 3: Transfer to final registers
-                        POLY_ADD_PE_LOOP_TRANSFER:
-                        for (int l = 0; l < PE_NUM; l++) {
-                            #pragma HLS UNROLL factor=PE_NUM
-                            AddRes_Final[l] = AddRes_Intermediate[l];
-                        }
-                        
-                        // Stage 4: Write back to memory
+                        // Stage 3: Write back to memory
                         POLY_ADD_PE_LOOP_WRITE:
                         for (int l = 0; l < PE_NUM; l++) {
                             #pragma HLS UNROLL factor=PE_NUM
@@ -226,10 +224,9 @@ void Crypto1(
                     #pragma HLS ARRAY_PARTITION variable=SubRes complete dim=1
                     POLY_SUB_COL_LOOP:
                     for (int k = 0; k < SQRT_N; k = k + PE_NUM) {
-                        #pragma HLS PIPELINE II=1
                         POLY_SUB_PE_LOOP_READ:
                         for (int l = 0; l < PE_NUM; l++) {
-                            #pragma HLS UNROLL  factor=PE_NUM
+                            #pragma HLS UNROLL factor=PE_NUM
                             SubInput1[l] = DataRAM[RAMSel][i][j][k + l];
                             SubInput2[l] = DataRAM[RAMSel1][i][j][k + l];
                         }
@@ -264,7 +261,6 @@ void Crypto1(
                     #pragma HLS ARRAY_PARTITION variable=MulRes complete dim=1
                     POLY_MUL_COL_LOOP:
                     for (int k = 0; k < SQRT_N; k = k + PE_NUM) {
-                        #pragma HLS PIPELINE II=1
                         POLY_MUL_PE_LOOP_READ:
                         for (int l = 0; l < PE_NUM; l++) {
                             #pragma HLS UNROLL factor=PE_NUM
@@ -273,7 +269,7 @@ void Crypto1(
                         }
                         POLY_MUL_PE_LOOP_PROCESS:
                         for (int l = 0; l < PE_NUM; l++) {
-                            #pragma HLS UNROLL  factor=PE_NUM
+                            #pragma HLS UNROLL factor=PE_NUM
                             Configurable_PE(&MulInput1[l], &MulInput2[l], nullptr, &MulRes[l], nullptr, i, MUL);
                         }
                         POLY_MUL_PE_LOOP_WRITE:
@@ -290,16 +286,15 @@ void Crypto1(
         case POLY_NTT: {
             NTT_MOD_LOOP:
             for (int i = 0; i < MOD_NUM; i++) {
+                #pragma HLS UNROLL factor=MOD_NUM
                 NTT_STAGE_LOOP:
                 for (int j = 0; j < STAGE_NUM; j++) {
-                    #pragma HLS PIPELINE II=1
                     NTT_ROW_LOOP:             
                     for (int k = 0; k < SQRT_N; k++) {
-                        #pragma HLS PIPELINE II=1
                         // STEP 1: Compute the Read Index and Read Data
                         NTT_COL_LOOP:        
                         for (int l = 0; l < SQRT_N; l++) {
-                            #pragma HLS UNROLL factor=SQRT_N
+                            #pragma HLS UNROLL factor=PE_NUM
                             if (j < (STAGE_NUM >> 1)) {
                                 ReadAddr[l] = (l - k + SQRT_N) % (1 << ((STAGE_NUM>>1) - j)) + (k >> ((STAGE_NUM >> 1) - j)) * (SQRT_N >> j);
                                 ReadData[l] = DataRAM[RAMSel][i][ReadAddr[l]][l];
@@ -314,7 +309,7 @@ void Crypto1(
 
                         // STEP 3: Permute the Data based on the Input Index
                         for (int l = 0; l < SQRT_N; l++) {
-                            #pragma HLS UNROLL factor=SQRT_N
+                            #pragma HLS UNROLL factor=PE_NUM
                             PermuteData[l] = ReadData[InputIndex[l]];
                         }
 
@@ -328,6 +323,7 @@ void Crypto1(
                             }
                         }                    
                         for (int l = 0; l < PE_NUM; l++) {
+                            #pragma HLS UNROLL factor=PE_NUM
                             TwiddleFactor[l] = NTTTWiddleRAM[i][l][TwiddleIndex[l]];
                         }
                       
@@ -344,7 +340,7 @@ void Crypto1(
 
                         // STEP 6: Write the Data back to the RAM
                         for (int l = 0; l < SQRT_N; l++) {
-                            #pragma HLS UNROLL factor=SQRT_N
+                            #pragma HLS UNROLL factor=PE_NUM
                             if(j < (STAGE_NUM >> 1)){
                                 DataRAM[RAMSel][i][ReadAddr[l]][l] = NTTData[OutputIndex[l]];
                             } else {
@@ -362,17 +358,16 @@ void Crypto1(
         case POLY_INTT:
         INTT_MOD_LOOP:
         for (int i = 0; i < MOD_NUM; i++) {
+            #pragma HLS UNROLL factor=MOD_NUM
             INTT_STAGE_LOOP:
             for (int j = 0; j < STAGE_NUM; j++) {
-                #pragma HLS PIPELINE II=1
                 int stage_index = STAGE_NUM - j - 1;
                 INTT_ROW_LOOP:
                 for (int k = 0; k < SQRT_N; k++) {
-                    #pragma HLS PIPELINE II=1
                     // STEP 1: Compute the Read Index and Read Data
                     INTT_COL_LOOP:        
                     for (int l = 0; l < SQRT_N; l++) {
-                        #pragma HLS UNROLL
+                        #pragma HLS UNROLL factor=PE_NUM
                         if (j < (STAGE_NUM >> 1)) {
                             ReadData[l] = DataRAM[RAMSel][i][k][l];
                         } else {
@@ -389,14 +384,14 @@ void Crypto1(
 
                     // STEP 3: Permute the Data based on the Input Index
                     for (int l = 0; l < SQRT_N; l++) {
-                        #pragma HLS UNROLL
+                        #pragma HLS UNROLL factor=PE_NUM
                         PermuteData[l] = ReadData[InputIndex[l]];
                     }
 
 
                     // STEP 4: Read the Twiddle Factor
                     for (int l = 0; l < PE_NUM; l++) {
-                        #pragma HLS UNROLL
+                        #pragma HLS UNROLL factor=PE_NUM
                         if (j < (STAGE_NUM >> 1)) {
                             TwiddleIndex[l] = (1 << stage_index) - 1 + (k * (1 << (stage_index - (STAGE_NUM >> 1)))) + (l >> (STAGE_NUM - stage_index - 1));
                         } else {
@@ -405,6 +400,7 @@ void Crypto1(
                     }
                  
                     for (int l = 0; l < PE_NUM; l++) {
+                        #pragma HLS UNROLL factor=PE_NUM
                         TwiddleFactor[l] = INTTTWiddleRAM[i][l][TwiddleIndex[l]];
                     }
                   
@@ -423,7 +419,7 @@ void Crypto1(
 
                     // STEP 6: Write the Data back to the RAM
                     for (int l = 0; l < SQRT_N; l++) {
-                        #pragma HLS UNROLL factor=SQRT_N
+                        #pragma HLS UNROLL factor=PE_NUM
                         if(j < (STAGE_NUM >> 1)){
                             DataRAM[RAMSel][i][k][l] = NTTData[OutputIndex[l]];
                         } else {

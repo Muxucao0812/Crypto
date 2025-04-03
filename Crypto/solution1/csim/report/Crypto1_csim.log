@@ -1,0 +1,71 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../main_TB.cpp in debug mode
+   Compiling ../../../../pow_mod.cpp in debug mode
+   Compiling ../../../../Utils.cpp in debug mode
+   Compiling ../../../../AddressGen.cpp in debug mode
+   Compiling ../../../../Crypto_TB.cpp in debug mode
+   Compiling ../../../../Arithmetic.cpp in debug mode
+   Compiling ../../../../PE_UNIT.cpp in debug mode
+   Compiling ../../../../PE_ARRAY.cpp in debug mode
+   Compiling ../../../../DATAMemory.cpp in debug mode
+   Compiling ../../../../Crypto1.cpp in debug mode
+   Compiling ../../../../Crypto.cpp in debug mode
+   Compiling ../../../../TwiddleMemory.cpp in debug mode
+   Generating csim.exe
+======================
+POLYNOMIAL DEGREE: 4096
+RAM BANK NUM: 64
+RAM DEPTH: 64
+======================
+
+======================
+Crypto Test
+======================
+
+======================
+Write data to RAM and Read data from RAM
+======================
+
+======================
+Write and Read Test Passed
+======================
+
+======================
+Test ADD MOD
+======================
+
+======================
+ADD MOD Test Passed
+======================
+
+======================
+Test MUL MOD
+======================
+
+======================
+ADD MUL Test Passed
+======================
+
+======================
+Test SUB MOD
+======================
+
+======================
+SUB MOD Test Passed
+======================
+
+======================
+Test NTT and INTT
+======================
+
+======================
+NTT and INTT Test Passed
+======================
+
+======================
+Crypto Test Done
+======================
+INFO [HLS SIM]: The maximum depth reached by any hls::stream() instance in the design is 12288
+INFO: [SIM 1] CSim done with 0 errors.
+INFO: [SIM 3] *************** CSIM finish ***************

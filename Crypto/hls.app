@@ -1,5 +1,10 @@
-<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" top="Crypto1" name="Crypto">
-    <files>
+<project xmlns="com.autoesl.autopilot.project" name="Crypto" top="Crypto1" projectType="C/C++">
+    <includePaths/>
+    <libraryPaths/>
+    <Simulation>
+        <SimFlow name="csim" csimMode="0" lastCsimMode="0"/>
+    </Simulation>
+    <files xmlns="">
         <file name="../../main_TB.cpp" sc="0" tb="1" cflags="-Wno-unknown-pragmas" csimflags="" blackbox="false"/>
         <file name="header" sc="0" tb="false" cflags="-I." csimflags="" blackbox="false"/>
         <file name="pow_mod.h" sc="0" tb="false" cflags="-I." csimflags="" blackbox="false"/>
@@ -37,8 +42,8 @@
         <file name="Crypto.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
         <file name="TwiddleMemory.cpp" sc="0" tb="false" cflags="" csimflags="" blackbox="false"/>
     </files>
-    <solutions>
-        <solution name="solution1" status=""/>
+    <solutions xmlns="">
+        <solution name="solution1" status="active"/>
     </solutions>
-</AutoPilot:project>
+</project>
 

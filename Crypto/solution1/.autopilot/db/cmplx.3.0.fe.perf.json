@@ -1,0 +1,149 @@
+{
+  "0": {
+    "basicblocks": 503,
+    "calls": "6 6 6 9 8 3 3 9 8 3 3 6 6 6 6 6 6 9 8 3 3 9 8 3 3 9 8 3 3 9 8 3 3",
+    "file": "Crypto1.cpp",
+    "fileloc": 15,
+    "instructions": 2720,
+    "loads": {
+      "L": 390,
+      "T": 2
+    },
+    "name": "Crypto1",
+    "stores": {
+      "L": 299
+    },
+    "total_instructions": 23720
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 118,
+    "instructions": 18,
+    "loads": {
+      "G": 1
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 18
+  },
+  "2": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "hls_log_.h",
+    "fileloc": 182,
+    "instructions": 31,
+    "loads": {
+      "L": 1
+    },
+    "name": "range_reduction<57>",
+    "stores": {
+      "L": 5
+    },
+    "total_instructions": 31
+  },
+  "3": {
+    "basicblocks": 19,
+    "calls": "4 7 7",
+    "file": "Arithmetic.cpp",
+    "fileloc": 185,
+    "instructions": 126,
+    "loads": {
+      "G": 4,
+      "L": 3
+    },
+    "name": "Configurable_PE",
+    "stores": {
+      "L": 13
+    },
+    "total_instructions": 516
+  },
+  "4": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 118,
+    "instructions": 130,
+    "loads": {
+      "G": 2
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 130
+  },
+  "5": {
+    "basicblocks": 101,
+    "calls": "2",
+    "file": "hls_log_.h",
+    "fileloc": 211,
+    "instructions": 371,
+    "loads": {
+      "L": 2
+    },
+    "name": "log_generic<double>",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 402
+  },
+  "6": {
+    "basicblocks": 15,
+    "calls": "4 1 1",
+    "file": "Arithmetic.cpp",
+    "fileloc": 185,
+    "instructions": 98,
+    "loads": {
+      "G": 4,
+      "L": 2
+    },
+    "name": "Configurable_PE",
+    "stores": {
+      "L": 11
+    },
+    "total_instructions": 264
+  },
+  "7": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 118,
+    "instructions": 130,
+    "loads": {
+      "G": 2
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 130
+  },
+  "8": {
+    "basicblocks": 1,
+    "calls": "5",
+    "file": "Utils.cpp",
+    "fileloc": 228,
+    "instructions": 750,
+    "name": "generate_output_index",
+    "stores": {
+      "L": 64
+    },
+    "total_instructions": 1152
+  },
+  "9": {
+    "basicblocks": 1,
+    "calls": "5",
+    "file": "Utils.cpp",
+    "fileloc": 205,
+    "instructions": 518,
+    "name": "generate_input_index",
+    "stores": {
+      "L": 64
+    },
+    "total_instructions": 920
+  }
+}

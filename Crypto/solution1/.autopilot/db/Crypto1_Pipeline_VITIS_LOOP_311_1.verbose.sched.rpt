@@ -1,0 +1,193 @@
+
+
+================================================================
+== Vitis HLS Report for 'Crypto1_Pipeline_VITIS_LOOP_311_1'
+================================================================
+* Date:           Thu Mar 27 00:01:03 2025
+
+* Version:        2023.1 (Build 3854077 on May  4 2023)
+* Project:        Crypto
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  4.644 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       68|       68|  0.544 us|  0.544 us|   68|   68|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_311_1  |       66|       66|         4|          1|          1|    64|       yes|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 4
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 4, States = { 1 2 3 4 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 3.45>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%l_3 = alloca i32 1"   --->   Operation 7 'alloca' 'l_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (1.58ns)   --->   "%store_ln0 = store i7 0, i7 %l_3"   --->   Operation 8 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc588"   --->   Operation 9 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%l = load i7 %l_3"   --->   Operation 10 'load' 'l' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 11 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (1.87ns)   --->   "%icmp_ln311 = icmp_eq  i7 %l, i7 64" [Crypto1.cpp:311]   --->   Operation 12 'icmp' 'icmp_ln311' <Predicate = true> <Delay = 1.87> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 13 [1/1] (1.87ns)   --->   "%add_ln311 = add i7 %l, i7 1" [Crypto1.cpp:311]   --->   Operation 13 'add' 'add_ln311' <Predicate = true> <Delay = 1.87> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.87> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%br_ln311 = br i1 %icmp_ln311, void %for.inc588.split, void %VITIS_LOOP_317_2.exitStub" [Crypto1.cpp:311]   --->   Operation 14 'br' 'br_ln311' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%l_3_cast83 = zext i7 %l"   --->   Operation 15 'zext' 'l_3_cast83' <Predicate = (!icmp_ln311)> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%empty = trunc i7 %l"   --->   Operation 16 'trunc' 'empty' <Predicate = (!icmp_ln311)> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%lshr_ln2 = partselect i4 @_ssdm_op_PartSelect.i4.i7.i32.i32, i7 %l, i32 2, i32 5" [Crypto1.cpp:311]   --->   Operation 17 'partselect' 'lshr_ln2' <Predicate = (!icmp_ln311)> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%InputIndex_addr = getelementptr i6 %InputIndex, i64 0, i64 %l_3_cast83" [Crypto1.cpp:313]   --->   Operation 18 'getelementptr' 'InputIndex_addr' <Predicate = (!icmp_ln311)> <Delay = 0.00>
+ST_1 : Operation 19 [2/2] (2.32ns)   --->   "%InputIndex_load = load i6 %InputIndex_addr" [Crypto1.cpp:313]   --->   Operation 19 'load' 'InputIndex_load' <Predicate = (!icmp_ln311)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 6> <Depth = 64> <RAM>
+ST_1 : Operation 20 [1/1] (1.86ns)   --->   "%switch_ln313 = switch i2 %empty, void %arrayidx587.case.3, i2 0, void %arrayidx587.case.0, i2 1, void %arrayidx587.case.1, i2 2, void %arrayidx587.case.2" [Crypto1.cpp:313]   --->   Operation 20 'switch' 'switch_ln313' <Predicate = (!icmp_ln311)> <Delay = 1.86>
+ST_1 : Operation 21 [1/1] (1.58ns)   --->   "%store_ln311 = store i7 %add_ln311, i7 %l_3" [Crypto1.cpp:311]   --->   Operation 21 'store' 'store_ln311' <Predicate = (!icmp_ln311)> <Delay = 1.58>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%br_ln311 = br void %for.inc588" [Crypto1.cpp:311]   --->   Operation 22 'br' 'br_ln311' <Predicate = (!icmp_ln311)> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 4.64>
+ST_2 : Operation 23 [1/2] (2.32ns)   --->   "%InputIndex_load = load i6 %InputIndex_addr" [Crypto1.cpp:313]   --->   Operation 23 'load' 'InputIndex_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 6> <Depth = 64> <RAM>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%trunc_ln313 = trunc i6 %InputIndex_load" [Crypto1.cpp:313]   --->   Operation 24 'trunc' 'trunc_ln313' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%lshr_ln3 = partselect i4 @_ssdm_op_PartSelect.i4.i6.i32.i32, i6 %InputIndex_load, i32 2, i32 5" [Crypto1.cpp:313]   --->   Operation 25 'partselect' 'lshr_ln3' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%zext_ln313 = zext i4 %lshr_ln3" [Crypto1.cpp:313]   --->   Operation 26 'zext' 'zext_ln313' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%ReadData_addr = getelementptr i32 %ReadData, i64 0, i64 %zext_ln313" [Crypto1.cpp:313]   --->   Operation 27 'getelementptr' 'ReadData_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%ReadData_1_addr = getelementptr i32 %ReadData_1, i64 0, i64 %zext_ln313" [Crypto1.cpp:313]   --->   Operation 28 'getelementptr' 'ReadData_1_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%ReadData_2_addr = getelementptr i32 %ReadData_2, i64 0, i64 %zext_ln313" [Crypto1.cpp:313]   --->   Operation 29 'getelementptr' 'ReadData_2_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%ReadData_3_addr = getelementptr i32 %ReadData_3, i64 0, i64 %zext_ln313" [Crypto1.cpp:313]   --->   Operation 30 'getelementptr' 'ReadData_3_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 31 [2/2] (2.32ns)   --->   "%ReadData_load = load i4 %ReadData_addr" [Crypto1.cpp:313]   --->   Operation 31 'load' 'ReadData_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_2 : Operation 32 [2/2] (2.32ns)   --->   "%ReadData_1_load = load i4 %ReadData_1_addr" [Crypto1.cpp:313]   --->   Operation 32 'load' 'ReadData_1_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_2 : Operation 33 [2/2] (2.32ns)   --->   "%ReadData_2_load = load i4 %ReadData_2_addr" [Crypto1.cpp:313]   --->   Operation 33 'load' 'ReadData_2_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_2 : Operation 34 [2/2] (2.32ns)   --->   "%ReadData_3_load = load i4 %ReadData_3_addr" [Crypto1.cpp:313]   --->   Operation 34 'load' 'ReadData_3_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+
+State 3 <SV = 2> <Delay = 4.14>
+ST_3 : Operation 35 [1/2] (2.32ns)   --->   "%ReadData_load = load i4 %ReadData_addr" [Crypto1.cpp:313]   --->   Operation 35 'load' 'ReadData_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_3 : Operation 36 [1/2] (2.32ns)   --->   "%ReadData_1_load = load i4 %ReadData_1_addr" [Crypto1.cpp:313]   --->   Operation 36 'load' 'ReadData_1_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_3 : Operation 37 [1/2] (2.32ns)   --->   "%ReadData_2_load = load i4 %ReadData_2_addr" [Crypto1.cpp:313]   --->   Operation 37 'load' 'ReadData_2_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_3 : Operation 38 [1/2] (2.32ns)   --->   "%ReadData_3_load = load i4 %ReadData_3_addr" [Crypto1.cpp:313]   --->   Operation 38 'load' 'ReadData_3_load' <Predicate = true> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_3 : Operation 39 [1/1] (1.82ns)   --->   "%tmp_4 = mux i32 @_ssdm_op_Mux.ap_auto.4i32.i2, i32 %ReadData_load, i32 %ReadData_1_load, i32 %ReadData_2_load, i32 %ReadData_3_load, i2 %trunc_ln313" [Crypto1.cpp:313]   --->   Operation 39 'mux' 'tmp_4' <Predicate = true> <Delay = 1.82> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 55 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 55 'ret' 'ret_ln0' <Predicate = (icmp_ln311)> <Delay = 0.00>
+
+State 4 <SV = 3> <Delay = 2.32>
+ST_4 : Operation 40 [1/1] (0.00ns)   --->   "%speclooptripcount_ln311 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 64, i64 64, i64 64" [Crypto1.cpp:311]   --->   Operation 40 'speclooptripcount' 'speclooptripcount_ln311' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 41 [1/1] (0.00ns)   --->   "%specloopname_ln311 = specloopname void @_ssdm_op_SpecLoopName, void @empty_38" [Crypto1.cpp:311]   --->   Operation 41 'specloopname' 'specloopname_ln311' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 42 [1/1] (0.00ns)   --->   "%zext_ln311 = zext i4 %lshr_ln2" [Crypto1.cpp:311]   --->   Operation 42 'zext' 'zext_ln311' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 43 [1/1] (0.00ns)   --->   "%PermuteData_addr = getelementptr i32 %PermuteData, i64 0, i64 %zext_ln311" [Crypto1.cpp:313]   --->   Operation 43 'getelementptr' 'PermuteData_addr' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 44 [1/1] (0.00ns)   --->   "%PermuteData_1_addr = getelementptr i32 %PermuteData_1, i64 0, i64 %zext_ln311" [Crypto1.cpp:313]   --->   Operation 44 'getelementptr' 'PermuteData_1_addr' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 45 [1/1] (0.00ns)   --->   "%PermuteData_2_addr = getelementptr i32 %PermuteData_2, i64 0, i64 %zext_ln311" [Crypto1.cpp:313]   --->   Operation 45 'getelementptr' 'PermuteData_2_addr' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 46 [1/1] (0.00ns)   --->   "%PermuteData_3_addr = getelementptr i32 %PermuteData_3, i64 0, i64 %zext_ln311" [Crypto1.cpp:313]   --->   Operation 46 'getelementptr' 'PermuteData_3_addr' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 47 [1/1] (2.32ns)   --->   "%store_ln313 = store i32 %tmp_4, i4 %PermuteData_2_addr" [Crypto1.cpp:313]   --->   Operation 47 'store' 'store_ln313' <Predicate = (empty == 2)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_4 : Operation 48 [1/1] (0.00ns)   --->   "%br_ln313 = br void %arrayidx587.exit" [Crypto1.cpp:313]   --->   Operation 48 'br' 'br_ln313' <Predicate = (empty == 2)> <Delay = 0.00>
+ST_4 : Operation 49 [1/1] (2.32ns)   --->   "%store_ln313 = store i32 %tmp_4, i4 %PermuteData_1_addr" [Crypto1.cpp:313]   --->   Operation 49 'store' 'store_ln313' <Predicate = (empty == 1)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_4 : Operation 50 [1/1] (0.00ns)   --->   "%br_ln313 = br void %arrayidx587.exit" [Crypto1.cpp:313]   --->   Operation 50 'br' 'br_ln313' <Predicate = (empty == 1)> <Delay = 0.00>
+ST_4 : Operation 51 [1/1] (2.32ns)   --->   "%store_ln313 = store i32 %tmp_4, i4 %PermuteData_addr" [Crypto1.cpp:313]   --->   Operation 51 'store' 'store_ln313' <Predicate = (empty == 0)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_4 : Operation 52 [1/1] (0.00ns)   --->   "%br_ln313 = br void %arrayidx587.exit" [Crypto1.cpp:313]   --->   Operation 52 'br' 'br_ln313' <Predicate = (empty == 0)> <Delay = 0.00>
+ST_4 : Operation 53 [1/1] (2.32ns)   --->   "%store_ln313 = store i32 %tmp_4, i4 %PermuteData_3_addr" [Crypto1.cpp:313]   --->   Operation 53 'store' 'store_ln313' <Predicate = (empty == 3)> <Delay = 2.32> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_4 : Operation 54 [1/1] (0.00ns)   --->   "%br_ln313 = br void %arrayidx587.exit" [Crypto1.cpp:313]   --->   Operation 54 'br' 'br_ln313' <Predicate = (empty == 3)> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+
+ <State 1>: 3.458ns
+The critical path consists of the following:
+	'alloca' operation ('l') [10]  (0.000 ns)
+	'load' operation ('l') on local variable 'l' [14]  (0.000 ns)
+	'add' operation ('add_ln311', Crypto1.cpp:311) [17]  (1.870 ns)
+	'store' operation ('store_ln311', Crypto1.cpp:311) of variable 'add_ln311', Crypto1.cpp:311 on local variable 'l' [58]  (1.588 ns)
+
+ <State 2>: 4.644ns
+The critical path consists of the following:
+	'load' operation ('InputIndex_load', Crypto1.cpp:313) on array 'InputIndex' [27]  (2.322 ns)
+	'getelementptr' operation ('ReadData_addr', Crypto1.cpp:313) [31]  (0.000 ns)
+	'load' operation ('ReadData_load', Crypto1.cpp:313) on array 'ReadData' [39]  (2.322 ns)
+
+ <State 3>: 4.149ns
+The critical path consists of the following:
+	'load' operation ('ReadData_load', Crypto1.cpp:313) on array 'ReadData' [39]  (2.322 ns)
+	'mux' operation ('tmp_4', Crypto1.cpp:313) [43]  (1.827 ns)
+
+ <State 4>: 2.322ns
+The critical path consists of the following:
+	'getelementptr' operation ('PermuteData_addr', Crypto1.cpp:313) [35]  (0.000 ns)
+	'store' operation ('store_ln313', Crypto1.cpp:313) of variable 'tmp_4', Crypto1.cpp:313 on array 'PermuteData' [52]  (2.322 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

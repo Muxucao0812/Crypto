@@ -61,8 +61,9 @@ set_top Crypto1
 open_solution "solution1" -reset
 
 # Set the target part and create a clock
-set_part {xc7vx690tffg1761-2} 
-create_clock -period 4
+# set_part {xc7vx485tffg1761-3} 
+set_part {xc7z020clg400-1}
+create_clock -period 6
 
 # Run C simulation
 # csim_design

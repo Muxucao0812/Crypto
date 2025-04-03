@@ -92,179 +92,161 @@
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="PE_UNIT.cpp:13:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="PE_UNIT" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/meng/HLS/Crypto/script.tcl:71:9" msg_body="HLS pragma dump">
+    <msg msg_groups="" msg_id="207-4973" msg_severity="WARNING" msg_loc="Crypto1.cpp:66:10" msg_body="enumeration value 'POLY_MOD_MODULUS' not handled in switch">
+        <args ClangWarningOption="switch"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/meng/HLS/Crypto/Crypto/solution1/csynth.tcl:50:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=Crypto1" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="/home/meng/HLS/Crypto/Crypto/solution1/directives.tcl:7:9" msg_body="HLS pragma dump">
         <args ARG_PragmaContext="directive" ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=Crypto1" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:31:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=NTTTWiddleRAM complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=NTTTWiddleRAM cyclic factor=4 dim=3" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:32:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=INTTTWiddleRAM complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=INTTTWiddleRAM cyclic factor=4 dim=3" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:38:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port=DataInStream" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:33:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=DataRAM block factor=8 dim=4" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:39:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port=DataOutStream" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port=DataInStream" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:40:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=return bundle=control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="axis port=DataOutStream" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:41:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=return bundle=control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:42:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port=RAMSel,RAMSel1,OP,NTTTwiddleIn,INTTTwiddleIn bundle=control" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:67:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:60:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=ReadData cyclic factor=4 dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:61:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=PermuteData cyclic factor=4 dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:62:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=NTTData cyclic factor=4 dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:63:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=TwiddleFactor complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:64:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=TwiddleIndex complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:74:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:70:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:88:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:94:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:91:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:129:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:170:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:133:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=ModInput complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:134:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=ModRes complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:137:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:140:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:145:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:150:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:165:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:172:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:177:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=AddInput1_Reg complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:173:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:178:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=AddInput2_Reg complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:174:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=AddRes_Intermediate complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:175:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:179:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=AddRes_Final complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:178:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:182:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:187:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:190:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:195:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:197:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:202:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:204:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:220:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:218:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:224:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:222:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=SubInput1 complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:225:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:223:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=SubInput2 complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:226:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:224:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=SubRes complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:229:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:232:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:238:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:235:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:243:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:240:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:258:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:255:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:262:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:259:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=MulInput1 complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:263:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:260:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=MulInput2 complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:264:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:261:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=MulRes complete dim=1" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:267:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:270:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:266:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:276:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:272:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:281:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:277:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:295:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:289:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:298:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:302:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=SQRT_N" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:317:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=SQRT_N" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:323:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:297:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:336:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:312:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:347:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=SQRT_N" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:367:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:371:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="II=1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:375:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:392:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:399:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
-    </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:414:9" msg_body="HLS pragma dump">
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:318:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
-    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:426:9" msg_body="HLS pragma dump">
-        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=SQRT_N" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:326:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:332:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:343:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:361:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=MOD_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:370:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:387:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:394:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:403:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:410:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto1.cpp:422:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="Crypto1" ARG_PragmaIsValid="1" ARG_PragmaOptions="factor=PE_NUM" ARG_PragmaType="unroll" ClangWarningOption="dump-hls-pragmas"/>
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:30:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable=DataRAM complete dim=dimension" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
@@ -391,6 +373,192 @@
     </msg>
     <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="Crypto.cpp:277:9" msg_body="HLS pragma dump">
         <args ARG_PragmaFunction="Crypto" ARG_PragmaIsValid="1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="Arithmetic.cpp:138:5" msg_body="Inlining function 'STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)' into 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)'">
+        <args Callee="STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)" Callee-DebugLoc="File Arithmetic.cpp Line 35 Column 0" Caller="MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)" Caller-DebugLoc="File Arithmetic.cpp Line 118 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="Arithmetic.cpp:132:5" msg_body="Inlining function 'STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)' into 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)'">
+        <args Callee="STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)" Callee-DebugLoc="File Arithmetic.cpp Line 35 Column 0" Caller="MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)" Caller-DebugLoc="File Arithmetic.cpp Line 118 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="Arithmetic.cpp:126:5" msg_body="Inlining function 'STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)' into 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)'">
+        <args Callee="STEPMUL(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;64&gt;*)" Callee-DebugLoc="File Arithmetic.cpp Line 35 Column 0" Caller="MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)" Caller-DebugLoc="File Arithmetic.cpp Line 118 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="Arithmetic.cpp:191:9" msg_body="Inlining function 'ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)' into 'Configurable_PE(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int, Operation)'">
+        <args Callee="ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)" Callee-DebugLoc="File Arithmetic.cpp Line 71 Column 0" Caller="Configurable_PE(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int, Operation)" Caller-DebugLoc="File Arithmetic.cpp Line 185 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="Arithmetic.cpp:194:9" msg_body="Inlining function 'SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)' into 'Configurable_PE(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int, Operation)'">
+        <args Callee="SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)" Callee-DebugLoc="File Arithmetic.cpp Line 84 Column 0" Caller="Configurable_PE(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int, Operation)" Caller-DebugLoc="File Arithmetic.cpp Line 185 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="Arithmetic.cpp:207:9" msg_body="Inlining function 'SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)' into 'Configurable_PE(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int, Operation)'">
+        <args Callee="SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)" Callee-DebugLoc="File Arithmetic.cpp Line 84 Column 0" Caller="Configurable_PE(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int, Operation)" Caller-DebugLoc="File Arithmetic.cpp Line 185 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="Arithmetic.cpp:206:9" msg_body="Inlining function 'ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)' into 'Configurable_PE(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int, Operation)'">
+        <args Callee="ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)" Callee-DebugLoc="File Arithmetic.cpp Line 71 Column 0" Caller="Configurable_PE(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int, Operation)" Caller-DebugLoc="File Arithmetic.cpp Line 185 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="Arithmetic.cpp:202:9" msg_body="Inlining function 'SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)' into 'Configurable_PE(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int, Operation)'">
+        <args Callee="SUB_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)" Callee-DebugLoc="File Arithmetic.cpp Line 84 Column 0" Caller="Configurable_PE(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int, Operation)" Caller-DebugLoc="File Arithmetic.cpp Line 185 Column 0"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="Arithmetic.cpp:201:9" msg_body="Inlining function 'ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)' into 'Configurable_PE(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int, Operation)'">
+        <args Callee="ADD_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int)" Callee-DebugLoc="File Arithmetic.cpp Line 71 Column 0" Caller="Configurable_PE(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int, Operation)" Caller-DebugLoc="File Arithmetic.cpp Line 185 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:359:2" msg_body="Loop 'anonymous' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="anonymous"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto1.cpp:23:0" msg_body="Unrolling loop 'WRITE_DATA_LOOP' (Crypto1.cpp:73:13) in function 'Crypto1': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto1.cpp:73:13" LoopName="WRITE_DATA_LOOP" TripCount="3"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto1.cpp:23:0" msg_body="Unrolling loop 'WRITE_DATA_LOOP' (Crypto1.cpp:73:13) in function 'Crypto1' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto1.cpp:73:13" LoopName="WRITE_DATA_LOOP"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto1.cpp:23:0" msg_body="Unrolling loop 'READ_DATA_LOOP' (Crypto1.cpp:93:13) in function 'Crypto1': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto1.cpp:93:13" LoopName="READ_DATA_LOOP" TripCount="3"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto1.cpp:23:0" msg_body="Unrolling loop 'READ_DATA_LOOP' (Crypto1.cpp:93:13) in function 'Crypto1' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto1.cpp:93:13" LoopName="READ_DATA_LOOP"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto1.cpp:23:0" msg_body="Unrolling loop 'POLY_ADD_MOD_LOOP' (Crypto1.cpp:169:13) in function 'Crypto1': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto1.cpp:169:13" LoopName="POLY_ADD_MOD_LOOP" TripCount="3"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto1.cpp:23:0" msg_body="Unrolling loop 'POLY_ADD_MOD_LOOP' (Crypto1.cpp:169:13) in function 'Crypto1' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto1.cpp:169:13" LoopName="POLY_ADD_MOD_LOOP"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto1.cpp:23:0" msg_body="Unrolling loop 'POLY_SUB_MOD_LOOP' (Crypto1.cpp:217:13) in function 'Crypto1': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto1.cpp:217:13" LoopName="POLY_SUB_MOD_LOOP" TripCount="3"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto1.cpp:23:0" msg_body="Unrolling loop 'POLY_SUB_MOD_LOOP' (Crypto1.cpp:217:13) in function 'Crypto1' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto1.cpp:217:13" LoopName="POLY_SUB_MOD_LOOP"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto1.cpp:23:0" msg_body="Unrolling loop 'POLY_MUL_MOD_LOOP' (Crypto1.cpp:254:13) in function 'Crypto1': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto1.cpp:254:13" LoopName="POLY_MUL_MOD_LOOP" TripCount="3"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto1.cpp:23:0" msg_body="Unrolling loop 'POLY_MUL_MOD_LOOP' (Crypto1.cpp:254:13) in function 'Crypto1' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto1.cpp:254:13" LoopName="POLY_MUL_MOD_LOOP"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto1.cpp:23:0" msg_body="Unrolling loop 'NTT_MOD_LOOP' (Crypto1.cpp:288:13) in function 'Crypto1': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto1.cpp:288:13" LoopName="NTT_MOD_LOOP" TripCount="3"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto1.cpp:23:0" msg_body="Unrolling loop 'NTT_MOD_LOOP' (Crypto1.cpp:288:13) in function 'Crypto1' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto1.cpp:288:13" LoopName="NTT_MOD_LOOP"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="Crypto1.cpp:23:0" msg_body="Unrolling loop 'INTT_MOD_LOOP' (Crypto1.cpp:360:9) in function 'Crypto1': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).">
+        <args Factor="3" LoopLoc="Crypto1.cpp:360:9" LoopName="INTT_MOD_LOOP" TripCount="3"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Crypto1.cpp:23:0" msg_body="Unrolling loop 'INTT_MOD_LOOP' (Crypto1.cpp:360:9) in function 'Crypto1' completely with a factor of 3">
+        <args Factor="3" LoopLoc="Crypto1.cpp:360:9" LoopName="INTT_MOD_LOOP"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Utils.cpp:228:0" msg_body="Unrolling loop 'VITIS_LOOP_239_1' (Utils.cpp:239:23) in function 'generate_output_index' completely with a factor of 64">
+        <args Factor="64" LoopLoc="Utils.cpp:239:23" LoopName="VITIS_LOOP_239_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="Utils.cpp:205:0" msg_body="Unrolling loop 'VITIS_LOOP_215_1' (Utils.cpp:215:23) in function 'generate_input_index' completely with a factor of 64">
+        <args Factor="64" LoopLoc="Utils.cpp:215:23" LoopName="VITIS_LOOP_215_1"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:212:0" msg_body="Unrolling loop 'anonymous' (/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:359:2) in function 'log_reduce::log_generic&lt;double&gt;' completely with a factor of 99">
+        <args Factor="99" LoopLoc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:359:2" LoopName="anonymous"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INTERFACE" msg_id="214-366" msg_severity="WARNING" msg_loc="Arithmetic.cpp:197:9" msg_body="Duplicating function 'MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.6)' as different function signatures were detected between this call site and other call site(s). This may impact the resources used in the design.">
+        <args Name="MUL_MOD(ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, ap_int&lt;32&gt;*, int) (.6)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isnan.h:16:0" msg_body="Inlining function 'fp_struct&lt;double&gt;::fp_struct(double)' into 'int generic_isnan&lt;double&gt;(double)'">
+        <args Callee="fp_struct&lt;double&gt;::fp_struct(double)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h Line 485 Column 0" Caller="int generic_isnan&lt;double&gt;(double)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isnan.h Line 16 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isinf.h:16:0" msg_body="Inlining function 'fp_struct&lt;double&gt;::fp_struct(double)' into 'int generic_isinf&lt;double&gt;(double)'">
+        <args Callee="fp_struct&lt;double&gt;::fp_struct(double)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h Line 485 Column 0" Caller="int generic_isinf&lt;double&gt;(double)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isinf.h Line 16 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:523:0" msg_body="Inlining function 'fp_struct&lt;double&gt;::data() const (.70.80.105.115)' into 'fp_struct&lt;double&gt;::to_double() const (.67.77.102.112)'">
+        <args Callee="fp_struct&lt;double&gt;::data() const (.70.80.105.115)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h Line 504 Column 0" Caller="fp_struct&lt;double&gt;::to_double() const (.67.77.102.112)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h Line 523 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h:538:0" msg_body="Inlining function 'fp_struct&lt;double&gt;::to_double() const (.67.77.102.112)' into 'fp_struct&lt;double&gt;::to_ieee() const'">
+        <args Callee="fp_struct&lt;double&gt;::to_double() const (.67.77.102.112)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h Line 523 Column 0" Caller="fp_struct&lt;double&gt;::to_ieee() const" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h Line 538 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:182:0" msg_body="Inlining function 'void log_reduce::range_reduce&lt;ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, 4, 4, 57, 59&gt;(ap_ufixed&lt;57, -(4), (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;, ap_ufixed&lt;59, -(((4) + (4)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)' into 'ap_ufixed&lt;53, -37, (ap_q_mode)5, (ap_o_mode)3, 0&gt; log_reduce::log_traits&lt;double&gt;::range_reduction&lt;57&gt;(ap_ufixed&lt;57, -4, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)'">
+        <args Callee="void log_reduce::range_reduce&lt;ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, 4, 4, 57, 59&gt;(ap_ufixed&lt;57, -(4), (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;, ap_ufixed&lt;59, -(((4) + (4)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 58 Column 0" Caller="ap_ufixed&lt;53, -37, (ap_q_mode)5, (ap_o_mode)3, 0&gt; log_reduce::log_traits&lt;double&gt;::range_reduction&lt;57&gt;(ap_ufixed&lt;57, -4, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 182 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:182:0" msg_body="Inlining function 'void log_reduce::range_reduce&lt;ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, 7, 6, 59, 69&gt;(ap_ufixed&lt;59, -(7), (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;, ap_ufixed&lt;69, -(((7) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)' into 'ap_ufixed&lt;53, -37, (ap_q_mode)5, (ap_o_mode)3, 0&gt; log_reduce::log_traits&lt;double&gt;::range_reduction&lt;57&gt;(ap_ufixed&lt;57, -4, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)'">
+        <args Callee="void log_reduce::range_reduce&lt;ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, 7, 6, 59, 69&gt;(ap_ufixed&lt;59, -(7), (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;, ap_ufixed&lt;69, -(((7) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 58 Column 0" Caller="ap_ufixed&lt;53, -37, (ap_q_mode)5, (ap_o_mode)3, 0&gt; log_reduce::log_traits&lt;double&gt;::range_reduction&lt;57&gt;(ap_ufixed&lt;57, -4, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 182 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:182:0" msg_body="Inlining function 'void log_reduce::range_reduce&lt;ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, 12, 6, 69, 73&gt;(ap_ufixed&lt;69, -(12), (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;, ap_ufixed&lt;73, -(((12) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)' into 'ap_ufixed&lt;53, -37, (ap_q_mode)5, (ap_o_mode)3, 0&gt; log_reduce::log_traits&lt;double&gt;::range_reduction&lt;57&gt;(ap_ufixed&lt;57, -4, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)'">
+        <args Callee="void log_reduce::range_reduce&lt;ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, 12, 6, 69, 73&gt;(ap_ufixed&lt;69, -(12), (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;, ap_ufixed&lt;73, -(((12) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 58 Column 0" Caller="ap_ufixed&lt;53, -37, (ap_q_mode)5, (ap_o_mode)3, 0&gt; log_reduce::log_traits&lt;double&gt;::range_reduction&lt;57&gt;(ap_ufixed&lt;57, -4, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 182 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:182:0" msg_body="Inlining function 'void log_reduce::range_reduce&lt;ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, 17, 6, 73, 68&gt;(ap_ufixed&lt;73, -(17), (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;, ap_ufixed&lt;68, -(((17) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)' into 'ap_ufixed&lt;53, -37, (ap_q_mode)5, (ap_o_mode)3, 0&gt; log_reduce::log_traits&lt;double&gt;::range_reduction&lt;57&gt;(ap_ufixed&lt;57, -4, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)'">
+        <args Callee="void log_reduce::range_reduce&lt;ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, 17, 6, 73, 68&gt;(ap_ufixed&lt;73, -(17), (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;, ap_ufixed&lt;68, -(((17) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 58 Column 0" Caller="ap_ufixed&lt;53, -37, (ap_q_mode)5, (ap_o_mode)3, 0&gt; log_reduce::log_traits&lt;double&gt;::range_reduction&lt;57&gt;(ap_ufixed&lt;57, -4, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 182 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:182:0" msg_body="Inlining function 'void log_reduce::range_reduce&lt;ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, 22, 6, 68, 63&gt;(ap_ufixed&lt;68, -(22), (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;, ap_ufixed&lt;63, -(((22) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)' into 'ap_ufixed&lt;53, -37, (ap_q_mode)5, (ap_o_mode)3, 0&gt; log_reduce::log_traits&lt;double&gt;::range_reduction&lt;57&gt;(ap_ufixed&lt;57, -4, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)'">
+        <args Callee="void log_reduce::range_reduce&lt;ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, 22, 6, 68, 63&gt;(ap_ufixed&lt;68, -(22), (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;, ap_ufixed&lt;63, -(((22) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 58 Column 0" Caller="ap_ufixed&lt;53, -37, (ap_q_mode)5, (ap_o_mode)3, 0&gt; log_reduce::log_traits&lt;double&gt;::range_reduction&lt;57&gt;(ap_ufixed&lt;57, -4, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 182 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:182:0" msg_body="Inlining function 'void log_reduce::range_reduce&lt;ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, 27, 6, 63, 58&gt;(ap_ufixed&lt;63, -(27), (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;, ap_ufixed&lt;58, -(((27) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)' into 'ap_ufixed&lt;53, -37, (ap_q_mode)5, (ap_o_mode)3, 0&gt; log_reduce::log_traits&lt;double&gt;::range_reduction&lt;57&gt;(ap_ufixed&lt;57, -4, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)'">
+        <args Callee="void log_reduce::range_reduce&lt;ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, 27, 6, 63, 58&gt;(ap_ufixed&lt;63, -(27), (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;, ap_ufixed&lt;58, -(((27) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 58 Column 0" Caller="ap_ufixed&lt;53, -37, (ap_q_mode)5, (ap_o_mode)3, 0&gt; log_reduce::log_traits&lt;double&gt;::range_reduction&lt;57&gt;(ap_ufixed&lt;57, -4, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 182 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:182:0" msg_body="Inlining function 'void log_reduce::range_reduce&lt;ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, 32, 6, 58, 53&gt;(ap_ufixed&lt;58, -(32), (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;, ap_ufixed&lt;53, -(((32) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)' into 'ap_ufixed&lt;53, -37, (ap_q_mode)5, (ap_o_mode)3, 0&gt; log_reduce::log_traits&lt;double&gt;::range_reduction&lt;57&gt;(ap_ufixed&lt;57, -4, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)'">
+        <args Callee="void log_reduce::range_reduce&lt;ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, 32, 6, 58, 53&gt;(ap_ufixed&lt;58, -(32), (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;, ap_ufixed&lt;53, -(((32) + (6)) - (1)), (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 58 Column 0" Caller="ap_ufixed&lt;53, -37, (ap_q_mode)5, (ap_o_mode)3, 0&gt; log_reduce::log_traits&lt;double&gt;::range_reduction&lt;57&gt;(ap_ufixed&lt;57, -4, (ap_q_mode)5, (ap_o_mode)3, 0&gt;, ap_fixed&lt;102, 12, (ap_q_mode)5, (ap_o_mode)3, 0&gt;&amp;)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 182 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:212:0" msg_body="Inlining function 'fp_struct&lt;double&gt;::fp_struct(double)' into 'double log_reduce::log_generic&lt;double&gt;(double)'">
+        <args Callee="fp_struct&lt;double&gt;::fp_struct(double)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h Line 485 Column 0" Caller="double log_reduce::log_generic&lt;double&gt;(double)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 212 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:212:0" msg_body="Inlining function 'fp_struct&lt;double&gt;::expv() const' into 'double log_reduce::log_generic&lt;double&gt;(double)'">
+        <args Callee="fp_struct&lt;double&gt;::expv() const" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h Line 514 Column 0" Caller="double log_reduce::log_generic&lt;double&gt;(double)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 212 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:212:0" msg_body="Inlining function 'int generic_isnan&lt;double&gt;(double)' into 'double log_reduce::log_generic&lt;double&gt;(double)'">
+        <args Callee="int generic_isnan&lt;double&gt;(double)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isnan.h Line 16 Column 0" Caller="double log_reduce::log_generic&lt;double&gt;(double)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 212 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:212:0" msg_body="Inlining function 'int generic_isinf&lt;double&gt;(double)' into 'double log_reduce::log_generic&lt;double&gt;(double)'">
+        <args Callee="int generic_isinf&lt;double&gt;(double)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_isinf.h Line 16 Column 0" Caller="double log_reduce::log_generic&lt;double&gt;(double)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 212 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h:212:0" msg_body="Inlining function 'fp_struct&lt;double&gt;::to_ieee() const' into 'double log_reduce::log_generic&lt;double&gt;(double)'">
+        <args Callee="fp_struct&lt;double&gt;::to_ieee() const" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h Line 538 Column 0" Caller="double log_reduce::log_generic&lt;double&gt;(double)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_log_.h Line 212 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/c/logdouble.cpp:7:0" msg_body="Inlining function 'log_reduce::log2(double)' into 'log2'">
+        <args Callee="log_reduce::log2(double)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/common/hls_log_double.cpp Line 12 Column 0" Caller="log2" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/c/logdouble.cpp Line 7 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:12:0" msg_body="Inlining function 'fp_struct&lt;double&gt;::fp_struct(double)' into 'int generic_cast_IEEE754&lt;int, (ap_q_mode)6, double&gt;(double, bool, hls::enable_if&lt;std::numeric_limits&lt;int&gt;::is_signed, bool&gt;::type)'">
+        <args Callee="fp_struct&lt;double&gt;::fp_struct(double)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h Line 485 Column 0" Caller="int generic_cast_IEEE754&lt;int, (ap_q_mode)6, double&gt;(double, bool, hls::enable_if&lt;std::numeric_limits&lt;int&gt;::is_signed, bool&gt;::type)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h Line 12 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:12:0" msg_body="Inlining function 'fp_struct&lt;double&gt;::mantissa() const' into 'int generic_cast_IEEE754&lt;int, (ap_q_mode)6, double&gt;(double, bool, hls::enable_if&lt;std::numeric_limits&lt;int&gt;::is_signed, bool&gt;::type)'">
+        <args Callee="fp_struct&lt;double&gt;::mantissa() const" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h Line 532 Column 0" Caller="int generic_cast_IEEE754&lt;int, (ap_q_mode)6, double&gt;(double, bool, hls::enable_if&lt;std::numeric_limits&lt;int&gt;::is_signed, bool&gt;::type)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h Line 12 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:12:0" msg_body="Inlining function 'fp_struct&lt;double&gt;::expv() const' into 'int generic_cast_IEEE754&lt;int, (ap_q_mode)6, double&gt;(double, bool, hls::enable_if&lt;std::numeric_limits&lt;int&gt;::is_signed, bool&gt;::type)'">
+        <args Callee="fp_struct&lt;double&gt;::expv() const" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h Line 514 Column 0" Caller="int generic_cast_IEEE754&lt;int, (ap_q_mode)6, double&gt;(double, bool, hls::enable_if&lt;std::numeric_limits&lt;int&gt;::is_signed, bool&gt;::type)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h Line 12 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:12:0" msg_body="Inlining function 'fp_struct&lt;double&gt;::__signbit() const' into 'int generic_cast_IEEE754&lt;int, (ap_q_mode)6, double&gt;(double, bool, hls::enable_if&lt;std::numeric_limits&lt;int&gt;::is_signed, bool&gt;::type)'">
+        <args Callee="fp_struct&lt;double&gt;::__signbit() const" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/src/hls/utils/x_hls_utils.h Line 541 Column 0" Caller="int generic_cast_IEEE754&lt;int, (ap_q_mode)6, double&gt;(double, bool, hls::enable_if&lt;std::numeric_limits&lt;int&gt;::is_signed, bool&gt;::type)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h Line 12 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h:116:0" msg_body="Inlining function 'int generic_cast_IEEE754&lt;int, (ap_q_mode)6, double&gt;(double, bool, hls::enable_if&lt;std::numeric_limits&lt;int&gt;::is_signed, bool&gt;::type)' into 'int generic_cast_IEEE754&lt;int, double&gt;(double, bool)'">
+        <args Callee="int generic_cast_IEEE754&lt;int, (ap_q_mode)6, double&gt;(double, bool, hls::enable_if&lt;std::numeric_limits&lt;int&gt;::is_signed, bool&gt;::type)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h Line 12 Column 0" Caller="int generic_cast_IEEE754&lt;int, double&gt;(double, bool)" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h Line 116 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="/wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/lib_floatconversion.cpp:55:0" msg_body="Inlining function 'int generic_cast_IEEE754&lt;int, double&gt;(double, bool)' into '__hls_fptosi_double_i32'">
+        <args Callee="int generic_cast_IEEE754&lt;int, double&gt;(double, bool)" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/include/FloatingPoint/hls_case_IEEE754.h Line 116 Column 0" Caller="__hls_fptosi_double_i32" Caller-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/lib_floatconversion.cpp Line 55 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="Utils.cpp:205:0" msg_body="Inlining function 'log2' into 'generate_input_index(int, int, int*)'">
+        <args Callee="log2" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/c/logdouble.cpp Line 7 Column 0" Caller="generate_input_index(int, int, int*)" Caller-DebugLoc="File Utils.cpp Line 205 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="Utils.cpp:205:0" msg_body="Inlining function '__hls_fptosi_double_i32' into 'generate_input_index(int, int, int*)'">
+        <args Callee="__hls_fptosi_double_i32" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/lib_floatconversion.cpp Line 55 Column 0" Caller="generate_input_index(int, int, int*)" Caller-DebugLoc="File Utils.cpp Line 205 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="Utils.cpp:228:0" msg_body="Inlining function 'log2' into 'generate_output_index(int, int, int*)'">
+        <args Callee="log2" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/c/logdouble.cpp Line 7 Column 0" Caller="generate_output_index(int, int, int*)" Caller-DebugLoc="File Utils.cpp Line 228 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="Utils.cpp:228:0" msg_body="Inlining function '__hls_fptosi_double_i32' into 'generate_output_index(int, int, int*)'">
+        <args Callee="__hls_fptosi_double_i32" Callee-DebugLoc="File /wrk/ci/prod/2023.1/hls_product/continuous/1026/2023.1/src/shared/hls/clib/hlsmath/src/lib_floatconversion.cpp Line 55 Column 0" Caller="generate_output_index(int, int, int*)" Caller-DebugLoc="File Utils.cpp Line 228 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto1.cpp:28:14" msg_body="Applying array_partition to 'DataRAM': Block partitioning with factor 8 on dimension 4.">
+        <args Dim="4" Factor="8" Mode="Block" UOName="DataRAM"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto1.cpp:29:14" msg_body="Applying array_partition to 'NTTTWiddleRAM': Cyclic partitioning with factor 4 on dimension 3.">
+        <args Dim="3" Factor="4" Mode="Cyclic" UOName="NTTTWiddleRAM"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto1.cpp:30:14" msg_body="Applying array_partition to 'INTTTWiddleRAM': Cyclic partitioning with factor 4 on dimension 3.">
+        <args Dim="3" Factor="4" Mode="Cyclic" UOName="INTTTWiddleRAM"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto1.cpp:49:14" msg_body="Applying array_partition to 'ReadData': Cyclic partitioning with factor 4 on dimension 1.">
+        <args Dim="1" Factor="4" Mode="Cyclic" UOName="ReadData"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto1.cpp:51:14" msg_body="Applying array_partition to 'PermuteData': Cyclic partitioning with factor 4 on dimension 1.">
+        <args Dim="1" Factor="4" Mode="Cyclic" UOName="PermuteData"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto1.cpp:52:14" msg_body="Applying array_partition to 'NTTData': Cyclic partitioning with factor 4 on dimension 1.">
+        <args Dim="1" Factor="4" Mode="Cyclic" UOName="NTTData"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="Crypto1.cpp:53:14" msg_body="Applying array_partition to 'TwiddleFactor': Complete partitioning on dimension 1.">
+        <args Dim="1" Mode="Complete" UOName="TwiddleFactor"/>
     </msg>
 </xilinx:hls_fe_msgs>
 

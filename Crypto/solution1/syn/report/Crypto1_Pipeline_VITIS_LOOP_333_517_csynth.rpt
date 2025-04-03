@@ -1,0 +1,244 @@
+
+
+================================================================
+== Vitis HLS Report for 'Crypto1_Pipeline_VITIS_LOOP_333_517'
+================================================================
+* Date:           Thu Mar 27 00:01:13 2025
+
+* Version:        2023.1 (Build 3854077 on May  4 2023)
+* Project:        Crypto
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  5.802 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       55|       55|  0.440 us|  0.440 us|   55|   55|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +------------------------------+-------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                              |                   |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |           Instance           |       Module      |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +------------------------------+-------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_Configurable_PE_2_fu_181  |Configurable_PE_2  |       18|       18|  0.144 us|  0.144 us|    1|    1|      yes|
+        |grp_Configurable_PE_2_fu_192  |Configurable_PE_2  |       18|       18|  0.144 us|  0.144 us|    1|    1|      yes|
+        +------------------------------+-------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_333_5  |       53|       53|        23|          1|          1|    32|       yes|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|     30|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       -|      -|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|     36|    -|
+|Register         |        -|    -|     644|    160|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|     644|    226|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln333_fu_217_p2   |         +|   0|  0|  14|           6|           1|
+    |icmp_ln333_fu_211_p2  |      icmp|   0|  0|  14|           6|           7|
+    |ap_enable_pp0         |       xor|   0|  0|   2|           1|           2|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  30|          13|          10|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_m       |   9|          2|    6|         12|
+    |global_pair_index_fu_70  |   9|          2|    6|         12|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  36|          8|   14|         28|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------+----+----+-----+-----------+
+    |                Name               | FF | LUT| Bits| Const Bits|
+    +-----------------------------------+----+----+-----+-----------+
+    |NTTData_1_addr_6_ret_reg_356       |  32|   0|   32|          0|
+    |NTTData_1_addr_reg_321             |   4|   0|    4|          0|
+    |NTTData_2_addr_6_ret_reg_361       |  32|   0|   32|          0|
+    |NTTData_2_addr_reg_316             |   4|   0|    4|          0|
+    |NTTData_3_addr_6_ret_reg_366       |  32|   0|   32|          0|
+    |NTTData_3_addr_reg_326             |   4|   0|    4|          0|
+    |NTTData_addr_6_ret_reg_351         |  32|   0|   32|          0|
+    |NTTData_addr_reg_311               |   4|   0|    4|          0|
+    |PermuteData_1_load_reg_336         |  32|   0|   32|          0|
+    |PermuteData_2_load_reg_341         |  32|   0|   32|          0|
+    |PermuteData_3_load_reg_346         |  32|   0|   32|          0|
+    |PermuteData_load_reg_331           |  32|   0|   32|          0|
+    |ap_CS_fsm                          |   1|   0|    1|          0|
+    |ap_done_reg                        |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1            |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter10           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter11           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter12           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter13           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter14           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter15           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter16           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter17           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter18           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter19           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2            |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter20           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter21           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter22           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter3            |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter4            |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter5            |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter6            |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter7            |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter8            |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter9            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter10_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter11_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter12_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter13_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter14_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter15_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter16_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter17_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter18_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter19_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg   |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter20_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter21_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter2_reg   |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter3_reg   |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter4_reg   |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter5_reg   |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter6_reg   |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter7_reg   |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter8_reg   |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter9_reg   |   1|   0|    1|          0|
+    |empty_reg_287                      |   1|   0|    1|          0|
+    |global_pair_index_fu_70            |   6|   0|    6|          0|
+    |NTTData_1_addr_reg_321             |  64|  32|    4|          0|
+    |NTTData_2_addr_reg_316             |  64|  32|    4|          0|
+    |NTTData_3_addr_reg_326             |  64|  32|    4|          0|
+    |NTTData_addr_reg_311               |  64|  32|    4|          0|
+    |empty_reg_287                      |  64|  32|    1|          0|
+    +-----------------------------------+----+----+-----+-----------+
+    |Total                              | 644| 160|  341|          0|
+    +-----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------------------+-----+-----+------------+-------------------------------------+--------------+
+|                RTL Ports                | Dir | Bits|  Protocol  |            Source Object            |    C Type    |
++-----------------------------------------+-----+-----+------------+-------------------------------------+--------------+
+|ap_clk                                   |   in|    1|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|ap_rst                                   |   in|    1|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|ap_start                                 |   in|    1|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|ap_done                                  |  out|    1|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|ap_idle                                  |  out|    1|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|ap_ready                                 |  out|    1|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|grp_Configurable_PE_2_fu_4743_p_din1     |  out|   32|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|grp_Configurable_PE_2_fu_4743_p_din2     |  out|   32|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|grp_Configurable_PE_2_fu_4743_p_din3     |  out|   32|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|grp_Configurable_PE_2_fu_4743_p_din4     |  out|    2|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|grp_Configurable_PE_2_fu_4743_p_din5     |  out|    3|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|grp_Configurable_PE_2_fu_4743_p_dout0_0  |   in|   32|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|grp_Configurable_PE_2_fu_4743_p_dout0_1  |   in|   32|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|grp_Configurable_PE_2_fu_4751_p_din1     |  out|   32|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|grp_Configurable_PE_2_fu_4751_p_din2     |  out|   32|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|grp_Configurable_PE_2_fu_4751_p_din3     |  out|   32|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|grp_Configurable_PE_2_fu_4751_p_din4     |  out|    2|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|grp_Configurable_PE_2_fu_4751_p_din5     |  out|    3|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|grp_Configurable_PE_2_fu_4751_p_dout0_0  |   in|   32|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|grp_Configurable_PE_2_fu_4751_p_dout0_1  |   in|   32|  ap_ctrl_hs|  Crypto1_Pipeline_VITIS_LOOP_333_517|  return value|
+|TwiddleFactor_4                          |   in|   32|     ap_none|                      TwiddleFactor_4|        scalar|
+|PermuteData_address0                     |  out|    4|   ap_memory|                          PermuteData|         array|
+|PermuteData_ce0                          |  out|    1|   ap_memory|                          PermuteData|         array|
+|PermuteData_q0                           |   in|   32|   ap_memory|                          PermuteData|         array|
+|PermuteData_2_address0                   |  out|    4|   ap_memory|                        PermuteData_2|         array|
+|PermuteData_2_ce0                        |  out|    1|   ap_memory|                        PermuteData_2|         array|
+|PermuteData_2_q0                         |   in|   32|   ap_memory|                        PermuteData_2|         array|
+|PermuteData_1_address0                   |  out|    4|   ap_memory|                        PermuteData_1|         array|
+|PermuteData_1_ce0                        |  out|    1|   ap_memory|                        PermuteData_1|         array|
+|PermuteData_1_q0                         |   in|   32|   ap_memory|                        PermuteData_1|         array|
+|PermuteData_3_address0                   |  out|    4|   ap_memory|                        PermuteData_3|         array|
+|PermuteData_3_ce0                        |  out|    1|   ap_memory|                        PermuteData_3|         array|
+|PermuteData_3_q0                         |   in|   32|   ap_memory|                        PermuteData_3|         array|
+|NTTData_address0                         |  out|    4|   ap_memory|                              NTTData|         array|
+|NTTData_ce0                              |  out|    1|   ap_memory|                              NTTData|         array|
+|NTTData_we0                              |  out|    1|   ap_memory|                              NTTData|         array|
+|NTTData_d0                               |  out|   32|   ap_memory|                              NTTData|         array|
+|NTTData_2_address0                       |  out|    4|   ap_memory|                            NTTData_2|         array|
+|NTTData_2_ce0                            |  out|    1|   ap_memory|                            NTTData_2|         array|
+|NTTData_2_we0                            |  out|    1|   ap_memory|                            NTTData_2|         array|
+|NTTData_2_d0                             |  out|   32|   ap_memory|                            NTTData_2|         array|
+|NTTData_1_address0                       |  out|    4|   ap_memory|                            NTTData_1|         array|
+|NTTData_1_ce0                            |  out|    1|   ap_memory|                            NTTData_1|         array|
+|NTTData_1_we0                            |  out|    1|   ap_memory|                            NTTData_1|         array|
+|NTTData_1_d0                             |  out|   32|   ap_memory|                            NTTData_1|         array|
+|NTTData_3_address0                       |  out|    4|   ap_memory|                            NTTData_3|         array|
+|NTTData_3_ce0                            |  out|    1|   ap_memory|                            NTTData_3|         array|
+|NTTData_3_we0                            |  out|    1|   ap_memory|                            NTTData_3|         array|
+|NTTData_3_d0                             |  out|   32|   ap_memory|                            NTTData_3|         array|
++-----------------------------------------+-----+-----+------------+-------------------------------------+--------------+
+

@@ -1,0 +1,172 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP'" level="0">
+<item name = "Date">Thu Mar 27 00:01:16 2025
+</item>
+<item name = "Version">2023.1 (Build 3854077 on May  4 2023)</item>
+<item name = "Project">Crypto</item>
+<item name = "Solution">solution1 (Vivado IP Flow Target)</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020-clg400-1</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">8.00 ns, 5.558 ns, 2.16 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">4099, 4099, 32.792 us, 32.792 us, 4099, 4099, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP">4097, 4097, 3, 1, 1, 4096, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, 0, 105, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">-, -, 0, 42, -</column>
+<column name="Memory">-, -, -, -, -</column>
+<column name="Multiplexer">-, -, -, 86, -</column>
+<column name="Register">-, -, 65, -, -</column>
+<specialColumn name="Available">280, 220, 106400, 53200, 0</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="mux_8_3_32_1_1_U515">mux_8_3_32_1_1, 0, 0, 0, 42, 0</column>
+</table>
+</item>
+<item name = "DSP"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="add_ln96_2_fu_261_p2">+, 0, 0, 14, 13, 1</column>
+<column name="add_ln96_fu_273_p2">+, 0, 0, 14, 7, 1</column>
+<column name="add_ln98_fu_315_p2">+, 0, 0, 14, 7, 1</column>
+<column name="add_ln99_2_fu_334_p2">+, 0, 0, 13, 10, 10</column>
+<column name="ap_block_pp0_stage0_01001">and, 0, 0, 2, 1, 1</column>
+<column name="icmp_ln96_fu_255_p2">icmp, 0, 0, 17, 13, 14</column>
+<column name="icmp_ln98_fu_279_p2">icmp, 0, 0, 15, 7, 8</column>
+<column name="select_ln96_1_fu_293_p3">select, 0, 0, 7, 1, 7</column>
+<column name="select_ln96_fu_285_p3">select, 0, 0, 7, 1, 1</column>
+<column name="ap_enable_pp0">xor, 0, 0, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="DataOutStream_TDATA_blk_n">9, 2, 1, 2</column>
+<column name="ap_done_int">9, 2, 1, 2</column>
+<column name="ap_enable_reg_pp0_iter1">9, 2, 1, 2</column>
+<column name="ap_sig_allocacmp_indvar_flatten6_load">9, 2, 13, 26</column>
+<column name="ap_sig_allocacmp_j_load">9, 2, 7, 14</column>
+<column name="ap_sig_allocacmp_k_load">14, 3, 7, 21</column>
+<column name="indvar_flatten6_fu_100">9, 2, 13, 26</column>
+<column name="j_fu_96">9, 2, 7, 14</column>
+<column name="k_fu_92">9, 2, 7, 14</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="add_ln98_reg_429">7, 0, 7, 0</column>
+<column name="ap_CS_fsm">1, 0, 1, 0</column>
+<column name="ap_done_reg">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter1">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter2">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter1_reg">1, 0, 1, 0</column>
+<column name="empty_482_reg_419">3, 0, 3, 0</column>
+<column name="empty_reg_405">10, 0, 10, 0</column>
+<column name="indvar_flatten6_fu_100">13, 0, 13, 0</column>
+<column name="j_fu_96">7, 0, 7, 0</column>
+<column name="k_fu_92">7, 0, 7, 0</column>
+<column name="select_ln96_1_reg_414">7, 0, 7, 0</column>
+<column name="trunc_ln_reg_424">3, 0, 3, 0</column>
+<column name="trunc_ln_reg_424_pp0_iter1_reg">3, 0, 3, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP, return value</column>
+<column name="DataOutStream_TREADY">in, 1, axis, DataOutStream_V_data_V, pointer</column>
+<column name="DataOutStream_TDATA">out, 32, axis, DataOutStream_V_data_V, pointer</column>
+<column name="sub_ln99">in, 41, ap_none, sub_ln99, scalar</column>
+<column name="DataRAM_address0">out, 13, ap_memory, DataRAM, array</column>
+<column name="DataRAM_ce0">out, 1, ap_memory, DataRAM, array</column>
+<column name="DataRAM_q0">in, 32, ap_memory, DataRAM, array</column>
+<column name="DataRAM_1_address0">out, 13, ap_memory, DataRAM_1, array</column>
+<column name="DataRAM_1_ce0">out, 1, ap_memory, DataRAM_1, array</column>
+<column name="DataRAM_1_q0">in, 32, ap_memory, DataRAM_1, array</column>
+<column name="DataRAM_2_address0">out, 13, ap_memory, DataRAM_2, array</column>
+<column name="DataRAM_2_ce0">out, 1, ap_memory, DataRAM_2, array</column>
+<column name="DataRAM_2_q0">in, 32, ap_memory, DataRAM_2, array</column>
+<column name="DataRAM_3_address0">out, 13, ap_memory, DataRAM_3, array</column>
+<column name="DataRAM_3_ce0">out, 1, ap_memory, DataRAM_3, array</column>
+<column name="DataRAM_3_q0">in, 32, ap_memory, DataRAM_3, array</column>
+<column name="DataRAM_4_address0">out, 13, ap_memory, DataRAM_4, array</column>
+<column name="DataRAM_4_ce0">out, 1, ap_memory, DataRAM_4, array</column>
+<column name="DataRAM_4_q0">in, 32, ap_memory, DataRAM_4, array</column>
+<column name="DataRAM_5_address0">out, 13, ap_memory, DataRAM_5, array</column>
+<column name="DataRAM_5_ce0">out, 1, ap_memory, DataRAM_5, array</column>
+<column name="DataRAM_5_q0">in, 32, ap_memory, DataRAM_5, array</column>
+<column name="DataRAM_6_address0">out, 13, ap_memory, DataRAM_6, array</column>
+<column name="DataRAM_6_ce0">out, 1, ap_memory, DataRAM_6, array</column>
+<column name="DataRAM_6_q0">in, 32, ap_memory, DataRAM_6, array</column>
+<column name="DataRAM_7_address0">out, 13, ap_memory, DataRAM_7, array</column>
+<column name="DataRAM_7_ce0">out, 1, ap_memory, DataRAM_7, array</column>
+<column name="DataRAM_7_q0">in, 32, ap_memory, DataRAM_7, array</column>
+<column name="DataOutStream_TVALID">out, 1, axis, DataOutStream_V_last_V, pointer</column>
+<column name="DataOutStream_TLAST">out, 1, axis, DataOutStream_V_last_V, pointer</column>
+<column name="DataOutStream_TKEEP">out, 4, axis, DataOutStream_V_keep_V, pointer</column>
+<column name="DataOutStream_TSTRB">out, 4, axis, DataOutStream_V_strb_V, pointer</column>
+</table>
+</item>
+</section>
+</profile>

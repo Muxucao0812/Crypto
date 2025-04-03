@@ -1,0 +1,217 @@
+
+
+================================================================
+== Vitis HLS Report for 'Crypto1_Pipeline_NTT_COL_LOOP'
+================================================================
+* Date:           Thu Mar 27 00:01:12 2025
+
+* Version:        2023.1 (Build 3854077 on May  4 2023)
+* Project:        Crypto
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  8.00 ns|  5.558 ns|     2.16 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       68|       68|  0.544 us|  0.544 us|   68|   68|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |    Loop Name   |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- NTT_COL_LOOP  |       66|       66|         4|          1|          1|    64|       yes|
+        +----------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|     93|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       0|     42|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|    148|    -|
+|Register         |        -|    -|      88|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|      88|    283|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------+----------------+---------+----+---+----+-----+
+    |       Instance      |     Module     | BRAM_18K| DSP| FF| LUT| URAM|
+    +---------------------+----------------+---------+----+---+----+-----+
+    |mux_8_3_32_1_1_U206  |mux_8_3_32_1_1  |        0|   0|  0|  42|    0|
+    +---------------------+----------------+---------+----+---+----+-----+
+    |Total                |                |        0|   0|  0|  42|    0|
+    +---------------------+----------------+---------+----+---+----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name     | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------+----------+----+---+----+------------+------------+
+    |add_ln296_fu_414_p2    |         +|   0|  0|  14|           7|           1|
+    |add_ln299_1_fu_446_p2  |         +|   0|  0|  13|          10|          10|
+    |add_ln299_fu_430_p2    |         +|   0|  0|  14|           6|           2|
+    |add_ln300_fu_486_p2    |         +|   0|  0|  13|          10|          10|
+    |sub_ln299_fu_424_p2    |         -|   0|  0|  14|           6|           6|
+    |and_ln299_fu_436_p2    |       and|   0|  0|   6|           6|           6|
+    |ap_condition_224       |       and|   0|  0|   2|           1|           1|
+    |icmp_ln296_fu_408_p2   |      icmp|   0|  0|  15|           7|           8|
+    |ap_enable_pp0          |       xor|   0|  0|   2|           1|           2|
+    +-----------------------+----------+----+---+----+------------+------------+
+    |Total                  |          |   0|  0|  93|          54|          46|
+    +-----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |DataRAM_1_address0       |  14|          3|   13|         39|
+    |DataRAM_2_address0       |  14|          3|   13|         39|
+    |DataRAM_3_address0       |  14|          3|   13|         39|
+    |DataRAM_4_address0       |  14|          3|   13|         39|
+    |DataRAM_5_address0       |  14|          3|   13|         39|
+    |DataRAM_6_address0       |  14|          3|   13|         39|
+    |DataRAM_7_address0       |  14|          3|   13|         39|
+    |DataRAM_address0         |  14|          3|   13|         39|
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_l_10    |   9|          2|    7|         14|
+    |l_fu_94                  |   9|          2|    7|         14|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    | 148|         32|  120|        344|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------+----+----+-----+-----------+
+    |               Name               | FF | LUT| Bits| Const Bits|
+    +----------------------------------+----+----+-----+-----------+
+    |add_ln299_1_reg_570               |  10|   0|   10|          0|
+    |ap_CS_fsm                         |   1|   0|    1|          0|
+    |ap_done_reg                       |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter3           |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter2_reg  |   1|   0|    1|          0|
+    |empty_reg_576                     |   2|   0|    2|          0|
+    |empty_reg_576_pp0_iter2_reg       |   2|   0|    2|          0|
+    |l_10_reg_557                      |   7|   0|    7|          0|
+    |l_10_reg_557_pp0_iter1_reg        |   7|   0|    7|          0|
+    |l_fu_94                           |   7|   0|    7|          0|
+    |lshr_ln296_1_reg_660              |   4|   0|    4|          0|
+    |reg_388                           |  32|   0|   32|          0|
+    |trunc_ln300_reg_552               |  10|   0|   10|          0|
+    +----------------------------------+----+----+-----+-----------+
+    |Total                             |  88|   0|   88|          0|
+    +----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------+-----+-----+------------+-------------------------------+--------------+
+|      RTL Ports      | Dir | Bits|  Protocol  |         Source Object         |    C Type    |
++---------------------+-----+-----+------------+-------------------------------+--------------+
+|ap_clk               |   in|    1|  ap_ctrl_hs|  Crypto1_Pipeline_NTT_COL_LOOP|  return value|
+|ap_rst               |   in|    1|  ap_ctrl_hs|  Crypto1_Pipeline_NTT_COL_LOOP|  return value|
+|ap_start             |   in|    1|  ap_ctrl_hs|  Crypto1_Pipeline_NTT_COL_LOOP|  return value|
+|ap_done              |  out|    1|  ap_ctrl_hs|  Crypto1_Pipeline_NTT_COL_LOOP|  return value|
+|ap_idle              |  out|    1|  ap_ctrl_hs|  Crypto1_Pipeline_NTT_COL_LOOP|  return value|
+|ap_ready             |  out|    1|  ap_ctrl_hs|  Crypto1_Pipeline_NTT_COL_LOOP|  return value|
+|trunc_ln16           |   in|    6|     ap_none|                     trunc_ln16|        scalar|
+|shl_cast_mid2        |   in|    6|     ap_none|                  shl_cast_mid2|        scalar|
+|mul_ln296            |   in|   10|     ap_none|                      mul_ln296|        scalar|
+|ReadAddr_address0    |  out|    6|   ap_memory|                       ReadAddr|         array|
+|ReadAddr_ce0         |  out|    1|   ap_memory|                       ReadAddr|         array|
+|ReadAddr_we0         |  out|    1|   ap_memory|                       ReadAddr|         array|
+|ReadAddr_d0          |  out|   10|   ap_memory|                       ReadAddr|         array|
+|sub_ln300            |   in|   41|     ap_none|                      sub_ln300|        scalar|
+|DataRAM_address0     |  out|   13|   ap_memory|                        DataRAM|         array|
+|DataRAM_ce0          |  out|    1|   ap_memory|                        DataRAM|         array|
+|DataRAM_q0           |   in|   32|   ap_memory|                        DataRAM|         array|
+|DataRAM_1_address0   |  out|   13|   ap_memory|                      DataRAM_1|         array|
+|DataRAM_1_ce0        |  out|    1|   ap_memory|                      DataRAM_1|         array|
+|DataRAM_1_q0         |   in|   32|   ap_memory|                      DataRAM_1|         array|
+|DataRAM_2_address0   |  out|   13|   ap_memory|                      DataRAM_2|         array|
+|DataRAM_2_ce0        |  out|    1|   ap_memory|                      DataRAM_2|         array|
+|DataRAM_2_q0         |   in|   32|   ap_memory|                      DataRAM_2|         array|
+|DataRAM_3_address0   |  out|   13|   ap_memory|                      DataRAM_3|         array|
+|DataRAM_3_ce0        |  out|    1|   ap_memory|                      DataRAM_3|         array|
+|DataRAM_3_q0         |   in|   32|   ap_memory|                      DataRAM_3|         array|
+|DataRAM_4_address0   |  out|   13|   ap_memory|                      DataRAM_4|         array|
+|DataRAM_4_ce0        |  out|    1|   ap_memory|                      DataRAM_4|         array|
+|DataRAM_4_q0         |   in|   32|   ap_memory|                      DataRAM_4|         array|
+|DataRAM_5_address0   |  out|   13|   ap_memory|                      DataRAM_5|         array|
+|DataRAM_5_ce0        |  out|    1|   ap_memory|                      DataRAM_5|         array|
+|DataRAM_5_q0         |   in|   32|   ap_memory|                      DataRAM_5|         array|
+|DataRAM_6_address0   |  out|   13|   ap_memory|                      DataRAM_6|         array|
+|DataRAM_6_ce0        |  out|    1|   ap_memory|                      DataRAM_6|         array|
+|DataRAM_6_q0         |   in|   32|   ap_memory|                      DataRAM_6|         array|
+|DataRAM_7_address0   |  out|   13|   ap_memory|                      DataRAM_7|         array|
+|DataRAM_7_ce0        |  out|    1|   ap_memory|                      DataRAM_7|         array|
+|DataRAM_7_q0         |   in|   32|   ap_memory|                      DataRAM_7|         array|
+|tmp_263              |   in|   10|     ap_none|                        tmp_263|        scalar|
+|ReadData_address0    |  out|    4|   ap_memory|                       ReadData|         array|
+|ReadData_ce0         |  out|    1|   ap_memory|                       ReadData|         array|
+|ReadData_we0         |  out|    1|   ap_memory|                       ReadData|         array|
+|ReadData_d0          |  out|   32|   ap_memory|                       ReadData|         array|
+|ReadData_1_address0  |  out|    4|   ap_memory|                     ReadData_1|         array|
+|ReadData_1_ce0       |  out|    1|   ap_memory|                     ReadData_1|         array|
+|ReadData_1_we0       |  out|    1|   ap_memory|                     ReadData_1|         array|
+|ReadData_1_d0        |  out|   32|   ap_memory|                     ReadData_1|         array|
+|ReadData_2_address0  |  out|    4|   ap_memory|                     ReadData_2|         array|
+|ReadData_2_ce0       |  out|    1|   ap_memory|                     ReadData_2|         array|
+|ReadData_2_we0       |  out|    1|   ap_memory|                     ReadData_2|         array|
+|ReadData_2_d0        |  out|   32|   ap_memory|                     ReadData_2|         array|
+|ReadData_3_address0  |  out|    4|   ap_memory|                     ReadData_3|         array|
+|ReadData_3_ce0       |  out|    1|   ap_memory|                     ReadData_3|         array|
+|ReadData_3_we0       |  out|    1|   ap_memory|                     ReadData_3|         array|
+|ReadData_3_d0        |  out|   32|   ap_memory|                     ReadData_3|         array|
+|select_ln291_1       |   in|    1|     ap_none|                 select_ln291_1|        scalar|
++---------------------+-----+-----+------------+-------------------------------+--------------+
+

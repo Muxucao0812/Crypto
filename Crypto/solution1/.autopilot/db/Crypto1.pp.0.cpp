@@ -38304,7 +38304,7 @@ const int SQRT_N = 64;
 const int T = 65537;
 const int ROOT = 6561;
 const int RAMNum = 4;
-const int PE_NUM = 32;
+const int PE_NUM = 1;
 const int BANKNum = 64;
 const int STAGE_NUM = int(log2(N));
 const int RAMDepth = N / BANKNum;
@@ -42998,7 +42998,11 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
     long_int INTTTwiddleIn[MOD_NUM][N],
     CryptoOperation OP
 ){
-#line 71 "/home/meng/HLS/Crypto/script.tcl"
+#line 50 "/home/meng/HLS/Crypto/Crypto/solution1/csynth.tcl"
+#pragma HLSDIRECTIVE TOP name=Crypto1
+# 23 "Crypto1.cpp"
+
+#line 7 "/home/meng/HLS/Crypto/Crypto/solution1/directives.tcl"
 #pragma HLSDIRECTIVE TOP name=Crypto1
 # 23 "Crypto1.cpp"
 
@@ -43009,8 +43013,9 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
     long_int DataRAM[RAMNum][MOD_NUM][SQRT_N][SQRT_N];
     long_int NTTTWiddleRAM[MOD_NUM][PE_NUM][N];
     long_int INTTTWiddleRAM[MOD_NUM][PE_NUM][N];
-#pragma HLS ARRAY_PARTITION variable=NTTTWiddleRAM complete dim=1
-#pragma HLS ARRAY_PARTITION variable=INTTTWiddleRAM complete dim=1
+#pragma HLS ARRAY_PARTITION variable=NTTTWiddleRAM cyclic factor=4 dim=3
+#pragma HLS ARRAY_PARTITION variable=INTTTWiddleRAM cyclic factor=4 dim=3
+#pragma HLS ARRAY_PARTITION variable=DataRAM block factor=8 dim=4
 
 
 
@@ -43037,7 +43042,13 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
     data_pairs_total = SQRT_N >> 1;
     pairs_per_pe = data_pairs_total / PE_NUM;
 
-    switch (OP)
+#pragma HLS ARRAY_PARTITION variable=ReadData cyclic factor=4 dim=1
+#pragma HLS ARRAY_PARTITION variable=PermuteData cyclic factor=4 dim=1
+#pragma HLS ARRAY_PARTITION variable=NTTData cyclic factor=4 dim=1
+#pragma HLS ARRAY_PARTITION variable=TwiddleFactor complete dim=1
+#pragma HLS ARRAY_PARTITION variable=TwiddleIndex complete dim=1
+
+ switch (OP)
     {
 
 
@@ -43048,8 +43059,7 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
 #pragma HLS UNROLL factor=MOD_NUM
  WRITE_DATA_ROW_LOOP:
                 for (int j = 0; j < SQRT_N; j++) {
-#pragma HLS PIPELINE II=1
- WRITE_DATA_COL_LOOP:
+                    WRITE_DATA_COL_LOOP:
                     for (int k = 0; k < SQRT_N; k++) {
                         DataStreamReg = DataInStream.read();
                         DataRAM[RAMSel][i][j][k] = DataStreamReg.data;
@@ -43069,8 +43079,7 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
 #pragma HLS UNROLL factor=MOD_NUM
  READ_DATA_ROW_LOOP:
                 for (int j = 0; j < SQRT_N; j++) {
-#pragma HLS PIPELINE II=1
- READ_DATA_COL_LOOP:
+                    READ_DATA_COL_LOOP:
                     for (int k = 0; k < SQRT_N; k++) {
                         DataStreamReg.data = DataRAM[RAMSel][i][j][k];
                         DataStreamReg.keep = 0xFF;
@@ -43100,46 +43109,7 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
             }
             break;
         }
-
-
-
-
-       case POLY_MOD_MODULUS: {
-           POLY_MOD_MODULUS_LOOP:
-           for (int i = 0; i < MOD_NUM; i++) {
-#pragma HLS UNROLL factor=MOD_NUM
- POLY_MOD_ROW_LOOP:
-               for (int j = 0; j < SQRT_N; j++) {
-                   long_int ModInput[PE_NUM], ModRes[PE_NUM];
-#pragma HLS ARRAY_PARTITION variable=ModInput complete dim=1
-#pragma HLS ARRAY_PARTITION variable=ModRes complete dim=1
- POLY_MOD_COL_LOOP:
-                   for (int k = 0; k < SQRT_N; k = k + PE_NUM) {
-#pragma HLS PIPELINE II=1
- POLY_MOD_PE_LOOP_READ:
-                       for (int l = 0; l < PE_NUM; l++) {
-#pragma HLS UNROLL
- ModInput[l] = DataRAM[RAMSel][i][j][k + l];
-                       }
-                       POLY_MOD_PE_LOOP_PROCESS:
-                       for (int l = 0; l < PE_NUM; l++) {
-#pragma HLS UNROLL
- MOD_PLAINTEXTMODULUS(&ModInput[l], &ModRes[l]);
-                       }
-                       POLY_MOD_PE_LOOP_WRITE:
-                       for (int l = 0; l < PE_NUM; l++) {
-#pragma HLS UNROLL
- DataRAM[RAMSel][i][j][k + l] = ModRes[l];
-                       }
-                   }
-               }
-           }
-           break;
-       }
-
-
-
-
+# 167 "Crypto1.cpp"
         case POLY_ADD: {
             POLY_ADD_MOD_LOOP:
             for (int i = 0; i < MOD_NUM; i++) {
@@ -43148,17 +43118,17 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
                 for (int j = 0; j < SQRT_N; j++) {
 
                     long_int AddInput1_Reg[PE_NUM], AddInput2_Reg[PE_NUM];
-                    long_int AddRes_Intermediate[PE_NUM];
                     long_int AddRes_Final[PE_NUM];
+
 #pragma HLS ARRAY_PARTITION variable=AddInput1_Reg complete dim=1
 #pragma HLS ARRAY_PARTITION variable=AddInput2_Reg complete dim=1
-#pragma HLS ARRAY_PARTITION variable=AddRes_Intermediate complete dim=1
 #pragma HLS ARRAY_PARTITION variable=AddRes_Final complete dim=1
  POLY_ADD_COL_LOOP:
                     for (int k = 0; k < SQRT_N; k = k + PE_NUM) {
-#pragma HLS PIPELINE II=1
 
- POLY_ADD_PE_LOOP_READ:
+
+
+                        POLY_ADD_PE_LOOP_READ:
                         for (int l = 0; l < PE_NUM; l++) {
 #pragma HLS UNROLL factor=PE_NUM
  AddInput1_Reg[l] = DataRAM[RAMSel][i][j][k + l];
@@ -43169,14 +43139,7 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
                         POLY_ADD_PE_LOOP_PROCESS:
                         for (int l = 0; l < PE_NUM; l++) {
 #pragma HLS UNROLL factor=PE_NUM
- Configurable_PE(&AddInput1_Reg[l], &AddInput2_Reg[l], nullptr, &AddRes_Intermediate[l], nullptr, i, ADD);
-                        }
-
-
-                        POLY_ADD_PE_LOOP_TRANSFER:
-                        for (int l = 0; l < PE_NUM; l++) {
-#pragma HLS UNROLL factor=PE_NUM
- AddRes_Final[l] = AddRes_Intermediate[l];
+ Configurable_PE(&AddInput1_Reg[l], &AddInput2_Reg[l], nullptr, &AddRes_Final[l], nullptr, i, ADD);
                         }
 
 
@@ -43207,8 +43170,7 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
 #pragma HLS ARRAY_PARTITION variable=SubRes complete dim=1
  POLY_SUB_COL_LOOP:
                     for (int k = 0; k < SQRT_N; k = k + PE_NUM) {
-#pragma HLS PIPELINE II=1
- POLY_SUB_PE_LOOP_READ:
+                        POLY_SUB_PE_LOOP_READ:
                         for (int l = 0; l < PE_NUM; l++) {
 #pragma HLS UNROLL factor=PE_NUM
  SubInput1[l] = DataRAM[RAMSel][i][j][k + l];
@@ -43245,8 +43207,7 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
 #pragma HLS ARRAY_PARTITION variable=MulRes complete dim=1
  POLY_MUL_COL_LOOP:
                     for (int k = 0; k < SQRT_N; k = k + PE_NUM) {
-#pragma HLS PIPELINE II=1
- POLY_MUL_PE_LOOP_READ:
+                        POLY_MUL_PE_LOOP_READ:
                         for (int l = 0; l < PE_NUM; l++) {
 #pragma HLS UNROLL factor=PE_NUM
  MulInput1[l] = DataRAM[RAMSel][i][j][k + l];
@@ -43271,16 +43232,15 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
         case POLY_NTT: {
             NTT_MOD_LOOP:
             for (int i = 0; i < MOD_NUM; i++) {
-                NTT_STAGE_LOOP:
+#pragma HLS UNROLL factor=MOD_NUM
+ NTT_STAGE_LOOP:
                 for (int j = 0; j < STAGE_NUM; j++) {
-#pragma HLS PIPELINE II=1
- NTT_ROW_LOOP:
+                    NTT_ROW_LOOP:
                     for (int k = 0; k < SQRT_N; k++) {
-#pragma HLS PIPELINE II=1
 
- NTT_COL_LOOP:
+                        NTT_COL_LOOP:
                         for (int l = 0; l < SQRT_N; l++) {
-#pragma HLS UNROLL factor=SQRT_N
+#pragma HLS UNROLL factor=PE_NUM
  if (j < (STAGE_NUM >> 1)) {
                                 ReadAddr[l] = (l - k + SQRT_N) % (1 << ((STAGE_NUM>>1) - j)) + (k >> ((STAGE_NUM >> 1) - j)) * (SQRT_N >> j);
                                 ReadData[l] = DataRAM[RAMSel][i][ReadAddr[l]][l];
@@ -43294,13 +43254,13 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
                         generate_output_index(j, k, OutputIndex);
 
 
-                        VITIS_LOOP_316_1: for (int l = 0; l < SQRT_N; l++) {
-#pragma HLS UNROLL factor=SQRT_N
+                        VITIS_LOOP_311_1: for (int l = 0; l < SQRT_N; l++) {
+#pragma HLS UNROLL factor=PE_NUM
  PermuteData[l] = ReadData[InputIndex[l]];
                         }
 
 
-                        VITIS_LOOP_322_2: for (int l = 0; l < PE_NUM; l++) {
+                        VITIS_LOOP_317_2: for (int l = 0; l < PE_NUM; l++) {
 #pragma HLS UNROLL factor=PE_NUM
  if (j < (STAGE_NUM >> 1)) {
                                 TwiddleIndex[l] = (1 << j) - 1 + (k >> ((STAGE_NUM >> 1) - j)) + (l >> (STAGE_NUM - j - 1));
@@ -43308,14 +43268,15 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
                                 TwiddleIndex[l] = (1 << j) - 1 + (k << (j - (STAGE_NUM >> 1))) + (l >> (STAGE_NUM - j - 1));
                             }
                         }
-                        VITIS_LOOP_330_3: for (int l = 0; l < PE_NUM; l++) {
-                            TwiddleFactor[l] = NTTTWiddleRAM[i][l][TwiddleIndex[l]];
+                        VITIS_LOOP_325_3: for (int l = 0; l < PE_NUM; l++) {
+#pragma HLS UNROLL factor=PE_NUM
+ TwiddleFactor[l] = NTTTWiddleRAM[i][l][TwiddleIndex[l]];
                         }
 
 
-                        VITIS_LOOP_335_4: for (int l = 0; l < PE_NUM; l++) {
+                        VITIS_LOOP_331_4: for (int l = 0; l < PE_NUM; l++) {
 #pragma HLS UNROLL factor=PE_NUM
- VITIS_LOOP_337_5: for (int m = 0; m < pairs_per_pe; m++) {
+ VITIS_LOOP_333_5: for (int m = 0; m < pairs_per_pe; m++) {
                                 global_pair_index = l * pairs_per_pe + m;
                                 idx1 = global_pair_index * 2;
                                 idx2 = global_pair_index * 2 + 1;
@@ -43324,8 +43285,8 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
                         }
 
 
-                        VITIS_LOOP_346_6: for (int l = 0; l < SQRT_N; l++) {
-#pragma HLS UNROLL factor=SQRT_N
+                        VITIS_LOOP_342_6: for (int l = 0; l < SQRT_N; l++) {
+#pragma HLS UNROLL factor=PE_NUM
  if(j < (STAGE_NUM >> 1)){
                                 DataRAM[RAMSel][i][ReadAddr[l]][l] = NTTData[OutputIndex[l]];
                             } else {
@@ -43343,17 +43304,16 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
         case POLY_INTT:
         INTT_MOD_LOOP:
         for (int i = 0; i < MOD_NUM; i++) {
-            INTT_STAGE_LOOP:
+#pragma HLS UNROLL factor=MOD_NUM
+ INTT_STAGE_LOOP:
             for (int j = 0; j < STAGE_NUM; j++) {
-#pragma HLS PIPELINE II=1
- int stage_index = STAGE_NUM - j - 1;
+                int stage_index = STAGE_NUM - j - 1;
                 INTT_ROW_LOOP:
                 for (int k = 0; k < SQRT_N; k++) {
-#pragma HLS PIPELINE II=1
 
- INTT_COL_LOOP:
+                    INTT_COL_LOOP:
                     for (int l = 0; l < SQRT_N; l++) {
-#pragma HLS UNROLL
+#pragma HLS UNROLL factor=PE_NUM
  if (j < (STAGE_NUM >> 1)) {
                             ReadData[l] = DataRAM[RAMSel][i][k][l];
                         } else {
@@ -43369,15 +43329,15 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
 
 
 
-                    VITIS_LOOP_391_7: for (int l = 0; l < SQRT_N; l++) {
-#pragma HLS UNROLL
+                    VITIS_LOOP_386_7: for (int l = 0; l < SQRT_N; l++) {
+#pragma HLS UNROLL factor=PE_NUM
  PermuteData[l] = ReadData[InputIndex[l]];
                     }
 
 
 
-                    VITIS_LOOP_398_8: for (int l = 0; l < PE_NUM; l++) {
-#pragma HLS UNROLL
+                    VITIS_LOOP_393_8: for (int l = 0; l < PE_NUM; l++) {
+#pragma HLS UNROLL factor=PE_NUM
  if (j < (STAGE_NUM >> 1)) {
                             TwiddleIndex[l] = (1 << stage_index) - 1 + (k * (1 << (stage_index - (STAGE_NUM >> 1)))) + (l >> (STAGE_NUM - stage_index - 1));
                         } else {
@@ -43385,15 +43345,16 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
                         }
                     }
 
-                    VITIS_LOOP_407_9: for (int l = 0; l < PE_NUM; l++) {
-                        TwiddleFactor[l] = INTTTWiddleRAM[i][l][TwiddleIndex[l]];
+                    VITIS_LOOP_402_9: for (int l = 0; l < PE_NUM; l++) {
+#pragma HLS UNROLL factor=PE_NUM
+ TwiddleFactor[l] = INTTTWiddleRAM[i][l][TwiddleIndex[l]];
                     }
 
 
 
-                    VITIS_LOOP_413_10: for (int l = 0; l < PE_NUM; l++) {
+                    VITIS_LOOP_409_10: for (int l = 0; l < PE_NUM; l++) {
 #pragma HLS UNROLL factor=PE_NUM
- VITIS_LOOP_415_11: for(int m = 0; m < pairs_per_pe; m++){
+ VITIS_LOOP_411_11: for(int m = 0; m < pairs_per_pe; m++){
                             global_pair_index = l * pairs_per_pe + m;
                             idx1 = global_pair_index * 2;
                             idx2 = global_pair_index * 2 + 1;
@@ -43403,8 +43364,8 @@ __attribute__((sdx_kernel("Crypto1", 0))) void Crypto1(
 
 
 
-                    VITIS_LOOP_425_12: for (int l = 0; l < SQRT_N; l++) {
-#pragma HLS UNROLL factor=SQRT_N
+                    VITIS_LOOP_421_12: for (int l = 0; l < SQRT_N; l++) {
+#pragma HLS UNROLL factor=PE_NUM
  if(j < (STAGE_NUM >> 1)){
                             DataRAM[RAMSel][i][k][l] = NTTData[OutputIndex[l]];
                         } else {
