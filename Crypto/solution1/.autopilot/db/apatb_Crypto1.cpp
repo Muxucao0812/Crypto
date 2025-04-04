@@ -13,6 +13,7 @@
 #include "ap_int.h"
 #include "autopilot_cbe.h"
 #include "hls_half.h"
+#include "hls_directio.h"
 #include "hls_stream.h"
 
 using namespace std;
@@ -117,114 +118,6 @@ namespace hls::sim
     s += "\n";
     fputs(s.c_str(), stderr);
     exit(1);
-  }
-}
-
-
-namespace hls::sim
-{
-  template<size_t n>
-  void move(void* to, void* from)
-  {
-    auto t = (hls::stream<ap_uint<n>>*)to;
-    auto f = (hls::stream<ap_uint<n>>*)from;
-    while (!f->empty()) {
-      t->write(f->read());
-    }
-  }
-
-  template<size_t n>
-  void task_move(void* to, void* from)
-  {
-    auto t = (hls::stream<ap_uint<n>>*)to;
-    auto f = (hls::stream<ap_uint<n>>*)from;
-    std::thread(
-      [=] () { while (true) { t->write(f->read()); } }
-    ).detach();
-  }
-
-  template<typename A, typename K, typename S, typename U, typename L, typename I, typename E>
-  struct MoveAXIS
-  {
-    struct ST { A data; K keep; S strb; U user; L last; I id; E dest; };
-
-    static void toSC(void* data, void* keep, void* strb, void* user, void* last, void* id, void* dest, void* axis)
-    {
-      ST st;
-      ((hls::stream<ST>*)axis)->read(st);
-      ((hls::stream<A>*)data)->write(st.data);
-      ((hls::stream<K>*)keep)->write(st.keep);
-      ((hls::stream<S>*)strb)->write(st.strb);
-      ((hls::stream<U>*)user)->write(st.user);
-      ((hls::stream<L>*)last)->write(st.last);
-      ((hls::stream<I>*)id)->write(st.id);
-      ((hls::stream<E>*)dest)->write(st.dest);
-    }
-
-    static void fromSC(void* data, void* keep, void* strb, void* user, void* last, void* id, void* dest, void* axis)
-    {
-      ST st;
-      ((hls::stream<A>*)data)->read(st.data);
-      ((hls::stream<K>*)keep)->read(st.keep);
-      ((hls::stream<S>*)strb)->read(st.strb);
-      ((hls::stream<U>*)user)->read(st.user);
-      ((hls::stream<L>*)last)->read(st.last);
-      ((hls::stream<I>*)id)->read(st.id);
-      ((hls::stream<E>*)dest)->read(st.dest);
-      ((hls::stream<ST>*)axis)->write(st);
-    }
-  };
-
-  template<size_t sdata, size_t skeep, size_t sstrb, size_t suser,
-           size_t slast, size_t sid, size_t sdest>
-  void move_to_SC(void* data, void* keep, void* strb, void* user, void* last,
-                  void* id, void* dest, void* axis)
-  {
-    typedef MoveAXIS<ap_uint<sdata>, ap_uint<skeep>, ap_uint<sstrb>,
-                     ap_uint<suser>, ap_uint<slast>, ap_uint<sid>,
-                     ap_uint<sdest>> M;
-    while (!((hls::stream<typename M::ST>*)axis)->empty()) {
-      M::toSC(data, keep, strb, user, last, id, dest, axis);
-    }
-  }
-
-  template<size_t sdata, size_t skeep, size_t sstrb, size_t suser,
-           size_t slast, size_t sid, size_t sdest>
-  void task_move_to_SC(void* data, void* keep, void* strb, void* user, void* last,
-                       void* id, void* dest, void* axis)
-  {
-    typedef MoveAXIS<ap_uint<sdata>, ap_uint<skeep>, ap_uint<sstrb>,
-                     ap_uint<suser>, ap_uint<slast>, ap_uint<sid>,
-                     ap_uint<sdest>> M;
-    std::thread(
-      [=] () { while (true) M::toSC(data, keep, strb, user, last, id, dest, axis); }
-    ).detach();
-  }
-
-  template<size_t sdata, size_t skeep, size_t sstrb, size_t suser,
-           size_t slast, size_t sid, size_t sdest>
-  void move_from_SC(void* axis, void* data, void* keep, void* strb, void* user, void* last,
-                    void* id, void* dest)
-  {
-    typedef MoveAXIS<ap_uint<sdata>, ap_uint<skeep>, ap_uint<sstrb>,
-                     ap_uint<suser>, ap_uint<slast>, ap_uint<sid>,
-                     ap_uint<sdest>> M;
-    while (!((hls::stream<ap_uint<sdata>>*)data)->empty()) {
-      M::fromSC(data, keep, strb, user, last, id, dest, axis);
-    }
-  }
-
-  template<size_t sdata, size_t skeep, size_t sstrb, size_t suser,
-           size_t slast, size_t sid, size_t sdest>
-  void task_move_from_SC(void* axis, void* data, void* keep, void* strb, void* user, void* last,
-                         void* id, void* dest)
-  {
-    typedef MoveAXIS<ap_uint<sdata>, ap_uint<skeep>, ap_uint<sstrb>,
-                     ap_uint<suser>, ap_uint<slast>, ap_uint<sid>,
-                     ap_uint<sdest>> M;
-    std::thread(
-      [=] () { while (true) M::fromSC(data, keep, strb, user, last, id, dest, axis); }
-    ).detach();
   }
 }
 
@@ -743,6 +636,58 @@ namespace hls::sim
     }
   };
 
+  template<typename E>
+  struct DirectIO {
+    unsigned width;
+    const char* name;
+#ifdef POST_CHECK
+    Reader* reader;
+#else
+    Writer* writer;
+    Writer* swriter;
+    Writer* gwriter;
+#endif
+    hls::directio<E>* param;
+    std::vector<E> buf;
+    size_t initSize;
+    size_t depth;
+    bool hasWrite;
+
+    void markSize()
+    {
+      initSize = param->size();
+    }
+
+    void buffer()
+    {
+      buf.clear();
+      while (param->valid()) {
+        buf.push_back(param->read());
+      }
+      for (auto &e : buf) {
+        param->write(e);
+      }
+    }
+
+#ifndef POST_CHECK
+    void doTCL(RefTCL &tcl)
+    {
+      tcl.set(name, depth);
+    }
+#endif
+
+    ~DirectIO()
+    {
+#ifdef POST_CHECK
+      delete reader;
+#else
+      delete writer;
+      delete swriter;
+      delete gwriter;
+#endif
+    }
+  };
+
   template<typename Reader, typename Writer>
   struct Memory {
     unsigned width;
@@ -896,6 +841,39 @@ namespace hls::sim
     port.reader->end();
     if (foundX) {
       warnOnX();
+    }
+  }
+
+  template<typename E>
+  void check(DirectIO<E> &port)
+  {
+    if (port.hasWrite) {
+      port.reader->begin();
+      bool foundX = false;
+      E *p = new E;
+      while (char *s = port.reader->next()) {
+        foundX |= RTLOutputCheckAndReplacement(s);
+        unformatData(s, (unsigned char*)p);
+        port.param->write(*p);
+      }
+      delete p;
+      port.reader->end();
+      if (foundX) {
+        warnOnX();
+      }
+    } else {
+      port.reader->begin();
+      size_t n = 0;
+      if (char *s = port.reader->next()) {
+        std::istringstream ss(s);
+        ss >> n;
+      } else {
+        throw SimException(bad, __LINE__);
+      }
+      port.reader->end();
+      for (size_t j = 0; j < n; ++j) {
+        port.param->read();
+      }
     }
   }
 
@@ -1071,9 +1049,51 @@ namespace hls::sim
     writer->end();
   }
 
+  template<typename E>
+  void dump(DirectIO<E> &port, size_t AESL_transaction)
+  {
+    if (port.hasWrite) {
+      port.writer->begin(AESL_transaction);
+      port.depth = port.param->size()-port.initSize;
+      for (size_t j = 0; j < port.depth; ++j) {
+        std::string &&s {
+          formatData((unsigned char*)&port.buf[port.initSize+j], port.width)
+        };
+        port.writer->next(s.c_str());
+      }
+      port.writer->end();
+
+      port.swriter->begin(AESL_transaction);
+      port.swriter->next(std::to_string(port.depth).c_str());
+      port.swriter->end();
+    } else {
+      port.writer->begin(AESL_transaction);
+      port.depth = port.initSize-port.param->size();
+      for (size_t j = 0; j < port.depth; ++j) {
+        std::string &&s {
+          formatData((unsigned char*)&port.buf[j], port.width)
+        };
+        port.writer->next(s.c_str());
+      }
+      port.writer->end();
+
+      port.swriter->begin(AESL_transaction);
+      port.swriter->next(std::to_string(port.depth).c_str());
+      port.swriter->end();
+
+      port.gwriter->begin(AESL_transaction);
+      size_t n = (port.depth ? port.initSize : port.depth);
+      size_t d = port.depth;
+      do {
+        port.gwriter->next(std::to_string(n--).c_str());
+      } while (d--);
+      port.gwriter->end();
+    }
+  }
+
   void error_on_depth_unspecified(const char *portName)
   {
-    std::string msg {"A depth specification is required for MAXI interface port "};
+    std::string msg {"A depth specification is required for interface port "};
     msg.append("'");
     msg.append(portName);
     msg.append("'");
@@ -1122,6 +1142,9 @@ namespace hls::sim
   void dump(A2Stream &port, Writer *writer, size_t AESL_transaction)
   {
     writer->begin(AESL_transaction);
+    if (port.nbytes == 0) {
+      error_on_depth_unspecified(port.name);
+    }
     size_t n = divide_ceil(port.nbytes, port.asize);
     unsigned char *put = (unsigned char*)port.param;
     for (size_t j = 0; j < n; ++j) {

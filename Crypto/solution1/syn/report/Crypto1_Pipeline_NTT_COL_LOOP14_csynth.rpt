@@ -1,0 +1,1097 @@
+
+
+================================================================
+== Vitis HLS Report for 'Crypto1_Pipeline_NTT_COL_LOOP14'
+================================================================
+* Date:           Fri Apr  4 16:48:00 2025
+
+* Version:        2024.1 (Build 5069499 on May 21 2024)
+* Project:        Crypto
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtex7
+* Target device:  xc7vx485t-ffg1761-3
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  6.00 ns|  4.006 ns|     1.62 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+-----------------------------------------------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval |                    Pipeline                   |
+    |   min   |   max   |    min    |    max    | min | max |                      Type                     |
+    +---------+---------+-----------+-----------+-----+-----+-----------------------------------------------+
+    |       12|       12|  72.000 ns|  72.000 ns|   11|   11|  loop auto-rewind stp(delay=0 clock cycles(s))|
+    +---------+---------+-----------+-----------+-----+-----+-----------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |    Loop Name   |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- NTT_COL_LOOP  |       10|       10|         7|          4|          1|     2|       yes|
+        +----------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|    8890|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|     -|       -|       -|    -|
+|Memory           |        -|     -|       -|       -|    -|
+|Multiplexer      |        -|     -|    4890|    1323|    -|
+|Register         |        -|     -|    3068|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        0|     0|    7958|   10213|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |     2060|  2800|  607200|  303600|    0|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        0|     0|       1|       3|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------+----------+----+---+----+------------+------------+
+    |        Variable Name       | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------+----------+----+---+----+------------+------------+
+    |ReadAddr_64_fu_3546_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_65_fu_3598_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_66_fu_4237_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_67_fu_4290_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_68_fu_5672_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_69_fu_5725_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_70_fu_6891_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_71_fu_6949_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_72_fu_3650_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_73_fu_3702_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_74_fu_4385_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_75_fu_4438_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_76_fu_5814_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_77_fu_5867_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_78_fu_7043_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_79_fu_7101_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_80_fu_3754_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_81_fu_3806_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_82_fu_4533_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_83_fu_4586_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_84_fu_5956_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_85_fu_6009_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_86_fu_7195_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_87_fu_7253_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_88_fu_3858_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_89_fu_3910_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_90_fu_4681_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_91_fu_4734_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_92_fu_6098_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_93_fu_6151_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_94_fu_7347_p2      |         +|   0|  0|  20|          13|          13|
+    |ReadAddr_95_fu_7405_p2      |         +|   0|  0|  20|          13|          13|
+    |add_ln296_fu_7803_p2        |         +|   0|  0|  14|           7|           6|
+    |add_ln299_fu_3530_p2        |         +|   0|  0|  14|           7|           2|
+    |add_ln300_10_fu_5738_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_11_fu_5756_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_12_fu_6967_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_13_fu_6985_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_14_fu_7056_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_15_fu_7114_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_16_fu_4454_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_17_fu_4475_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_18_fu_5880_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_19_fu_5898_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_1_fu_4179_p2      |         +|   0|  0|  17|          10|          10|
+    |add_ln300_20_fu_7119_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_21_fu_7137_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_22_fu_7208_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_23_fu_7266_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_24_fu_4602_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_25_fu_4623_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_26_fu_6022_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_27_fu_6040_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_28_fu_7271_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_29_fu_7289_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_2_fu_5596_p2      |         +|   0|  0|  17|          10|          10|
+    |add_ln300_30_fu_7360_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_31_fu_7570_p2     |         +|   0|  0|  17|          10|          10|
+    |add_ln300_3_fu_5614_p2      |         +|   0|  0|  17|          10|          10|
+    |add_ln300_4_fu_6815_p2      |         +|   0|  0|  17|          10|          10|
+    |add_ln300_5_fu_6833_p2      |         +|   0|  0|  17|          10|          10|
+    |add_ln300_6_fu_6904_p2      |         +|   0|  0|  17|          10|          10|
+    |add_ln300_7_fu_6962_p2      |         +|   0|  0|  17|          10|          10|
+    |add_ln300_8_fu_4306_p2      |         +|   0|  0|  17|          10|          10|
+    |add_ln300_9_fu_4327_p2      |         +|   0|  0|  17|          10|          10|
+    |add_ln300_fu_4158_p2        |         +|   0|  0|  17|          10|          10|
+    |sub_ln299_10_fu_4345_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_11_fu_4398_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_12_fu_5774_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_13_fu_5827_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_14_fu_7003_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_15_fu_7061_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_16_fu_3712_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_17_fu_3764_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_18_fu_4493_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_19_fu_4546_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_1_fu_3556_p2      |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_20_fu_5916_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_21_fu_5969_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_22_fu_7155_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_23_fu_7213_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_24_fu_3816_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_25_fu_3868_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_26_fu_4641_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_27_fu_4694_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_28_fu_6058_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_29_fu_6111_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_2_fu_4197_p2      |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_30_fu_7307_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_31_fu_7365_p2     |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_3_fu_4250_p2      |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_4_fu_5632_p2      |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_5_fu_5685_p2      |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_6_fu_6851_p2      |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_7_fu_6909_p2      |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_8_fu_3608_p2      |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_9_fu_3660_p2      |         -|   0|  0|  14|           7|           7|
+    |sub_ln299_fu_3498_p2        |         -|   0|  0|  14|           7|           7|
+    |and_ln299_10_fu_4376_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_11_fu_4429_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_12_fu_5805_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_13_fu_5858_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_14_fu_7034_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_15_fu_7092_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_16_fu_3744_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_17_fu_3796_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_18_fu_4524_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_19_fu_4577_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_1_fu_3588_p2      |       and|   0|  0|   7|           7|           7|
+    |and_ln299_20_fu_5947_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_21_fu_6000_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_22_fu_7186_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_23_fu_7244_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_24_fu_3848_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_25_fu_3900_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_26_fu_4672_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_27_fu_4725_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_28_fu_6089_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_29_fu_6142_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_2_fu_4228_p2      |       and|   0|  0|   7|           7|           7|
+    |and_ln299_30_fu_7338_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_31_fu_7396_p2     |       and|   0|  0|   7|           7|           7|
+    |and_ln299_3_fu_4281_p2      |       and|   0|  0|   7|           7|           7|
+    |and_ln299_4_fu_5663_p2      |       and|   0|  0|   7|           7|           7|
+    |and_ln299_5_fu_5716_p2      |       and|   0|  0|   7|           7|           7|
+    |and_ln299_6_fu_6882_p2      |       and|   0|  0|   7|           7|           7|
+    |and_ln299_7_fu_6940_p2      |       and|   0|  0|   7|           7|           7|
+    |and_ln299_8_fu_3640_p2      |       and|   0|  0|   7|           7|           7|
+    |and_ln299_9_fu_3692_p2      |       and|   0|  0|   7|           7|           7|
+    |and_ln299_fu_3536_p2        |       and|   0|  0|   7|           7|           7|
+    |icmp_ln299_fu_4747_p2       |      icmp|   0|  0|  14|           7|           1|
+    |icmp_ln302_fu_6276_p2       |      icmp|   0|  0|  14|           7|           6|
+    |ReadAddr_100_fu_6269_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_101_fu_6262_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_102_fu_7519_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_103_fu_7512_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_104_fu_4968_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_105_fu_4960_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_106_fu_4952_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_107_fu_4944_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_108_fu_6255_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_109_fu_6248_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_110_fu_7505_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_111_fu_7498_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_112_fu_4936_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_113_fu_4928_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_114_fu_4920_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_115_fu_4912_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_116_fu_6241_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_117_fu_6234_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_118_fu_7491_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_119_fu_7484_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_120_fu_4904_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_121_fu_4896_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_122_fu_4888_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_123_fu_4880_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_124_fu_6227_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_125_fu_6220_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_126_fu_7477_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_127_fu_7470_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_128_fu_4872_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_129_fu_4864_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_130_fu_4856_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_131_fu_4848_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_132_fu_6213_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_133_fu_6206_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_134_fu_7463_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_135_fu_7456_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_136_fu_4840_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_137_fu_4832_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_138_fu_4824_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_139_fu_4816_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_140_fu_6199_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_141_fu_6192_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_142_fu_7449_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_143_fu_7442_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_144_fu_4808_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_145_fu_4800_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_146_fu_4792_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_147_fu_4784_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_148_fu_6185_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_149_fu_6178_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_150_fu_7435_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_151_fu_7428_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_152_fu_4776_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_153_fu_4768_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_154_fu_4760_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_155_fu_4752_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_156_fu_6171_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_157_fu_6164_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_158_fu_7421_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_159_fu_7414_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_160_fu_7691_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_161_fu_7698_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_162_fu_6453_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_163_fu_6460_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_164_fu_5008_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_165_fu_5015_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_166_fu_5022_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_167_fu_5029_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_168_fu_7705_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_169_fu_7712_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_170_fu_6467_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_171_fu_6474_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_172_fu_5036_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_173_fu_5043_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_174_fu_5050_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_175_fu_5057_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_176_fu_7719_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_177_fu_7726_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_178_fu_6481_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_179_fu_6488_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_180_fu_5064_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_181_fu_5071_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_182_fu_5078_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_183_fu_5085_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_184_fu_7733_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_185_fu_7740_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_186_fu_6495_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_187_fu_6502_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_188_fu_5092_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_189_fu_5099_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_190_fu_5106_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_191_fu_5113_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_192_fu_7747_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_193_fu_7754_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_194_fu_6509_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_195_fu_6516_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_196_fu_5120_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_197_fu_5127_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_198_fu_5134_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_199_fu_5141_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_200_fu_7761_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_201_fu_7768_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_202_fu_6523_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_203_fu_6530_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_204_fu_5148_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_205_fu_5155_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_206_fu_5162_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_207_fu_5169_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_208_fu_7775_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_209_fu_7782_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_210_fu_6537_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_211_fu_6544_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_212_fu_5176_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_213_fu_5183_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_214_fu_5190_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_215_fu_5197_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_216_fu_7789_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_217_fu_7796_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_218_fu_6551_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_219_fu_6558_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_220_fu_5204_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_221_fu_5211_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_222_fu_5218_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_223_fu_5225_p3     |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_96_fu_5000_p3      |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_97_fu_4992_p3      |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_98_fu_4984_p3      |    select|   0|  0|  32|           1|          32|
+    |ReadAddr_99_fu_4976_p3      |    select|   0|  0|  32|           1|          32|
+    |grp_fu_2954_p3              |    select|   0|  0|  32|           1|          32|
+    |grp_fu_2961_p3              |    select|   0|  0|  32|           1|          32|
+    |grp_fu_2968_p3              |    select|   0|  0|  32|           1|          32|
+    |grp_fu_2975_p3              |    select|   0|  0|  32|           1|          32|
+    |grp_fu_2982_p3              |    select|   0|  0|  32|           1|          32|
+    |grp_fu_2989_p3              |    select|   0|  0|  32|           1|          32|
+    |grp_fu_2996_p3              |    select|   0|  0|  32|           1|          32|
+    |grp_fu_3003_p3              |    select|   0|  0|  32|           1|          32|
+    |select_ln300_10_fu_7589_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln300_11_fu_7596_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln300_16_fu_6361_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln300_17_fu_6369_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln300_18_fu_7603_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln300_19_fu_7610_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln300_1_fu_6337_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln300_24_fu_6377_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln300_25_fu_6385_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln300_26_fu_7617_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln300_27_fu_7624_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln300_2_fu_7575_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln300_3_fu_7582_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln300_8_fu_6345_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln300_9_fu_6353_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln300_fu_6329_p3     |    select|   0|  0|  32|           1|          32|
+    |select_ln302_10_fu_7536_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_11_fu_7541_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_12_fu_8020_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_13_fu_8025_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_14_fu_8162_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_15_fu_8167_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_16_fu_6305_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_17_fu_6311_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_18_fu_7546_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_19_fu_7551_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_1_fu_6287_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln302_20_fu_8030_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_21_fu_8035_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_22_fu_8172_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_23_fu_8177_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_24_fu_6317_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_25_fu_6323_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_26_fu_7556_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_27_fu_7561_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_28_fu_8040_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_29_fu_8045_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_2_fu_7526_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln302_30_fu_8182_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_31_fu_8187_p3  |    select|   0|  0|  32|           1|          32|
+    |select_ln302_3_fu_7531_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln302_4_fu_8010_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln302_5_fu_8015_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln302_6_fu_8152_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln302_7_fu_8157_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln302_8_fu_6293_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln302_9_fu_6299_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln302_fu_6281_p3     |    select|   0|  0|  32|           1|          32|
+    |storemerge112_fu_8238_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge113_fu_7677_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge124_fu_8230_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge125_fu_7669_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge136_fu_8222_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge137_fu_7661_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge148_fu_8215_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge149_fu_7654_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge160_fu_8208_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge161_fu_7647_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge172_fu_8200_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge173_fu_7639_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge184_fu_8192_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge185_fu_7631_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge196_fu_8116_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge197_fu_6446_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge208_fu_8109_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge209_fu_6439_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge220_fu_8101_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge221_fu_6431_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge232_fu_8093_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge233_fu_6423_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge244_fu_8086_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge245_fu_6416_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge256_fu_8079_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge257_fu_6409_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge268_fu_8071_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge269_fu_6401_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge280_fu_8063_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge281_fu_6393_p3    |    select|   0|  0|  32|           1|          32|
+    |storemerge36_fu_8245_p3     |    select|   0|  0|  32|           1|          32|
+    |storemerge37_fu_7684_p3     |    select|   0|  0|  32|           1|          32|
+    |ap_enable_pp0               |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_11_fu_6864_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_13_fu_6922_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_15_fu_3622_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_17_fu_3674_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_19_fu_4358_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_1_fu_3570_p2      |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_21_fu_4411_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_23_fu_5787_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_25_fu_5840_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_27_fu_7016_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_29_fu_7074_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_31_fu_3726_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_33_fu_3778_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_35_fu_4506_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_37_fu_4559_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_39_fu_5929_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_3_fu_4210_p2      |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_41_fu_5982_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_43_fu_7168_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_45_fu_7226_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_47_fu_3830_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_49_fu_3882_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_51_fu_4654_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_53_fu_4707_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_55_fu_6071_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_57_fu_6124_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_59_fu_7320_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_5_fu_4263_p2      |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_61_fu_7378_p2     |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_7_fu_5645_p2      |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_9_fu_5698_p2      |       xor|   0|  0|   2|           1|           2|
+    |xor_ln299_fu_3512_p2        |       xor|   0|  0|   2|           1|           2|
+    +----------------------------+----------+----+---+----+------------+------------+
+    |Total                       |          |   0|  0|8890|        1461|        8177|
+    +----------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-----------------------------+----+-----------+-----+-----------+
+    |             Name            | LUT| Input Size| Bits| Total Bits|
+    +-----------------------------+----+-----------+-----+-----------+
+    |DataRAM_1_address0_local     |  21|          5|   13|         65|
+    |DataRAM_1_address1_local     |  21|          5|   13|         65|
+    |DataRAM_2_address0_local     |  21|          5|   13|         65|
+    |DataRAM_2_address1_local     |  21|          5|   13|         65|
+    |DataRAM_3_address0_local     |  21|          5|   13|         65|
+    |DataRAM_3_address1_local     |  21|          5|   13|         65|
+    |DataRAM_4_address0_local     |  21|          5|   13|         65|
+    |DataRAM_4_address1_local     |  21|          5|   13|         65|
+    |DataRAM_5_address0_local     |  21|          5|   13|         65|
+    |DataRAM_5_address1_local     |  21|          5|   13|         65|
+    |DataRAM_6_address0_local     |  21|          5|   13|         65|
+    |DataRAM_6_address1_local     |  21|          5|   13|         65|
+    |DataRAM_7_address0_local     |  21|          5|   13|         65|
+    |DataRAM_7_address1_local     |  21|          5|   13|         65|
+    |DataRAM_address0_local       |  21|          5|   13|         65|
+    |DataRAM_address1_local       |  21|          5|   13|         65|
+    |ReadAddr_10_fu_616           |   9|          2|   32|         64|
+    |ReadAddr_11_fu_620           |   9|          2|   32|         64|
+    |ReadAddr_12_fu_624           |   9|          2|   32|         64|
+    |ReadAddr_13_fu_628           |   9|          2|   32|         64|
+    |ReadAddr_14_fu_632           |   9|          2|   32|         64|
+    |ReadAddr_15_fu_636           |   9|          2|   32|         64|
+    |ReadAddr_16_fu_640           |   9|          2|   32|         64|
+    |ReadAddr_17_fu_644           |   9|          2|   32|         64|
+    |ReadAddr_18_fu_648           |   9|          2|   32|         64|
+    |ReadAddr_19_fu_652           |   9|          2|   32|         64|
+    |ReadAddr_1_fu_580            |   9|          2|   32|         64|
+    |ReadAddr_20_fu_656           |   9|          2|   32|         64|
+    |ReadAddr_21_fu_660           |   9|          2|   32|         64|
+    |ReadAddr_22_fu_664           |   9|          2|   32|         64|
+    |ReadAddr_23_fu_668           |   9|          2|   32|         64|
+    |ReadAddr_24_fu_672           |   9|          2|   32|         64|
+    |ReadAddr_25_fu_676           |   9|          2|   32|         64|
+    |ReadAddr_26_fu_680           |   9|          2|   32|         64|
+    |ReadAddr_27_fu_684           |   9|          2|   32|         64|
+    |ReadAddr_28_fu_688           |   9|          2|   32|         64|
+    |ReadAddr_29_fu_692           |   9|          2|   32|         64|
+    |ReadAddr_2_fu_584            |   9|          2|   32|         64|
+    |ReadAddr_30_fu_696           |   9|          2|   32|         64|
+    |ReadAddr_31_fu_700           |   9|          2|   32|         64|
+    |ReadAddr_32_fu_704           |   9|          2|   32|         64|
+    |ReadAddr_33_fu_708           |   9|          2|   32|         64|
+    |ReadAddr_34_fu_712           |   9|          2|   32|         64|
+    |ReadAddr_35_fu_716           |   9|          2|   32|         64|
+    |ReadAddr_36_fu_720           |   9|          2|   32|         64|
+    |ReadAddr_37_fu_724           |   9|          2|   32|         64|
+    |ReadAddr_38_fu_728           |   9|          2|   32|         64|
+    |ReadAddr_39_fu_732           |   9|          2|   32|         64|
+    |ReadAddr_3_fu_588            |   9|          2|   32|         64|
+    |ReadAddr_40_fu_736           |   9|          2|   32|         64|
+    |ReadAddr_41_fu_740           |   9|          2|   32|         64|
+    |ReadAddr_42_fu_744           |   9|          2|   32|         64|
+    |ReadAddr_43_fu_748           |   9|          2|   32|         64|
+    |ReadAddr_44_fu_752           |   9|          2|   32|         64|
+    |ReadAddr_45_fu_756           |   9|          2|   32|         64|
+    |ReadAddr_46_fu_760           |   9|          2|   32|         64|
+    |ReadAddr_47_fu_764           |   9|          2|   32|         64|
+    |ReadAddr_48_fu_768           |   9|          2|   32|         64|
+    |ReadAddr_49_fu_772           |   9|          2|   32|         64|
+    |ReadAddr_4_fu_592            |   9|          2|   32|         64|
+    |ReadAddr_50_fu_776           |   9|          2|   32|         64|
+    |ReadAddr_51_fu_780           |   9|          2|   32|         64|
+    |ReadAddr_52_fu_784           |   9|          2|   32|         64|
+    |ReadAddr_53_fu_788           |   9|          2|   32|         64|
+    |ReadAddr_54_fu_792           |   9|          2|   32|         64|
+    |ReadAddr_55_fu_796           |   9|          2|   32|         64|
+    |ReadAddr_56_fu_800           |   9|          2|   32|         64|
+    |ReadAddr_57_fu_804           |   9|          2|   32|         64|
+    |ReadAddr_58_fu_808           |   9|          2|   32|         64|
+    |ReadAddr_59_fu_812           |   9|          2|   32|         64|
+    |ReadAddr_5_fu_596            |   9|          2|   32|         64|
+    |ReadAddr_60_fu_816           |   9|          2|   32|         64|
+    |ReadAddr_61_fu_820           |   9|          2|   32|         64|
+    |ReadAddr_62_fu_824           |   9|          2|   32|         64|
+    |ReadAddr_63_fu_828           |   9|          2|   32|         64|
+    |ReadAddr_6_fu_600            |   9|          2|   32|         64|
+    |ReadAddr_7_fu_604            |   9|          2|   32|         64|
+    |ReadAddr_8_fu_608            |   9|          2|   32|         64|
+    |ReadAddr_9_fu_612            |   9|          2|   32|         64|
+    |ReadAddr_fu_576              |   9|          2|   32|         64|
+    |ReadData_1_address0_local    |  21|          5|    4|         20|
+    |ReadData_1_address1_local    |  21|          5|    4|         20|
+    |ReadData_1_d0_local          |  21|          5|   32|        160|
+    |ReadData_1_d1_local          |  21|          5|   32|        160|
+    |ReadData_2_address0_local    |  21|          5|    4|         20|
+    |ReadData_2_address1_local    |  21|          5|    4|         20|
+    |ReadData_2_d0_local          |  21|          5|   32|        160|
+    |ReadData_2_d1_local          |  21|          5|   32|        160|
+    |ReadData_3_address0_local    |  21|          5|    4|         20|
+    |ReadData_3_address1_local    |  21|          5|    4|         20|
+    |ReadData_3_d0_local          |  21|          5|   32|        160|
+    |ReadData_3_d1_local          |  21|          5|   32|        160|
+    |ReadData_address0_local      |  21|          5|    4|         20|
+    |ReadData_address1_local      |  21|          5|    4|         20|
+    |ReadData_d0_local            |  21|          5|   32|        160|
+    |ReadData_d1_local            |  21|          5|   32|        160|
+    |ap_NS_fsm                    |  21|          5|    1|          5|
+    |ap_done_int                  |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter0      |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter0_reg  |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1      |   9|          2|    1|          2|
+    |ap_sig_allocacmp_l           |   9|          2|    7|         14|
+    |l_6_fu_572                   |   9|          2|    7|         14|
+    +-----------------------------+----+-----------+-----+-----------+
+    |Total                        |1323|        305| 2563|       6617|
+    +-----------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------+----+----+-----+-----------+
+    |              Name              | FF | LUT| Bits| Const Bits|
+    +--------------------------------+----+----+-----+-----------+
+    |ReadAddr_10_fu_616              |  32|   0|   32|          0|
+    |ReadAddr_11_fu_620              |  32|   0|   32|          0|
+    |ReadAddr_12_fu_624              |  32|   0|   32|          0|
+    |ReadAddr_13_fu_628              |  32|   0|   32|          0|
+    |ReadAddr_14_fu_632              |  32|   0|   32|          0|
+    |ReadAddr_15_fu_636              |  32|   0|   32|          0|
+    |ReadAddr_16_fu_640              |  32|   0|   32|          0|
+    |ReadAddr_17_fu_644              |  32|   0|   32|          0|
+    |ReadAddr_18_fu_648              |  32|   0|   32|          0|
+    |ReadAddr_19_fu_652              |  32|   0|   32|          0|
+    |ReadAddr_1_fu_580               |  32|   0|   32|          0|
+    |ReadAddr_20_fu_656              |  32|   0|   32|          0|
+    |ReadAddr_21_fu_660              |  32|   0|   32|          0|
+    |ReadAddr_22_fu_664              |  32|   0|   32|          0|
+    |ReadAddr_23_fu_668              |  32|   0|   32|          0|
+    |ReadAddr_24_fu_672              |  32|   0|   32|          0|
+    |ReadAddr_25_fu_676              |  32|   0|   32|          0|
+    |ReadAddr_26_fu_680              |  32|   0|   32|          0|
+    |ReadAddr_27_fu_684              |  32|   0|   32|          0|
+    |ReadAddr_28_fu_688              |  32|   0|   32|          0|
+    |ReadAddr_29_fu_692              |  32|   0|   32|          0|
+    |ReadAddr_2_fu_584               |  32|   0|   32|          0|
+    |ReadAddr_30_fu_696              |  32|   0|   32|          0|
+    |ReadAddr_31_fu_700              |  32|   0|   32|          0|
+    |ReadAddr_32_fu_704              |  32|   0|   32|          0|
+    |ReadAddr_33_fu_708              |  32|   0|   32|          0|
+    |ReadAddr_34_fu_712              |  32|   0|   32|          0|
+    |ReadAddr_35_fu_716              |  32|   0|   32|          0|
+    |ReadAddr_36_fu_720              |  32|   0|   32|          0|
+    |ReadAddr_37_fu_724              |  32|   0|   32|          0|
+    |ReadAddr_38_fu_728              |  32|   0|   32|          0|
+    |ReadAddr_39_fu_732              |  32|   0|   32|          0|
+    |ReadAddr_3_fu_588               |  32|   0|   32|          0|
+    |ReadAddr_40_fu_736              |  32|   0|   32|          0|
+    |ReadAddr_41_fu_740              |  32|   0|   32|          0|
+    |ReadAddr_42_fu_744              |  32|   0|   32|          0|
+    |ReadAddr_43_fu_748              |  32|   0|   32|          0|
+    |ReadAddr_44_fu_752              |  32|   0|   32|          0|
+    |ReadAddr_45_fu_756              |  32|   0|   32|          0|
+    |ReadAddr_46_fu_760              |  32|   0|   32|          0|
+    |ReadAddr_47_fu_764              |  32|   0|   32|          0|
+    |ReadAddr_48_fu_768              |  32|   0|   32|          0|
+    |ReadAddr_49_fu_772              |  32|   0|   32|          0|
+    |ReadAddr_4_fu_592               |  32|   0|   32|          0|
+    |ReadAddr_50_fu_776              |  32|   0|   32|          0|
+    |ReadAddr_51_fu_780              |  32|   0|   32|          0|
+    |ReadAddr_52_fu_784              |  32|   0|   32|          0|
+    |ReadAddr_53_fu_788              |  32|   0|   32|          0|
+    |ReadAddr_54_fu_792              |  32|   0|   32|          0|
+    |ReadAddr_55_fu_796              |  32|   0|   32|          0|
+    |ReadAddr_56_fu_800              |  32|   0|   32|          0|
+    |ReadAddr_57_fu_804              |  32|   0|   32|          0|
+    |ReadAddr_58_fu_808              |  32|   0|   32|          0|
+    |ReadAddr_59_fu_812              |  32|   0|   32|          0|
+    |ReadAddr_5_fu_596               |  32|   0|   32|          0|
+    |ReadAddr_60_fu_816              |  32|   0|   32|          0|
+    |ReadAddr_61_fu_820              |  32|   0|   32|          0|
+    |ReadAddr_62_fu_824              |  32|   0|   32|          0|
+    |ReadAddr_63_fu_828              |  32|   0|   32|          0|
+    |ReadAddr_64_reg_9616            |  13|   0|   13|          0|
+    |ReadAddr_65_reg_9626            |  13|   0|   13|          0|
+    |ReadAddr_6_fu_600               |  32|   0|   32|          0|
+    |ReadAddr_72_reg_9636            |  13|   0|   13|          0|
+    |ReadAddr_73_reg_9646            |  13|   0|   13|          0|
+    |ReadAddr_7_fu_604               |  32|   0|   32|          0|
+    |ReadAddr_80_reg_9656            |  13|   0|   13|          0|
+    |ReadAddr_81_reg_9666            |  13|   0|   13|          0|
+    |ReadAddr_88_reg_9676            |  13|   0|   13|          0|
+    |ReadAddr_89_reg_9686            |  13|   0|   13|          0|
+    |ReadAddr_8_fu_608               |  32|   0|   32|          0|
+    |ReadAddr_9_fu_612               |  32|   0|   32|          0|
+    |ReadAddr_fu_576                 |  32|   0|   32|          0|
+    |add_ln299_reg_9588              |   7|   0|    7|          0|
+    |add_ln300_14_reg_10140          |  10|   0|   10|          0|
+    |add_ln300_15_reg_10145          |  10|   0|   10|          0|
+    |add_ln300_22_reg_10170          |  10|   0|   10|          0|
+    |add_ln300_23_reg_10175          |  10|   0|   10|          0|
+    |add_ln300_30_reg_10200          |  10|   0|   10|          0|
+    |add_ln300_31_reg_10205          |  10|   0|   10|          0|
+    |add_ln300_6_reg_10110           |  10|   0|   10|          0|
+    |add_ln300_7_reg_10115           |  10|   0|   10|          0|
+    |ap_CS_fsm                       |   4|   0|    4|          0|
+    |ap_done_reg                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter0_reg     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1         |   1|   0|    1|          0|
+    |icmp_ln299_reg_9832             |   1|   0|    1|          0|
+    |icmp_ln302_reg_10014            |   1|   0|    1|          0|
+    |k_11_cast_reg_9511              |   6|   0|    7|          1|
+    |l_6_fu_572                      |   7|   0|    7|          0|
+    |l_reg_9539                      |   7|   0|    7|          0|
+    |lshr_ln296_2_reg_9696           |   4|   0|    4|          0|
+    |mul_2_cast_reg_9483             |  12|   0|   13|          1|
+    |storemerge112_reg_10364         |  32|   0|   32|          0|
+    |storemerge113_reg_10220         |  32|   0|   32|          0|
+    |storemerge148_reg_10359         |  32|   0|   32|          0|
+    |storemerge149_reg_10215         |  32|   0|   32|          0|
+    |storemerge160_reg_10354         |  32|   0|   32|          0|
+    |storemerge161_reg_10210         |  32|   0|   32|          0|
+    |storemerge196_reg_10337         |  32|   0|   32|          0|
+    |storemerge197_reg_10073         |  32|   0|   32|          0|
+    |storemerge208_reg_10332         |  32|   0|   32|          0|
+    |storemerge209_reg_10068         |  32|   0|   32|          0|
+    |storemerge244_reg_10327         |  32|   0|   32|          0|
+    |storemerge245_reg_10063         |  32|   0|   32|          0|
+    |storemerge256_reg_10322         |  32|   0|   32|          0|
+    |storemerge257_reg_10058         |  32|   0|   32|          0|
+    |storemerge36_reg_10369          |  32|   0|   32|          0|
+    |storemerge37_reg_10225          |  32|   0|   32|          0|
+    |tmp_316_reg_9552                |   1|   0|    1|          0|
+    |tmp_318_reg_9701                |   1|   0|    1|          0|
+    |tmp_319_reg_9568                |   1|   0|    1|          0|
+    |tmp_319_reg_9568_pp0_iter1_reg  |   1|   0|    1|          0|
+    |tmp_320_reg_9887                |   1|   0|    1|          0|
+    |tmp_494_reg_9874                |   3|   0|    3|          0|
+    |tmp_495_reg_9556                |   2|   0|    2|          0|
+    |tmp_497_reg_9707                |   2|   0|    2|          0|
+    |trunc_ln300_10_reg_9762         |  10|   0|   10|          0|
+    |trunc_ln300_11_reg_9767         |  10|   0|   10|          0|
+    |trunc_ln300_12_reg_9944         |  10|   0|   10|          0|
+    |trunc_ln300_13_reg_9949         |  10|   0|   10|          0|
+    |trunc_ln300_16_reg_9661         |  10|   0|   10|          0|
+    |trunc_ln300_17_reg_9671         |  10|   0|   10|          0|
+    |trunc_ln300_18_reg_9792         |  10|   0|   10|          0|
+    |trunc_ln300_19_reg_9797         |  10|   0|   10|          0|
+    |trunc_ln300_1_reg_9631          |  10|   0|   10|          0|
+    |trunc_ln300_20_reg_9974         |  10|   0|   10|          0|
+    |trunc_ln300_21_reg_9979         |  10|   0|   10|          0|
+    |trunc_ln300_24_reg_9681         |  10|   0|   10|          0|
+    |trunc_ln300_25_reg_9691         |  10|   0|   10|          0|
+    |trunc_ln300_26_reg_9822         |  10|   0|   10|          0|
+    |trunc_ln300_27_reg_9827         |  10|   0|   10|          0|
+    |trunc_ln300_28_reg_10004        |  10|   0|   10|          0|
+    |trunc_ln300_29_reg_10009        |  10|   0|   10|          0|
+    |trunc_ln300_2_reg_9732          |  10|   0|   10|          0|
+    |trunc_ln300_3_reg_9737          |  10|   0|   10|          0|
+    |trunc_ln300_4_reg_9914          |  10|   0|   10|          0|
+    |trunc_ln300_5_reg_9919          |  10|   0|   10|          0|
+    |trunc_ln300_8_reg_9641          |  10|   0|   10|          0|
+    |trunc_ln300_9_reg_9651          |  10|   0|   10|          0|
+    |trunc_ln300_reg_9621            |  10|   0|   10|          0|
+    |zext_ln296_reg_9868             |   4|   0|   64|         60|
+    |zext_ln302_14_reg_10236         |   2|   0|   64|         62|
+    |zext_ln302_19_reg_10078         |   3|   0|   64|         61|
+    |zext_ln302_24_reg_10342         |   2|   0|   64|         62|
+    |zext_ln302_29_reg_10084         |   2|   0|   64|         62|
+    |zext_ln302_34_reg_10348         |   1|   0|   64|         63|
+    |zext_ln302_4_reg_10230          |   3|   0|   64|         61|
+    |zext_ln302_9_reg_9881           |   3|   0|   64|         61|
+    +--------------------------------+----+----+-----+-----------+
+    |Total                           |3068|   0| 3562|        494|
+    +--------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------+-----+-----+------------+---------------------------------+--------------+
+|         RTL Ports        | Dir | Bits|  Protocol  |          Source Object          |    C Type    |
++--------------------------+-----+-----+------------+---------------------------------+--------------+
+|ap_clk                    |   in|    1|  ap_ctrl_hs|  Crypto1_Pipeline_NTT_COL_LOOP14|  return value|
+|ap_rst                    |   in|    1|  ap_ctrl_hs|  Crypto1_Pipeline_NTT_COL_LOOP14|  return value|
+|ap_start                  |   in|    1|  ap_ctrl_hs|  Crypto1_Pipeline_NTT_COL_LOOP14|  return value|
+|ap_done                   |  out|    1|  ap_ctrl_hs|  Crypto1_Pipeline_NTT_COL_LOOP14|  return value|
+|ap_idle                   |  out|    1|  ap_ctrl_hs|  Crypto1_Pipeline_NTT_COL_LOOP14|  return value|
+|ap_ready                  |  out|    1|  ap_ctrl_hs|  Crypto1_Pipeline_NTT_COL_LOOP14|  return value|
+|ReadAddr_831              |   in|   32|     ap_none|                     ReadAddr_831|        scalar|
+|ReadAddr_830              |   in|   32|     ap_none|                     ReadAddr_830|        scalar|
+|ReadAddr_829              |   in|   32|     ap_none|                     ReadAddr_829|        scalar|
+|ReadAddr_828              |   in|   32|     ap_none|                     ReadAddr_828|        scalar|
+|ReadAddr_827              |   in|   32|     ap_none|                     ReadAddr_827|        scalar|
+|ReadAddr_826              |   in|   32|     ap_none|                     ReadAddr_826|        scalar|
+|ReadAddr_825              |   in|   32|     ap_none|                     ReadAddr_825|        scalar|
+|ReadAddr_824              |   in|   32|     ap_none|                     ReadAddr_824|        scalar|
+|ReadAddr_823              |   in|   32|     ap_none|                     ReadAddr_823|        scalar|
+|ReadAddr_822              |   in|   32|     ap_none|                     ReadAddr_822|        scalar|
+|ReadAddr_821              |   in|   32|     ap_none|                     ReadAddr_821|        scalar|
+|ReadAddr_820              |   in|   32|     ap_none|                     ReadAddr_820|        scalar|
+|ReadAddr_819              |   in|   32|     ap_none|                     ReadAddr_819|        scalar|
+|ReadAddr_818              |   in|   32|     ap_none|                     ReadAddr_818|        scalar|
+|ReadAddr_817              |   in|   32|     ap_none|                     ReadAddr_817|        scalar|
+|ReadAddr_816              |   in|   32|     ap_none|                     ReadAddr_816|        scalar|
+|ReadAddr_815              |   in|   32|     ap_none|                     ReadAddr_815|        scalar|
+|ReadAddr_814              |   in|   32|     ap_none|                     ReadAddr_814|        scalar|
+|ReadAddr_813              |   in|   32|     ap_none|                     ReadAddr_813|        scalar|
+|ReadAddr_812              |   in|   32|     ap_none|                     ReadAddr_812|        scalar|
+|ReadAddr_811              |   in|   32|     ap_none|                     ReadAddr_811|        scalar|
+|ReadAddr_810              |   in|   32|     ap_none|                     ReadAddr_810|        scalar|
+|ReadAddr_809              |   in|   32|     ap_none|                     ReadAddr_809|        scalar|
+|ReadAddr_808              |   in|   32|     ap_none|                     ReadAddr_808|        scalar|
+|ReadAddr_807              |   in|   32|     ap_none|                     ReadAddr_807|        scalar|
+|ReadAddr_806              |   in|   32|     ap_none|                     ReadAddr_806|        scalar|
+|ReadAddr_805              |   in|   32|     ap_none|                     ReadAddr_805|        scalar|
+|ReadAddr_804              |   in|   32|     ap_none|                     ReadAddr_804|        scalar|
+|ReadAddr_803              |   in|   32|     ap_none|                     ReadAddr_803|        scalar|
+|ReadAddr_802              |   in|   32|     ap_none|                     ReadAddr_802|        scalar|
+|ReadAddr_801              |   in|   32|     ap_none|                     ReadAddr_801|        scalar|
+|ReadAddr_800              |   in|   32|     ap_none|                     ReadAddr_800|        scalar|
+|ReadAddr_799              |   in|   32|     ap_none|                     ReadAddr_799|        scalar|
+|ReadAddr_798              |   in|   32|     ap_none|                     ReadAddr_798|        scalar|
+|ReadAddr_797              |   in|   32|     ap_none|                     ReadAddr_797|        scalar|
+|ReadAddr_796              |   in|   32|     ap_none|                     ReadAddr_796|        scalar|
+|ReadAddr_795              |   in|   32|     ap_none|                     ReadAddr_795|        scalar|
+|ReadAddr_794              |   in|   32|     ap_none|                     ReadAddr_794|        scalar|
+|ReadAddr_793              |   in|   32|     ap_none|                     ReadAddr_793|        scalar|
+|ReadAddr_792              |   in|   32|     ap_none|                     ReadAddr_792|        scalar|
+|ReadAddr_791              |   in|   32|     ap_none|                     ReadAddr_791|        scalar|
+|ReadAddr_790              |   in|   32|     ap_none|                     ReadAddr_790|        scalar|
+|ReadAddr_789              |   in|   32|     ap_none|                     ReadAddr_789|        scalar|
+|ReadAddr_788              |   in|   32|     ap_none|                     ReadAddr_788|        scalar|
+|ReadAddr_787              |   in|   32|     ap_none|                     ReadAddr_787|        scalar|
+|ReadAddr_786              |   in|   32|     ap_none|                     ReadAddr_786|        scalar|
+|ReadAddr_785              |   in|   32|     ap_none|                     ReadAddr_785|        scalar|
+|ReadAddr_784              |   in|   32|     ap_none|                     ReadAddr_784|        scalar|
+|ReadAddr_783              |   in|   32|     ap_none|                     ReadAddr_783|        scalar|
+|ReadAddr_782              |   in|   32|     ap_none|                     ReadAddr_782|        scalar|
+|ReadAddr_781              |   in|   32|     ap_none|                     ReadAddr_781|        scalar|
+|ReadAddr_780              |   in|   32|     ap_none|                     ReadAddr_780|        scalar|
+|ReadAddr_779              |   in|   32|     ap_none|                     ReadAddr_779|        scalar|
+|ReadAddr_778              |   in|   32|     ap_none|                     ReadAddr_778|        scalar|
+|ReadAddr_777              |   in|   32|     ap_none|                     ReadAddr_777|        scalar|
+|ReadAddr_776              |   in|   32|     ap_none|                     ReadAddr_776|        scalar|
+|ReadAddr_775              |   in|   32|     ap_none|                     ReadAddr_775|        scalar|
+|ReadAddr_774              |   in|   32|     ap_none|                     ReadAddr_774|        scalar|
+|ReadAddr_773              |   in|   32|     ap_none|                     ReadAddr_773|        scalar|
+|ReadAddr_772              |   in|   32|     ap_none|                     ReadAddr_772|        scalar|
+|ReadAddr_771              |   in|   32|     ap_none|                     ReadAddr_771|        scalar|
+|ReadAddr_770              |   in|   32|     ap_none|                     ReadAddr_770|        scalar|
+|ReadAddr_769              |   in|   32|     ap_none|                     ReadAddr_769|        scalar|
+|ReadAddr_768              |   in|   32|     ap_none|                     ReadAddr_768|        scalar|
+|ReadData_3_address0       |  out|    4|   ap_memory|                       ReadData_3|         array|
+|ReadData_3_ce0            |  out|    1|   ap_memory|                       ReadData_3|         array|
+|ReadData_3_we0            |  out|    1|   ap_memory|                       ReadData_3|         array|
+|ReadData_3_d0             |  out|   32|   ap_memory|                       ReadData_3|         array|
+|ReadData_3_address1       |  out|    4|   ap_memory|                       ReadData_3|         array|
+|ReadData_3_ce1            |  out|    1|   ap_memory|                       ReadData_3|         array|
+|ReadData_3_we1            |  out|    1|   ap_memory|                       ReadData_3|         array|
+|ReadData_3_d1             |  out|   32|   ap_memory|                       ReadData_3|         array|
+|ReadData_2_address0       |  out|    4|   ap_memory|                       ReadData_2|         array|
+|ReadData_2_ce0            |  out|    1|   ap_memory|                       ReadData_2|         array|
+|ReadData_2_we0            |  out|    1|   ap_memory|                       ReadData_2|         array|
+|ReadData_2_d0             |  out|   32|   ap_memory|                       ReadData_2|         array|
+|ReadData_2_address1       |  out|    4|   ap_memory|                       ReadData_2|         array|
+|ReadData_2_ce1            |  out|    1|   ap_memory|                       ReadData_2|         array|
+|ReadData_2_we1            |  out|    1|   ap_memory|                       ReadData_2|         array|
+|ReadData_2_d1             |  out|   32|   ap_memory|                       ReadData_2|         array|
+|ReadData_1_address0       |  out|    4|   ap_memory|                       ReadData_1|         array|
+|ReadData_1_ce0            |  out|    1|   ap_memory|                       ReadData_1|         array|
+|ReadData_1_we0            |  out|    1|   ap_memory|                       ReadData_1|         array|
+|ReadData_1_d0             |  out|   32|   ap_memory|                       ReadData_1|         array|
+|ReadData_1_address1       |  out|    4|   ap_memory|                       ReadData_1|         array|
+|ReadData_1_ce1            |  out|    1|   ap_memory|                       ReadData_1|         array|
+|ReadData_1_we1            |  out|    1|   ap_memory|                       ReadData_1|         array|
+|ReadData_1_d1             |  out|   32|   ap_memory|                       ReadData_1|         array|
+|ReadData_address0         |  out|    4|   ap_memory|                         ReadData|         array|
+|ReadData_ce0              |  out|    1|   ap_memory|                         ReadData|         array|
+|ReadData_we0              |  out|    1|   ap_memory|                         ReadData|         array|
+|ReadData_d0               |  out|   32|   ap_memory|                         ReadData|         array|
+|ReadData_address1         |  out|    4|   ap_memory|                         ReadData|         array|
+|ReadData_ce1              |  out|    1|   ap_memory|                         ReadData|         array|
+|ReadData_we1              |  out|    1|   ap_memory|                         ReadData|         array|
+|ReadData_d1               |  out|   32|   ap_memory|                         ReadData|         array|
+|k_11                      |   in|    6|     ap_none|                             k_11|        scalar|
+|empty_61                  |   in|    7|     ap_none|                         empty_61|        scalar|
+|mul_2                     |   in|   12|     ap_none|                            mul_2|        scalar|
+|empty                     |   in|   10|     ap_none|                            empty|        scalar|
+|DataRAM_address0          |  out|   13|   ap_memory|                          DataRAM|         array|
+|DataRAM_ce0               |  out|    1|   ap_memory|                          DataRAM|         array|
+|DataRAM_q0                |   in|   32|   ap_memory|                          DataRAM|         array|
+|DataRAM_address1          |  out|   13|   ap_memory|                          DataRAM|         array|
+|DataRAM_ce1               |  out|    1|   ap_memory|                          DataRAM|         array|
+|DataRAM_q1                |   in|   32|   ap_memory|                          DataRAM|         array|
+|DataRAM_4_address0        |  out|   13|   ap_memory|                        DataRAM_4|         array|
+|DataRAM_4_ce0             |  out|    1|   ap_memory|                        DataRAM_4|         array|
+|DataRAM_4_q0              |   in|   32|   ap_memory|                        DataRAM_4|         array|
+|DataRAM_4_address1        |  out|   13|   ap_memory|                        DataRAM_4|         array|
+|DataRAM_4_ce1             |  out|    1|   ap_memory|                        DataRAM_4|         array|
+|DataRAM_4_q1              |   in|   32|   ap_memory|                        DataRAM_4|         array|
+|DataRAM_1_address0        |  out|   13|   ap_memory|                        DataRAM_1|         array|
+|DataRAM_1_ce0             |  out|    1|   ap_memory|                        DataRAM_1|         array|
+|DataRAM_1_q0              |   in|   32|   ap_memory|                        DataRAM_1|         array|
+|DataRAM_1_address1        |  out|   13|   ap_memory|                        DataRAM_1|         array|
+|DataRAM_1_ce1             |  out|    1|   ap_memory|                        DataRAM_1|         array|
+|DataRAM_1_q1              |   in|   32|   ap_memory|                        DataRAM_1|         array|
+|DataRAM_5_address0        |  out|   13|   ap_memory|                        DataRAM_5|         array|
+|DataRAM_5_ce0             |  out|    1|   ap_memory|                        DataRAM_5|         array|
+|DataRAM_5_q0              |   in|   32|   ap_memory|                        DataRAM_5|         array|
+|DataRAM_5_address1        |  out|   13|   ap_memory|                        DataRAM_5|         array|
+|DataRAM_5_ce1             |  out|    1|   ap_memory|                        DataRAM_5|         array|
+|DataRAM_5_q1              |   in|   32|   ap_memory|                        DataRAM_5|         array|
+|DataRAM_2_address0        |  out|   13|   ap_memory|                        DataRAM_2|         array|
+|DataRAM_2_ce0             |  out|    1|   ap_memory|                        DataRAM_2|         array|
+|DataRAM_2_q0              |   in|   32|   ap_memory|                        DataRAM_2|         array|
+|DataRAM_2_address1        |  out|   13|   ap_memory|                        DataRAM_2|         array|
+|DataRAM_2_ce1             |  out|    1|   ap_memory|                        DataRAM_2|         array|
+|DataRAM_2_q1              |   in|   32|   ap_memory|                        DataRAM_2|         array|
+|DataRAM_6_address0        |  out|   13|   ap_memory|                        DataRAM_6|         array|
+|DataRAM_6_ce0             |  out|    1|   ap_memory|                        DataRAM_6|         array|
+|DataRAM_6_q0              |   in|   32|   ap_memory|                        DataRAM_6|         array|
+|DataRAM_6_address1        |  out|   13|   ap_memory|                        DataRAM_6|         array|
+|DataRAM_6_ce1             |  out|    1|   ap_memory|                        DataRAM_6|         array|
+|DataRAM_6_q1              |   in|   32|   ap_memory|                        DataRAM_6|         array|
+|DataRAM_3_address0        |  out|   13|   ap_memory|                        DataRAM_3|         array|
+|DataRAM_3_ce0             |  out|    1|   ap_memory|                        DataRAM_3|         array|
+|DataRAM_3_q0              |   in|   32|   ap_memory|                        DataRAM_3|         array|
+|DataRAM_3_address1        |  out|   13|   ap_memory|                        DataRAM_3|         array|
+|DataRAM_3_ce1             |  out|    1|   ap_memory|                        DataRAM_3|         array|
+|DataRAM_3_q1              |   in|   32|   ap_memory|                        DataRAM_3|         array|
+|DataRAM_7_address0        |  out|   13|   ap_memory|                        DataRAM_7|         array|
+|DataRAM_7_ce0             |  out|    1|   ap_memory|                        DataRAM_7|         array|
+|DataRAM_7_q0              |   in|   32|   ap_memory|                        DataRAM_7|         array|
+|DataRAM_7_address1        |  out|   13|   ap_memory|                        DataRAM_7|         array|
+|DataRAM_7_ce1             |  out|    1|   ap_memory|                        DataRAM_7|         array|
+|DataRAM_7_q1              |   in|   32|   ap_memory|                        DataRAM_7|         array|
+|DataRAM_4_load_195        |   in|   32|     ap_none|               DataRAM_4_load_195|        scalar|
+|DataRAM_load_195          |   in|   32|     ap_none|                 DataRAM_load_195|        scalar|
+|DataRAM_4_load_196        |   in|   32|     ap_none|               DataRAM_4_load_196|        scalar|
+|DataRAM_load_196          |   in|   32|     ap_none|                 DataRAM_load_196|        scalar|
+|DataRAM_4_load_197        |   in|   32|     ap_none|               DataRAM_4_load_197|        scalar|
+|DataRAM_load_197          |   in|   32|     ap_none|                 DataRAM_load_197|        scalar|
+|DataRAM_4_load_198        |   in|   32|     ap_none|               DataRAM_4_load_198|        scalar|
+|DataRAM_load_198          |   in|   32|     ap_none|                 DataRAM_load_198|        scalar|
+|DataRAM_4_load_199        |   in|   32|     ap_none|               DataRAM_4_load_199|        scalar|
+|DataRAM_load_199          |   in|   32|     ap_none|                 DataRAM_load_199|        scalar|
+|DataRAM_4_load_200        |   in|   32|     ap_none|               DataRAM_4_load_200|        scalar|
+|DataRAM_load_200          |   in|   32|     ap_none|                 DataRAM_load_200|        scalar|
+|DataRAM_4_load_201        |   in|   32|     ap_none|               DataRAM_4_load_201|        scalar|
+|DataRAM_load_201          |   in|   32|     ap_none|                 DataRAM_load_201|        scalar|
+|DataRAM_4_load_202        |   in|   32|     ap_none|               DataRAM_4_load_202|        scalar|
+|DataRAM_load_202          |   in|   32|     ap_none|                 DataRAM_load_202|        scalar|
+|DataRAM_5_load_195        |   in|   32|     ap_none|               DataRAM_5_load_195|        scalar|
+|DataRAM_1_load_195        |   in|   32|     ap_none|               DataRAM_1_load_195|        scalar|
+|DataRAM_5_load_196        |   in|   32|     ap_none|               DataRAM_5_load_196|        scalar|
+|DataRAM_1_load_196        |   in|   32|     ap_none|               DataRAM_1_load_196|        scalar|
+|DataRAM_5_load_197        |   in|   32|     ap_none|               DataRAM_5_load_197|        scalar|
+|DataRAM_1_load_197        |   in|   32|     ap_none|               DataRAM_1_load_197|        scalar|
+|DataRAM_5_load_198        |   in|   32|     ap_none|               DataRAM_5_load_198|        scalar|
+|DataRAM_1_load_198        |   in|   32|     ap_none|               DataRAM_1_load_198|        scalar|
+|DataRAM_5_load_199        |   in|   32|     ap_none|               DataRAM_5_load_199|        scalar|
+|DataRAM_1_load_199        |   in|   32|     ap_none|               DataRAM_1_load_199|        scalar|
+|DataRAM_5_load_200        |   in|   32|     ap_none|               DataRAM_5_load_200|        scalar|
+|DataRAM_1_load_200        |   in|   32|     ap_none|               DataRAM_1_load_200|        scalar|
+|DataRAM_5_load_201        |   in|   32|     ap_none|               DataRAM_5_load_201|        scalar|
+|DataRAM_1_load_201        |   in|   32|     ap_none|               DataRAM_1_load_201|        scalar|
+|DataRAM_5_load_202        |   in|   32|     ap_none|               DataRAM_5_load_202|        scalar|
+|DataRAM_1_load_202        |   in|   32|     ap_none|               DataRAM_1_load_202|        scalar|
+|DataRAM_6_load_195        |   in|   32|     ap_none|               DataRAM_6_load_195|        scalar|
+|DataRAM_2_load_195        |   in|   32|     ap_none|               DataRAM_2_load_195|        scalar|
+|DataRAM_6_load_196        |   in|   32|     ap_none|               DataRAM_6_load_196|        scalar|
+|DataRAM_2_load_196        |   in|   32|     ap_none|               DataRAM_2_load_196|        scalar|
+|DataRAM_6_load_197        |   in|   32|     ap_none|               DataRAM_6_load_197|        scalar|
+|DataRAM_2_load_197        |   in|   32|     ap_none|               DataRAM_2_load_197|        scalar|
+|DataRAM_6_load_198        |   in|   32|     ap_none|               DataRAM_6_load_198|        scalar|
+|DataRAM_2_load_198        |   in|   32|     ap_none|               DataRAM_2_load_198|        scalar|
+|DataRAM_6_load_199        |   in|   32|     ap_none|               DataRAM_6_load_199|        scalar|
+|DataRAM_2_load_199        |   in|   32|     ap_none|               DataRAM_2_load_199|        scalar|
+|DataRAM_6_load_200        |   in|   32|     ap_none|               DataRAM_6_load_200|        scalar|
+|DataRAM_2_load_200        |   in|   32|     ap_none|               DataRAM_2_load_200|        scalar|
+|DataRAM_6_load_201        |   in|   32|     ap_none|               DataRAM_6_load_201|        scalar|
+|DataRAM_2_load_201        |   in|   32|     ap_none|               DataRAM_2_load_201|        scalar|
+|DataRAM_6_load_202        |   in|   32|     ap_none|               DataRAM_6_load_202|        scalar|
+|DataRAM_2_load_202        |   in|   32|     ap_none|               DataRAM_2_load_202|        scalar|
+|DataRAM_7_load_192        |   in|   32|     ap_none|               DataRAM_7_load_192|        scalar|
+|DataRAM_3_load_195        |   in|   32|     ap_none|               DataRAM_3_load_195|        scalar|
+|DataRAM_7_load_193        |   in|   32|     ap_none|               DataRAM_7_load_193|        scalar|
+|DataRAM_3_load_196        |   in|   32|     ap_none|               DataRAM_3_load_196|        scalar|
+|DataRAM_7_load_194        |   in|   32|     ap_none|               DataRAM_7_load_194|        scalar|
+|DataRAM_3_load_197        |   in|   32|     ap_none|               DataRAM_3_load_197|        scalar|
+|DataRAM_7_load_195        |   in|   32|     ap_none|               DataRAM_7_load_195|        scalar|
+|DataRAM_3_load_198        |   in|   32|     ap_none|               DataRAM_3_load_198|        scalar|
+|DataRAM_7_load_196        |   in|   32|     ap_none|               DataRAM_7_load_196|        scalar|
+|DataRAM_3_load_199        |   in|   32|     ap_none|               DataRAM_3_load_199|        scalar|
+|DataRAM_7_load_197        |   in|   32|     ap_none|               DataRAM_7_load_197|        scalar|
+|DataRAM_3_load_200        |   in|   32|     ap_none|               DataRAM_3_load_200|        scalar|
+|DataRAM_7_load_198        |   in|   32|     ap_none|               DataRAM_7_load_198|        scalar|
+|DataRAM_3_load_201        |   in|   32|     ap_none|               DataRAM_3_load_201|        scalar|
+|DataRAM_7_load_199        |   in|   32|     ap_none|               DataRAM_7_load_199|        scalar|
+|DataRAM_3_load_202        |   in|   32|     ap_none|               DataRAM_3_load_202|        scalar|
+|cmp391_2                  |   in|    1|     ap_none|                         cmp391_2|        scalar|
+|ReadAddr_1279_out         |  out|   32|      ap_vld|                ReadAddr_1279_out|       pointer|
+|ReadAddr_1279_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1279_out|       pointer|
+|ReadAddr_1278_out         |  out|   32|      ap_vld|                ReadAddr_1278_out|       pointer|
+|ReadAddr_1278_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1278_out|       pointer|
+|ReadAddr_1277_out         |  out|   32|      ap_vld|                ReadAddr_1277_out|       pointer|
+|ReadAddr_1277_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1277_out|       pointer|
+|ReadAddr_1276_out         |  out|   32|      ap_vld|                ReadAddr_1276_out|       pointer|
+|ReadAddr_1276_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1276_out|       pointer|
+|ReadAddr_1275_out         |  out|   32|      ap_vld|                ReadAddr_1275_out|       pointer|
+|ReadAddr_1275_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1275_out|       pointer|
+|ReadAddr_1274_out         |  out|   32|      ap_vld|                ReadAddr_1274_out|       pointer|
+|ReadAddr_1274_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1274_out|       pointer|
+|ReadAddr_1273_out         |  out|   32|      ap_vld|                ReadAddr_1273_out|       pointer|
+|ReadAddr_1273_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1273_out|       pointer|
+|ReadAddr_1272_out         |  out|   32|      ap_vld|                ReadAddr_1272_out|       pointer|
+|ReadAddr_1272_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1272_out|       pointer|
+|ReadAddr_1271_out         |  out|   32|      ap_vld|                ReadAddr_1271_out|       pointer|
+|ReadAddr_1271_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1271_out|       pointer|
+|ReadAddr_1270_out         |  out|   32|      ap_vld|                ReadAddr_1270_out|       pointer|
+|ReadAddr_1270_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1270_out|       pointer|
+|ReadAddr_1269_out         |  out|   32|      ap_vld|                ReadAddr_1269_out|       pointer|
+|ReadAddr_1269_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1269_out|       pointer|
+|ReadAddr_1268_out         |  out|   32|      ap_vld|                ReadAddr_1268_out|       pointer|
+|ReadAddr_1268_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1268_out|       pointer|
+|ReadAddr_1267_out         |  out|   32|      ap_vld|                ReadAddr_1267_out|       pointer|
+|ReadAddr_1267_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1267_out|       pointer|
+|ReadAddr_1266_out         |  out|   32|      ap_vld|                ReadAddr_1266_out|       pointer|
+|ReadAddr_1266_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1266_out|       pointer|
+|ReadAddr_1265_out         |  out|   32|      ap_vld|                ReadAddr_1265_out|       pointer|
+|ReadAddr_1265_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1265_out|       pointer|
+|ReadAddr_1264_out         |  out|   32|      ap_vld|                ReadAddr_1264_out|       pointer|
+|ReadAddr_1264_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1264_out|       pointer|
+|ReadAddr_1263_out         |  out|   32|      ap_vld|                ReadAddr_1263_out|       pointer|
+|ReadAddr_1263_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1263_out|       pointer|
+|ReadAddr_1262_out         |  out|   32|      ap_vld|                ReadAddr_1262_out|       pointer|
+|ReadAddr_1262_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1262_out|       pointer|
+|ReadAddr_1261_out         |  out|   32|      ap_vld|                ReadAddr_1261_out|       pointer|
+|ReadAddr_1261_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1261_out|       pointer|
+|ReadAddr_1260_out         |  out|   32|      ap_vld|                ReadAddr_1260_out|       pointer|
+|ReadAddr_1260_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1260_out|       pointer|
+|ReadAddr_1259_out         |  out|   32|      ap_vld|                ReadAddr_1259_out|       pointer|
+|ReadAddr_1259_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1259_out|       pointer|
+|ReadAddr_1258_out         |  out|   32|      ap_vld|                ReadAddr_1258_out|       pointer|
+|ReadAddr_1258_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1258_out|       pointer|
+|ReadAddr_1257_out         |  out|   32|      ap_vld|                ReadAddr_1257_out|       pointer|
+|ReadAddr_1257_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1257_out|       pointer|
+|ReadAddr_1256_out         |  out|   32|      ap_vld|                ReadAddr_1256_out|       pointer|
+|ReadAddr_1256_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1256_out|       pointer|
+|ReadAddr_1255_out         |  out|   32|      ap_vld|                ReadAddr_1255_out|       pointer|
+|ReadAddr_1255_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1255_out|       pointer|
+|ReadAddr_1254_out         |  out|   32|      ap_vld|                ReadAddr_1254_out|       pointer|
+|ReadAddr_1254_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1254_out|       pointer|
+|ReadAddr_1253_out         |  out|   32|      ap_vld|                ReadAddr_1253_out|       pointer|
+|ReadAddr_1253_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1253_out|       pointer|
+|ReadAddr_1252_out         |  out|   32|      ap_vld|                ReadAddr_1252_out|       pointer|
+|ReadAddr_1252_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1252_out|       pointer|
+|ReadAddr_1251_out         |  out|   32|      ap_vld|                ReadAddr_1251_out|       pointer|
+|ReadAddr_1251_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1251_out|       pointer|
+|ReadAddr_1250_out         |  out|   32|      ap_vld|                ReadAddr_1250_out|       pointer|
+|ReadAddr_1250_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1250_out|       pointer|
+|ReadAddr_1249_out         |  out|   32|      ap_vld|                ReadAddr_1249_out|       pointer|
+|ReadAddr_1249_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1249_out|       pointer|
+|ReadAddr_1248_out         |  out|   32|      ap_vld|                ReadAddr_1248_out|       pointer|
+|ReadAddr_1248_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1248_out|       pointer|
+|ReadAddr_1247_out         |  out|   32|      ap_vld|                ReadAddr_1247_out|       pointer|
+|ReadAddr_1247_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1247_out|       pointer|
+|ReadAddr_1246_out         |  out|   32|      ap_vld|                ReadAddr_1246_out|       pointer|
+|ReadAddr_1246_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1246_out|       pointer|
+|ReadAddr_1245_out         |  out|   32|      ap_vld|                ReadAddr_1245_out|       pointer|
+|ReadAddr_1245_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1245_out|       pointer|
+|ReadAddr_1244_out         |  out|   32|      ap_vld|                ReadAddr_1244_out|       pointer|
+|ReadAddr_1244_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1244_out|       pointer|
+|ReadAddr_1243_out         |  out|   32|      ap_vld|                ReadAddr_1243_out|       pointer|
+|ReadAddr_1243_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1243_out|       pointer|
+|ReadAddr_1242_out         |  out|   32|      ap_vld|                ReadAddr_1242_out|       pointer|
+|ReadAddr_1242_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1242_out|       pointer|
+|ReadAddr_1241_out         |  out|   32|      ap_vld|                ReadAddr_1241_out|       pointer|
+|ReadAddr_1241_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1241_out|       pointer|
+|ReadAddr_1240_out         |  out|   32|      ap_vld|                ReadAddr_1240_out|       pointer|
+|ReadAddr_1240_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1240_out|       pointer|
+|ReadAddr_1239_out         |  out|   32|      ap_vld|                ReadAddr_1239_out|       pointer|
+|ReadAddr_1239_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1239_out|       pointer|
+|ReadAddr_1238_out         |  out|   32|      ap_vld|                ReadAddr_1238_out|       pointer|
+|ReadAddr_1238_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1238_out|       pointer|
+|ReadAddr_1237_out         |  out|   32|      ap_vld|                ReadAddr_1237_out|       pointer|
+|ReadAddr_1237_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1237_out|       pointer|
+|ReadAddr_1236_out         |  out|   32|      ap_vld|                ReadAddr_1236_out|       pointer|
+|ReadAddr_1236_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1236_out|       pointer|
+|ReadAddr_1235_out         |  out|   32|      ap_vld|                ReadAddr_1235_out|       pointer|
+|ReadAddr_1235_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1235_out|       pointer|
+|ReadAddr_1234_out         |  out|   32|      ap_vld|                ReadAddr_1234_out|       pointer|
+|ReadAddr_1234_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1234_out|       pointer|
+|ReadAddr_1233_out         |  out|   32|      ap_vld|                ReadAddr_1233_out|       pointer|
+|ReadAddr_1233_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1233_out|       pointer|
+|ReadAddr_1232_out         |  out|   32|      ap_vld|                ReadAddr_1232_out|       pointer|
+|ReadAddr_1232_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1232_out|       pointer|
+|ReadAddr_1231_out         |  out|   32|      ap_vld|                ReadAddr_1231_out|       pointer|
+|ReadAddr_1231_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1231_out|       pointer|
+|ReadAddr_1230_out         |  out|   32|      ap_vld|                ReadAddr_1230_out|       pointer|
+|ReadAddr_1230_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1230_out|       pointer|
+|ReadAddr_1229_out         |  out|   32|      ap_vld|                ReadAddr_1229_out|       pointer|
+|ReadAddr_1229_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1229_out|       pointer|
+|ReadAddr_1228_out         |  out|   32|      ap_vld|                ReadAddr_1228_out|       pointer|
+|ReadAddr_1228_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1228_out|       pointer|
+|ReadAddr_1227_out         |  out|   32|      ap_vld|                ReadAddr_1227_out|       pointer|
+|ReadAddr_1227_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1227_out|       pointer|
+|ReadAddr_1226_out         |  out|   32|      ap_vld|                ReadAddr_1226_out|       pointer|
+|ReadAddr_1226_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1226_out|       pointer|
+|ReadAddr_1225_out         |  out|   32|      ap_vld|                ReadAddr_1225_out|       pointer|
+|ReadAddr_1225_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1225_out|       pointer|
+|ReadAddr_1224_out         |  out|   32|      ap_vld|                ReadAddr_1224_out|       pointer|
+|ReadAddr_1224_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1224_out|       pointer|
+|ReadAddr_1223_out         |  out|   32|      ap_vld|                ReadAddr_1223_out|       pointer|
+|ReadAddr_1223_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1223_out|       pointer|
+|ReadAddr_1222_out         |  out|   32|      ap_vld|                ReadAddr_1222_out|       pointer|
+|ReadAddr_1222_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1222_out|       pointer|
+|ReadAddr_1221_out         |  out|   32|      ap_vld|                ReadAddr_1221_out|       pointer|
+|ReadAddr_1221_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1221_out|       pointer|
+|ReadAddr_1220_out         |  out|   32|      ap_vld|                ReadAddr_1220_out|       pointer|
+|ReadAddr_1220_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1220_out|       pointer|
+|ReadAddr_1219_out         |  out|   32|      ap_vld|                ReadAddr_1219_out|       pointer|
+|ReadAddr_1219_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1219_out|       pointer|
+|ReadAddr_1218_out         |  out|   32|      ap_vld|                ReadAddr_1218_out|       pointer|
+|ReadAddr_1218_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1218_out|       pointer|
+|ReadAddr_1217_out         |  out|   32|      ap_vld|                ReadAddr_1217_out|       pointer|
+|ReadAddr_1217_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1217_out|       pointer|
+|ReadAddr_1216_out         |  out|   32|      ap_vld|                ReadAddr_1216_out|       pointer|
+|ReadAddr_1216_out_ap_vld  |  out|    1|      ap_vld|                ReadAddr_1216_out|       pointer|
++--------------------------+-----+-----+------------+---------------------------------+--------------+
+

@@ -1,0 +1,159 @@
+{
+  "0": {
+    "basicblocks": 1864,
+    "calls": "9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 6 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 6 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 6 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 6 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 6 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 6 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3",
+    "file": "Crypto1.cpp",
+    "fileloc": 15,
+    "instructions": 16369,
+    "loads": {
+      "L": 2982,
+      "T": 2
+    },
+    "name": "Crypto1",
+    "stores": {
+      "L": 2603
+    },
+    "total_instructions": 211519
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "7",
+    "file": "Utils.cpp",
+    "fileloc": 228,
+    "instructions": 772,
+    "loads": {
+      "L": 4
+    },
+    "name": "generate_output_index",
+    "stores": {
+      "L": 68
+    },
+    "total_instructions": 1377
+  },
+  "2": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 118,
+    "instructions": 92,
+    "loads": {
+      "G": 2,
+      "L": 3
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 92
+  },
+  "3": {
+    "basicblocks": 21,
+    "calls": "4 5 5",
+    "file": "Arithmetic.cpp",
+    "fileloc": 185,
+    "instructions": 100,
+    "loads": {
+      "G": 4,
+      "L": 5
+    },
+    "name": "Configurable_PE",
+    "stores": {
+      "L": 19
+    },
+    "total_instructions": 373
+  },
+  "4": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 118,
+    "instructions": 91,
+    "loads": {
+      "G": 2,
+      "L": 3
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 91
+  },
+  "5": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 118,
+    "instructions": 91,
+    "loads": {
+      "G": 2,
+      "L": 3
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 91
+  },
+  "6": {
+    "basicblocks": 1,
+    "calls": "7",
+    "file": "Utils.cpp",
+    "fileloc": 205,
+    "instructions": 511,
+    "loads": {
+      "L": 4
+    },
+    "name": "generate_input_index",
+    "stores": {
+      "L": 68
+    },
+    "total_instructions": 1116
+  },
+  "7": {
+    "basicblocks": 109,
+    "calls": "8",
+    "file": "hls_log_.h",
+    "fileloc": 182,
+    "instructions": 348,
+    "loads": {
+      "L": 18
+    },
+    "name": "log_generic<double>",
+    "stores": {
+      "L": 15
+    },
+    "total_instructions": 605
+  },
+  "8": {
+    "basicblocks": 15,
+    "calls": "",
+    "file": "hls_log_.h",
+    "fileloc": 153,
+    "instructions": 257,
+    "loads": {
+      "G": 7,
+      "L": 14
+    },
+    "name": "range_reduction<57>",
+    "stores": {
+      "L": 28
+    },
+    "total_instructions": 257
+  },
+  "9": {
+    "basicblocks": 21,
+    "calls": "4 2 2",
+    "file": "Arithmetic.cpp",
+    "fileloc": 185,
+    "instructions": 102,
+    "loads": {
+      "G": 4,
+      "L": 5
+    },
+    "name": "Configurable_PE",
+    "stores": {
+      "L": 19
+    },
+    "total_instructions": 377
+  }
+}

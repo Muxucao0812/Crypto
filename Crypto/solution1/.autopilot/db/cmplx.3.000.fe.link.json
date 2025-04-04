@@ -1,0 +1,712 @@
+{
+  "0": {
+    "basicblocks": 313,
+    "calls": "5 5 5 29 44 5 29 44 5",
+    "file": "Crypto1.cpp",
+    "fileloc": 15,
+    "instructions": 1137,
+    "loads": {
+      "G": 20,
+      "L": 40,
+      "T": 2
+    },
+    "name": "Crypto1",
+    "stores": {
+      "L": 36
+    },
+    "total_instructions": 427455
+  },
+  "1": {
+    "basicblocks": 1,
+    "calls": "2 17",
+    "file": "define.h",
+    "fileloc": 23,
+    "instructions": 4,
+    "name": "__cxx_global_var_init.7",
+    "stores": {
+      "G": 1
+    },
+    "total_instructions": 19581
+  },
+  "10": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_tables.cpp",
+    "fileloc": 665,
+    "instructions": 65,
+    "name": "__cxx_global_var_init.341",
+    "total_instructions": 1089
+  },
+  "11": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_tables.cpp",
+    "fileloc": 593,
+    "instructions": 65,
+    "name": "__cxx_global_var_init.277",
+    "total_instructions": 1089
+  },
+  "12": {
+    "basicblocks": 16,
+    "calls": "49 13 38 38 59 59",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 12,
+    "instructions": 133,
+    "loads": {
+      "L": 1
+    },
+    "name": "generic_cast_IEEE754<int, AP_TRN_ZERO, double>",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 2132
+  },
+  "13": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 503,
+    "instructions": 24,
+    "name": "mantissa",
+    "total_instructions": 183
+  },
+  "14": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_tables.cpp",
+    "fileloc": 308,
+    "instructions": 65,
+    "name": "__cxx_global_var_init.84",
+    "total_instructions": 1089
+  },
+  "15": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_tables.cpp",
+    "fileloc": 236,
+    "instructions": 65,
+    "name": "__cxx_global_var_init.83",
+    "total_instructions": 1089
+  },
+  "16": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_tables.cpp",
+    "fileloc": 1012,
+    "instructions": 65,
+    "name": "__cxx_global_var_init.474",
+    "total_instructions": 1089
+  },
+  "17": {
+    "basicblocks": 1,
+    "calls": "8",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 55,
+    "instructions": 2,
+    "name": "__hls_fptosi_double_i32",
+    "total_instructions": 2136
+  },
+  "18": {
+    "basicblocks": 1,
+    "calls": "26 58 54",
+    "file": "AddressGen.pp.0.cpp",
+    "fileloc": 0,
+    "instructions": 4,
+    "name": "",
+    "total_instructions": 61426
+  },
+  "19": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_tables.cpp",
+    "fileloc": 521,
+    "instructions": 65,
+    "name": "__cxx_global_var_init.213",
+    "total_instructions": 1089
+  },
+  "2": {
+    "basicblocks": 1,
+    "calls": "48",
+    "file": "logdouble.cpp",
+    "fileloc": 7,
+    "instructions": 2,
+    "name": "log2",
+    "total_instructions": 17441
+  },
+  "20": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_tables.cpp",
+    "fileloc": 449,
+    "instructions": 65,
+    "name": "__cxx_global_var_init.149",
+    "total_instructions": 1089
+  },
+  "21": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "define.h",
+    "fileloc": 35,
+    "instructions": 4,
+    "name": "__cxx_global_var_init.1",
+    "total_instructions": 49
+  },
+  "22": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_tables.cpp",
+    "fileloc": 377,
+    "instructions": 65,
+    "name": "__cxx_global_var_init.148",
+    "total_instructions": 1089
+  },
+  "23": {
+    "basicblocks": 3,
+    "calls": "49",
+    "file": "hls_isnan.h",
+    "fileloc": 16,
+    "instructions": 18,
+    "name": "generic_isnan<double>",
+    "total_instructions": 390
+  },
+  "24": {
+    "basicblocks": 3,
+    "calls": "49",
+    "file": "hls_isinf.h",
+    "fileloc": 16,
+    "instructions": 18,
+    "name": "generic_isinf<double>",
+    "total_instructions": 389
+  },
+  "25": {
+    "basicblocks": 1,
+    "calls": "33",
+    "file": "x_hls_utils.h",
+    "fileloc": 509,
+    "instructions": 2,
+    "name": "to_ieee",
+    "total_instructions": 303
+  },
+  "26": {
+    "basicblocks": 1,
+    "calls": "2 17",
+    "file": "define.h",
+    "fileloc": 23,
+    "instructions": 4,
+    "name": "__cxx_global_var_init.9",
+    "stores": {
+      "G": 1
+    },
+    "total_instructions": 19581
+  },
+  "27": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_.h",
+    "fileloc": 28,
+    "instructions": 89,
+    "loads": {
+      "G": 1,
+      "L": 1
+    },
+    "name": "range_reduce<ap_fixed<102, 12, AP_TRN, AP_WRAP, 0>, 27, 6, 63, 58>",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 1241
+  },
+  "28": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_.h",
+    "fileloc": 28,
+    "instructions": 89,
+    "loads": {
+      "G": 1,
+      "L": 1
+    },
+    "name": "range_reduce<ap_fixed<102, 12, AP_TRN, AP_WRAP, 0>, 22, 6, 68, 63>",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 1238
+  },
+  "29": {
+    "basicblocks": 10,
+    "calls": "2 17 2 17 2 17 2 17",
+    "file": "Utils.cpp",
+    "fileloc": 205,
+    "instructions": 51,
+    "name": "generate_input_index",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 78359
+  },
+  "3": {
+    "basicblocks": 7,
+    "calls": "53 53 53",
+    "file": "Arithmetic.cpp",
+    "fileloc": 118,
+    "instructions": 149,
+    "loads": {
+      "G": 2,
+      "L": 2
+    },
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 4
+    },
+    "total_instructions": 3999
+  },
+  "30": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_.h",
+    "fileloc": 28,
+    "instructions": 89,
+    "loads": {
+      "G": 1,
+      "L": 1
+    },
+    "name": "range_reduce<ap_fixed<102, 12, AP_TRN, AP_WRAP, 0>, 17, 6, 73, 68>",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 1237
+  },
+  "31": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_tables.cpp",
+    "fileloc": 35,
+    "instructions": 17,
+    "name": "__cxx_global_var_init",
+    "total_instructions": 273
+  },
+  "32": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_tables.cpp",
+    "fileloc": 55,
+    "instructions": 17,
+    "name": "__cxx_global_var_init.16",
+    "total_instructions": 273
+  },
+  "33": {
+    "basicblocks": 1,
+    "calls": "34",
+    "file": "x_hls_utils.h",
+    "fileloc": 494,
+    "instructions": 18,
+    "loads": {
+      "L": 1
+    },
+    "name": "to_double",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 301
+  },
+  "34": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 475,
+    "instructions": 32,
+    "name": "data",
+    "total_instructions": 279
+  },
+  "35": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_.h",
+    "fileloc": 28,
+    "instructions": 102,
+    "loads": {
+      "G": 1,
+      "L": 1
+    },
+    "name": "range_reduce<ap_fixed<102, 12, AP_TRN, AP_WRAP, 0>, 4, 4, 57, 59>",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 1263
+  },
+  "36": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_tables.cpp",
+    "fileloc": 75,
+    "instructions": 17,
+    "name": "__cxx_global_var_init.17",
+    "total_instructions": 273
+  },
+  "37": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_tables.cpp",
+    "fileloc": 98,
+    "instructions": 65,
+    "name": "__cxx_global_var_init.18",
+    "total_instructions": 1089
+  },
+  "38": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 485,
+    "instructions": 8,
+    "name": "expv",
+    "total_instructions": 109
+  },
+  "39": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_tables.cpp",
+    "fileloc": 167,
+    "instructions": 65,
+    "name": "__cxx_global_var_init.82",
+    "total_instructions": 1089
+  },
+  "4": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 464,
+    "instructions": 40,
+    "name": "fp_struct",
+    "total_instructions": 289
+  },
+  "40": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "define.h",
+    "fileloc": 40,
+    "instructions": 4,
+    "name": "__cxx_global_var_init.6",
+    "total_instructions": 49
+  },
+  "41": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "define.h",
+    "fileloc": 39,
+    "instructions": 2,
+    "name": "__cxx_global_var_init.5",
+    "total_instructions": 17
+  },
+  "42": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_.h",
+    "fileloc": 28,
+    "instructions": 89,
+    "loads": {
+      "G": 1,
+      "L": 1
+    },
+    "name": "range_reduce<ap_fixed<102, 12, AP_TRN, AP_WRAP, 0>, 7, 6, 59, 69>",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 1232
+  },
+  "43": {
+    "basicblocks": 1,
+    "calls": "21 41 40",
+    "file": "Arithmetic.pp.0.cpp",
+    "fileloc": 0,
+    "instructions": 4,
+    "name": "",
+    "total_instructions": 119
+  },
+  "44": {
+    "basicblocks": 10,
+    "calls": "2 17 2 17 2 17 2 17 2 17",
+    "file": "Utils.cpp",
+    "fileloc": 228,
+    "instructions": 56,
+    "name": "generate_output_index",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 97941
+  },
+  "45": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 71,
+    "instructions": 42,
+    "loads": {
+      "L": 2
+    },
+    "name": "ADD_MOD",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 286
+  },
+  "46": {
+    "basicblocks": 1,
+    "calls": "31 32 36 37 39 15 14 22 20 19 11 10 9 16",
+    "file": "hls_log_tables.pp.cpp",
+    "fileloc": 0,
+    "instructions": 15,
+    "name": "",
+    "total_instructions": 12813
+  },
+  "47": {
+    "basicblocks": 1,
+    "calls": "1",
+    "file": "Crypto1.pp.0.cpp",
+    "fileloc": 0,
+    "instructions": 2,
+    "name": "",
+    "total_instructions": 19583
+  },
+  "48": {
+    "basicblocks": 1,
+    "calls": "51",
+    "file": "hls_log_double.cpp",
+    "fileloc": 12,
+    "instructions": 3,
+    "name": "log2",
+    "total_instructions": 17439
+  },
+  "49": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 456,
+    "instructions": 55,
+    "loads": {
+      "L": 1
+    },
+    "name": "fp_struct",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 319
+  },
+  "5": {
+    "basicblocks": 34,
+    "calls": "45 6 3 3 45 6 45 6 3",
+    "file": "Arithmetic.cpp",
+    "fileloc": 185,
+    "instructions": 222,
+    "loads": {
+      "L": 9
+    },
+    "name": "Configurable_PE",
+    "stores": {
+      "L": 9
+    },
+    "total_instructions": 14711
+  },
+  "50": {
+    "basicblocks": 12,
+    "calls": "52 49 59 60 59 34 4 25",
+    "file": "hls_ceil.h",
+    "fileloc": 14,
+    "instructions": 103,
+    "loads": {
+      "L": 3
+    },
+    "name": "generic_ceil<double>",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 2675
+  },
+  "51": {
+    "basicblocks": 31,
+    "calls": "49 56 38 23 24 25 25 25 7 25 25",
+    "file": "hls_log_.h",
+    "fileloc": 182,
+    "instructions": 558,
+    "loads": {
+      "G": 2,
+      "L": 14
+    },
+    "name": "log_generic<double>",
+    "stores": {
+      "L": 16
+    },
+    "total_instructions": 17436
+  },
+  "52": {
+    "basicblocks": 6,
+    "calls": "",
+    "file": "hls_round.h",
+    "fileloc": 20,
+    "instructions": 19,
+    "name": "init_mask_table<double>",
+    "stores": {
+      "L": 3
+    },
+    "total_instructions": 19
+  },
+  "53": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 35,
+    "instructions": 150,
+    "loads": {
+      "L": 1
+    },
+    "name": "STEPMUL",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 1060
+  },
+  "54": {
+    "basicblocks": 1,
+    "calls": "2 57 17",
+    "file": "define.h",
+    "fileloc": 26,
+    "instructions": 5,
+    "name": "__cxx_global_var_init.8",
+    "stores": {
+      "G": 1
+    },
+    "total_instructions": 22259
+  },
+  "55": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_.h",
+    "fileloc": 28,
+    "instructions": 89,
+    "loads": {
+      "G": 1,
+      "L": 1
+    },
+    "name": "range_reduce<ap_fixed<102, 12, AP_TRN, AP_WRAP, 0>, 32, 6, 58, 53>",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 1241
+  },
+  "56": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 454,
+    "instructions": 4,
+    "name": "fp_struct",
+    "total_instructions": 4
+  },
+  "57": {
+    "basicblocks": 1,
+    "calls": "50",
+    "file": "ceildouble.cpp",
+    "fileloc": 6,
+    "instructions": 2,
+    "name": "ceil",
+    "total_instructions": 2677
+  },
+  "58": {
+    "basicblocks": 1,
+    "calls": "2 17",
+    "file": "define.h",
+    "fileloc": 25,
+    "instructions": 5,
+    "name": "__cxx_global_var_init.7",
+    "stores": {
+      "G": 1
+    },
+    "total_instructions": 19582
+  },
+  "59": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 512,
+    "instructions": 4,
+    "name": "__signbit",
+    "total_instructions": 9
+  },
+  "6": {
+    "basicblocks": 3,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 84,
+    "instructions": 39,
+    "loads": {
+      "L": 2
+    },
+    "name": "SUB_MOD",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 300
+  },
+  "60": {
+    "basicblocks": 1,
+    "calls": "49 49 25",
+    "file": "hls_copysign.h",
+    "fileloc": 10,
+    "instructions": 18,
+    "loads": {
+      "L": 1
+    },
+    "name": "generic_copysign<double>",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 959
+  },
+  "61": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_.h",
+    "fileloc": 28,
+    "instructions": 89,
+    "loads": {
+      "G": 1,
+      "L": 1
+    },
+    "name": "range_reduce<ap_fixed<102, 12, AP_TRN, AP_WRAP, 0>, 12, 6, 69, 73>",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 1234
+  },
+  "7": {
+    "basicblocks": 1,
+    "calls": "35 42 61 30 28 27 55",
+    "file": "hls_log_.h",
+    "fileloc": 153,
+    "instructions": 85,
+    "loads": {
+      "L": 7
+    },
+    "name": "range_reduction<57>",
+    "stores": {
+      "L": 7
+    },
+    "total_instructions": 10206
+  },
+  "8": {
+    "basicblocks": 1,
+    "calls": "12",
+    "file": "hls_case_IEEE754.h",
+    "fileloc": 116,
+    "instructions": 2,
+    "name": "generic_cast_IEEE754<int, double>",
+    "total_instructions": 2134
+  },
+  "9": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "hls_log_tables.cpp",
+    "fileloc": 915,
+    "instructions": 65,
+    "name": "__cxx_global_var_init.451",
+    "total_instructions": 1089
+  }
+}

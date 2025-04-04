@@ -11,112 +11,17 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 227 \
-    name InputIndex \
-    reset_level 1 \
-    sync_rst true \
-    dir I \
-    corename InputIndex \
-    op interface \
-    ports { InputIndex_address0 { O 6 vector } InputIndex_ce0 { O 1 bit } InputIndex_q0 { I 6 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'InputIndex'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 228 \
-    name ReadData \
-    reset_level 1 \
-    sync_rst true \
-    dir I \
-    corename ReadData \
-    op interface \
-    ports { ReadData_address0 { O 4 vector } ReadData_ce0 { O 1 bit } ReadData_q0 { I 32 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'ReadData'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 229 \
-    name ReadData_1 \
-    reset_level 1 \
-    sync_rst true \
-    dir I \
-    corename ReadData_1 \
-    op interface \
-    ports { ReadData_1_address0 { O 4 vector } ReadData_1_ce0 { O 1 bit } ReadData_1_q0 { I 32 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'ReadData_1'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 230 \
-    name ReadData_2 \
-    reset_level 1 \
-    sync_rst true \
-    dir I \
-    corename ReadData_2 \
-    op interface \
-    ports { ReadData_2_address0 { O 4 vector } ReadData_2_ce0 { O 1 bit } ReadData_2_q0 { I 32 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'ReadData_2'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 231 \
-    name ReadData_3 \
-    reset_level 1 \
-    sync_rst true \
-    dir I \
-    corename ReadData_3 \
-    op interface \
-    ports { ReadData_3_address0 { O 4 vector } ReadData_3_ce0 { O 1 bit } ReadData_3_q0 { I 32 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'ReadData_3'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 232 \
-    name PermuteData \
+    id 1382 \
+    name PermuteData_3 \
     reset_level 1 \
     sync_rst true \
     dir O \
-    corename PermuteData \
+    corename PermuteData_3 \
     op interface \
-    ports { PermuteData_address0 { O 4 vector } PermuteData_ce0 { O 1 bit } PermuteData_we0 { O 1 bit } PermuteData_d0 { O 32 vector } } \
+    ports { PermuteData_3_address0 { O 4 vector } PermuteData_3_ce0 { O 1 bit } PermuteData_3_we0 { O 1 bit } PermuteData_3_d0 { O 32 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'PermuteData'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'PermuteData_3'"
 }
 }
 
@@ -125,26 +30,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 233 \
-    name PermuteData_1 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename PermuteData_1 \
-    op interface \
-    ports { PermuteData_1_address0 { O 4 vector } PermuteData_1_ce0 { O 1 bit } PermuteData_1_we0 { O 1 bit } PermuteData_1_d0 { O 32 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'PermuteData_1'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 234 \
+    id 1383 \
     name PermuteData_2 \
     reset_level 1 \
     sync_rst true \
@@ -163,17 +49,131 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 235 \
-    name PermuteData_3 \
+    id 1384 \
+    name PermuteData_1 \
     reset_level 1 \
     sync_rst true \
     dir O \
-    corename PermuteData_3 \
+    corename PermuteData_1 \
     op interface \
-    ports { PermuteData_3_address0 { O 4 vector } PermuteData_3_ce0 { O 1 bit } PermuteData_3_we0 { O 1 bit } PermuteData_3_d0 { O 32 vector } } \
+    ports { PermuteData_1_address0 { O 4 vector } PermuteData_1_ce0 { O 1 bit } PermuteData_1_we0 { O 1 bit } PermuteData_1_d0 { O 32 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'PermuteData_3'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'PermuteData_1'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 1385 \
+    name PermuteData \
+    reset_level 1 \
+    sync_rst true \
+    dir O \
+    corename PermuteData \
+    op interface \
+    ports { PermuteData_address0 { O 4 vector } PermuteData_ce0 { O 1 bit } PermuteData_we0 { O 1 bit } PermuteData_d0 { O 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'PermuteData'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 1386 \
+    name InputIndex \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename InputIndex \
+    op interface \
+    ports { InputIndex_address0 { O 6 vector } InputIndex_ce0 { O 1 bit } InputIndex_q0 { I 6 vector } InputIndex_address1 { O 6 vector } InputIndex_ce1 { O 1 bit } InputIndex_q1 { I 6 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'InputIndex'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 1387 \
+    name ReadData \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename ReadData \
+    op interface \
+    ports { ReadData_address0 { O 4 vector } ReadData_ce0 { O 1 bit } ReadData_q0 { I 32 vector } ReadData_address1 { O 4 vector } ReadData_ce1 { O 1 bit } ReadData_q1 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'ReadData'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 1388 \
+    name ReadData_1 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename ReadData_1 \
+    op interface \
+    ports { ReadData_1_address0 { O 4 vector } ReadData_1_ce0 { O 1 bit } ReadData_1_q0 { I 32 vector } ReadData_1_address1 { O 4 vector } ReadData_1_ce1 { O 1 bit } ReadData_1_q1 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'ReadData_1'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 1389 \
+    name ReadData_2 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename ReadData_2 \
+    op interface \
+    ports { ReadData_2_address0 { O 4 vector } ReadData_2_ce0 { O 1 bit } ReadData_2_q0 { I 32 vector } ReadData_2_address1 { O 4 vector } ReadData_2_ce1 { O 1 bit } ReadData_2_q1 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'ReadData_2'"
+}
+}
+
+
+# XIL_BRAM:
+if {${::AESL::PGuard_autoexp_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
+eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
+    id 1390 \
+    name ReadData_3 \
+    reset_level 1 \
+    sync_rst true \
+    dir I \
+    corename ReadData_3 \
+    op interface \
+    ports { ReadData_3_address0 { O 4 vector } ReadData_3_ce0 { O 1 bit } ReadData_3_q0 { I 32 vector } ReadData_3_address1 { O 4 vector } ReadData_3_ce1 { O 1 bit } ReadData_3_q1 { I 32 vector } } \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'ReadData_3'"
 }
 }
 

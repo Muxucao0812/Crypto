@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP1'" level="0">
-<item name = "Date">Thu Mar 27 00:01:16 2025
+<item name = "Date">Fri Apr  4 16:48:05 2025
 </item>
-<item name = "Version">2023.1 (Build 3854077 on May  4 2023)</item>
+<item name = "Version">2024.1 (Build 5069499 on May 21 2024)</item>
 <item name = "Project">Crypto</item>
 <item name = "Solution">solution1 (Vivado IP Flow Target)</item>
-<item name = "Product family">zynq</item>
-<item name = "Target device">xc7z020-clg400-1</item>
+<item name = "Product family">virtex7</item>
+<item name = "Target device">xc7vx485t-ffg1761-3</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 4.985 ns, 2.16 ns</column>
+<column name="ap_clk">6.00 ns, 3.840 ns, 1.62 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">4098, 4098, 32.784 us, 32.784 us, 4098, 4098, no</column>
+<column name="">4099, 4099, 24.594 us, 24.594 us, 4097, 4097, loop auto-rewind stp(delay=0 clock cycles(s))</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,7 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP">4096, 4096, 2, 1, 1, 4096, yes</column>
+<column name="- WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP">4097, 4097, 3, 1, 1, 4096, yes</column>
 </table>
 </item>
 </section>
@@ -48,13 +48,13 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="DSP">-, -, -, -, -</column>
-<column name="Expression">-, -, 0, 107, -</column>
+<column name="Expression">-, -, 0, 124, -</column>
 <column name="FIFO">-, -, -, -, -</column>
 <column name="Instance">-, -, -, -, -</column>
 <column name="Memory">-, -, -, -, -</column>
-<column name="Multiplexer">-, -, -, 86, -</column>
-<column name="Register">-, -, 92, -, -</column>
-<specialColumn name="Available">280, 220, 106400, 53200, 0</specialColumn>
+<column name="Multiplexer">-, -, 357, 63, -</column>
+<column name="Register">-, -, 109, -, -</column>
+<specialColumn name="Available">2060, 2800, 607200, 303600, 0</specialColumn>
 <specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
 </table>
 </item>
@@ -78,16 +78,17 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="add_ln76_1_fu_270_p2">+, 0, 0, 14, 7, 1</column>
-<column name="add_ln76_fu_258_p2">+, 0, 0, 14, 13, 1</column>
-<column name="add_ln78_fu_320_p2">+, 0, 0, 14, 7, 1</column>
-<column name="add_ln80_1_fu_339_p2">+, 0, 0, 13, 10, 10</column>
+<column name="add_ln76_1_fu_277_p2">+, 0, 0, 14, 7, 1</column>
+<column name="add_ln76_fu_256_p2">+, 0, 0, 20, 13, 1</column>
+<column name="add_ln78_1_fu_319_p2">+, 0, 0, 14, 7, 1</column>
+<column name="add_ln78_fu_343_p2">+, 0, 0, 10, 10, 10</column>
+<column name="add_ln80_fu_335_p2">+, 0, 0, 10, 10, 7</column>
 <column name="ap_block_pp0_stage0_11001">and, 0, 0, 2, 1, 1</column>
 <column name="ap_block_state1_pp0_stage0_iter0">and, 0, 0, 2, 1, 1</column>
-<column name="icmp_ln76_fu_252_p2">icmp, 0, 0, 17, 13, 14</column>
-<column name="icmp_ln78_fu_276_p2">icmp, 0, 0, 15, 7, 8</column>
-<column name="select_ln76_2_fu_290_p3">select, 0, 0, 7, 1, 7</column>
-<column name="select_ln76_fu_282_p3">select, 0, 0, 7, 1, 1</column>
+<column name="icmp_ln76_fu_250_p2">icmp, 0, 0, 21, 13, 14</column>
+<column name="icmp_ln78_fu_283_p2">icmp, 0, 0, 15, 7, 8</column>
+<column name="select_ln76_2_fu_297_p3">select, 0, 0, 7, 1, 7</column>
+<column name="select_ln76_fu_289_p3">select, 0, 0, 7, 1, 1</column>
 <column name="ap_enable_pp0">xor, 0, 0, 2, 1, 2</column>
 </table>
 </item>
@@ -96,28 +97,27 @@
 <column name="DataInStream_TDATA_blk_n">9, 2, 1, 2</column>
 <column name="ap_done_int">9, 2, 1, 2</column>
 <column name="ap_enable_reg_pp0_iter1">9, 2, 1, 2</column>
-<column name="ap_sig_allocacmp_indvar_flatten55_load">9, 2, 13, 26</column>
-<column name="ap_sig_allocacmp_j_load">9, 2, 7, 14</column>
-<column name="ap_sig_allocacmp_k_load">14, 3, 7, 21</column>
-<column name="indvar_flatten55_fu_108">9, 2, 13, 26</column>
-<column name="j_fu_104">9, 2, 7, 14</column>
-<column name="k_fu_100">9, 2, 7, 14</column>
+<column name="ap_sig_allocacmp_indvar_flatten33_load">9, 2, 13, 26</column>
+<column name="indvar_flatten33_fu_106">9, 2, 13, 26</column>
+<column name="j_fu_102">9, 2, 7, 14</column>
+<column name="k_fu_98">9, 2, 7, 14</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="DataStreamReg_data_reg_410">32, 0, 32, 0</column>
-<column name="add_ln78_reg_422">7, 0, 7, 0</column>
+<column name="DataStreamReg_data_reg_398">32, 0, 32, 0</column>
+<column name="DataStreamReg_data_reg_398_pp0_iter1_reg">32, 0, 32, 0</column>
 <column name="ap_CS_fsm">1, 0, 1, 0</column>
 <column name="ap_done_reg">1, 0, 1, 0</column>
 <column name="ap_enable_reg_pp0_iter1">1, 0, 1, 0</column>
-<column name="empty_reg_401">3, 0, 3, 0</column>
-<column name="indvar_flatten55_fu_108">13, 0, 13, 0</column>
-<column name="j_fu_104">7, 0, 7, 0</column>
-<column name="k_fu_100">7, 0, 7, 0</column>
-<column name="select_ln76_2_reg_391">7, 0, 7, 0</column>
-<column name="trunc_ln79_1_reg_406">3, 0, 3, 0</column>
-<column name="trunc_ln80_reg_396">10, 0, 10, 0</column>
+<column name="ap_enable_reg_pp0_iter2">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter1_reg">1, 0, 1, 0</column>
+<column name="indvar_flatten33_fu_106">13, 0, 13, 0</column>
+<column name="j_fu_102">7, 0, 7, 0</column>
+<column name="k_fu_98">7, 0, 7, 0</column>
+<column name="select_ln76_2_reg_410">7, 0, 7, 0</column>
+<column name="trunc_ln78_reg_415">3, 0, 3, 0</column>
+<column name="trunc_ln79_1_reg_420">3, 0, 3, 0</column>
 </table>
 </item>
 </section>
@@ -135,7 +135,7 @@
 <column name="ap_ready">out, 1, ap_ctrl_hs, Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP1, return value</column>
 <column name="DataInStream_TVALID">in, 1, axis, DataInStream_V_data_V, pointer</column>
 <column name="DataInStream_TDATA">in, 32, axis, DataInStream_V_data_V, pointer</column>
-<column name="add_ln80">in, 42, ap_none, add_ln80, scalar</column>
+<column name="empty">in, 10, ap_none, empty, scalar</column>
 <column name="DataRAM_address0">out, 13, ap_memory, DataRAM, array</column>
 <column name="DataRAM_ce0">out, 1, ap_memory, DataRAM, array</column>
 <column name="DataRAM_we0">out, 1, ap_memory, DataRAM, array</column>

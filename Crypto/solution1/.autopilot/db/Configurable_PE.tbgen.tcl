@@ -14,6 +14,7 @@ set DLRegFirstOffset 0
 set DLRegItemOffset 0
 set C_modelName {Configurable_PE}
 set C_modelType { int 32 }
+set ap_memory_interface_dict [dict create]
 set C_modelArgList {
 	{ input1_val int 32 regular  }
 	{ input2_val int 32 regular  }
@@ -21,6 +22,8 @@ set C_modelArgList {
 	{ op int 2 regular  }
 }
 set hasAXIMCache 0
+set hasAXIML2Cache 0
+set AXIMCacheInstDict [dict create]
 set C_modelArgMapList {[ 
 	{ "Name" : "input1_val", "interface" : "wire", "bitwidth" : 32, "direction" : "READONLY"} , 
  	{ "Name" : "input2_val", "interface" : "wire", "bitwidth" : 32, "direction" : "READONLY"} , 
@@ -28,7 +31,7 @@ set C_modelArgMapList {[
  	{ "Name" : "op", "interface" : "wire", "bitwidth" : 2, "direction" : "READONLY"} , 
  	{ "Name" : "ap_return", "interface" : "wire", "bitwidth" : 32} ]}
 # RTL Port declarations: 
-set portNum 7
+set portNum 8
 set portList { 
 	{ ap_clk sc_in sc_logic 1 clock -1 } 
 	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
@@ -37,6 +40,7 @@ set portList {
 	{ MOD_INDEX sc_in sc_lv 2 signal 2 } 
 	{ op sc_in sc_lv 2 signal 3 } 
 	{ ap_return sc_out sc_lv 32 signal -1 } 
+	{ ap_ce sc_in sc_logic 1 ce -1 } 
 }
 set NewPortList {[ 
 	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
@@ -45,7 +49,8 @@ set NewPortList {[
  	{ "name": "input2_val", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "input2_val", "role": "default" }} , 
  	{ "name": "MOD_INDEX", "direction": "in", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "MOD_INDEX", "role": "default" }} , 
  	{ "name": "op", "direction": "in", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "op", "role": "default" }} , 
- 	{ "name": "ap_return", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "ap_return", "role": "default" }}  ]}
+ 	{ "name": "ap_return", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "ap_return", "role": "default" }} , 
+ 	{ "name": "ap_ce", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "ce", "bundle":{"name": "ap_ce", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
 	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "13", "14"],
@@ -54,10 +59,10 @@ set RtlHierarchyInfo {[
 		"ControlExist" : "0", "ap_start" : "0", "ap_ready" : "0", "ap_done" : "0", "ap_continue" : "0", "ap_idle" : "0", "real_start" : "0",
 		"Pipeline" : "Aligned", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"II" : "1",
-		"VariableLatency" : "0", "ExactLatency" : "17", "EstimateLatencyMin" : "17", "EstimateLatencyMax" : "17",
+		"VariableLatency" : "0", "ExactLatency" : "13", "EstimateLatencyMin" : "13", "EstimateLatencyMax" : "13",
 		"Combinational" : "0",
 		"Datapath" : "1",
-		"ClockEnable" : "0",
+		"ClockEnable" : "1",
 		"HasSubDataflow" : "0",
 		"InDataflowNetwork" : "0",
 		"HasNonBlockingOperation" : "0",
@@ -67,13 +72,13 @@ set RtlHierarchyInfo {[
 			{"Name" : "input2_val", "Type" : "None", "Direction" : "I"},
 			{"Name" : "MOD_INDEX", "Type" : "None", "Direction" : "I"},
 			{"Name" : "op", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_67", "Parent" : "0", "Child" : ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_71", "Parent" : "0", "Child" : ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
 		"CDFG" : "MUL_MOD_3",
 		"Protocol" : "ap_ctrl_hs",
 		"ControlExist" : "0", "ap_start" : "0", "ap_ready" : "0", "ap_done" : "0", "ap_continue" : "0", "ap_idle" : "0", "real_start" : "0",
 		"Pipeline" : "Aligned", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"II" : "1",
-		"VariableLatency" : "0", "ExactLatency" : "15", "EstimateLatencyMin" : "15", "EstimateLatencyMax" : "15",
+		"VariableLatency" : "0", "ExactLatency" : "12", "EstimateLatencyMin" : "12", "EstimateLatencyMax" : "12",
 		"Combinational" : "0",
 		"Datapath" : "1",
 		"ClockEnable" : "1",
@@ -85,19 +90,19 @@ set RtlHierarchyInfo {[
 			{"Name" : "input1_val", "Type" : "None", "Direction" : "I"},
 			{"Name" : "input2_val", "Type" : "None", "Direction" : "I"},
 			{"Name" : "MOD_INDEX", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "2", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_67.mul_16ns_16ns_32_1_0_U377", "Parent" : "1"},
-	{"ID" : "3", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_67.mul_16ns_16ns_32_1_0_U378", "Parent" : "1"},
-	{"ID" : "4", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_67.mux_3_2_20_1_0_U379", "Parent" : "1"},
-	{"ID" : "5", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_67.mul_16ns_16ns_32_1_0_U380", "Parent" : "1"},
-	{"ID" : "6", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_67.mul_16ns_16ns_32_1_0_U381", "Parent" : "1"},
-	{"ID" : "7", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_67.mux_3_2_31_1_0_U382", "Parent" : "1"},
-	{"ID" : "8", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_67.mul_15ns_16ns_31_1_0_U383", "Parent" : "1"},
-	{"ID" : "9", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_67.mul_16ns_16ns_32_1_0_U384", "Parent" : "1"},
-	{"ID" : "10", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_67.ama_addmul_sub_16ns_16ns_17ns_33ns_35_4_0_U385", "Parent" : "1"},
-	{"ID" : "11", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_67.ama_addmul_sub_16ns_16ns_17ns_33ns_35_4_0_U386", "Parent" : "1"},
-	{"ID" : "12", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_67.ama_addmul_sub_16ns_16ns_17ns_33ns_35_4_0_U387", "Parent" : "1"},
-	{"ID" : "13", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mux_3_2_31_1_0_U391", "Parent" : "0"},
-	{"ID" : "14", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mux_3_2_31_1_0_U392", "Parent" : "0"}]}
+	{"ID" : "2", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_71.mul_16ns_16ns_32_1_0_U2248", "Parent" : "1"},
+	{"ID" : "3", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_71.mul_16ns_16ns_32_1_0_U2249", "Parent" : "1"},
+	{"ID" : "4", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_71.sparsemux_7_2_20_1_0_U2250", "Parent" : "1"},
+	{"ID" : "5", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_71.mul_16ns_16ns_32_1_0_U2251", "Parent" : "1"},
+	{"ID" : "6", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_71.mul_16ns_16ns_32_1_0_U2252", "Parent" : "1"},
+	{"ID" : "7", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_71.sparsemux_7_2_31_1_0_U2253", "Parent" : "1"},
+	{"ID" : "8", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_71.mul_16ns_15ns_31_1_0_U2254", "Parent" : "1"},
+	{"ID" : "9", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_71.mul_16ns_16ns_32_1_0_U2255", "Parent" : "1"},
+	{"ID" : "10", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_71.ama_addmul_sub_16ns_16ns_17ns_33ns_35_4_0_U2256", "Parent" : "1"},
+	{"ID" : "11", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_71.ama_addmul_sub_16ns_16ns_17ns_33ns_35_4_0_U2257", "Parent" : "1"},
+	{"ID" : "12", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_MUL_MOD_3_fu_71.ama_addmul_sub_16ns_16ns_17ns_33ns_35_4_0_U2258", "Parent" : "1"},
+	{"ID" : "13", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.sparsemux_7_2_31_1_0_U2262", "Parent" : "0"},
+	{"ID" : "14", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.sparsemux_7_2_31_1_0_U2263", "Parent" : "0"}]}
 
 
 set ArgLastReadFirstWriteLatency {
@@ -114,7 +119,7 @@ set ArgLastReadFirstWriteLatency {
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "17", "Max" : "17"}
+	{"Name" : "Latency", "Min" : "13", "Max" : "13"}
 	, {"Name" : "Interval", "Min" : "1", "Max" : "1"}
 ]}
 

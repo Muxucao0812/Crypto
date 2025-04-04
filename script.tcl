@@ -5,54 +5,54 @@ open_project -reset Crypto
 
 # Define lists of source and header files
 set source_files {
-    TwiddleMemory.cpp
-    Crypto.cpp
-    Crypto1.cpp
-    DATAMemory.cpp
-    PE_ARRAY.cpp
-    PE_UNIT.cpp
-    Arithmetic.cpp
-    Crypto_TB.cpp
-    AddressGen.cpp
-    AddressGen_TB.cpp
-    Utils.cpp
-    pow_mod.cpp
-    poly.txt
-    basis.txt
-    ret.txt
-
-    # Add all necessary source files
+    HLS/src/TwiddleMemory.cpp
+    HLS/src/Crypto.cpp
+    HLS/src/Crypto1.cpp
+    HLS/src/DATAMemory.cpp
+    HLS/src/PE_ARRAY.cpp
+    HLS/src/PE_UNIT.cpp
+    HLS/src/Arithmetic.cpp
+    HLS/src/AddressGen.cpp
+    HLS/src/Utils.cpp
+    HLS/src/pow_mod.cpp
 }
 
 set header_files {
-    TwiddleMemory.hpp
-    define.h
-    Crypto.hpp
-    Crypto1.hpp
-    DATAMemory.hpp
-    PE_ARRAY.hpp
-    PE_UNIT.hpp
-    Arithmetic.hpp
-    Crypto_TB.hpp
-    AddressGen.hpp
-    AddressGen_TB.hpp
-    Utils.hpp
-    pow_mod.h
+    HLS/include/TwiddleMemory.hpp
+    HLS/include/define.h
+    HLS/include/Crypto.hpp
+    HLS/include/Crypto1.hpp
+    HLS/include/DATAMemory.hpp
+    HLS/include/PE_ARRAY.hpp
+    HLS/include/PE_UNIT.hpp
+    HLS/include/Arithmetic.hpp
+    HLS/include/Crypto_TB.hpp
+    HLS/include/AddressGen.hpp
+    HLS/include/AddressGen_TB.hpp
+    HLS/include/Utils.hpp
+    HLS/include/pow_mod.h
+}
 
-    # Add all necessary header files
+set testbench_files {
+    HLS/test/Crypto_TB.cpp
+    HLS/test/AddressGen_TB.cpp
+    HLS/test/main_TB.cpp
 }
 
 # Add source files
 foreach file $source_files {
-    add_files $file
+    add_files $file -cflags "-I./HLS/include"
 }
 
 # Add header files
 foreach header $header_files {
-    add_files -cflags "-I." $header
+    add_files $header
 }
 
-add_files -tb main_TB.cpp
+# Add testbench files
+foreach test $testbench_files {
+    add_files -tb $test -cflags "-I./HLS/include"
+}
 
 # Set the top function
 set_top Crypto1
@@ -61,8 +61,8 @@ set_top Crypto1
 open_solution "solution1" -reset
 
 # Set the target part and create a clock
-# set_part {xc7vx485tffg1761-3} 
-set_part {xc7z020clg400-1}
+set_part {xc7vx485tffg1761-3} 
+# set_part {xc7z020clg400-1}
 create_clock -period 6
 
 # Run C simulation

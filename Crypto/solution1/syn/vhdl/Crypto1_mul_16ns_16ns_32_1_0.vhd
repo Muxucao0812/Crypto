@@ -18,7 +18,6 @@ port (
     dout: out std_logic_vector(dout_WIDTH - 1 downto 0));
 
 
-
 end entity;
 
 architecture behav of Crypto1_mul_16ns_16ns_32_1_0 is
@@ -31,6 +30,20 @@ architecture behav of Crypto1_mul_16ns_16ns_32_1_0 is
     
     
     
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+              
 begin
     a_i <= din0;
     b_i <= din1;
@@ -48,6 +61,20 @@ begin
 
 
     dout <= tmp_product;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

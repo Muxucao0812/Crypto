@@ -14,18 +14,22 @@ set DLRegFirstOffset 0
 set DLRegItemOffset 0
 set C_modelName {generate_output_index}
 set C_modelType { void 0 }
+set ap_memory_interface_dict [dict create]
+dict set ap_memory_interface_dict output_indices { MEM_WIDTH 6 MEM_SIZE 64 MASTER_TYPE BRAM_CTRL MEM_ADDRESS_MODE WORD_ADDRESS PACKAGE_IO port READ_LATENCY 0 }
 set C_modelArgList {
 	{ stage int 4 regular  }
 	{ address int 6 regular  }
-	{ output_indices int 6 regular {array 64 { 0 0 } 0 1 }  }
+	{ output_indices int 6 regular {array 64 { 0 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 } 0 1 }  }
 }
 set hasAXIMCache 0
+set hasAXIML2Cache 0
+set AXIMCacheInstDict [dict create]
 set C_modelArgMapList {[ 
 	{ "Name" : "stage", "interface" : "wire", "bitwidth" : 4, "direction" : "READONLY"} , 
  	{ "Name" : "address", "interface" : "wire", "bitwidth" : 6, "direction" : "READONLY"} , 
  	{ "Name" : "output_indices", "interface" : "memory", "bitwidth" : 6, "direction" : "WRITEONLY"} ]}
 # RTL Port declarations: 
-set portNum 16
+set portNum 12
 set portList { 
 	{ ap_clk sc_in sc_logic 1 clock -1 } 
 	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
@@ -39,10 +43,6 @@ set portList {
 	{ output_indices_ce0 sc_out sc_logic 1 signal 2 } 
 	{ output_indices_we0 sc_out sc_logic 1 signal 2 } 
 	{ output_indices_d0 sc_out sc_lv 6 signal 2 } 
-	{ output_indices_address1 sc_out sc_lv 6 signal 2 } 
-	{ output_indices_ce1 sc_out sc_logic 1 signal 2 } 
-	{ output_indices_we1 sc_out sc_logic 1 signal 2 } 
-	{ output_indices_d1 sc_out sc_lv 6 signal 2 } 
 }
 set NewPortList {[ 
 	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
@@ -56,11 +56,7 @@ set NewPortList {[
  	{ "name": "output_indices_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":6, "type": "signal", "bundle":{"name": "output_indices", "role": "address0" }} , 
  	{ "name": "output_indices_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "output_indices", "role": "ce0" }} , 
  	{ "name": "output_indices_we0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "output_indices", "role": "we0" }} , 
- 	{ "name": "output_indices_d0", "direction": "out", "datatype": "sc_lv", "bitwidth":6, "type": "signal", "bundle":{"name": "output_indices", "role": "d0" }} , 
- 	{ "name": "output_indices_address1", "direction": "out", "datatype": "sc_lv", "bitwidth":6, "type": "signal", "bundle":{"name": "output_indices", "role": "address1" }} , 
- 	{ "name": "output_indices_ce1", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "output_indices", "role": "ce1" }} , 
- 	{ "name": "output_indices_we1", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "output_indices", "role": "we1" }} , 
- 	{ "name": "output_indices_d1", "direction": "out", "datatype": "sc_lv", "bitwidth":6, "type": "signal", "bundle":{"name": "output_indices", "role": "d1" }}  ]}
+ 	{ "name": "output_indices_d0", "direction": "out", "datatype": "sc_lv", "bitwidth":6, "type": "signal", "bundle":{"name": "output_indices", "role": "d0" }}  ]}
 
 set RtlHierarchyInfo {[
 	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "",
@@ -69,7 +65,7 @@ set RtlHierarchyInfo {[
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
 		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "34", "EstimateLatencyMax" : "34",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "65", "EstimateLatencyMax" : "65",
 		"Combinational" : "0",
 		"Datapath" : "0",
 		"ClockEnable" : "0",
@@ -92,8 +88,8 @@ set ArgLastReadFirstWriteLatency {
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "34", "Max" : "34"}
-	, {"Name" : "Interval", "Min" : "34", "Max" : "34"}
+	{"Name" : "Latency", "Min" : "65", "Max" : "65"}
+	, {"Name" : "Interval", "Min" : "65", "Max" : "65"}
 ]}
 
 set PipelineEnableSignalInfo {[
@@ -102,5 +98,5 @@ set PipelineEnableSignalInfo {[
 set Spec2ImplPortList { 
 	stage { ap_none {  { stage in_data 0 4 } } }
 	address { ap_none {  { address in_data 0 6 } } }
-	output_indices { ap_memory {  { output_indices_address0 mem_address 1 6 }  { output_indices_ce0 mem_ce 1 1 }  { output_indices_we0 mem_we 1 1 }  { output_indices_d0 mem_din 1 6 }  { output_indices_address1 MemPortADDR2 1 6 }  { output_indices_ce1 MemPortCE2 1 1 }  { output_indices_we1 MemPortWE2 1 1 }  { output_indices_d1 MemPortDIN2 1 6 } } }
+	output_indices { ap_memory {  { output_indices_address0 mem_address 1 6 }  { output_indices_ce0 mem_ce 1 1 }  { output_indices_we0 mem_we 1 1 }  { output_indices_d0 mem_din 1 6 } } }
 }

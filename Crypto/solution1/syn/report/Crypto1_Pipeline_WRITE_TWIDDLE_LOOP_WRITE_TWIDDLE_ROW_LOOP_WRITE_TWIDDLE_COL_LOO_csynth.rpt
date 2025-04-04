@@ -1,0 +1,203 @@
+
+
+================================================================
+== Vitis HLS Report for 'Crypto1_Pipeline_WRITE_TWIDDLE_LOOP_WRITE_TWIDDLE_ROW_LOOP_WRITE_TWIDDLE_COL_LOO'
+================================================================
+* Date:           Fri Apr  4 16:48:04 2025
+
+* Version:        2024.1 (Build 5069499 on May 21 2024)
+* Project:        Crypto
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtex7
+* Target device:  xc7vx485t-ffg1761-3
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  6.00 ns|  4.359 ns|     1.62 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+--------+--------+-----------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |     Interval    |                    Pipeline                   |
+    |   min   |   max   |    min   |    max   |   min  |   max  |                      Type                     |
+    +---------+---------+----------+----------+--------+--------+-----------------------------------------------+
+    |   393219|   393219|  2.359 ms|  2.359 ms|  393217|  393217|  loop auto-rewind stp(delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+--------+--------+-----------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------------------------------------------------------+---------+---------+----------+-----------+-----------+--------+----------+
+        |                                                                    |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip  |          |
+        |                              Loop Name                             |   min   |   max   |  Latency |  achieved |   target  |  Count | Pipelined|
+        +--------------------------------------------------------------------+---------+---------+----------+-----------+-----------+--------+----------+
+        |- WRITE_TWIDDLE_LOOP_WRITE_TWIDDLE_ROW_LOOP_WRITE_TWIDDLE_COL_LOOP  |   393217|   393217|         3|          1|          1|  393216|       yes|
+        +--------------------------------------------------------------------+---------+---------+----------+-----------+-----------+--------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|     237|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|     -|       -|       -|    -|
+|Memory           |        -|     -|       -|       -|    -|
+|Multiplexer      |        -|     -|     408|      72|    -|
+|Register         |        -|     -|      85|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        0|     0|     493|     309|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |     2060|  2800|  607200|  303600|    0|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        0|     0|      ~0|      ~0|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |add_ln115_1_fu_287_p2     |         +|   0|  0|  26|          19|           1|
+    |add_ln115_fu_332_p2       |         +|   0|  0|  10|           2|           1|
+    |add_ln117_1_fu_299_p2     |         +|   0|  0|  26|          19|           1|
+    |add_ln117_fu_369_p2       |         +|   0|  0|  14|           6|           1|
+    |add_ln119_1_fu_408_p2     |         +|   0|  0|  14|           7|           7|
+    |add_ln119_fu_446_p2       |         +|   0|  0|  20|          13|           1|
+    |and_ln115_fu_356_p2       |       and|   0|  0|   2|           1|           1|
+    |icmp_ln115_fu_281_p2      |      icmp|   0|  0|  26|          19|          19|
+    |icmp_ln117_fu_293_p2      |      icmp|   0|  0|  26|          19|          18|
+    |icmp_ln119_fu_350_p2      |      icmp|   0|  0|  21|          13|          14|
+    |empty_fu_375_p2           |        or|   0|  0|   2|           1|           1|
+    |k_6_mid2_fu_380_p3        |    select|   0|  0|  13|           1|           1|
+    |select_ln115_1_fu_362_p3  |    select|   0|  0|   2|           1|           2|
+    |select_ln115_fu_338_p3    |    select|   0|  0|   6|           1|           1|
+    |select_ln117_1_fu_305_p3  |    select|   0|  0|  19|           1|           1|
+    |select_ln117_fu_388_p3    |    select|   0|  0|   6|           1|           6|
+    |ap_enable_pp0             |       xor|   0|  0|   2|           1|           2|
+    |xor_ln115_fu_345_p2       |       xor|   0|  0|   2|           1|           2|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |Total                     |          |   0|  0| 237|         126|          80|
+    +--------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter2  |   9|          2|    1|          2|
+    |i_fu_104                 |   9|          2|    2|          4|
+    |indvar_flatten13_fu_100  |   9|          2|   19|         38|
+    |indvar_flatten26_fu_108  |   9|          2|   19|         38|
+    |j_fu_96                  |   9|          2|    6|         12|
+    |k_fu_92                  |   9|          2|   13|         26|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  72|         16|   62|        124|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------+----+----+-----+-----------+
+    |               Name               | FF | LUT| Bits| Const Bits|
+    +----------------------------------+----+----+-----+-----------+
+    |add_ln119_1_reg_532               |   7|   0|    7|          0|
+    |ap_CS_fsm                         |   1|   0|    1|          0|
+    |ap_done_reg                       |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter3           |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter2_reg  |   1|   0|    1|          0|
+    |i_fu_104                          |   2|   0|    2|          0|
+    |icmp_ln117_reg_524                |   1|   0|    1|          0|
+    |indvar_flatten13_fu_100           |  19|   0|   19|          0|
+    |indvar_flatten26_fu_108           |  19|   0|   19|          0|
+    |j_fu_96                           |   6|   0|    6|          0|
+    |k_fu_92                           |  13|   0|   13|          0|
+    |lshr_ln_reg_541                   |  10|   0|   10|          0|
+    |trunc_ln119_5_reg_537             |   2|   0|    2|          0|
+    +----------------------------------+----+----+-----+-----------+
+    |Total                             |  85|   0|   85|          0|
+    +----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------+-----+-----+------------+----------------------------------------------------------------------------------+--------------+
+|         RTL Ports         | Dir | Bits|  Protocol  |                                   Source Object                                  |    C Type    |
++---------------------------+-----+-----+------------+----------------------------------------------------------------------------------+--------------+
+|ap_clk                     |   in|    1|  ap_ctrl_hs|  Crypto1_Pipeline_WRITE_TWIDDLE_LOOP_WRITE_TWIDDLE_ROW_LOOP_WRITE_TWIDDLE_COL_LOO|  return value|
+|ap_rst                     |   in|    1|  ap_ctrl_hs|  Crypto1_Pipeline_WRITE_TWIDDLE_LOOP_WRITE_TWIDDLE_ROW_LOOP_WRITE_TWIDDLE_COL_LOO|  return value|
+|ap_start                   |   in|    1|  ap_ctrl_hs|  Crypto1_Pipeline_WRITE_TWIDDLE_LOOP_WRITE_TWIDDLE_ROW_LOOP_WRITE_TWIDDLE_COL_LOO|  return value|
+|ap_done                    |  out|    1|  ap_ctrl_hs|  Crypto1_Pipeline_WRITE_TWIDDLE_LOOP_WRITE_TWIDDLE_ROW_LOOP_WRITE_TWIDDLE_COL_LOO|  return value|
+|ap_idle                    |  out|    1|  ap_ctrl_hs|  Crypto1_Pipeline_WRITE_TWIDDLE_LOOP_WRITE_TWIDDLE_ROW_LOOP_WRITE_TWIDDLE_COL_LOO|  return value|
+|ap_ready                   |  out|    1|  ap_ctrl_hs|  Crypto1_Pipeline_WRITE_TWIDDLE_LOOP_WRITE_TWIDDLE_ROW_LOOP_WRITE_TWIDDLE_COL_LOO|  return value|
+|NTTTWiddleRAM_address0     |  out|   17|   ap_memory|                                                                     NTTTWiddleRAM|         array|
+|NTTTWiddleRAM_ce0          |  out|    1|   ap_memory|                                                                     NTTTWiddleRAM|         array|
+|NTTTWiddleRAM_we0          |  out|    1|   ap_memory|                                                                     NTTTWiddleRAM|         array|
+|NTTTWiddleRAM_d0           |  out|   32|   ap_memory|                                                                     NTTTWiddleRAM|         array|
+|NTTTWiddleRAM_1_address0   |  out|   17|   ap_memory|                                                                   NTTTWiddleRAM_1|         array|
+|NTTTWiddleRAM_1_ce0        |  out|    1|   ap_memory|                                                                   NTTTWiddleRAM_1|         array|
+|NTTTWiddleRAM_1_we0        |  out|    1|   ap_memory|                                                                   NTTTWiddleRAM_1|         array|
+|NTTTWiddleRAM_1_d0         |  out|   32|   ap_memory|                                                                   NTTTWiddleRAM_1|         array|
+|NTTTWiddleRAM_2_address0   |  out|   17|   ap_memory|                                                                   NTTTWiddleRAM_2|         array|
+|NTTTWiddleRAM_2_ce0        |  out|    1|   ap_memory|                                                                   NTTTWiddleRAM_2|         array|
+|NTTTWiddleRAM_2_we0        |  out|    1|   ap_memory|                                                                   NTTTWiddleRAM_2|         array|
+|NTTTWiddleRAM_2_d0         |  out|   32|   ap_memory|                                                                   NTTTWiddleRAM_2|         array|
+|NTTTWiddleRAM_3_address0   |  out|   17|   ap_memory|                                                                   NTTTWiddleRAM_3|         array|
+|NTTTWiddleRAM_3_ce0        |  out|    1|   ap_memory|                                                                   NTTTWiddleRAM_3|         array|
+|NTTTWiddleRAM_3_we0        |  out|    1|   ap_memory|                                                                   NTTTWiddleRAM_3|         array|
+|NTTTWiddleRAM_3_d0         |  out|   32|   ap_memory|                                                                   NTTTWiddleRAM_3|         array|
+|INTTTWiddleRAM_address0    |  out|   17|   ap_memory|                                                                    INTTTWiddleRAM|         array|
+|INTTTWiddleRAM_ce0         |  out|    1|   ap_memory|                                                                    INTTTWiddleRAM|         array|
+|INTTTWiddleRAM_we0         |  out|    1|   ap_memory|                                                                    INTTTWiddleRAM|         array|
+|INTTTWiddleRAM_d0          |  out|   32|   ap_memory|                                                                    INTTTWiddleRAM|         array|
+|INTTTWiddleRAM_1_address0  |  out|   17|   ap_memory|                                                                  INTTTWiddleRAM_1|         array|
+|INTTTWiddleRAM_1_ce0       |  out|    1|   ap_memory|                                                                  INTTTWiddleRAM_1|         array|
+|INTTTWiddleRAM_1_we0       |  out|    1|   ap_memory|                                                                  INTTTWiddleRAM_1|         array|
+|INTTTWiddleRAM_1_d0        |  out|   32|   ap_memory|                                                                  INTTTWiddleRAM_1|         array|
+|INTTTWiddleRAM_2_address0  |  out|   17|   ap_memory|                                                                  INTTTWiddleRAM_2|         array|
+|INTTTWiddleRAM_2_ce0       |  out|    1|   ap_memory|                                                                  INTTTWiddleRAM_2|         array|
+|INTTTWiddleRAM_2_we0       |  out|    1|   ap_memory|                                                                  INTTTWiddleRAM_2|         array|
+|INTTTWiddleRAM_2_d0        |  out|   32|   ap_memory|                                                                  INTTTWiddleRAM_2|         array|
+|INTTTWiddleRAM_3_address0  |  out|   17|   ap_memory|                                                                  INTTTWiddleRAM_3|         array|
+|INTTTWiddleRAM_3_ce0       |  out|    1|   ap_memory|                                                                  INTTTWiddleRAM_3|         array|
+|INTTTWiddleRAM_3_we0       |  out|    1|   ap_memory|                                                                  INTTTWiddleRAM_3|         array|
+|INTTTWiddleRAM_3_d0        |  out|   32|   ap_memory|                                                                  INTTTWiddleRAM_3|         array|
+|NTTTwiddleIn_address0      |  out|   14|   ap_memory|                                                                      NTTTwiddleIn|         array|
+|NTTTwiddleIn_ce0           |  out|    1|   ap_memory|                                                                      NTTTwiddleIn|         array|
+|NTTTwiddleIn_q0            |   in|   32|   ap_memory|                                                                      NTTTwiddleIn|         array|
+|INTTTwiddleIn_address0     |  out|   14|   ap_memory|                                                                     INTTTwiddleIn|         array|
+|INTTTwiddleIn_ce0          |  out|    1|   ap_memory|                                                                     INTTTwiddleIn|         array|
+|INTTTwiddleIn_q0           |   in|   32|   ap_memory|                                                                     INTTTwiddleIn|         array|
++---------------------------+-----+-----+------------+----------------------------------------------------------------------------------+--------------+
+

@@ -1,0 +1,138 @@
+{
+  "0": {
+    "basicblocks": 2509,
+    "calls": "4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 5 6 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 5 6 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 5 6 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 5 6 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 5 6 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 5 6 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2",
+    "file": "Crypto1.cpp",
+    "fileloc": 15,
+    "instructions": 29432,
+    "loads": {
+      "L": 6171,
+      "T": 2
+    },
+    "name": "Crypto1",
+    "stores": {
+      "L": 3116
+    },
+    "total_instructions": 191618
+  },
+  "1": {
+    "basicblocks": 5,
+    "calls": "",
+    "file": "hls_log_.h",
+    "fileloc": 153,
+    "instructions": 17,
+    "loads": {
+      "L": 1
+    },
+    "name": "range_reduction<57>",
+    "stores": {
+      "L": 5
+    },
+    "total_instructions": 17
+  },
+  "2": {
+    "basicblocks": 17,
+    "calls": "7 8 8",
+    "file": "Arithmetic.cpp",
+    "fileloc": 185,
+    "instructions": 78,
+    "loads": {
+      "L": 3
+    },
+    "name": "Configurable_PE",
+    "stores": {
+      "L": 13
+    },
+    "total_instructions": 303
+  },
+  "3": {
+    "basicblocks": 101,
+    "calls": "1",
+    "file": "hls_log_.h",
+    "fileloc": 182,
+    "instructions": 260,
+    "loads": {
+      "L": 2
+    },
+    "name": "log_generic<double>",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 277
+  },
+  "4": {
+    "basicblocks": 15,
+    "calls": "7 9 9",
+    "file": "Arithmetic.cpp",
+    "fileloc": 185,
+    "instructions": 63,
+    "loads": {
+      "L": 2
+    },
+    "name": "Configurable_PE",
+    "stores": {
+      "L": 11
+    },
+    "total_instructions": 162
+  },
+  "5": {
+    "basicblocks": 1,
+    "calls": "3",
+    "file": "Utils.cpp",
+    "fileloc": 205,
+    "instructions": 484,
+    "name": "generate_input_index",
+    "stores": {
+      "L": 64
+    },
+    "total_instructions": 761
+  },
+  "6": {
+    "basicblocks": 1,
+    "calls": "3",
+    "file": "Utils.cpp",
+    "fileloc": 228,
+    "instructions": 745,
+    "name": "generate_output_index",
+    "stores": {
+      "L": 64
+    },
+    "total_instructions": 1022
+  },
+  "7": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 118,
+    "instructions": 75,
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 75
+  },
+  "8": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 118,
+    "instructions": 75,
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 75
+  },
+  "9": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "Arithmetic.cpp",
+    "fileloc": 118,
+    "instructions": 12,
+    "name": "MUL_MOD",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 12
+  }
+}

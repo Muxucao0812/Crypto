@@ -2,7 +2,7 @@
 
 `timescale 1 ns / 1 ps
 
-  module Crypto1_mul_16ns_16ns_32_1_0(din0, din1, dout);
+ module Crypto1_mul_16ns_16ns_32_1_0(din0, din1, dout);
 parameter ID = 1;
 parameter NUM_STAGE = 0;
 parameter din0_WIDTH = 14;
@@ -14,6 +14,20 @@ input [din1_WIDTH - 1 : 0] din1;
 output [dout_WIDTH - 1 : 0] dout;
 
 wire signed [dout_WIDTH - 1 : 0] tmp_product;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -37,6 +51,20 @@ assign tmp_product = $signed({1'b0, din0}) * $signed({1'b0, din1});
 
 
 assign dout = tmp_product;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

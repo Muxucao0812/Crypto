@@ -3,13 +3,13 @@
 ================================================================
 == Vitis HLS Report for 'Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP3'
 ================================================================
-* Date:           Thu Mar 27 00:01:08 2025
+* Date:           Fri Apr  4 16:47:43 2025
 
-* Version:        2023.1 (Build 3854077 on May  4 2023)
+* Version:        2024.1 (Build 5069499 on May 21 2024)
 * Project:        Crypto
 * Solution:       solution1 (Vivado IP Flow Target)
-* Product family: zynq
-* Target device:  xc7z020-clg400-1
+* Product family: virtex7
+* Target device:  xc7vx485t-ffg1761-3
 
 
 ================================================================
@@ -20,17 +20,17 @@
     +--------+---------+----------+------------+
     |  Clock |  Target | Estimated| Uncertainty|
     +--------+---------+----------+------------+
-    |ap_clk  |  8.00 ns|  5.558 ns|     2.16 ns|
+    |ap_clk  |  6.00 ns|  3.840 ns|     1.62 ns|
     +--------+---------+----------+------------+
 
 + Latency: 
     * Summary: 
-    +---------+---------+-----------+-----------+------+------+---------+
-    |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
-    |   min   |   max   |    min    |    max    |  min |  max |   Type  |
-    +---------+---------+-----------+-----------+------+------+---------+
-    |     4099|     4099|  32.792 us|  32.792 us|  4099|  4099|       no|
-    +---------+---------+-----------+-----------+------+------+---------+
+    +---------+---------+-----------+-----------+------+------+-----------------------------------------------+
+    |  Latency (cycles) |   Latency (absolute)  |   Interval  |                    Pipeline                   |
+    |   min   |   max   |    min    |    max    |  min |  max |                      Type                     |
+    +---------+---------+-----------+-----------+------+------+-----------------------------------------------+
+    |     4100|     4100|  24.600 us|  24.600 us|  4097|  4097|  loop auto-rewind stp(delay=0 clock cycles(s))|
+    +---------+---------+-----------+-----------+------+------+-----------------------------------------------+
 
     + Detail: 
         * Instance: 
@@ -41,7 +41,7 @@
         |                                         |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
         |                Loop Name                |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
         +-----------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
-        |- READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP  |     4097|     4097|         3|          1|          1|  4096|       yes|
+        |- READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP  |     4098|     4098|         4|          1|          1|  4096|       yes|
         +-----------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
 
 ============================================================
@@ -67,121 +67,131 @@ HasImplIP: 0
 IsGatedGlobalClock: 0
 
 + Individual pipeline summary: 
-  * Pipeline-0: initiation interval (II) = 1, depth = 3
+  * Pipeline-0: initiation interval (II) = 1, depth = 4
 
 
 ============================================================
 + Verbose Summary: Schedule
 ============================================================
-* Number of FSM states : 3
+* Number of FSM states : 4
 * Pipeline : 1
-  Pipeline-0 : II = 1, D = 3, States = { 1 2 3 }
+  Pipeline-0 : II = 1, D = 4, States = { 1 2 3 4 }
 * Dataflow Pipeline: 0
 
 * FSM state transitions: 
 1 --> 2 
 2 --> 3 
-3 --> 
+3 --> 4 
+4 --> 
 
 * FSM state operations: 
 
-State 1 <SV = 0> <Delay = 4.73>
-ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%k = alloca i32 1"   --->   Operation 6 'alloca' 'k' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%j = alloca i32 1"   --->   Operation 7 'alloca' 'j' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%indvar_flatten69 = alloca i32 1"   --->   Operation 8 'alloca' 'indvar_flatten69' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%specaxissidechannel_ln0 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i32 %DataOutStream_V_data_V, i4 %DataOutStream_V_keep_V, i4 %DataOutStream_V_strb_V, i1 0, i1 %DataOutStream_V_last_V, i1 0, i1 0, void @empty_34"   --->   Operation 9 'specaxissidechannel' 'specaxissidechannel_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %DataOutStream_V_last_V, void @empty_18, i32 0, i32 0, void @empty_14, i32 0, i32 0, void @empty_36, void @empty_36, void @empty_36, i32 0, i32 0, i32 0, i32 0, void @empty_36, void @empty_36, i32 4294967295, i32 0"   --->   Operation 10 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i4 %DataOutStream_V_strb_V, void @empty_18, i32 0, i32 0, void @empty_14, i32 0, i32 0, void @empty_36, void @empty_36, void @empty_36, i32 0, i32 0, i32 0, i32 0, void @empty_36, void @empty_36, i32 4294967295, i32 0"   --->   Operation 11 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i4 %DataOutStream_V_keep_V, void @empty_18, i32 0, i32 0, void @empty_14, i32 0, i32 0, void @empty_36, void @empty_36, void @empty_36, i32 0, i32 0, i32 0, i32 0, void @empty_36, void @empty_36, i32 4294967295, i32 0"   --->   Operation 12 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %DataOutStream_V_data_V, void @empty_18, i32 0, i32 0, void @empty_14, i32 0, i32 0, void @empty_36, void @empty_36, void @empty_36, i32 0, i32 0, i32 0, i32 0, void @empty_36, void @empty_36, i32 4294967295, i32 0"   --->   Operation 13 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%add_ln99_read = read i42 @_ssdm_op_Read.ap_auto.i42, i42 %add_ln99"   --->   Operation 14 'read' 'add_ln99_read' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 15 [1/1] (1.58ns)   --->   "%store_ln0 = store i13 0, i13 %indvar_flatten69"   --->   Operation 15 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
-ST_1 : Operation 16 [1/1] (1.58ns)   --->   "%store_ln0 = store i7 0, i7 %j"   --->   Operation 16 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
-ST_1 : Operation 17 [1/1] (1.58ns)   --->   "%store_ln0 = store i7 0, i7 %k"   --->   Operation 17 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
-ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.body123.1"   --->   Operation 18 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%indvar_flatten69_load = load i13 %indvar_flatten69" [Crypto1.cpp:96]   --->   Operation 19 'load' 'indvar_flatten69_load' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 20 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 21 [1/1] (1.67ns)   --->   "%icmp_ln96 = icmp_eq  i13 %indvar_flatten69_load, i13 4096" [Crypto1.cpp:96]   --->   Operation 21 'icmp' 'icmp_ln96' <Predicate = true> <Delay = 1.67> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.67> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 22 [1/1] (1.67ns)   --->   "%add_ln96 = add i13 %indvar_flatten69_load, i13 1" [Crypto1.cpp:96]   --->   Operation 22 'add' 'add_ln96' <Predicate = true> <Delay = 1.67> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.67> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%br_ln96 = br i1 %icmp_ln96, void %for.inc143.1, void %for.body123.2.preheader.exitStub" [Crypto1.cpp:96]   --->   Operation 23 'br' 'br_ln96' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%k_load = load i7 %k" [Crypto1.cpp:98]   --->   Operation 24 'load' 'k_load' <Predicate = (!icmp_ln96)> <Delay = 0.00>
-ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%j_load = load i7 %j" [Crypto1.cpp:96]   --->   Operation 25 'load' 'j_load' <Predicate = (!icmp_ln96)> <Delay = 0.00>
-ST_1 : Operation 26 [1/1] (1.87ns)   --->   "%add_ln96_1 = add i7 %j_load, i7 1" [Crypto1.cpp:96]   --->   Operation 26 'add' 'add_ln96_1' <Predicate = (!icmp_ln96)> <Delay = 1.87> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.87> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 27 [1/1] (1.87ns)   --->   "%icmp_ln98 = icmp_eq  i7 %k_load, i7 64" [Crypto1.cpp:98]   --->   Operation 27 'icmp' 'icmp_ln98' <Predicate = (!icmp_ln96)> <Delay = 1.87> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 28 [1/1] (0.99ns)   --->   "%select_ln96_2 = select i1 %icmp_ln98, i7 0, i7 %k_load" [Crypto1.cpp:96]   --->   Operation 28 'select' 'select_ln96_2' <Predicate = (!icmp_ln96)> <Delay = 0.99> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
-ST_1 : Operation 29 [1/1] (0.99ns)   --->   "%select_ln96 = select i1 %icmp_ln98, i7 %add_ln96_1, i7 %j_load" [Crypto1.cpp:96]   --->   Operation 29 'select' 'select_ln96' <Predicate = (!icmp_ln96)> <Delay = 0.99> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
-ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%empty = trunc i7 %select_ln96_2" [Crypto1.cpp:96]   --->   Operation 30 'trunc' 'empty' <Predicate = (!icmp_ln96)> <Delay = 0.00>
-ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%trunc_ln98_1 = partselect i3 @_ssdm_op_PartSelect.i3.i7.i32.i32, i7 %select_ln96_2, i32 3, i32 5" [Crypto1.cpp:98]   --->   Operation 31 'partselect' 'trunc_ln98_1' <Predicate = (!icmp_ln96)> <Delay = 0.00>
-ST_1 : Operation 32 [1/1] (1.87ns)   --->   "%add_ln98 = add i7 %select_ln96_2, i7 1" [Crypto1.cpp:98]   --->   Operation 32 'add' 'add_ln98' <Predicate = (!icmp_ln96)> <Delay = 1.87> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.87> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_1 : Operation 33 [1/1] (1.58ns)   --->   "%store_ln98 = store i13 %add_ln96, i13 %indvar_flatten69" [Crypto1.cpp:98]   --->   Operation 33 'store' 'store_ln98' <Predicate = (!icmp_ln96)> <Delay = 1.58>
-ST_1 : Operation 34 [1/1] (1.58ns)   --->   "%store_ln98 = store i7 %select_ln96, i7 %j" [Crypto1.cpp:98]   --->   Operation 34 'store' 'store_ln98' <Predicate = (!icmp_ln96)> <Delay = 1.58>
+State 1 <SV = 0> <Delay = 2.87>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%k = alloca i32 1" [HLS/src/Crypto1.cpp:98]   --->   Operation 7 'alloca' 'k' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%j = alloca i32 1" [HLS/src/Crypto1.cpp:96]   --->   Operation 8 'alloca' 'j' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%indvar_flatten47 = alloca i32 1"   --->   Operation 9 'alloca' 'indvar_flatten47' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%specaxissidechannel_ln0 = specaxissidechannel void @_ssdm_op_SpecAXISSideChannel, i32 %DataOutStream_V_data_V, i4 %DataOutStream_V_keep_V, i4 %DataOutStream_V_strb_V, i1 0, i1 %DataOutStream_V_last_V, i1 0, i1 0, void @empty_4"   --->   Operation 10 'specaxissidechannel' 'specaxissidechannel_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %DataOutStream_V_last_V, void @empty_25, i32 0, i32 0, void @empty_22, i32 0, i32 0, void @empty_5, void @empty_5, void @empty_5, i32 0, i32 0, i32 0, i32 0, void @empty_5, void @empty_5, i32 4294967295, i32 0, i32 0"   --->   Operation 11 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i4 %DataOutStream_V_strb_V, void @empty_25, i32 0, i32 0, void @empty_22, i32 0, i32 0, void @empty_5, void @empty_5, void @empty_5, i32 0, i32 0, i32 0, i32 0, void @empty_5, void @empty_5, i32 4294967295, i32 0, i32 0"   --->   Operation 12 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i4 %DataOutStream_V_keep_V, void @empty_25, i32 0, i32 0, void @empty_22, i32 0, i32 0, void @empty_5, void @empty_5, void @empty_5, i32 0, i32 0, i32 0, i32 0, void @empty_5, void @empty_5, i32 4294967295, i32 0, i32 0"   --->   Operation 13 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %DataOutStream_V_data_V, void @empty_25, i32 0, i32 0, void @empty_22, i32 0, i32 0, void @empty_5, void @empty_5, void @empty_5, i32 0, i32 0, i32 0, i32 0, void @empty_5, void @empty_5, i32 4294967295, i32 0, i32 0"   --->   Operation 14 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%tmp = read i10 @_ssdm_op_Read.ap_auto.i10, i10 %empty"   --->   Operation 15 'read' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.80ns)   --->   "%store_ln0 = store i13 0, i13 %indvar_flatten47"   --->   Operation 16 'store' 'store_ln0' <Predicate = true> <Delay = 0.80>
+ST_1 : Operation 17 [1/1] (0.80ns)   --->   "%store_ln96 = store i7 0, i7 %j" [HLS/src/Crypto1.cpp:96]   --->   Operation 17 'store' 'store_ln96' <Predicate = true> <Delay = 0.80>
+ST_1 : Operation 18 [1/1] (0.80ns)   --->   "%store_ln98 = store i7 0, i7 %k" [HLS/src/Crypto1.cpp:98]   --->   Operation 18 'store' 'store_ln98' <Predicate = true> <Delay = 0.80>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.body37.1"   --->   Operation 19 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%indvar_flatten47_load = load i13 %indvar_flatten47" [HLS/src/Crypto1.cpp:96]   --->   Operation 20 'load' 'indvar_flatten47_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (1.26ns)   --->   "%icmp_ln96 = icmp_eq  i13 %indvar_flatten47_load, i13 4096" [HLS/src/Crypto1.cpp:96]   --->   Operation 21 'icmp' 'icmp_ln96' <Predicate = true> <Delay = 1.26> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.26> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 22 [1/1] (1.26ns)   --->   "%add_ln96 = add i13 %indvar_flatten47_load, i13 1" [HLS/src/Crypto1.cpp:96]   --->   Operation 22 'add' 'add_ln96' <Predicate = true> <Delay = 1.26> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.26> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%br_ln96 = br i1 %icmp_ln96, void %for.inc57.1, void %for.body37.2.preheader.exitStub" [HLS/src/Crypto1.cpp:96]   --->   Operation 23 'br' 'br_ln96' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.80ns)   --->   "%store_ln96 = store i13 %add_ln96, i13 %indvar_flatten47" [HLS/src/Crypto1.cpp:96]   --->   Operation 24 'store' 'store_ln96' <Predicate = (!icmp_ln96)> <Delay = 0.80>
 
-State 2 <SV = 1> <Delay = 4.98>
-ST_2 : Operation 35 [1/1] (0.00ns)   --->   "%trunc_ln99 = trunc i42 %add_ln99_read" [Crypto1.cpp:99]   --->   Operation 35 'trunc' 'trunc_ln99' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 36 [1/1] (0.00ns)   --->   "%zext_ln99 = zext i7 %select_ln96" [Crypto1.cpp:99]   --->   Operation 36 'zext' 'zext_ln99' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 37 [1/1] (1.73ns)   --->   "%add_ln99_1 = add i10 %trunc_ln99, i10 %zext_ln99" [Crypto1.cpp:99]   --->   Operation 37 'add' 'add_ln99_1' <Predicate = true> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 38 [1/1] (0.00ns)   --->   "%tmp_s = bitconcatenate i13 @_ssdm_op_BitConcatenate.i13.i10.i3, i10 %add_ln99_1, i3 %empty" [Crypto1.cpp:99]   --->   Operation 38 'bitconcatenate' 'tmp_s' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 39 [1/1] (0.00ns)   --->   "%zext_ln99_2 = zext i13 %tmp_s" [Crypto1.cpp:99]   --->   Operation 39 'zext' 'zext_ln99_2' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 40 [1/1] (0.00ns)   --->   "%DataRAM_addr = getelementptr i32 %DataRAM, i64 0, i64 %zext_ln99_2" [Crypto1.cpp:99]   --->   Operation 40 'getelementptr' 'DataRAM_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 41 [1/1] (0.00ns)   --->   "%DataRAM_1_addr = getelementptr i32 %DataRAM_1, i64 0, i64 %zext_ln99_2" [Crypto1.cpp:99]   --->   Operation 41 'getelementptr' 'DataRAM_1_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 42 [1/1] (0.00ns)   --->   "%DataRAM_2_addr = getelementptr i32 %DataRAM_2, i64 0, i64 %zext_ln99_2" [Crypto1.cpp:99]   --->   Operation 42 'getelementptr' 'DataRAM_2_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 43 [1/1] (0.00ns)   --->   "%DataRAM_3_addr = getelementptr i32 %DataRAM_3, i64 0, i64 %zext_ln99_2" [Crypto1.cpp:99]   --->   Operation 43 'getelementptr' 'DataRAM_3_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 44 [1/1] (0.00ns)   --->   "%DataRAM_4_addr = getelementptr i32 %DataRAM_4, i64 0, i64 %zext_ln99_2" [Crypto1.cpp:99]   --->   Operation 44 'getelementptr' 'DataRAM_4_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 45 [1/1] (0.00ns)   --->   "%DataRAM_5_addr = getelementptr i32 %DataRAM_5, i64 0, i64 %zext_ln99_2" [Crypto1.cpp:99]   --->   Operation 45 'getelementptr' 'DataRAM_5_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 46 [1/1] (0.00ns)   --->   "%DataRAM_6_addr = getelementptr i32 %DataRAM_6, i64 0, i64 %zext_ln99_2" [Crypto1.cpp:99]   --->   Operation 46 'getelementptr' 'DataRAM_6_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 47 [1/1] (0.00ns)   --->   "%DataRAM_7_addr = getelementptr i32 %DataRAM_7, i64 0, i64 %zext_ln99_2" [Crypto1.cpp:99]   --->   Operation 47 'getelementptr' 'DataRAM_7_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 48 [2/2] (3.25ns)   --->   "%DataRAM_load = load i13 %DataRAM_addr" [Crypto1.cpp:99]   --->   Operation 48 'load' 'DataRAM_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_2 : Operation 49 [2/2] (3.25ns)   --->   "%DataRAM_1_load = load i13 %DataRAM_1_addr" [Crypto1.cpp:99]   --->   Operation 49 'load' 'DataRAM_1_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_2 : Operation 50 [2/2] (3.25ns)   --->   "%DataRAM_2_load = load i13 %DataRAM_2_addr" [Crypto1.cpp:99]   --->   Operation 50 'load' 'DataRAM_2_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_2 : Operation 51 [2/2] (3.25ns)   --->   "%DataRAM_3_load = load i13 %DataRAM_3_addr" [Crypto1.cpp:99]   --->   Operation 51 'load' 'DataRAM_3_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_2 : Operation 52 [2/2] (3.25ns)   --->   "%DataRAM_4_load = load i13 %DataRAM_4_addr" [Crypto1.cpp:99]   --->   Operation 52 'load' 'DataRAM_4_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_2 : Operation 53 [2/2] (3.25ns)   --->   "%DataRAM_5_load = load i13 %DataRAM_5_addr" [Crypto1.cpp:99]   --->   Operation 53 'load' 'DataRAM_5_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_2 : Operation 54 [2/2] (3.25ns)   --->   "%DataRAM_6_load = load i13 %DataRAM_6_addr" [Crypto1.cpp:99]   --->   Operation 54 'load' 'DataRAM_6_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_2 : Operation 55 [2/2] (3.25ns)   --->   "%DataRAM_7_load = load i13 %DataRAM_7_addr" [Crypto1.cpp:99]   --->   Operation 55 'load' 'DataRAM_7_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_2 : Operation 56 [1/1] (1.58ns)   --->   "%store_ln98 = store i7 %add_ln98, i7 %k" [Crypto1.cpp:98]   --->   Operation 56 'store' 'store_ln98' <Predicate = true> <Delay = 1.58>
-ST_2 : Operation 72 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 72 'ret' 'ret_ln0' <Predicate = (icmp_ln96)> <Delay = 0.00>
+State 2 <SV = 1> <Delay = 3.76>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%k_load = load i7 %k" [HLS/src/Crypto1.cpp:98]   --->   Operation 25 'load' 'k_load' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%j_load = load i7 %j" [HLS/src/Crypto1.cpp:96]   --->   Operation 26 'load' 'j_load' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 27 [1/1] (1.23ns)   --->   "%add_ln96_1 = add i7 %j_load, i7 1" [HLS/src/Crypto1.cpp:96]   --->   Operation 27 'add' 'add_ln96_1' <Predicate = true> <Delay = 1.23> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.23> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 28 [1/1] (1.23ns)   --->   "%icmp_ln98 = icmp_eq  i7 %k_load, i7 64" [HLS/src/Crypto1.cpp:98]   --->   Operation 28 'icmp' 'icmp_ln98' <Predicate = true> <Delay = 1.23> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.23> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 29 [1/1] (0.48ns)   --->   "%select_ln96 = select i1 %icmp_ln98, i7 0, i7 %k_load" [HLS/src/Crypto1.cpp:96]   --->   Operation 29 'select' 'select_ln96' <Predicate = true> <Delay = 0.48> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.48> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 30 [1/1] (0.48ns)   --->   "%select_ln96_2 = select i1 %icmp_ln98, i7 %add_ln96_1, i7 %j_load" [HLS/src/Crypto1.cpp:96]   --->   Operation 30 'select' 'select_ln96_2' <Predicate = true> <Delay = 0.48> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.48> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%trunc_ln98 = trunc i7 %select_ln96" [HLS/src/Crypto1.cpp:98]   --->   Operation 31 'trunc' 'trunc_ln98' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%trunc_ln98_5 = partselect i3 @_ssdm_op_PartSelect.i3.i7.i32.i32, i7 %select_ln96, i32 3, i32 5" [HLS/src/Crypto1.cpp:98]   --->   Operation 32 'partselect' 'trunc_ln98_5' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 33 [1/1] (1.23ns)   --->   "%add_ln98_1 = add i7 %select_ln96, i7 1" [HLS/src/Crypto1.cpp:98]   --->   Operation 33 'add' 'add_ln98_1' <Predicate = true> <Delay = 1.23> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.23> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 34 [1/1] (0.80ns)   --->   "%store_ln96 = store i7 %select_ln96_2, i7 %j" [HLS/src/Crypto1.cpp:96]   --->   Operation 34 'store' 'store_ln96' <Predicate = true> <Delay = 0.80>
+ST_2 : Operation 35 [1/1] (0.80ns)   --->   "%store_ln98 = store i7 %add_ln98_1, i7 %k" [HLS/src/Crypto1.cpp:98]   --->   Operation 35 'store' 'store_ln98' <Predicate = true> <Delay = 0.80>
 
-State 3 <SV = 2> <Delay = 5.55>
-ST_3 : Operation 57 [1/1] (0.00ns)   --->   "%specloopname_ln0 = specloopname void @_ssdm_op_SpecLoopName, void @READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP_str"   --->   Operation 57 'specloopname' 'specloopname_ln0' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 58 [1/1] (0.00ns)   --->   "%speclooptripcount_ln0 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4096, i64 4096, i64 4096"   --->   Operation 58 'speclooptripcount' 'speclooptripcount_ln0' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 59 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 59 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 60 [1/1] (0.00ns)   --->   "%specloopname_ln98 = specloopname void @_ssdm_op_SpecLoopName, void @empty_29" [Crypto1.cpp:98]   --->   Operation 60 'specloopname' 'specloopname_ln98' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 61 [1/2] (3.25ns)   --->   "%DataRAM_load = load i13 %DataRAM_addr" [Crypto1.cpp:99]   --->   Operation 61 'load' 'DataRAM_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_3 : Operation 62 [1/2] (3.25ns)   --->   "%DataRAM_1_load = load i13 %DataRAM_1_addr" [Crypto1.cpp:99]   --->   Operation 62 'load' 'DataRAM_1_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_3 : Operation 63 [1/2] (3.25ns)   --->   "%DataRAM_2_load = load i13 %DataRAM_2_addr" [Crypto1.cpp:99]   --->   Operation 63 'load' 'DataRAM_2_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_3 : Operation 64 [1/2] (3.25ns)   --->   "%DataRAM_3_load = load i13 %DataRAM_3_addr" [Crypto1.cpp:99]   --->   Operation 64 'load' 'DataRAM_3_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_3 : Operation 65 [1/2] (3.25ns)   --->   "%DataRAM_4_load = load i13 %DataRAM_4_addr" [Crypto1.cpp:99]   --->   Operation 65 'load' 'DataRAM_4_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_3 : Operation 66 [1/2] (3.25ns)   --->   "%DataRAM_5_load = load i13 %DataRAM_5_addr" [Crypto1.cpp:99]   --->   Operation 66 'load' 'DataRAM_5_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_3 : Operation 67 [1/2] (3.25ns)   --->   "%DataRAM_6_load = load i13 %DataRAM_6_addr" [Crypto1.cpp:99]   --->   Operation 67 'load' 'DataRAM_6_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_3 : Operation 68 [1/2] (3.25ns)   --->   "%DataRAM_7_load = load i13 %DataRAM_7_addr" [Crypto1.cpp:99]   --->   Operation 68 'load' 'DataRAM_7_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
-ST_3 : Operation 69 [1/1] (2.30ns)   --->   "%DataStreamReg_data = mux i32 @_ssdm_op_Mux.ap_auto.8i32.i3, i32 %DataRAM_load, i32 %DataRAM_1_load, i32 %DataRAM_2_load, i32 %DataRAM_3_load, i32 %DataRAM_4_load, i32 %DataRAM_5_load, i32 %DataRAM_6_load, i32 %DataRAM_7_load, i3 %trunc_ln98_1" [Crypto1.cpp:99]   --->   Operation 69 'mux' 'DataStreamReg_data' <Predicate = true> <Delay = 2.30> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 2.30> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 70 [1/1] (0.00ns)   --->   "%write_ln103 = write void @_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A, i32 %DataOutStream_V_data_V, i4 %DataOutStream_V_keep_V, i4 %DataOutStream_V_strb_V, i1 %DataOutStream_V_last_V, i32 %DataStreamReg_data, i4 15, i4 15, i1 0" [Crypto1.cpp:103]   --->   Operation 70 'write' 'write_ln103' <Predicate = true> <Delay = 0.00> <CoreInst = "axis">   --->   Core 115 'axis' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
-ST_3 : Operation 71 [1/1] (0.00ns)   --->   "%br_ln98 = br void %for.body123.1" [Crypto1.cpp:98]   --->   Operation 71 'br' 'br_ln98' <Predicate = true> <Delay = 0.00>
+State 3 <SV = 2> <Delay = 3.83>
+ST_3 : Operation 36 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln99 = add i10 %tmp, i10 64" [HLS/src/Crypto1.cpp:99]   --->   Operation 36 'add' 'add_ln99' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.92> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 37 [1/1] (0.00ns)   --->   "%zext_ln99 = zext i7 %select_ln96_2" [HLS/src/Crypto1.cpp:99]   --->   Operation 37 'zext' 'zext_ln99' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 38 [1/1] (1.84ns) (root node of TernaryAdder)   --->   "%add_ln98 = add i10 %add_ln99, i10 %zext_ln99" [HLS/src/Crypto1.cpp:98]   --->   Operation 38 'add' 'add_ln98' <Predicate = true> <Delay = 1.84> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.92> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 39 [1/1] (0.00ns)   --->   "%tmp_s = bitconcatenate i13 @_ssdm_op_BitConcatenate.i13.i10.i3, i10 %add_ln98, i3 %trunc_ln98" [HLS/src/Crypto1.cpp:99]   --->   Operation 39 'bitconcatenate' 'tmp_s' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 40 [1/1] (0.00ns)   --->   "%zext_ln99_2 = zext i13 %tmp_s" [HLS/src/Crypto1.cpp:99]   --->   Operation 40 'zext' 'zext_ln99_2' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%DataRAM_addr = getelementptr i32 %DataRAM, i64 0, i64 %zext_ln99_2" [HLS/src/Crypto1.cpp:99]   --->   Operation 41 'getelementptr' 'DataRAM_addr' <Predicate = (trunc_ln98_5 == 0)> <Delay = 0.00>
+ST_3 : Operation 42 [1/1] (0.00ns)   --->   "%DataRAM_1_addr = getelementptr i32 %DataRAM_1, i64 0, i64 %zext_ln99_2" [HLS/src/Crypto1.cpp:99]   --->   Operation 42 'getelementptr' 'DataRAM_1_addr' <Predicate = (trunc_ln98_5 == 1)> <Delay = 0.00>
+ST_3 : Operation 43 [1/1] (0.00ns)   --->   "%DataRAM_2_addr = getelementptr i32 %DataRAM_2, i64 0, i64 %zext_ln99_2" [HLS/src/Crypto1.cpp:99]   --->   Operation 43 'getelementptr' 'DataRAM_2_addr' <Predicate = (trunc_ln98_5 == 2)> <Delay = 0.00>
+ST_3 : Operation 44 [1/1] (0.00ns)   --->   "%DataRAM_3_addr = getelementptr i32 %DataRAM_3, i64 0, i64 %zext_ln99_2" [HLS/src/Crypto1.cpp:99]   --->   Operation 44 'getelementptr' 'DataRAM_3_addr' <Predicate = (trunc_ln98_5 == 3)> <Delay = 0.00>
+ST_3 : Operation 45 [1/1] (0.00ns)   --->   "%DataRAM_4_addr = getelementptr i32 %DataRAM_4, i64 0, i64 %zext_ln99_2" [HLS/src/Crypto1.cpp:99]   --->   Operation 45 'getelementptr' 'DataRAM_4_addr' <Predicate = (trunc_ln98_5 == 4)> <Delay = 0.00>
+ST_3 : Operation 46 [1/1] (0.00ns)   --->   "%DataRAM_5_addr = getelementptr i32 %DataRAM_5, i64 0, i64 %zext_ln99_2" [HLS/src/Crypto1.cpp:99]   --->   Operation 46 'getelementptr' 'DataRAM_5_addr' <Predicate = (trunc_ln98_5 == 5)> <Delay = 0.00>
+ST_3 : Operation 47 [1/1] (0.00ns)   --->   "%DataRAM_6_addr = getelementptr i32 %DataRAM_6, i64 0, i64 %zext_ln99_2" [HLS/src/Crypto1.cpp:99]   --->   Operation 47 'getelementptr' 'DataRAM_6_addr' <Predicate = (trunc_ln98_5 == 6)> <Delay = 0.00>
+ST_3 : Operation 48 [1/1] (0.00ns)   --->   "%DataRAM_7_addr = getelementptr i32 %DataRAM_7, i64 0, i64 %zext_ln99_2" [HLS/src/Crypto1.cpp:99]   --->   Operation 48 'getelementptr' 'DataRAM_7_addr' <Predicate = (trunc_ln98_5 == 7)> <Delay = 0.00>
+ST_3 : Operation 49 [2/2] (1.99ns)   --->   "%DataRAM_load = load i13 %DataRAM_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 49 'load' 'DataRAM_load' <Predicate = (trunc_ln98_5 == 0)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_3 : Operation 50 [2/2] (1.99ns)   --->   "%DataRAM_1_load = load i13 %DataRAM_1_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 50 'load' 'DataRAM_1_load' <Predicate = (trunc_ln98_5 == 1)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_3 : Operation 51 [2/2] (1.99ns)   --->   "%DataRAM_2_load = load i13 %DataRAM_2_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 51 'load' 'DataRAM_2_load' <Predicate = (trunc_ln98_5 == 2)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_3 : Operation 52 [2/2] (1.99ns)   --->   "%DataRAM_3_load = load i13 %DataRAM_3_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 52 'load' 'DataRAM_3_load' <Predicate = (trunc_ln98_5 == 3)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_3 : Operation 53 [2/2] (1.99ns)   --->   "%DataRAM_4_load = load i13 %DataRAM_4_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 53 'load' 'DataRAM_4_load' <Predicate = (trunc_ln98_5 == 4)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_3 : Operation 54 [2/2] (1.99ns)   --->   "%DataRAM_5_load = load i13 %DataRAM_5_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 54 'load' 'DataRAM_5_load' <Predicate = (trunc_ln98_5 == 5)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_3 : Operation 55 [2/2] (1.99ns)   --->   "%DataRAM_6_load = load i13 %DataRAM_6_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 55 'load' 'DataRAM_6_load' <Predicate = (trunc_ln98_5 == 6)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_3 : Operation 56 [2/2] (1.99ns)   --->   "%DataRAM_7_load = load i13 %DataRAM_7_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 56 'load' 'DataRAM_7_load' <Predicate = (trunc_ln98_5 == 7)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_3 : Operation 71 [1/1] (0.80ns)   --->   "%ret_ln0 = ret"   --->   Operation 71 'ret' 'ret_ln0' <Predicate = (icmp_ln96)> <Delay = 0.80>
+
+State 4 <SV = 3> <Delay = 3.68>
+ST_4 : Operation 57 [1/1] (0.00ns)   --->   "%specloopname_ln0 = specloopname void @_ssdm_op_SpecLoopName, void @READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP_str"   --->   Operation 57 'specloopname' 'specloopname_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 58 [1/1] (0.00ns)   --->   "%speclooptripcount_ln0 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 4096, i64 4096, i64 4096"   --->   Operation 58 'speclooptripcount' 'speclooptripcount_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 59 [1/1] (0.00ns)   --->   "%specpipeline_ln98 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_5" [HLS/src/Crypto1.cpp:98]   --->   Operation 59 'specpipeline' 'specpipeline_ln98' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 60 [1/2] (1.99ns)   --->   "%DataRAM_load = load i13 %DataRAM_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 60 'load' 'DataRAM_load' <Predicate = (trunc_ln98_5 == 0)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_4 : Operation 61 [1/2] (1.99ns)   --->   "%DataRAM_1_load = load i13 %DataRAM_1_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 61 'load' 'DataRAM_1_load' <Predicate = (trunc_ln98_5 == 1)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_4 : Operation 62 [1/2] (1.99ns)   --->   "%DataRAM_2_load = load i13 %DataRAM_2_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 62 'load' 'DataRAM_2_load' <Predicate = (trunc_ln98_5 == 2)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_4 : Operation 63 [1/2] (1.99ns)   --->   "%DataRAM_3_load = load i13 %DataRAM_3_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 63 'load' 'DataRAM_3_load' <Predicate = (trunc_ln98_5 == 3)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_4 : Operation 64 [1/2] (1.99ns)   --->   "%DataRAM_4_load = load i13 %DataRAM_4_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 64 'load' 'DataRAM_4_load' <Predicate = (trunc_ln98_5 == 4)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_4 : Operation 65 [1/2] (1.99ns)   --->   "%DataRAM_5_load = load i13 %DataRAM_5_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 65 'load' 'DataRAM_5_load' <Predicate = (trunc_ln98_5 == 5)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_4 : Operation 66 [1/2] (1.99ns)   --->   "%DataRAM_6_load = load i13 %DataRAM_6_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 66 'load' 'DataRAM_6_load' <Predicate = (trunc_ln98_5 == 6)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_4 : Operation 67 [1/2] (1.99ns)   --->   "%DataRAM_7_load = load i13 %DataRAM_7_addr" [HLS/src/Crypto1.cpp:99]   --->   Operation 67 'load' 'DataRAM_7_load' <Predicate = (trunc_ln98_5 == 7)> <Delay = 1.99> <CoreInst = "RAM">   --->   Core 81 'RAM' <Latency = 1> <II = 1> <Delay = 1.99> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 6144> <RAM>
+ST_4 : Operation 68 [1/1] (0.88ns)   --->   "%DataStreamReg_data = sparsemux i32 @_ssdm_op_SparseMux.ap_auto.8i32.i32.i3, i3 0, i32 %DataRAM_load, i3 1, i32 %DataRAM_1_load, i3 2, i32 %DataRAM_2_load, i3 3, i32 %DataRAM_3_load, i3 4, i32 %DataRAM_4_load, i3 5, i32 %DataRAM_5_load, i3 6, i32 %DataRAM_6_load, i3 7, i32 %DataRAM_7_load, i32 0, i3 %trunc_ln98_5" [HLS/src/Crypto1.cpp:99]   --->   Operation 68 'sparsemux' 'DataStreamReg_data' <Predicate = true> <Delay = 0.88> <CoreInst = "SparseMux">   --->   Core 132 'SparseMux' <Latency = 0> <II = 1> <Delay = 0.88> <FuncUnit> <Opcode : 'sparsemux'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 69 [1/1] (0.79ns)   --->   "%write_ln103 = write void @_ssdm_op_Write.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A, i32 %DataOutStream_V_data_V, i4 %DataOutStream_V_keep_V, i4 %DataOutStream_V_strb_V, i1 %DataOutStream_V_last_V, i32 %DataStreamReg_data, i4 15, i4 15, i1 0" [HLS/src/Crypto1.cpp:103]   --->   Operation 69 'write' 'write_ln103' <Predicate = true> <Delay = 0.79> <CoreInst = "regslice">   --->   Core 136 'regslice' <Latency = 0> <II = 1> <Delay = 1.15> <Adapter> <Opcode : 'read' 'write'>
+ST_4 : Operation 70 [1/1] (0.00ns)   --->   "%br_ln98 = br void %for.body37.1" [HLS/src/Crypto1.cpp:98]   --->   Operation 70 'br' 'br_ln98' <Predicate = true> <Delay = 0.00>
 
 
 ============================================================
 + Verbose Summary: Timing violations
 ============================================================
-Target clock period: 8.000ns, clock uncertainty: 2.160ns.
+Target clock period: 6.000ns, clock uncertainty: 1.620ns.
 
- <State 1>: 4.733ns
+ <State 1>: 2.874ns
 The critical path consists of the following:
-	'alloca' operation ('k') [14]  (0.000 ns)
-	'load' operation ('k_load', Crypto1.cpp:98) on local variable 'k' [34]  (0.000 ns)
-	'icmp' operation ('icmp_ln98', Crypto1.cpp:98) [39]  (1.870 ns)
-	'select' operation ('select_ln96_2', Crypto1.cpp:96) [40]  (0.993 ns)
-	'add' operation ('add_ln98', Crypto1.cpp:98) [69]  (1.870 ns)
+	'store' operation 0 bit ('store_ln0') of constant 0 on local variable 'indvar_flatten47' [23]  (0.807 ns)
+	'load' operation 13 bit ('indvar_flatten47_load', HLS/src/Crypto1.cpp:96) on local variable 'indvar_flatten47' [28]  (0.000 ns)
+	'add' operation 13 bit ('add_ln96', HLS/src/Crypto1.cpp:96) [30]  (1.260 ns)
+	'store' operation 0 bit ('store_ln96', HLS/src/Crypto1.cpp:96) of variable 'add_ln96', HLS/src/Crypto1.cpp:96 on local variable 'indvar_flatten47' [68]  (0.807 ns)
 
- <State 2>: 4.985ns
+ <State 2>: 3.765ns
 The critical path consists of the following:
-	'add' operation ('add_ln99_1', Crypto1.cpp:99) [44]  (1.731 ns)
-	'getelementptr' operation ('DataRAM_addr', Crypto1.cpp:99) [50]  (0.000 ns)
-	'load' operation ('DataRAM_load', Crypto1.cpp:99) on array 'DataRAM' [59]  (3.254 ns)
+	'load' operation 7 bit ('k_load', HLS/src/Crypto1.cpp:98) on local variable 'k', HLS/src/Crypto1.cpp:98 [33]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln98', HLS/src/Crypto1.cpp:98) [38]  (1.235 ns)
+	'select' operation 7 bit ('select_ln96', HLS/src/Crypto1.cpp:96) [39]  (0.488 ns)
+	'add' operation 7 bit ('add_ln98_1', HLS/src/Crypto1.cpp:98) [67]  (1.235 ns)
+	'store' operation 0 bit ('store_ln98', HLS/src/Crypto1.cpp:98) of variable 'add_ln98_1', HLS/src/Crypto1.cpp:98 on local variable 'k', HLS/src/Crypto1.cpp:98 [70]  (0.807 ns)
 
- <State 3>: 5.558ns
+ <State 3>: 3.840ns
 The critical path consists of the following:
-	'load' operation ('DataRAM_load', Crypto1.cpp:99) on array 'DataRAM' [59]  (3.254 ns)
-	'mux' operation ('DataStreamReg.data', Crypto1.cpp:99) [67]  (2.304 ns)
+	'add' operation 10 bit ('add_ln99', HLS/src/Crypto1.cpp:99) [41]  (0.000 ns)
+	'add' operation 10 bit ('add_ln98', HLS/src/Crypto1.cpp:98) [43]  (1.841 ns)
+	'getelementptr' operation 13 bit ('DataRAM_addr', HLS/src/Crypto1.cpp:99) [48]  (0.000 ns)
+	'load' operation 32 bit ('DataRAM_load', HLS/src/Crypto1.cpp:99) on array 'DataRAM' [57]  (1.998 ns)
+
+ <State 4>: 3.684ns
+The critical path consists of the following:
+	'load' operation 32 bit ('DataRAM_load', HLS/src/Crypto1.cpp:99) on array 'DataRAM' [57]  (1.998 ns)
+	'sparsemux' operation 32 bit ('DataStreamReg.data', HLS/src/Crypto1.cpp:99) [65]  (0.890 ns)
+	axis write operation ('write_ln103', HLS/src/Crypto1.cpp:103) on port 'DataOutStream_V_data_V' (HLS/src/Crypto1.cpp:103) [66]  (0.796 ns)
 
 
 ============================================================
@@ -195,6 +205,7 @@ N/A
 	State 1
 	State 2
 	State 3
+	State 4
 
 
 ============================================================

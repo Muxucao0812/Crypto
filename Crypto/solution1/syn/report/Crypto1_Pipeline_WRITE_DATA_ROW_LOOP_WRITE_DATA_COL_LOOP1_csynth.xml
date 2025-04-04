@@ -1,63 +1,76 @@
 <profile>
 
 <ReportVersion>
-<Version>2023.1</Version>
+<Version>2024.1</Version>
 </ReportVersion>
 
 <UserAssignments>
 <unit>ns</unit>
-<ProductFamily>zynq</ProductFamily>
-<Part>xc7z020-clg400-1</Part>
+<ProductFamily>virtex7</ProductFamily>
+<Part>xc7vx485t-ffg1761-3</Part>
 <TopModelName>Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP1</TopModelName>
-<TargetClockPeriod>8.00</TargetClockPeriod>
-<ClockUncertainty>2.16</ClockUncertainty>
+<TargetClockPeriod>6.00</TargetClockPeriod>
+<ClockUncertainty>1.62</ClockUncertainty>
 <FlowTarget>vivado</FlowTarget>
 </UserAssignments>
 
 <PerformanceEstimates>
-<PipelineType>no</PipelineType>
+<PipelineType>loop auto-rewind stp(delay=0 clock cycles(s))</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>4.985</EstimatedClockPeriod>
+<EstimatedClockPeriod>3.840</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>4098</Best-caseLatency>
-<Average-caseLatency>4098</Average-caseLatency>
-<Worst-caseLatency>4098</Worst-caseLatency>
-<Best-caseRealTimeLatency>32.784 us</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>32.784 us</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>32.784 us</Worst-caseRealTimeLatency>
-<Interval-min>4098</Interval-min>
-<Interval-max>4098</Interval-max>
+<Best-caseLatency>4099</Best-caseLatency>
+<Average-caseLatency>4099</Average-caseLatency>
+<Worst-caseLatency>4099</Worst-caseLatency>
+<Best-caseRealTimeLatency>24.594 us</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>24.594 us</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>24.594 us</Worst-caseRealTimeLatency>
+<Interval-min>4097</Interval-min>
+<Interval-max>4097</Interval-max>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
 <WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP>
-<Slack>5.84</Slack>
+<Slack>4.38</Slack>
 <TripCount>4096</TripCount>
-<Latency>4096</Latency>
-<AbsoluteTimeLatency>32768</AbsoluteTimeLatency>
+<Latency>4097</Latency>
+<AbsoluteTimeLatency>24582</AbsoluteTimeLatency>
 <PipelineII>1</PipelineII>
-<PipelineDepth>2</PipelineDepth>
+<PipelineDepth>3</PipelineDepth>
 <InstanceList>
 </InstanceList>
 </WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP>
 </SummaryOfLoopLatency>
+<SummaryOfViolations>
+<IssueType>-</IssueType>
+<ViolationType>-</ViolationType>
+<SourceLocation>HLS/src/Crypto1.cpp:78</SourceLocation>
+<SummaryOfLoopViolations>
+<WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP>
+<Name>WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP</Name>
+<IssueType>-</IssueType>
+<ViolationType>-</ViolationType>
+<SourceLocation>HLS/src/Crypto1.cpp:76</SourceLocation>
+</WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP>
+</SummaryOfLoopViolations>
+</SummaryOfViolations>
 </PerformanceEstimates>
 
 <AreaEstimates>
 <Resources>
-<FF>92</FF>
-<LUT>193</LUT>
+<FF>466</FF>
+<LUT>187</LUT>
 <BRAM_18K>0</BRAM_18K>
 <DSP>0</DSP>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>
-<BRAM_18K>280</BRAM_18K>
-<DSP>220</DSP>
-<FF>106400</FF>
-<LUT>53200</LUT>
+<BRAM_18K>2060</BRAM_18K>
+<DSP>2800</DSP>
+<FF>607200</FF>
+<LUT>303600</LUT>
 <URAM>0</URAM>
 </AvailableResources>
 </AreaEstimates>
@@ -152,14 +165,14 @@
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
-<name>add_ln80</name>
-<Object>add_ln80</Object>
+<name>empty</name>
+<Object>empty</Object>
 <Type>scalar</Type>
 <Scope></Scope>
 <IOProtocol>ap_none</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
-<Bits>42</Bits>
+<Bits>10</Bits>
 <Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>

@@ -1,8 +1,8 @@
 -- ==============================================================
--- Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
--- Tool Version Limit: 2023.05
+-- Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2024.1 (64-bit)
+-- Tool Version Limit: 2024.05
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
--- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+-- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- 
 -- ==============================================================
 library IEEE;
@@ -52,6 +52,8 @@ port (
 end entity Crypto1_control_s_axi;
 
 -- ------------------------Address Info-------------------
+-- Protocol Used: ap_ctrl_hs
+--
 -- 0x00000 : Control signals
 --           bit 0  - ap_start (Read/Write/COH)
 --           bit 1  - ap_done (Read/COR)
@@ -296,7 +298,7 @@ port map (
         if (ACLK'event and ACLK = '1') then
             if (ACLK_EN = '1') then
                 if (aw_hs = '1') then
-                    waddr <= UNSIGNED(AWADDR(ADDR_BITS-1 downto 0));
+                    waddr <= UNSIGNED(AWADDR(ADDR_BITS-1 downto 2) & (1 downto 0 => '0'));
                 end if;
             end if;
         end if;
@@ -565,7 +567,9 @@ port map (
     process (ACLK)
     begin
         if (ACLK'event and ACLK = '1') then
-            if (ACLK_EN = '1') then
+            if (ARESET = '1') then
+                int_RAMSel(31 downto 0) <= (others => '0');
+            elsif (ACLK_EN = '1') then
                 if (w_hs = '1' and waddr = ADDR_RAMSEL_DATA_0) then
                     int_RAMSel(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_RAMSel(31 downto 0));
                 end if;
@@ -576,7 +580,9 @@ port map (
     process (ACLK)
     begin
         if (ACLK'event and ACLK = '1') then
-            if (ACLK_EN = '1') then
+            if (ARESET = '1') then
+                int_RAMSel1(31 downto 0) <= (others => '0');
+            elsif (ACLK_EN = '1') then
                 if (w_hs = '1' and waddr = ADDR_RAMSEL1_DATA_0) then
                     int_RAMSel1(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_RAMSel1(31 downto 0));
                 end if;
@@ -587,7 +593,9 @@ port map (
     process (ACLK)
     begin
         if (ACLK'event and ACLK = '1') then
-            if (ACLK_EN = '1') then
+            if (ARESET = '1') then
+                int_OP(31 downto 0) <= (others => '0');
+            elsif (ACLK_EN = '1') then
                 if (w_hs = '1' and waddr = ADDR_OP_DATA_0) then
                     int_OP(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_OP(31 downto 0));
                 end if;

@@ -11,14 +11,14 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 27 \
+    id 215 \
     name output_indices \
     reset_level 1 \
     sync_rst true \
     dir O \
     corename output_indices \
     op interface \
-    ports { output_indices_address0 { O 6 vector } output_indices_ce0 { O 1 bit } output_indices_we0 { O 1 bit } output_indices_d0 { O 6 vector } output_indices_address1 { O 6 vector } output_indices_ce1 { O 1 bit } output_indices_we1 { O 1 bit } output_indices_d1 { O 6 vector } } \
+    ports { output_indices_address0 { O 6 vector } output_indices_ce0 { O 1 bit } output_indices_we0 { O 1 bit } output_indices_d0 { O 6 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'output_indices'"
@@ -29,7 +29,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 25 \
+    id 213 \
     name stage \
     type other \
     dir I \
@@ -44,7 +44,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 26 \
+    id 214 \
     name address \
     type other \
     dir I \

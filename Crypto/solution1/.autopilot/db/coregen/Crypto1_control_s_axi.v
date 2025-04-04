@@ -1,8 +1,8 @@
 // ==============================================================
-// Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
-// Tool Version Limit: 2023.05
+// Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2024.1 (64-bit)
+// Tool Version Limit: 2024.05
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-// Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+// Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // 
 // ==============================================================
 `timescale 1ns/1ps
@@ -47,6 +47,8 @@ module Crypto1_control_s_axi
     input  wire                          ap_idle
 );
 //------------------------Address Info-------------------
+// Protocol Used: ap_ctrl_hs
+//
 // 0x00000 : Control signals
 //           bit 0  - ap_start (Read/Write/COH)
 //           bit 1  - ap_done (Read/COR)
@@ -121,7 +123,7 @@ localparam
     wire                          ar_hs;
     wire [ADDR_BITS-1:0]          raddr;
     // internal registers
-    reg                           int_ap_idle;
+    reg                           int_ap_idle = 1'b0;
     reg                           int_ap_ready = 1'b0;
     wire                          task_ap_ready;
     reg                           int_ap_done = 1'b0;
@@ -249,7 +251,7 @@ end
 always @(posedge ACLK) begin
     if (ACLK_EN) begin
         if (aw_hs)
-            waddr <= AWADDR[ADDR_BITS-1:0];
+            waddr <= {AWADDR[ADDR_BITS-1:2], {2{1'b0}}};
     end
 end
 
@@ -412,7 +414,7 @@ always @(posedge ACLK) begin
         int_auto_restart <= 1'b0;
     else if (ACLK_EN) begin
         if (w_hs && waddr == ADDR_AP_CTRL && WSTRB[0])
-            int_auto_restart <=  WDATA[7];
+            int_auto_restart <= WDATA[7];
     end
 end
 

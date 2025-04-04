@@ -1,8 +1,8 @@
 // ==============================================================
-// Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
-// Tool Version Limit: 2023.05
+// Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2024.1 (64-bit)
+// Tool Version Limit: 2024.05
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-// Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+// Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // 
 // ==============================================================
 #ifndef XCRYPTO1_H
@@ -40,7 +40,11 @@ typedef uint32_t u32;
 typedef uint64_t u64;
 #else
 typedef struct {
+#ifdef SDT
+    char *Name;
+#else
     u16 DeviceId;
+#endif
     u64 Control_BaseAddress;
 } XCrypto1_Config;
 #endif
@@ -75,8 +79,13 @@ typedef u32 word_type;
 
 /************************** Function Prototypes *****************************/
 #ifndef __linux__
+#ifdef SDT
+int XCrypto1_Initialize(XCrypto1 *InstancePtr, UINTPTR BaseAddress);
+XCrypto1_Config* XCrypto1_LookupConfig(UINTPTR BaseAddress);
+#else
 int XCrypto1_Initialize(XCrypto1 *InstancePtr, u16 DeviceId);
 XCrypto1_Config* XCrypto1_LookupConfig(u16 DeviceId);
+#endif
 int XCrypto1_CfgInitialize(XCrypto1 *InstancePtr, XCrypto1_Config *ConfigPtr);
 #else
 int XCrypto1_Initialize(XCrypto1 *InstancePtr, const char* InstanceName);

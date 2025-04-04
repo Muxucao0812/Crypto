@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Crypto1'" level="0">
-<item name = "Date">Thu Mar 27 00:01:10 2025
+<item name = "Date">Fri Apr  4 16:47:52 2025
 </item>
-<item name = "Version">2023.1 (Build 3854077 on May  4 2023)</item>
+<item name = "Version">2024.1 (Build 5069499 on May 21 2024)</item>
 <item name = "Project">Crypto</item>
 <item name = "Solution">solution1 (Vivado IP Flow Target)</item>
-<item name = "Product family">zynq</item>
-<item name = "Target device">xc7z020-clg400-1</item>
+<item name = "Product family">virtex7</item>
+<item name = "Target device">xc7vx485t-ffg1761-3</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">8.00 ns, 6.109 ns, 2.16 ns</column>
+<column name="ap_clk">6.00 ns, 4.359 ns, 1.62 ns</column>
 </table>
 </item>
 </section>
@@ -24,65 +24,67 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">1, 622085, 8.000 ns, 4.977 ms, 2, 622086, no</column>
+<column name="">1, 921712, 6.000 ns, 5.530 ms, 2, 921713, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_Crypto1_Pipeline_POLY_MUL_ROW_LOOP_POLY_MUL_COL_LOOP_fu_682">Crypto1_Pipeline_POLY_MUL_ROW_LOOP_POLY_MUL_COL_LOOP, 12308, 12308, 98.464 us, 98.464 us, 12308, 12308, no</column>
-<column name="grp_Crypto1_Pipeline_POLY_SUB_ROW_LOOP_POLY_SUB_COL_LOOP_fu_704">Crypto1_Pipeline_POLY_SUB_ROW_LOOP_POLY_SUB_COL_LOOP, 12308, 12308, 98.464 us, 98.464 us, 12308, 12308, no</column>
-<column name="grp_Crypto1_Pipeline_POLY_ADD_ROW_LOOP_POLY_ADD_COL_LOOP_fu_726">Crypto1_Pipeline_POLY_ADD_ROW_LOOP_POLY_ADD_COL_LOOP, 12308, 12308, 98.464 us, 98.464 us, 12308, 12308, no</column>
-<column name="grp_Crypto1_Pipeline_WRITE_TWIDDLE_LOOP_WRITE_TWIDDLE_COL_LOOP_fu_748">Crypto1_Pipeline_WRITE_TWIDDLE_LOOP_WRITE_TWIDDLE_COL_LOOP, 12292, 12292, 98.336 us, 98.336 us, 12292, 12292, no</column>
-<column name="grp_Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP_fu_772">Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP, 4099, 4099, 32.792 us, 32.792 us, 4099, 4099, no</column>
-<column name="grp_Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP_fu_801">Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP, 4098, 4098, 32.784 us, 32.784 us, 4098, 4098, no</column>
-<column name="grp_Crypto1_Pipeline_INTT_COL_LOOP_fu_830">Crypto1_Pipeline_INTT_COL_LOOP, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_generate_input_index_fu_853">generate_input_index, 34, 34, 0.272 us, 0.272 us, 34, 34, no</column>
-<column name="grp_generate_output_index_fu_860">generate_output_index, 34, 34, 0.272 us, 0.272 us, 34, 34, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_386_7_fu_867">Crypto1_Pipeline_VITIS_LOOP_386_7, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_411_11_fu_880">Crypto1_Pipeline_VITIS_LOOP_411_11, 55, 55, 0.440 us, 0.440 us, 55, 55, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_421_12_fu_893">Crypto1_Pipeline_VITIS_LOOP_421_12, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_INTT_COL_LOOP19_fu_914">Crypto1_Pipeline_INTT_COL_LOOP19, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_386_720_fu_937">Crypto1_Pipeline_VITIS_LOOP_386_720, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_411_1121_fu_950">Crypto1_Pipeline_VITIS_LOOP_411_1121, 55, 55, 0.440 us, 0.440 us, 55, 55, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_421_1222_fu_963">Crypto1_Pipeline_VITIS_LOOP_421_1222, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_INTT_COL_LOOP23_fu_984">Crypto1_Pipeline_INTT_COL_LOOP23, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_386_724_fu_1007">Crypto1_Pipeline_VITIS_LOOP_386_724, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_411_1125_fu_1020">Crypto1_Pipeline_VITIS_LOOP_411_1125, 55, 55, 0.440 us, 0.440 us, 55, 55, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_421_1226_fu_1033">Crypto1_Pipeline_VITIS_LOOP_421_1226, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_NTT_COL_LOOP_fu_1054">Crypto1_Pipeline_NTT_COL_LOOP, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_311_1_fu_1077">Crypto1_Pipeline_VITIS_LOOP_311_1, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_333_5_fu_1090">Crypto1_Pipeline_VITIS_LOOP_333_5, 55, 55, 0.440 us, 0.440 us, 55, 55, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_342_6_fu_1103">Crypto1_Pipeline_VITIS_LOOP_342_6, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_NTT_COL_LOOP11_fu_1124">Crypto1_Pipeline_NTT_COL_LOOP11, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_311_112_fu_1147">Crypto1_Pipeline_VITIS_LOOP_311_112, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_333_513_fu_1160">Crypto1_Pipeline_VITIS_LOOP_333_513, 55, 55, 0.440 us, 0.440 us, 55, 55, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_342_614_fu_1173">Crypto1_Pipeline_VITIS_LOOP_342_614, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_NTT_COL_LOOP15_fu_1194">Crypto1_Pipeline_NTT_COL_LOOP15, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_311_116_fu_1217">Crypto1_Pipeline_VITIS_LOOP_311_116, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_333_517_fu_1230">Crypto1_Pipeline_VITIS_LOOP_333_517, 55, 55, 0.440 us, 0.440 us, 55, 55, no</column>
-<column name="grp_Crypto1_Pipeline_VITIS_LOOP_342_618_fu_1243">Crypto1_Pipeline_VITIS_LOOP_342_618, 68, 68, 0.544 us, 0.544 us, 68, 68, no</column>
-<column name="grp_Crypto1_Pipeline_POLY_MUL_ROW_LOOP_POLY_MUL_COL_LOOP9_fu_1264">Crypto1_Pipeline_POLY_MUL_ROW_LOOP_POLY_MUL_COL_LOOP9, 12308, 12308, 98.464 us, 98.464 us, 12308, 12308, no</column>
-<column name="grp_Crypto1_Pipeline_POLY_SUB_ROW_LOOP_POLY_SUB_COL_LOOP7_fu_1278">Crypto1_Pipeline_POLY_SUB_ROW_LOOP_POLY_SUB_COL_LOOP7, 12308, 12308, 98.464 us, 98.464 us, 12308, 12308, no</column>
-<column name="grp_Crypto1_Pipeline_POLY_ADD_ROW_LOOP_POLY_ADD_COL_LOOP5_fu_1292">Crypto1_Pipeline_POLY_ADD_ROW_LOOP_POLY_ADD_COL_LOOP5, 12308, 12308, 98.464 us, 98.464 us, 12308, 12308, no</column>
-<column name="grp_Crypto1_Pipeline_POLY_MUL_ROW_LOOP_POLY_MUL_COL_LOOP10_fu_1306">Crypto1_Pipeline_POLY_MUL_ROW_LOOP_POLY_MUL_COL_LOOP10, 12308, 12308, 98.464 us, 98.464 us, 12308, 12308, no</column>
-<column name="grp_Crypto1_Pipeline_POLY_SUB_ROW_LOOP_POLY_SUB_COL_LOOP8_fu_1320">Crypto1_Pipeline_POLY_SUB_ROW_LOOP_POLY_SUB_COL_LOOP8, 12308, 12308, 98.464 us, 98.464 us, 12308, 12308, no</column>
-<column name="grp_Crypto1_Pipeline_POLY_ADD_ROW_LOOP_POLY_ADD_COL_LOOP6_fu_1334">Crypto1_Pipeline_POLY_ADD_ROW_LOOP_POLY_ADD_COL_LOOP6, 12308, 12308, 98.464 us, 98.464 us, 12308, 12308, no</column>
-<column name="grp_Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP3_fu_1348">Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP3, 4099, 4099, 32.792 us, 32.792 us, 4099, 4099, no</column>
-<column name="grp_Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP1_fu_1369">Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP1, 4098, 4098, 32.784 us, 32.784 us, 4098, 4098, no</column>
-<column name="grp_Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP4_fu_1390">Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP4, 4099, 4099, 32.792 us, 32.792 us, 4099, 4099, no</column>
-<column name="grp_Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP2_fu_1411">Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP2, 4098, 4098, 32.784 us, 32.784 us, 4098, 4098, no</column>
+<column name="grp_Crypto1_Pipeline_WRITE_TWIDDLE_LOOP_WRITE_TWIDDLE_ROW_LOOP_WRITE_TWIDDLE_COL_LOO_fu_14130">Crypto1_Pipeline_WRITE_TWIDDLE_LOOP_WRITE_TWIDDLE_ROW_LOOP_WRITE_TWIDDLE_COL_LOO, 393219, 393219, 2.359 ms, 2.359 ms, 393217, 393217, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP_fu_14154">Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP, 4100, 4100, 24.600 us, 24.600 us, 4097, 4097, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP_fu_14183">Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP, 4099, 4099, 24.594 us, 24.594 us, 4097, 4097, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_INTT_COL_LOOP_fu_14212">Crypto1_Pipeline_INTT_COL_LOOP, 12, 12, 72.000 ns, 72.000 ns, 11, 11, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_generate_input_index_fu_14425">generate_input_index, 64, 64, 0.384 us, 0.384 us, 64, 64, no</column>
+<column name="grp_generate_output_index_fu_14432">generate_output_index, 65, 65, 0.390 us, 0.390 us, 65, 65, no</column>
+<column name="grp_Crypto1_Pipeline_VITIS_LOOP_386_7_fu_14439">Crypto1_Pipeline_VITIS_LOOP_386_7, 35, 35, 0.210 us, 0.210 us, 34, 34, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Configurable_PE_2_fu_14452">Configurable_PE_2, 16, 16, 96.000 ns, 96.000 ns, 16, 16, no</column>
+<column name="grp_Configurable_PE_2_fu_14463">Configurable_PE_2, 16, 16, 96.000 ns, 96.000 ns, 16, 16, no</column>
+<column name="grp_Crypto1_Pipeline_VITIS_LOOP_421_12_fu_14480">Crypto1_Pipeline_VITIS_LOOP_421_12, 14, 14, 84.000 ns, 84.000 ns, 12, 12, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_INTT_COL_LOOP17_fu_14571">Crypto1_Pipeline_INTT_COL_LOOP17, 12, 12, 72.000 ns, 72.000 ns, 11, 11, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_VITIS_LOOP_386_718_fu_14784">Crypto1_Pipeline_VITIS_LOOP_386_718, 35, 35, 0.210 us, 0.210 us, 34, 34, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_VITIS_LOOP_421_1219_fu_14797">Crypto1_Pipeline_VITIS_LOOP_421_1219, 14, 14, 84.000 ns, 84.000 ns, 12, 12, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_INTT_COL_LOOP20_fu_14888">Crypto1_Pipeline_INTT_COL_LOOP20, 12, 12, 72.000 ns, 72.000 ns, 11, 11, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_VITIS_LOOP_386_721_fu_15101">Crypto1_Pipeline_VITIS_LOOP_386_721, 35, 35, 0.210 us, 0.210 us, 34, 34, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_VITIS_LOOP_421_1222_fu_15114">Crypto1_Pipeline_VITIS_LOOP_421_1222, 14, 14, 84.000 ns, 84.000 ns, 12, 12, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_NTT_COL_LOOP_fu_15205">Crypto1_Pipeline_NTT_COL_LOOP, 12, 12, 72.000 ns, 72.000 ns, 11, 11, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_VITIS_LOOP_311_1_fu_15418">Crypto1_Pipeline_VITIS_LOOP_311_1, 35, 35, 0.210 us, 0.210 us, 34, 34, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_VITIS_LOOP_342_6_fu_15431">Crypto1_Pipeline_VITIS_LOOP_342_6, 14, 14, 84.000 ns, 84.000 ns, 12, 12, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_NTT_COL_LOOP11_fu_15522">Crypto1_Pipeline_NTT_COL_LOOP11, 12, 12, 72.000 ns, 72.000 ns, 11, 11, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_VITIS_LOOP_311_112_fu_15735">Crypto1_Pipeline_VITIS_LOOP_311_112, 35, 35, 0.210 us, 0.210 us, 34, 34, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_VITIS_LOOP_342_613_fu_15748">Crypto1_Pipeline_VITIS_LOOP_342_613, 14, 14, 84.000 ns, 84.000 ns, 12, 12, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_NTT_COL_LOOP14_fu_15839">Crypto1_Pipeline_NTT_COL_LOOP14, 12, 12, 72.000 ns, 72.000 ns, 11, 11, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_VITIS_LOOP_311_115_fu_16052">Crypto1_Pipeline_VITIS_LOOP_311_115, 35, 35, 0.210 us, 0.210 us, 34, 34, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_VITIS_LOOP_342_616_fu_16065">Crypto1_Pipeline_VITIS_LOOP_342_616, 14, 14, 84.000 ns, 84.000 ns, 12, 12, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_POLY_MUL_ROW_LOOP_fu_16156">Crypto1_Pipeline_POLY_MUL_ROW_LOOP, 793, 793, 4.758 us, 4.758 us, 780, 780, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_POLY_SUB_ROW_LOOP_fu_16170">Crypto1_Pipeline_POLY_SUB_ROW_LOOP, 793, 793, 4.758 us, 4.758 us, 780, 780, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_POLY_ADD_ROW_LOOP_fu_16184">Crypto1_Pipeline_POLY_ADD_ROW_LOOP, 793, 793, 4.758 us, 4.758 us, 780, 780, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_POLY_MUL_ROW_LOOP9_fu_16198">Crypto1_Pipeline_POLY_MUL_ROW_LOOP9, 793, 793, 4.758 us, 4.758 us, 780, 780, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_POLY_SUB_ROW_LOOP7_fu_16212">Crypto1_Pipeline_POLY_SUB_ROW_LOOP7, 793, 793, 4.758 us, 4.758 us, 780, 780, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_POLY_ADD_ROW_LOOP5_fu_16226">Crypto1_Pipeline_POLY_ADD_ROW_LOOP5, 793, 793, 4.758 us, 4.758 us, 780, 780, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_POLY_MUL_ROW_LOOP10_fu_16240">Crypto1_Pipeline_POLY_MUL_ROW_LOOP10, 793, 793, 4.758 us, 4.758 us, 780, 780, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_POLY_SUB_ROW_LOOP8_fu_16254">Crypto1_Pipeline_POLY_SUB_ROW_LOOP8, 793, 793, 4.758 us, 4.758 us, 780, 780, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_POLY_ADD_ROW_LOOP6_fu_16268">Crypto1_Pipeline_POLY_ADD_ROW_LOOP6, 793, 793, 4.758 us, 4.758 us, 780, 780, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP3_fu_16282">Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP3, 4100, 4100, 24.600 us, 24.600 us, 4097, 4097, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP1_fu_16303">Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP1, 4099, 4099, 24.594 us, 24.594 us, 4097, 4097, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP4_fu_16324">Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP4, 4100, 4100, 24.600 us, 24.600 us, 4097, 4097, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP2_fu_16345">Crypto1_Pipeline_WRITE_DATA_ROW_LOOP_WRITE_DATA_COL_LOOP2, 4099, 4099, 24.594 us, 24.594 us, 4097, 4097, loop auto-rewind stp(delay=0 clock cycles(s))</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- NTT_STAGE_LOOP_NTT_ROW_LOOP">207360, 207360, 270, -, -, 768, no</column>
-<column name="- INTT_STAGE_LOOP_INTT_ROW_LOOP">207360, 207360, 270, -, -, 768, no</column>
-<column name="- NTT_STAGE_LOOP_NTT_ROW_LOOP">207360, 207360, 270, -, -, 768, no</column>
-<column name="- NTT_STAGE_LOOP_NTT_ROW_LOOP">207360, 207360, 270, -, -, 768, no</column>
-<column name="- INTT_STAGE_LOOP_INTT_ROW_LOOP">207360, 207360, 270, -, -, 768, no</column>
-<column name="- INTT_STAGE_LOOP_INTT_ROW_LOOP">207360, 207360, 270, -, -, 768, no</column>
+<column name="- NTT_STAGE_LOOP">307224, 307224, 25602, -, -, 12, no</column>
+<column name=" + NTT_ROW_LOOP">25600, 25600, 400, -, -, 64, no</column>
+<column name="- INTT_STAGE_LOOP">307236, 307236, 25603, -, -, 12, no</column>
+<column name=" + INTT_ROW_LOOP">25600, 25600, 400, -, -, 64, no</column>
+<column name="- NTT_STAGE_LOOP">307224, 307224, 25602, -, -, 12, no</column>
+<column name=" + NTT_ROW_LOOP">25600, 25600, 400, -, -, 64, no</column>
+<column name="- NTT_STAGE_LOOP">307224, 307224, 25602, -, -, 12, no</column>
+<column name=" + NTT_ROW_LOOP">25600, 25600, 400, -, -, 64, no</column>
+<column name="- INTT_STAGE_LOOP">307236, 307236, 25603, -, -, 12, no</column>
+<column name=" + INTT_ROW_LOOP">25600, 25600, 400, -, -, 64, no</column>
+<column name="- INTT_STAGE_LOOP">307236, 307236, 25603, -, -, 12, no</column>
+<column name=" + INTT_ROW_LOOP">25600, 25600, 400, -, -, 64, no</column>
 </table>
 </item>
 </section>

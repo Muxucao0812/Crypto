@@ -14,8 +14,17 @@ set DLRegFirstOffset 0
 set DLRegItemOffset 0
 set C_modelName {Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP}
 set C_modelType { void 0 }
+set ap_memory_interface_dict [dict create]
+dict set ap_memory_interface_dict DataRAM { MEM_WIDTH 32 MEM_SIZE 24576 MASTER_TYPE BRAM_CTRL MEM_ADDRESS_MODE WORD_ADDRESS PACKAGE_IO port READ_LATENCY 1 }
+dict set ap_memory_interface_dict DataRAM_1 { MEM_WIDTH 32 MEM_SIZE 24576 MASTER_TYPE BRAM_CTRL MEM_ADDRESS_MODE WORD_ADDRESS PACKAGE_IO port READ_LATENCY 1 }
+dict set ap_memory_interface_dict DataRAM_2 { MEM_WIDTH 32 MEM_SIZE 24576 MASTER_TYPE BRAM_CTRL MEM_ADDRESS_MODE WORD_ADDRESS PACKAGE_IO port READ_LATENCY 1 }
+dict set ap_memory_interface_dict DataRAM_3 { MEM_WIDTH 32 MEM_SIZE 24576 MASTER_TYPE BRAM_CTRL MEM_ADDRESS_MODE WORD_ADDRESS PACKAGE_IO port READ_LATENCY 1 }
+dict set ap_memory_interface_dict DataRAM_4 { MEM_WIDTH 32 MEM_SIZE 24576 MASTER_TYPE BRAM_CTRL MEM_ADDRESS_MODE WORD_ADDRESS PACKAGE_IO port READ_LATENCY 1 }
+dict set ap_memory_interface_dict DataRAM_5 { MEM_WIDTH 32 MEM_SIZE 24576 MASTER_TYPE BRAM_CTRL MEM_ADDRESS_MODE WORD_ADDRESS PACKAGE_IO port READ_LATENCY 1 }
+dict set ap_memory_interface_dict DataRAM_6 { MEM_WIDTH 32 MEM_SIZE 24576 MASTER_TYPE BRAM_CTRL MEM_ADDRESS_MODE WORD_ADDRESS PACKAGE_IO port READ_LATENCY 1 }
+dict set ap_memory_interface_dict DataRAM_7 { MEM_WIDTH 32 MEM_SIZE 24576 MASTER_TYPE BRAM_CTRL MEM_ADDRESS_MODE WORD_ADDRESS PACKAGE_IO port READ_LATENCY 1 }
 set C_modelArgList {
-	{ sub_ln99 int 41 regular  }
+	{ mul_ln99 int 10 regular  }
 	{ DataRAM int 32 regular {array 6144 { 1 3 } 1 1 }  }
 	{ DataRAM_1 int 32 regular {array 6144 { 1 3 } 1 1 }  }
 	{ DataRAM_2 int 32 regular {array 6144 { 1 3 } 1 1 }  }
@@ -30,8 +39,10 @@ set C_modelArgList {
 	{ DataOutStream_V_last_V int 1 regular {axi_s 1 volatile  { DataOutStream Last } }  }
 }
 set hasAXIMCache 0
+set hasAXIML2Cache 0
+set AXIMCacheInstDict [dict create]
 set C_modelArgMapList {[ 
-	{ "Name" : "sub_ln99", "interface" : "wire", "bitwidth" : 41, "direction" : "READONLY"} , 
+	{ "Name" : "mul_ln99", "interface" : "wire", "bitwidth" : 10, "direction" : "READONLY"} , 
  	{ "Name" : "DataRAM", "interface" : "memory", "bitwidth" : 32, "direction" : "READONLY"} , 
  	{ "Name" : "DataRAM_1", "interface" : "memory", "bitwidth" : 32, "direction" : "READONLY"} , 
  	{ "Name" : "DataRAM_2", "interface" : "memory", "bitwidth" : 32, "direction" : "READONLY"} , 
@@ -54,7 +65,7 @@ set portList {
 	{ ap_idle sc_out sc_logic 1 done -1 } 
 	{ ap_ready sc_out sc_logic 1 ready -1 } 
 	{ DataOutStream_TREADY sc_in sc_logic 1 outacc 9 } 
-	{ sub_ln99 sc_in sc_lv 41 signal 0 } 
+	{ mul_ln99 sc_in sc_lv 10 signal 0 } 
 	{ DataRAM_address0 sc_out sc_lv 13 signal 1 } 
 	{ DataRAM_ce0 sc_out sc_logic 1 signal 1 } 
 	{ DataRAM_q0 sc_in sc_lv 32 signal 1 } 
@@ -93,7 +104,7 @@ set NewPortList {[
  	{ "name": "ap_idle", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "done", "bundle":{"name": "ap_idle", "role": "default" }} , 
  	{ "name": "ap_ready", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "ready", "bundle":{"name": "ap_ready", "role": "default" }} , 
  	{ "name": "DataOutStream_TREADY", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "outacc", "bundle":{"name": "DataOutStream_V_data_V", "role": "default" }} , 
- 	{ "name": "sub_ln99", "direction": "in", "datatype": "sc_lv", "bitwidth":41, "type": "signal", "bundle":{"name": "sub_ln99", "role": "default" }} , 
+ 	{ "name": "mul_ln99", "direction": "in", "datatype": "sc_lv", "bitwidth":10, "type": "signal", "bundle":{"name": "mul_ln99", "role": "default" }} , 
  	{ "name": "DataRAM_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":13, "type": "signal", "bundle":{"name": "DataRAM", "role": "address0" }} , 
  	{ "name": "DataRAM_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "DataRAM", "role": "ce0" }} , 
  	{ "name": "DataRAM_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "DataRAM", "role": "q0" }} , 
@@ -131,7 +142,7 @@ set RtlHierarchyInfo {[
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
 		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "4099", "EstimateLatencyMax" : "4099",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "4100", "EstimateLatencyMax" : "4100",
 		"Combinational" : "0",
 		"Datapath" : "0",
 		"ClockEnable" : "0",
@@ -140,7 +151,7 @@ set RtlHierarchyInfo {[
 		"HasNonBlockingOperation" : "0",
 		"IsBlackBox" : "0",
 		"Port" : [
-			{"Name" : "sub_ln99", "Type" : "None", "Direction" : "I"},
+			{"Name" : "mul_ln99", "Type" : "None", "Direction" : "I"},
 			{"Name" : "DataRAM", "Type" : "Memory", "Direction" : "I"},
 			{"Name" : "DataRAM_1", "Type" : "Memory", "Direction" : "I"},
 			{"Name" : "DataRAM_2", "Type" : "Memory", "Direction" : "I"},
@@ -157,32 +168,32 @@ set RtlHierarchyInfo {[
 			{"Name" : "DataOutStream_V_last_V", "Type" : "Axis", "Direction" : "O", "BaseName" : "DataOutStream"}],
 		"Loop" : [
 			{"Name" : "READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP", "PipelineType" : "UPC",
-				"LoopDec" : {"FSMBitwidth" : "1", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter2", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter2", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mux_8_3_32_1_1_U515", "Parent" : "0"},
+				"LoopDec" : {"FSMBitwidth" : "1", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter3", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter3", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.sparsemux_17_3_32_1_1_U2368", "Parent" : "0"},
 	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.flow_control_loop_pipe_sequential_init_U", "Parent" : "0"}]}
 
 
 set ArgLastReadFirstWriteLatency {
 	Crypto1_Pipeline_READ_DATA_ROW_LOOP_READ_DATA_COL_LOOP {
-		sub_ln99 {Type I LastRead 0 FirstWrite -1}
-		DataRAM {Type I LastRead 1 FirstWrite -1}
-		DataRAM_1 {Type I LastRead 1 FirstWrite -1}
-		DataRAM_2 {Type I LastRead 1 FirstWrite -1}
-		DataRAM_3 {Type I LastRead 1 FirstWrite -1}
-		DataRAM_4 {Type I LastRead 1 FirstWrite -1}
-		DataRAM_5 {Type I LastRead 1 FirstWrite -1}
-		DataRAM_6 {Type I LastRead 1 FirstWrite -1}
-		DataRAM_7 {Type I LastRead 1 FirstWrite -1}
-		DataOutStream_V_data_V {Type O LastRead -1 FirstWrite 2}
-		DataOutStream_V_keep_V {Type O LastRead -1 FirstWrite 2}
-		DataOutStream_V_strb_V {Type O LastRead -1 FirstWrite 2}
-		DataOutStream_V_last_V {Type O LastRead -1 FirstWrite 2}}}
+		mul_ln99 {Type I LastRead 0 FirstWrite -1}
+		DataRAM {Type I LastRead 2 FirstWrite -1}
+		DataRAM_1 {Type I LastRead 2 FirstWrite -1}
+		DataRAM_2 {Type I LastRead 2 FirstWrite -1}
+		DataRAM_3 {Type I LastRead 2 FirstWrite -1}
+		DataRAM_4 {Type I LastRead 2 FirstWrite -1}
+		DataRAM_5 {Type I LastRead 2 FirstWrite -1}
+		DataRAM_6 {Type I LastRead 2 FirstWrite -1}
+		DataRAM_7 {Type I LastRead 2 FirstWrite -1}
+		DataOutStream_V_data_V {Type O LastRead -1 FirstWrite 3}
+		DataOutStream_V_keep_V {Type O LastRead -1 FirstWrite 3}
+		DataOutStream_V_strb_V {Type O LastRead -1 FirstWrite 3}
+		DataOutStream_V_last_V {Type O LastRead -1 FirstWrite 3}}}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "4099", "Max" : "4099"}
-	, {"Name" : "Interval", "Min" : "4099", "Max" : "4099"}
+	{"Name" : "Latency", "Min" : "4100", "Max" : "4100"}
+	, {"Name" : "Interval", "Min" : "4100", "Max" : "4100"}
 ]}
 
 set PipelineEnableSignalInfo {[
@@ -190,15 +201,15 @@ set PipelineEnableSignalInfo {[
 ]}
 
 set Spec2ImplPortList { 
-	sub_ln99 { ap_none {  { sub_ln99 in_data 0 41 } } }
-	DataRAM { ap_memory {  { DataRAM_address0 mem_address 1 13 }  { DataRAM_ce0 mem_ce 1 1 }  { DataRAM_q0 in_data 0 32 } } }
-	DataRAM_1 { ap_memory {  { DataRAM_1_address0 mem_address 1 13 }  { DataRAM_1_ce0 mem_ce 1 1 }  { DataRAM_1_q0 in_data 0 32 } } }
-	DataRAM_2 { ap_memory {  { DataRAM_2_address0 mem_address 1 13 }  { DataRAM_2_ce0 mem_ce 1 1 }  { DataRAM_2_q0 in_data 0 32 } } }
-	DataRAM_3 { ap_memory {  { DataRAM_3_address0 mem_address 1 13 }  { DataRAM_3_ce0 mem_ce 1 1 }  { DataRAM_3_q0 in_data 0 32 } } }
-	DataRAM_4 { ap_memory {  { DataRAM_4_address0 mem_address 1 13 }  { DataRAM_4_ce0 mem_ce 1 1 }  { DataRAM_4_q0 in_data 0 32 } } }
-	DataRAM_5 { ap_memory {  { DataRAM_5_address0 mem_address 1 13 }  { DataRAM_5_ce0 mem_ce 1 1 }  { DataRAM_5_q0 in_data 0 32 } } }
-	DataRAM_6 { ap_memory {  { DataRAM_6_address0 mem_address 1 13 }  { DataRAM_6_ce0 mem_ce 1 1 }  { DataRAM_6_q0 in_data 0 32 } } }
-	DataRAM_7 { ap_memory {  { DataRAM_7_address0 mem_address 1 13 }  { DataRAM_7_ce0 mem_ce 1 1 }  { DataRAM_7_q0 in_data 0 32 } } }
+	mul_ln99 { ap_none {  { mul_ln99 in_data 0 10 } } }
+	DataRAM { ap_memory {  { DataRAM_address0 mem_address 1 13 }  { DataRAM_ce0 mem_ce 1 1 }  { DataRAM_q0 mem_dout 0 32 } } }
+	DataRAM_1 { ap_memory {  { DataRAM_1_address0 mem_address 1 13 }  { DataRAM_1_ce0 mem_ce 1 1 }  { DataRAM_1_q0 mem_dout 0 32 } } }
+	DataRAM_2 { ap_memory {  { DataRAM_2_address0 mem_address 1 13 }  { DataRAM_2_ce0 mem_ce 1 1 }  { DataRAM_2_q0 mem_dout 0 32 } } }
+	DataRAM_3 { ap_memory {  { DataRAM_3_address0 mem_address 1 13 }  { DataRAM_3_ce0 mem_ce 1 1 }  { DataRAM_3_q0 mem_dout 0 32 } } }
+	DataRAM_4 { ap_memory {  { DataRAM_4_address0 mem_address 1 13 }  { DataRAM_4_ce0 mem_ce 1 1 }  { DataRAM_4_q0 mem_dout 0 32 } } }
+	DataRAM_5 { ap_memory {  { DataRAM_5_address0 mem_address 1 13 }  { DataRAM_5_ce0 mem_ce 1 1 }  { DataRAM_5_q0 mem_dout 0 32 } } }
+	DataRAM_6 { ap_memory {  { DataRAM_6_address0 mem_address 1 13 }  { DataRAM_6_ce0 mem_ce 1 1 }  { DataRAM_6_q0 mem_dout 0 32 } } }
+	DataRAM_7 { ap_memory {  { DataRAM_7_address0 mem_address 1 13 }  { DataRAM_7_ce0 mem_ce 1 1 }  { DataRAM_7_q0 mem_dout 0 32 } } }
 	DataOutStream_V_data_V { axis {  { DataOutStream_TREADY out_acc 0 1 }  { DataOutStream_TDATA out_data 1 32 } } }
 	DataOutStream_V_keep_V { axis {  { DataOutStream_TKEEP out_data 1 4 } } }
 	DataOutStream_V_strb_V { axis {  { DataOutStream_TSTRB out_data 1 4 } } }

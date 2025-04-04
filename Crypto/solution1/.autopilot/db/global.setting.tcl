@@ -1,6 +1,6 @@
 
 set TopModule "Crypto1"
-set ClockPeriod 8
+set ClockPeriod 6
 set ClockList ap_clk
 set HasVivadoClockPeriod 0
 set CombLogicFlag 0
@@ -41,11 +41,11 @@ set ExportMCPathFlag 0
 set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
-set TargetInfo xc7z020:-clg400:-1
-set SourceFiles {sc {} c {../../pow_mod.cpp ../../Utils.cpp ../../AddressGen_TB.cpp ../../AddressGen.cpp ../../Crypto_TB.cpp ../../Arithmetic.cpp ../../PE_UNIT.cpp ../../PE_ARRAY.cpp ../../DATAMemory.cpp ../../Crypto1.cpp ../../Crypto.cpp ../../TwiddleMemory.cpp}}
-set SourceFlags {sc {} c {{} {} {} {} {} {} {} {} {} {} {} {}}}
+set TargetInfo xc7vx485t:-ffg1761:-3
+set SourceFiles {sc {} c {../../HLS/src/pow_mod.cpp ../../HLS/src/Utils.cpp ../../HLS/src/AddressGen.cpp ../../HLS/src/Arithmetic.cpp ../../HLS/src/PE_UNIT.cpp ../../HLS/src/PE_ARRAY.cpp ../../HLS/src/DATAMemory.cpp ../../HLS/src/Crypto1.cpp ../../HLS/src/Crypto.cpp ../../HLS/src/TwiddleMemory.cpp}}
+set SourceFlags {sc {} c {-I./HLS/include -I./HLS/include -I./HLS/include -I./HLS/include -I./HLS/include -I./HLS/include -I./HLS/include -I./HLS/include -I./HLS/include -I./HLS/include}}
 set DirectiveFile {}
-set TBFiles {verilog ../../main_TB.cpp bc ../../main_TB.cpp vhdl ../../main_TB.cpp sc ../../main_TB.cpp cas ../../main_TB.cpp c {}}
+set TBFiles {verilog {../../HLS/test/main_TB.cpp ../../HLS/test/AddressGen_TB.cpp ../../HLS/test/Crypto_TB.cpp} bc {../../HLS/test/main_TB.cpp ../../HLS/test/AddressGen_TB.cpp ../../HLS/test/Crypto_TB.cpp} vhdl {../../HLS/test/main_TB.cpp ../../HLS/test/AddressGen_TB.cpp ../../HLS/test/Crypto_TB.cpp} sc {../../HLS/test/main_TB.cpp ../../HLS/test/AddressGen_TB.cpp ../../HLS/test/Crypto_TB.cpp} cas {../../HLS/test/main_TB.cpp ../../HLS/test/AddressGen_TB.cpp ../../HLS/test/Crypto_TB.cpp} c {}}
 set SpecLanguage C
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
@@ -61,5 +61,5 @@ set DefaultPlatform DefaultPlatform
 set multiClockList {}
 set SCPortClockMap {}
 set intNbAccess 0
-set PlatformFiles {{DefaultPlatform {xilinx/zynq/zynq}}}
+set PlatformFiles {{DefaultPlatform {xilinx/virtex7/virtex7}}}
 set HPFPO 0

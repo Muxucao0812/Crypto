@@ -1,13 +1,13 @@
 <dict>
   <key>main-file</key>
-  <string>/home/meng/HLS/Crypto/Crypto/solution1/.autopilot/db/PE_UNIT.pp.0.cpp</string>
+  <string>/data-ssd/home/xiangchenmeng/work/Crypto/Crypto/solution1/.autopilot/db/PE_UNIT.pp.0.cpp</string>
   <key>diagnostics</key>
   <array>
     <dict>
       <key>level</key>
       <string>warning</string>
       <key>filename</key>
-      <string>PE_UNIT.cpp</string>
+      <string>HLS/src/PE_UNIT.cpp</string>
       <key>line</key>
       <integer>13</integer>
       <key>column</key>
